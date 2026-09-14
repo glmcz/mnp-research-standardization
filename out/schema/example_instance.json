@@ -1,0 +1,101 @@
+{
+  "study": {
+    "pmcid": "PMC0000000",
+    "doi": "10.0000/example",
+    "title": "Worked example, not a real study",
+    "year": 2026,
+    "journal": "\u2014"
+  },
+  "size_range": {
+    "min_um": 0.05,
+    "max_um": 5000.0,
+    "method": "dls"
+  },
+  "surface": {
+    "measurements": [
+      {
+        "row_id": "r1",
+        "particle_name": "PS-COOH 100 nm",
+        "material": "polystyrene",
+        "functionalisation": "carboxylate",
+        "supplier": "Polysciences",
+        "size_nominal_nm": 100.0,
+        "size_measured_nm": 112.0,
+        "size_method": "dls",
+        "quantity": "electrophoretic_mobility",
+        "value": -3.42,
+        "unit": "um_cm_per_Vs",
+        "sd": 0.11,
+        "n": 3,
+        "conditions": {
+          "medium_text": "10 mM NaCl, unbuffered",
+          "medium_class": "salt_solution",
+          "ionic_strength_mM": 10.0,
+          "ionic_strength_source": "inferred_from_named_salt",
+          "pH": 7.2,
+          "temperature_C": 25.0,
+          "instrument": "Malvern Zetasizer Nano ZS",
+          "instrument_settings": "monomodal, 3 runs of 20 s, Smoluchowski conversion"
+        },
+        "medium_matches_exposure": true,
+        "evidence": {
+          "quote": "Electrophoretic mobility was -3.42 (0.11) x 10^-8 m2 V-1 s-1 in 10 mM NaCl at pH 7.2 and 25 C.",
+          "location": "Methods, Particle characterisation, para 2",
+          "verified": true
+        }
+      },
+      {
+        "row_id": "r2",
+        "particle_name": "PS-COOH 100 nm",
+        "material": "polystyrene",
+        "functionalisation": "carboxylate",
+        "supplier": "Polysciences",
+        "size_nominal_nm": 100.0,
+        "size_measured_nm": 112.0,
+        "size_method": "dls",
+        "quantity": "electrophoretic_mobility",
+        "value": -2.05,
+        "unit": "um_cm_per_Vs",
+        "sd": 0.09,
+        "n": 3,
+        "conditions": {
+          "medium_text": "10 mM NaCl, unbuffered",
+          "medium_class": "salt_solution",
+          "ionic_strength_mM": 100.0,
+          "ionic_strength_source": "inferred_from_named_salt",
+          "pH": 7.2,
+          "temperature_C": 25.0,
+          "instrument": "Malvern Zetasizer Nano ZS",
+          "instrument_settings": "monomodal, 3 runs of 20 s, Smoluchowski conversion"
+        },
+        "medium_matches_exposure": true,
+        "evidence": {
+          "quote": "At 100 mM NaCl the mobility fell to -2.05 (0.09) x 10^-8 m2 V-1 s-1.",
+          "location": "Results, Fig. 2 caption",
+          "verified": true
+        }
+      }
+    ]
+  },
+  "environment": {
+    "matrix_text": "treated drinking water",
+    "matrix_class": "drinking_water"
+  },
+  "provenance": {
+    "matrix": "treated drinking water",
+    "digestion_chemistry": "proteinase K, no KOH",
+    "digestion_temperature_C": 50.0,
+    "digestion_duration_h": 16.0,
+    "separation": "density separation, NaI",
+    "instrument": "Malvern Zetasizer Nano ZS",
+    "modality": "laser Doppler electrophoresis",
+    "spatial_floor_um": 0.05,
+    "size_resolved_lod": "0.05-1 um: 30 particles/L; 1-10 um: 4 particles/L",
+    "sampling_time": "2026-03-14, 09:00-11:00",
+    "spectral_library": "in-house, 412 reference spectra",
+    "match_threshold": 0.7,
+    "spiked_natural_material_control": true,
+    "procedural_blanks": true,
+    "morphology_class_calibrated": true
+  }
+}

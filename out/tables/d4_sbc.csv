@@ -1,0 +1,5 @@
+model,param,n_sbc,n_post,ks_pvalue,pass
+soft,log10_absZN_M,200,100,0.9581196481989043,True
+soft,log10_lambda_inv_nm,200,100,0.47237182368512187,True
+hard,sigma_C_m2,200,100,0.5187454615722977,True
+hard,log10_radius_nm,200,100,0.5100630694659855,True

@@ -1,0 +1,165 @@
+# Answers to tests/edge/edge_cases.md. Fill in verdict + reasoning for each.
+# verdict: a short decision ('counts', 'does not count', 'reported', 'not reported',
+#          'ambiguous - paper does not say', or the value/unit to record).
+
+A1:
+  pmcid: PMC12105431
+  question: Zeta values appear in the discussion, attributed to Zhou et al. rather than measured here.
+    Count them?
+  verdict: ''
+  reasoning: ''
+A2:
+  pmcid: PMC10458608
+  question: The paper states the general 'plus/minus 30 mV' colloidal-stability threshold. Is that
+    a measurement?
+  verdict: ''
+  reasoning: ''
+A3:
+  pmcid: PMC11026464
+  question: Polystyrene beads appear only as an instrument calibration standard, with no zeta reported
+    for them. Does the paper report a plastic zeta?
+  verdict: ''
+  reasoning: ''
+A4:
+  pmcid: PMC9318256
+  question: Zeta is measured on whole industrial effluent containing microplastics, not on isolated
+    particles. Is that a microplastic measurement?
+  verdict: ''
+  reasoning: ''
+A5:
+  pmcid: PMC13520016
+  question: Table 1 holds 80 fully-conditioned zeta values, but samples were 0.2 um filtered first,
+    removing 83-97% of the PET particles; the authors attribute the signal to the Abeta peptide. Count
+    them?
+  verdict: ''
+  reasoning: ''
+C1:
+  pmcid: PMC4958399
+  question: PBS is used and its tablet composition is printed (0.137 M NaCl, 0.0027 M KCl, 0.01 M
+    phosphate). Is the ionic strength reported?
+  verdict: 'reported, derived'
+  reasoning: 'Martin, 2026-09-13. A stated composition establishes ionic strength when the calculation follows directly from explicitly stated ionic species and concentrations: 0.137 M NaCl + 0.0027 M KCl = 139.7 mM. Record it, and flag it as derived rather than printed. The phosphate is excluded because its speciation at pH 7.4 is not stated.'
+C2:
+  pmcid: PMC4958399
+  question: Particles were incubated at 25 C and 37 C before measurement; the measurement temperature
+    is never stated. Is temperature reported?
+  verdict: 'not reported'
+  reasoning: 'Martin, 2026-09-13. Incubation is not measurement. Only a temperature explicitly associated with the zeta-potential measurement counts; incubation, exposure and culture temperature are separate conditions, even when no other temperature is given and even when the paper''s own variable is temperature.'
+C3:
+  pmcid: PMC9218121
+  question: pH is given as a range across a titration rather than a single value. Is pH reported,
+    and what is recorded?
+  verdict: ''
+  reasoning: ''
+C4:
+  pmcid: PMC9230722
+  question: The medium is named only as 'the experimental medium'. Is the medium reported?
+  verdict: ''
+  reasoning: ''
+C5:
+  pmcid: PMC4861966
+  question: Methods state the medium and pH for the PEGylated particles only; the stock particles
+    are measured too. Do the conditions carry over to the stock rows?
+  verdict: 'does not count'
+  reasoning: 'Martin, 2026-09-13. A condition holds only within the experiment that states it. Do not propagate conditions across distinct preparations or measurements unless the paper explicitly establishes that the condition applies to them.'
+C6:
+  pmcid: PMC10081693
+  question: The instrument is named as 'Zetasizer (Nano ZS90; Malvern)'. If a paper instead said only
+    'Zetasizer', is the instrument reported?
+  verdict: ''
+  reasoning: ''
+C7:
+  pmcid: PMC12250668
+  question: The unit is printed as 'mvolt', and elsewhere in the corpus as 'MV' where millivolts are
+    meant. Should an obviously mistyped unit be taken at face value?
+  verdict: ''
+  reasoning: ''
+C8:
+  pmcid: PMC11099890
+  question: Mobility is printed as 'x 10-4 (cm2 V-1 s-1)' — the paper's own prefactor cancels the
+    cm2. Should the recorded unit be the bracket, or the whole header?
+  verdict: ''
+  reasoning: ''
+M1:
+  pmcid: PMC3990004
+  question: PLG-PEMA biodegradable nanoparticles carry a zeta potential. PLGA/PLG is a synthetic polyester
+    used as a drug carrier, not an environmental pollutant. Does it count as a plastic particle for
+    this study?
+  verdict: ''
+  reasoning: ''
+M2:
+  pmcid: PMC9735624
+  question: Lignin nanoparticles with a printed zeta potential. Lignin is a natural polymer being
+    developed as a plastic replacement. Count it?
+  verdict: ''
+  reasoning: ''
+M3:
+  pmcid: PMC12883708
+  question: BiVO4 micromotors with a ~0.6 wt% poly(o-phenylenediamine) shell; five zeta values printed.
+    Polymer surface, inorganic core. Count it?
+  verdict: ''
+  reasoning: ''
+M4:
+  pmcid: PMC9811439
+  question: Cellulose nanocrystals, printed zeta, presented as a biodegradable packaging material.
+    Count it?
+  verdict: ''
+  reasoning: ''
+M5:
+  pmcid: PMC9315505
+  question: Polymer-coated iron-oxide particles used to capture plastics from water. Their zeta is
+    printed; the plastics' is not. Count the capture agent?
+  verdict: ''
+  reasoning: ''
+M6:
+  pmcid: PMC5876619
+  question: A PIB-PEG polymersome (block-copolymer vesicle, structurally like a liposome but entirely
+    synthetic polymer). Count it as a plastic particle?
+  verdict: ''
+  reasoning: ''
+M7:
+  pmcid: PMC12883708
+  question: The poly(o-phenylenediamine) shell is a functional molecular-recognition layer, not a
+    passive coating, on an inorganic core. Does the coating rule still exclude it?
+  verdict: ''
+  reasoning: ''
+V1:
+  pmcid: PMC10978833
+  question: The zeta is given as 'approximately -5 to -14 mV'. Is that a reported value, a reported
+    range, or no value?
+  verdict: ''
+  reasoning: ''
+V2:
+  pmcid: PMC9974068
+  question: The measurement is described in the text; the numbers exist only in Figure 1. Reported?
+  verdict: ''
+  reasoning: ''
+V3:
+  pmcid: PMC12038248
+  question: Values exist only in supplementary Table S2. Reported?
+  verdict: ''
+  reasoning: ''
+V4:
+  pmcid: PMC11204973
+  question: The text says the zeta potential was 'maintained' with no number anywhere. Is a measurement
+    reported?
+  verdict: ''
+  reasoning: ''
+V5:
+  pmcid: PMC10479899
+  question: Five zeta values are printed in prose with no unit stated anywhere in the paper. Record
+    them, and with what unit?
+  verdict: ''
+  reasoning: ''
+V6:
+  pmcid: PMC10819112
+  question: '''the zeta potentials of PS and PVC MPs were plus/minus 45 and plus/minus 20''. Magnitude
+    given, sign not. What is the value?'
+  verdict: ''
+  reasoning: ''
+V7:
+  pmcid: PMC5876619
+  question: Does a Methods pointer to an SI table ('see Table S1 for ... zeta potentials') make a
+    measurement 'reported' with value null, or is it too weak to record?
+  verdict: ''
+  reasoning: ''

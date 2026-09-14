@@ -1,0 +1,138 @@
+[
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r1",
+    "pmcid": "PMC4958399",
+    "field": "ionic_strength_mM",
+    "extraction": null,
+    "gold": 139.7,
+    "quote": "Zeta potential values measured for particles incubated with each of the isolated proteins are shown in Fig. 2 (for reference the starting zeta potential of a CPC200 in PBS is -20 mV). || Our samples w"
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r2",
+    "pmcid": "PMC4958399",
+    "field": "ionic_strength_mM",
+    "extraction": null,
+    "gold": 139.7,
+    "quote": "The green lines represent the measured mean zeta potential for calibration particles of known zeta potential (-20 mV) in PBS that were run after each protein sample to show the protein samples were no"
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r4",
+    "pmcid": "PMC4958399",
+    "field": "temperature_C",
+    "extraction": 25.0,
+    "gold": null,
+    "quote": "The effect is protein dependent, and the largest difference between the two temperatures is recorded for the \u03b3-globulin protein where the mean zeta potential changes from -16.7 to -9.0 mV for 25 and 3"
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r4",
+    "pmcid": "PMC4958399",
+    "field": "ionic_strength_mM",
+    "extraction": null,
+    "gold": 139.7,
+    "quote": "The effect is protein dependent, and the largest difference between the two temperatures is recorded for the \u03b3-globulin protein where the mean zeta potential changes from -16.7 to -9.0 mV for 25 and 3"
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r5",
+    "pmcid": "PMC4958399",
+    "field": "temperature_C",
+    "extraction": 37.0,
+    "gold": null,
+    "quote": "At the elevated temperature, \u03b3-globulin was seen to have the largest reduction in zeta potential from a value of -20.3 mV (particles in PBS) to -9.0 mV. || Using PBS buffer, isolated albumin, fibrinog"
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r5",
+    "pmcid": "PMC4958399",
+    "field": "ionic_strength_mM",
+    "extraction": null,
+    "gold": 139.7,
+    "quote": "At the elevated temperature, \u03b3-globulin was seen to have the largest reduction in zeta potential from a value of -20.3 mV (particles in PBS) to -9.0 mV. || Using PBS buffer, isolated albumin, fibrinog"
+  },
+  {
+    "case": "PMC4958399:value:PMC4958399-r3",
+    "pmcid": "PMC4958399",
+    "field": "value",
+    "extraction": -20.3,
+    "gold": null,
+    "quote": "At the elevated temperature, \u03b3-globulin was seen to have the largest reduction in zeta potential from a value of -20.3 mV (particles in PBS) to -9.0 mV. || Our samples were all suspended in PBS buffer"
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r3",
+    "pmcid": "PMC4958399",
+    "field": "ionic_strength_mM",
+    "extraction": null,
+    "gold": 139.7,
+    "quote": "At the elevated temperature, \u03b3-globulin was seen to have the largest reduction in zeta potential from a value of -20.3 mV (particles in PBS) to -9.0 mV. || Our samples were all suspended in PBS buffer"
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r6",
+    "pmcid": "PMC4958399",
+    "field": "temperature_C",
+    "extraction": 25.0,
+    "gold": null,
+    "quote": "When the particles were incubated with each of the proteins separately at 25 \u00b0C, both fibrinogen and \u03b3-globulin showed a relatively small change in mean zeta potential from particles in PBS buffer, di"
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r6",
+    "pmcid": "PMC4958399",
+    "field": "ionic_strength_mM",
+    "extraction": null,
+    "gold": 139.7,
+    "quote": "When the particles were incubated with each of the proteins separately at 25 \u00b0C, both fibrinogen and \u03b3-globulin showed a relatively small change in mean zeta potential from particles in PBS buffer, di"
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r13",
+    "pmcid": "PMC4958399",
+    "field": "pH",
+    "extraction": null,
+    "gold": 7.4,
+    "quote": "Figure 4 shows the measured zeta potentials of CPC200s in PBS and of CPC200s incubated in plasma and serum for 10 min at both 25 and 37 \u00b0C. || The prepared plasma and serum were separately diluted 10-"
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r13",
+    "pmcid": "PMC4958399",
+    "field": "temperature_C",
+    "extraction": 25.0,
+    "gold": null,
+    "quote": "Figure 4 shows the measured zeta potentials of CPC200s in PBS and of CPC200s incubated in plasma and serum for 10 min at both 25 and 37 \u00b0C. || The prepared plasma and serum were separately diluted 10-"
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r14",
+    "pmcid": "PMC4958399",
+    "field": "pH",
+    "extraction": null,
+    "gold": 7.4,
+    "quote": "Figure 4 shows the measured zeta potentials of CPC200s in PBS and of CPC200s incubated in plasma and serum for 10 min at both 25 and 37 \u00b0C. || The prepared plasma and serum were separately diluted 10-"
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r14",
+    "pmcid": "PMC4958399",
+    "field": "temperature_C",
+    "extraction": 37.0,
+    "gold": null,
+    "quote": "Figure 4 shows the measured zeta potentials of CPC200s in PBS and of CPC200s incubated in plasma and serum for 10 min at both 25 and 37 \u00b0C. || The prepared plasma and serum were separately diluted 10-"
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r15",
+    "pmcid": "PMC4958399",
+    "field": "pH",
+    "extraction": null,
+    "gold": 7.4,
+    "quote": "Figure 4 shows the measured zeta potentials of CPC200s in PBS and of CPC200s incubated in plasma and serum for 10 min at both 25 and 37 \u00b0C. || The prepared plasma and serum were separately diluted 10-"
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r15",
+    "pmcid": "PMC4958399",
+    "field": "temperature_C",
+    "extraction": 25.0,
+    "gold": null,
+    "quote": "Figure 4 shows the measured zeta potentials of CPC200s in PBS and of CPC200s incubated in plasma and serum for 10 min at both 25 and 37 \u00b0C. || The prepared plasma and serum were separately diluted 10-"
+  },
+  {
+    "case": "PMC9218121:pH:PMC9218121-r2",
+    "pmcid": "PMC9218121",
+    "field": "pH",
+    "extraction": 7.0,
+    "gold": null,
+    "quote": "Zeta potential measurements were performed in water at pH 7 and 3 using a Malvern Panalytical Zetasizer Ultra instrument. || Zeta potential of the MXene-derived \u03b3-Fe2O3/Pt/TiO2 microrobots (thermal an"
+  }
+]

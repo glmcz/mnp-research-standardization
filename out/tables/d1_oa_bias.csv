@@ -1,0 +1,20 @@
+dimension,level,oa,non_oa,oa_share
+year_band,2019-2022,183,14,0.9289340101522843
+year_band,2023-2026,646,48,0.930835734870317
+year_band,<=2018,30,17,0.6382978723404256
+journal,ACS Nano,8,4,0.6666666666666666
+journal,ACS Omega,28,0,1.0
+journal,Adv Sci (Weinh),28,0,1.0
+journal,Environ Health (Wash),14,0,1.0
+journal,Environ Sci Technol,18,3,0.8571428571428571
+journal,Int J Mol Sci,29,0,1.0
+journal,J Nanobiotechnology,19,0,1.0
+journal,Molecules,17,0,1.0
+journal,Nanomaterials (Basel),54,0,1.0
+journal,Nat Commun,28,0,1.0
+journal,Part Fibre Toxicol,25,0,1.0
+journal,Polymers (Basel),29,0,1.0
+journal,RSC Adv,23,0,1.0
+journal,Sci Rep,60,0,1.0
+journal,Toxics,52,0,1.0
+journal,other,427,72,0.8557114228456913

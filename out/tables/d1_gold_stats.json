@@ -1,0 +1,83 @@
+{
+  "n_papers": 24,
+  "n_papers_with_a_printed_number": 17,
+  "n_papers_measured_but_no_number_printed": 7,
+  "n_rows_verified": 127,
+  "n_rows_total": 127,
+  "n_papers_with_unverified_only": 0,
+  "denominators": {
+    "papers_with_verified_zeta": 24,
+    "oa_records": 50,
+    "all_hits": null
+  },
+  "missing": [
+    {
+      "condition": "medium",
+      "label": "Dispersion medium",
+      "k_missing": 3,
+      "n": 24,
+      "fraction": 0.125,
+      "wilson_lo": 0.04344255039315584,
+      "wilson_hi": 0.3100428814785757,
+      "fraction_of_oa_records": 0.06,
+      "fraction_of_all_hits_lower_bound": null
+    },
+    {
+      "condition": "ionic_strength",
+      "label": "Ionic strength",
+      "k_missing": 22,
+      "n": 24,
+      "fraction": 0.9166666666666666,
+      "wilson_lo": 0.741507847985494,
+      "wilson_hi": 0.9768416721570266,
+      "fraction_of_oa_records": 0.44,
+      "fraction_of_all_hits_lower_bound": null
+    },
+    {
+      "condition": "pH",
+      "label": "pH",
+      "k_missing": 18,
+      "n": 24,
+      "fraction": 0.75,
+      "wilson_lo": 0.5510017468789357,
+      "wilson_hi": 0.8800079652065766,
+      "fraction_of_oa_records": 0.36,
+      "fraction_of_all_hits_lower_bound": null
+    },
+    {
+      "condition": "temperature",
+      "label": "Temperature",
+      "k_missing": 18,
+      "n": 24,
+      "fraction": 0.75,
+      "wilson_lo": 0.5510017468789357,
+      "wilson_hi": 0.8800079652065766,
+      "fraction_of_oa_records": 0.36,
+      "fraction_of_all_hits_lower_bound": null
+    },
+    {
+      "condition": "instrument",
+      "label": "Instrument",
+      "k_missing": 1,
+      "n": 24,
+      "fraction": 0.041666666666666664,
+      "wilson_lo": 0.007393265354805126,
+      "wilson_hi": 0.20242226248842232,
+      "fraction_of_oa_records": 0.02,
+      "fraction_of_all_hits_lower_bound": null
+    },
+    {
+      "condition": "any",
+      "label": "Any condition",
+      "k_missing": 24,
+      "n": 24,
+      "fraction": 1.0,
+      "wilson_lo": 0.8620194241710247,
+      "wilson_hi": 1.0,
+      "fraction_of_oa_records": 0.48,
+      "fraction_of_all_hits_lower_bound": null
+    }
+  ],
+  "complete_fraction": 0.0,
+  "denominator_note": "the 50 papers of the stratified random sample, annotated by hand"
+}

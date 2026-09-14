@@ -1,0 +1,29 @@
+[
+  {
+    "field": "paper:medium_reported",
+    "passed": true,
+    "threshold": 0.9,
+    "observed": 0.952,
+    "tp": 20,
+    "fp": 1,
+    "fn": 1
+  },
+  {
+    "field": "paper:instrument_reported",
+    "passed": true,
+    "threshold": 0.9,
+    "observed": 1.0,
+    "tp": 23,
+    "fp": 0,
+    "fn": 0
+  },
+  {
+    "field": "row:value",
+    "passed": false,
+    "threshold": 0.75,
+    "observed": 0.733,
+    "tp": 63,
+    "fp": 23,
+    "fn": 22
+  }
+]

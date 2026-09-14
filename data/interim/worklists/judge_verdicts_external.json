@@ -1,0 +1,338 @@
+[
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r1",
+    "field": "ionic_strength_mM",
+    "forward": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r1",
+      "verdict": "error",
+      "error": "'NoneType' object is not subscriptable",
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r1",
+      "verdict": "A",
+      "quote": "Here, we present a protocol for the rapid analysis of the corona zeta potential and demonstrate its versatility by making the measurement in solutions that mimic the natural environment, i.e. high ionic strength and high protein composition.",
+      "reasoning": "The paper only describes ionic strength qualitatively as 'high' without providing a numeric value in mM, so no specific ionic strength is reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r2",
+    "field": "ionic_strength_mM",
+    "forward": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r2",
+      "verdict": "B",
+      "quote": "Here, we present a protocol for the rapid analysis of the corona zeta potential and demonstrate its versatility by making the measurement in solutions that mimic the natural environment, i.e. high ionic strength and high protein composition.",
+      "reasoning": "The paper only states that measurements were performed in high ionic strength conditions without providing a specific numeric value, so the ionic strength is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r2",
+      "verdict": "A",
+      "quote": "Here, we present a protocol for the rapid analysis of the corona zeta potential and demonstrate its versatility by making the measurement in solutions that mimic the natural environment, i.e. high ionic strength and high protein composition.",
+      "reasoning": "The paper only describes ionic strength qualitatively as 'high' without providing a numeric value in mM, so no specific ionic strength is reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r4",
+    "field": "temperature_C",
+    "forward": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r4",
+      "verdict": "A",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper only mentions a range of incubation temperatures, not a specific value like 25.0\u00b0C, so temperature_C is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r4",
+      "verdict": "B",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper only mentions using a range of incubation temperatures and never specifies a single temperature value, so temperature is not reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r4",
+    "field": "ionic_strength_mM",
+    "forward": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r4",
+      "verdict": "B",
+      "quote": "Here, we present a protocol for the rapid analysis of the corona zeta potential and demonstrate its versatility by making the measurement in solutions that mimic the natural environment, i.e. high ionic strength and high protein composition.",
+      "reasoning": "The paper only states that measurements were performed in high ionic strength conditions without providing a specific numeric value, so the ionic strength is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r4",
+      "verdict": "A",
+      "quote": "Here, we present a protocol for the rapid analysis of the corona zeta potential and demonstrate its versatility by making the measurement in solutions that mimic the natural environment, i.e. high ionic strength and high protein composition.",
+      "reasoning": "The paper only describes ionic strength qualitatively as 'high' without providing a numeric value in mM, so no specific ionic strength is reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r5",
+    "field": "temperature_C",
+    "forward": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r5",
+      "verdict": "A",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper states that measurements were performed across a range of incubation temperatures but never gives a specific temperature value, so temperature_C is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r5",
+      "verdict": "B",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper only states that measurements were made across a range of incubation temperatures, without specifying a single temperature value.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r5",
+    "field": "ionic_strength_mM",
+    "forward": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r5",
+      "verdict": "B",
+      "quote": "Here, we present a protocol for the rapid analysis of the corona zeta potential and demonstrate its versatility by making the measurement in solutions that mimic the natural environment, i.e. high ionic strength and high protein composition.",
+      "reasoning": "The paper only states that measurements were performed in high ionic strength conditions without providing a specific numeric value, so the ionic strength is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r5",
+      "verdict": "A",
+      "quote": "Here, we present a protocol for the rapid analysis of the corona zeta potential and demonstrate its versatility by making the measurement in solutions that mimic the natural environment, i.e. high ionic strength and high protein composition.",
+      "reasoning": "The paper only describes ionic strength qualitatively as 'high' without providing a numeric value in mM, so no specific ionic strength is reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:value:PMC4958399-r3",
+    "field": "value",
+    "forward": {
+      "case": "PMC4958399:value:PMC4958399-r3",
+      "verdict": "A",
+      "quote": "Zeta potential values were determined from the particle velocities as they traversed the nanopore; a full description of the protocol and theory can be found elsewhere [21, 38].",
+      "reasoning": "The paper discusses zeta potential measurement but never reports a specific value of \u201320.3, so the value is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:value:PMC4958399-r3",
+      "verdict": "ambiguous",
+      "quote": "Zeta potential values were determined from the particle velocities as they traversed the nanopore; a full description of the protocol and theory can be found elsewhere [21, 38].",
+      "reasoning": "The paper does not provide a specific numeric value for the measured zeta potential, only describing the determination method.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r3",
+    "field": "ionic_strength_mM",
+    "forward": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r3",
+      "verdict": "B",
+      "quote": "Here, we present a protocol for the rapid analysis of the corona zeta potential and demonstrate its versatility by making the measurement in solutions that mimic the natural environment, i.e. high ionic strength and high protein composition.",
+      "reasoning": "The paper only states that measurements were performed in high ionic strength conditions without providing a specific numeric value, so the ionic strength is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r3",
+      "verdict": "A",
+      "quote": "Here, we present a protocol for the rapid analysis of the corona zeta potential and demonstrate its versatility by making the measurement in solutions that mimic the natural environment, i.e. high ionic strength and high protein composition.",
+      "reasoning": "The paper only describes ionic strength qualitatively as 'high' without providing a numeric value in mM, so no specific ionic strength is reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r6",
+    "field": "temperature_C",
+    "forward": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r6",
+      "verdict": "A",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper only mentions a range of incubation temperatures, not a specific value like 25.0\u00b0C, so temperature_C is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r6",
+      "verdict": "B",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper only mentions using a range of incubation temperatures and never specifies a single temperature value, so temperature is not reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r6",
+    "field": "ionic_strength_mM",
+    "forward": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r6",
+      "verdict": "B",
+      "quote": "Here, we present a protocol for the rapid analysis of the corona zeta potential and demonstrate its versatility by making the measurement in solutions that mimic the natural environment, i.e. high ionic strength and high protein composition.",
+      "reasoning": "The paper only states that measurements were performed in high ionic strength conditions without providing a specific numeric value, so the ionic strength is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:ionic_strength_mM:PMC4958399-r6",
+      "verdict": "A",
+      "quote": "Here, we present a protocol for the rapid analysis of the corona zeta potential and demonstrate its versatility by making the measurement in solutions that mimic the natural environment, i.e. high ionic strength and high protein composition.",
+      "reasoning": "The paper only describes ionic strength qualitatively as 'high' without providing a numeric value in mM, so no specific ionic strength is reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r13",
+    "field": "pH",
+    "forward": {
+      "case": "PMC4958399:pH:PMC4958399-r13",
+      "verdict": "B",
+      "quote": "The how and where of measuring the properties of particles are important to consider as changing pH, ionic strength or temperature, or purifying particles can give a misrepresentation of their behaviour in their natural environment.",
+      "reasoning": "The paper mentions pH as a factor that could affect measurements but never states a specific pH value used in the experiments.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:pH:PMC4958399-r13",
+      "verdict": "A",
+      "quote": "The how and where of measuring the properties of particles are important to consider as changing pH, ionic strength or temperature, or purifying particles can give a misrepresentation of their behaviour in their natural environment.",
+      "reasoning": "The paper mentions pH as a factor that could affect measurements but never states the pH at which the experiments were performed, indicating pH was not reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r13",
+    "field": "temperature_C",
+    "forward": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r13",
+      "verdict": "A",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper only mentions a range of incubation temperatures, not a specific value like 25.0\u00b0C, so temperature_C is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r13",
+      "verdict": "B",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper only mentions using a range of incubation temperatures and never specifies a single temperature value, so temperature is not reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r14",
+    "field": "pH",
+    "forward": {
+      "case": "PMC4958399:pH:PMC4958399-r14",
+      "verdict": "B",
+      "quote": "The how and where of measuring the properties of particles are important to consider as changing pH, ionic strength or temperature, or purifying particles can give a misrepresentation of their behaviour in their natural environment.",
+      "reasoning": "The paper mentions pH as a factor that could affect measurements but never states a specific pH value used in the experiments.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:pH:PMC4958399-r14",
+      "verdict": "A",
+      "quote": "The how and where of measuring the properties of particles are important to consider as changing pH, ionic strength or temperature, or purifying particles can give a misrepresentation of their behaviour in their natural environment.",
+      "reasoning": "The paper mentions pH as a factor that could affect measurements but never states the pH at which the experiments were performed, indicating pH was not reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r14",
+    "field": "temperature_C",
+    "forward": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r14",
+      "verdict": "A",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper states that measurements were performed across a range of incubation temperatures but never gives a specific temperature value, so temperature_C is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r14",
+      "verdict": "B",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper only states that measurements were made across a range of incubation temperatures, without specifying a single temperature value.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r15",
+    "field": "pH",
+    "forward": {
+      "case": "PMC4958399:pH:PMC4958399-r15",
+      "verdict": "B",
+      "quote": "The how and where of measuring the properties of particles are important to consider as changing pH, ionic strength or temperature, or purifying particles can give a misrepresentation of their behaviour in their natural environment.",
+      "reasoning": "The paper mentions pH as a factor that could affect measurements but never states a specific pH value used in the experiments.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:pH:PMC4958399-r15",
+      "verdict": "A",
+      "quote": "The how and where of measuring the properties of particles are important to consider as changing pH, ionic strength or temperature, or purifying particles can give a misrepresentation of their behaviour in their natural environment.",
+      "reasoning": "The paper mentions pH as a factor that could affect measurements but never states the pH at which the experiments were performed, indicating pH was not reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r15",
+    "field": "temperature_C",
+    "forward": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r15",
+      "verdict": "A",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper only mentions a range of incubation temperatures, not a specific value like 25.0\u00b0C, so temperature_C is not reported.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC4958399:temperature_C:PMC4958399-r15",
+      "verdict": "B",
+      "quote": "By making comparable measurements of carboxyl polystyrene nanoparticles in a range of incubation temperatures and with different proteins, a clear difference in magnitude and variation of zeta potential within the particle population was observed",
+      "reasoning": "The paper only mentions using a range of incubation temperatures and never specifies a single temperature value, so temperature is not reported.",
+      "grounded": true,
+      "flip": true
+    }
+  },
+  {
+    "case": "PMC9218121:pH:PMC9218121-r2",
+    "field": "pH",
+    "forward": {
+      "case": "PMC9218121:pH:PMC9218121-r2",
+      "verdict": "B",
+      "quote": "showing 2D and 3D motion in water at pH 7 under UV-light irradiation.",
+      "reasoning": "The paper explicitly states that the microrobots' motion was measured in water at pH 7.",
+      "grounded": true,
+      "flip": false
+    },
+    "reversed": {
+      "case": "PMC9218121:pH:PMC9218121-r2",
+      "verdict": "error",
+      "error": "no JSON object from any model: nvidia/nemotron-3-super-120b-a12b:free 429; nvidia/nemotron-3-ultra-550b-a55b:free 429; openai/gpt-oss-20b:free 404; google/gemma-4-31b-it:free 429",
+      "flip": true
+    }
+  }
+]

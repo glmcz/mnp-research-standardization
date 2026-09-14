@@ -1,0 +1,685 @@
+"""Extract one paper: prompt → coerce → verify against the article → record.
+
+Three independent checks stand between the model and the statistics:
+- `coerce` parses every number deterministically (tested in test_coerce.py);
+- `verify_row` requires the quoted evidence to be a substring of the article,
+  the value to appear in that quote, and every reported condition to appear both
+  in the article and in the row's own evidence — a condition supported only
+  elsewhere in the paper was carried across experiments, which is an inference,
+  not a reading (Martin's scope rule, 2026-09-13);
+- `find_candidates` locates every printed zeta/mobility number by regex, so
+  recall can be estimated per paper without a gold set.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+from dataclasses import asdict, dataclass, field
+
+from mnp.corpus import jats
+from mnp.extract import coerce, prompts, units
+from mnp.extract.llm import LLMClient, LLMError, ParseError
+from mnp.schema import models
+from mnp.schema.models import Quantity, SurfaceMeasurement
+
+Measurement = SurfaceMeasurement  # the extraction target IS the schema row
+
+MAX_TOKENS = 12_000
+_ZETA_KW = re.compile(r"zeta|ζ|\bZP\b(?=[^A-Za-z0-9-])|surface potential|charg", re.IGNORECASE)
+_MOB_KW = re.compile(r"mobilit", re.IGNORECASE)
+_D = r"-?\d+(?:[.,]\d+)?"  # a decimal point or a decimal comma
+_SD = r"-?\d+(?:[.,]\d+)?"  # a printed SD occasionally carries a stray minus
+# The deviation can sit on either side of the unit: "-13.7 ± 2.1 mV" and
+# "-13.7 mV ± 2.1" are both printed in this corpus.
+# The unit may be spelled out, and a closing bracket may sit between the number and it:
+# "(-17.90 ± 0.42) mV" and "-30 millivolts" are both printed in this corpus.
+_MV = r"(?:mV|m\.?\s?volts?|millivolts?)\b"
+_MV_NUM = re.compile(
+    rf"({_D})\s*(?:±\s*({_SD})\s*)?[)\]]?\s*{_MV}(?:\s*±\s*({_SD}))?", re.IGNORECASE
+)
+_MOB_NUM = re.compile(
+    rf"({_D})\s*(?:±\s*({_SD})\s*)?"
+    r"(?:[×x·]\s*10\s*\^?\s*-\s*8|(?:µ|μ|u)m\s*·?\s*cm|10\s*-\s*8)"
+    rf"(?:\s*±\s*({_SD}))?",
+    re.IGNORECASE,
+)
+
+
+def _f(raw: str | None) -> float | None:
+    """A matched number, decimal comma included."""
+    return None if raw is None else float(raw.replace(",", "."))
+
+
+def _sd(*raws: str | None) -> float | None:
+    """A standard deviation is a magnitude, printed before or after the unit."""
+    for raw in raws:
+        v = _f(raw)
+        if v is not None:
+            return abs(v)
+    return None
+
+
+def _nearest(pattern: re.Pattern, line: str, start: int) -> int | None:
+    """Distance from `start` to the closest match of `pattern`, or None."""
+    best = None
+    for m in pattern.finditer(line):
+        d = (
+            0
+            if m.start() <= start <= m.end()
+            else min(abs(m.start() - start), abs(m.end() - start))
+        )
+        best = d if best is None else min(best, d)
+    return best
+
+
+def _other_quantity_near(line: str, start: int) -> bool:
+    """Is this number some other millivolt quantity rather than a zeta potential?
+
+    Whichever quantity name is *closer* owns the number. A paragraph arrives here as a
+    single line, so asking only "does this line mention an electron microscope" once threw
+    away two real zeta values because a microscope was named later in the same paragraph.
+    """
+    other = _nearest(_NOT_ZETA, line, start)
+    if other is None:
+        return False
+    mine = _nearest(_ZETA_KW, line, start)
+    return mine is None or other < mine
+
+
+_INEQUALITY_BEFORE = re.compile(r"[<>≤≥]\s*$")
+
+
+def _is_bound(line: str, start: int) -> bool:
+    """Is this number an inequality bound? "<0 mV" means negative, not zero."""
+    return bool(_INEQUALITY_BEFORE.search(line[max(0, start - 4) : start]))
+
+
+def _in_citation(line: str, start: int) -> bool:
+    """Is this number inside a bracketed citation list, as in "[4,5]"?"""
+    open_bracket = line.rfind("[", 0, start)
+    if open_bracket < 0:
+        return False
+    close = line.find("]", open_bracket)
+    return close == -1 or close > start
+
+
+_HEADER = re.compile(r"^== (Table (\S+)|.+)$")
+
+
+@dataclass
+class Candidate:
+    value: float
+    quantity: Quantity
+    context: str
+    location: str
+    sd: float | None = None
+    # "the zeta potentials were ± 45 and ± 20": the paper names a magnitude, not a sign.
+    sign_unknown: bool = False
+
+    def as_dict(self) -> dict:
+        d = asdict(self)
+        d["quantity"] = self.quantity.value
+        return d
+
+
+# Some papers print a zeta potential with no unit at all: "a zeta potential of -32.0",
+# "the zeta potentials of PS and PVC MPs were ± 45 and ± 20". The quantity is named, so
+# the number is a measurement; a number carrying some OTHER unit is not.
+_OTHER_UNIT = re.compile(
+    r"\s*(?:nm|µm|μm|um|mm|%|°|K\b|h\b|hr|min|mg|µg|ug|mL|ml|mM|kDa|ppm|rpm|cm|Hz)",
+    re.IGNORECASE,
+)
+# "...zeta potential was measured at pH = 7": the number belongs to pH, not to zeta.
+_FOREIGN_QUANTITY = re.compile(
+    r"\b(?:pH|temperature|temp|size|diameter|concentration|dose|time|n|N|radius|"
+    r"volume|mass|ratio|pKa|IEP)\b[^A-Za-z0-9]{0,4}$",
+    re.IGNORECASE,
+)
+_UNITLESS_ZETA = re.compile(
+    r"(?:zeta|ζ)[\s-]?potentials?[^.\n]{0,60}?"
+    r"(?:\bof\b|\bwas\b|\bwere\b|\bis\b|\bare\b|[:=])\s*"
+    r"(±\s*)?(-?\d+(?:[.,]\d+)?)",
+    re.IGNORECASE,
+)
+# Other things are measured in millivolts. A line about an applied voltage, a membrane
+# potential or an electrode is not reporting a particle's zeta potential.
+_NOT_ZETA = re.compile(
+    r"applied voltage|applied potential|membrane potential|electrode|Ag/AgCl|"
+    r"redox potential|potential difference|action potential|field strength|"
+    # "3.5 MV single stage electrostatic accelerator": megavolts, not millivolts. The
+    # unit match is case-insensitive because one paper prints a zeta as "6.63 MV".
+    r"accelerating|accelerator|\bbeam\b|kV\b|electron microscop",
+    re.IGNORECASE,
+)
+_MV_UNIT = re.compile(r"\bmv\b|\(\s*mv\s*\)", re.IGNORECASE)
+_MOB_UNIT = re.compile(r"10\s*-?\s*8|(?:µ|μ|u)m\s*·?\s*cm|m2\s*v", re.IGNORECASE)
+
+
+def _table_header_quantity(cell: str, caption_quantity: Quantity | None = None) -> Quantity | None:
+    """The quantity a header cell denotes.
+
+    A cell naming the quantity speaks for itself. A cell carrying only a unit
+    ("Before Treatment (mV)") is claimed by the caption's quantity if it has one —
+    that is how a table captioned "Zeta potential of the effluents" is read. A unit
+    that disagrees with the caption (nm, PDI) is never claimed.
+    """
+    low = cell.lower()
+    # "mobility" alone is not electrophoretic mobility: "High mobility group box
+    # transcription factor 1" is a gene, and it once produced 42 phantom candidates from
+    # one gene-expression table. Demand electrophoresis or a mobility unit.
+    named = _MOB_KW.search(low) and ("electrophor" in low or _MOB_UNIT.search(low))
+    if named or re.search(r"\bepm\b", low):
+        return Quantity.electrophoretic_mobility
+    if _NOT_ZETA.search(low):
+        return None  # a membrane, applied or redox potential is not a zeta potential
+    if _ZETA_KW.search(low) and ("mv" in low or "potential" in low):
+        return Quantity.zeta_potential
+    # One paper heads its columns "MPS-zate(mv)" — a typo, and no "potential" either,
+    # which hid 42 values. A column measured in millivolts that is neither some other
+    # potential (excluded above) nor a size is the quantity, whatever it calls itself.
+    if _MV_UNIT.search(low) and not _SIZE_KW.search(low):
+        return Quantity.zeta_potential
+    if caption_quantity is Quantity.zeta_potential and _MV_UNIT.search(low):
+        return caption_quantity
+    if caption_quantity is Quantity.electrophoretic_mobility and _MOB_UNIT.search(low):
+        return caption_quantity
+    return None
+
+
+_WORD = re.compile(r"[A-Za-z]{3,}")
+# Words that may legitimately sit in a numeric cell.
+_CELL_WORDS = {"mv", "nm", "um", "mm", "and", "to", "cm", "vs"}
+
+
+_SIZE_KW = re.compile(r"\bsize\b|diameter|\bnm\b|\bhydrodynamic\b", re.IGNORECASE)
+
+
+def _cell_value(cell: str, quantity: Quantity):
+    """(value, sd) for a cell, preferring the part that carries the quantity's own unit.
+
+    A column can hold two quantities at once — "Size (ζ-potential)" over cells reading
+    "95 nm (-13.7 mV ± 2.1)". Taking the first number there yields a particle size
+    reported as a zeta potential, so when a unit is present it decides.
+    """
+    pattern = _MV_NUM if quantity is Quantity.zeta_potential else _MOB_NUM
+    m = pattern.search(jats.normalise_minus(cell))
+    if m:
+        return _f(m.group(1)), _sd(m.group(2), m.group(3))
+    if _SIZE_KW.search(cell):
+        return None, None  # a sized cell with no unit of ours is not our measurement
+    v, sd, flags = coerce.parse_number(cell)
+    return (None, None) if v is None or "range" in flags else (v, sd)
+
+
+def _looks_like_data(cell: str) -> bool:
+    """A data cell is a number, not prose.
+
+    Colspan expansion repeats a header across the columns it covers, so a header such as
+    "Zeta Potential (mV) ± Stdev (n = 3)" can arrive where a value is expected and parse
+    as 3.0. Prose cells ("not determined", "see Figure 2") are equally not measurements.
+    """
+    return not any(w.group(0).lower() not in _CELL_WORDS for w in _WORD.finditer(cell))
+
+
+def _table_candidates(table_id: str, rows: list[str], caption: str = "") -> list[Candidate]:
+    out: list[Candidate] = []
+    grid = [r.split("\t") for r in rows]
+    location = f"Table {table_id}"
+    caption_q = _table_header_quantity(caption) if caption else None
+    column_q: dict[int, str] = {}
+    for r_idx, cells in enumerate(grid):
+        q = _table_header_quantity(cells[0], caption_q) if cells else None
+        if q is not None:
+            for cell in cells[1:]:
+                if not _looks_like_data(cell):
+                    continue
+                v, sd = _cell_value(cell, q)
+                if v is not None:
+                    out.append(Candidate(v, q, cells[0], location, sd))
+            continue
+        if r_idx == 0 or not column_q:
+            for c_idx, cell in enumerate(cells):
+                if _table_header_quantity(cell, caption_q) is not None:
+                    column_q[c_idx] = cell
+        if r_idx > 0 and column_q:
+            for c_idx, header in column_q.items():
+                if c_idx < len(cells) and _looks_like_data(cells[c_idx]):
+                    q = _table_header_quantity(header, caption_q)
+                    v, sd = _cell_value(cells[c_idx], q)
+                    if v is not None:
+                        out.append(Candidate(v, q, header, location, sd))
+    return out
+
+
+def find_candidates(text: str) -> list[Candidate]:
+    """Every printed zeta/mobility number in extraction text, by regex alone."""
+    text = jats.normalise_minus(text)
+    out: list[Candidate] = []
+    table_id: str | None = None
+    table_rows: list[str] = []
+    table_caption = ""
+    location = "text"
+
+    # extraction_text can print one sentence twice (a keyword window and its own
+    # section). Scanning a line we have already scanned would double-count every number
+    # in it; two identical cells inside one table row are still two measurements.
+    seen: set[tuple] = set()
+
+    def flush():
+        nonlocal table_rows, table_caption
+        if table_id is not None and table_rows:
+            key = (table_id, tuple(table_rows))
+            if key not in seen:
+                seen.add(key)
+                out.extend(_table_candidates(table_id, table_rows, table_caption))
+        table_rows = []
+        table_caption = ""
+
+    for line in text.split("\n"):
+        h = _HEADER.match(line)
+        if h:
+            flush()
+            table_id = h.group(2)
+            location = h.group(1)
+            continue
+        if table_id is not None:
+            if not line.strip():  # pieces are separated by a blank line
+                flush()
+                table_id = None
+                continue
+            if "\t" in line:
+                table_rows.append(line)
+                continue
+            if not table_rows:  # lines before the first row are the caption
+                table_caption = f"{table_caption} {line}".strip()
+            # caption or footnote: also falls through to the prose regexes below
+        line_key = ("line", _norm(line))
+        if line_key in seen:
+            continue
+        seen.add(line_key)
+        if _ZETA_KW.search(line):
+            claimed: list[tuple[int, int]] = []
+            for m in _MV_NUM.finditer(line):
+                if (
+                    _in_citation(line, m.start())
+                    or _other_quantity_near(line, m.start())
+                    or _is_bound(line, m.start())
+                ):
+                    continue
+                claimed.append(m.span(1))
+                out.append(
+                    Candidate(
+                        _f(m.group(1)),
+                        Quantity.zeta_potential,
+                        line,
+                        location,
+                        _sd(m.group(2), m.group(3)),
+                    )
+                )
+            for m in _UNITLESS_ZETA.finditer(line):
+                span = m.span(2)
+                if _other_quantity_near(line, span[0]):
+                    continue
+                if any(a <= span[0] < b for a, b in claimed):
+                    continue  # already captured with its unit
+                if _in_citation(line, span[0]) or _OTHER_UNIT.match(line[span[1] : span[1] + 6]):
+                    continue  # the number belongs to some other quantity
+                if _FOREIGN_QUANTITY.search(line[m.start() : span[0]]):
+                    continue  # ...and nor does a number introduced by pH, size, n, ...
+                out.append(
+                    Candidate(
+                        _f(m.group(2)),
+                        Quantity.zeta_potential,
+                        line,
+                        location,
+                        None,
+                        bool(m.group(1)),
+                    )
+                )
+        if _MOB_KW.search(line):
+            for m in _MOB_NUM.finditer(line):
+                if (
+                    _in_citation(line, m.start())
+                    or _other_quantity_near(line, m.start())
+                    or _is_bound(line, m.start())
+                ):
+                    continue
+                out.append(
+                    Candidate(
+                        _f(m.group(1)),
+                        Quantity.electrophoretic_mobility,
+                        line,
+                        location,
+                        _sd(m.group(2), m.group(3)),
+                    )
+                )
+    flush()
+    # An abstract restates the body. A value it repeats is one measurement printed twice,
+    # not two; a value only it prints is still a printed value.
+    elsewhere = {(c.quantity, round(c.value, 2)) for c in out if c.location != "Abstract"}
+    return [
+        c
+        for c in out
+        if c.location != "Abstract" or (c.quantity, round(c.value, 2)) not in elsewhere
+    ]
+
+
+def check_units(m, claimed_units: set[str], article_text: str) -> list[str]:
+    """Compare a row's claimed unit against the unit the article prints.
+
+    The unit is the one field a transcription can get wrong without leaving a trace in
+    the value: "cm2/Vs" retyped as "m2/Vs" converts 1e4 times too large and still looks
+    like a number. So the article's own printed unit is the authority.
+    """
+    printed = [
+        u for u in units.find_units(article_text) if u.quantity is m.quantity and u.unit is m.unit
+    ]
+    if not printed:
+        return []
+    for claimed in claimed_units:
+        if any(units.disagrees(claimed, p) for p in printed):
+            return ["unit_disagrees_with_article"]
+    return []
+
+
+# -- verification ------------------------------------------------------------------
+
+
+def _norm(s: str) -> str:
+    """Whitespace- and dash-insensitive form, for comparing a quote with the article.
+
+    `coerce` flattens every dash while parsing a value, so a range it stored as "-2--3"
+    must be compared against a quote that still prints "\u22122\u2013\u22123" — normalise both the
+    same way or the comparison fails on the punctuation alone.
+    """
+    flattened = jats.normalise_minus(s).translate(str.maketrans({d: "-" for d in jats._DASHES}))
+    return re.sub(r"\s+", " ", flattened).strip()
+
+
+def _number_in(value: float, text: str) -> bool:
+    """Is this number printed in text?
+
+    Sign-agnostic and digit-bounded, and the decimal separator may be a point or a
+    comma: papers written in several European languages print "-35,2 mV", and matching
+    only the point form flagged correctly-extracted rows as unsupported.
+    """
+    mag = abs(value)
+    for form in {f"{mag:g}", f"{mag:.1f}", f"{mag:.2f}"}:
+        pattern = r"(?<![\d.,])" + re.escape(form).replace(r"\.", r"[.,]") + r"(?:0+)?(?![\d])"
+        if re.search(pattern, text):
+            return True
+    return False
+
+
+def verify_row(m: SurfaceMeasurement, full_text: str) -> list[str]:
+    """Flags for anything the article does not support. Mutates m.evidence.verified."""
+    flags: list[str] = []
+    text = _norm(full_text)
+    if m.evidence is None or not m.evidence.quote:
+        flags.append("evidence_missing")
+        quote = ""
+    else:
+        quote = _norm(m.evidence.quote)
+        parts = [p.strip() for p in quote.split("||") if p.strip()]
+        m.evidence.verified = bool(parts) and all(p in text for p in parts)
+        if not m.evidence.verified:
+            flags.append("evidence_unverified")
+        if m.value is not None:
+            if not _number_in(m.value, quote):
+                flags.append("value_not_in_quote")
+        elif m.value_text and m.value_text != "not printed" and _norm(m.value_text) not in quote:
+            flags.append("value_text_not_in_quote")
+    c = m.conditions
+    if c.pH is not None and not _number_in(c.pH, text):
+        flags.append("pH_not_in_text")
+    if c.pH_text:
+        nums = [float(x) for x in re.findall(r"\d+(?:\.\d+)?", c.pH_text)]
+        if nums and not all(_number_in(x, text) for x in nums):
+            flags.append("pH_not_in_text")
+    if c.temperature_C is not None and not _number_in(c.temperature_C, text):
+        flags.append("temperature_not_in_text")
+    if c.ionic_strength_mM is not None:
+        ok = _number_in(c.ionic_strength_mM, text)
+        if not ok and c.medium_text:
+            ok = _norm(c.medium_text) in text
+        if not ok and c.ionic_strength_source is models.ValueSource.inferred_from_named_salt:
+            ok = True  # computed from a named salt; the salt string was checked above
+        if not ok:
+            flags.append("ionic_strength_not_in_text")
+    flags += _scope_flags(c, quote)
+    return flags
+
+
+def _scope_flags(c, quote: str) -> list[str]:
+    """A condition is only established where the paper states it.
+
+    Martin's rule, 2026-09-13: a condition applies within the experiment that states it and
+    does not propagate to other preparations unless the paper says it does. What that makes
+    checkable is the row's own evidence — quote the sentence that establishes the condition
+    (join separate sentences with " || "). A condition found in the article but not in this
+    row's quote was carried from somewhere else, which is the reading the rule forbids.
+    """
+    flags: list[str] = []
+    if not quote:
+        return flags
+    if c.pH is not None and not _number_in(c.pH, quote):
+        flags.append("pH_not_in_evidence")
+    elif c.pH_text and (nums := [float(x) for x in re.findall(r"\d+(?:\.\d+)?", c.pH_text)]):
+        if not all(_number_in(x, quote) for x in nums):
+            flags.append("pH_not_in_evidence")
+    if c.temperature_C is not None:
+        if not _number_in(c.temperature_C, quote):
+            flags.append("temperature_not_in_evidence")
+        elif coerce.OTHER_STEP_RE.search(quote):
+            # the quote does carry the number, but attached to incubation or exposure
+            flags.append("temperature_step_not_measurement")
+    if c.ionic_strength_mM is not None and not _ionic_in(c, quote):
+        flags.append("ionic_strength_not_in_evidence")
+    return flags
+
+
+def _ionic_in(c, quote: str) -> bool:
+    """Is the ionic strength supported by this quote — as a number, a medium, or a salt?"""
+    if _number_in(c.ionic_strength_mM, quote):
+        return True
+    if c.medium_text and _norm(c.medium_text) in quote:
+        return True
+    if c.ionic_strength_source is models.ValueSource.inferred_from_named_salt:
+        return bool(coerce.SALT_RE.search(quote))
+    return False
+
+
+# -- record --------------------------------------------------------------------------
+
+
+@dataclass
+class ExtractionRecord:
+    pmcid: str
+    doi: str | None
+    model: str | None
+    prompt_sha256: str
+    # Which brief the judgement was made under. None means the record predates brief
+    # tracking and cannot be traced to its instructions — see extract.provenance.
+    brief_path: str | None = None
+    brief_sha256: str | None = None
+    measurements: list[SurfaceMeasurement] = field(default_factory=list)
+    row_flags: list[list[str]] = field(default_factory=list)
+    dropped: list[dict] = field(default_factory=list)
+    n_candidates: int = 0
+    n_candidates_matched: int = 0
+    unmatched_candidates: list[dict] = field(default_factory=list)
+    error: str | None = None
+    cached: bool = False
+    extraction_tokens: int = 0
+    methods_source: str | None = None
+    year: int | None = None
+    journal: str | None = None
+
+    @property
+    def coverage(self) -> float | None:
+        return self.n_candidates_matched / self.n_candidates if self.n_candidates else None
+
+    def to_json(self) -> str:
+        d = asdict(self)
+        d["measurements"] = [m.model_dump(mode="json") for m in self.measurements]
+        return json.dumps(d, ensure_ascii=False)
+
+    @classmethod
+    def from_json(cls, line: str) -> ExtractionRecord:
+        d = json.loads(line)
+        d["measurements"] = [SurfaceMeasurement.model_validate(m) for m in d["measurements"]]
+        return cls(**d)
+
+    def to_rows(self) -> list[dict]:
+        rows = []
+        for m, flags in zip(self.measurements, self.row_flags, strict=True):
+            c = m.conditions
+            rows.append(
+                {
+                    "pmcid": self.pmcid,
+                    "doi": self.doi,
+                    "year": self.year,
+                    "journal": self.journal,
+                    "row_id": m.row_id,
+                    "particle_name": m.particle_name,
+                    "material": m.material,
+                    "functionalisation": m.functionalisation,
+                    "supplier": m.supplier,
+                    "size_nominal_nm": m.size_nominal_nm,
+                    "size_measured_nm": m.size_measured_nm,
+                    "quantity": m.quantity.value,
+                    "value": m.value,
+                    "value_text": m.value_text,
+                    "unit": m.unit.value,
+                    "sd": m.sd,
+                    "n": m.n,
+                    "medium_text": c.medium_text,
+                    "medium_class": c.medium_class.value,
+                    "ionic_strength_mM": c.ionic_strength_mM,
+                    "ionic_strength_source": c.ionic_strength_source.value,
+                    "pH": c.pH,
+                    "pH_text": c.pH_text,
+                    "temperature_C": c.temperature_C,
+                    "temperature_qualifier": c.temperature_qualifier,
+                    "instrument": c.instrument,
+                    "medium_reported": c.medium_reported,
+                    "ionic_strength_reported": c.ionic_strength_reported,
+                    "pH_reported": c.pH_reported,
+                    "temperature_reported": c.temperature_reported,
+                    "instrument_reported": c.instrument_reported,
+                    "conditions_complete": c.conditions_complete,
+                    "medium_matches_exposure": m.medium_matches_exposure,
+                    "evidence_quote": m.evidence.quote if m.evidence else None,
+                    "evidence_location": m.evidence.location if m.evidence else None,
+                    "evidence_verified": bool(m.evidence and m.evidence.verified),
+                    "flags": ";".join(flags),
+                    "model": self.model,
+                    "prompt_sha256": self.prompt_sha256,
+                }
+            )
+        return rows
+
+
+def _rows_from(data: dict) -> list:
+    for key in ("measurements", "rows", "results", "data"):
+        if key in data:
+            v = data[key]
+            return v if isinstance(v, list) else [v]
+    for v in data.values():
+        if isinstance(v, list):
+            return v
+    return [data] if "value" in data else []
+
+
+def _match(cands: list[Candidate], ms: list[SurfaceMeasurement]) -> tuple[int, list[dict]]:
+    """One-to-one: an extracted row claims at most one printed number, so a table
+    that prints the same value for two particles needs two rows to be covered."""
+    claimed: set[int] = set()
+    for m in ms:
+        if m.value is None:
+            continue
+        # Closest fit, not first fit: two particles in one table can print values inside
+        # each other's tolerance window (-31.09 beside -31.13), and first-fit hands a row
+        # its neighbour's number while reporting its own as missing.
+        best: tuple[float, int] | None = None
+        for i, c in enumerate(cands):
+            if i in claimed or m.quantity is not c.quantity:
+                continue
+            gap = abs(abs(m.value) - abs(c.value)) if c.sign_unknown else abs(m.value - c.value)
+            if gap <= 0.05 + 0.01 * abs(c.value) and (best is None or gap < best[0]):
+                best = (gap, i)
+        if best is None:
+            continue
+        hit = best[1]
+        claimed.add(hit)
+        # The same number printed in a table and restated in the text is one
+        # measurement, so this row claims those too. Two identical cells inside the
+        # same table are two measurements and still need a row each.
+        here = cands[hit]
+        for i, c in enumerate(cands):
+            if i in claimed or c.location == here.location:
+                continue
+            if c.quantity is here.quantity and abs(c.value - here.value) <= 1e-9:
+                claimed.add(i)
+    unmatched = [c.as_dict() for i, c in enumerate(cands) if i not in claimed]
+    return len(claimed), unmatched
+
+
+def _new_record(article: jats.Article, text: str) -> ExtractionRecord:
+    return ExtractionRecord(
+        pmcid=article.pmcid or "unknown",
+        doi=article.doi,
+        model=None,
+        prompt_sha256=prompts.prompt_sha256(),
+        extraction_tokens=jats.approx_tokens(text),
+        methods_source=article.methods_source,
+        year=article.year,
+        journal=article.journal,
+    )
+
+
+def extract_from_payload(article: jats.Article, data: dict, model: str) -> ExtractionRecord:
+    """Coerce, verify and score a parsed model reply — whoever produced it."""
+    text = jats.extraction_text(article, max_tokens=MAX_TOKENS)
+    record = _new_record(article, text)
+    record.model = model
+    candidates = find_candidates(text)
+    record.n_candidates = len(candidates)
+    for i, raw in enumerate(_rows_from(data)):
+        if not isinstance(raw, dict):
+            record.dropped.append({"index": i, "flags": ["not_an_object"]})
+            continue
+        m, flags = coerce.coerce_measurement(raw)
+        if m is None:
+            record.dropped.append({"index": i, "flags": flags})
+            continue
+        flags = flags + verify_row(m, article.full_text)
+        claimed = {str(raw.get("unit"))} if raw.get("unit") else set()
+        flags = flags + check_units(m, claimed, text)
+        m.row_id = f"{record.pmcid}-r{len(record.measurements) + 1}"
+        record.measurements.append(m)
+        record.row_flags.append(flags)
+    record.n_candidates_matched, record.unmatched_candidates = _match(
+        candidates, record.measurements
+    )
+    return record
+
+
+def extract_paper(article: jats.Article, client: LLMClient) -> ExtractionRecord:
+    text = jats.extraction_text(article, max_tokens=MAX_TOKENS)
+    pmcid = article.pmcid or "unknown"
+    try:
+        data, completion = client.complete_json(
+            prompts.system_prompt(), prompts.user_prompt(pmcid, text)
+        )
+    except (LLMError, ParseError) as e:
+        record = _new_record(article, text)
+        record.error = str(e)
+        candidates = find_candidates(text)
+        record.n_candidates = len(candidates)
+        record.unmatched_candidates = [c.as_dict() for c in candidates]
+        return record
+    record = extract_from_payload(article, data, completion.model)
+    record.cached = completion.cached
+    return record

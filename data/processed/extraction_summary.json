@@ -1,0 +1,16 @@
+{
+  "papers": 845,
+  "papers_with_error": 0,
+  "papers_with_rows": 498,
+  "rows": 1910,
+  "rows_verified": 1910,
+  "rows_dropped": 5,
+  "candidates": 2220,
+  "candidates_matched": 1242,
+  "coverage_mean": 0.5325778862813466,
+  "models": [
+    "claude-code:opus",
+    "claude-code:sonnet"
+  ],
+  "prompt_sha256": "3a50d97a5880d5acae5db0911acbca7376446e8050c08843e38c6c6f924efd1d"
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r1",
+    "verdict": "A",
+    "quote": "The initial buffer used for particle analysis was phosphate buffered saline (1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium chloride) in 200 mL deionised water (18.2 MΩ cm)).",
+    "reasoning": "The row is the plain CPC200-in-PBS reference; Methods prints PBS's own composition (0.137 M NaCl + 0.0027 M KCl = 139.7 mM), so this is the printed-composition exception, not a bare 'PBS' citation."
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r2",
+    "verdict": "A",
+    "quote": "The initial buffer used for particle analysis was phosphate buffered saline (1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium chloride) in 200 mL deionised water (18.2 MΩ cm)).",
+    "reasoning": "Row is the calibration-particle-in-PBS control run before/after each sample; same unmixed PBS whose composition is printed, so 139.7 mM is derivable."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r4",
+    "verdict": "A",
+    "quote": "Samples were then incubated at 25 and 37 °C in a mini dry bath (Benchmark Scientific, USA) for 10 min prior to TRPS analysis.",
+    "reasoning": "25 °C is stated only as the incubation temperature ('for 10 min prior to TRPS analysis'); the paper never states the temperature at which the TRPS zeta measurement itself was taken."
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r4",
+    "verdict": "A",
+    "quote": "The initial buffer used for particle analysis was phosphate buffered saline (1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium chloride) in 200 mL deionised water (18.2 MΩ cm)).",
+    "reasoning": "Methods: isolated-protein samples were 'prepared using PBS buffer' (protein dissolved into the buffer, no separate dilution), so the printed PBS salt composition still applies to this row."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r5",
+    "verdict": "A",
+    "quote": "Samples were then incubated at 25 and 37 °C in a mini dry bath (Benchmark Scientific, USA) for 10 min prior to TRPS analysis.",
+    "reasoning": "Same incubation-vs-measurement gap as r4; 37 °C is the dry-bath incubation temperature, not a stated TRPS measurement temperature."
+  },
+  {
+    "case": "PMC4958399:value:PMC4958399-r3",
+    "verdict": "B",
+    "quote": "At the elevated temperature, γ-globulin was seen to have the largest reduction in zeta potential from a value of -20.3 mV (particles in PBS) to -9.0 mV.",
+    "reasoning": "The paper prints -20.3 mV verbatim as the 'particles in PBS' reference value for this row; null is not correct when a number is explicitly given."
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r3",
+    "verdict": "A",
+    "quote": "The initial buffer used for particle analysis was phosphate buffered saline (1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium chloride) in 200 mL deionised water (18.2 MΩ cm)).",
+    "reasoning": "This row's medium is explicitly 'particles in PBS' (unmixed), so the printed PBS composition again gives 139.7 mM."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r6",
+    "verdict": "A",
+    "quote": "Samples were then incubated at 25 and 37 °C in a mini dry bath (Benchmark Scientific, USA) for 10 min prior to TRPS analysis.",
+    "reasoning": "Again an incubation temperature ('incubated with each of the proteins separately at 25 °C'); no TRPS measurement temperature is stated anywhere in Methods."
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r6",
+    "verdict": "A",
+    "quote": "The initial buffer used for particle analysis was phosphate buffered saline (1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium chloride) in 200 mL deionised water (18.2 MΩ cm)).",
+    "reasoning": "Fibrinogen/γ-globulin-in-PBS row; same undiluted PBS whose salt composition is printed in Methods."
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r13",
+    "verdict": "B",
+    "quote": "Figure 4 shows the measured zeta potentials of CPC200s in PBS and of CPC200s incubated in plasma and serum for 10 min at both 25 and 37 °C.",
+    "reasoning": "The paper's only numeric pH statement ('Our samples were all suspended in PBS buffer at pH 7.4') appears earlier, tied specifically to explaining protein isoelectric-point behavior in the isolated-protein experiment, and is not restated for this Fig. 4 PBS/plasma/serum comparison; the sentence describing this measurement gives no pH."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r13",
+    "verdict": "A",
+    "quote": "Samples were vortexed for 30 s and sonicated for 1 min, followed by incubation in a mini dry bath (Benchmark Scientific, USA) at 25 and 37 °C for 10 min before being removed for TRPS analysis.",
+    "reasoning": "Samples were incubated at 25/37 °C then explicitly 'removed for TRPS analysis' — the measurement happens after leaving the temperature-controlled bath, so no measurement temperature is stated."
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r14",
+    "verdict": "B",
+    "quote": "Figure 4 shows the measured zeta potentials of CPC200s in PBS and of CPC200s incubated in plasma and serum for 10 min at both 25 and 37 °C.",
+    "reasoning": "Same as r13: the pH 7.4 statement is scoped to the isolated-protein isoelectric-point discussion and is not restated for the Fig. 4 serum/plasma samples."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r14",
+    "verdict": "A",
+    "quote": "Samples were vortexed for 30 s and sonicated for 1 min, followed by incubation in a mini dry bath (Benchmark Scientific, USA) at 25 and 37 °C for 10 min before being removed for TRPS analysis.",
+    "reasoning": "Same incubation-then-removed-for-analysis pattern as r13; 37 °C is not stated as the measurement temperature."
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r15",
+    "verdict": "B",
+    "quote": "Figure 4 shows the measured zeta potentials of CPC200s in PBS and of CPC200s incubated in plasma and serum for 10 min at both 25 and 37 °C.",
+    "reasoning": "Same as r13/r14: no pH is stated for this Fig. 4 measurement; the only pH-7.4 statement in the paper belongs to a different experiment."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r15",
+    "verdict": "A",
+    "quote": "Samples were vortexed for 30 s and sonicated for 1 min, followed by incubation in a mini dry bath (Benchmark Scientific, USA) at 25 and 37 °C for 10 min before being removed for TRPS analysis.",
+    "reasoning": "Same incubation-only temperature issue as r13/r14."
+  },
+  {
+    "case": "PMC9218121:pH:PMC9218121-r2",
+    "verdict": "B",
+    "quote": "Zeta potential measurements were performed in water at pH 7 and 3 using a Malvern Panalytical Zetasizer Ultra instrument.",
+    "reasoning": "Methods state zeta potential measurements were performed at numeric pH 7 and 3 (Zetasizer Ultra), matching the Results statement that the microrobots are 'only slightly positive at pH 7' (+12 mV)."
+  }
+]

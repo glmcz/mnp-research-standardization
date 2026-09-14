@@ -1,0 +1,104 @@
+[
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r1",
+    "verdict": "B",
+    "quote": "The initial buffer used for particle analysis was phosphate buffered saline (1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium chloride) in 200 mL deionised water (18.2 MΩ cm)).",
+    "reasoning": "The paper prints the PBS recipe's named-salt concentrations (0.137 M NaCl, 0.0027 M KCl); summing the two monovalent salts gives 139.7 mM, which is derivable from what is printed, not looked up."
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r2",
+    "verdict": "B",
+    "quote": "The initial buffer used for particle analysis was phosphate buffered saline (1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium chloride) in 200 mL deionised water (18.2 MΩ cm)).",
+    "reasoning": "Same PBS recipe applies to the calibration-particles-in-PBS control; 137 mM NaCl + 2.7 mM KCl = 139.7 mM."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r4",
+    "verdict": "A",
+    "quote": "The effect is protein dependent, and the largest difference between the two temperatures is recorded for the γ-globulin protein where the mean zeta potential changes from -16.7 to -9.0 mV for 25 and 37 °C, respectively.",
+    "reasoning": "The abstract explicitly pairs the first-listed value (-16.7 mV) with 25 °C ('for 25 and 37 °C, respectively')."
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r4",
+    "verdict": "B",
+    "quote": "The initial buffer used for particle analysis was phosphate buffered saline (1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium chloride) in 200 mL deionised water (18.2 MΩ cm)).",
+    "reasoning": "This row is the isolated-protein-in-PBS experiment; proteins were dissolved directly in the same PBS, so its salt-derived ionic strength (139.7 mM) applies."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r5",
+    "verdict": "A",
+    "quote": "At the elevated temperature, γ-globulin was seen to have the largest reduction in zeta potential from a value of -20.3 mV (particles in PBS) to -9.0 mV.",
+    "reasoning": "'Elevated temperature' is defined earlier in the text as 37 °C, and this sentence reports the -9.0 mV value at that elevated temperature."
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r5",
+    "verdict": "B",
+    "quote": "The initial buffer used for particle analysis was phosphate buffered saline (1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium chloride) in 200 mL deionised water (18.2 MΩ cm)).",
+    "reasoning": "Same isolated-protein-in-PBS medium; 139.7 mM is derivable from the printed NaCl+KCl concentrations."
+  },
+  {
+    "case": "PMC4958399:value:PMC4958399-r3",
+    "verdict": "A",
+    "quote": "At the elevated temperature, γ-globulin was seen to have the largest reduction in zeta potential from a value of -20.3 mV (particles in PBS) to -9.0 mV.",
+    "reasoning": "-20.3 mV is printed verbatim, with its sign, as the particles-in-PBS reference value in this sentence; it is the study's own measurement, not a value cited from elsewhere."
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r3",
+    "verdict": "B",
+    "quote": "The initial buffer used for particle analysis was phosphate buffered saline (1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium chloride) in 200 mL deionised water (18.2 MΩ cm)).",
+    "reasoning": "The -20.3 mV 'particles in PBS' value uses the same PBS whose composition is printed in Methods; 139.7 mM follows from the two named monovalent salts."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r6",
+    "verdict": "A",
+    "quote": "When the particles were incubated with each of the proteins separately at 25 °C, both fibrinogen and γ-globulin showed a relatively small change in mean zeta potential from particles in PBS buffer, differences of 3.2 and 3.6 mV, respectively.",
+    "reasoning": "The sentence states directly that particles were 'incubated with each of the proteins separately at 25 °C'."
+  },
+  {
+    "case": "PMC4958399:ionic_strength_mM:PMC4958399-r6",
+    "verdict": "B",
+    "quote": "The initial buffer used for particle analysis was phosphate buffered saline (1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium chloride) in 200 mL deionised water (18.2 MΩ cm)).",
+    "reasoning": "Same isolated-protein-in-PBS medium as r4/r5; 139.7 mM derivable from the printed NaCl+KCl concentrations."
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r13",
+    "verdict": "ambiguous",
+    "quote": "Our samples were all suspended in PBS buffer at pH 7.4, and therefore, the albumin is expected to occupy the largest area of the nanoparticle surface as the adsorption is occurring at a pH furthest from its isoelectric point.",
+    "reasoning": "pH 7.4 is stated only in the isolated-protein-in-PBS paragraph; whether it also describes the separately-prepared, PBS-diluted plasma/serum samples of Fig. 4 (r13-r15) is not stated anywhere in the text."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r13",
+    "verdict": "A",
+    "quote": "As seen in the isolated fibrinogen and γ-globulin samples above, only small changes in zeta values were observed for both plasma and serum at 25 °C.",
+    "reasoning": "The text explicitly states small zeta-potential changes 'for both plasma and serum at 25 °C', directly supporting a 25 °C row for this experiment."
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r14",
+    "verdict": "ambiguous",
+    "quote": "Our samples were all suspended in PBS buffer at pH 7.4, and therefore, the albumin is expected to occupy the largest area of the nanoparticle surface as the adsorption is occurring at a pH furthest from its isoelectric point.",
+    "reasoning": "Same scope problem as r13: pH 7.4 is stated for the isolated-protein samples, not restated for the plasma/serum-in-PBS dilution experiment."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r14",
+    "verdict": "A",
+    "quote": "Interestingly, at the elevated incubation temperature of 37 °C, the plasma still did not appear to show a significant difference in zeta potential, whereas the sample in serum showed a reduction in zeta potential of 5.9 mV.",
+    "reasoning": "The text explicitly names 'the elevated incubation temperature of 37 °C' for the plasma/serum samples in this same experiment."
+  },
+  {
+    "case": "PMC4958399:pH:PMC4958399-r15",
+    "verdict": "ambiguous",
+    "quote": "Our samples were all suspended in PBS buffer at pH 7.4, and therefore, the albumin is expected to occupy the largest area of the nanoparticle surface as the adsorption is occurring at a pH furthest from its isoelectric point.",
+    "reasoning": "Same scope problem as r13/r14: the only printed pH (7.4) is anchored to the isolated-protein paragraph, not restated for the Fig. 4 plasma/serum dilutions."
+  },
+  {
+    "case": "PMC4958399:temperature_C:PMC4958399-r15",
+    "verdict": "A",
+    "quote": "As seen in the isolated fibrinogen and γ-globulin samples above, only small changes in zeta values were observed for both plasma and serum at 25 °C.",
+    "reasoning": "Same sentence as r13: both plasma and serum are explicitly reported at 25 °C in this passage."
+  },
+  {
+    "case": "PMC9218121:pH:PMC9218121-r2",
+    "verdict": "A",
+    "quote": "Zeta potential measurements were performed in water at pH 7 and 3 using a Malvern Panalytical Zetasizer Ultra instrument.",
+    "reasoning": "Methods explicitly states zeta-potential measurements were performed at pH 7 (and 3); pH 7 is a printed, numeric, used condition, not an unstated one."
+  }
+]

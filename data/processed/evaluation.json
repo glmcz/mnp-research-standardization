@@ -1,0 +1,170 @@
+{
+  "papers": {
+    "gold": 50,
+    "pred": 27,
+    "pred_outside_gold": 472,
+    "gold_without_measurements": 26,
+    "pred_without_measurements_agreeing": 23
+  },
+  "row": [
+    {
+      "level": "row",
+      "field": "value",
+      "tp": 63,
+      "fp": 29,
+      "fn": 22,
+      "tn": 0,
+      "n": 114,
+      "precision": 0.6847826086956522,
+      "recall": 0.7411764705882353,
+      "f1": 0.7118644067796609,
+      "accuracy": 0.5526315789473685
+    },
+    {
+      "level": "row",
+      "field": "ionic_strength_mM",
+      "tp": 6,
+      "fp": 3,
+      "fn": 6,
+      "tn": 0,
+      "n": 15,
+      "precision": 0.6666666666666666,
+      "recall": 0.5,
+      "f1": 0.5714285714285715,
+      "accuracy": 0.4
+    },
+    {
+      "level": "row",
+      "field": "pH",
+      "tp": 15,
+      "fp": 7,
+      "fn": 8,
+      "tn": 0,
+      "n": 30,
+      "precision": 0.6818181818181818,
+      "recall": 0.6521739130434783,
+      "f1": 0.6666666666666666,
+      "accuracy": 0.5
+    },
+    {
+      "level": "row",
+      "field": "temperature_C",
+      "tp": 6,
+      "fp": 35,
+      "fn": 20,
+      "tn": 0,
+      "n": 61,
+      "precision": 0.14634146341463414,
+      "recall": 0.23076923076923078,
+      "f1": 0.17910447761194032,
+      "accuracy": 0.09836065573770492
+    }
+  ],
+  "paper": [
+    {
+      "level": "paper",
+      "field": "medium_reported",
+      "tp": 20,
+      "fp": 1,
+      "fn": 1,
+      "tn": 5,
+      "n": 22,
+      "precision": 0.9523809523809523,
+      "recall": 0.9523809523809523,
+      "f1": 0.9523809523809523,
+      "accuracy": 0.9259259259259259
+    },
+    {
+      "level": "paper",
+      "field": "ionic_strength_reported",
+      "tp": 1,
+      "fp": 1,
+      "fn": 1,
+      "tn": 24,
+      "n": 3,
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "accuracy": 0.9259259259259259
+    },
+    {
+      "level": "paper",
+      "field": "pH_reported",
+      "tp": 5,
+      "fp": 0,
+      "fn": 1,
+      "tn": 21,
+      "n": 6,
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1": 0.9090909090909091,
+      "accuracy": 0.9629629629629629
+    },
+    {
+      "level": "paper",
+      "field": "temperature_reported",
+      "tp": 5,
+      "fp": 1,
+      "fn": 1,
+      "tn": 20,
+      "n": 7,
+      "precision": 0.8333333333333334,
+      "recall": 0.8333333333333334,
+      "f1": 0.8333333333333334,
+      "accuracy": 0.9259259259259259
+    },
+    {
+      "level": "paper",
+      "field": "instrument_reported",
+      "tp": 23,
+      "fp": 0,
+      "fn": 0,
+      "tn": 4,
+      "n": 23,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0
+    },
+    {
+      "level": "paper",
+      "field": "conditions_complete",
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "tn": 26,
+      "n": 1,
+      "precision": 0.0,
+      "recall": NaN,
+      "f1": NaN,
+      "accuracy": 0.9629629629629629
+    },
+    {
+      "level": "paper",
+      "field": "medium_matches_exposure",
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 4,
+      "n": 9,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0
+    }
+  ],
+  "headline": {
+    "conditions_complete_accuracy": 0.9629629629629629,
+    "medium_matches_exposure_accuracy": 1.0
+  },
+  "audit": {
+    "n_audited_rows": 0,
+    "kappa": {
+      "medium_reported": NaN,
+      "ionic_strength_reported": NaN,
+      "pH_reported": NaN,
+      "temperature_reported": NaN,
+      "instrument_reported": NaN
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "n_papers": 498,
+  "n_papers_with_a_printed_number": 354,
+  "n_papers_measured_but_no_number_printed": 144,
+  "n_rows_verified": 1910,
+  "n_rows_total": 1910,
+  "n_papers_with_unverified_only": 0,
+  "denominators": {
+    "papers_with_verified_zeta": 498,
+    "oa_records": 862,
+    "all_hits": 1115
+  },
+  "missing": [
+    {
+      "condition": "medium",
+      "label": "Dispersion medium",
+      "k_missing": 131,
+      "n": 498,
+      "fraction": 0.26305220883534136,
+      "wilson_lo": 0.22630107797400723,
+      "wilson_hi": 0.3034310127892934,
+      "fraction_of_oa_records": 0.1519721577726218,
+      "fraction_of_all_hits_lower_bound": 0.11748878923766816
+    },
+    {
+      "condition": "ionic_strength",
+      "label": "Ionic strength",
+      "k_missing": 447,
+      "n": 498,
+      "fraction": 0.8975903614457831,
+      "wilson_lo": 0.8678461332892652,
+      "wilson_hi": 0.9212474771248574,
+      "fraction_of_oa_records": 0.5185614849187935,
+      "fraction_of_all_hits_lower_bound": 0.4008968609865471
+    },
+    {
+      "condition": "pH",
+      "label": "pH",
+      "k_missing": 399,
+      "n": 498,
+      "fraction": 0.8012048192771084,
+      "wilson_lo": 0.7639052049840517,
+      "wilson_hi": 0.8338929847236171,
+      "fraction_of_oa_records": 0.462877030162413,
+      "fraction_of_all_hits_lower_bound": 0.357847533632287
+    },
+    {
+      "condition": "temperature",
+      "label": "Temperature",
+      "k_missing": 386,
+      "n": 498,
+      "fraction": 0.7751004016064257,
+      "wilson_lo": 0.7364041593804858,
+      "wilson_hi": 0.8095848538858517,
+      "fraction_of_oa_records": 0.44779582366589327,
+      "fraction_of_all_hits_lower_bound": 0.34618834080717487
+    },
+    {
+      "condition": "instrument",
+      "label": "Instrument",
+      "k_missing": 91,
+      "n": 498,
+      "fraction": 0.1827309236947791,
+      "wilson_lo": 0.15126124879300765,
+      "wilson_hi": 0.2190579913815813,
+      "fraction_of_oa_records": 0.10556844547563805,
+      "fraction_of_all_hits_lower_bound": 0.08161434977578476
+    },
+    {
+      "condition": "any",
+      "label": "Any condition",
+      "k_missing": 484,
+      "n": 498,
+      "fraction": 0.9718875502008032,
+      "wilson_lo": 0.9533688793884634,
+      "wilson_hi": 0.9831816178202175,
+      "fraction_of_oa_records": 0.5614849187935035,
+      "fraction_of_all_hits_lower_bound": 0.43408071748878924
+    }
+  ],
+  "complete_fraction": 0.028112449799196804,
+  "denominator_note": null
+}

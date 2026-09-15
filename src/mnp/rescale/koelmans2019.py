@@ -28,10 +28,19 @@ from mnp import __version__, config
 
 PMCID = "PMC6449537"
 SI_URL = f"https://www.ebi.ac.uk/europepmc/webservices/rest/{PMCID}/supplementaryFiles"
-RAW_DIR = config.DATA_RAW / "koelmans2019"
 ZIP_NAME = "supplementaryFiles.zip"
 DOCX_NAME = "mmc1.docx"
-CSV_PATH = RAW_DIR / "table_s1.csv"
+
+
+def raw_dir() -> Path:
+    """Resolved on each call; a module-level constant freezes the data root at import time."""
+    return config.DATA_RAW / "koelmans2019"
+
+
+def csv_path() -> Path:
+    return raw_dir() / "table_s1.csv"
+
+
 USER_AGENT = f"NanoSolve-mnp-research/{__version__}"
 
 CANONICAL = (
@@ -54,8 +63,9 @@ class HeaderMappingError(ValueError):
 # --------------------------------------------------------------------------- fetch
 
 
-def fetch_si(dest: Path = RAW_DIR, client: httpx.Client | None = None) -> Path:
+def fetch_si(dest: Path | None = None, client: httpx.Client | None = None) -> Path:
     """Download the SI zip once, extract mmc1.docx, return its path. Cached on disk."""
+    dest = Path(dest or raw_dir())
     dest.mkdir(parents=True, exist_ok=True)
     docx_path = dest / DOCX_NAME
     if docx_path.is_file() and docx_path.stat().st_size > 0:
@@ -477,13 +487,15 @@ def parse_table_s1(docx_path: Path) -> pd.DataFrame:
 NUMERIC = ("size_min_um", "size_max_um", "concentration_value")
 
 
-def write_table_s1(df: pd.DataFrame, path: Path = CSV_PATH) -> Path:
+def write_table_s1(df: pd.DataFrame, path: Path | None = None) -> Path:
+    path = Path(path or csv_path())
     path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(path, index=False)
     return path
 
 
-def load_table_s1(path: Path = CSV_PATH) -> pd.DataFrame:
+def load_table_s1(path: Path | None = None) -> pd.DataFrame:
+    path = Path(path or csv_path())
     if not path.is_file():
         raise FileNotFoundError(f"{path} missing; run `python -m mnp.rescale fetch-si parse` first")
     df = pd.read_csv(path, dtype=str, keep_default_na=False)

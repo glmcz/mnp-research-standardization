@@ -35,8 +35,16 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.ticker import NullFormatter  # noqa: E402
 
-BANK_PATH = config.DATA_RAW / "digitised" / "printed_params.csv"
-DIGITISED_DIR = config.DATA_RAW / "digitised"
+
+def bank_path() -> Path:
+    """Resolved on each call: a module-level constant freezes the data root at import time."""
+    return config.DATA_RAW / "digitised" / "printed_params.csv"
+
+
+def digitised_dir() -> Path:
+    return config.DATA_RAW / "digitised"
+
+
 MU_UNIT = 1e-8  # figures print mobility in 10⁻⁸ m² V⁻¹ s⁻¹ (= µm s⁻¹ V⁻¹ cm)
 RESIDUAL_GATE = 0.02
 X_TOLERANCE = 0.10
@@ -222,14 +230,14 @@ class PrintedFit:
         return ok, f"d = {self.d_nm:g} nm vs 5·max(1/λ, 1/κ) = {need:.1f} nm at the lowest I"
 
 
-def load_bank(path: Path = BANK_PATH) -> list[PrintedFit]:
-    with Path(path).open(newline="") as f:
+def load_bank(path: Path | None = None) -> list[PrintedFit]:
+    with Path(path or bank_path()).open(newline="") as f:
         return [PrintedFit.from_row(row) for row in csv.DictReader(f)]
 
 
-def load_digitised(fit: PrintedFit, directory: Path = DIGITISED_DIR):
+def load_digitised(fit: PrintedFit, directory: Path | None = None):
     """(I_mM, μ_1e8) arrays for this fit, or None when no digitised series exists."""
-    path = Path(directory) / f"{fit.dataset}.csv"
+    path = Path(directory or digitised_dir()) / f"{fit.dataset}.csv"
     if not path.is_file():
         return None
     with path.open(newline="") as f:
@@ -268,7 +276,7 @@ def x_on_grid_check(ionic, nominal, tol: float = X_TOLERANCE) -> bool | None:
     return bool(np.all(np.min(np.abs(x - g) / g, axis=1) <= tol))
 
 
-def qa_row(fit: PrintedFit, digitised_dir: Path = DIGITISED_DIR) -> dict:
+def qa_row(fit: PrintedFit, digitised: Path | None = None) -> dict:
     row = {
         "dataset": fit.dataset,
         "figure": fit.figure,
@@ -294,12 +302,12 @@ def qa_row(fit: PrintedFit, digitised_dir: Path = DIGITISED_DIR) -> dict:
     grid = fit.grid()
     row.update(n_grid=len(grid), status="recomputed", _grid=grid, _curve=fit.curve(grid))
     row["validity_ok"], row["validity_note"] = fit.validity(grid)
-    digitised = load_digitised(fit, digitised_dir)
-    if digitised is not None:
-        ionic, mu = digitised
+    series = load_digitised(fit, digitised)
+    if series is not None:
+        ionic, mu = series
         row.update(residual_check(fit, ionic, mu))
         row["x_on_grid_pass"] = x_on_grid_check(ionic, fit.I_grid_mM)
-        row.update(n_digitised=len(ionic), status="recomputed+digitised", _digitised=digitised)
+        row.update(n_digitised=len(ionic), status="recomputed+digitised", _digitised=series)
     return row
 
 
@@ -380,14 +388,16 @@ def overlay_figure(rows: list[dict], path: Path) -> None:
 
 
 def run_qa(
-    bank_path: Path = BANK_PATH,
-    digitised_dir: Path = DIGITISED_DIR,
-    tables_dir: Path = config.OUT_TABLES,
-    figures_dir: Path = config.OUT_FIGURES,
+    bank: Path | None = None,
+    digitised: Path | None = None,
+    tables_dir: Path | None = None,
+    figures_dir: Path | None = None,
 ) -> list[dict]:
-    bank = load_bank(bank_path)
-    rows = [qa_row(fit, digitised_dir) for fit in bank]
-    write_params_table(bank, Path(tables_dir) / "d4_params.csv")
-    write_residual_table(rows, Path(tables_dir) / "d4_qa_residuals.csv")
-    overlay_figure(rows, Path(figures_dir) / "d4_qa_overlay.png")
+    fits = load_bank(bank)
+    rows = [qa_row(fit, digitised) for fit in fits]
+    tables = Path(tables_dir or config.OUT_TABLES)
+    figures = Path(figures_dir or config.OUT_FIGURES)
+    write_params_table(fits, tables / "d4_params.csv")
+    write_residual_table(rows, tables / "d4_qa_residuals.csv")
+    overlay_figure(rows, figures / "d4_qa_overlay.png")
     return rows

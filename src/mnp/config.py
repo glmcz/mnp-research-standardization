@@ -1,8 +1,11 @@
 """Paths, environment loading and the outbound User-Agent.
 
-Secrets live in the Rust service's .env (services/nanoSolve-backend/.env) so
-there is exactly one copy of the OpenRouter/Groq keys on this machine. Nothing
-here writes to that file; MNP_ENV_FILE points somewhere else in tests.
+This service reads its own ``.env`` and nothing else. The Rust service's
+``.env`` next door holds the same keys, and sharing it kept exactly one copy on
+this machine — but it also meant an ambient ``DATABASE_URL`` reached code here
+that had no business seeing it. It is now opt-in: set ``MNP_ALLOW_SIBLING_ENV=1``
+to layer it underneath ours, or ``MNP_ENV_FILE`` to replace the search entirely.
+Nothing here ever writes to either file.
 """
 
 from __future__ import annotations
@@ -35,22 +38,35 @@ class MissingConfig(RuntimeError):
     """A required environment variable is unset or blank."""
 
 
-def env_file() -> Path:
-    """The .env to read. Defaults to the Rust service's, overridable for tests."""
+SIBLING_ENV = ROOT.parent / "nanoSolve-backend" / ".env"
+
+
+def _truthy(value: str | None) -> bool:
+    return (value or "").strip().lower() in ("1", "true", "yes", "on")
+
+
+def env_files() -> tuple[Path, ...]:
+    """Every .env to merge, highest precedence first.
+
+    ``MNP_ENV_FILE`` replaces the search rather than extending it, so a test can guarantee
+    that no file on this machine is read.
+    """
     override = os.environ.get("MNP_ENV_FILE")
     if override:
-        return Path(override)
-    return ROOT.parent / "nanoSolve-backend" / ".env"
+        return (Path(override),)
+    if _truthy(os.environ.get("MNP_ALLOW_SIBLING_ENV")):
+        return (ROOT / ".env", SIBLING_ENV)
+    return (ROOT / ".env",)
 
 
 def load_env() -> None:
-    """Merge the .env into os.environ without overriding what the shell set."""
-    path = env_file()
-    if not path.is_file():
-        return
-    for key, value in dotenv_values(path).items():
-        if value is not None and key not in os.environ:
-            os.environ[key] = value
+    """Merge the .env files into os.environ. The shell wins; then the first file that has it."""
+    for path in env_files():
+        if not path.is_file():
+            continue
+        for key, value in dotenv_values(path).items():
+            if value is not None and key not in os.environ:
+                os.environ[key] = value
 
 
 def getenv(name: str, default: str | None = None) -> str | None:
@@ -65,7 +81,8 @@ def require(name: str, hint: str = "") -> str:
     value = getenv(name)
     if value is None:
         suffix = f" {hint}" if hint else ""
-        raise MissingConfig(f"{name} is unset or blank (looked in {env_file()}).{suffix}")
+        where = ", ".join(str(p) for p in env_files())
+        raise MissingConfig(f"{name} is unset or blank (looked in {where}).{suffix}")
     return value
 
 

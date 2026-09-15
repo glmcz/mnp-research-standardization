@@ -1,4 +1,4 @@
-"""python -m mnp.corpus search|fetch|parse"""
+"""python -m mnp.corpus search|fetch|parse|snapshot|verify|restore"""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ import httpx
 import pandas as pd
 
 from mnp import config
-from mnp.corpus import epmc, jats
+from mnp.corpus import epmc, jats, snapshot
 
 
 def cmd_search(args: argparse.Namespace) -> int:
@@ -88,6 +88,39 @@ def cmd_parse(args: argparse.Namespace) -> int:
     return 0
 
 
+MANIFEST = config.EPMC_XML_DIR.parent / "manifest.sha256"
+ARCHIVE = config.EPMC_XML_DIR.parent / "xml.tar.gz"
+
+
+def cmd_snapshot(args: argparse.Namespace) -> int:
+    """Freeze the fetched corpus: one archive, one manifest, both reproducible."""
+    n = snapshot.write_manifest(config.EPMC_XML_DIR, MANIFEST)
+    snapshot.write_archive(config.EPMC_XML_DIR, ARCHIVE)
+    size = ARCHIVE.stat().st_size / 1e6
+    print(f"{n} files -> {MANIFEST.name} and {ARCHIVE.name} ({size:.1f} MB)")
+    print(f"archive sha256 {snapshot.sha256_file(ARCHIVE)}")
+    return 0
+
+
+def cmd_verify(args: argparse.Namespace) -> int:
+    report = snapshot.verify(config.EPMC_XML_DIR, MANIFEST)
+    print(report.summary())
+    for label, names in (
+        ("missing", report.missing),
+        ("extra", report.extra),
+        ("changed", report.changed),
+    ):
+        if names:
+            print(f"  {label}: {', '.join(names[:10])}{' …' if len(names) > 10 else ''}")
+    return 0 if report.ok else 1
+
+
+def cmd_restore(args: argparse.Namespace) -> int:
+    n = snapshot.restore(ARCHIVE, config.EPMC_XML_DIR)
+    print(f"restored {n} files to {config.EPMC_XML_DIR}")
+    return cmd_verify(args)
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="python -m mnp.corpus")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -100,6 +133,9 @@ def main(argv: list[str] | None = None) -> int:
     pa = sub.add_parser("parse")
     pa.add_argument("--max-tokens", type=int, default=12_000)
     pa.set_defaults(fn=cmd_parse)
+    sub.add_parser("snapshot").set_defaults(fn=cmd_snapshot)
+    sub.add_parser("verify").set_defaults(fn=cmd_verify)
+    sub.add_parser("restore").set_defaults(fn=cmd_restore)
     args = p.parse_args(argv)
     return args.fn(args)
 

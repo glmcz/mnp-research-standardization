@@ -167,7 +167,7 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     def common(p):
-        p.add_argument("--bank", type=Path, default=qa.BANK_PATH)
+        p.add_argument("--bank", type=Path, default=qa.bank_path())
         p.add_argument("--posterior-dir", type=Path, default=POSTERIOR_DIR)
         p.add_argument("--figures", type=Path, default=config.OUT_FIGURES)
         p.add_argument("--tables", type=Path, default=config.OUT_TABLES)
@@ -175,7 +175,7 @@ def main(argv: list[str] | None = None) -> int:
 
     p = sub.add_parser("mcmc", help="emcee posterior for every complete printed fit")
     common(p)
-    p.add_argument("--digitised-dir", type=Path, default=qa.DIGITISED_DIR)
+    p.add_argument("--digitised-dir", type=Path, default=qa.digitised_dir())
     p.add_argument("--n-walkers", type=int, default=mcmc.N_WALKERS)
     p.add_argument("--n-steps", type=int, default=mcmc.N_STEPS)
     p.set_defaults(func=cmd_mcmc)

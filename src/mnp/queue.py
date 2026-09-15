@@ -31,8 +31,12 @@ DEFAULT_LEASE_SECONDS = 1800
 
 
 def dsn() -> str | None:
-    """Where the queue lives. Its own URL first, else the stack's database."""
-    return config.getenv("MNP_DB_URL") or config.getenv("DATABASE_URL")
+    """Where the queue lives. One variable of its own, and nothing else.
+
+    There is deliberately no fall-back to ``DATABASE_URL``: that variable belongs to the Rust
+    service, and reading it pointed the queue's tests at the live application database.
+    """
+    return config.getenv("MNP_DB_URL")
 
 
 def available() -> bool:
@@ -59,7 +63,7 @@ class Queue:
             raise RuntimeError("psycopg is not installed; `uv sync` first")
         self.url = url or dsn()
         if not self.url:
-            raise RuntimeError("set MNP_DB_URL (or DATABASE_URL) to use the queue")
+            raise RuntimeError("set MNP_DB_URL to use the queue (see .env.example)")
         self.schema = schema
         self._conn: psycopg.Connection | None = None
 

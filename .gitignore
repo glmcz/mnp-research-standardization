@@ -5,7 +5,9 @@ __pycache__/
 .ruff_cache/
 uv.lock
 
-data/raw/epmc/xml/
+# The XMLs themselves travel as data/raw/epmc/xml.tar.gz (vendored, hash-pinned);
+# fetch_log.csv stays tracked because it records which fetches failed.
+data/raw/epmc/xml/*.xml
 data/interim/llm_cache/
 data/processed/sims.npz
 out/figures/*.png
@@ -16,3 +18,5 @@ data/processed/*.pt
 data/processed/sbc_ranks_*.npz
 data/interim/articles.parquet
 data/interim/extractions.jsonl.tmp
+.env
+.env.local

@@ -19,7 +19,7 @@ def main(argv: list[str] | None = None) -> None:
     if args.command in ("fetch-si", "run"):
         print(f"SI docx: {k.fetch_si()}")
     if args.command in ("parse", "run"):
-        table = k.parse_table_s1(k.RAW_DIR / k.DOCX_NAME)
+        table = k.parse_table_s1(k.raw_dir() / k.DOCX_NAME)
         print(f"Table S1: {len(table)} rows -> {k.write_table_s1(table)}")
     if args.command == "run":
         from mnp.report import d3

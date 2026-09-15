@@ -1,4 +1,4 @@
-"""python -m mnp.report d1|d2|d3|d4|all [--out DIR]"""
+"""python -m mnp.report d1|d2|d3|d4|all|reproduce [--out DIR]"""
 
 from __future__ import annotations
 
@@ -105,7 +105,9 @@ def run_d1(args: argparse.Namespace) -> list[Path]:
             "d1: no zeta_table.parquet yet — run the corpus and extraction first", file=sys.stderr
         )
         return []
-    return d1.build(table, records, tables, figures, hit_counts=hits)
+    articles_path = config.DATA_INTERIM / "articles.parquet"
+    articles = pd.read_parquet(articles_path) if articles_path.is_file() else None
+    return d1.build(table, records, tables, figures, hit_counts=hits, articles=articles)
 
 
 def run_d2(args: argparse.Namespace) -> list[Path]:
@@ -132,8 +134,141 @@ def run_d4(args: argparse.Namespace) -> list[Path]:
     except ModuleNotFoundError:
         print("d4: report module not built yet", file=sys.stderr)
         return []
+    from mnp.ek import qa
+
+    bank = qa.bank_path()
+    if not bank.is_file():
+        print(f"d4: {bank} missing — no printed-fit bank to recompute", file=sys.stderr)
+        return []
     _, tables, figures, _ = _out(args)
     return d4.build(tables, figures)
+
+
+def _tracked_artefacts(root: Path) -> list[str] | None:
+    """The committed artefacts, as git knows them. None when this is not a checkout."""
+    import subprocess
+
+    try:
+        done = subprocess.run(
+            ["git", "ls-files", str(root)],
+            cwd=config.ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except (OSError, subprocess.CalledProcessError):  # pragma: no cover - no git here
+        return None
+    # git prints repository-relative paths, so the prefix to strip is the repository-relative
+    # form of `root`, not its absolute one.
+    prefix = root.relative_to(config.ROOT)
+    names = [Path(line).relative_to(prefix).as_posix() for line in done.stdout.split() if line]
+    return names or None
+
+
+# Committed artefacts the offline replay does not rebuild, and why. Named here rather than
+# silently missing from the diff: an artefact nobody re-derives is one nobody is checking.
+EXCLUDED_FROM_REPLAY = {
+    "tables/d4_sbc.csv": "needs `infer sbc` — torch, minutes of CPU; seeded, run deliberately",
+    "tables/rules_impact.md": "produced by tool/rules_impact.py, a one-off scoring of the "
+    "ratified rules against records extracted before them",
+}
+
+
+def _uncommitted(root: Path) -> list[str]:
+    """Artefacts that differ from HEAD, so the published copy is not what this tree rebuilds."""
+    import subprocess
+
+    try:
+        done = subprocess.run(
+            ["git", "status", "--porcelain", "--", str(root)],
+            cwd=config.ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except (OSError, subprocess.CalledProcessError):  # pragma: no cover - no git here
+        return []
+    return [line[3:].strip() for line in done.stdout.splitlines() if line.strip()]
+
+
+def run_protocol(args: argparse.Namespace) -> int:
+    """Render docs/PROTOCOL.md from the registry. The document has no other writer."""
+    from mnp import protocol
+
+    path = config.ROOT / "docs" / "PROTOCOL.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(protocol.render())
+    print(f"{len(protocol.STEPS)} steps -> {path}")
+    return 0
+
+
+def run_reproduce(args: argparse.Namespace) -> int:
+    """Rebuild every committed artefact from the vendored corpus, offline, and diff."""
+    import tempfile
+
+    from mnp.corpus import __main__ as corpus_cli
+    from mnp.extract import __main__ as extract_cli
+    from mnp.report import reproduce
+
+    records = config.DATA_INTERIM / "extractions.jsonl"
+    before_records = reproduce.sha256_file(records) if records.is_file() else None
+    stale: list[bool] = []
+
+    def build(out_dir: Path) -> None:
+        if corpus_cli.main(["verify"]) != 0:
+            raise SystemExit("corpus does not match its manifest; run `corpus restore` first")
+        corpus_cli.main(["parse"])
+        extract_cli.main(["table"])
+        # The scanner numbers stored in each record go stale whenever the scanner changes.
+        # Checked read-only here: a replay may not repair the record it is checking.
+        if extract_cli.main(["recount", "--check"]) != 0:
+            stale.append(True)
+        # Several commands write straight to out/tables rather than honouring --out; point
+        # that constant at the scratch tree for the duration so the replay writes nothing
+        # into the committed one.
+        real_tables = config.OUT_TABLES
+        config.OUT_TABLES = out_dir / "tables"
+        try:
+            extract_cli.main(["review-list"])
+            extract_cli.main(["evaluate", "--gold", str(config.ANNOTATION / "gold_50.csv")])
+            rebuilt = argparse.Namespace(out=str(out_dir), slice=None)
+            for name in RUNNERS:
+                if name == "gates":
+                    continue
+                RUNNERS[name](rebuilt)
+            slice_path = config.DATA_INTERIM / "worklists" / "gate3_slice.txt"
+            if slice_path.is_file():
+                RUNNERS["gates"](argparse.Namespace(out=str(out_dir), slice=str(slice_path)))
+        finally:
+            config.OUT_TABLES = real_tables
+
+    only = _tracked_artefacts(config.OUT)
+    if only is not None:
+        for name, why in EXCLUDED_FROM_REPLAY.items():
+            if name in only:
+                only.remove(name)
+                print(f"  excluded by design: {name} — {why}")
+
+    with tempfile.TemporaryDirectory(prefix="mnp-reproduce-") as tmp:
+        code = reproduce.run(
+            committed=config.OUT,
+            rebuilt=Path(tmp) / "out",
+            build=build,
+            only=only,
+        )
+
+    after_records = reproduce.sha256_file(records) if records.is_file() else None
+    if before_records != after_records:
+        print("  changed: data/interim/extractions.jsonl — a replay must not write the record")
+        code = 1
+    if stale:
+        code = 1
+    # Rebuilding the working tree is not the claim. The claim is about what is published, so
+    # an artefact that differs from HEAD is a published number nobody has re-derived.
+    for name in _uncommitted(config.OUT):
+        print(f"  uncommitted: {name} — rebuilt here but not committed, so not published")
+        code = 1
+    return code
 
 
 RUNNERS = {
@@ -149,7 +284,7 @@ RUNNERS = {
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="python -m mnp.report")
-    p.add_argument("what", choices=[*RUNNERS, "all"])
+    p.add_argument("what", choices=[*RUNNERS, "all", "reproduce", "protocol"])
     p.add_argument("--out", default=None, help="output root (default: out/)")
     p.add_argument(
         "--slice",
@@ -157,6 +292,10 @@ def main(argv: list[str] | None = None) -> int:
         help="gate only: a file of PMCIDs to score, instead of the whole gold set",
     )
     args = p.parse_args(argv)
+    if args.what == "reproduce":
+        return run_reproduce(args)
+    if args.what == "protocol":
+        return run_protocol(args)
     # `all` builds the deliverables; the gate is a check, run deliberately.
     targets = (
         [k for k in RUNNERS if k not in ("gate", "gates")] if args.what == "all" else [args.what]

@@ -110,5 +110,28 @@
     "expected": -30.0,
     "expect_flag": "approx",
     "why": "约为 is 'approximately'; unflagged it turns the paper's hedge into an exact value"
+  },
+  {
+    "rule": "a_range_is_not_a_value",
+    "parser": "number",
+    "input": "between -34 mV and -48 mV",
+    "expected": null,
+    "expect_flag": "range",
+    "why": "truncating to the first endpoint fabricates a precision the paper never claimed"
+  },
+  {
+    "rule": "a_range_is_not_a_value",
+    "parser": "number",
+    "input": "+21–+30",
+    "expected": null,
+    "expect_flag": "range",
+    "why": "en-dash range with signed endpoints"
+  },
+  {
+    "rule": "a_range_is_not_a_value",
+    "parser": "number",
+    "input": "-50 ± 9.7",
+    "expected": -50.0,
+    "why": "a value with a spread is not a range; the fix must not eat it"
   }
 ]

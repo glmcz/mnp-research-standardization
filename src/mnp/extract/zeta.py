@@ -451,6 +451,14 @@ def verify_row(m: SurfaceMeasurement, full_text: str) -> list[str]:
     return flags
 
 
+def _piece_with(value: float, quote: str) -> str:
+    """The piece of a `" || "`-joined quote that carries this number, or the whole quote."""
+    for piece in quote.split("||"):
+        if _number_in(value, piece):
+            return piece
+    return quote
+
+
 def _scope_flags(c, quote: str) -> list[str]:
     """A condition is only established where the paper states it.
 
@@ -471,8 +479,11 @@ def _scope_flags(c, quote: str) -> list[str]:
     if c.temperature_C is not None:
         if not _number_in(c.temperature_C, quote):
             flags.append("temperature_not_in_evidence")
-        elif coerce.OTHER_STEP_RE.search(quote):
-            # the quote does carry the number, but attached to incubation or exposure
+        elif coerce.OTHER_STEP_RE.search(_piece_with(c.temperature_C, quote)):
+            # the number is attached to incubation or exposure *in its own piece* of the
+            # quote. Testing the whole join flagged correct rows whenever any other piece
+            # mentioned a culture or an exposure, so workers trimmed their evidence to clear
+            # it — the guard was punishing the more complete quote.
             flags.append("temperature_step_not_measurement")
     if c.ionic_strength_mM is not None and not _ionic_in(c, quote):
         flags.append("ionic_strength_not_in_evidence")

@@ -2,6 +2,6 @@ stage,metric,value,n,threshold,status
 parse,span recall,1.0,5,1.0,pass
 scan,recall of gold values,0.9764705882352941,85,,reported
 read,row value precision,0.8095238095238095,101,,reported
-coerce,exact-match accuracy,1.0,15,1.0,pass
+coerce,exact-match accuracy,1.0,18,1.0,pass
 verify,detection rate,1.0,7,1.0,pass
 aggregate,artefacts reproduced,,0,1.0,not measured

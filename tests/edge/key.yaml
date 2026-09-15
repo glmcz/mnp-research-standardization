@@ -457,3 +457,107 @@ S23:
     so the row stays. Note that S8's own test ("would there still be something in the cuvette
     with a zeta potential?") cannot decide this: with two particle populations the answer is
     yes either way, which is why the rule needed this clause.
+S24:
+  pmcid: PMC10458608
+  question: >-
+    "According to the manufacturer, the PMA-NH2 ... resulting in a zeta of -23.8 at pH 7."
+    A supplier datasheet value, not measured by this paper. The brief excludes a value cited
+    from another study but says nothing about a supplier spec; the worker excluded it. Common
+    shape in particle-characterisation papers.
+  verdict: ''
+  reasoning: ''
+S25:
+  pmcid: PMC11125995
+  question: >-
+    "the absolute value of the zeta potential also increases to nearly 50" — a bare number with
+    no unit and no per-particle attribution. Recorded as value null (figure-only) rather than
+    as 50 mV. Is a unitless approximate magnitude a printed value?
+  verdict: ''
+  reasoning: ''
+S26:
+  pmcid: PMC11084201
+  question: >-
+    "Characterized as described in earlier studies [50]" — ambiguous between reusing the METHOD
+    and reusing the DATA. The paper prints the value in its own figure with its own SD, so the
+    worker recorded it as this study's. Where does a methods citation stop making a value
+    someone else's?
+  verdict: ''
+  reasoning: ''
+S27:
+  pmcid: PMC10897390
+  question: >-
+    A pure finite-element simulation: -80 mV appears as a model INPUT for the
+    Helmholtz-Smoluchowski wall term, not as anything measured. The worker recorded zero rows.
+    Confirm that a simulation parameter is never a measurement (and that the scanner finding
+    it is a candidate, not an extraction).
+  verdict: ''
+  reasoning: ''
+S28:
+  pmcid: PMC10479899
+  question: >-
+    Five zeta values printed with NO unit anywhere in the paper, and one sample printed as two
+    values ("-44.41 and 42.67", two charge populations). Record with unit assumed mV? And is a
+    bimodal pair one row or two? The worker split them; a range rule exists, a bimodal rule
+    does not.
+  verdict: ''
+  reasoning: ''
+S29:
+  pmcid: PMC11085749
+  question: >-
+    PEI PM0.1 is incinerated polyethylene: 99.7% organic carbonaceous combustion particulate
+    made FROM a plastic. The paper calls it an MNP throughout and the worker recorded it; under
+    "carbon particles are excluded" it would be dropped. Is combustion-derived particulate from
+    plastic feedstock a plastic particle?
+  verdict: ''
+  reasoning: ''
+S30:
+  pmcid: PMC11085749
+  question: >-
+    "Maintained at room temperature ... before measurement" — recorded as the measurement
+    temperature. It is not incubation, storage or exposure, but it is literally a prior step.
+    Rule 2's boundary, and the third distinct phrasing of it to reach the key (see S9).
+  verdict: ''
+  reasoning: ''
+S31:
+  pmcid: PMC10499202
+  question: >-
+    Silicone-rubber and natural-rubber-latex nanoparticles shed from pacifiers. "latex" is on
+    the include list but probably means PS latex beads; silicone is a synthetic polymer;
+    natural rubber is arguably a natural polymer. The worker recorded both. Are elastomers and
+    silicones in scope?
+  verdict: ''
+  reasoning: ''
+S32:
+  pmcid: PMC10313666
+  question: >-
+    "3.5% NaCl" — a named salt at a stated concentration, but as mass percent, so it needs a
+    density and molar mass to become mM. The ratified composition rule says a stated
+    composition establishes the ionic strength when the sum follows DIRECTLY from named species
+    at stated concentrations. Does a unit conversion still count as direct, or is this
+    computing a number the paper did not print?
+  verdict: ''
+  reasoning: ''
+S33:
+  pmcid: PMC11117817
+  question: >-
+    The paper contradicts itself: Table 1's caption says the medium is FMQ and Table 2's says
+    FSSW, while every text sentence assigns the numbers the other way round. The worker took
+    each row's condition from its own table caption. Which wins when a paper disagrees with
+    itself, and should such rows carry a flag of their own?
+  verdict: ''
+  reasoning: ''
+S34:
+  pmcid: PMC10340104
+  question: >-
+    The only place the instrument is named is the acknowledgements ("zeta-sizer"). Recorded,
+    quoting that sentence. Does an instrument named outside methods/results count as reported?
+  verdict: ''
+  reasoning: ''
+S35:
+  pmcid: PMC10819112
+  question: >-
+    The paper prints its zeta as "± 45" and "± 20" — no sign at all. The coercer stored +45.0
+    and +20.0; the authors almost certainly meant negative. Record as printed (and positive),
+    record as value-null, or flag sign_unstated? No code can infer this one.
+  verdict: ''
+  reasoning: ''

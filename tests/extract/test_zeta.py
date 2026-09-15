@@ -977,3 +977,28 @@ def test_a_pH_range_carried_from_elsewhere_is_flagged_too():
     m = _scope_row("Zeta potential of the PS particles was -50 mV.", pH_text="pH 7.4 buffer")
     flags = zeta.verify_row(m, SCOPE_TEXT)
     assert "pH_not_in_evidence" in flags
+
+
+def test_the_other_step_test_looks_at_the_clause_carrying_the_temperature(article):
+    """A quote may mention an incubation elsewhere and still state a measurement temperature.
+
+    `OTHER_STEP_RE` was applied to the whole joined quote, so a row whose evidence included a
+    sentence about exposure was flagged `temperature_step_not_measurement` even when its 25 °C
+    came from a different sentence about the measurement itself. Two sweep workers hit it
+    independently, and both worked around it by TRIMMING the evidence — the guard was
+    punishing the more complete quote, which is exactly backwards.
+    """
+    quote = (
+        "Particles were exposed to different ionic strengths for 24 h. || "
+        "Zeta potential was measured at 25 °C using a Zetasizer NanoZS."
+    )
+    m = _row(quote, value=-50.0, temperature_C=25.0)
+    flags = zeta.verify_row(m, quote)
+    assert "temperature_step_not_measurement" not in flags, flags
+
+
+def test_an_incubation_temperature_in_its_own_clause_is_still_caught(article):
+    """The guard must keep catching the thing it was written for."""
+    quote = "Particles were incubated at 37 °C for 24 h before zeta potential measurement."
+    m = _row(quote, value=-50.0, temperature_C=37.0)
+    assert "temperature_step_not_measurement" in zeta.verify_row(m, quote)

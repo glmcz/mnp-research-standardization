@@ -2,7 +2,7 @@
   "papers": {
     "gold": 50,
     "pred": 24,
-    "pred_outside_gold": 469,
+    "pred_outside_gold": 467,
     "gold_without_measurements": 26,
     "pred_without_measurements_agreeing": 25
   },

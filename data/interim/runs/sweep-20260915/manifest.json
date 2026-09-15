@@ -1,0 +1,12 @@
+{
+  "run_id": "sweep-20260915",
+  "started_at": "2026-09-15T15:48:02+00:00",
+  "ended_at": null,
+  "code_commit": "93caeca5a441e771a314a26bdb494b2e416a0ca3",
+  "code_dirty": true,
+  "corpus_manifest_sha256": "3ea035fde33a175b0932143af00a60e68dc063172a4b7bb45c1a675ba0b1be25",
+  "env_keys_present": [],
+  "counts": {},
+  "model": "claude-code:sonnet",
+  "brief_sha256": "b1baf33eff796a4c47619c745777941747a415623e4bdc9d8ee14a7586a2d88b"
+}

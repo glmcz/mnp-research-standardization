@@ -651,3 +651,54 @@ def test_a_concentration_bound_to_its_salt_still_counts(medium, expected):
     """The fix must not cost the cases the ratified composition rule depends on."""
     value, _, _ = coerce.parse_ionic_strength(medium, from_medium=True)
     assert value is not None and abs(value - expected) <= 0.2, f"{medium!r} -> {value}"
+
+
+@pytest.mark.parametrize(
+    "raw",
+    ["-34 to -48", "between -34 mV and -48 mV", "+21–+30", "−34 and −48", "-21 ~ -30"],
+)
+def test_every_way_a_paper_writes_a_range_is_seen_as_one(raw):
+    """A range silently truncated to its first endpoint is a fabricated precision.
+
+    `_RANGE` accepted only "to" and a hyphen, so "between -34 mV and -48 mV" parsed as -34.0
+    with **no flag** — indistinguishable in the data from a paper that printed -34. Found by a
+    sweep worker who had to rewrite the paper's own words as "X to Y" to get it recognised.
+    `_PH_RANGE` already accepted "and" and en-dashes; the two were inconsistent.
+    """
+    value, _, flags = coerce.parse_number(raw)
+    assert "range" in flags, f"{raw!r} -> {value!r}, flags {flags}"
+    assert value is None, f"{raw!r} kept a single value from a range"
+
+
+def test_a_unit_the_code_does_not_know_is_refused_not_assumed():
+    """Nonlinear mobility is printed in cm4 V-3 s-1; assuming µm·cm/Vs corrupts the number.
+
+    `normalise_unit` returns None for a unit it cannot read, and the caller treated None as
+    "no unit was printed" and filled in the conventional one — so the row carried a
+    plausible-looking number in the wrong unit, flagged `unit_assumed_...`, which asserts the
+    paper printed nothing. It printed something; we could not read it. Found by a sweep worker
+    who dropped eight rows by hand rather than let them through.
+    """
+    row = {"particle_name": "PS", "quantity": "electrophoretic mobility", "value": "3.1",
+           "unit": "cm4 V-3 s-1", "evidence_quote": "mobility 3.1 cm4 V-3 s-1"}  # fmt: skip
+    out, flags = coerce.coerce_measurement(row)
+    assert out is None, "a value in an unreadable unit must not be recorded"
+    assert "unit_unrecognised" in flags, flags
+    assert not any(f.startswith("unit_assumed") for f in flags), (
+        "the paper printed a unit; claiming it did not is false"
+    )
+
+
+def test_a_genuinely_absent_unit_is_still_assumed_and_said_so():
+    """The assumption is right when nothing was printed — that is why the flag exists."""
+    row = {"particle_name": "PS", "quantity": "zeta potential", "value": "-30",
+           "unit": None, "evidence_quote": "zeta potential of -30"}  # fmt: skip
+    out, flags = coerce.coerce_measurement(row)
+    assert out is not None
+    assert "unit_assumed_mV" in flags
+
+
+def test_the_units_the_code_does_know_still_work():
+    for raw in ("mV", "mv", "µm cm/Vs", "m2/Vs"):
+        unit, _ = coerce.normalise_unit(raw)
+        assert unit is not None, raw

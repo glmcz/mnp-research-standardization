@@ -66,7 +66,14 @@ def _decimal_comma(s: str) -> str:
 
 # A hyphen between two numbers is a range. Scientific notation is checked first, so
 # "10-8" inside "-3.2 x 10-8" is never mistaken for one.
-_RANGE = re.compile(rf"({_NUM})\s*(?:to|-)\s*({_NUM})")
+# Every way a paper writes a range. "and" and the dashes were missing, so
+# "between -34 mV and -48 mV" parsed as -34.0 with no flag — a fabricated precision,
+# indistinguishable in the data from a paper that printed one number.
+# A signed number, a unit the paper may repeat on the first endpoint, then the connector.
+# Papers write "-34 to -48", "between -34 mV and -48 mV", "+21–+30" and "-21 ~ -30", and the
+# unit in the middle is what defeated the simpler pattern.
+_RNUM = r"[+-]?\d+(?:\.\d+)?"
+_RANGE = re.compile(rf"({_RNUM})\s*(?:mV|mv|V)?\s*(?:to|and|[-–—~])\s*({_RNUM})")
 _SCI = re.compile(rf"({_NUM})\s*[×xX*·]\s*10\s*\^?\s*\(?\s*(-?\d+)\s*\)?")
 _EXP = re.compile(rf"({_NUM})[eE](-?\d+)")
 # A standard deviation is a magnitude; one paper prints "-52.42 \u00b1 -0.26", and a
@@ -529,8 +536,15 @@ def coerce_measurement(raw: dict) -> tuple[SurfaceMeasurement | None, list[str]]
         flags.extend(vflags)
 
     unit, factor = normalise_unit(raw.get("unit"))
+    printed_unit = clean(raw.get("unit"))
     if unit is None:
         unit, factor = normalise_unit(_unit_in_value(raw.get("value")))
+    if unit is None and printed_unit:
+        # The paper printed a unit we cannot read (nonlinear mobility in cm4 V-3 s-1, say).
+        # Falling through to the default would store a plausible number in the wrong unit and
+        # flag it `unit_assumed_...`, which asserts the paper printed nothing. It did.
+        flags.append("unit_unrecognised")
+        return None, flags
     quantity = parse_quantity(raw.get("quantity"))
     if quantity is None:
         if unit is Unit.mV:

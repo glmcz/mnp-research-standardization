@@ -41,7 +41,7 @@ def test_an_ordinary_particle_measurement_is_not_flagged():
 
 
 def test_a_filtration_before_a_different_analysis_is_not_flagged():
-    """"Filtered prior to HPLC analysis" says nothing about what the zeta was measured on.
+    """ "Filtered prior to HPLC analysis" says nothing about what the zeta was measured on.
 
     The first version of this scan matched it, and 16 of its 25 hits were this shape.
     """

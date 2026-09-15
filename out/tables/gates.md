@@ -6,8 +6,8 @@
 
 ## Gate 2 edge — not evaluated
 
-- answered: 3
-- reason: no persona verdicts supplied; the key holds 3 answered case(s)
+- answered: 8
+- reason: no persona verdicts supplied; the key holds 8 answered case(s)
 
 ## Gate 3 gold — PASS
 

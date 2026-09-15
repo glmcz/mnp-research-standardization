@@ -15,11 +15,47 @@ Nothing outside this directory is modified.
 
 ```bash
 uv python pin 3.12 && uv sync --all-groups
+cp .env.example .env                         # then fill it in; .env is git-ignored
 export MNP_CONTACT_EMAIL='you@example.org'   # Europe PMC User-Agent; fetch refuses without it
 ```
 
-Secrets are read from `../nanoSolve-backend/.env` (`OPENROUTER_KEY`, `OPENROUTER_MODEL`,
-`OPENROUTER_FALLBACK_MODELS`). Override the location with `MNP_ENV_FILE`.
+This service reads **its own `.env`** and nothing else. `.env.example` documents every key the
+code asks for, and a test fails if a new key is added without an example line.
+
+To layer the Rust service's `../nanoSolve-backend/.env` underneath ours rather than copying
+the keys, `export MNP_ALLOW_SIBLING_ENV=1`; `MNP_ENV_FILE` replaces the search entirely. The
+shell always wins over any file.
+
+The work queue has its own `MNP_DB_URL` and **no fall-back to `DATABASE_URL`**. With the
+fall-back in place, a `pytest` run with no `MNP_DB_URL` set reached the live `nanoplastics`
+application database and tried to create schemas in it; a permission error was the only thing
+that stopped it. Queue tests skip when `MNP_DB_URL` is unset.
+
+## The corpus is vendored, not re-fetched
+
+The published numbers rest on 858 Europe PMC open-access XMLs fetched on 2026-09-11. Europe
+PMC is not an archive — records are withdrawn, re-versioned and re-typeset — so re-fetching
+later gives a different corpus and moves every denominator. The XMLs therefore travel with the
+repository:
+
+| Artefact | What it is |
+|---|---|
+| `data/raw/epmc/xml.tar.gz` | all 858 XMLs, 27.7 MB, sha256 `9791cc01550bbd840060e0265dc985644971b2d77a479a223a0fddccb989305b` |
+| `data/raw/epmc/manifest.sha256` | `sha256  name` per file, plain `sha256sum` format |
+| `data/raw/epmc/xml/fetch_log.csv` | which fetches failed, and when |
+
+```bash
+uv run python -m mnp.corpus restore    # unpack the archive, then verify it
+uv run python -m mnp.corpus verify     # exit 1 if a file is missing, extra or changed
+uv run python -m mnp.corpus snapshot   # rebuild both after a re-fetch
+```
+
+The archive is built deterministically — sorted names, mode 0644, no uid/gid/uname, no
+mtime, no gzip filename header — so an unchanged corpus always produces the same bytes and
+the hash above stays meaningful. A test rebuilds it twice and compares.
+
+`verify` reports **extra** files as loudly as missing ones: a corpus with one more paper in it
+is a different corpus, even though nothing is corrupt.
 
 ## Commands
 
@@ -150,7 +186,7 @@ systematic and all three are *rule* questions the brief does not settle:
 1. does a printed PBS recipe count as a reported ionic strength? — 63 rows, 25 papers, up to
    5 percentage points on the headline;
 2. is an incubation temperature the measurement temperature? — 54 at-risk rows, and already
-   the largest measured source of extraction error (row temperature P 0.15);
+   the largest measured source of extraction error (row temperature P 0.14);
 3. does a condition stated once carry to another experiment in the same paper? — 1 016 rows
    across 264 papers.
 
@@ -282,16 +318,16 @@ and counting it as a false positive once drove precision to 0.05.
 |---|---|---|---|
 | paper | instrument reported | 1.00 | 1.00 |
 | paper | medium matches exposure | 1.00 | 1.00 |
-| paper | pH reported | 1.00 | 0.83 |
+| paper | pH reported | 1.00 | 1.00 |
 | paper | medium reported | 0.95 | 0.95 |
-| paper | temperature reported | 0.83 | 0.83 |
+| paper | temperature reported | 0.86 | 1.00 |
 | paper | ionic strength reported | 0.50 | 0.50 |
-| row | value | 0.68 | 0.74 |
-| row | pH | 0.68 | 0.65 |
+| row | value | 0.73 | 0.74 |
+| row | pH | 0.63 | 0.74 |
 | row | ionic strength | 0.67 | 0.50 |
-| row | **temperature** | **0.15** | **0.23** |
+| row | **temperature** | **0.14** | **0.23** |
 
-Paper-level precision is 0.83–1.00 on every condition but ionic strength, where the gold
+Paper-level precision is 0.86–1.00 on every condition but ionic strength, where the gold
 set contains only two papers that report it at all (tp 1, fp 1, fn 1) — too few to score,
 not a measured weakness.
 
@@ -316,7 +352,7 @@ extraction prompt) and 10 papers are audited by the author; the slide must say s
 ## Model chain (D1 extraction)
 
 `from_env()` builds the chain as `MNP_MODEL_CHAIN` (comma list) if set, else
-`OPENROUTER_MODEL` + `OPENROUTER_FALLBACK_MODELS` from the backend `.env`; `--model`
+`OPENROUTER_MODEL` + `OPENROUTER_FALLBACK_MODELS` from this service's `.env`; `--model`
 replaces the head. On OpenRouter every call carries `reasoning: {exclude: true}` —
 without it `nemotron-3-super:free` returns its chain-of-thought as untagged content and
 never reaches the JSON (live, 2026-09-12: 0 rows in 124 s; with exclusion 14/14 rows,
@@ -345,6 +381,121 @@ coverage 14/14 with zero flags.
 - Every printed zeta/mobility number is found independently by regex
   (`find_candidates`); per-paper coverage = extracted rows that claim a printed number,
   one-to-one. Recall is therefore measured on every paper, not only on the gold set.
+
+## What counts as a plastic measurement (ratified 2026-09-15)
+
+The measurand has to be the plastic particle itself. A zeta measured on a supernatant, a
+treated water, a protein or a cell is not a plastic measurement, however clearly the paper
+attributes the shift to plastic. The test: **if the plastic had never been added, would there
+still be something in the cuvette with a zeta potential?** If yes, the measurement is of that
+thing. If a paper measures the plastic *and* something else, only the other rows go.
+
+The case it came from, `PMC13520016`, filtered its PET particles out through a 0.2 µm membrane
+before every measurement and tabulated "Zeta Potential of Aβ When Exposed to MNP". Its own
+no-plastic control returned the same value (−34.0 to −27.4 mV) as the exposed samples, which
+settles what was carrying the charge. Sixty rows, all removed. The rule is edge case **S8** in
+`tests/edge/key.yaml` and a section of `docs/briefs/extraction.md`.
+
+`uv run python -m mnp.extract review-measurand` lists the papers that need the same question
+asked — particles removed before the measurement, a supernatant analysed, another material's
+zeta after exposure. It **lists, it never decides**: what a paper measured is a judgement, and
+the two traps are already pinned by tests. "Filtered prior to HPLC analysis" says nothing about
+the zeta (16 of the naive scan's 25 hits were that shape), and a supernatant that is merely the
+*medium* the particles sit in leaves the rows exactly where they are.
+
+## The sweep: re-reading the corpus under a recorded brief
+
+**What it is.** 833 of the 845 extraction records carry no brief hash. They were produced
+before briefs were versioned, and the brief that governed most of them was kept in a session
+scratchpad and has been deleted — so for those rows we can say which model produced them, but
+not under which instructions. The sweep is the fix: every affected paper is read again by an
+agent under `docs/briefs/extraction.md`, whose hash is stored on each record as it is written.
+Nothing about the pipeline changes; what changes is that the judgement becomes traceable.
+
+**Why it is not simply "re-run everything".** Reading a paper is the only expensive step in
+this repository — the entire deterministic half (parse, scan, verify, every aggregate) takes
+21 seconds for 858 papers. So the sweep is designed depth-first, and each stage has to clear a
+gate before the next one is allowed to spend anything:
+
+| Stage | Papers | Question it answers | Measured |
+|---|---|---|---|
+| **Pilot** | 10, all from the gold set | How long does a paper take, and does the worker agree with gold? | done 2026-09-14: 3 min 37 s with 2 workers, ~21 k agent tokens per paper, row value P/R **1.00 / 1.00**, zero rows dropped |
+| **Slice** | the remaining 38 gold papers | Does the recorded brief move the published numbers? | not yet run |
+| **Sweep** | 491 papers that carry a measurement | The published table, every row traceable | projected ~10.3 M agent tokens, **~37 min at 8 workers** |
+| *(optional)* | the 342 with no measurement | The "no measurement here" claim, traceable | ~62 min at 8 workers for all 833 |
+
+**How a worker runs.** It claims papers (disjointly — the queue uses `FOR UPDATE SKIP LOCKED`,
+because the first run handed two workers the same papers), reads each one through
+`extract show`, writes its JSON to a path of its own (shared `/tmp` names caused workers to
+overwrite each other), and calls `extract ingest --brief … --run-id … --worker …`. Ingest
+applies coercion, the verbatim-quote guard and the condition checks, and refuses any record
+with no brief. Every claim lands in `data/interim/runs/<run_id>/assignments.jsonl`.
+
+**What stops it.** A worker reporting success is not evidence — check `extractions.jsonl`, as
+three workers once reported success having processed nothing. Two workers flagging the same
+missing rule is a rule gap, not confusion, and goes to `tests/edge/key.yaml` for ratification
+rather than being guessed at; the pilot raised seven such cases in ten papers. If gate scores
+fall below the pilot's, the run stops: a worse brief spent on 491 papers is the expensive
+mistake, and re-reading one paper is cheap because ingest is keyed by PMCID and idempotent.
+
+Full design, with the cost model and the failure modes it is built against:
+`docs/DEMANDING_PROCESSES.md`. Step-by-step descriptions of every command:
+`docs/PROTOCOL.md`.
+
+## The protocol, and how a run is recorded
+
+`docs/PROTOCOL.md` is **generated** from `src/mnp/protocol.py` by
+`uv run python -m mnp.report protocol`. Every CLI subcommand has an entry stating its
+purpose, inputs, outputs, whether it is deterministic / seeded / judgement, whether it is
+idempotent, whether it touches the network, what it is scored against, and what makes it
+stale. A command with no entry — or an entry for a command that no longer exists — fails the
+test suite, so the document cannot drift from the code.
+
+Two rules are enforced rather than described:
+
+- **`extract ingest` refuses a record with no provenance.** Pass `--brief docs/briefs/…`, or
+  `--no-brief` to state deliberately that there was none. 833 of the 845 existing records
+  carry no brief hash, and the brief that produced them was deleted with a scratchpad; the
+  CLI is what stops that happening twice.
+- **A run writes down its own conditions.** `--run-id` creates
+  `data/interim/runs/<id>/manifest.json` — commit, whether the tree was dirty, brief hash,
+  model, corpus manifest hash, the **names** (never the values) of the environment keys that
+  were set — and appends each worker's claim to `assignments.jsonl`.
+
+`docs/DEMANDING_PROCESSES.md` designs the expensive half: what re-extraction actually costs
+(4.6 M input tokens for all 858 papers, 2.7 M for the 498 that carry a measurement), how the
+queue, briefs and manifests compose, and the pilot → slice → sweep order with a gate at each
+step.
+
+## Reproducing the published numbers
+
+```bash
+./tool/reproduce.sh --restore     # unpack the vendored corpus, then rebuild and diff
+uv run python -m mnp.report reproduce
+```
+
+The replay rebuilds every committed artefact from the stored corpus and the stored extraction
+records, and diffs the result. Three things make it a check rather than a ritual:
+
+- **The network is refused, not merely unused.** `socket.connect` raises for the duration, so
+  a rebuild that quietly re-fetched a paper or called a model fails instead of passing.
+- **It never writes to what it is checking.** The records are hashed before and after;
+  coverage staleness is detected read-only with `extract recount --check` rather than repaired.
+- **It compares against what is committed**, and names any artefact that differs from `HEAD` —
+  a rebuilt-but-uncommitted table is a published number nobody has re-derived.
+
+Excluded by design, and printed on every run: `tables/d4_sbc.csv` (needs `infer sbc`: torch,
+minutes of CPU — seeded, run deliberately) and `tables/rules_impact.md` (a one-off analysis in
+`tool/rules_impact.py`).
+
+Figures are not byte-pinned: matplotlib's PNG bytes move with the matplotlib and freetype
+versions, which says nothing about the science. The table behind each figure is pinned instead.
+
+**What the first replay found**, none of it visible before: `d1_precision_recall.csv` no longer
+followed from the data (row value P 0.685 → 0.733, paper pH recall 0.833 → 1.000);
+`d1_papers_without_printed_values` was stale by 53 papers (405 → 352); and 91 of 845 records
+carried scanner counts from before the last scanner fix (mean coverage 0.533 → 0.563). The
+measurements themselves did not move, and `d1_stats` rebuilt byte for byte.
 
 ## Mutation table
 
@@ -383,6 +534,17 @@ suite went green again (2026-09-12). Every row below was run this way; none is a
 | value-in-quote check always passes | `test_verify_row_flags_a_value_absent_from_its_own_quote` |
 | ionic strength from a named salt ignores the salt | `test_parse_ionic_strength[10 mM CaCl2]` |
 | return κ instead of 1/κ | `test_hard.py::test_debye_length_150mM_25C_is_0p79nm` (+3) |
+| `queue.dsn()` falls back to `DATABASE_URL` | `test_queue_dsn.py::test_ambient_database_url_is_never_the_queue` |
+| the sibling service's `.env` is read without opting in | `test_config.py::test_by_default_only_this_service_own_env_is_read` |
+| a configuration key is missing from `.env.example` | `test_config.py::test_env_example_documents_every_key_the_code_reads` |
+| gzip stamps the build time into the corpus archive | `test_snapshot.py::test_the_archive_is_byte_identical_when_built_twice` |
+| drop the tar path-traversal guard | `test_snapshot.py::test_restore_refuses_to_write_outside_the_target` |
+| `verify` stops reporting extra files | `test_snapshot.py::test_an_extra_file_is_caught` |
+| the offline replay is allowed to reach the network | `test_reproduce.py::test_the_build_runs_with_the_network_refused` (+1) |
+| drift ignores an artefact the rebuild never produced | `test_reproduce.py::test_drift_names_the_file_whose_number_moved` |
+| `recount --check` repairs the record it is checking | `test_extract_cli.py::test_recount_check_reports_stale_coverage_without_writing` |
+| `recount --check` exits 0 on stale coverage | same test |
+| freeze the printed-fit bank path at import again | `test_paths_are_resolved_late.py` (2 tests) |
 
 ## D4 notes
 

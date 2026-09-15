@@ -19,11 +19,11 @@
   },
   {
     "field": "row:value",
-    "passed": false,
+    "passed": true,
     "threshold": 0.75,
-    "observed": 0.733,
-    "tp": 63,
-    "fp": 23,
-    "fn": 22
+    "observed": 0.81,
+    "tp": 68,
+    "fp": 16,
+    "fn": 17
   }
 ]

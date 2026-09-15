@@ -5,6 +5,113 @@ Written so it can be picked up cold. Work began 2026-09-12; this entry was first
 2026-09-13 mid-wave, then rewritten the same day once the review wave (Log below) finished
 and every artefact was regenerated.
 
+## 0. 2026-09-14/15 — independence, protocol, per-stage evaluation, and a recorded re-read
+
+Three things the study could not previously claim: that the repository stands alone, that its
+steps are written down as a repeatable protocol, and that each stage is measured rather than
+only the end of the pipeline.
+
+**Independence.** The work queue fell back to `DATABASE_URL`, which `config.load_env()` reads
+out of the Rust service's `.env` — so `pytest` with no `MNP_DB_URL` pointed the queue's
+integration tests at the live `nanoplastics` application database and tried to create schemas
+in it. A permission error was the only thing that stopped it (11 errors where the README
+promised 11 skips). The queue now has one variable of its own and no fall-back; this service
+reads its own `.env`, with the sibling's available only via `MNP_ALLOW_SIBLING_ENV=1`; and
+`.env.example` is held against the source by an ast-based test.
+
+**The corpus is vendored.** 858 XMLs, 27.7 MB, sha256 `9791cc01…`, with a `sha256sum`-format
+manifest. The archive is byte-reproducible (sorted, no mtime, no ownership, no gzip filename
+header), `verify` reports extra files as loudly as missing ones, and `restore` refuses a tar
+member that resolves outside the target.
+
+**Offline replay** (`report reproduce`) rebuilds every committed artefact from the vendored
+corpus with the network *refused* rather than merely unused, hashes the record file before and
+after to prove it wrote nothing, checks stored scanner counts read-only, and names any artefact
+that differs from HEAD. Its first run found: `d1_precision_recall.csv` no longer followed from
+the data (row value P 0.685 → 0.733; paper pH recall 0.833 → 1.000),
+`d1_papers_without_printed_values` was stale by 53 papers (405 → 352), and 91 of 845 records
+carried scanner counts from before the last scanner fix (mean coverage 0.533 → 0.563). No
+measurement moved; `d1_stats` rebuilt byte for byte.
+
+**A provenance field that lied.** `extraction_summary.json` reported `prompt_sha256` as the
+hash of whatever prompt the *code* held at rebuild time, in a file describing 845 stored
+records. Editing the prompt changed the artefact without a single record changing. It now
+reports what the records carry — 833 with no brief, 12 with `0266af56…` — and the code's
+current prompt separately, under its own name.
+
+**Paths resolved late.** `ek/qa.py` and `rescale/koelmans2019.py` froze `config.DATA_RAW` at
+import, so redirecting the data root depended on which test imported first; one report test
+passed only by accident. `report d4` now skips cleanly when its bank is absent instead of
+killing `report all`.
+
+**The protocol** (`docs/PROTOCOL.md`) is generated from a 37-step registry that the test suite
+holds against the actual CLI, each step 2–3 sentences: purpose, the non-obvious constraint,
+and what makes it stale. A command with no entry, an entry for a dead command, or a hand-edited
+document all fail the build.
+
+**Provenance is now enforced.** `extract ingest` exits 2 without `--brief`; `--no-brief` is the
+explicit opt-out. `--run-id` writes `data/interim/runs/<id>/manifest.json` — commit, dirty flag,
+brief hash, corpus manifest hash, and the *names* (never values) of environment keys — plus one
+append-only line per worker claim.
+
+**Per-stage evaluation** (`python -m mnp.eval all`) measures parse, scan, read, coerce, verify
+and aggregate separately, each against its own ground truth, and reports **not measured** —
+never 0.00 or 1.00 — where there is none. First run: parse 1.00 (5 spans; dropping tables from
+the extraction text scores 0.60), scanner recall **0.98** against 85 hand-read gold values,
+coerce 1.00 over 12 cases covering every ratified rule, verify **1.00** over 7 fabrications
+that each reached production once.
+
+**Rule S8 ratified and applied (2026-09-15).** The measurand must be the plastic particle
+itself: a zeta measured on a supernatant, a treated water, a protein or a cell is not a plastic
+measurement, however clearly the paper attributes the shift to plastic. The case it came from
+filtered its PET out at 0.2 µm before every measurement and tabulated "Zeta Potential of Aβ When
+Exposed to MNP"; its own no-plastic control returned the same value. The rule is in
+`docs/briefs/extraction.md` (hash `21f2ad53` → `25082cec`), and `extract review-measurand` lists
+the papers that need the same question asked — 10 papers after the detector was tightened, down
+from 25 when "filtered prior to HPLC analysis" still counted.
+
+Fourteen papers were then read against it: **five emptied or reduced** (60, 21, 4, 4 and 3 rows),
+**nine left untouched**. The corpus moved 498 → 493 papers and 1910 → 1876 rows, and **no
+headline fraction moved by more than 0.3 points** — ionic strength 89.8% → 89.7%, temperature
+77.5% → 77.7%, any condition 97.2% → 97.4%. One paper nearly became a false negative: stripping
+its supernatant rows left `PMC12105431` at zero when it also measures its particles directly
+against pH (Figure 4, value in the figure only); that row was recorded rather than lost. Three
+places where S8 does not settle the question went to the key unanswered rather than being
+decided quietly (`S21`–`S23`), including the case the rule's own test cannot resolve: two mixed
+particle populations, where "would there still be something in the cuvette?" is true of both.
+
+**Four more rulings, 2026-09-15**, and the rule that needed them. S8 as first written was too
+blunt, and applying it exposed three boundaries:
+
+- **S21 — residual particles in a treated water are still particles** ("plastic of course").
+  S8 removes a measurement when the plastic is *gone* from the cuvette or was never the
+  analyte; it does not remove one because the water around the particles was treated. Four
+  rows restored to `PMC12105431`. The brief now carries this boundary explicitly, so the next
+  worker cannot over-apply the rule the way this pass did.
+- **S22 — provisional, not counted.** `PMC11857315` gives one laundry-wastewater number rather
+  than a value per polymer, with 20–1000 µm granules largely outside the instrument's range.
+  One sentence does attribute the figure to "the MPs", so it is recorded as provisional and
+  reverses if a per-polymer value ever surfaces.
+- **S23 — the tiebreaker for two colloid populations.** S8's own test ("would there still be
+  something in the cuvette with a zeta potential?") answers yes either way when both species
+  are particles, so it decides nothing. The rule is now: **is the other material adsorbed onto
+  the plastic?** Adsorbed → a coated plastic particle, record it. Free in suspension → a
+  mixture, record nothing.
+- **S18 follows from S23**: a protein corona is the textbook adsorbed case, so corona
+  measurements count. Recorded by implication and labelled as such.
+
+Final after the pass: **493 papers, 1880 rows**; ionic strength missing 89.7%, pH 79.9%,
+temperature 77.7%, instrument 18.1%, any condition 97.4% — every fraction within 0.4 points of
+where it was before the rule existed.
+
+**Re-reading under a recorded brief** began. Pilot (10 gold papers, 2 workers): 3 min 37 s,
+~21 k agent tokens per paper, row value P/R **1.00 / 1.00**, zero rows dropped. Slice (28 more
+gold papers, 4 workers) followed. The workers raised **14 rule gaps** (`P1`–`P7`, `S1`–`S7` in
+`tests/edge/key.yaml`), several found independently by two workers — including eleven corpus
+papers that carry **no retrievable text at all**, where an empty extraction had been
+indistinguishable from a paper read and found to report nothing. `report d1` now counts those
+apart.
+
 ## 1. Status
 
 Session handoff for the rules wave: `SESSION_2026-09-13_RULES.md`.

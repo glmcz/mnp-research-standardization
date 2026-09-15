@@ -1,8 +1,8 @@
 # Papers the extraction skips
 
-405 of 858 open-access papers print no zeta potential or electrophoretic mobility that the value scanner can find. They still count in the denominator; none is extracted.
+352 of 858 open-access papers print no zeta potential or electrophoretic mobility that the value scanner can find. They still count in the denominator; none is extracted.
 
-**392** of them discuss zeta or mobility without printing a number — those are the ones worth a human glance, and they are listed first.
+**339** of them discuss zeta or mobility without printing a number — those are the ones worth a human glance, and they are listed first.
 
 | PMCID | year | journal | mentions ζ | title |
 |---|---|---|---|---|
@@ -11,18 +11,14 @@
 | [PMC12900762](https://europepmc.org/article/PMC/PMC12900762) | 2026 | Frontiers in Plant Science | yes | Migration pattern and biochemical response characteristics of polylactic acid nanoparticles in pakchoi (Brassi |
 | [PMC12907065](https://europepmc.org/article/PMC/PMC12907065) | 2026 | Eco-Environment & Health | yes | Effects and mechanisms of microplastic types on plant uptake of per- and polyfluorinated alkyl substances |
 | [PMC12917786](https://europepmc.org/article/PMC/PMC12917786) | 2026 | ACS Omega | yes | Moving Toward Paperization of Packaging Industry: Use of Laponite and Montmorillonite Nanoclays for Recyclable |
-| [PMC12926406](https://europepmc.org/article/PMC/PMC12926406) | 2026 | Frontiers in Microbiology | yes | Ti3C2Tx (MXene) disrupts growth and development in Daphnia magna by suppressing related genes and inducing gut |
 | [PMC12939453](https://europepmc.org/article/PMC/PMC12939453) | 2026 | Foods | yes | From Foodborne Pollutant Carrier to Gastrointestinal Trojan Horse: Simulating the Bioaccessibility of Antibiot |
 | [PMC12944955](https://europepmc.org/article/PMC/PMC12944955) | 2026 | Toxics | yes | Nanoceria’s Silent Threat: Investigating Acute and Sub-Chronic Effects of CeO2 Nanopowder (≤50 nm) on the Huma |
 | [PMC12945053](https://europepmc.org/article/PMC/PMC12945053) | 2026 | Toxics | yes | Polystyrene Nanoparticles Disrupt Oxidative Phosphorylation and Impair Placental Development in Mice |
 | [PMC12945210](https://europepmc.org/article/PMC/PMC12945210) | 2026 | Toxics | yes | Size-Dependent Disruption of Lipid Metabolism by Polystyrene Micro- and Nanoplastics in Caenorhabditis elegans |
 | [PMC12945270](https://europepmc.org/article/PMC/PMC12945270) | 2026 | Toxins | yes | Limited Potential of Polystyrene Microplastic as a Vector of Microcystin-LR in Diluted Lysate of Microcystis a |
-| [PMC12947730](https://europepmc.org/article/PMC/PMC12947730) | 2026 | ACS Nano | yes | Microplastic-Induced Macrophage Dysfunction Drives Lung Tumor Progression through Glutathione Imbalance |
 | [PMC12961878](https://europepmc.org/article/PMC/PMC12961878) | 2026 | Particle and Fibre Toxicology | yes | Gut-ovary axis mediated synergistic reproductive toxicity of polystyrene nanoplastics and perfluorobutanoic ac |
 | [PMC12985415](https://europepmc.org/article/PMC/PMC12985415) | 2026 | Molecules | yes | Fe-Modified Sewage Sludge Biochar for Efficient Removal of Nanoplastics from Water: Mechanistic Insights and M |
 | [PMC12987104](https://europepmc.org/article/PMC/PMC12987104) | 2026 | Sensors (Basel, Switzerland) | yes | Size- and Concentration-Resolved Detection of PET Microplastics in Real Water via Excitation–Emission Matrix F |
-| [PMC12990424](https://europepmc.org/article/PMC/PMC12990424) | 2026 | Molecular Cancer | yes | Tumour-infiltrating microplastics disrupt the JAK-STAT-microbiota axis to promote immunotherapy resistance in  |
-| [PMC12996544](https://europepmc.org/article/PMC/PMC12996544) | 2026 | Scientific Reports | yes | Lactobacillus delbrueckii subsp. bulgaricus 2038 and Streptococcus thermophilus 1131 suppress polystyrene nano |
 | [PMC13013170](https://europepmc.org/article/PMC/PMC13013170) | 2026 | Cell Biology and Toxicology | yes | Polystyrene Nanoplastics induced placental toxicology by activating Keap1-mediated ferroptosis via METTL3-depe |
 | [PMC13023437](https://europepmc.org/article/PMC/PMC13023437) | 2026 | Biology | yes | Physio-Transcriptomic Mechanism of Antimony Tin Oxide Nanoparticle-Induced Midgut Toxicity in Bombyx mori |
 | [PMC13030399](https://europepmc.org/article/PMC/PMC13030399) | 2026 | Polymers | yes | In Situ Growth of MIL-100(Fe) on Coconut Shell Activated Carbon for High-Efficiently Removal of Microplastics  |
@@ -43,11 +39,9 @@
 | [PMC13153429](https://europepmc.org/article/PMC/PMC13153429) | 2026 | Communications Biology | yes | Glycine alleviates ovarian granulosa cell ferroptosis induced by ERα-mediated internalization of polystyrene m |
 | [PMC13159399](https://europepmc.org/article/PMC/PMC13159399) | 2026 | Angewandte Chemie (International Ed. i | yes | MagNanoTrap Enrichment Empowers Ultra‐Sensitive Quantification of Mixed Nanoplastic Particles From Environment |
 | [PMC13168333](https://europepmc.org/article/PMC/PMC13168333) | 2026 | Nature Communications | yes | Electrochemical tyrosine-click bioconjugation enables multiplexed cytokine sensing and immunoprofiling in nati |
-| [PMC13169780](https://europepmc.org/article/PMC/PMC13169780) | 2026 | Particle and Fibre Toxicology | yes | Exposure to polylactic acid microplastics during puberty increases the risk of skeletal dysplasia by disruptin |
 | [PMC13181026](https://europepmc.org/article/PMC/PMC13181026) | 2026 | Nature Communications | yes | In-situ revitalizing end-of-life MBR membranes via a curtain-type dynamic membrane process |
 | [PMC13181784](https://europepmc.org/article/PMC/PMC13181784) | 2026 | The Journal of Physical Chemistry Lett | yes | PFAS-Induced Charge Regulation and Aggregation in Polystyrene Nanoplastic Colloids |
 | [PMC13185058](https://europepmc.org/article/PMC/PMC13185058) | 2026 | Environment & Health | yes | Polystyrene Microplastic-Induced Cellular Alterations and Their Effects on Viral Entry (RSV, HCoV-OC43, EV-A71 |
-| [PMC13201774](https://europepmc.org/article/PMC/PMC13201774) | 2026 | Nature Communications | yes | Lattice strain-mediated MoSe2 enable superior piezocatalysis activity for upcycling of organic pollutants |
 | [PMC13206469](https://europepmc.org/article/PMC/PMC13206469) | 2026 | Advanced Healthcare Materials | yes | A Physiological Microfluidic Blood–Brain‐Barrier Model for In Vitro Study of Nanoparticle Trafficking and Accu |
 | [PMC13211221](https://europepmc.org/article/PMC/PMC13211221) | 2026 | Polymers | yes | Synergistic Adsorption–Filtration of Aromatic Pollutants via Biodegradable PLA/MIL-68(Al) Mixed-Matrix Membran |
 | [PMC13211750](https://europepmc.org/article/PMC/PMC13211750) | 2026 | Toxics | yes | Phytotoxic Mechanisms of Polystyrene Microplastics in Myriophyllum spicatum Under Saline Conditions: Insights  |
@@ -55,7 +49,6 @@
 | [PMC13213790](https://europepmc.org/article/PMC/PMC13213790) | 2026 | Food Chemistry: X | yes | Sustainable zein-based bioplastic films reinforced with silver nanoparticle-embedded casein nanocomposites for |
 | [PMC13222666](https://europepmc.org/article/PMC/PMC13222666) | 2026 | Frontiers in Toxicology | yes | Distinct pro-inflammatory responses to pristine and microbially contaminated PET nanoplastics in a human alveo |
 | [PMC13253389](https://europepmc.org/article/PMC/PMC13253389) | 2026 | Frontiers in Immunology | yes | Polystyrene nanoplastics promotes inflammation and aging in young mice through the oral-gut microbiome axis |
-| [PMC13271390](https://europepmc.org/article/PMC/PMC13271390) | 2026 | The ISME Journal | yes | Nanoplastics interfere with plant–mycorrhizal communication and limit plant growth |
 | [PMC13276847](https://europepmc.org/article/PMC/PMC13276847) | 2026 | Environmental Science & Technology | yes | Mechanistic Insights into PET-MPs-Aggravated Ischemic Stroke via Integrated Computational–Experimental Approac |
 | [PMC13288231](https://europepmc.org/article/PMC/PMC13288231) | 2026 | Environment & Health | yes | Carboxyl Surface Modification Attenuates Polystyrene- but Not Poly(methyl methacrylate) Nanoplastic-Induced Gu |
 | [PMC13297298](https://europepmc.org/article/PMC/PMC13297298) | 2026 | Biomedicines | yes | From Environmental Exposure to Intervertebral Disc Degeneration: First Evidence of Pro-Degenerative Effects of |
@@ -72,12 +65,9 @@
 | [PMC13376373](https://europepmc.org/article/PMC/PMC13376373) | 2026 | Scientific Reports | yes | Nanoplastics impair antitumor NK and CD8⁺ T cell cytotoxicity and antiviral B cell antibody responses to SARS- |
 | [PMC13376387](https://europepmc.org/article/PMC/PMC13376387) | 2026 | Nature Communications | yes | High-performance caffeic acid-based superhydrophilic membranes for efficient removal of microplastics-oil co-c |
 | [PMC13394419](https://europepmc.org/article/PMC/PMC13394419) | 2026 | Environmental Science & Technology | yes | Eco-Corona of Microplastics in Soil Inhibits Their Role as a Contaminant Vector While Enhancing Their Role as  |
-| [PMC13403680](https://europepmc.org/article/PMC/PMC13403680) | 2026 | Biology | yes | Maternal Polystyrene Nanoplastic Exposure Impairs Cardiac Development in Mouse Offspring and Identifies Lactat |
-| [PMC13405854](https://europepmc.org/article/PMC/PMC13405854) | 2026 | Antioxidants | yes | Polystyrene Microplastics Induce Sustained Cardiovascular Redox Imbalance and Alter Mitochondrial Quality Cont |
 | [PMC13421504](https://europepmc.org/article/PMC/PMC13421504) | 2026 | Nature Communications | yes | Ordered nanoplastic-elastomer networks resolve conflict between softness and stability |
 | [PMC13424375](https://europepmc.org/article/PMC/PMC13424375) | 2026 | Analytical and Bioanalytical Chemistry | yes | Validated workflows for preparing and characterizing core-stained and surface-labeled fluorescent polymer part |
 | [PMC13431394](https://europepmc.org/article/PMC/PMC13431394) | 2026 | Toxics | yes | Long-Term Exposure–Recovery to 20 nm Polystyrene Nanoplastic Particles Is Associated with Residual Nuclear Str |
-| [PMC13432825](https://europepmc.org/article/PMC/PMC13432825) | 2026 | Fly | yes | Toxicological effects of polypropylene microplastics and co-exposure with arsenic in Drosophila melanogaster |
 | [PMC13432928](https://europepmc.org/article/PMC/PMC13432928) | 2026 | Frontiers in Toxicology | yes | Intestinal toxicity of functionalized polystyrene nanoplastics in NOD2 models of Crohn’s disease susceptibilit |
 | [PMC13434802](https://europepmc.org/article/PMC/PMC13434802) | 2026 | Scientific Reports | yes | ZnO–CuO nanocomposites for sustainable water treatment linking photocatalytic efficiency with ecotoxicological |
 | [PMC13440390](https://europepmc.org/article/PMC/PMC13440390) | 2026 | Science Advances | yes | Artificial Neptune balls: Superadhesive biomimetic networks for broad-size microplastics capture and removal |
@@ -120,22 +110,17 @@
 | [PMC12030773](https://europepmc.org/article/PMC/PMC12030773) | 2025 | Toxics | yes | Impact of Microplastics on Ciprofloxacin Adsorption Dynamics and Mechanisms in Soil |
 | [PMC12038248](https://europepmc.org/article/PMC/PMC12038248) | 2025 | Toxicological Sciences | yes | Evaluation of phenotypic and behavioral toxicity of micro- and nano-plastic polystyrene particles in larval ze |
 | [PMC12047439](https://europepmc.org/article/PMC/PMC12047439) | 2025 | Science Advances | yes | Cellular determinants influence the red blood cell adsorption efficiency of poly(amine-co-ester) nanoparticles |
-| [PMC12063461](https://europepmc.org/article/PMC/PMC12063461) | 2025 | Particle and Fibre Toxicology | yes | Propionic acid/FBP1 is involved in polystyrene nanoplastic-induced cardiac injury via the gut-heart axis |
-| [PMC12090536](https://europepmc.org/article/PMC/PMC12090536) | 2025 | Particle and Fibre Toxicology | yes | Polystyrene nanoplastics exposure induces cognitive impairment in mice via induction of oxidative stress and E |
 | [PMC12092862](https://europepmc.org/article/PMC/PMC12092862) | 2025 | Nano-Micro Letters | yes | Highly Thermal Conductive and Electromagnetic Shielding Polymer Nanocomposites from Waste Masks |
 | [PMC12096234](https://europepmc.org/article/PMC/PMC12096234) | 2025 | ACS Omega | yes | Synthesis of Eco-Friendly Biocompatible Membranes and Filters from Sugar Cane and Banana Byproducts |
-| [PMC12109039](https://europepmc.org/article/PMC/PMC12109039) | 2025 | Biology | yes | Synergistic Toxicity of Combined Exposure to Acrylamide and Polystyrene Nanoplastics on the Gut–Liver Axis in  |
 | [PMC12110092](https://europepmc.org/article/PMC/PMC12110092) | 2025 | Biosensors | yes | Colorimetric Detection of microRNA-378 Based on Y-Shaped Structure Formed by Gold Nanoparticles and Catalytic  |
 | [PMC12113471](https://europepmc.org/article/PMC/PMC12113471) | 2025 | Membranes | yes | Development and Application of a Novel Ultrafiltration Membrane for Efficient Removal of Dibutyl Phthalate fro |
 | [PMC12115821](https://europepmc.org/article/PMC/PMC12115821) | 2025 | Toxics | yes | Effects of Polystyrene Nanoplastics on Oxidative Stress, Blood Biochemistry, and Digestive Enzyme Activity in  |
 | [PMC12121128](https://europepmc.org/article/PMC/PMC12121128) | 2025 | Lipids in Health and Disease | yes | Untargeted metabolomics and transcriptomics joint analysis of the effects of polystyrene nanoplastics on lipid |
 | [PMC12131683](https://europepmc.org/article/PMC/PMC12131683) | 2025 | Chemsuschem | yes | Advanced Characterization of Lignin Nanoparticles by Asymmetric Flow‐Field Flow Fractionation |
 | [PMC12152108](https://europepmc.org/article/PMC/PMC12152108) | 2025 | Bio-protocol | yes | In-house Fabrication of Nanoplastics of Tunable Composition and Application: Assessment of Bioelectric Changes |
-| [PMC12164274](https://europepmc.org/article/PMC/PMC12164274) | 2025 | Environmental Science & Technology | yes | Long-Term Exposure to Real-Life Polyethylene Terephthalate Nanoplastics Induces Carcinogenesis In Vitro |
 | [PMC12199037](https://europepmc.org/article/PMC/PMC12199037) | 2025 | ACS Omega | yes | Structure of the Scleroglucan Biopolymer in Aqueous Solutions of Inorganic Salts and Ionic Liquids |
 | [PMC12203457](https://europepmc.org/article/PMC/PMC12203457) | 2025 | ACS Applied Materials & Interfaces | yes | Film Formation Mechanism of Aqueous Polymer Particle Dispersions for Barrier Coating Applications |
 | [PMC12225112](https://europepmc.org/article/PMC/PMC12225112) | 2025 | Advanced Science | yes | Robust Controlled Degradation of Enzyme Loaded PCL‐Based Fibrous Scaffolds Toward Scarless Skin Tissue Regener |
-| [PMC12259839](https://europepmc.org/article/PMC/PMC12259839) | 2025 | NPJ Science of Food | yes | Polystyrene microplastics induce potential toxicity through the gut-mammary axis |
 | [PMC12264757](https://europepmc.org/article/PMC/PMC12264757) | 2025 | Frontiers in Chemistry | yes | Simultaneous determination of ionic polymers and heavy metal ions concentrations in aqueous solution after the |
 | [PMC12279941](https://europepmc.org/article/PMC/PMC12279941) | 2025 | Nature Communications | yes | A self-regulating shuttle for autonomous seek and destroy of microplastics from wastewater |
 | [PMC12296542](https://europepmc.org/article/PMC/PMC12296542) | 2025 | Current Research in Food Science | yes | Simple, sensitive and specific detection method for polystyrene nanoplastics in food matrix based on peptide-m |
@@ -144,7 +129,6 @@
 | [PMC12319994](https://europepmc.org/article/PMC/PMC12319994) | 2025 | RSC Advances | yes | Poly(vinyl chloride) microplastics induce structural and functional alterations in myoglobin |
 | [PMC12346072](https://europepmc.org/article/PMC/PMC12346072) | 2025 | International Journal of Molecular Sci | yes | Impact of Co-Presence of Endotoxins and Microplastics on Seawater Biophysicochemical Indicators |
 | [PMC12346606](https://europepmc.org/article/PMC/PMC12346606) | 2025 | International Journal of Molecular Sci | yes | Nanoplastic Disrupts Intestinal Homeostasis in Immature Rats by Altering the Metabolite Profile and Gene Expre |
-| [PMC12349539](https://europepmc.org/article/PMC/PMC12349539) | 2025 | Polymers | yes | Silanization-Modified Lignin Nanoparticles for Paper Coating with Enhanced Liquid and Vapor Barriers, Fricatio |
 | [PMC12350782](https://europepmc.org/article/PMC/PMC12350782) | 2025 | Scientific Reports | yes | Cow dung waste as an eco-friendly adsorbent for Alizarin Red S dye removal |
 | [PMC12356189](https://europepmc.org/article/PMC/PMC12356189) | 2025 | Analytical Chemistry | yes | Detection of Unlabeled Polystyrene Micro- and Nanoplastics in Mammalian Tissue by Optical Photothermal Infrare |
 | [PMC12356935](https://europepmc.org/article/PMC/PMC12356935) | 2025 | Scientific Reports | yes | A novel synergistic and eco-friendly approach for efficient crude oil removal from water using ZnO/g-C3N4/chit |
@@ -165,17 +149,12 @@
 | [PMC12526631](https://europepmc.org/article/PMC/PMC12526631) | 2025 | Polymers | yes | Evolution of Microplastics Released from Tea Bags into Water |
 | [PMC12541697](https://europepmc.org/article/PMC/PMC12541697) | 2025 | ACS Applied Bio Materials | yes | Real-Time Monitoring of the Cytotoxic Effect of Oxygen-Sensitive Fluorescent Poly(styrene-maleic anhydride) Na |
 | [PMC12547698](https://europepmc.org/article/PMC/PMC12547698) | 2025 | Frontiers in Pharmacology | yes | Palliative effect of taurine against hepatic injury induced by polystyrene microplastics through antioxidant a |
-| [PMC12547785](https://europepmc.org/article/PMC/PMC12547785) | 2025 | ACS Omega | yes | Contribution of Structural Changes in Cellulose Fibers Induced by Alkali Treatment to Their Nanofibrillation |
 | [PMC12548188](https://europepmc.org/article/PMC/PMC12548188) | 2025 | Particle and Fibre Toxicology | yes | Multi-omics analysis of testis after long-term exposure to polystyrene nanoplastics reveals premature testicul |
 | [PMC12578981](https://europepmc.org/article/PMC/PMC12578981) | 2025 | Scientific Reports | yes | Toxic effects of biodegradable polylactic acid nanoplastics on developing zebrafish (Danio rerio) |
 | [PMC12590458](https://europepmc.org/article/PMC/PMC12590458) | 2025 | Analytical Chemistry | yes | Discrete Entity Analysis via Microwave-Induced Nitrogen Plasma–Mass Spectrometry in Single-Event Mode |
 | [PMC12595500](https://europepmc.org/article/PMC/PMC12595500) | 2025 | Proceedings of the National Academy of | yes | Hierarchical assembly of biomass fiber–lamella–macromolecule networks for biocomposites with high strength and |
 | [PMC12606128](https://europepmc.org/article/PMC/PMC12606128) | 2025 | Scientific Reports | yes | Tracing micro and nanoplastics toxicity in human pulmonary fibroblasts through integrated Raman and transcript |
-| [PMC12641161](https://europepmc.org/article/PMC/PMC12641161) | 2025 | Research | yes | Unveiling the Pulmonary Toxicity of Polystyrene Nanoplastics: A Hierarchical Oxidative Stress Mechanism Drivin |
-| [PMC12645312](https://europepmc.org/article/PMC/PMC12645312) | 2025 | Environment & Health | yes | Cerebral to Systemic Representations of Alzheimer’s Pathogenesis Stimulated by Polystyrene Nanoplastics |
-| [PMC12656403](https://europepmc.org/article/PMC/PMC12656403) | 2025 | Toxics | yes | Hetero-Aggregation of Nanoplastics with Freshwater Algae and the Toxicological Consequences: The Role of Extra |
 | [PMC12656514](https://europepmc.org/article/PMC/PMC12656514) | 2025 | Toxics | yes | Ultrastructural and Proteomic Analyses Revealed the Mechanism by Which Foliar Spraying of Se Nanoparticles All |
-| [PMC12667527](https://europepmc.org/article/PMC/PMC12667527) | 2025 | Advanced Science | yes | PVC Nanoplastics Exposure Exacerbates Asthma through R‐Loop Accumulation and Subsequent STING Activation in Ma |
 | [PMC12669668](https://europepmc.org/article/PMC/PMC12669668) | 2025 | Scientific Reports | yes | Investigating the impact of PVC microplastics on membrane fouling behavior in MBR for enhanced wastewater trea |
 | [PMC12672135](https://europepmc.org/article/PMC/PMC12672135) | 2025 | Environmental Microbiology Reports | yes | Combined Impact of Nanoplastics and Temperature on Green Algae: Implications for Growth, Lipid Content and Org |
 | [PMC12680179](https://europepmc.org/article/PMC/PMC12680179) | 2025 | PLOS One | yes | Exposure to polystyrene nanoparticles induce disruption of mitochondrial homeostasis and impairs trophoblast c |
@@ -184,34 +163,25 @@
 | [PMC12702224](https://europepmc.org/article/PMC/PMC12702224) | 2025 | iScience | yes | Ecofriendly algal extracellular polymeric substance-based nanobiocomposite for photodegradation of bisphenol A |
 | [PMC12705566](https://europepmc.org/article/PMC/PMC12705566) | 2025 | Frontiers in Plant Science | yes | Non-destructive detection of microplastics stress in rice seedling: an interpretable deep learning approach us |
 | [PMC12710712](https://europepmc.org/article/PMC/PMC12710712) | 2025 | Science Advances | yes | Microbubble-induced erosion releases micro- and nanoplastics into water |
-| [PMC12737239](https://europepmc.org/article/PMC/PMC12737239) | 2025 | Toxics | yes | Titanium Dioxide Nanoparticles Aggravated the Developmental Neurotoxicity of Ammonia Nitrogen on Zebrafish Emb |
-| [PMC12737304](https://europepmc.org/article/PMC/PMC12737304) | 2025 | Toxics | yes | Microplastic Toxicity on Gut Microbiota and Intestinal Cells: Evidence from the Simulator of the Human Intesti |
 | [PMC12750529](https://europepmc.org/article/PMC/PMC12750529) | 2025 | Environmental Science & Technology | yes | Pore-Scale Insights into Microplastic Fiber Transport and Retention in Porous Media |
 | [PMC12764304](https://europepmc.org/article/PMC/PMC12764304) | 2025 | International Journal of Nanomedicine | yes | Quantifying Nanoplastic Toxicity Using Gold-Core Polystyrene Nanoparticles: In vivo Evaluation and Human Risk  |
 | [PMC12765070](https://europepmc.org/article/PMC/PMC12765070) | 2025 | Materials Today Bio | yes | Targeted C3G delivery by engineered milk exosomes for effective therapy in microplastics-induced colitis |
-| [PMC12765340](https://europepmc.org/article/PMC/PMC12765340) | 2025 | Materials Today Bio | yes | Combined exposure to titanium nanoparticles and nanoplastics damages the male reproductive system and sperm ac |
 | [PMC12806370](https://europepmc.org/article/PMC/PMC12806370) | 2025 | Advanced Science | yes | Oral Exposure to Food‐Grade Nanoparticles Poses a Risk of Alzheimer's Disease‐Like Symptoms by Triggering Auto |
 | [PMC12810225](https://europepmc.org/article/PMC/PMC12810225) | 2025 | Environmental Science & Technology | yes | Coexposure of Micro and Nano-Plastics with Pesticides: Cytotoxicity and Bioaccumulation Effects on a Fish Inte |
 | [PMC12825353](https://europepmc.org/article/PMC/PMC12825353) | 2025 | Small Methods | yes | Tailorable Nanoparticles for Magnetic Water Cleaning of Polychlorinated Biphenyls |
-| [PMC12846171](https://europepmc.org/article/PMC/PMC12846171) | 2025 | Toxics | yes | Evaluation of Polystyrene Nanoplastics Induced Cardiotoxicity Under Different Dietary Patterns in Mice |
 | [PMC12855956](https://europepmc.org/article/PMC/PMC12855956) | 2025 | Nature Communications | yes | Size-dependent translocation of polystyrene nanoplastics across biological barriers in mammals |
 | [PMC12864305](https://europepmc.org/article/PMC/PMC12864305) | 2025 | Microplastics and Nanoplastics | yes | Potential toxicity of micro- and nanoplastics in primary bronchial epithelial cells of patients with chronic o |
-| [PMC12866875](https://europepmc.org/article/PMC/PMC12866875) | 2025 | Advanced Science | yes | Solar‐Powered Electrokinetic Filtration using Hierarchical Porous Membranes for the Off‐Grid Removal of Ultraf |
 | [PMC12884784](https://europepmc.org/article/PMC/PMC12884784) | 2025 | Advanced Science | yes | Polystyrene Microplastics Exposure Aggravates Clear Cell Renal Cell Carcinoma Progression via the NF‐κB and TG |
 | [PMC10762848](https://europepmc.org/article/PMC/PMC10762848) | 2024 | Journal of Nanobiotechnology | yes | Single-cell RNA-seq analysis decodes the kidney microenvironment induced by polystyrene microplastics in mice  |
 | [PMC10764924](https://europepmc.org/article/PMC/PMC10764924) | 2024 | Scientific Reports | yes | Maternal exposure to polyethylene micro- and nanoplastics impairs umbilical blood flow but not fetal growth in |
 | [PMC10795610](https://europepmc.org/article/PMC/PMC10795610) | 2024 | RSC Advances | yes | A photothermal MoS2 decorated biomass carbon-based aerogel with a directionally aligned porous structure for m |
 | [PMC10838446](https://europepmc.org/article/PMC/PMC10838446) | 2024 | Particle and Fibre Toxicology | yes | The in vitro gastrointestinal digestion-associated protein corona of polystyrene nano- and microplastics incre |
 | [PMC10847415](https://europepmc.org/article/PMC/PMC10847415) | 2024 | Scientific Data | yes | Knowledge and Instance Mapping: architecture for premeditated interoperability of disparate data for materials |
-| [PMC10856359](https://europepmc.org/article/PMC/PMC10856359) | 2024 | Nanomaterials | yes | Conversion of PET Bottle Waste into a Terephthalic Acid-Based Metal-Organic Framework for Removing Plastic Nan |
 | [PMC10880820](https://europepmc.org/article/PMC/PMC10880820) | 2024 | Environmental Health Perspectives | yes | Combined Effects of Polystyrene Nanosphere and Homosolate Exposures on Estrogenic End Points in MCF-7 Cells an |
-| [PMC10886737](https://europepmc.org/article/PMC/PMC10886737) | 2024 | Biosensors | yes | Using Rapid Prototyping to Develop a Cell-Based Platform with Electrical Impedance Sensor Membranes for In Vit |
-| [PMC10897390](https://europepmc.org/article/PMC/PMC10897390) | 2024 | Scientific Reports | yes | Microplastic separation and enrichment in microchannels under derivative electric field gradient by bipolar el |
 | [PMC10909942](https://europepmc.org/article/PMC/PMC10909942) | 2024 | Frontiers in Molecular Neuroscience | yes | Ototoxicity of polystyrene nanoplastics in mice, HEI-OC1 cells and zebrafish |
 | [PMC10927800](https://europepmc.org/article/PMC/PMC10927800) | 2024 | Environmental Science and Pollution Re | yes | Green industry work: production of FeCl3 from iron and steel industry waste (mill scale) and its use in wastew |
 | [PMC10978159](https://europepmc.org/article/PMC/PMC10978159) | 2024 | Archives of Industrial Hygiene and Tox | yes | Nanoplastics increase in vitro oestrogenic activity of neurotherapeutic drugs |
 | [PMC10985949](https://europepmc.org/article/PMC/PMC10985949) | 2024 | Particle and Fibre Toxicology | yes | Micro- and nanoplastics concepts for particle and fibre toxicologists |
-| [PMC10989686](https://europepmc.org/article/PMC/PMC10989686) | 2024 | Frontiers in Microbiology | yes | Magnesium oxide nanoparticles reduce clubroot by regulating plant defense response and rhizosphere microbial c |
 | [PMC11002580](https://europepmc.org/article/PMC/PMC11002580) | 2024 | Heliyon | yes | Renewing the potential of rice crop residues as value-added products in the cosmetics industry |
 | [PMC11007712](https://europepmc.org/article/PMC/PMC11007712) | 2024 | ACS Omega | yes | Nanoplastic Exposure Mediates Neurodevelopmental Toxicity by Activating the Oxidative Stress Response in Zebra |
 | [PMC11010371](https://europepmc.org/article/PMC/PMC11010371) | 2024 | Particle and Fibre Toxicology | yes | Acute exposure to polystyrene nanoparticles promotes liver injury by inducing mitochondrial ROS-dependent necr |
@@ -222,9 +192,7 @@
 | [PMC11047579](https://europepmc.org/article/PMC/PMC11047579) | 2024 | Antibiotics | yes | Emerging Issues on Antibiotic-Resistant Bacteria Colonizing Plastic Waste in Aquatic Ecosystems |
 | [PMC11064087](https://europepmc.org/article/PMC/PMC11064087) | 2024 | Heliyon | yes | Innovations and challenges in adsorption-based wastewater remediation: A comprehensive review |
 | [PMC11116779](https://europepmc.org/article/PMC/PMC11116779) | 2024 | Frontiers in Public Health | yes | Polystyrene nanoplastics mediate oxidative stress, senescence, and apoptosis in a human alveolar epithelial ce |
-| [PMC11125576](https://europepmc.org/article/PMC/PMC11125576) | 2024 | Toxics | yes | Inhibitory Impact of Prenatal Exposure to Nano-Polystyrene Particles on the MAP2K6/p38 MAPK Axis Inducing Embr |
 | [PMC11125995](https://europepmc.org/article/PMC/PMC11125995) | 2024 | Toxics | yes | Identification and Visualization of Polystyrene Microplastics/Nanoplastics in Flavored Yogurt by Raman Imaging |
-| [PMC11126148](https://europepmc.org/article/PMC/PMC11126148) | 2024 | Toxics | yes | The Role of Life Stages in the Sensitivity of Hediste diversicolor to Nanoplastics: A Case Study with Poly(Met |
 | [PMC11129298](https://europepmc.org/article/PMC/PMC11129298) | 2024 | The Journal of Physical Chemistry Lett | yes | Variable Non-Gaussian Transport of Nanoplastic on Supported Lipid Bilayers in Saline Conditions |
 | [PMC11140667](https://europepmc.org/article/PMC/PMC11140667) | 2024 | Analytical Chemistry | yes | Optofluidic Force Induction Meets Raman Spectroscopy and Inductively Coupled Plasma-Mass Spectrometry: A New H |
 | [PMC11151029](https://europepmc.org/article/PMC/PMC11151029) | 2024 | Advanced Science | yes | Eco‐Friendly and Self‐Sanitizing Microporous Cellulose Sponge (MCS)‐Based Cooling Media for Mitigating Microbi |
@@ -236,28 +204,21 @@
 | [PMC11251024](https://europepmc.org/article/PMC/PMC11251024) | 2024 | Scientific Reports | yes | Polystyrene nanoplastics of different particle sizes regulate the polarization of pro-inflammatory macrophages |
 | [PMC11260121](https://europepmc.org/article/PMC/PMC11260121) | 2024 | Proceedings of the National Academy of | yes | Selective adsorption of high ionization potential value organic pollutants in wastewater |
 | [PMC11267364](https://europepmc.org/article/PMC/PMC11267364) | 2024 | Advanced Science | yes | Gastrointestinal Incomplete Degradation Exacerbates Neurotoxic Effects of PLA Microplastics via Oligomer Nanop |
-| [PMC11274933](https://europepmc.org/article/PMC/PMC11274933) | 2024 | Biomedicines | yes | Numerical Study towards In Vivo Tracking of Micro-/Nanoplastic Based on X-ray Fluorescence Imaging |
 | [PMC11283437](https://europepmc.org/article/PMC/PMC11283437) | 2024 | Archives of Environmental Contaminatio | yes | UVB-Aged Microplastics and Cellular Damage: An in Vitro Study |
-| [PMC11312894](https://europepmc.org/article/PMC/PMC11312894) | 2024 | Particle and Fibre Toxicology | yes | Protective effect of Cordycepin on blood-testis barrier against pre-puberty polystyrene nanoplastics exposure  |
 | [PMC11313894](https://europepmc.org/article/PMC/PMC11313894) | 2024 | Molecules | yes | Activation of Peroxymonosulfate by Co-Ni-Mo Sulfides/CNT for Organic Pollutant Degradation |
 | [PMC11331112](https://europepmc.org/article/PMC/PMC11331112) | 2024 | Proceedings of the National Academy of | yes | Gut bacteria are essential for development of an invasive bark beetle by regulating glucose transport |
 | [PMC11342339](https://europepmc.org/article/PMC/PMC11342339) | 2024 | ACS Nanoscience Au | yes | On-the-Fly Monitoring of the Capture and Removal of Nanoplastics with Nanorobots |
 | [PMC11342361](https://europepmc.org/article/PMC/PMC11342361) | 2024 | Nano Letters | yes | An Online Nanoinformatics Platform Empowering Computational Modeling of Nanomaterials by Nanostructure Annotat |
 | [PMC11358925](https://europepmc.org/article/PMC/PMC11358925) | 2024 | Polymers | yes | Design of Biodegradable PU Textile Coating |
-| [PMC11369379](https://europepmc.org/article/PMC/PMC11369379) | 2024 | iScience | yes | Recycling of diaper wastes for a triboelectric nanogenerator-based weather station |
 | [PMC11467413](https://europepmc.org/article/PMC/PMC11467413) | 2024 | Scientific Reports | yes | Impact of polyethylene microplastics exposure on kallikrein-3 levels, steroidal-thyroidal hormones, and antiox |
-| [PMC11480280](https://europepmc.org/article/PMC/PMC11480280) | 2024 | Nano Convergence | yes | Evaluation of size-dependent uptake, transport and cytotoxicity of polystyrene microplastic in a blood-brain b |
 | [PMC11483732](https://europepmc.org/article/PMC/PMC11483732) | 2024 | Langmuir | yes | Durably Superhydrophobic Magnetic Cobalt Ferrites for Highly Efficient Oil–Water Separation and Fast Microplas |
 | [PMC11496066](https://europepmc.org/article/PMC/PMC11496066) | 2024 | Frontiers in Bioengineering and Biotec | yes | Deep eutectic solvent (DES) pretreatment and lignin regeneration for the development of a bamboo leaf-based bi |
 | [PMC11514580](https://europepmc.org/article/PMC/PMC11514580) | 2024 | RSC Advances | yes | Facile synthesis of TiO2–carbon composite doped nitrogen for efficient photodegradation of noxious methylene b |
-| [PMC11520165](https://europepmc.org/article/PMC/PMC11520165) | 2024 | Journal of Nanobiotechnology | yes | Maternal exposure to nanopolystyrene induces neurotoxicity in offspring through P53-mediated ferritinophagy an |
-| [PMC11581304](https://europepmc.org/article/PMC/PMC11581304) | 2024 | PLOS ONE | yes | Trophic transfer and bioaccumulation of nanoplastics in Coryphaena hippurus (mahi-mahi) and effect of depurati |
 | [PMC11585731](https://europepmc.org/article/PMC/PMC11585731) | 2024 | Water Research X | yes | Application of organic silicon quaternary ammonium salt (QSA) to reduce carbon footprint of sewers: Long-term  |
 | [PMC11599732](https://europepmc.org/article/PMC/PMC11599732) | 2024 | Scientific Reports | yes | Microplastics in sea ice drifted to the Shiretoko Peninsula, the southern end of the Sea of Okhotsk |
 | [PMC11631867](https://europepmc.org/article/PMC/PMC11631867) | 2024 | Frontiers in Toxicology | yes | Heterogenous bioluminescence patterns, cell viability, and biofilm formation of Photobacterium leiognathi stra |
 | [PMC11643206](https://europepmc.org/article/PMC/PMC11643206) | 2024 | Molecules | yes | Using Static Multiple Light Scattering to Develop Microplastic-Free Seed Film-Coating Formulations |
 | [PMC11644253](https://europepmc.org/article/PMC/PMC11644253) | 2024 | Polymers | yes | Comigration Behavior of Cr(VI) and Microplastics and Remediation of Microplastics-Facilitated Cr(VI) Transport |
-| [PMC11670363](https://europepmc.org/article/PMC/PMC11670363) | 2024 | BMC Plant Biology | yes | Polyethylene terephthalate nanoplastics affect potassium accumulation in foxtail millet (Setaria italica) seed |
 | [PMC11672319](https://europepmc.org/article/PMC/PMC11672319) | 2024 | Advanced Science | yes | Cellulose‐Based Transparent Edible Antibacterial Oxygen‐Barrier Coating for Long‐Term Fruit Preservation |
 | [PMC11679930](https://europepmc.org/article/PMC/PMC11679930) | 2024 | Plants | yes | Impacts of Micro/Nanoplastics Combined with Graphene Oxide on Lactuca sativa Seeds: Insights into Seedling Gro |
 | [PMC11731614](https://europepmc.org/article/PMC/PMC11731614) | 2024 | Neurobiology of Pain | yes | Keratinocyte-derived extracellular vesicles in painful diabetic neuropathy |
@@ -271,12 +232,9 @@
 | [PMC10081693](https://europepmc.org/article/PMC/PMC10081693) | 2023 | Environmental Health Perspectives | yes | Assessment of Nonalcoholic Fatty Liver Disease Symptoms and Gut–Liver Axis Status in Zebrafish after Exposure  |
 | [PMC10096691](https://europepmc.org/article/PMC/PMC10096691) | 2023 | Nanomaterials | yes | Development of Carbon-Nanodot-Loaded PLA Nanofibers and Study of Their Barrier Performance for Medical Applica |
 | [PMC10102128](https://europepmc.org/article/PMC/PMC10102128) | 2023 | Ecotoxicology (London, England) | yes | Titanium (IV) oxide anatase nanoparticles as vectors for diclofenac: assessing the antioxidative responses to  |
-| [PMC10110533](https://europepmc.org/article/PMC/PMC10110533) | 2023 | Scientific Reports | yes | SGLT2 inhibition ameliorates nano plastics-induced premature endothelial senescence and dysfunction |
 | [PMC10142187](https://europepmc.org/article/PMC/PMC10142187) | 2023 | Toxics | yes | The Adsorption Behaviors and Mechanisms of Humic Substances by Thermally Oxidized Graphitic Carbon Nitride |
 | [PMC10195911](https://europepmc.org/article/PMC/PMC10195911) | 2023 | Heliyon | yes | Adsorption behaviors and influencing factors of antibiotic norfloxacin on natural kaolinite-humic composite co |
-| [PMC10201517](https://europepmc.org/article/PMC/PMC10201517) | 2023 | Toxicological Research | yes | Characterisation of changes in global genes expression in the lung of ICR mice in response to the inflammation |
 | [PMC10284950](https://europepmc.org/article/PMC/PMC10284950) | 2023 | Analytical and Bioanalytical Chemistry | yes | Physicochemical characterization and quantification of nanoplastics: applicability, limitations and complement |
-| [PMC10303405](https://europepmc.org/article/PMC/PMC10303405) | 2023 | Toxics | yes | Sulfonate-Modified Polystyrene Nanoparticle at Precited Environmental Concentrations Induces Transgenerational |
 | [PMC10323628](https://europepmc.org/article/PMC/PMC10323628) | 2023 | Advanced Science | yes | Long‐Chain Acyl Carnitines Aggravate Polystyrene Nanoplastics‐Induced Atherosclerosis by Upregulating MARCO |
 | [PMC10358710](https://europepmc.org/article/PMC/PMC10358710) | 2023 | Science Progress | yes | Effect of aging on polyethylene microfiber surface properties and its consequence on adsorption characteristic |
 | [PMC10383551](https://europepmc.org/article/PMC/PMC10383551) | 2023 | Toxics | yes | Effect of Aging on Physicochemical Properties and Size Distribution of PET Microplastic: Influence on Adsorpti |
@@ -299,16 +257,12 @@
 | [PMC10574329](https://europepmc.org/article/PMC/PMC10574329) | 2023 | Nanomaterials | yes | Radiolabeling of Micro-/Nanoplastics via In-Diffusion |
 | [PMC10636870](https://europepmc.org/article/PMC/PMC10636870) | 2023 | Nano Letters | yes | Surface Geometry of Cargo-less Gold Nanoparticles Is a Driving Force for Selective Targeting of Activated Neut |
 | [PMC10674939](https://europepmc.org/article/PMC/PMC10674939) | 2023 | Pharmaceutics | yes | Biopolymer- and Natural Fiber-Based Biomimetic Tissues to Realize Smart Cosmeceuticals and Nutraceuticals Usin |
-| [PMC10685678](https://europepmc.org/article/PMC/PMC10685678) | 2023 | Particle and Fibre Toxicology | yes | Multi-dimensional evaluation of cardiotoxicity in mice following respiratory exposure to polystyrene nanoplast |
 | [PMC10702630](https://europepmc.org/article/PMC/PMC10702630) | 2023 | Environmental Science. Nano | yes | Development of single-cell ICP-TOFMS to measure nanoplastics association with human cells† |
-| [PMC10743734](https://europepmc.org/article/PMC/PMC10743734) | 2023 | International Journal of Molecular Sci | yes | Seawater Accelerated the Aging of Polystyrene and Enhanced Its Toxic Effects on Caenorhabditis elegans |
 | [PMC10760463](https://europepmc.org/article/PMC/PMC10760463) | 2023 | Beilstein Journal of Nanotechnology | yes | Fluorescent bioinspired albumin/polydopamine nanoparticles and their interactions with Escherichia coli cells |
-| [PMC10766629](https://europepmc.org/article/PMC/PMC10766629) | 2023 | Experimental & Molecular Medicine | yes | Lactate exacerbates lung damage induced by nanomicroplastic through the gut microbiota–HIF1a/PTBP1 pathway |
 | [PMC10794281](https://europepmc.org/article/PMC/PMC10794281) | 2023 | Environmental Science and Pollution Re | yes | Photodegradation of polyethylene debris in water by sulfur-doped TiO2: system optimization, degradation mechan |
 | [PMC10834790](https://europepmc.org/article/PMC/PMC10834790) | 2023 | Journal of Advanced Research | yes | Polystyrene nanoplastics lead to ferroptosis in the lungs |
 | [PMC10952355](https://europepmc.org/article/PMC/PMC10952355) | 2023 | Angewandte Chemie (International Ed. i | yes | Efficient Synthesis of Hydrolytically Degradable Block Copolymer Nanoparticles via Reverse Sequence Polymeriza |
 | [PMC12825967](https://europepmc.org/article/PMC/PMC12825967) | 2023 | Crop Health | yes | Functional, eco-friendly, and starch-based nanocarriers with sustained release of carvacrol for persistent con |
-| [PMC9853403](https://europepmc.org/article/PMC/PMC9853403) | 2023 | Frontiers in Nutrition | yes | Polystyrene microplastics induced nephrotoxicity associated with oxidative stress, inflammation, and endoplasm |
 | [PMC9920308](https://europepmc.org/article/PMC/PMC9920308) | 2023 | Nanomaterials | yes | Investigating the Cellular Uptake of Model Nanoplastics by Single-Cell ICP-MS |
 | [PMC9952747](https://europepmc.org/article/PMC/PMC9952747) | 2023 | Antioxidants | yes | Antioxidant Defense in Primary Murine Lung Cells following Short- and Long-Term Exposure to Plastic Particles |
 | [PMC9953511](https://europepmc.org/article/PMC/PMC9953511) | 2023 | Biomolecules | yes | Hazard Assessment of Polystyrene Nanoplastics in Primary Human Nasal Epithelial Cells, Focusing on the Autopha |
@@ -322,7 +276,7 @@
 | [PMC9142603](https://europepmc.org/article/PMC/PMC9142603) | 2022 | Scientific Reports | yes | Effects of humic acid on Pb2+ adsorption onto polystyrene microplastics from spectroscopic analysis and site e |
 | [PMC9143537](https://europepmc.org/article/PMC/PMC9143537) | 2022 | Materials | yes | Synthesis and Characterization of Mesoporous Aluminum Silicate and Its Adsorption for Pb (II) Ions and Methyle |
 | [PMC9173971](https://europepmc.org/article/PMC/PMC9173971) | 2022 | Environmental Science and Pollution Re | yes | Bioaccessibility of microplastic-associated heavy metals using an in vitro digestion model and its implication |
-| [PMC9218121](https://europepmc.org/article/PMC/PMC9218121) | 2022 | Nature Communications | yes | Trapping and detecting nanoplastics by MXene-derived oxide microrobots |
+| [PMC9230722](https://europepmc.org/article/PMC/PMC9230722) | 2022 | Toxics | yes | The Inhibition of Microcystin Adsorption by Microplastics in the Presence of Algal Organic Matters |
 | [PMC9230863](https://europepmc.org/article/PMC/PMC9230863) | 2022 | Nanomaterials | yes | In Vitro High-Throughput Toxicological Assessment of Nanoplastics |
 | [PMC9313510](https://europepmc.org/article/PMC/PMC9313510) | 2022 | Advanced Science | yes | Bile Acid Conjugation on Solid Nanoparticles Enhances ASBT‐Mediated Endocytosis and Chylomicron Pathway but We |
 | [PMC9315505](https://europepmc.org/article/PMC/PMC9315505) | 2022 | Nanomaterials | yes | Testing an Iron Oxide Nanoparticle-Based Method for Magnetic Separation of Nanoplastics and Microplastics from |
@@ -330,7 +284,6 @@
 | [PMC9380405](https://europepmc.org/article/PMC/PMC9380405) | 2022 | MicrobiologyOpen | yes | Early biofilm and streamer formation is mediated by wall shear stress and surface wettability: A multifactoria |
 | [PMC9455956](https://europepmc.org/article/PMC/PMC9455956) | 2022 | International Journal of Molecular Sci | yes | Sensitivity of the Transport of Plastic Nanoparticles to Typical Phosphates Associated with Ionic Strength and |
 | [PMC9457047](https://europepmc.org/article/PMC/PMC9457047) | 2022 | Materials | yes | Valorization of Polypropylene Waste in the Production of New Materials with Adequate Mechanical and Thermal Pr |
-| [PMC9476205](https://europepmc.org/article/PMC/PMC9476205) | 2022 | ACS Omega | yes | Polystyrene Nanoplastic Exposure Induces Developmental Toxicity by Activating the Oxidative Stress Response an |
 | [PMC9535493](https://europepmc.org/article/PMC/PMC9535493) | 2022 | Chemosphere | yes | Insight into the microplastics release from disposable face mask: Simulated environment and removal strategy |
 | [PMC9552567](https://europepmc.org/article/PMC/PMC9552567) | 2022 | Journal of Hazardous Materials | yes | Microplastics released from food containers can suppress lysosomal activity in mouse macrophages |
 | [PMC9602817](https://europepmc.org/article/PMC/PMC9602817) | 2022 | International Journal of Environmental | yes | High Purity Struvite Recovery from Hydrothermally-Treated Sludge Supernatant Using Magnetic Zirconia Adsorbent |
@@ -340,9 +293,7 @@
 | [PMC9654655](https://europepmc.org/article/PMC/PMC9654655) | 2022 | Polymers | yes | Silica-Filled Polyacrylonitrile Solutions: Rheology, Morphology, Coagulation, and Fiber Spinning |
 | [PMC9659182](https://europepmc.org/article/PMC/PMC9659182) | 2022 | Molecules | yes | Microplastic-Free Microcapsules to Encapsulate Health-Promoting Limonene Oil |
 | [PMC9673469](https://europepmc.org/article/PMC/PMC9673469) | 2022 | ACS Environmental Au | yes | Effects of Weathering on Microplastic Dispersibility and Pollutant Uptake Capacity |
-| [PMC9685458](https://europepmc.org/article/PMC/PMC9685458) | 2022 | Advanced Science | yes | Evidence and Impacts of Nanoplastic Accumulation on Crop Grains |
 | [PMC9691371](https://europepmc.org/article/PMC/PMC9691371) | 2022 | Theranostics | yes | Depletion of gut microbiota improves the therapeutic efficacy of cancer nanomedicine |
-| [PMC9696181](https://europepmc.org/article/PMC/PMC9696181) | 2022 | Toxics | yes | Nanoplastic Exposure at Predicted Environmental Concentrations Induces Activation of Germline Ephrin Signal As |
 | [PMC9699028](https://europepmc.org/article/PMC/PMC9699028) | 2022 | Nanomaterials | yes | Short-Term Exposure to MPs and DEHP Disrupted Gill Functions in Marine Bivalves |
 | [PMC9735624](https://europepmc.org/article/PMC/PMC9735624) | 2022 | International Journal of Molecular Sci | yes | Biodegradable, Flexible and Ultraviolet Blocking Nanocellulose Composite Film Incorporated with Lignin Nanopar |
 | [PMC9863539](https://europepmc.org/article/PMC/PMC9863539) | 2022 | Toxics | yes | Adsorption of Diclofenac Sodium by Aged Degradable and Non-Degradable Microplastics: Environmental Effects, Ad |
@@ -353,7 +304,6 @@
 | [PMC8038232](https://europepmc.org/article/PMC/PMC8038232) | 2021 | Materials | yes | LDPE and HDPE Microplastics Differently Affect the Transport of Tetracycline in Saturated Porous Media |
 | [PMC8122768](https://europepmc.org/article/PMC/PMC8122768) | 2021 | International Journal of Molecular Sci | yes | Oxidative Properties of Polystyrene Nanoparticles with Different Diameters in Human Peripheral Blood Mononucle |
 | [PMC8186235](https://europepmc.org/article/PMC/PMC8186235) | 2021 | Particle and Fibre Toxicology | yes | Underestimated health risks: polystyrene micro- and nanoplastics jointly induce intestinal barrier dysfunction |
-| [PMC8197307](https://europepmc.org/article/PMC/PMC8197307) | 2021 | International Journal of Molecular Sci | yes | Enhanced Anti-Tumor Activity in Mice with Temozolomide-Resistant Human Glioblastoma Cell Line-Derived Xenograf |
 | [PMC8211321](https://europepmc.org/article/PMC/PMC8211321) | 2021 | Environmental Science. Nano | yes | Metal-doping of nanoplastics enables accurate assessment of uptake and effects on Gammarus pulex† |
 | [PMC8231597](https://europepmc.org/article/PMC/PMC8231597) | 2021 | Toxics | yes | The Potential for PE Microplastics to Affect the Removal of Carbamazepine Medical Pollutants from Aqueous Envi |
 | [PMC8272170](https://europepmc.org/article/PMC/PMC8272170) | 2021 | Polymers | yes | Electrospun Nanosystems Based on PHBV and ZnO for Ecological Food Packaging |
@@ -370,15 +320,13 @@
 | [PMC8915914](https://europepmc.org/article/PMC/PMC8915914) | 2021 | Frontiers in Toxicology | yes | Development and Application of Nanoparticle-Nanopolymer Composite Spheres for the Study of Environmental Proce |
 | [PMC9042049](https://europepmc.org/article/PMC/PMC9042049) | 2021 | RSC Advances | yes | Liposome leakage and increased cellular permeability induced by guanidine-based oligomers: effects of liposome |
 | [PMC9042197](https://europepmc.org/article/PMC/PMC9042197) | 2021 | RSC Advances | yes | Enhanced sorption of the UV filter 4-methylbenzylidene camphor on aged PET microplastics from both experimenta |
-| [PMC9419163](https://europepmc.org/article/PMC/PMC9419163) | 2021 | Nanoscale Advances | yes | Response of G protein-coupled receptor CED-1 in germline to polystyrene nanoparticles in Caenorhabditis elegan |
 | [PMC6994214](https://europepmc.org/article/PMC/PMC6994214) | 2020 | Science Advances | yes | Nano- and microplastics affect the composition of freshwater benthic communities in the long term |
 | [PMC7174705](https://europepmc.org/article/PMC/PMC7174705) | 2020 | Frontiers in Immunology | yes | Shift in Immune Parameters After Repeated Exposure to Nanoplastics in the Marine Bivalve Mytilus |
 | [PMC7378059](https://europepmc.org/article/PMC/PMC7378059) | 2020 | Scientific Reports | yes | Probing driving forces for binding between nanoparticles and amino acids by saturation-transfer difference NMR |
 | [PMC7396695](https://europepmc.org/article/PMC/PMC7396695) | 2020 | Frontiers in Immunology | yes | Rational Design of Antigen Incorporation Into Subunit Vaccine Biomaterials Can Enhance Antigen-Specific Immune |
 | [PMC7407598](https://europepmc.org/article/PMC/PMC7407598) | 2020 | Nanomaterials | yes | Carbonate Micromotors for Treatment of Construction Effluents |
+| [PMC7441690](https://europepmc.org/article/PMC/PMC7441690) | 2020 | Chemical Science | yes | Focusing, sorting, and separating microplastics by serial faradaic ion concentration polarization† †Electronic |
 | [PMC7496070](https://europepmc.org/article/PMC/PMC7496070) | 2020 | Frontiers in Molecular Biosciences | yes | Novel Survivin Peptides Screened With Computer Algorithm Induce Cytotoxic T Lymphocytes With Higher Cytotoxic  |
-| [PMC7552270](https://europepmc.org/article/PMC/PMC7552270) | 2020 | Animals : an Open Access Journal from  | yes | Bioavailability of Methionine-Coated Zinc Nanoparticles as a Dietary Supplement Leads to Improved Performance  |
-| [PMC7673751](https://europepmc.org/article/PMC/PMC7673751) | 2020 | Science Advances | yes | Multiscale dynamics of colloidal deposition and erosion in porous media |
 | [PMC7756456](https://europepmc.org/article/PMC/PMC7756456) | 2020 | ACS Sustainable Chemistry & Engineerin | yes | Pesticide-Loaded Nanocarriers from Lignin Sulfonates—A Promising Tool for Sustainable Plant Protection |
 | [PMC9488007](https://europepmc.org/article/PMC/PMC9488007) | 2020 | Environmental Science and Ecotechnolog | yes | Consequential fate of bisphenol-attached PVC microplastics in water and simulated intestinal fluids |
 | [PMC6363493](https://europepmc.org/article/PMC/PMC6363493) | 2019 | International Journal of Nanomedicine | yes | Controlled-releasing hydrogen sulfide donor based on dual-modal iron oxide nanoparticles protects myocardial t |
@@ -386,7 +334,7 @@
 | [PMC6451641](https://europepmc.org/article/PMC/PMC6451641) | 2019 | Nature nanotechnology | yes | Synthesis of metal-doped nanoplastics and their utility to investigate fate and behavior in complex environmen |
 | [PMC6794159](https://europepmc.org/article/PMC/PMC6794159) | 2019 | Environmental pollution (Barking, Esse | yes | Co-exposure to polystyrene plastic beads and polycyclic aromatic hydrocarbon contaminants in fish gill (RTgill |
 | [PMC9071214](https://europepmc.org/article/PMC/PMC9071214) | 2019 | RSC Advances | yes | One-pot synthesis of biomimetic glutathione peroxidase with temperature responsive catalytic behaviors |
-| [PMC5762726](https://europepmc.org/article/PMC/PMC5762726) | 2018 | Scientific Reports | yes | Trophic transfer and individual impact of nano-sized polystyrene in a four-species freshwater food chain |
+| [PMC5876619](https://europepmc.org/article/PMC/PMC5876619) | 2018 | ACS Nano | yes | Directing Nanoparticle Biodistribution through Evasion and Exploitation of Stab2-Dependent Nanoparticle Uptake |
 | [PMC6401706](https://europepmc.org/article/PMC/PMC6401706) | 2018 | Polymers | yes | Biodegradation of Microplastic Derived from Poly(ethylene terephthalate) with Bacterial Whole-Cell Biocatalyst |
 | [PMC7009542](https://europepmc.org/article/PMC/PMC7009542) | 2018 | EFSA Journal | yes | Guidance on risk assessment of the application of nanoscience and nanotechnologies in the food and feed chain: |
 | [PMC9087019](https://europepmc.org/article/PMC/PMC9087019) | 2018 | RSC Advances | yes | Biomimetic colloidal photonic crystals by coassembly of polystyrene nanoparticles and graphene quantum dots† |
@@ -394,7 +342,6 @@
 | [PMC6324467](https://europepmc.org/article/PMC/PMC6324467) | 2017 | Journal of Xenobiotics | yes | Toxicity and disruption of quorum sensing in Aliivibrio fisheri by environmental chemicals: Impacts of selecte |
 | [PMC4992161](https://europepmc.org/article/PMC/PMC4992161) | 2016 | Nature Communications | yes | Microfibres and macroscopic films from the coordination-driven hierarchical self-assembly of cylindrical micel |
 | [PMC5116075](https://europepmc.org/article/PMC/PMC5116075) | 2016 | Nature Communications | yes | In situ characterization of nanoparticle biomolecular interactions in complex biological media by flow cytomet |
-| [PMC3990004](https://europepmc.org/article/PMC/PMC3990004) | 2014 | ACS Nano | yes | A Biodegradable Nanoparticle Platform for the Induction of Antigen-Specific Immune Tolerance for Treatment of  |
 | [PMC3994290](https://europepmc.org/article/PMC/PMC3994290) | 2014 | Particle and Fibre Toxicology | yes | Low-solubility particles and a Trojan-horse type mechanism of toxicity: the case of cobalt oxide on human lung |
 | [PMC4212780](https://europepmc.org/article/PMC/PMC4212780) | 2014 | ACS Nano | yes | Light-Scattering Detection below the Level of Single Fluorescent Molecules for High-Resolution Characterizatio |
 | [PMC3273982](https://europepmc.org/article/PMC/PMC3273982) | 2012 | International Journal of Nanomedicine | yes | In vitro placental model optimization for nanoparticle transport studies |

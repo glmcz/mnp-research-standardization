@@ -1,12 +1,12 @@
 {
-  "n_papers": 498,
-  "n_papers_with_a_printed_number": 354,
-  "n_papers_measured_but_no_number_printed": 144,
-  "n_rows_verified": 1910,
-  "n_rows_total": 1910,
+  "n_papers": 493,
+  "n_papers_with_a_printed_number": 353,
+  "n_papers_measured_but_no_number_printed": 140,
+  "n_rows_verified": 1880,
+  "n_rows_total": 1880,
   "n_papers_with_unverified_only": 0,
   "denominators": {
-    "papers_with_verified_zeta": 498,
+    "papers_with_verified_zeta": 493,
     "oa_records": 862,
     "all_hits": 1115
   },
@@ -14,70 +14,88 @@
     {
       "condition": "medium",
       "label": "Dispersion medium",
-      "k_missing": 131,
-      "n": 498,
-      "fraction": 0.26305220883534136,
-      "wilson_lo": 0.22630107797400723,
-      "wilson_hi": 0.3034310127892934,
-      "fraction_of_oa_records": 0.1519721577726218,
-      "fraction_of_all_hits_lower_bound": 0.11748878923766816
+      "k_missing": 129,
+      "n": 493,
+      "fraction": 0.2616632860040568,
+      "wilson_lo": 0.22481254295569042,
+      "wilson_hi": 0.30219968790420537,
+      "fraction_of_oa_records": 0.14965197215777262,
+      "fraction_of_all_hits_lower_bound": 0.11569506726457399
     },
     {
       "condition": "ionic_strength",
       "label": "Ionic strength",
-      "k_missing": 447,
-      "n": 498,
-      "fraction": 0.8975903614457831,
-      "wilson_lo": 0.8678461332892652,
-      "wilson_hi": 0.9212474771248574,
-      "fraction_of_oa_records": 0.5185614849187935,
-      "fraction_of_all_hits_lower_bound": 0.4008968609865471
+      "k_missing": 442,
+      "n": 493,
+      "fraction": 0.896551724137931,
+      "wilson_lo": 0.8665314810213671,
+      "wilson_hi": 0.920439658271317,
+      "fraction_of_oa_records": 0.5127610208816705,
+      "fraction_of_all_hits_lower_bound": 0.39641255605381165
     },
     {
       "condition": "pH",
       "label": "pH",
-      "k_missing": 399,
-      "n": 498,
-      "fraction": 0.8012048192771084,
-      "wilson_lo": 0.7639052049840517,
-      "wilson_hi": 0.8338929847236171,
-      "fraction_of_oa_records": 0.462877030162413,
-      "fraction_of_all_hits_lower_bound": 0.357847533632287
+      "k_missing": 394,
+      "n": 493,
+      "fraction": 0.7991886409736308,
+      "wilson_lo": 0.7615732168899684,
+      "wilson_hi": 0.832177386924205,
+      "fraction_of_oa_records": 0.45707656612529,
+      "fraction_of_all_hits_lower_bound": 0.35336322869955156
     },
     {
       "condition": "temperature",
       "label": "Temperature",
-      "k_missing": 386,
-      "n": 498,
-      "fraction": 0.7751004016064257,
-      "wilson_lo": 0.7364041593804858,
-      "wilson_hi": 0.8095848538858517,
-      "fraction_of_oa_records": 0.44779582366589327,
-      "fraction_of_all_hits_lower_bound": 0.34618834080717487
+      "k_missing": 383,
+      "n": 493,
+      "fraction": 0.7768762677484787,
+      "wilson_lo": 0.7380632303999821,
+      "wilson_hi": 0.8114076673670327,
+      "fraction_of_oa_records": 0.4443155452436195,
+      "fraction_of_all_hits_lower_bound": 0.3434977578475336
     },
     {
       "condition": "instrument",
       "label": "Instrument",
-      "k_missing": 91,
-      "n": 498,
-      "fraction": 0.1827309236947791,
-      "wilson_lo": 0.15126124879300765,
-      "wilson_hi": 0.2190579913815813,
-      "fraction_of_oa_records": 0.10556844547563805,
-      "fraction_of_all_hits_lower_bound": 0.08161434977578476
+      "k_missing": 89,
+      "n": 493,
+      "fraction": 0.18052738336713997,
+      "wilson_lo": 0.14908651739901135,
+      "wilson_hi": 0.21690860056212558,
+      "fraction_of_oa_records": 0.10324825986078887,
+      "fraction_of_all_hits_lower_bound": 0.07982062780269059
     },
     {
       "condition": "any",
       "label": "Any condition",
-      "k_missing": 484,
-      "n": 498,
-      "fraction": 0.9718875502008032,
-      "wilson_lo": 0.9533688793884634,
-      "wilson_hi": 0.9831816178202175,
-      "fraction_of_oa_records": 0.5614849187935035,
-      "fraction_of_all_hits_lower_bound": 0.43408071748878924
+      "k_missing": 480,
+      "n": 493,
+      "fraction": 0.973630831643002,
+      "wilson_lo": 0.9554111439571812,
+      "wilson_hi": 0.9845262525893238,
+      "fraction_of_oa_records": 0.5568445475638051,
+      "fraction_of_all_hits_lower_bound": 0.4304932735426009
     }
   ],
-  "complete_fraction": 0.028112449799196804,
-  "denominator_note": null
+  "complete_fraction": 0.026369168356997985,
+  "denominator_note": null,
+  "text_availability": {
+    "fetched": 858,
+    "with_retrievable_text": 847,
+    "no_retrievable_text": 11,
+    "pmcids_without_text": [
+      "PMC12155586",
+      "PMC12772631",
+      "PMC13336728",
+      "PMC6117821",
+      "PMC7080123",
+      "PMC7090633",
+      "PMC7100267",
+      "PMC7917173",
+      "PMC8272448",
+      "PMC8725635",
+      "PMC8899446"
+    ]
+  }
 }

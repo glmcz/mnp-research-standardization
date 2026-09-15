@@ -7,7 +7,7 @@ Each stage against its own ground truth. A stage with no ground truth reads
 |---|---|---|---|---|---|
 | parse | span recall | 1.00 | 5 | 1.00 | pass |
 | scan | recall of gold values | 0.98 | 85 | — | reported |
-| read | row value precision | 0.47 | 161 | — | reported |
+| read | row value precision | 0.81 | 101 | — | reported |
 | coerce | exact-match accuracy | 1.00 | 15 | 1.00 | pass |
 | verify | detection rate | 1.00 | 7 | 1.00 | pass |
 | aggregate | artefacts reproduced | — | 0 | 1.00 | not measured |

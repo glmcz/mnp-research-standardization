@@ -171,6 +171,8 @@ EXCLUDED_FROM_REPLAY = {
     "tables/d4_sbc.csv": "needs `infer sbc` — torch, minutes of CPU; seeded, run deliberately",
     "tables/rules_impact.md": "produced by tool/rules_impact.py, a one-off scoring of the "
     "ratified rules against records extracted before them",
+    "tables/slice_20260915.md": "a dated record of one run, not a derived artefact — it "
+    "reports what the slice scored on the day it ran and is not meant to move again",
 }
 
 
@@ -207,6 +209,7 @@ def run_reproduce(args: argparse.Namespace) -> int:
     import tempfile
 
     from mnp.corpus import __main__ as corpus_cli
+    from mnp.eval import __main__ as eval_cli
     from mnp.extract import __main__ as extract_cli
     from mnp.report import reproduce
 
@@ -230,6 +233,10 @@ def run_reproduce(args: argparse.Namespace) -> int:
         config.OUT_TABLES = out_dir / "tables"
         try:
             extract_cli.main(["review-list"])
+            # The stage evaluation is a committed artefact, so the replay has to rebuild it
+            # too — otherwise it is a published number nobody re-derives. --fast skips only
+            # its aggregate row, which is this very replay.
+            eval_cli.main(["all", "--fast"])
             extract_cli.main(["evaluate", "--gold", str(config.ANNOTATION / "gold_50.csv")])
             rebuilt = argparse.Namespace(out=str(out_dir), slice=None)
             for name in RUNNERS:

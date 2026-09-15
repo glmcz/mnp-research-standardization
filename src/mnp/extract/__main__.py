@@ -14,9 +14,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from mnp import config
+from mnp import config, runs
 from mnp.corpus import jats
-from mnp.extract import evaluate, llm, prompts, provenance, units, zeta
+from mnp.extract import evaluate, llm, measurand, prompts, provenance, units, zeta
 
 YEAR_BANDS = (("<=2018", -1, 2018), ("2019-2022", 2019, 2022), ("2023-2026", 2023, 2100))
 
@@ -100,6 +100,15 @@ def cmd_run(args: argparse.Namespace) -> int:
     return 0
 
 
+def _hash_counts(values) -> dict[str, int]:
+    """How many records carry each hash, with the missing ones counted under "none"."""
+    counts: dict[str, int] = {}
+    for value in values:
+        key = value if value else "none"
+        counts[key] = counts.get(key, 0) + 1
+    return dict(sorted(counts.items(), key=lambda kv: (-kv[1], kv[0])))
+
+
 def _write_table(done: dict[str, zeta.ExtractionRecord], quiet: bool = False) -> None:
     rows = [r for rec in done.values() for r in rec.to_rows()]
     table = pd.DataFrame(rows)
@@ -118,7 +127,12 @@ def _write_table(done: dict[str, zeta.ExtractionRecord], quiet: bool = False) ->
         "candidates_matched": sum(r.n_candidates_matched for r in recs),
         "coverage_mean": float(np.mean(covs)) if covs else None,
         "models": sorted({r.model for r in recs if r.model}),
-        "prompt_sha256": prompts.prompt_sha256(),
+        # What the records themselves carry. The code's current prompt is reported
+        # separately and never as provenance: editing it must not change a summary about
+        # records that have not moved.
+        "prompt_sha256_in_records": _hash_counts(r.prompt_sha256 for r in recs),
+        "brief_sha256_in_records": _hash_counts(r.brief_sha256 for r in recs),
+        "code_prompt_sha256": prompts.prompt_sha256(),
     }
     (config.DATA_PROCESSED / "extraction_summary.json").write_text(json.dumps(summary, indent=2))
     if not quiet:
@@ -171,6 +185,13 @@ def cmd_show(args: argparse.Namespace) -> int:
 
 def cmd_ingest(args: argparse.Namespace) -> int:
     """Run a supplied JSON reply through coerce → verify → coverage and record it."""
+    if not getattr(args, "brief", None) and not getattr(args, "no_brief", False):
+        print(
+            "refusing to record a judgement with no provenance: pass --brief docs/briefs/"
+            "extraction.md, or --no-brief to say deliberately that there was none",
+            file=sys.stderr,
+        )
+        return 2
     article = _article(args.pmcid)
     if article is None:
         print(f"no XML for {args.pmcid}", file=sys.stderr)
@@ -211,6 +232,13 @@ def cmd_ingest(args: argparse.Namespace) -> int:
         print("  unmatched printed values:")
         for u in rec.unmatched_candidates[:20]:
             print(f"    {u['value']} ({u['quantity']}) in {u['location']}: {u['context'][:70]!r}")
+    if getattr(args, "run_id", None):
+        runs.start(
+            args.run_id,
+            model=args.model,
+            brief_sha256=brief.sha256 if brief else None,
+        )
+        runs.assign(args.run_id, worker=args.worker or args.model, pmcids=[args.pmcid])
     return 0
 
 
@@ -220,7 +248,11 @@ def cmd_todo(args: argparse.Namespace) -> int:
     if args.with_values:
         keep = articles["extraction_text"].map(lambda t: bool(zeta.find_candidates(t or "")))
         articles = articles[keep]
-    todo = [p for p in articles["pmcid"].tolist() if p not in done]
+    if args.missing_brief:
+        # Papers that *have* a record but cannot be traced to the instructions that made it.
+        todo = [p for p in articles["pmcid"].tolist() if p in done and not done[p].brief_sha256]
+    else:
+        todo = [p for p in articles["pmcid"].tolist() if p not in done]
     if args.limit:
         todo = todo[: args.limit]
     for p in todo:
@@ -278,6 +310,46 @@ def cmd_units(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_review_measurand(args: argparse.Namespace) -> int:
+    """Papers where the thing measured may not have been the plastic (ratified rule S8).
+
+    Judgement, so this lists rather than decides: each hit is a paper someone has to read.
+    Restricted to papers that currently carry rows, since a paper with none cannot be
+    contributing a measurement of the wrong thing.
+    """
+    articles = pd.read_parquet(config.DATA_INTERIM / "articles.parquet").set_index("pmcid")
+    done = _load_records(_jsonl_path())
+    rows = []
+    for pmcid, rec in done.items():
+        if not rec.measurements or pmcid not in articles.index:
+            continue
+        for hit in measurand.suspicions(articles.loc[pmcid, "extraction_text"] or ""):
+            rows.append((pmcid, len(rec.measurements), hit.kind, hit.quote))
+    rows.sort(key=lambda r: -r[1])
+    for pmcid, n, kind, quote in rows:
+        print(f"{pmcid}\trows={n}\t{kind}\t{quote}")
+    papers = len({r[0] for r in rows})
+    print(
+        f"\n{papers} papers to review, {sum(dict((r[0], r[1]) for r in rows).values())} rows "
+        f"at stake",
+        file=sys.stderr,
+    )
+    return 0
+
+
+def cmd_table(args: argparse.Namespace) -> int:
+    """Rebuild the derived row table from the records, touching nothing else.
+
+    `recount` also rewrites `extractions.jsonl`; an offline replay must not write to the
+    scientific record it is checking, so the derived artefact gets its own command.
+    """
+    path = _jsonl_path()
+    done = _load_records(path)
+    _write_table(done, quiet=True)
+    print(f"rebuilt zeta_table.parquet from {len(done)} records")
+    return 0
+
+
 def cmd_recount(args: argparse.Namespace) -> int:
     """Recompute candidates and coverage for existing records. No model calls.
 
@@ -288,7 +360,7 @@ def cmd_recount(args: argparse.Namespace) -> int:
     path = _jsonl_path()
     with _locked(path):
         done = _load_records(path)
-        changed = 0
+        stale = []
         for pmcid, rec in done.items():
             article = _article(pmcid)
             if article is None:
@@ -297,13 +369,24 @@ def cmd_recount(args: argparse.Namespace) -> int:
             candidates = zeta.find_candidates(text)
             matched, unmatched = zeta._match(candidates, rec.measurements)
             if (rec.n_candidates, rec.n_candidates_matched) != (len(candidates), matched):
-                changed += 1
+                stale.append(pmcid)
+            if args.check:
+                continue
             rec.n_candidates = len(candidates)
             rec.n_candidates_matched = matched
             rec.unmatched_candidates = unmatched
-        _rewrite(path, done)
-        _write_table(done, quiet=True)
-    print(f"recounted {len(done)} records, {changed} coverage numbers changed")
+        if not args.check:
+            _rewrite(path, done)
+            _write_table(done, quiet=True)
+    if args.check:
+        if stale:
+            shown = ", ".join(stale[:5]) + (" …" if len(stale) > 5 else "")
+            print(f"STALE: {len(stale)} of {len(done)} records disagree with the scanner: {shown}")
+            print("run `extract recount` to refresh them")
+            return 1
+        print(f"coverage is current: {len(done)} records agree with the scanner")
+        return 0
+    print(f"recounted {len(done)} records, {len(stale)} coverage numbers changed")
     return 0
 
 
@@ -503,6 +586,13 @@ def main(argv: list[str] | None = None) -> int:
         default=None,
         help="the brief this judgement was made under; its hash is stored on the record",
     )
+    ing.add_argument(
+        "--no-brief",
+        action="store_true",
+        help="record with no brief — for re-ingesting legacy rows, and said out loud",
+    )
+    ing.add_argument("--run-id", default=None, help="record this ingest in a run manifest")
+    ing.add_argument("--worker", default=None, help="who produced it, for the run's assignments")
     ing.set_defaults(fn=cmd_ingest)
     td = sub.add_parser("todo")
     td.add_argument("--limit", type=int, default=0)
@@ -511,13 +601,25 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="only papers where the scanner finds a printed value",
     )
+    td.add_argument(
+        "--missing-brief",
+        action="store_true",
+        help="papers whose record carries no brief hash — the sweep's work list",
+    )
     td.set_defaults(fn=cmd_todo)
     un = sub.add_parser("units")
     un.add_argument("--pmcid", required=True)
     un.add_argument("--json", action="store_true")
     un.set_defaults(fn=cmd_units)
     rc = sub.add_parser("recount")
+    rc.add_argument(
+        "--check",
+        action="store_true",
+        help="report stale coverage numbers and exit 1, without writing to the record",
+    )
     rc.set_defaults(fn=cmd_recount)
+    sub.add_parser("table").set_defaults(fn=cmd_table)
+    sub.add_parser("review-measurand").set_defaults(fn=cmd_review_measurand)
     rl = sub.add_parser("review-list")
     rl.set_defaults(fn=cmd_review_list)
     au = sub.add_parser("audit-sample")

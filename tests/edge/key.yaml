@@ -163,3 +163,297 @@ V7:
     measurement 'reported' with value null, or is it too weak to record?
   verdict: ''
   reasoning: ''
+# --- raised by the pilot workers, 2026-09-14 (run pilot-20260914) -------------------
+# Each was flagged independently by a worker reading a paper, not invented for the key.
+P1:
+  pmcid: PMC11204973
+  question: The only zeta text is "Previous experiments revealed that nanoparticle preparation
+    in MilliQ water maintained the Zeta potential", with no citation number. Is that this study's
+    measurement or someone else's? (The gold annotator recorded nothing; the worker recorded four
+    rows. This is the pilot's only gate disagreement.)
+  verdict: ''
+  reasoning: ''
+P2:
+  pmcid: PMC11204973
+  question: A collective statement ("the nanoparticles") follows sentences naming PP, PE, PS and
+    PET. One row for the collective, or one row per polymer?
+  verdict: ''
+  reasoning: ''
+P3:
+  pmcid: PMC11851392
+  question: >-
+    The paper says the surface charge of weathered BIO microplastics "was not obtained since
+    insufficient material was available". A measurement attempted and abandoned — is that a
+    reported measurement with no value, or no measurement at all?
+  verdict: ''
+  reasoning: ''
+P4:
+  pmcid: PMC11283437
+  question: The paper says only "investigated samples" were measured, without saying which. Expand
+    to one row per particle the paper studied, or keep one row with a vague particle name?
+  verdict: ''
+  reasoning: ''
+P5:
+  pmcid: PMC10664492
+  question: The instrument's full make and model is stated for the PS suspension only; a separate
+    sentence names the instrument for all three particle types. Is `instrument` scoped to the
+    experiment that states it, the way medium, I, pH and temperature are?
+  verdict: ''
+  reasoning: ''
+P6:
+  pmcid: PMC12038248
+  question: Replicates are printed as a word ("in triplicate"), not a number. Record the string, or
+    is converting "triplicate" to 3 arithmetic rather than inference?
+  verdict: ''
+  reasoning: ''
+P7:
+  pmcid: PMC11204973
+  question: A row with no printed value gets `unit_assumed_mV` from the coercer. Should a value-less
+    row carry a unit at all?
+  verdict: ''
+  reasoning: ''
+# --- raised by the slice workers, 2026-09-15 (run slice-20260915) -------------------
+S1:
+  pmcid: PMC6117821
+  question: >-
+    The pipeline hands the worker an empty article (conference-abstract volume, PDF-only
+    deposit): both extraction_text and full_text are length 0, so no quote can ever verify.
+    Should such a paper be recorded as a parse failure rather than as a reading that found
+    nothing? Two workers hit this independently. Eleven papers in the corpus are like this.
+  verdict: ''
+  reasoning: ''
+S2:
+  pmcid: PMC9315505
+  question: >-
+    "The commercial PS beads ... are an ideal model due to their strong negative zeta
+    potential" — a qualitative claim about a particle whose zeta this paper never measured
+    (its zeta section reports iron oxide only). Numberless measurement, or an assertion of a
+    known property like the generic "±30 mV stability threshold"?
+  verdict: ''
+  reasoning: ''
+S3:
+  pmcid: PMC12439659
+  question: >-
+    The paper says only "水" / "water" with no purity stated. medium_class has DI_water but no
+    plain-water bucket. DI_water, or other?
+  verdict: ''
+  reasoning: ''
+S4:
+  pmcid: PMC12439659
+  question: >-
+    The instrument is given as a device category plus a manufacturer with no model name
+    ("激光粒度仪为英国Malvern公司产品" — laser particle-size analyser, Malvern, UK). Does that
+    count as instrument reported, the way a bare "Zetasizer" does?
+  verdict: ''
+  reasoning: ''
+S5:
+  pmcid: PMC4936314
+  question: >-
+    Temperature and instrument are stated in a Methods paragraph explicitly about the zeta
+    measurement, while the value appears in Results. Does "the experiment that states it"
+    reach from Methods to Results for the same quantity? This is the commonest shape in the
+    corpus, and the answer moves many rows.
+  verdict: ''
+  reasoning: ''
+S6:
+  pmcid: PMC4936314
+  question: >-
+    medium_matches_exposure has no rule in the brief. How much inference may it carry — must
+    both media be printed, or may the exposure medium be read from a dosing sentence?
+  verdict: ''
+  reasoning: ''
+S7:
+  pmcid: PMC4936314
+  question: >-
+    The paper attributes a Zetasizer Nano ZS90 to Horiba; Zetasizer is a Malvern product, and
+    the cell it names is Malvern's. Record the string verbatim and wrong, or corrected?
+  verdict: ''
+  reasoning: ''
+S8:
+  pmcid: PMC13520016
+  question: >-
+    The table is "Zeta Potential of Aβ When Exposed to MNP and Non-Exposed". The PET MNPs were
+    removed by 0.2 µm filtration BEFORE the zeta measurement, so the measurand is nominally the
+    peptide — and protein is on the exclusion list — while the paper reports the values as
+    MNP-induced charge changes and concedes smaller fragments "cannot be fully excluded". Does
+    a measurement of an excluded material modified by a plastic, with the plastic filtered out,
+    count as a plastic-particle measurement? The worker included the 60 exposed rows and
+    excluded the 20 MNP-free controls; the gold annotator recorded one row for the paper.
+    THIS ONE CASE DECIDES THE SLICE SCORE: with it, row value precision is 0.47; without it,
+    0.81.
+  verdict: does not count
+  reasoning: >-
+    Ratified by Martin, 2026-09-15. The particles were deliberately filtered out before the
+    measurement, and the paper's own no-MNP control gives the same zeta (-34.0 to -27.4 mV)
+    as the exposed samples — so the species carrying the charge is present whether or not
+    plastic was ever in the tube. No zeta of a PET particle is reported anywhere in the paper.
+    Whether a sub-200 nm plastic fragment contributed a few mV of the shift is unresolved and
+    unresolvable from the text, which is precisely why it cannot be counted as a measurement
+    of a plastic particle's surface charge. Generalised as rule 4 in docs/briefs/extraction.md:
+    the measurand must be the plastic particle itself.
+S9:
+  pmcid: PMC9318256
+  question: >-
+    "The cell was left to equilibrate at 25 °C before starting the assay" — equilibration of
+    the measuring cell itself, immediately before the run. Measurement temperature, or another
+    step under rule 2? coerce.OTHER_STEP_RE happens not to match this phrasing, so the pipeline
+    silently agreed with the worker; "before analysis" would have flipped it.
+  verdict: ''
+  reasoning: ''
+S10:
+  pmcid: PMC4861966
+  question: >-
+    "10 mM TrisHCl pH 7.0" — a named buffer salt at a stated concentration and a printed pH.
+    The true ionic strength is ~9.3 mM because Tris is a weak base, and coerce._SALTS has no
+    Tris entry, so it was stored as 10.0 mM source=reported while an identical NaCl sentence
+    would read inferred_from_named_salt. Reported, derived, or not an ionic strength?
+  verdict: ''
+  reasoning: ''
+S11:
+  pmcid: PMC9318256
+  question: >-
+    Zeta measured on whole effluent (microplastics plus surfactants, dyes, inorganics), never
+    on isolated particles. The brief excludes sediments and soils but says nothing about a bulk
+    environmental sample measured undivided. Ten rows ride on it.
+  verdict: ''
+  reasoning: ''
+S12:
+  pmcid: PMC4958399
+  question: >-
+    Rule 2 nulls the temperature on every row of a paper whose central variable IS temperature
+    (25 °C vs 37 °C incubation arms), so the two arms become byte-identical in the stored
+    conditions and the paper's own contrast disappears. One row or two, and should anything
+    record which arm a row came from?
+  verdict: ''
+  reasoning: ''
+S13:
+  pmcid: PMC4958399
+  question: >-
+    Zeta measured at 5, 10, 15, 20, 30 and 60 min (Fig 6b). Is elapsed time a condition that
+    splits rows, or is a time series one measurement? The worker recorded one row.
+  verdict: ''
+  reasoning: ''
+S14:
+  pmcid: PMC4958399
+  question: >-
+    A global recipe ("all samples suspended in PBS at pH 7.4") and a biofluid diluted into it
+    ("plasma diluted 10-fold with PBS"). Does the recipe's ionic strength and pH reach the
+    biofluid rows, whose own electrolytes are unstated? The worker said no to both.
+  verdict: ''
+  reasoning: ''
+S15:
+  pmcid: PMC4958399
+  question: >-
+    The calibrant and the sample are the same particle: −20 mV is printed as the standard's
+    KNOWN zeta, −20.3 mV as measured. The brief excludes a polymer standard used "only" to
+    calibrate — does that exclusion still apply when it is also the sample?
+  verdict: ''
+  reasoning: ''
+S16:
+  pmcid: PMC4958399
+  question: >-
+    The paper prints eleven zeta *changes* (3.2, 9.2, 5.9 mV …) and no absolute value for most
+    arms. Treated as non-values, so those rows are figure-only and every change shows in the
+    unmatched-candidate list. Is a printed difference a value?
+  verdict: ''
+  reasoning: ''
+S17:
+  pmcid: PMC9519127
+  question: >-
+    Methods state 5 particle types × 3 media with the values in Supplementary Tables; only two
+    of the fifteen are printed in text. The worker recorded all 15 on "never discard a
+    numberless measurement" — 13 of them resting on one sentence. How far does "never discard"
+    multiply rows?
+  verdict: ''
+  reasoning: ''
+S18:
+  pmcid: PMC13470744
+  question: >-
+    The S8 boundary, found while auditing it. Zeta of PS nanoparticles measured in complete
+    cell culture medium, which contains serum protein that would itself give a cuvette
+    reading. The measurand is still deliberately the particle (protein-corona
+    characterisation, which is a large part of what this corpus counts), so the auditor kept
+    it. Does S8 reach protein-containing media, or stop at "the plastic was removed / another
+    material was the analyte"? If it reaches, this row is the test case.
+  verdict: counts as a plastic measurement
+  reasoning: >-
+    Follows from S23, ratified 2026-09-15: a material adsorbed onto the plastic makes a coated
+    plastic particle, and that is what was measured. A protein corona is the textbook case —
+    the particle is still the analyte, the serum is its medium. Recorded here by implication
+    rather than by a separate ruling; say so if that reads wrong.
+S19:
+  pmcid: PMC12873112
+  question: >-
+    The abstract prints -12.3 → -26.7 mV and Table 1 prints -25.6 → -31.6 mV for the same
+    virgin/aged PVC pair. Recording both as printed (which the brief requires) gives four rows
+    for two measurements. Record both, prefer the table, or record one row flagged as
+    internally contradictory?
+  verdict: ''
+  reasoning: ''
+S20:
+  pmcid: PMC13335968
+  question: >-
+    The inverse of S8, and a trap for anyone applying it: plastic NPs incubated in a bacterial
+    culture supernatant, with the zeta reported as a change. Here the supernatant is the
+    MEDIUM and the NPs are the analyte ("Changes in the Zeta potential of NPs across groups"),
+    so the rows stay. Confirm that S8 turns on what was measured, not on whether the word
+    "supernatant" appears.
+  verdict: ''
+  reasoning: ''
+S21:
+  pmcid: PMC12105431
+  question: >-
+    Not the same as S8, and it needs its own answer. After coagulation the supernatant still
+    holds the residual microplastics (the paper prints 239, 159 and 48 mg/L of PS, PE and PET
+    left in it), and the paper reports "the ζ potentials of PS, PE, and PET at that dosage were
+    -22.33, -25.80, -25.48 mV" — attributing the values to the particles still suspended.
+    Is a zeta of the residual particles in a treated water a plastic-particle measurement, or
+    is the measurand the treated water? Under S8 the auditor removed all four rows; the direct
+    pH-series measurement (Figure 4, no coagulant) has been recorded separately, so the paper
+    is not at zero either way.
+  verdict: counts as a plastic measurement
+  reasoning: >-
+    Ratified by Martin, 2026-09-15: "plastic of course". The particles are still there and
+    still suspended — the paper prints how much of each is left — and it is their charge the
+    values describe. Treatment changed the medium, not the measurand. This is the boundary of
+    S8: S8 removes a measurement when the plastic is GONE from the cuvette (filtered out) or
+    was never the analyte (a protein, a cell, a floc that would exist without it); it does not
+    remove a measurement of plastic particles merely because the water around them was treated.
+    The four post-coagulation rows were restored from the pre-S8 record.
+  
+S22:
+  pmcid: PMC11857315
+  question: >-
+    The two-sided one, flagged by the auditor for re-adjudication. One results sentence says
+    "Figure 4 illustrates the zeta potentials of the MPs used in coagulation experiments and
+    supernatant after settling" — attributing the curve to the MPs. Against it: the methods put
+    laundry wastewater in the cuvette, the figure caption is about the wastewater, both stored
+    evidence quotes read "zeta potential of laundry wastewater", the added PE/PET were
+    20-1000 µm granules (largely outside Zetasizer range and fast-settling), and the paper
+    concedes the matrix carries many other charged components. Removed under S8; restore?
+  verdict: does not count (provisional)
+  reasoning: >-
+    Martin, 2026-09-15: document it, not counted for now. Unlike S21, the paper gives one
+    wastewater number rather than a value per polymer, and says nothing about how much plastic
+    remained suspended; the granules are 20-1000 µm, largely outside the instrument's range and
+    fast-settling, so the reading is dominated by the matrix. Recorded as provisional rather
+    than settled: the one sentence attributing Figure 4 to "the MPs" is real, and if the
+    supplement ever shows a per-polymer value this reverses. Four rows, one paper.
+S23:
+  pmcid: PMC13335070
+  question: >-
+    S8's test does not discriminate when BOTH species are colloids. A PS microsphere suspension
+    is titrated with a cationic microgel and the paper reports charge neutralisation, value in
+    the supplement only. Is the analyte the PS (the paragraph's purpose is validating microgel
+    adhesion onto the PS surface — the auditor's tiebreaker, row kept) or the microgel (in
+    which case S8 deletes it)? The rule needs a tiebreaker for two mixed particle populations.
+  verdict: counts as a plastic measurement
+  reasoning: >-
+    Ratified by Martin, 2026-09-15. The tiebreaker when both species are colloids: if the other
+    material is ADSORBED ONTO the plastic, the measured object is a coated plastic particle and
+    it counts — the same object a protein-corona measurement reports. If the other material is
+    free in suspension alongside the plastic, the reading is a mixture and is not recorded.
+    Here the microgel adheres to the PS surface, which is what the experiment set out to show,
+    so the row stays. Note that S8's own test ("would there still be something in the cuvette
+    with a zeta potential?") cannot decide this: with two particle populations the answer is
+    yes either way, which is why the rule needed this clause.

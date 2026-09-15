@@ -166,3 +166,29 @@ def test_denominator_note_is_carried_into_the_markdown(tmp_path):
     md = (tmp_path / "t" / "d1_stats.md").read_text()
     assert "the 50 papers of the stratified random sample" in md
     assert "all open-access records the query returned" not in md
+
+
+def test_papers_with_no_retrievable_text_are_counted_separately(tmp_path):
+    """An empty deposit is not a paper that was read and found to report nothing.
+
+    Eleven of the 858 fetched XMLs carry no body at all — conference-abstract volumes and
+    "available as a PDF" stubs. Counting them in the same denominator as papers that were
+    actually read makes the corpus look better covered than it is, and makes an empty
+    extraction indistinguishable from a real negative.
+    """
+    import pandas as pd
+
+    from mnp.report import d1
+
+    articles = pd.DataFrame(
+        [
+            {"pmcid": "PMC1", "extraction_text": "Zeta potential was -30 mV.", "year": 2020},
+            {"pmcid": "PMC2", "extraction_text": "", "year": 2021},
+            {"pmcid": "PMC3", "extraction_text": None, "year": 2022},
+        ]
+    )
+    counts = d1.text_availability(articles)
+    assert counts["fetched"] == 3
+    assert counts["with_retrievable_text"] == 1
+    assert counts["no_retrievable_text"] == 2
+    assert counts["pmcids_without_text"] == ["PMC2", "PMC3"]

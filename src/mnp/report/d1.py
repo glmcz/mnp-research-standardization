@@ -52,6 +52,24 @@ def prepare_gold(gold: pd.DataFrame) -> pd.DataFrame:
     return rows
 
 
+def text_availability(articles: pd.DataFrame) -> dict:
+    """How many fetched papers actually carry text an extractor could read.
+
+    Eleven of the 858 fetched XMLs have an empty body: conference-abstract volumes and
+    "this content is available as a PDF" stubs. In the record an empty extraction of one of
+    those is indistinguishable from a paper that was read and genuinely reported nothing, so
+    the two are counted apart. Both slice workers who hit one raised it unprompted.
+    """
+    text = articles["extraction_text"].fillna("").astype(str).str.strip()
+    empty = articles.loc[text.eq(""), "pmcid"].tolist()
+    return {
+        "fetched": int(len(articles)),
+        "with_retrievable_text": int(len(articles) - len(empty)),
+        "no_retrievable_text": len(empty),
+        "pmcids_without_text": sorted(empty),
+    }
+
+
 def paper_stats(
     table: pd.DataFrame, n_oa_records: int | None = None, n_all_hits: int | None = None
 ) -> dict:
@@ -158,6 +176,14 @@ def _markdown(stats: dict) -> str:
         "| Missing | k / n | fraction | 95% CI | of OA records | of all hits (≥) |",
         "|---|---|---|---|---|---|",
     ]
+    if (avail := stats.get("text_availability")) and avail["no_retrievable_text"]:
+        lines[6:6] = [
+            f"Of {avail['fetched']} fetched XMLs, **{avail['no_retrievable_text']} carry no "
+            "retrievable text at all** — conference-abstract volumes and PDF-only deposits. "
+            "They are not papers that were read and found to report nothing, and are counted "
+            "apart from those that were: " + ", ".join(avail["pmcids_without_text"][:12]) + ".",
+            "",
+        ]
     for m in stats["missing"]:
         frac = f"{100 * m['fraction']:.1f}%" if m["fraction"] is not None else "—"
         ci = (
@@ -209,6 +235,7 @@ def build(
     hit_counts: dict | None = None,
     prefix: str = "d1",
     denominator_note: str | None = None,
+    articles: pd.DataFrame | None = None,
 ) -> list[Path]:
     out_tables, out_figures = Path(out_tables), Path(out_figures)
     out_tables.mkdir(parents=True, exist_ok=True)
@@ -221,6 +248,8 @@ def build(
     n_all = int(hit_counts["hits_all"]) if hit_counts and hit_counts.get("hits_all") else None
     stats = paper_stats(table, n_oa_records=n_oa, n_all_hits=n_all)
     stats["denominator_note"] = denominator_note
+    if articles is not None and len(articles):
+        stats["text_availability"] = text_availability(articles)
     written = []
     p = out_tables / f"{prefix}_zeta_table.csv"
     table.to_csv(p, index=False)

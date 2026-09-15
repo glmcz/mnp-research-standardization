@@ -7,7 +7,7 @@ import pytest
 
 from mnp import config
 from mnp.extract import __main__ as cli
-from mnp.extract import llm, provenance
+from mnp.extract import llm, prompts, provenance
 
 ROW = {
     "particle_name": "P1",
@@ -170,7 +170,7 @@ def test_ingest_runs_the_same_pipeline_on_a_supplied_payload(workspace, tmp_path
     payload = tmp_path / "PMC5090179.json"
     payload.write_text(json.dumps({"measurements": [ROW]}))
     assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload),
-                     "--model", "claude-code:sonnet"]) == 0  # fmt: skip
+                     "--model", "claude-code:sonnet", "--no-brief"]) == 0  # fmt: skip
     lines = (workspace / "interim" / "extractions.jsonl").read_text().splitlines()
     rec = json.loads(lines[-1])
     assert rec["model"] == "claude-code:sonnet"
@@ -185,9 +185,9 @@ def test_ingest_replaces_an_earlier_record_for_the_same_pmcid(workspace, tmp_pat
     _articles_parquet(workspace)
     payload = tmp_path / "p.json"
     payload.write_text(json.dumps({"measurements": [ROW]}))
-    cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload)])
+    cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload), "--no-brief"])
     payload.write_text(json.dumps({"measurements": [ROW, ROW]}))
-    cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload)])
+    cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload), "--no-brief"])
     lines = (workspace / "interim" / "extractions.jsonl").read_text().splitlines()
     assert len(lines) == 1
     assert len(json.loads(lines[0])["measurements"]) == 2
@@ -199,7 +199,7 @@ def test_ingest_reports_a_broken_payload_without_writing(workspace, tmp_path):
     _articles_parquet(workspace)
     payload = tmp_path / "bad.json"
     payload.write_text("not json")
-    assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload)]) == 1
+    assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload), "--no-brief"]) == 1
     assert not (workspace / "interim" / "extractions.jsonl").exists()
 
 
@@ -207,7 +207,7 @@ def test_todo_lists_undone_pmcids_in_order(workspace, tmp_path, capsys):
     _articles_parquet(workspace, ("PMC5090179", "PMC0000001", "PMC0000002"))
     payload = tmp_path / "p.json"
     payload.write_text(json.dumps({"measurements": [ROW]}))
-    cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload)])
+    cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload), "--no-brief"])
     capsys.readouterr()
     assert cli.main(["todo", "--limit", "5"]) == 0
     assert capsys.readouterr().out.split() == ["PMC0000001", "PMC0000002"]
@@ -231,7 +231,8 @@ def test_parallel_ingests_do_not_lose_records(workspace, tmp_path):
         f"config.DATA_INTERIM = Path({str(workspace / 'interim')!r});"
         f"config.DATA_PROCESSED = Path({str(workspace / 'processed')!r});"
         "from mnp.extract.__main__ import main;"
-        "sys.exit(main(['ingest', '--pmcid', sys.argv[1], '--json', sys.argv[2]]))"
+        "sys.exit(main(['ingest', '--pmcid', sys.argv[1], '--json', sys.argv[2],"
+        " '--no-brief']))"
     )
     procs = [
         subprocess.Popen([sys.executable, "-c", script, p, str(payload)], stdout=subprocess.DEVNULL)
@@ -460,7 +461,7 @@ def test_recount_refreshes_coverage_without_calling_any_model(workspace, tmp_pat
     _articles_parquet(workspace)
     payload = tmp_path / "p.json"
     payload.write_text(json.dumps({"measurements": [ROW]}))
-    assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload)]) == 0
+    assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload), "--no-brief"]) == 0
     path = workspace / "interim" / "extractions.jsonl"
     rec = json.loads(path.read_text().splitlines()[0])
     rec["n_candidates"] = 999
@@ -514,10 +515,11 @@ def test_ingest_records_the_brief_it_was_given(workspace, tmp_path, capsys):
 
 
 def test_ingest_without_a_brief_is_allowed_but_marked_untraceable(workspace, tmp_path):
+    """Still possible — but only when the caller says so; see `--no-brief`."""
     _articles_parquet(workspace)
     payload = tmp_path / "p.json"
     payload.write_text(json.dumps({"measurements": [ROW]}))
-    assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload)]) == 0
+    assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload), "--no-brief"]) == 0
     rec = json.loads((workspace / "interim" / "extractions.jsonl").read_text().splitlines()[0])
     assert rec["brief_sha256"] is None
 
@@ -554,5 +556,153 @@ def test_ingest_says_plainly_when_no_brief_was_given(workspace, tmp_path, capsys
     _articles_parquet(workspace)
     payload = tmp_path / "p.json"
     payload.write_text(json.dumps({"measurements": [ROW]}))
-    assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload)]) == 0
+    assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload), "--no-brief"]) == 0
     assert "brief=none" in capsys.readouterr().out
+
+
+def test_the_summary_reports_the_provenance_the_records_carry_not_the_code_s(
+    workspace, monkeypatch
+):
+    """`prompt_sha256` used to be the hash of whatever prompt the code held at rebuild time.
+
+    Written into a file describing 845 stored records, that reads as their provenance and is
+    not: editing the prompt changed the committed artefact without a single record changing.
+    The summary must describe the data — including, loudly, the records that carry no brief.
+    """
+    _articles_parquet(workspace, pmcids=("PMC5090179",))
+    fake = ScriptedLLM({"measurements": [ROW]})
+    monkeypatch.setattr(llm, "from_env", lambda cache_dir=None, model=None: fake)
+    assert cli.main(["run", "--concurrency", "1"]) == 0
+
+    path = workspace / "processed" / "extraction_summary.json"
+    summary = json.loads(path.read_text())
+    assert "prompt_sha256" not in summary, "an unqualified hash invites being read as provenance"
+    assert summary["code_prompt_sha256"] == prompts.prompt_sha256()
+    assert sum(summary["prompt_sha256_in_records"].values()) == summary["papers"]
+    assert summary["brief_sha256_in_records"] == {"none": 1}
+
+    # Editing the prompt must not change one byte of a summary about unchanged records.
+    before = path.read_text()
+    monkeypatch.setattr(prompts, "prompt_sha256", lambda: "0" * 64)
+    cli.main(["table"])
+    after = json.loads(path.read_text())
+    assert after["prompt_sha256_in_records"] == json.loads(before)["prompt_sha256_in_records"]
+    assert after["code_prompt_sha256"] == "0" * 64
+
+
+def test_recount_check_reports_stale_coverage_without_writing(workspace, monkeypatch):
+    """A scanner fix makes every stored coverage number stale, silently.
+
+    `recount` repairs them by rewriting the record; an offline replay must not write to the
+    record it is checking, so the same staleness has to be detectable read-only.
+    """
+    _articles_parquet(workspace)
+    fake = ScriptedLLM({"measurements": [ROW]})
+    monkeypatch.setattr(llm, "from_env", lambda cache_dir=None, model=None: fake)
+    assert cli.main(["run", "--concurrency", "1"]) == 0
+
+    path = workspace / "interim" / "extractions.jsonl"
+    assert cli.main(["recount", "--check"]) == 0, "a fresh record is not stale"
+
+    rec = json.loads(path.read_text())
+    rec["n_candidates"] = rec["n_candidates"] + 7
+    before = json.dumps(rec) + "\n"
+    path.write_text(before)
+
+    assert cli.main(["recount", "--check"]) == 1
+    assert path.read_text() == before, "--check must not repair what it reports"
+
+    assert cli.main(["recount"]) == 0
+    assert cli.main(["recount", "--check"]) == 0
+
+
+def test_ingest_refuses_a_record_with_no_brief(workspace, tmp_path, capsys):
+    """833 of 845 records cannot be traced to their instructions. Never again by default.
+
+    `--brief` was documented in the worker persona before it existed in the CLI, and a
+    compliant worker produced six records with no provenance at all. The CLI is what enforces
+    it, so the CLI refuses.
+    """
+    reply = tmp_path / "reply.json"
+    reply.write_text(json.dumps({"measurements": []}))
+    code = cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(reply)])
+    assert code == 2
+    err = capsys.readouterr().err
+    assert "--brief" in err
+    assert not (workspace / "interim" / "extractions.jsonl").exists()
+
+
+def test_ingest_accepts_an_explicit_absence_of_a_brief(workspace, tmp_path):
+    """A legacy re-ingest has to remain possible — but it has to be said out loud."""
+    reply = tmp_path / "reply.json"
+    reply.write_text(json.dumps({"measurements": []}))
+    assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(reply), "--no-brief"]) == 0
+    rec = json.loads((workspace / "interim" / "extractions.jsonl").read_text())
+    assert rec["brief_sha256"] is None
+
+
+def test_ingest_records_itself_in_the_run_manifest(workspace, tmp_path):
+    """A worker's claim and the code it ran against, written down as the work happens."""
+    import json as _json
+
+    from mnp import runs
+
+    _articles_parquet(workspace)
+    brief = tmp_path / "brief.md"
+    brief.write_text("Report only what the text states.\n")
+    payload = tmp_path / "p.json"
+    payload.write_text(_json.dumps({"measurements": [ROW]}))
+    assert (
+        cli.main(
+            [
+                "ingest",
+                "--pmcid",
+                "PMC5090179",
+                "--json",
+                str(payload),
+                "--brief",
+                str(brief),
+                "--run-id",
+                "slice-1",
+                "--worker",
+                "w3",
+            ]
+        )  # fmt: skip
+        == 0
+    )
+    manifest = runs.load("slice-1")
+    assert manifest["run_id"] == "slice-1"
+    assert manifest["brief_sha256"]
+    assignments = (runs.run_dir("slice-1") / "assignments.jsonl").read_text().splitlines()
+    assert _json.loads(assignments[0]) | {"worker": "w3"} == _json.loads(assignments[0])
+    assert _json.loads(assignments[0])["pmcids"] == ["PMC5090179"]
+
+
+def test_todo_can_list_papers_whose_record_carries_no_brief(workspace, tmp_path, capsys):
+    """The sweep's work list: papers already extracted, but not traceably.
+
+    `todo` alone lists papers with no record at all, which is the wrong set — the 833 records
+    that cannot be traced to a brief all *have* records. Re-reading them is the whole point.
+    """
+    _articles_parquet(workspace, pmcids=("PMC5090179", "PMC0000001"))
+    payload = tmp_path / "p.json"
+    payload.write_text(json.dumps({"measurements": [ROW]}))
+    brief = tmp_path / "brief.md"
+    brief.write_text("Report only what the text states.\n")
+    import shutil
+
+    shutil.copy(workspace / "xml" / "PMC5090179.xml", workspace / "xml" / "PMC0000001.xml")
+
+    # one traceable record, one not
+    assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload),
+                     "--brief", str(brief)]) == 0  # fmt: skip
+    assert cli.main(["ingest", "--pmcid", "PMC0000001", "--json", str(payload),
+                     "--no-brief"]) == 0  # fmt: skip
+
+    capsys.readouterr()
+    assert cli.main(["todo", "--missing-brief"]) == 0
+    listed = capsys.readouterr().out.split()
+    assert listed == ["PMC0000001"], "only the untraceable record needs re-reading"
+
+    assert cli.main(["todo"]) == 0
+    assert capsys.readouterr().out.split() == [], "both papers already have records"

@@ -41,6 +41,53 @@ Only measurements the paper made. Not:
 - an applied voltage or an accelerating voltage;
 - a polymer standard used only to calibrate an instrument.
 
+### The plastic particle must be what was measured
+
+Ratified 2026-09-15 (edge case S8). The measurand has to be the plastic particle itself. A
+zeta potential or mobility measured on something else — a protein, a cell, a medium, a
+supernatant — does **not** become a plastic measurement because plastic was present earlier in
+the experiment. In particular:
+
+- **The particles were removed before the measurement.** Filtered, centrifuged or settled out,
+  and the supernatant measured. That is a measurement of the supernatant. Record nothing.
+- **The measurand is a different material that was exposed to plastic.** "Zeta potential of Aβ
+  when exposed to MNP", "zeta of cells after microplastic exposure". Record nothing, however
+  clearly the paper attributes the shift to the plastic.
+- **A paper reporting only a change in someone else's zeta.** A shift of a few mV in a peptide
+  or a cell is not the plastic's surface charge.
+
+The test is simple: *if the plastic had never been added, would there still be something in the
+cuvette with a zeta potential?* If yes, the measurement is of that thing. In the case this rule
+was written from, the paper's own no-plastic control returned the same value as the exposed
+samples, which settles it.
+
+If the paper measures the plastic **and** something else, record only the plastic's rows.
+
+**Where this rule stops** (edge case S21, ratified 2026-09-15). It removes a measurement when
+the plastic is *gone* from the cuvette or was never the analyte. It does **not** remove a
+measurement of plastic particles because the liquid around them was treated, aged, filtered of
+*other* things, or otherwise messy. Residual particles suspended in a treated water are still
+particles: if the paper reports "the ζ potential of PS, PE and PET" in a supernatant that still
+holds them, record it, with the treated water as the medium.
+
+The distinction is what is in the cuvette carrying the charge:
+
+| In the cuvette | Record? |
+|---|---|
+| The plastic particles, in any medium however complex | **yes** |
+| A supernatant the particles were removed from | no |
+| A protein, cell or floc that would exist without the plastic | no |
+| Two mixed particle populations, plastic and something else | see below |
+
+**Two particle populations** (edge case S23, ratified 2026-09-15). When the plastic is mixed
+with another colloid — a microgel, a mineral, serum protein — the question "would there still
+be something in the cuvette with a zeta potential?" answers yes either way, so it decides
+nothing. Use instead: **is the other material adsorbed onto the plastic?**
+
+- Adsorbed onto it → the measured object is a coated plastic particle. **Record it.** A protein
+  corona is the textbook case: the particle is the analyte, the serum is its medium.
+- Free in suspension alongside it → the reading is a mixture of two populations. Record nothing.
+
 ## The value
 
 Copy exactly as printed, with its sign. Never compute, convert, average, estimate or infer.

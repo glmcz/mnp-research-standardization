@@ -50,7 +50,26 @@ def test_d1_with_a_table_writes_into_the_requested_root(workspace):
     assert (out / "figures" / "d1_missing_conditions.png").is_file()
 
 
+def test_d4_without_its_printed_fit_bank_skips_cleanly(workspace, capsys):
+    """Every runner in `all` must degrade the way d1 does, or one missing input kills the lot.
+
+    This used to pass by accident: `qa.BANK_PATH` froze the real data root at import, so a
+    redirected `DATA_RAW` was ignored and d4 read the repository's own bank.
+    """
+    out = workspace / "out"
+    assert cli.main(["d4", "--out", str(out)]) == 0
+    assert "printed_params.csv" in capsys.readouterr().err
+
+
 def test_all_runs_every_deliverable_that_has_data(workspace, capsys):
     out = workspace / "out"
     assert cli.main(["all", "--out", str(out)]) == 0
     assert (out / "checklist.md").is_file()
+
+
+def test_reproduce_is_a_subcommand_and_returns_its_own_exit_code(monkeypatch):
+    """`report all` builds; `report reproduce` checks, so its exit code has to reach the shell."""
+    from mnp.report import __main__ as report_cli
+
+    monkeypatch.setattr(report_cli, "run_reproduce", lambda args: 3)
+    assert report_cli.main(["reproduce"]) == 3

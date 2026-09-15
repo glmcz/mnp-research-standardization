@@ -1,0 +1,65 @@
+[
+  {
+    "name": "fabricated quote",
+    "why": "a quote that is not in the article is an invented measurement",
+    "article_text": "The zeta potential of PS particles in 10 mM NaCl was -42.1 mV.",
+    "quote": "The zeta potential of PS particles in 10 mM NaCl was -55.0 mV.",
+    "value": -55.0,
+    "conditions": {"medium_text": "10 mM NaCl"},
+    "expect_flag": "evidence_unverified"
+  },
+  {
+    "name": "value absent from its own quote",
+    "why": "the quote is real but does not carry the number the row claims",
+    "article_text": "Particles were characterised by DLS and electrophoretic light scattering.",
+    "quote": "Particles were characterised by DLS and electrophoretic light scattering.",
+    "value": -42.1,
+    "conditions": {},
+    "expect_flag": "value_not_in_quote"
+  },
+  {
+    "name": "no evidence at all",
+    "why": "a row with no quote cannot be checked against anything",
+    "article_text": "Zeta potential was -30 mV.",
+    "quote": "",
+    "value": -30.0,
+    "conditions": {},
+    "expect_flag": "evidence_missing"
+  },
+  {
+    "name": "non-contiguous quote joined with a newline",
+    "why": "a table header glued to a distant row reads as a sentence the paper never wrote",
+    "article_text": "Sample\tZeta potential (mV)\nPS-COOH\t-48.3\nPS-NH2\t+31.2",
+    "quote": "Zeta potential (mV)\nPS-NH2\t+31.2",
+    "value": 31.2,
+    "conditions": {},
+    "expect_flag": "evidence_unverified"
+  },
+  {
+    "name": "incubation temperature recorded as the measurement temperature",
+    "why": "Martin's rule, 2026-09-13: a temperature belonging to another step is not the measurement's",
+    "article_text": "Particles were incubated at 37 °C for 24 h before zeta potential measurement (-21.5 mV).",
+    "quote": "Particles were incubated at 37 °C for 24 h before zeta potential measurement (-21.5 mV).",
+    "value": -21.5,
+    "conditions": {"temperature_C": 37.0},
+    "expect_flag": "temperature_step_not_measurement"
+  },
+  {
+    "name": "condition carried in from another experiment",
+    "why": "a condition applies only within the experiment that states it",
+    "article_text": "Exposure medium was buffered to pH 7.4. Zeta potential in ultrapure water was -35.0 mV.",
+    "quote": "Zeta potential in ultrapure water was -35.0 mV.",
+    "value": -35.0,
+    "conditions": {"pH": 7.4},
+    "expect_flag": "pH_not_in_evidence"
+  },
+  {
+    "name": "ionic strength taken from an unrelated concentration",
+    "why": "\"FSW + BPA (10 µM)\" is not an ionic strength; this inflated the study's headline metric",
+    "article_text": "Zeta potential in FSW + BPA (10 µM) was -18.0 mV.",
+    "quote": "Zeta potential in FSW + BPA (10 µM) was -18.0 mV.",
+    "value": -18.0,
+    "conditions": {"ionic_strength_mM": 0.01, "medium_text": "artificial seawater"},
+    "expect_flag": "ionic_strength_not_in_evidence"
+  }
+]

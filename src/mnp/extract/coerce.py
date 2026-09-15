@@ -73,7 +73,12 @@ _EXP = re.compile(rf"({_NUM})[eE](-?\d+)")
 # pattern that refuses the sign skips the value and matches the deviation instead.
 _PM = re.compile(rf"({_NUM})\s*(?:\u00b1|\+/-|\+-)\s*(-?\d+(?:\.\d+)?)")
 _PLAIN = re.compile(_NUM)
-_APPROX = re.compile(r"~|≈|\babout\b|\bapprox(?:\.|imately)?\b|\bca\.?\s", re.IGNORECASE)
+# 约 / 约为 / 大约 / 左右 are "approximately" in Chinese, which the corpus contains. Unflagged,
+# the paper's own hedge is silently recorded as an exact measurement.
+_APPROX = re.compile(
+    r"~|≈|\babout\b|\bapprox(?:\.|imately)?\b|\bca\.?\s|大约|约为|约|左右",
+    re.IGNORECASE,
+)
 _ZETA_KW = re.compile(r"zeta|ζ|mobilit|surface charge|surface potential", re.IGNORECASE)
 
 
@@ -235,19 +240,45 @@ def _concentration_mM(s: str) -> float | None:
     return None
 
 
+# Between a concentration and the salt it belongs to there may be spaces, "of", or a bracket —
+# nothing else. "5 mM HEPES" next to the word NaCl states HEPES's concentration, not NaCl's.
+_BINDING = re.compile(r"^[\s(\[]*(?:of\s+)?$")
+
+
+def _bound_salt(segment: str, start: int, end: int):
+    """The salt this concentration actually names, or None if it names something else.
+
+    `start`/`end` bracket the concentration in `segment`. The salt must sit immediately after
+    it ("10 mM NaCl") or immediately before it ("NaCl (10 mM)"); anything in between means the
+    number belongs to whatever *is* adjacent. A named salt merely present in the same sentence
+    does not get to claim a number — that fabricated a 5 mM ionic strength for a solution whose
+    NaCl concentration the paper never stated.
+    """
+    after = SALT_RE.search(segment, end)
+    if after and _BINDING.match(segment[end : after.start()]):
+        return after
+    for before in SALT_RE.finditer(segment[:start]):
+        if _BINDING.match(segment[before.end() : start].replace(",", "")):
+            return before
+    return None
+
+
 def _salt_terms(s: str) -> list[tuple[float, float]]:
     """[(mM, valence factor)] for every 'concentration + named salt' pair in the string.
 
     Segmented so a recipe contributes one term per salt. Components without a named salt
     — "0.01 M phosphate buffer" — contribute nothing: their speciation depends on a pH the
-    paper may not state, so the sum would be a guess rather than a derivation.
+    paper may not state, so the sum would be a guess rather than a derivation. A concentration
+    bound to something other than a salt contributes nothing either, for the same reason.
     """
     terms: list[tuple[float, float]] = []
     for segment in _SEGMENT.split(s):
-        salt = SALT_RE.search(segment)
-        mM = _concentration_mM(segment)
-        if salt and mM is not None:
-            terms.append((mM, _SALT_ALIASES[salt.group(1).lower()]))
+        for regex, scale in ((_UM_RE, 0.001), (_MM_RE, 1.0), (_M_RE, 1000.0)):
+            if m := regex.search(segment):
+                salt = _bound_salt(segment, m.start(), m.end())
+                if salt:
+                    terms.append((float(m.group(1)) * scale, _SALT_ALIASES[salt.group(1).lower()]))
+                break
     return terms
 
 
@@ -278,9 +309,14 @@ def parse_ionic_strength(
         return None, ValueSource.unreported, []
     s = _minus(s)
     terms = _salt_terms(s)
-    if not terms and (salt := SALT_RE.search(s)) and (mM := _concentration_mM(s)) is not None:
-        # the salt and its concentration sit either side of a segment break
-        terms = [(mM, _SALT_ALIASES[salt.group(1).lower()])]
+    if not terms:
+        # the salt and its concentration may sit either side of a segment break — but they
+        # must still be adjacent across it, or the number belongs to something else.
+        for regex, scale in ((_UM_RE, 0.001), (_MM_RE, 1.0), (_M_RE, 1000.0)):
+            if m := regex.search(s):
+                if salt := _bound_salt(s, m.start(), m.end()):
+                    terms = [(float(m.group(1)) * scale, _SALT_ALIASES[salt.group(1).lower()])]
+                break
     if terms:
         total = sum(mM * factor for mM, factor in terms)
         flags = ["computed_from_salt"] if any(f != 1.0 for _, f in terms) else []

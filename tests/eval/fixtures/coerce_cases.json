@@ -1,0 +1,114 @@
+[
+  {
+    "rule": "composition_is_ionic_strength",
+    "parser": "ionic_strength",
+    "input": "0.137 M NaCl, 0.0027 M KCl",
+    "expected": 139.7,
+    "tol": 0.2,
+    "why": "ratified 2026-09-13: a printed composition establishes I, recorded as derived"
+  },
+  {
+    "rule": "composition_is_ionic_strength",
+    "parser": "ionic_strength",
+    "input": "10 mM CaCl2",
+    "expected": 30.0,
+    "why": "a named salt's valency is arithmetic, not judgement"
+  },
+  {
+    "rule": "composition_is_ionic_strength",
+    "parser": "ionic_strength",
+    "input": "0.15 M",
+    "expected": 150.0,
+    "why": "plain molarity"
+  },
+  {
+    "rule": "unstated_speciation_contributes_nothing",
+    "parser": "ionic_strength",
+    "input": "cell culture medium with 10% FBS",
+    "expected": null,
+    "why": "a component whose speciation is unstated contributes nothing"
+  },
+  {
+    "rule": "concentration_is_not_ionic_strength",
+    "parser": "ionic_strength",
+    "input": "FSW + BPA (10 µM)",
+    "expected": null,
+    "from_medium": true,
+    "why": "an unrelated concentration in a medium string was once recorded as a reported I"
+  },
+  {
+    "rule": "incubation_is_not_measurement",
+    "parser": "temperature",
+    "input": "37 °C incubation",
+    "expected": null,
+    "why": "ratified 2026-09-13: an incubation temperature is not the measurement temperature",
+    "expect_flag": "temperature_not_measurement"
+  },
+  {
+    "rule": "incubation_is_not_measurement",
+    "parser": "temperature",
+    "input": "25 °C",
+    "expected": 25.0,
+    "why": "a plain measurement temperature still parses"
+  },
+  {
+    "rule": "room_temperature_is_reported",
+    "parser": "temperature",
+    "input": "room temperature",
+    "expected": null,
+    "tol": 2.0,
+    "why": "reported as nominal: no number, but a qualifier — not the same as absent",
+    "expect_qualifier": "room temperature"
+  },
+  {
+    "rule": "no_fabricated_numbers",
+    "parser": "number",
+    "input": "<0",
+    "expected": null,
+    "why": "\"<0 mV\" was once parsed as 0.0 — a fabricated measurement, with the wrong sign"
+  },
+  {
+    "rule": "no_fabricated_numbers",
+    "parser": "number",
+    "input": "-50 ± 9.7",
+    "expected": -50.0,
+    "why": "a plain value with a spread"
+  },
+  {
+    "rule": "no_fabricated_numbers",
+    "parser": "number",
+    "input": "−32,5",
+    "expected": -32.5,
+    "why": "unicode minus and a decimal comma are typography, not different numbers"
+  },
+  {
+    "rule": "incubation_is_not_measurement",
+    "parser": "temperature",
+    "input": "37 °C",
+    "expected": 37.0,
+    "why": "the same number without the incubation context is a measurement"
+  },
+  {
+    "rule": "concentration_belongs_to_the_compound_it_names",
+    "parser": "ionic_strength",
+    "input": "NaCl buffered with 5 mM HEPES at pH 7.4",
+    "expected": null,
+    "from_medium": true,
+    "why": "the 5 mM is the buffer's; NaCl's own concentration is never stated"
+  },
+  {
+    "rule": "concentration_belongs_to_the_compound_it_names",
+    "parser": "ionic_strength",
+    "input": "150 mM NaCl with 10 mM HEPES",
+    "expected": 150.0,
+    "why": "bound to its own salt, so it still counts"
+  },
+  {
+    "rule": "no_fabricated_numbers",
+    "parser": "number",
+    "input": "约为-30 mV",
+    "expected": -30.0,
+    "expect_flag": "approx",
+    "why": "约为 is 'approximately'; unflagged it turns the paper's hedge into an exact value"
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {"xml": "PMC5090179.xml",
+   "sentence": "Zetasizer NanoZS",
+   "why": "the instrument sentence: lose it and every row in this paper loses its instrument"},
+  {"xml": "PMC5090179.xml",
+   "sentence": "was determined with a Zetasizer NanoZS (Malvern Instruments, Worcestershire, UK)",
+   "why": "make and model together — a parser that truncates at the bracket loses the manufacturer"},
+  {"xml": "PMC5090179.xml",
+   "sentence": "Zeta potential in 10 mM NaCl (mV)",
+   "why": "a table header carrying both the quantity and the medium; tables are flattened, not dropped"},
+  {"xml": "PMC5090179.xml",
+   "sentence": "-50 ± 9.7",
+   "why": "the value itself, with its spread, as printed in the table body"},
+  {"xml": "PMC5090179.xml",
+   "sentence": "The zeta potential of the PS beads in 10 mM sodium chloride and perfusion medium",
+   "why": "the sentence that scopes the measurement to two media — the scope rule needs it intact"}
+]

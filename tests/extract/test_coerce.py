@@ -599,3 +599,55 @@ def test_a_measurement_temperature_still_counts(raw, celsius):
     got, _, flags = coerce.parse_temperature(raw)
     assert got == pytest.approx(celsius, abs=0.01)
     assert "temperature_not_measurement" not in flags
+
+
+@pytest.mark.parametrize(
+    "raw",
+    ["约为-30 mV", "大约 -30 mV", "约 -30 mV", "-30 mV左右"],
+)
+def test_chinese_approximation_markers_are_recognised(raw):
+    """ "约为" is "approximately". Unflagged, it turns a hedge into an exact measurement.
+
+    Found by a slice worker on PMC12439659, which prints 平均zeta电位约为-30 mV. The corpus
+    contains Chinese-language papers, and rule 1 of the brief is that nothing may be inferred
+    — silently dropping the paper's own hedge infers precision it never claimed.
+    """
+    value, _, flags = coerce.parse_number(raw)
+    assert value == -30.0
+    assert "approx" in flags, f"{raw!r} recorded as an exact value"
+
+
+@pytest.mark.parametrize(
+    "medium",
+    [
+        "NaCl buffered with 5 mM HEPES at pH 7.4",
+        "NaCl solution with 5 mM HEPES",
+        "KCl in 10 mM Tris",
+    ],
+)
+def test_a_concentration_belonging_to_another_compound_is_not_the_salt_s(medium):
+    """The number belongs to the buffer; the salt's own concentration is never stated.
+
+    Same family as the "FSW + BPA (10 µM)" defect that inflated the headline metric: a named
+    salt anywhere in the string used to capture any concentration anywhere in the string. Here
+    it fabricates an ionic strength of 5 mM for a solution dominated by an unstated amount of
+    NaCl. Found by a slice worker on PMC9974068, who had to mangle the medium text to stop it.
+    """
+    value, source, flags = coerce.parse_ionic_strength(medium, from_medium=True)
+    assert value is None, f"fabricated {value} mM from a concentration that is not the salt's"
+
+
+@pytest.mark.parametrize(
+    ("medium", "expected"),
+    [
+        ("10 mM NaCl", 10.0),
+        ("0.137 M NaCl, 0.0027 M KCl", 139.7),
+        ("NaCl (10 mM)", 10.0),
+        ("150 mM NaCl with 10 mM HEPES", 150.0),
+        ("10 mM CaCl2", 30.0),
+    ],
+)
+def test_a_concentration_bound_to_its_salt_still_counts(medium, expected):
+    """The fix must not cost the cases the ratified composition rule depends on."""
+    value, _, _ = coerce.parse_ionic_strength(medium, from_medium=True)
+    assert value is not None and abs(value - expected) <= 0.2, f"{medium!r} -> {value}"

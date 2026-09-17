@@ -140,6 +140,15 @@ Recomputes the scanner counts stored in each record after a parser or scanner ch
 - **kind** deterministic · idem yes · net no
 - **stale when** a scanner change; `--check` reports staleness without writing
 
+### `extract retrofit`
+
+Gives every stored evidence quote the line address it already implies, without re-reading a paper or calling a model: each quote was verified verbatim against the article, so it locates in the line-addressed document by substring, and what is stored is the line id — the hash of (section path, ordinal, text) — so a later parser fix that renumbers the document leaves the citation standing. A one-off migration rather than a replay step, because an offline replay must not write to the record it is checking; --dry-run reports and writes nothing. The quote guard searched the whole article while the line document mirrors extraction_text, a subset of it, so a quote can be genuine and still fail to locate: those rows keep no ids, gain an evidence_not_located flag and are named in the output. Nothing is dropped — the count of what did not locate is the measurement.
+
+- **in** extractions.jsonl, data/raw/epmc/xml/
+- **out** evidence.line_ids on each record, rebuilt zeta_table.parquet
+- **kind** deterministic · idem yes · net no
+- **stale when** a parser change that alters section paths, ordinals or line text
+
 ### `extract review-measurand`
 
 Lists papers where the thing measured may not have been the plastic — particles filtered out before the measurement, a supernatant analysed, or the zeta of another material exposed to plastic (ratified rule S8). It decides nothing: the rule is a judgement about what a paper measured, and no regex settles that. What it does is make sure the question is asked, since the rule was found by a worker reading one paper and most of the corpus has not been read under it.

@@ -10,9 +10,9 @@ Two things a reader should take from this card before using the data: only a sma
 
 | file | what it is | sha256 |
 |---|---|---|
-| `dataset.parquet` | 1890 rows × 39 columns | `6a2281e18ac014d7efd086fccbda0151fd60f2f4aee37b697fc885b2b8e56992` |
-| `dataset.jsonl` | the same rows, one JSON object per line | `7b32deb144372cf410884d7ac2ed8ddf84905d160d2189dc19bdb8a488e0de53` |
-| `schema.json` | JSON Schema 2020-12 for the record type, generated from the pydantic models in `mnp.schema.models` | `b64b121e52c6a2426b7db4e94cef92d56f1a9ff4c7c53873e0b91a0c3d848d68` |
+| `dataset.parquet` | 1890 rows × 40 columns | `ffa54c448f4de7c480cc6674edb35773520920cb65c9e7eb69d0d0113fb7a71c` |
+| `dataset.jsonl` | the same rows, one JSON object per line | `a3c5c4abed5e583e5a5342fb66efa5a8dff1214ef5c3d20be24c952fd25fc0c0` |
+| `schema.json` | JSON Schema 2020-12 for the record type, generated from the pydantic models in `mnp.schema.models` | `bb28b3a5029452a5649ad6e574daa9daf6ca7daded71a4d7d7cb5f2490278cc3` |
 | `DATASET_CARD.md` | this file | — |
 
 The parquet and the JSONL carry identical content; the two formats exist so the dataset can be read without pandas. `schema.json` describes the nested record the extraction produces, of which the flat table here is one row per measurement.
@@ -24,7 +24,7 @@ The parquet and the JSONL carry identical content; the two formats exist so the 
 | rows (one surface measurement each) | 1890 |
 | papers | 491 |
 | distinct `material` values | 151 |
-| columns | 39 |
+| columns | 40 |
 | rows carrying a printed number | 1384 |
 | rows reporting a measurement with no retrievable number | 506 |
 | **fully conditioned rows** (`conditions_complete`) | **62 / 1890 — 3.3 %** |
@@ -63,6 +63,12 @@ This makes one query answerable that a text index cannot answer: *what ionic str
 `evidence_quote` may join several passages with ` || `, because the value and its conditions are routinely sections apart — the number in Results or a table, the ionic strength in Methods. `evidence_location` names each.
 
 **Read the limit with the number.** Verbatim means the quote exists in the article. It does not mean the value was read from it correctly; that is what the extraction scores below measure, and they are provisional.
+
+## Where each quote sits in the paper
+
+`evidence_line_ids` carries **1890 / 1890 — 100.0 %** of rows, 3899 citations in all. A citation is a 16-character prefix of the SHA-256 of a line's section path, its ordinal within that section, and its normalised text — deliberately not the line number, so that a later fix to the parser which shifts numbering does not invalidate a stored address.
+
+The ids are semicolon-joined, flat, in the order the passages appear in `evidence_quote`. The grouping back onto ` || ` passages is not stored because it is recoverable: the quote is here, and re-running the locator reproduces it. An empty value means the row carries a flag saying why, and no row is silently left without one.
 
 ## Paper-level denominators
 
@@ -160,7 +166,7 @@ Note the last two rows. A non-commercial or no-derivatives term on a source arti
 | particle | `particle_name`, `material`, `functionalisation`, `supplier`, `size_nominal_nm`, `size_measured_nm` |
 | conditions | `medium_text`, `medium_class`, `ionic_strength_mM`, `pH`, `pH_text`, `temperature_C`, `temperature_qualifier`, `instrument` |
 | absence | `medium_reported`, `ionic_strength_reported`, `pH_reported`, `temperature_reported`, `instrument_reported`, `conditions_complete`, `ionic_strength_source`, `medium_matches_exposure` |
-| evidence | `evidence_quote`, `evidence_location`, `evidence_verified` |
+| evidence | `evidence_quote`, `evidence_location`, `evidence_verified`, `evidence_line_ids` |
 | provenance | `model`, `prompt_sha256`, `flags` |
 
 ## How to rebuild this

@@ -80,7 +80,10 @@ COLUMN_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
             "medium_matches_exposure",
         ),
     ),
-    ("evidence", ("evidence_quote", "evidence_location", "evidence_verified")),
+    (
+        "evidence",
+        ("evidence_quote", "evidence_location", "evidence_verified", "evidence_line_ids"),
+    ),
     ("provenance", ("model", "prompt_sha256", "flags")),
 )
 
@@ -193,6 +196,9 @@ def facts(
     verified = _true(table, "evidence_verified")
     complete = _true(table, "conditions_complete")
     printed = int(table["value"].notna().sum()) if "value" in table else 0
+    cites = table["evidence_line_ids"].dropna() if "evidence_line_ids" in table else None
+    cited = int(len(cites)) if cites is not None else 0
+    n_citations = int(cites.str.split(";").map(len).sum()) if cited else 0
     prompts = sorted(table["prompt_sha256"].dropna().unique()) if "prompt_sha256" in table else []
     models = sorted(table["model"].dropna().unique()) if "model" in table else []
     return {
@@ -201,6 +207,8 @@ def facts(
         "materials": int(table["material"].nunique()) if "material" in table else 0,
         "columns": list(table.columns),
         "rows_verified": verified,
+        "rows_cited": cited,
+        "n_citations": n_citations,
         "rows_complete": complete,
         "rows_printed": printed,
         "rows_not_printed": n - printed,
@@ -357,6 +365,7 @@ def _absence_section(f: dict) -> list[str]:
 
 def _evidence_section(f: dict) -> list[str]:
     n, v = f["rows"], f["rows_verified"]
+    cited, ncite = f["rows_cited"], f["n_citations"]
     return [
         "## Every quote is verbatim",
         "",
@@ -372,6 +381,20 @@ def _evidence_section(f: dict) -> list[str]:
         "**Read the limit with the number.** Verbatim means the quote exists in the article. "
         "It does not mean the value was read from it correctly; that is what the extraction "
         "scores below measure, and they are provisional.",
+        "",
+        "## Where each quote sits in the paper",
+        "",
+        f"`evidence_line_ids` carries **{_kn(cited, n)}** of rows, {ncite} citations in all. "
+        "A citation is a 16-character prefix of the SHA-256 of a line's section path, its "
+        "ordinal within that section, and its normalised text — deliberately not the line "
+        "number, so that a later fix to the parser which shifts numbering does not "
+        "invalidate a stored address.",
+        "",
+        "The ids are semicolon-joined, flat, in the order the passages appear in "
+        "`evidence_quote`. The grouping back onto ` || ` passages is not stored because it "
+        "is recoverable: the quote is here, and re-running the locator reproduces it. An "
+        "empty value means the row carries a flag saying why, and no row is silently left "
+        "without one.",
         "",
     ]
 
@@ -466,9 +489,7 @@ def _licence_section(f: dict) -> list[str]:
         ]
         for code, count in sorted(lic["by_code"].items(), key=lambda kv: -kv[1]):
             lines.append(f"| CC {code.upper()} | {count} |")
-        lines.append(
-            f"| no Creative Commons URL in the statement | {lic['without_cc_url']} |"
-        )
+        lines.append(f"| no Creative Commons URL in the statement | {lic['without_cc_url']} |")
         lines.append(f"| no licence statement at all | {lic['without_statement']} |")
         lines += [
             "",
@@ -535,8 +556,7 @@ def _files_section(digests: dict[str, str], rows: int, columns: int) -> list[str
         "",
         "| file | what it is | sha256 |",
         "|---|---|---|",
-        f"| `dataset.parquet` | {rows} rows × {columns} columns | "
-        f"`{digests['dataset.parquet']}` |",
+        f"| `dataset.parquet` | {rows} rows × {columns} columns | `{digests['dataset.parquet']}` |",
         f"| `dataset.jsonl` | the same rows, one JSON object per line | "
         f"`{digests['dataset.jsonl']}` |",
         "| `schema.json` | JSON Schema 2020-12 for the record type, generated from the "

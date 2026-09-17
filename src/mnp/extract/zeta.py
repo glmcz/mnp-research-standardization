@@ -584,6 +584,11 @@ class ExtractionRecord:
                     "evidence_quote": m.evidence.quote if m.evidence else None,
                     "evidence_location": m.evidence.location if m.evidence else None,
                     "evidence_verified": bool(m.evidence and m.evidence.verified),
+                    "evidence_line_ids": (
+                        ";".join(m.evidence.line_ids)
+                        if m.evidence and m.evidence.line_ids
+                        else None
+                    ),
                     "flags": ";".join(flags),
                     "model": self.model,
                     "prompt_sha256": self.prompt_sha256,

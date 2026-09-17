@@ -113,6 +113,19 @@ class Evidence(BaseModel):
         default=False,
         description="True only once the quote was found as a substring of the article text.",
     )
+    line_ids: tuple[str, ...] | None = Field(
+        default=None,
+        description=(
+            "Where the quote lives in the line-addressed document, as corpus.lines line "
+            "ids — the hash of (section path, ordinal, text), never the line number, so a "
+            "parser fix that renumbers the document leaves the citation standing. Flat and "
+            "in passage order rather than grouped per '||' passage: the grouping is "
+            "recoverable from the quote at any time with lines.locate_parts, so nothing is "
+            "lost by keeping the field a plain list. None means the quote was never "
+            "resolved, or resolved to nothing — in which case the row carries a flag "
+            "saying which."
+        ),
+    )
 
 
 class MeasurementConditions(BaseModel):

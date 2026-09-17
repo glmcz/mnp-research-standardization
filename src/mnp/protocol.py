@@ -267,6 +267,29 @@ STEPS: tuple[Step, ...] = (
         phase="Extraction",
     ),
     Step(
+        command="extract retrofit",
+        purpose=(
+            "Gives every stored evidence quote the line address it already implies, without "
+            "re-reading a paper or calling a model: each quote was verified verbatim against "
+            "the article, so it locates in the line-addressed document by substring, and what "
+            "is stored is the line id — the hash of (section path, ordinal, text) — so a later "
+            "parser fix that renumbers the document leaves the citation standing. A one-off "
+            "migration rather than a replay step, because an offline replay must not write to "
+            "the record it is checking; --dry-run reports and writes nothing. The quote guard "
+            "searched the whole article while the line document mirrors extraction_text, a "
+            "subset of it, so a quote can be genuine and still fail to locate: those rows keep "
+            "no ids, gain an evidence_not_located flag and are named in the output. Nothing is "
+            "dropped — the count of what did not locate is the measurement."
+        ),
+        inputs="extractions.jsonl, data/raw/epmc/xml/",
+        outputs="evidence.line_ids on each record, rebuilt zeta_table.parquet",
+        kind=D,
+        idempotent=True,
+        network=False,
+        invalidated_by="a parser change that alters section paths, ordinals or line text",
+        phase="Extraction",
+    ),
+    Step(
         command="extract review-measurand",
         purpose=(
             "Lists papers where the thing measured may not have been the plastic — particles "

@@ -56,6 +56,22 @@
           "description": "True only once the quote was found as a substring of the article text.",
           "title": "Verified",
           "type": "boolean"
+        },
+        "line_ids": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Where the quote lives in the line-addressed document, as corpus.lines line ids \u2014 the hash of (section path, ordinal, text), never the line number, so a parser fix that renumbers the document leaves the citation standing. Flat and in passage order rather than grouped per '||' passage: the grouping is recoverable from the quote at any time with lines.locate_parts, so nothing is lost by keeping the field a plain list. None means the quote was never resolved, or resolved to nothing \u2014 in which case the row carries a flag saying which.",
+          "title": "Line Ids"
         }
       },
       "required": [

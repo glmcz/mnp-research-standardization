@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 
 from mnp import config, runs
-from mnp.corpus import jats
+from mnp.corpus import jats, lines
 from mnp.extract import evaluate, llm, measurand, prompts, provenance, units, zeta
 
 YEAR_BANDS = (("<=2018", -1, 2018), ("2019-2022", 2019, 2022), ("2023-2026", 2023, 2100))
@@ -390,6 +390,101 @@ def cmd_recount(args: argparse.Namespace) -> int:
     return 0
 
 
+# The two ways a stored quote fails to become a citation. Kept apart because they are
+# different facts: one says the line document does not contain this quote, the other says
+# there was no line document to look in.
+NOT_LOCATED = "evidence_not_located"
+NO_DOCUMENT = "line_document_unavailable"
+_RETROFIT_FLAGS = (NOT_LOCATED, NO_DOCUMENT)
+
+
+def _cite(doc: lines.LinedDoc | None, quote: str) -> tuple[tuple[str, ...] | None, str | None]:
+    """The line ids a stored quote resolves to, or the flag naming why there are none.
+
+    Hashes, not line numbers: a `line_id` keys on (section path, ordinal, text), so a
+    parser fix that renumbers the document leaves a stored citation pointing at the same
+    line. A quote whose passages do not all resolve gets no ids at all — a partial
+    citation is worse than none, because it reads as complete.
+    """
+    if doc is None or not doc.lines:
+        return None, NO_DOCUMENT
+    parts = lines.locate_parts(doc, quote)
+    if not parts or not all(parts):
+        return None, NOT_LOCATED
+    return tuple(lines.resolve(doc, n).line_id for n in lines.locate(doc, quote)), None
+
+
+def cmd_retrofit(args: argparse.Namespace) -> int:
+    """Give every stored quote the line address it already implies. No model, no re-read.
+
+    These rows were extracted before line citation existed, but the address is recoverable:
+    each quote was verified verbatim against the article, so it locates in the line-addressed
+    document by substring. This writes that address onto the record.
+
+    A one-off migration, deliberately outside the replay: `report reproduce` refuses a run
+    that writes to the record it is checking. Re-running is safe and changes nothing — the
+    ids are a function of the article and the quote, never of the last run, which is why a
+    row that now locates also loses a stale flag.
+
+    The gap being measured: the guard that accepted these quotes searched
+    `article.full_text`, while the line document mirrors `jats.extraction_text`, a subset of
+    it. A quote can therefore be genuine and still fail to locate. Those rows keep no ids,
+    gain a flag and are named here; none is dropped, because the whole point of the count is
+    to see that difference rather than absorb it.
+    """
+    path = _jsonl_path()
+    with _locked(path):
+        done = _load_records(path)
+        counts = dict.fromkeys(("located", "not_located", "no_document", "no_quote", "changed"), 0)
+        no_xml: list[str] = []
+        no_text: list[str] = []
+        named: dict[str, list[str]] = {flag: [] for flag in _RETROFIT_FLAGS}
+        for pmcid, rec in done.items():
+            article = _article(pmcid)
+            doc = lines.build_lines(article) if article is not None else None
+            if doc is None:
+                no_xml.append(f"{pmcid}({len(rec.measurements)})")
+            elif not doc.lines:
+                no_text.append(f"{pmcid}({len(rec.measurements)})")
+            for m, flags in zip(rec.measurements, rec.row_flags, strict=True):
+                quote = m.evidence.quote if m.evidence else ""
+                if not quote:
+                    counts["no_quote"] += 1
+                    continue
+                ids, flag = _cite(doc, quote)
+                keep = [f for f in flags if f not in _RETROFIT_FLAGS]
+                if flag:
+                    keep.append(flag)
+                    counts["not_located" if flag == NOT_LOCATED else "no_document"] += 1
+                    named[flag].append(m.row_id or pmcid)
+                else:
+                    counts["located"] += 1
+                if m.evidence.line_ids != ids or keep != flags:
+                    counts["changed"] += 1
+                if not args.dry_run:
+                    m.evidence.line_ids = ids
+                    flags[:] = keep
+        if not args.dry_run:
+            _rewrite(path, done)
+            _write_table(done, quiet=True)
+    total = sum(counts[k] for k in ("located", "not_located", "no_document", "no_quote"))
+    print(f"retrofit{' (DRY RUN — nothing written)' if args.dry_run else ''}: "
+          f"{len(done)} records, {total} rows")  # fmt: skip
+    print(f"  located: {counts['located']} ({counts['changed']} changed)")
+    print(f"  not located: {counts['not_located']}")
+    print(f"  no line document: {counts['no_document']}")
+    print(f"  no quote: {counts['no_quote']}")
+    print(f"  papers: {len(done)} read, {len(no_xml)} with no XML, {len(no_text)} with no text")
+    for label, papers in (("no XML", no_xml), ("no retrievable text", no_text)):
+        if papers:
+            shown = ", ".join(papers[:25]) + (" …" if len(papers) > 25 else "")
+            print(f"  papers with {label} (rows carried in brackets): {shown}")
+    for flag, rows in named.items():
+        for row_id in rows:
+            print(f"  {flag}: {row_id}")
+    return 0
+
+
 def cmd_review_list(args: argparse.Namespace) -> int:
     """List the papers the extraction skips, so the skip is reviewable rather than silent.
 
@@ -618,6 +713,13 @@ def main(argv: list[str] | None = None) -> int:
         help="report stale coverage numbers and exit 1, without writing to the record",
     )
     rc.set_defaults(fn=cmd_recount)
+    rf = sub.add_parser("retrofit")
+    rf.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="report what would change and write nothing",
+    )
+    rf.set_defaults(fn=cmd_retrofit)
     sub.add_parser("table").set_defaults(fn=cmd_table)
     sub.add_parser("review-measurand").set_defaults(fn=cmd_review_measurand)
     rl = sub.add_parser("review-list")

@@ -144,6 +144,34 @@ def run_d4(args: argparse.Namespace) -> list[Path]:
     return d4.build(tables, figures)
 
 
+def run_release(args: argparse.Namespace) -> list[Path]:
+    """The vanilla dataset release: parquet + JSONL + schema + card, from d1's own table.
+
+    It reads the table out of the requested output root rather than out of `data/processed`,
+    so a replay releases what that replay rebuilt and not what happens to be committed.
+    """
+    from mnp.report import release
+
+    root, tables, _, _ = _out(args)
+    table_path, stats_path = tables / "d1_zeta_table.csv", tables / "d1_stats.json"
+    if not (table_path.is_file() and stats_path.is_file()):
+        print(f"release: {table_path} or d1_stats.json missing — run `report d1` first",
+              file=sys.stderr)  # fmt: skip
+        return []
+    articles_path = config.DATA_INTERIM / "articles.parquet"
+    gold_path = config.ANNOTATION / "gold_50.csv"
+    xml_dir = config.EPMC_XML_DIR
+    return release.build(
+        pd.read_csv(table_path),
+        json.loads(stats_path.read_text()),
+        root / "release",
+        articles=pd.read_parquet(articles_path) if articles_path.is_file() else None,
+        gold=pd.read_csv(gold_path) if gold_path.is_file() else None,
+        corpus_archive=xml_dir.parent / "xml.tar.gz",
+        corpus_manifest=xml_dir.parent / "manifest.sha256",
+    )
+
+
 def _tracked_artefacts(root: Path) -> list[str] | None:
     """The committed artefacts, as git knows them. None when this is not a checkout."""
     import subprocess
@@ -286,6 +314,8 @@ RUNNERS = {
     "d2": run_d2,
     "d3": run_d3,
     "d4": run_d4,
+    # Last: it reads the table d1 wrote into the same output root.
+    "release": run_release,
 }
 
 

@@ -1,0 +1,827 @@
+{
+  "$defs": {
+    "Environment": {
+      "additionalProperties": false,
+      "properties": {
+        "matrix_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Matrix Text"
+        },
+        "matrix_class": {
+          "$ref": "#/$defs/MatrixClass",
+          "checklist_label": "Environmental matrix",
+          "checklist_why": "Drinking water and fresh water are different exposure media.",
+          "default": "unreported",
+          "required_for_reporting": true,
+          "x-ontology": {
+            "drinking_water": "ENVO:00003064",
+            "fresh_water": "ENVO:00002011"
+          }
+        }
+      },
+      "title": "Environment",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "quote": {
+          "description": "Verbatim sentence from the article.",
+          "title": "Quote",
+          "type": "string"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Section and paragraph.",
+          "title": "Location"
+        },
+        "verified": {
+          "default": false,
+          "description": "True only once the quote was found as a substring of the article text.",
+          "title": "Verified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "quote"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "MatrixClass": {
+      "enum": [
+        "drinking_water",
+        "fresh_water",
+        "seawater",
+        "sediment",
+        "soil",
+        "biological_tissue",
+        "air",
+        "other",
+        "unreported"
+      ],
+      "title": "MatrixClass",
+      "type": "string"
+    },
+    "MeasurementConditions": {
+      "additionalProperties": false,
+      "description": "The five conditions without which a zeta potential means nothing.",
+      "properties": {
+        "medium_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Dispersion medium, as composed",
+          "checklist_why": "A zeta potential is a property of the particle *and* its medium.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Medium Text"
+        },
+        "medium_class": {
+          "$ref": "#/$defs/MediumClass",
+          "default": "unreported"
+        },
+        "ionic_strength_mM": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Ionic strength (mM)",
+          "checklist_why": "Sets the Debye length; without it the mobility curve has no x-axis.",
+          "default": null,
+          "description": "Total ionic strength in mmol/L. Deliberately unmapped: no ontology term exists for ionic strength in ENM/NPO/CHMO/ENVO.",
+          "required_for_reporting": true,
+          "title": "Ionic Strength Mm"
+        },
+        "ionic_strength_source": {
+          "$ref": "#/$defs/ValueSource",
+          "default": "unreported"
+        },
+        "pH": {
+          "anyOf": [
+            {
+              "maximum": 15,
+              "minimum": -1,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "pH",
+          "checklist_why": "Sets the dissociation of surface groups.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Ph"
+        },
+        "pH_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Verbatim pH when it is not a single number, e.g. 'between 6.8 and 7.2'.",
+          "title": "Ph Text"
+        },
+        "temperature_C": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Temperature (\u00b0C)",
+          "checklist_why": "Enters \u03b5, \u03b7 and kT in every model.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Temperature C"
+        },
+        "temperature_qualifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Verbatim non-numeric temperature, e.g. 'room temperature'.",
+          "title": "Temperature Qualifier"
+        },
+        "instrument": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Instrument and model",
+          "checklist_why": "Different instruments apply different mobility-to-zeta conversions.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Instrument"
+        },
+        "instrument_settings": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Instrument Settings"
+        }
+      },
+      "title": "MeasurementConditions",
+      "type": "object"
+    },
+    "MediumClass": {
+      "enum": [
+        "DI_water",
+        "buffer",
+        "salt_solution",
+        "culture_medium",
+        "biofluid",
+        "environmental_water",
+        "other",
+        "unreported"
+      ],
+      "title": "MediumClass",
+      "type": "string"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "description": "The minimum provenance the expert transcripts demand (section 7).\n\nNo existing ontology encodes this block; that gap is the contribution.",
+      "properties": {
+        "matrix": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Matrix"
+        },
+        "digestion_chemistry": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Digestion chemistry",
+          "checklist_why": "KOH dissolves polymers below ~100 nm; proteinase K does not.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Digestion Chemistry"
+        },
+        "digestion_temperature_C": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Digestion Temperature C"
+        },
+        "digestion_duration_h": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Digestion Duration H"
+        },
+        "separation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Separation"
+        },
+        "instrument": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Instrument"
+        },
+        "modality": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Modality"
+        },
+        "spatial_floor_um": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Spatial floor (\u00b5m)",
+          "checklist_why": "What the optics could not have seen.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Spatial Floor Um"
+        },
+        "size_resolved_lod": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Size-resolved limit of detection",
+          "checklist_why": "A single LOD hides the fact that it varies with size.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Size Resolved Lod"
+        },
+        "sampling_time": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sampling Time"
+        },
+        "spectral_library": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Spectral Library"
+        },
+        "match_threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Match Threshold"
+        },
+        "spiked_natural_material_control": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Spiked natural-material false-positive control",
+          "checklist_why": "The only control that catches pigment-as-polymer assignments.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Spiked Natural Material Control"
+        },
+        "procedural_blanks": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Procedural blanks",
+          "checklist_why": "Reported, not silently subtracted.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Procedural Blanks"
+        },
+        "morphology_class_calibrated": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Morphology Class Calibrated"
+        }
+      },
+      "title": "Provenance",
+      "type": "object"
+    },
+    "Quantity": {
+      "enum": [
+        "zeta_potential",
+        "electrophoretic_mobility"
+      ],
+      "title": "Quantity",
+      "type": "string"
+    },
+    "SizeMethod": {
+      "enum": [
+        "visual_sorting",
+        "ftir_atr",
+        "ftir_imaging",
+        "raman_imaging",
+        "py_gcms",
+        "sem_eds",
+        "tem",
+        "afm",
+        "dls",
+        "nta",
+        "unreported"
+      ],
+      "title": "SizeMethod",
+      "type": "string"
+    },
+    "SizeRange": {
+      "additionalProperties": false,
+      "description": "A study's reported size window and what its method could actually see.",
+      "properties": {
+        "min_um": {
+          "checklist_label": "Lower size limit (\u00b5m)",
+          "checklist_why": "The single largest driver of a reported concentration.",
+          "exclusiveMinimum": 0,
+          "required_for_reporting": true,
+          "title": "Min Um",
+          "type": "number"
+        },
+        "max_um": {
+          "exclusiveMinimum": 0,
+          "title": "Max Um",
+          "type": "number"
+        },
+        "method": {
+          "$ref": "#/$defs/SizeMethod",
+          "checklist_label": "Sizing / identification method",
+          "checklist_why": "Each method has its own detection floor.",
+          "default": "unreported",
+          "required_for_reporting": true
+        }
+      },
+      "required": [
+        "min_um",
+        "max_um"
+      ],
+      "title": "SizeRange",
+      "type": "object"
+    },
+    "Study": {
+      "additionalProperties": false,
+      "properties": {
+        "pmcid": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pmcid"
+        },
+        "doi": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Doi"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Title"
+        },
+        "year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Year"
+        },
+        "journal": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Journal"
+        }
+      },
+      "title": "Study",
+      "type": "object"
+    },
+    "SurfaceBlock": {
+      "additionalProperties": false,
+      "description": "All surface measurements for one study.\n\nOne value is a point, not a surface. `is_titration` is the schema's answer to\n\"can this paper's particle be placed on a curve?\".",
+      "properties": {
+        "measurements": {
+          "items": {
+            "$ref": "#/$defs/SurfaceMeasurement"
+          },
+          "title": "Measurements",
+          "type": "array"
+        }
+      },
+      "title": "SurfaceBlock",
+      "type": "object"
+    },
+    "SurfaceMeasurement": {
+      "additionalProperties": false,
+      "description": "One reported zeta potential or electrophoretic mobility, with its conditions.",
+      "properties": {
+        "row_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Row Id"
+        },
+        "particle_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Particle Name"
+        },
+        "material": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Polymer / material",
+          "checklist_why": "Sets \u03b5, density and chemistry.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Material"
+        },
+        "functionalisation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Surface functionalisation",
+          "checklist_why": "COOH, NH2 and bare latex are different particles at the same nominal size.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Functionalisation"
+        },
+        "supplier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Supplier"
+        },
+        "size_nominal_nm": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Size Nominal Nm"
+        },
+        "size_measured_nm": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "checklist_label": "Measured hydrodynamic size (nm)",
+          "checklist_why": "Nominal size is the supplier's claim, not a measurement.",
+          "default": null,
+          "required_for_reporting": true,
+          "title": "Size Measured Nm",
+          "x-ontology": {
+            "term": "NPO:1914"
+          }
+        },
+        "size_method": {
+          "$ref": "#/$defs/SizeMethod",
+          "default": "unreported"
+        },
+        "quantity": {
+          "$ref": "#/$defs/Quantity",
+          "checklist_label": "Quantity measured",
+          "checklist_why": "Mobility is measured; zeta is a model-dependent conversion of it.",
+          "required_for_reporting": true,
+          "x-ontology": {
+            "electrophoretic_mobility": "NPO:1315",
+            "zeta_potential": "ENM:0000092"
+          }
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The printed number. None when only a range or a figure exists.",
+          "title": "Value"
+        },
+        "value_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Verbatim value when it is not a single number: '-5 to -14', 'not printed'.",
+          "title": "Value Text"
+        },
+        "unit": {
+          "$ref": "#/$defs/Unit"
+        },
+        "sd": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sd"
+        },
+        "n": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "N"
+        },
+        "conditions": {
+          "$ref": "#/$defs/MeasurementConditions"
+        },
+        "medium_matches_exposure": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Was the zeta measured in the same medium the exposure/experiment used?",
+          "title": "Medium Matches Exposure"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Evidence"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "quantity",
+        "unit"
+      ],
+      "title": "SurfaceMeasurement",
+      "type": "object"
+    },
+    "Unit": {
+      "enum": [
+        "mV",
+        "um_cm_per_Vs"
+      ],
+      "title": "Unit",
+      "type": "string"
+    },
+    "ValueSource": {
+      "enum": [
+        "reported",
+        "inferred_from_named_salt",
+        "unreported"
+      ],
+      "title": "ValueSource",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Minimum multiparametric characterisation record for a micro- or nanoplastic study. Completeness is computed by consumers, not enforced here: an incomplete record is valid and is exactly what D1 counts.",
+  "properties": {
+    "study": {
+      "$ref": "#/$defs/Study"
+    },
+    "size_range": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SizeRange"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "surface": {
+      "$ref": "#/$defs/SurfaceBlock"
+    },
+    "environment": {
+      "$ref": "#/$defs/Environment"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    }
+  },
+  "title": "MNP characterisation record",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nanosolve.org/schema/mnp_characterisation.schema.json"
+}

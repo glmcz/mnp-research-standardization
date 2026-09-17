@@ -558,6 +558,27 @@ STEPS: tuple[Step, ...] = (
         phase="Deliverables",
     ),
     Step(
+        command="report release",
+        purpose=(
+            "Packages the table D1 wrote as a citable dataset: the same rows as parquet and as "
+            "JSONL, the JSON Schema re-exported from the pydantic models rather than copied, and "
+            "a dataset card. Every statistic on the card is computed during the build from the "
+            "table and from d1_stats.json, so a rebuild moves the numbers instead of leaving a "
+            "stale one behind; the build refuses outright when the stats file no longer describes "
+            "the table beside it. The card states what has not been established as plainly as "
+            "what has — the gold set is unaudited, the licence is undecided, prompt provenance is "
+            "coarse, and the corpus is one database."
+        ),
+        inputs="out/tables/d1_zeta_table.csv, out/tables/d1_stats.json, articles.parquet, "
+        "gold_50.csv, the vendored corpus manifest",
+        outputs="out/release/{dataset.parquet,dataset.jsonl,schema.json,DATASET_CARD.md}",
+        kind=D,
+        idempotent=True,
+        network=False,
+        invalidated_by="any change to the D1 table, the schema models or the gold set",
+        phase="Deliverables",
+    ),
+    Step(
         command="infer mcmc",
         purpose=(
             "Runs a seeded emcee posterior for each complete row of the printed-fit bank, on that "

@@ -3,6 +3,14 @@
 Written 2026-09-13. Everything below was read back out of the repository; where a number
 could not be verified it says so.
 
+**Superseded in part by `SESSION_2026-09-15_INDEPENDENCE_AND_SWEEP.md` — read that one
+first.** It covers independence (the repo now stands alone and is offline-reproducible), a
+generated protocol, a per-stage evaluation harness, rule S8 on what counts as a plastic
+measurement, and the corpus re-read that is currently ~30% done (134/468 records re-traced to
+a brief as of 2026-09-15). The counts below (498 papers, 1910 rows, P 0.68/R 0.74 on
+temperature) are the **pre-sweep** numbers; the current ones are in the newer file and move
+with every wave.
+
 **Read this first, then `SESSION_2026-09-13_RULES.md`** (the three judgement rules Martin
 ratified, what they cost, and why the table below is the pre-rules reading), **then
 `docs/ARCHITECTURE_PLAN.md`.** The service is two things at once: a

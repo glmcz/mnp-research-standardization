@@ -203,3 +203,73 @@ It is right, and it is one of two right answers. Grouping by identical citation 
 **10 sets / 44 rows**; grouping by any shared individual **line** gives **16 lines / 69 rows**.
 The first is a subset of the second. Both were re-derived here. Say which grouping is meant
 whenever the number is quoted.
+
+---
+
+## Card 2 — two extraction defects found by the shared-citation investigation
+
+Submitted 2026-09-18. Awaiting both verdicts.
+
+```
+STEP:       Two corrections, same 4 rows, same blast radius.
+
+            (a) PMC13181784-r3 and -r4 store ionic_strength_mM = 56 and 398. Those are
+                the paper's critical coagulation concentrations, not the conditions the
+                mobility was measured at. Set them unreported and record the ruling.
+
+            (b) parse_ionic_strength (src/mnp/extract/coerce.py:292-337) cannot read a
+                salt concentration written in mg/L and drops the term in SILENCE.
+                PMC12598813-r13/-r14 therefore store 10.0 mM from the HEPES term alone
+                while the NaCl and KCl terms vanish. Make the drop audible: a flag, not
+                a shrug. Do not start parsing mg/L — that needs a molar mass and is a
+                separate decision.
+
+WHY:        (a) is a result presented as a condition, which is the measurand error class
+            this project keeps re-finding. The paper is unambiguous: "The CCCs were 56
+            and 398 mM for NPL(+) and NPL(-), respectively" — read from full_text, and
+            the two rows differ by particle exactly as that sentence pairs them. The
+            cited line contains no number at all.
+
+            (b) is worse than a wrong number because it is an invisible one. The brief's
+            rule "a named salt at a stated concentration counts" is satisfied by the
+            text, so nothing looks wrong. Standing rule: absence is a value, not a gap.
+            A term that was read and discarded is neither.
+
+FILES:      src/mnp/extract/coerce.py — parse_ionic_strength :292-337
+            tests/extract/test_coerce.py
+            tests/edge/key.yaml — the ruling for (a)
+            docs/briefs/extraction.md — if the ruling changes what a worker is told
+            data/interim/extractions.jsonl + the out/ artefacts it rebuilds
+
+TOKENS:     ~0 at runtime; both halves are deterministic. ~60 k for these two reviews.
+            78 rows corpus-wide name a mg/L or ppm concentration in medium_text; all but
+            the two above already read unreported, so (b)'s blast radius is 2 rows now
+            and a flag on the rest.
+
+FAILS IF:   conditions_complete moves off 62/1890 (none of the 4 rows is complete, so it
+            must not move at all); OR ionic_strength_reported moves by anything other
+            than exactly the rows named here; OR any row GAINS an ionic strength it did
+            not have, which would mean (b) started imputing rather than flagging.
+
+ABSTRACT:   "To ensure comparability across studies, it is necessary to account for
+            particle size ranges and analytical method limits, surface properties,
+            measurement conditions, and environmental parameters."
+
+PLAN:       DESIGN_2026-09-17_tool-value-grid.md §5 item 2 — the dataset release. These
+            are correctness defects in the artefact that ships, surfaced by
+            docs/FINDINGS_44_shared_citations.md §6. Not a new workstream.
+```
+
+**Measured blast radius, before asking:**
+
+| figure | now | if all 4 rows drop their ionic strength |
+|---|---|---|
+| `ionic_strength_reported` | 269 / 1890 = **14.2 %** | 265 / 1890 = **14.0 %** |
+| `conditions_complete` (the headline) | 62 / 1890 = **3.3 %** | **unchanged — none of the 4 is complete** |
+
+`14.2 %` is published in the committed `out/release/DATASET_CARD.md`. It moves. That is why
+this is a card and not a quiet fix, even though the fix makes the number *more* correct rather
+than more flattering.
+
+**Callers named by grep, not memory**, per Card 1's lesson: `parse_ionic_strength` is called
+from `src/mnp/extract/coerce.py` only — to be re-verified by the reviewers, not taken from here.

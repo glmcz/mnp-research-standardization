@@ -2,11 +2,12 @@
 
 Three independent checks stand between the model and the statistics:
 - `coerce` parses every number deterministically (tested in test_coerce.py);
-- `verify_row` requires the quoted evidence to be a substring of the article,
-  the value to appear in that quote, and every reported condition to appear both
-  in the article and in the row's own evidence — a condition supported only
-  elsewhere in the paper was carried across experiments, which is an inference,
-  not a reading (Martin's scope rule, 2026-09-13);
+- `verify_row` checks the value against the *line* the row cites and every reported
+  condition against the *quote*, and the two scopes differ on purpose: the worker writes
+  the quote and can trim it until its own number passes, whereas a line is the paper's;
+  but a line is a whole paragraph, so a condition supported only elsewhere in that
+  paragraph was carried across experiments, which is an inference, not a reading
+  (Martin's scope rule, 2026-09-13). A condition must also appear in the article;
 - `find_candidates` locates every printed zeta/mobility number by regex, so
   recall can be estimated per paper without a gold set.
 """
@@ -17,7 +18,7 @@ import json
 import re
 from dataclasses import asdict, dataclass, field
 
-from mnp.corpus import jats
+from mnp.corpus import jats, lines
 from mnp.extract import coerce, prompts, units
 from mnp.extract.llm import LLMClient, LLMError, ParseError
 from mnp.schema import models
@@ -412,8 +413,55 @@ def _number_in(value: float, text: str) -> bool:
     return False
 
 
-def verify_row(m: SurfaceMeasurement, full_text: str) -> list[str]:
-    """Flags for anything the article does not support. Mutates m.evidence.verified."""
+def _cited_runs(doc: lines.LinedDoc, ev: models.Evidence) -> list[str]:
+    """The lines this row cites, folded, one string per run of *consecutive* lines.
+
+    Contiguity is what keeps the guard a guard. `lines._match` answers a passage with every
+    line each of its newline-separated fragments hits, which is right for a locator and
+    would be wrong here: case 4 of `verify_adversarial.json` glues a table header to a
+    distant row and lands on lines 1 and 3. Cutting the citation at every gap in the
+    numbering means a passage has to sit inside one uninterrupted stretch of the paper.
+
+    Measured before it was written, so that the rule separates the fabrication from the
+    legitimate case rather than merely excluding both: all 16 stored rows whose quote
+    carries a literal newline — a caption plus the table rows beneath it — span consecutive
+    lines, and the fabricated one does not.
+
+    A row with no stored citation is located from its quote. That is the state every row is
+    in at extraction time, before `extract retrofit` writes the address down.
+    """
+    cited = {ln.n for ident in ev.line_ids or () if (ln := lines.resolve_id(doc, ident))}
+    runs: list[list[int]] = []
+    for n in sorted(cited) if cited else sorted(set(lines.locate(doc, ev.quote))):
+        if runs and n == runs[-1][-1] + 1:
+            runs[-1].append(n)
+        else:
+            runs.append([n])
+    return [" ".join(_norm(doc.lines[n - 1].text) for n in run) for run in runs]
+
+
+def verify_row(
+    m: SurfaceMeasurement, full_text: str, doc: lines.LinedDoc | None = None
+) -> list[str]:
+    """Flags for anything the article does not support. Mutates m.evidence.verified.
+
+    The halves of this check read different haystacks, and the difference is deliberate:
+
+    - **the value, and whether the evidence exists at all, are checked against the lines
+      the row cites.** The worker writes the quote and is then judged on it, so trimming it
+      until the guard passes works, and five sweep workers did exactly that. A line belongs
+      to the paper, not to the worker, and holds nothing to trim.
+    - **every condition is checked against the quote** — Martin's scope rule of 2026-09-13,
+      unchanged. A line is a paragraph and routinely covers several experiments: 16 lines in
+      the committed table are cited by rows at more than one ionic strength, 69 rows in all,
+      the widest line spanning 0.1 to 100 mM. The sentence stays the unit within which a
+      condition is established, or a condition read from the experiment next door reads as
+      this row's own.
+
+    `doc` is optional because a caller may have only a string: the adversarial fixture in
+    `eval.stages` is text, not an article. Without it the value and the quote are checked
+    as they were before line citation existed.
+    """
     flags: list[str] = []
     text = _norm(full_text)
     if m.evidence is None or not m.evidence.quote:
@@ -422,13 +470,19 @@ def verify_row(m: SurfaceMeasurement, full_text: str) -> list[str]:
     else:
         quote = _norm(m.evidence.quote)
         parts = [p.strip() for p in quote.split("||") if p.strip()]
-        m.evidence.verified = bool(parts) and all(p in text for p in parts)
+        if doc is None or not doc.lines:
+            m.evidence.verified = bool(parts) and all(p in text for p in parts)
+            cited = quote
+        else:
+            runs = _cited_runs(doc, m.evidence)
+            m.evidence.verified = bool(parts) and all(any(p in r for r in runs) for p in parts)
+            cited = " ".join(runs)
         if not m.evidence.verified:
             flags.append("evidence_unverified")
         if m.value is not None:
-            if not _number_in(m.value, quote):
+            if not _number_in(m.value, cited):
                 flags.append("value_not_in_quote")
-        elif m.value_text and m.value_text != "not printed" and _norm(m.value_text) not in quote:
+        elif m.value_text and m.value_text != "not printed" and _norm(m.value_text) not in cited:
             flags.append("value_text_not_in_quote")
     c = m.conditions
     if c.pH is not None and not _number_in(c.pH, text):
@@ -467,6 +521,12 @@ def _scope_flags(c, quote: str) -> list[str]:
     checkable is the row's own evidence — quote the sentence that establishes the condition
     (join separate sentences with " || "). A condition found in the article but not in this
     row's quote was carried from somewhere else, which is the reading the rule forbids.
+
+    "Own evidence" here means the **quote**, never the line the row cites, and `verify_row`
+    deliberately hands this function the one and not the other. The line is a paragraph:
+    69 rows in the committed table cite a line covering more than one ionic strength, the
+    widest spanning 0.1 to 100 mM, so reading a condition off the paragraph would make the
+    neighbouring experiment's number look like this row's.
     """
     flags: list[str] = []
     if not quote:
@@ -658,6 +718,9 @@ def _new_record(article: jats.Article, text: str) -> ExtractionRecord:
 def extract_from_payload(article: jats.Article, data: dict, model: str) -> ExtractionRecord:
     """Coerce, verify and score a parsed model reply — whoever produced it."""
     text = jats.extraction_text(article, max_tokens=MAX_TOKENS)
+    # Uncapped, unlike `text`: the guard may look at a line the token budget kept the model
+    # from seeing, but never the other way round.
+    doc = lines.build_lines(article)
     record = _new_record(article, text)
     record.model = model
     candidates = find_candidates(text)
@@ -670,7 +733,7 @@ def extract_from_payload(article: jats.Article, data: dict, model: str) -> Extra
         if m is None:
             record.dropped.append({"index": i, "flags": flags})
             continue
-        flags = flags + verify_row(m, article.full_text)
+        flags = flags + verify_row(m, article.full_text, doc)
         claimed = {str(raw.get("unit"))} if raw.get("unit") else set()
         flags = flags + check_units(m, claimed, text)
         m.row_id = f"{record.pmcid}-r{len(record.measurements) + 1}"

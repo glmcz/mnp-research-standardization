@@ -3,7 +3,8 @@ from types import SimpleNamespace
 
 import pytest
 
-from mnp.corpus import jats
+from mnp import config
+from mnp.corpus import jats, lines
 from mnp.extract import coerce, llm, prompts, zeta
 from mnp.schema import models
 
@@ -1002,3 +1003,99 @@ def test_an_incubation_temperature_in_its_own_clause_is_still_caught(article):
     quote = "Particles were incubated at 37 °C for 24 h before zeta potential measurement."
     m = _row(quote, value=-50.0, temperature_C=37.0)
     assert "temperature_step_not_measurement" in zeta.verify_row(m, quote)
+
+
+# -- citation scope: the value on the line, the conditions on the quote ---------------
+
+
+def _doc(*texts: str) -> lines.LinedDoc:
+    """A line-addressed document, one line per argument, all in one section."""
+    rows = tuple(
+        lines.Line(i + 1, t, "methods", i, lines.line_id("methods", i, t))
+        for i, t in enumerate(texts)
+    )
+    return lines.LinedDoc(pmcid="PMC0", lines=rows, sections=())
+
+
+CITED_LINE = "Zeta potential of the PS particles was -50 mV, measured in PBS buffer at pH 7.4."
+
+
+def test_the_value_is_checked_against_the_cited_line_not_the_quote():
+    """A trimmed quote no longer decides whether its own number is supported.
+
+    The worker authors the quote and is judged on it, so trimming until the guard passes
+    works. The line is the paper's, not the worker's, and cannot be trimmed.
+    """
+    m = _scope_row("Zeta potential of the PS particles was")
+    assert "value_not_in_quote" in zeta.verify_row(_scope_row(m.evidence.quote), CITED_LINE)
+    assert "value_not_in_quote" not in zeta.verify_row(m, CITED_LINE, _doc(CITED_LINE))
+
+
+def test_a_value_text_absent_from_the_cited_line_is_still_flagged():
+    m = _scope_row("Zeta potential of the PS particles was")
+    m.value = None
+    m.value_text = "strongly negative"
+    assert "value_text_not_in_quote" in zeta.verify_row(m, CITED_LINE, _doc(CITED_LINE))
+
+
+def test_a_condition_printed_in_the_cited_line_but_not_quoted_is_still_carried():
+    """Martin's scope rule, 2026-09-13, is untouched by citation scope.
+
+    The line is a paragraph and holds several experiments; the sentence is the unit within
+    which a condition is established. Widening the value check does not widen this one.
+    """
+    m = _scope_row("Zeta potential of the PS particles was -50 mV", pH=7.4)
+    flags = zeta.verify_row(m, CITED_LINE, _doc(CITED_LINE))
+    assert "pH_not_in_evidence" in flags
+    assert m.evidence.verified is True
+
+
+def test_a_quote_the_article_holds_but_the_cited_lines_do_not_is_unverified():
+    text = "A sentence nobody cited. " + CITED_LINE
+    m = _scope_row("A sentence nobody cited.")
+    assert zeta.verify_row(_scope_row(m.evidence.quote), text) == ["value_not_in_quote"]
+    assert "evidence_unverified" in zeta.verify_row(m, text, _doc(CITED_LINE))
+    assert m.evidence.verified is False
+
+
+def test_the_lines_checked_are_the_ones_the_row_cites():
+    doc = _doc(CITED_LINE, "A second paragraph, printing no number at all.")
+    m = _scope_row("A second paragraph, printing no number at all.")
+    m.evidence.line_ids = (doc.lines[1].line_id,)
+    assert "value_not_in_quote" in zeta.verify_row(m, CITED_LINE, doc)
+
+
+def test_a_passage_spanning_consecutive_lines_verifies():
+    """16 stored rows quote a caption and the table rows beneath it as one passage.
+
+    Those newlines are not a fabrication: `lines._match` addresses each line the passage
+    covers, and the guard folded the newlines to spaces before ever accepting the quote.
+    """
+    doc = _doc("Table 1. Zeta potential of the particles.", "PS-COOH\t-48.3", "PS-NH2\t+31.2")
+    quote = "Table 1. Zeta potential of the particles.\nPS-COOH\t-48.3"
+    m = _scope_row(quote)
+    m.value = -48.3
+    assert lines.locate(doc, quote) == [1, 2]
+    flags = zeta.verify_row(m, "\n".join(x.text for x in doc.lines), doc)
+    assert m.evidence.verified is True
+    assert flags == []
+
+
+def test_a_passage_glued_across_non_consecutive_lines_does_not_verify():
+    """`verify_adversarial.json` case 4, put through the line-addressed path.
+
+    `lines._match` splits a passage on its newlines and answers with every line each
+    fragment hits, which is right for a locator and would be wrong for a guard: here the
+    fragments land on lines 1 and 3, and reading them as one sentence invents a row the
+    paper never printed. A passage has to sit inside one run of consecutive lines.
+    """
+    case = json.loads(
+        (config.ROOT / "tests" / "eval" / "fixtures" / "verify_adversarial.json").read_text()
+    )[3]
+    doc = _doc(*case["article_text"].split("\n"))
+    m = _scope_row(case["quote"])
+    m.value = case["value"]
+    assert lines.locate(doc, case["quote"]) == [1, 3]
+    flags = zeta.verify_row(m, case["article_text"], doc)
+    assert m.evidence.verified is False
+    assert case["expect_flag"] in flags

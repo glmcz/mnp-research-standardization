@@ -19,6 +19,7 @@ from __future__ import annotations
 import copy
 
 from mnp import config
+from mnp.corpus import lines
 from mnp.extract import __main__ as cli
 from mnp.extract import coerce, zeta
 
@@ -32,6 +33,7 @@ def collect() -> dict[str, dict]:
             continue
         article = cli._article(pmcid)
         text = article.full_text if article else ""
+        doc = lines.build_lines(article) if article is not None else None
         s = dict(
             T_now=False,
             T_kept=False,
@@ -41,7 +43,7 @@ def collect() -> dict[str, dict]:
             composition=len(coerce._salt_terms(text)) >= 2,
         )
         for m in rec.measurements:
-            flags = set(zeta.verify_row(copy.deepcopy(m), text))
+            flags = set(zeta.verify_row(copy.deepcopy(m), text, doc))
             c = m.conditions
             if c.temperature_C is not None or c.temperature_qualifier is not None:
                 s["T_now"] = True

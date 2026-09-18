@@ -38,7 +38,7 @@ that spends no model tokens. The gates exist for §5 items 11–14, the expensiv
 
 | date | step | engineer | scientist | outcome |
 |---|---|---|---|---|
-| 2026-09-18 | Card 1 — citation-scoped verification | ESCALATE | ESCALATE | **not built.** Blocked on the scope question below |
+| 2026-09-18 | Card 1 — citation-scoped verification | ESCALATE | ESCALATE | Martin ruled. **Narrowed version built**: value to the line, conditions stay on the quote |
 
 ---
 
@@ -161,3 +161,45 @@ The step changes that answer to "the paragraph" without asking, and `1 890` is t
 under every percentage published in `out/release/DATASET_CARD.md`.
 
 Nothing was built. No denominator moved.
+
+### Outcome — Martin's ruling, and what was built
+
+**Ruling, 2026-09-18:** a condition's scope is the **sentence the worker quoted**. The cited
+line becomes the scope of the **value** and of quote-existence only.
+
+Built to exactly that and no wider. `verify_row` takes an optional `LinedDoc`; with one, only
+`evidence_verified` and the value checks read the cited lines. `_scope_flags` still receives the
+quote. `tool/rules_impact.py` produces byte-identical output with and without the document,
+which is the mechanical proof that condition scope did not move.
+
+| gate condition | result |
+|---|---|
+| adversarial detection stays 7/7 | **7/7**, and 7/7 on the line path too |
+| no denominator moves | 1890/1890, 62/1890, 477/491 all unmoved; `reproduce` exits 0 |
+| all three callers carried | `zeta.py`, `eval/stages.py` (keeps its string + fallback), `tool/rules_impact.py` |
+| per-row delta published | **1 row of 1384**, `PMC11117817-r32` |
+| contiguity separates real from fabricated | 16/16 newline rows consecutive; adversarial case 4 spans lines 1 and 3 |
+| "own evidence" pinned in the code | done, in the `verify_row` and `_scope_flags` docstrings |
+
+**The one changed row is a false clear, not a catch.** The paper prints a mobility as
+`-0.000014 cm2/Vs`; the cited paragraph holds an unrelated `ζ-potential of 0.10 ± 4.26 mV`, and
+`_number_in` accepts it. The scientist's unit-blind-digit-search mechanism, on the value side.
+1 383 of 1 384 rows are untouched because a zeta value does not collide the way a bare integer
+does. Recorded rather than smoothed.
+
+### Two defects this exercise found in passing
+
+- **`out/tables/rules_impact.md` is stale**, independent of any of this: the committed file says
+  `/ 498` papers, the tool produces `/ 491`. It sits in `EXCLUDED_FROM_REPLAY`, so `reproduce`
+  has never checked it. A one-off artefact nobody re-derives is the defect class this repo keeps
+  re-finding.
+- **The card was defective and a reviewer caught it.** It named one caller of `verify_row` where
+  there are three, and the unnamed one was the 7/7 measurement its own `FAILS IF` depended on.
+  Future cards must list callers by grep, not by memory.
+
+### On the "44 rows" figure in the verdicts above
+
+It is right, and it is one of two right answers. Grouping by identical citation **set** gives
+**10 sets / 44 rows**; grouping by any shared individual **line** gives **16 lines / 69 rows**.
+The first is a subset of the second. Both were re-derived here. Say which grouping is meant
+whenever the number is quoted.

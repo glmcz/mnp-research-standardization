@@ -138,6 +138,60 @@ Re-committing E1 as a real experiment with the dependency declared is queued.
 
 ---
 
+## E2b — how often is the latent surface state even mentioned?
+
+**Question.** `AGENT_MNP_LEARNING_APPROACH.md` proposes a third schema layer for latent surface
+state, with 23 candidate fields. Before extracting any of them: how often does a paper in this
+corpus mention the concept at all? A field nobody reports is not a column, it is a sentence.
+
+**Method.** Case-insensitive regex over `full_text` of all 858 vendored XMLs, 851 of which
+carry retrievable text. **No model, no tokens.** This counts *mentions*, so every figure is an
+**upper bound** on how often the thing is reported as a measurement condition.
+
+| concept | papers | % | shape it earns |
+|---|---|---|---|
+| weathering / aging | 656 | 77.1 % | column |
+| oxidation | 395 | 46.4 % | column |
+| sonication | 392 | 46.1 % | column |
+| additives / plasticiser | 277 | 32.5 % | column |
+| abrasion / fragmentation | 239 | 28.1 % | column |
+| radical | 193 | 22.7 % | column |
+| protein corona | 181 | 21.3 % | column |
+| biofilm | 105 | 12.3 % | column |
+| **zeta conversion model** (Smoluchowski / Hückel) | **48** | **5.6 %** | column, and see below |
+| contact electrification / triboelectric | 11 | 1.3 % | one sentence |
+| charge heterogeneity / charge mosaic | 8 | 0.9 % | one sentence |
+
+### Read the high numbers sceptically and the low ones straight
+
+The loose patterns inflate. `corona` catches coronavirus; `aged` and `radical` catch ordinary
+prose. So 77.1 % for weathering is an upper bound that is probably far above the truth.
+
+The **low** numbers are the trustworthy ones, because their patterns admit almost no false
+positives. `Smoluchowski` and `Hückel` are not words that appear by accident.
+
+### The number worth taking to the talk
+
+**94.4 % of papers report a zeta potential without naming the model that produced it.**
+
+Zeta is not measured. Electrophoretic mobility is measured, and zeta is a model-dependent
+conversion of it. Smoluchowski and Hückel differ by a factor of **1.5** and are valid in
+opposite κa regimes. So for 19 papers in 20, the reported number is underdetermined *before*
+any question of missing conditions arises.
+
+This is a different and arguably harder claim than `conditions_complete = 3.3 %`. That one says
+the context is missing. This one says **the reported quantity itself is not fully defined**.
+
+### The awkward part, stated plainly
+
+The reframe that motivated this scan rests on contact electrification and charge mosaics. Those
+are the **two least-supported concepts in the corpus**, at 1.3 % and 0.9 %. They cannot be
+grounded per row and must not be presented as if they were measured here. They are interpretive
+background, which is what `AGENT_MNP_LEARNING_APPROACH.md` §"Near-Term Implementation" already
+concludes — now with a number behind it.
+
+---
+
 ## Open questions this raises
 
 - Does line-number citation change extraction accuracy, in either direction? (E2)

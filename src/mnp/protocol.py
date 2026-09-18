@@ -581,6 +581,30 @@ STEPS: tuple[Step, ...] = (
         phase="Deliverables",
     ),
     Step(
+        command="report e1",
+        purpose=(
+            "Re-runs the E1 representation bake-off: the 50 gold papers serialised seven ways and "
+            "counted with cl100k_base. Every markdown and JSON arm is built from one shared block "
+            "set, the parse's own lines, so the ratios are a fact about serialisation rather than "
+            "about content; md_plain reproducing extraction_text to the token is the check that "
+            "says so. The figures published in FINDINGS.md are printed beside the measured ones "
+            "and the difference is stated, because the original script lived in a scratchpad and "
+            "was lost, which left E1b multiplying constants nobody could regenerate. The tokeniser "
+            "downloads its BPE table once into tiktoken's own cache and makes no request after "
+            "that; no key is involved at any point."
+        ),
+        inputs="gold_50.csv, data/raw/epmc/xml/, the cl100k_base BPE table",
+        outputs="out/tables/e1_representation.csv, out/tables/e1_representation.md",
+        kind=D,
+        idempotent=True,
+        network=False,
+        invalidated_by=(
+            "any parser fix that moves the block set, or a change to one of the seven serialisers "
+            "in mnp.corpus.represent"
+        ),
+        phase="Deliverables",
+    ),
+    Step(
         command="report release",
         purpose=(
             "Packages the table D1 wrote as a citable dataset: the same rows as parquet and as "

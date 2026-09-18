@@ -311,6 +311,15 @@ Assembles the D4 tables and figures from the QA output and the saved posteriors:
 - **kind** deterministic · idem yes · net no
 - **stale when** re-running inference with a different seed or grid
 
+### `report e1`
+
+Re-runs the E1 representation bake-off: the 50 gold papers serialised seven ways and counted with cl100k_base. Every markdown and JSON arm is built from one shared block set, the parse's own lines, so the ratios are a fact about serialisation rather than about content; md_plain reproducing extraction_text to the token is the check that says so. The figures published in FINDINGS.md are printed beside the measured ones and the difference is stated, because the original script lived in a scratchpad and was lost, which left E1b multiplying constants nobody could regenerate. The tokeniser downloads its BPE table once into tiktoken's own cache and makes no request after that; no key is involved at any point.
+
+- **in** gold_50.csv, data/raw/epmc/xml/, the cl100k_base BPE table
+- **out** out/tables/e1_representation.csv, out/tables/e1_representation.md
+- **kind** deterministic · idem yes · net no
+- **stale when** any parser fix that moves the block set, or a change to one of the seven serialisers in mnp.corpus.represent
+
 ### `report release`
 
 Packages the table D1 wrote as a citable dataset: the same rows as parquet and as JSONL, the JSON Schema re-exported from the pydantic models rather than copied, and a dataset card. Every statistic on the card is computed during the build from the table and from d1_stats.json, so a rebuild moves the numbers instead of leaving a stale one behind; the build refuses outright when the stats file no longer describes the table beside it. The card states what has not been established as plainly as what has — the gold set is unaudited, the licence is undecided, prompt provenance is coarse, and the corpus is one database.

@@ -144,6 +144,18 @@ def run_d4(args: argparse.Namespace) -> list[Path]:
     return d4.build(tables, figures)
 
 
+def run_e1(args: argparse.Namespace) -> list[Path]:
+    """E1 — the representation bake-off, re-run from the vendored corpus. No model, no network."""
+    from mnp.report import e1
+
+    _, tables, _, _ = _out(args)
+    try:
+        return e1.build(tables)
+    except FileNotFoundError as e:
+        print(f"e1: {e}", file=sys.stderr)
+        return []
+
+
 def run_release(args: argparse.Namespace) -> list[Path]:
     """The vanilla dataset release: parquet + JSONL + schema + card, from d1's own table.
 
@@ -314,6 +326,7 @@ RUNNERS = {
     "d2": run_d2,
     "d3": run_d3,
     "d4": run_d4,
+    "e1": run_e1,
     # Last: it reads the table d1 wrote into the same output root.
     "release": run_release,
 }

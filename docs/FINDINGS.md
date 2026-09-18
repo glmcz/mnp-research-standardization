@@ -20,7 +20,10 @@ keyword-context windows, tables (caption + TSV + footnotes), figure captions —
 is identical across rows. Sanity check: `md_plain` reproduces `text_current` to the token
 (5 273 both), which is what a shared block set should do.
 
-Script: `scratchpad/e1b_addressing.py`. Raw: `scratchpad/e1b.csv`.
+Script: **`uv run python -m mnp.report e1`** (`src/mnp/report/e1.py`, serialisers in
+`src/mnp/corpus/represent.py`). Raw: `out/tables/e1_representation.csv`, committed and
+inside the replay. *Was* `scratchpad/e1b_addressing.py`, which was session-local and is gone —
+see the re-run note below.*
 
 | representation | tok/paper | median | × md_plain | addressable to |
 |---|---|---|---|---|
@@ -131,10 +134,17 @@ tokens were spent.** Against a 1 M-token window.
 
 ### Caveat on the inputs
 
-Every number above is derived from E1's `cl100k_base` counts. **E1 cannot currently be re-run
-in this repo**: its script lived in `scratchpad/` and is gone, and `tiktoken` is not a declared
-dependency. The arithmetic here is reproducible; the constants it multiplies are not, yet.
-Re-committing E1 as a real experiment with the dependency declared is queued.
+~~Every number above is derived from E1's `cl100k_base` counts. **E1 cannot currently be re-run
+in this repo.**~~ **Resolved 2026-09-18.** `report e1` rebuilds the bake-off in 2.4 s, offline,
+inside the replay. Six of seven arms reproduce the published figures; `xml_raw`, `text_current`
+and `md_plain` land on them exactly, mean and median.
+
+`ir_json` does **not** reproduce: 9 384 measured against 7 626 published, **+23 %**. E1 wrote
+"typed spans" and never wrote the schema down, so there is nothing to reproduce against. Five
+shapes were measured, spanning 6 826 to 9 384, and the published figure sits between two of
+them. **Read that row as 1.3×–1.8× depending on schema**, not as 1.45×. E1b's conclusion holds
+either way and gets stronger: at 9 384 the corpus is 4 607 544 tokens and **106** papers per 1 M
+window rather than 131.
 
 ---
 
@@ -341,8 +351,9 @@ established, because establishing it needs the papers read, not the column.
 - **At `gold_50` scale, where everything fits in context, does retrieval beat reading all fifty
   papers?** If not, retrieval is a scale argument rather than a quality one, and the honest
   headline becomes E1b's arithmetic. (cell A, `DESIGN_2026-09-17_tool-value-grid.md` §1)
-- **E1 itself is not currently reproducible.** Its script was session-local and `tiktoken` is
-  not a declared dependency, so the numbers this whole document multiplies cannot be
-  regenerated from a clean checkout. Every downstream claim inherits that. Re-committing E1 as
-  a first-class experiment is queued behind the line-addressed representation, which is one of
-  the arms it needs to measure.
+- ~~**E1 itself is not currently reproducible.**~~ **Closed 2026-09-18** by `report e1`. One
+  residual: `tiktoken` fetches its BPE table once into its own cache, so a **first** replay on a
+  fresh clone with no network fails on E1. Vendoring that file sha-pinned beside `xml.tar.gz`
+  and setting `TIKTOKEN_CACHE_DIR` would close it; not done.
+- **What is the right `ir_json` schema?** The arm is schema-dependent across 6 826–9 384 tokens
+  and E1 never specified one. Either specify it or stop quoting a single number for it.

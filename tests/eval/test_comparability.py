@@ -1,0 +1,495 @@
+"""Query kind E: may these two measurements be compared?
+
+The predicate is over a *pair* of rows, so no passage in any paper states it and no
+retrieval can reach it. These tests pin the rules, and three of them exist only to stop the
+rule set drifting into the two mistakes this dataset is about: letting an unreported
+condition acquire a default, and letting the reported *value* count as evidence that two
+particles are the same.
+"""
+
+import math
+
+import pytest
+
+from mnp.eval import comparability as cmp
+from mnp.eval.comparability import Comparability as C
+
+
+def _row(row_id: str = "A-r1", pmcid: str = "PMCA", **over) -> cmp.ZetaRow:
+    """A fully reported zeta row. Every test starts from something comparable and breaks it."""
+    fields = {
+        "quantity": "zeta_potential",
+        "material": "polystyrene",
+        "functionalisation": "carboxylated",
+        "size_measured_nm": 100.0,
+        "medium_text": "10 mM NaCl",
+        "medium_class": "salt_solution",
+        "ionic_strength_mM": 10.0,
+        "ionic_strength_source": "reported",
+        "pH": 7.4,
+        "pH_text": None,
+        "temperature_C": 25.0,
+        "temperature_qualifier": None,
+        "instrument": "Zetasizer Nano ZS (Malvern Instruments, Malvern, UK)",
+    }
+    fields.update(over)
+    return cmp.ZetaRow.from_mapping({"row_id": row_id, "pmcid": pmcid, **fields})
+
+
+def _codes(a: cmp.ZetaRow, b: cmp.ZetaRow) -> set[str]:
+    return {blocker.code for blocker in cmp.comparable(a, b).blockers}
+
+
+# --- the baseline: the key can say yes ----------------------------------------------------
+
+
+def test_two_identically_reported_rows_are_comparable():
+    verdict = cmp.comparable(_row("A-r1", "PMCA"), _row("B-r1", "PMCB"))
+    assert verdict.blockers == ()
+    assert verdict.verdict is C.comparable
+
+
+def test_a_row_is_comparable_with_itself_under_a_different_id():
+    assert cmp.comparable(_row("A-r1"), _row("A-r2")).verdict is C.comparable
+
+
+def test_the_verdict_is_symmetric():
+    a = _row("A-r1", "PMCA", pH=7.4)
+    b = _row("B-r1", "PMCB", pH=5.0, functionalisation=None)
+    assert cmp.comparable(a, b) == cmp.comparable(b, a)
+
+
+# --- measurand ----------------------------------------------------------------------------
+
+
+def test_zeta_potential_and_electrophoretic_mobility_are_not_the_same_quantity():
+    zeta = _row("A-r1", "PMCA")
+    mobility = _row("B-r1", "PMCB", quantity="electrophoretic_mobility")
+    assert "quantity_mismatch" in _codes(zeta, mobility)
+    assert cmp.comparable(zeta, mobility).verdict is C.not_comparable
+
+
+def test_instrument_must_match_because_it_is_the_only_proxy_for_the_conversion():
+    a = _row("A-r1", "PMCA", instrument="Zetasizer Nano ZS (Malvern, UK)")
+    b = _row("B-r1", "PMCB", instrument="ZETA PALS zeta potential analyser (Brookhaven, USA)")
+    assert "instrument_mismatch" in _codes(a, b)
+
+
+def test_instrument_spelling_and_vendor_placement_do_not_block():
+    a = _row("A-r1", "PMCA", instrument="Zetasizer Nano-ZS (Malvern Instruments, Malvern, UK)")
+    b = _row("B-r1", "PMCB", instrument="Malvern ZetasizerNanoZS")
+    assert _codes(a, b) == set()
+
+
+def test_a_named_model_and_a_family_level_instrument_are_not_the_same_instrument():
+    a = _row("A-r1", "PMCA", instrument="Zetasizer Nano ZS (Malvern, UK)")
+    b = _row("B-r1", "PMCB", instrument="Zetasizer")
+    assert "instrument_mismatch" in _codes(a, b)
+
+
+def test_nano_zs_and_zs90_are_different_instruments():
+    a = _row("A-r1", "PMCA", instrument="Zetasizer Nano ZS (Malvern, UK)")
+    b = _row("B-r1", "PMCB", instrument="Zetasizer (Nano ZS90, Malvern Instruments)")
+    assert "instrument_mismatch" in _codes(a, b)
+
+
+# --- particle identity --------------------------------------------------------------------
+
+
+def test_the_polymer_name_alone_does_not_establish_particle_identity():
+    cooh = _row("A-r1", "PMCA", functionalisation="carboxylated")
+    nh2 = _row("B-r1", "PMCB", functionalisation="amine-modified")
+    assert "functionalisation_mismatch" in _codes(cooh, nh2)
+    assert "material_mismatch" not in _codes(cooh, nh2)
+
+
+def test_an_unreported_functionalisation_is_not_a_bare_surface():
+    bare = _row("A-r1", "PMCA", functionalisation="plain")
+    silent = _row("B-r1", "PMCB", functionalisation=None)
+    assert "functionalisation_unreported" in _codes(bare, silent)
+
+
+def test_spellings_of_the_same_surface_group_do_not_block():
+    a = _row("A-r1", "PMCA", functionalisation="carboxylated (-COOH)")
+    b = _row("B-r1", "PMCB", functionalisation="carboxyl groups")
+    assert _codes(a, b) == set()
+
+
+def test_a_surface_state_modifier_is_never_dropped_to_reach_a_match():
+    plain = _row("A-r1", "PMCA", functionalisation="carboxylated")
+    coronated = _row("B-r1", "PMCB", functionalisation="carboxylate; POPC lipid corona")
+    assert "functionalisation_mismatch" in _codes(plain, coronated)
+
+
+def test_material_spellings_merge_but_composites_never_do():
+    assert cmp.material_key("polystyrene") == cmp.material_key("polystyrene (PS)")
+    assert cmp.material_key("PS") == cmp.material_key("polystyrene")
+    assert cmp.material_key("polystyrene") != cmp.material_key("polystyrene + polyethylene")
+    assert cmp.material_key("polystyrene") != cmp.material_key(
+        "polystyrene shell on polyacrylonitrile core"
+    )
+    assert cmp.material_key("polyethylene") != cmp.material_key("high-density polyethylene (HDPE)")
+
+
+def test_an_unreported_material_blocks():
+    assert "material_unreported" in _codes(_row("A-r1"), _row("B-r1", "PMCB", material=None))
+
+
+# --- "not reported" is never "not present" ------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    ("override", "code"),
+    [
+        ({"medium_text": None, "medium_class": "unreported"}, "medium_unreported"),
+        (
+            {"ionic_strength_mM": None, "ionic_strength_source": "unreported"},
+            "ionic_strength_unreported",
+        ),
+        ({"pH": None, "pH_text": None}, "pH_unreported"),
+        ({"temperature_C": None, "temperature_qualifier": None}, "temperature_unreported"),
+        ({"instrument": None}, "instrument_unreported"),
+    ],
+)
+def test_a_condition_either_row_fails_to_report_blocks_on_that_condition(override, code):
+    a = _row("A-r1", "PMCA")
+    b = _row("B-r1", "PMCB", **override)
+    assert code in _codes(a, b)
+    assert cmp.comparable(a, b).verdict is C.not_comparable
+
+
+def test_both_rows_silent_on_a_condition_still_blocks_on_it():
+    silent = {"ionic_strength_mM": None, "ionic_strength_source": "unreported"}
+    a = _row("A-r1", "PMCA", **silent)
+    b = _row("B-r1", "PMCB", **silent)
+    assert "ionic_strength_unreported" in _codes(a, b)
+
+
+def test_di_water_is_a_reported_medium_and_an_unreported_ionic_strength():
+    water = {
+        "medium_text": "deionised water",
+        "medium_class": "DI_water",
+        "ionic_strength_mM": None,
+        "ionic_strength_source": "unreported",
+    }
+    a = _row("A-r1", "PMCA", **water)
+    b = _row("B-r1", "PMCB", **water)
+    codes = _codes(a, b)
+    assert "ionic_strength_unreported" in codes
+    assert "medium_unreported" not in codes
+
+
+def test_a_pH_range_is_not_a_pH():
+    a = _row("A-r1", "PMCA")
+    b = _row("B-r1", "PMCB", pH=None, pH_text="from pH 2 to 7")
+    assert "pH_not_numeric" in _codes(a, b)
+    assert "pH_unreported" not in _codes(a, b)
+
+
+def test_room_temperature_is_not_a_measurement_temperature():
+    a = _row("A-r1", "PMCA")
+    b = _row("B-r1", "PMCB", temperature_C=None, temperature_qualifier="room temperature")
+    assert "temperature_not_numeric" in _codes(a, b)
+
+
+def test_an_unreported_condition_never_acquires_a_default():
+    """The mutation guard. Nothing may fill 25 degrees, pH 7, water or zero salt."""
+    silent = _row(
+        "B-r1",
+        "PMCB",
+        medium_text=None,
+        medium_class="unreported",
+        ionic_strength_mM=None,
+        ionic_strength_source="unreported",
+        pH=None,
+        pH_text=None,
+        temperature_C=None,
+        temperature_qualifier=None,
+        instrument=None,
+    )
+    nominal = _row(
+        "A-r1",
+        "PMCA",
+        medium_text="water",
+        medium_class="DI_water",
+        ionic_strength_mM=0.0,
+        ionic_strength_source="reported",
+        pH=7.0,
+        temperature_C=25.0,
+    )
+    assert _codes(nominal, silent) >= {
+        "medium_unreported",
+        "ionic_strength_unreported",
+        "pH_unreported",
+        "temperature_unreported",
+        "instrument_unreported",
+    }
+
+
+# --- the value is never evidence ----------------------------------------------------------
+
+
+def test_the_row_carries_no_reported_value_at_all():
+    fields = {f.name for f in cmp.ZetaRow.comparison_fields()}
+    assert fields.isdisjoint({"value", "value_text", "sd", "n", "unit"})
+
+
+def test_value_columns_do_not_reach_the_row():
+    plain = cmp.ZetaRow.from_mapping(
+        {"row_id": "A-r1", "pmcid": "PMCA", **_ROW_COLUMNS, "value": -34.2}
+    )
+    loud = cmp.ZetaRow.from_mapping(
+        {"row_id": "A-r1", "pmcid": "PMCA", **_ROW_COLUMNS, "value": 999.0, "sd": 4.0, "n": 3}
+    )
+    assert plain == loud
+
+
+def test_similar_values_never_repair_a_blocked_pair():
+    """Chemically distinct particles converge after corona formation. That is the point."""
+    cooh = cmp.ZetaRow.from_mapping(
+        {
+            "row_id": "A-r1",
+            "pmcid": "PMCA",
+            **{**_ROW_COLUMNS, "functionalisation": "carboxylated"},
+            "value": -30.1,
+        }
+    )
+    nh2 = cmp.ZetaRow.from_mapping(
+        {
+            "row_id": "B-r1",
+            "pmcid": "PMCB",
+            **{**_ROW_COLUMNS, "functionalisation": "amine-modified"},
+            "value": -30.2,
+        }
+    )
+    verdict = cmp.comparable(cooh, nh2)
+    assert verdict.verdict is C.not_comparable
+    assert "functionalisation_mismatch" in {blocker.code for blocker in verdict.blockers}
+
+
+def test_wildly_different_values_never_block_a_comparable_pair():
+    a = cmp.ZetaRow.from_mapping({"row_id": "A-r1", "pmcid": "PMCA", **_ROW_COLUMNS, "value": -5.0})
+    b = cmp.ZetaRow.from_mapping(
+        {"row_id": "B-r1", "pmcid": "PMCB", **_ROW_COLUMNS, "value": -95.0}
+    )
+    assert cmp.comparable(a, b).verdict is C.comparable
+
+
+# --- medium: class governs the verdict, text is checked inside the class -------------------
+
+
+def test_two_different_media_of_the_same_class_block_on_the_text():
+    a = _row("A-r1", "PMCA", medium_text="CV growth medium", medium_class="culture_medium")
+    b = _row("B-r1", "PMCB", medium_text="HP growth medium", medium_class="culture_medium")
+    codes = _codes(a, b)
+    assert "medium_text_mismatch" in codes
+    assert "medium_class_mismatch" not in codes
+
+
+def test_a_class_difference_is_reported_as_the_class_not_the_text():
+    a = _row("A-r1", "PMCA", medium_text="10 mM NaCl", medium_class="salt_solution")
+    b = _row("B-r1", "PMCB", medium_text="10 mM HEPES", medium_class="buffer")
+    codes = _codes(a, b)
+    assert "medium_class_mismatch" in codes
+    assert "medium_text_mismatch" not in codes
+
+
+def test_whitespace_and_case_in_the_medium_text_do_not_block():
+    a = _row("A-r1", "PMCA", medium_text="10 mM NaCl")
+    b = _row("B-r1", "PMCB", medium_text="10  mM  nacl")
+    assert _codes(a, b) == set()
+
+
+# --- numeric agreement --------------------------------------------------------------------
+
+
+def test_ionic_strength_within_tolerance_does_not_block():
+    a = _row("A-r1", "PMCA", ionic_strength_mM=10.0)
+    b = _row("B-r1", "PMCB", ionic_strength_mM=10.5)
+    assert "ionic_strength_mismatch" not in _codes(a, b)
+
+
+def test_a_salt_titration_step_blocks():
+    a = _row("A-r1", "PMCA", ionic_strength_mM=10.0, medium_text="10 mM NaCl")
+    b = _row("B-r1", "PMCA", ionic_strength_mM=100.0, medium_text="100 mM NaCl")
+    assert "ionic_strength_mismatch" in _codes(a, b)
+
+
+def test_pH_units_apart_block_because_the_sign_can_flip_across_them():
+    a = _row("A-r1", "PMCA", pH=7.4)
+    b = _row("B-r1", "PMCB", pH=4.0)
+    assert "pH_mismatch" in _codes(a, b)
+
+
+def test_a_rounded_pH_does_not_block():
+    assert "pH_mismatch" not in _codes(_row("A-r1", pH=7.4), _row("B-r1", "PMCB", pH=7.35))
+
+
+def test_temperature_apart_by_more_than_the_tolerance_blocks():
+    a = _row("A-r1", "PMCA", temperature_C=25.0)
+    b = _row("B-r1", "PMCB", temperature_C=37.0)
+    assert "temperature_mismatch" in _codes(a, b)
+
+
+# --- the mobility-to-zeta conversion regime -----------------------------------------------
+
+
+def test_henry_function_spans_the_huckel_to_smoluchowski_factor_of_one_and_a_half():
+    assert cmp.henry_f(1e-4) == pytest.approx(1.0, abs=1e-3)
+    assert cmp.henry_f(1e6) == pytest.approx(1.5, abs=1e-3)
+    assert 1.0 < cmp.henry_f(3.0) < 1.5
+
+
+def test_debye_length_matches_the_textbook_one_to_one_electrolyte_value():
+    assert cmp.debye_length_nm(1.0) == pytest.approx(9.61, abs=0.02)
+    assert cmp.debye_length_nm(100.0) == pytest.approx(0.961, abs=0.01)
+
+
+def test_two_zeta_rows_in_different_conversion_regimes_block():
+    small_kappa_a = _row("A-r1", "PMCA", size_measured_nm=40.0, ionic_strength_mM=0.1)
+    large_kappa_a = _row("B-r1", "PMCB", size_measured_nm=40.0, ionic_strength_mM=100.0)
+    assert "conversion_regime_mismatch" in _codes(small_kappa_a, large_kappa_a)
+
+
+def test_the_conversion_regime_is_not_checked_for_a_measured_mobility():
+    a = _row("A-r1", "PMCA", quantity="electrophoretic_mobility", ionic_strength_mM=0.1)
+    b = _row("B-r1", "PMCB", quantity="electrophoretic_mobility", ionic_strength_mM=100.0)
+    codes = _codes(a, b)
+    assert "conversion_regime_mismatch" not in codes
+    assert "ionic_strength_mismatch" in codes
+
+
+def test_a_missing_measured_size_blocks_a_zeta_pair():
+    a = _row("A-r1", "PMCA")
+    b = _row("B-r1", "PMCB", size_measured_nm=None)
+    assert "size_measured_unreported" in _codes(a, b)
+
+
+def test_a_nominal_size_never_substitutes_for_a_measured_one():
+    fields = {f.name for f in cmp.ZetaRow.comparison_fields()}
+    assert "size_nominal_nm" not in fields
+
+
+# --- the three-valued verdict -------------------------------------------------------------
+
+
+def test_a_stated_difference_in_one_condition_is_conditionally_comparable():
+    a = _row("A-r1", "PMCA", pH=7.4)
+    b = _row("B-r1", "PMCA", pH=5.0)
+    verdict = cmp.comparable(a, b)
+    assert verdict.verdict is C.conditionally_comparable
+    assert {blocker.code for blocker in verdict.blockers} == {"pH_mismatch"}
+
+
+def test_an_unreported_condition_is_never_conditionally_comparable():
+    a = _row("A-r1", "PMCA")
+    b = _row("B-r1", "PMCA", pH=None, pH_text=None)
+    assert cmp.comparable(a, b).verdict is C.not_comparable
+
+
+def test_a_different_particle_is_never_conditionally_comparable():
+    a = _row("A-r1", "PMCA", functionalisation="carboxylated")
+    b = _row("B-r1", "PMCA", functionalisation="amine")
+    assert cmp.comparable(a, b).verdict is C.not_comparable
+
+
+# --- the corpus and the query set ---------------------------------------------------------
+
+
+def test_rows_load_from_the_published_table():
+    rows = cmp.load_rows()
+    assert len(rows) == 1890
+    assert len({row.row_id for row in rows}) == 1890
+
+
+def test_every_fully_comparable_pair_has_both_rows_condition_complete():
+    """Why the exhaustive census only has to look at the condition-complete rows."""
+    rows = cmp.load_rows()
+    complete = [row for row in rows if row.conditions.conditions_complete]
+    found = cmp.comparable_census(rows)
+    assert 0 < len(complete) < len(rows)
+    complete_ids = {row.row_id for row in complete}
+    for pair in found:
+        assert {pair.a.row_id, pair.b.row_id} <= complete_ids
+
+
+def test_the_corpus_holds_sixteen_fully_comparable_pairs_and_none_of_them_cross_a_paper():
+    """The headline. Pinned, so relaxing a rule to make it look better shows up as a failure."""
+    census = cmp.comparable_census(cmp.load_rows())
+    assert len(census) == 16
+    assert all(pair.a.pmcid == pair.b.pmcid for pair in census)
+    assert len({pair.a.pmcid for pair in census}) == 3
+
+
+def test_only_six_of_the_comparable_pairs_are_pairs_of_zeta_potentials():
+    """The other ten compare the quantity that was actually measured, not the converted one."""
+    census = cmp.comparable_census(cmp.load_rows())
+    zeta = [
+        pair
+        for pair in census
+        if pair.a.quantity.value == pair.b.quantity.value == "zeta_potential"
+    ]
+    assert len(zeta) == 6
+
+
+def test_the_query_set_on_disk_is_what_the_generator_produces():
+    on_disk = cmp.read_query_set()
+    regenerated = cmp.build_query_set(cmp.load_rows())
+    assert len(on_disk) > 100
+    assert [pair.as_record() for pair in regenerated] == on_disk
+
+
+def test_the_query_set_covers_every_required_stratum():
+    assert set(cmp.STRATA) == {
+        "same_paper",
+        "cross_paper_same_material",
+        "cross_paper_different_functionalisation",
+        "cross_paper_different_material",
+        "both_conditions_complete",
+    }
+    counts = cmp.stratum_counts(cmp.read_query_set())
+    for stratum in cmp.STRATA:
+        assert counts.get(stratum, 0) > 0, stratum
+
+
+def test_the_query_set_ground_truth_is_reproducible_from_the_rows():
+    by_id = {row.row_id: row for row in cmp.load_rows()}
+    records = cmp.read_query_set()
+    assert len(records) > 100
+    for record in records:
+        verdict = cmp.comparable(by_id[record["row_id_a"]], by_id[record["row_id_b"]])
+        assert verdict.verdict.value == record["verdict"]
+        assert ";".join(b.code for b in verdict.blockers) == record["blockers"]
+
+
+def test_generation_is_deterministic():
+    rows = cmp.load_rows()
+    assert [p.as_record() for p in cmp.build_query_set(rows)] == [
+        p.as_record() for p in cmp.build_query_set(rows)
+    ]
+
+
+def test_nothing_in_here_uses_a_clock_or_an_unseeded_random():
+    source = cmp.__file__
+    with open(source, encoding="utf-8") as handle:
+        text = handle.read()
+    assert "datetime.now" not in text
+    assert "random.random()" not in text
+    assert math.isfinite(cmp.henry_f(30.0))
+
+
+_ROW_COLUMNS = {
+    "quantity": "zeta_potential",
+    "material": "polystyrene",
+    "functionalisation": "carboxylated",
+    "size_measured_nm": 100.0,
+    "medium_text": "10 mM NaCl",
+    "medium_class": "salt_solution",
+    "ionic_strength_mM": 10.0,
+    "ionic_strength_source": "reported",
+    "pH": 7.4,
+    "pH_text": None,
+    "temperature_C": 25.0,
+    "temperature_qualifier": None,
+    "instrument": "Zetasizer Nano ZS (Malvern Instruments, Malvern, UK)",
+}

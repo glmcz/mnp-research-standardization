@@ -182,6 +182,36 @@ any question of missing conditions arises.
 This is a different and arguably harder claim than `conditions_complete = 3.3 %`. That one says
 the context is missing. This one says **the reported quantity itself is not fully defined**.
 
+### Correction — the denominator was wrong
+
+The 5.6 % / 94.4 % above divides by **all 851 readable papers**. That is the wrong denominator:
+a paper that reports only an electrophoretic mobility needs no conversion, so it cannot be
+faulted for not naming one. The right denominator is papers that report a **zeta potential**.
+
+Recomputed on that basis, with the pattern widened to include Henry's function as well as
+Smoluchowski and Hückel:
+
+| denominator | n | name a model | do not |
+|---|---|---|---|
+| papers reporting a zeta value | 485 | 33 — 6.8 % | **452 — 93.2 %** |
+| papers reporting a mobility value | 13 | 6 — 46.2 % | 7 — 53.8 % |
+
+**The headline is 93.2 %, not 94.4 %.** Use the corrected figure.
+
+### The contrast is worth more than the headline
+
+Papers reporting the **measured** quantity name the conversion model **6.8× more often** than
+papers reporting the **derived** one: 46.2 % against 6.8 %.
+
+That is backwards from what a reader needs. A paper reporting mobility has given you the raw
+observable and you could convert it yourself; it is the papers reporting zeta — where the
+conversion has already been applied and baked in — that most need to say which one, and they
+are the ones that almost never do.
+
+**Caveat, stated because n is small:** the mobility group is **13 papers**. Treat the contrast
+as a direction worth checking, not a measured ratio, and do not put 6.8× on a slide as though
+it had a confidence interval. The 93.2 % rests on 485 papers and is solid.
+
 ### The awkward part, stated plainly
 
 The reframe that motivated this scan rests on contact electrification and charge mosaics. Those

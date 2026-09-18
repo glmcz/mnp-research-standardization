@@ -276,6 +276,62 @@ we have says the row is fine.
 
 ---
 
+## E2d — `inferred_from_named_salt` does not record what it inferred from
+
+**How it was found.** A gate review claimed `parse_ionic_strength` no longer produces what the
+stored rows contain. That reproduces: `parse_ionic_strength("10 mM HEPES, 20 mg L-1 NaCl",
+from_medium=True)` returns `(None, unreported, ['concentration_not_an_ionic_strength'])` today,
+while the committed rows read `10.0 / inferred_from_named_salt`.
+
+**Measured.** Of **141** rows whose source is `inferred_from_named_salt`, **39 cannot be
+re-derived from their own `medium_text`** by the current parser.
+
+### A wrong conclusion, recorded because the process matters more than the tidy version
+
+The first reading of those 39 was that 14 were **imputations** — a value stored where no salt is
+named. Two examples were going to carry that claim:
+
+| row | `medium_text` | stored |
+|---|---|---|
+| `PMC11846901-r1` | `aqueous dispersions` | 10.0 mM |
+| `PMC4958399-r1` | `PBS` | 139.7 mM |
+
+**Both are legitimate, and the claim was wrong.** `PMC4958399` prints the composition in full —
+*"1× PBS tablet (0.01 M phosphate buffer, 0.0027 M potassium chloride, 0.137 M sodium
+chloride)"* — which derives to 139.7 mM, exactly as `docs/briefs/gold_annotation.md` instructs.
+`PMC11846901` prints an ionic strength and names NaCl. Neither was invented.
+
+The error was judging provenance from **one summary column without reading the paper**. That is
+the same mistake the engineer gate made on `PMC12598813` in the same hour, and the same one
+Card 2 made about its callers. Three instances, one session, one root cause: *a field that
+summarises is not the thing the decision was made from.*
+
+### What actually survives
+
+**1. The provenance is unfalsifiable.** `inferred_from_named_salt` asserts that a derivation
+happened. It does not record **what from**. The inputs are not stored, `medium_text` is a
+summary rather than the parsed string, so for 39 rows the claim can be neither reproduced nor
+refuted. This is the `verification-gap` class again: written once, never re-run. `pH_text` and
+`temperature_qualifier` exist for exactly this reason on their own conditions; ionic strength
+has no equivalent.
+
+**2. One genuine parser bug, isolated and reproducible:**
+
+| input | result |
+|---|---|
+| `1 mM NaCl` | 1.0 mM ✓ |
+| `1 mM sodium chloride` | 1.0 mM ✓ |
+| `1 mM aqueous sodium chloride (NaCl)` | **None** ✗ |
+
+The parser binds a concentration to a salt named one way, and loses it when the salt is named
+**both** ways with a word in between. It then emits `concentration_not_an_ionic_strength`, which
+is actively misleading: the concentration *is* an ionic strength, and the parser simply failed
+to bind it. Four rows of `PMC12700194` sit on this.
+
+**3. The drift is real but its size is not yet known.** 39 of 141 do not re-derive; how many are
+this bug, how many are the missing-input problem, and how many are something else has not been
+established, because establishing it needs the papers read, not the column.
+
 ## Open questions this raises
 
 - Does line-number citation change extraction accuracy, in either direction? (E2)

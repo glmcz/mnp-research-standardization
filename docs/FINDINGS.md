@@ -222,6 +222,60 @@ concludes — now with a number behind it.
 
 ---
 
+## E2c — a paper that contradicts itself by four orders of magnitude
+
+**How it was found.** Not by looking. A gate review claimed four rows of `PMC12598813` stored a
+worker-computed ionic strength as if it were reported. Checking that claim against the article
+showed the reviewer was **wrong** — the number is the paper's own — and showed something worse
+that neither the extraction nor the review had noticed.
+
+**The paper states its salt concentration twice, in two places, and the two do not agree.**
+
+> Results: *"adding NaCl or KCl (0–30 mg L⁻¹) raises the ionic strength from 0.010 M to
+> ≈0.0105 M (10 mM HEPES)"*
+
+> Methods: *"NaCl and KCl were added in concentrations ranging from 5% to 30% (w/v) to achieve
+> varying ionic strengths"*
+
+| statement | salt | ionic strength |
+|---|---|---|
+| Results | 0–30 mg L⁻¹ | 10.0 → **10.5 mM**, internally consistent |
+| Methods | 5–30 % w/v = 50–300 g L⁻¹ | **856 – 5 133 mM** |
+
+**Ratio between the two: 1 667× at the bottom of the range, 10 000× at the top.** The Debye
+length differs by a factor of about 40 to 70 across that gap, so the two readings describe
+physically different experiments.
+
+### What our dataset did about it
+
+Stored **10.5 mM**, source `reported`. That is defensible — the Results sentence does print it,
+and a `ionic_strength_not_in_text` flag fired only because the paper writes `0.0105 M` where the
+row writes `10.5`, a unit-scale mismatch in the verifier rather than a fabrication.
+
+But the dataset **silently chose between two contradictory statements and recorded no trace that
+a choice was made.** Every guard in this pipeline passed: the quote is verbatim, the value is in
+the evidence, the condition is in the row's own evidence. None of them can see a second sentence
+elsewhere in the paper saying something incompatible.
+
+### What it implies
+
+1. **`ValueSource` has no way to say this.** Today it is `reported`, `unreported`,
+   `inferred_from_named_salt`. `docs/AGENT_MNP_LEARNING_APPROACH.md` proposed a
+   `contradictory` value; here is a live case that needs it. A row reading `contradictory` with
+   both citations is more honest than either number alone.
+2. **Verbatim verification cannot detect contradiction.** It is a per-row, per-quote check, and
+   contradiction is a property of a *pair* of passages. This is the same structural point as
+   kind E comparability: the fact lives in the join, not in any passage.
+3. **It is not knowable how common this is.** One case was found by accident while checking
+   something else. A deterministic detector — two ionic-strength statements in one paper more
+   than, say, 10× apart — would be cheap and has not been run.
+
+**For the talk this is stronger than a missing condition.** A missing condition means nobody
+wrote it down. This means it *was* written down, twice, incompatibly, and every automated check
+we have says the row is fine.
+
+---
+
 ## Open questions this raises
 
 - Does line-number citation change extraction accuracy, in either direction? (E2)

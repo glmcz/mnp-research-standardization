@@ -273,3 +273,36 @@ than more flattering.
 
 **Callers named by grep, not memory**, per Card 1's lesson: `parse_ionic_strength` is called
 from `src/mnp/extract/coerce.py` only — to be re-verified by the reviewers, not taken from here.
+
+### Verdict on Card 2 — engineer ESCALATE, 2026-09-18
+
+Correct to escalate. Three of its findings were verified here and all three hold.
+
+| claim | verified |
+|---|---|
+| `parse_ionic_strength` has a second caller at `src/mnp/eval/stages.py:213` | **yes** — the card said one |
+| 36 of the 78 mg/L rows read `ionic_strength_reported = True`, not 2 | **yes, 36** |
+| `FAILS IF` #2 passes on both 265 and 267, so the card cannot fail | **yes** |
+
+**The card repeated Card 1's defect exactly.** It named callers from memory while instructing the
+reviewers to verify by grep. Naming the correct discipline is not applying it. Every future card
+lists callers from a grep run while writing the card, pasted into `FILES`.
+
+### One gate claim is wrong, and checking it found something larger
+
+The engineer called `PMC12598813-r7/-r8/-r11/-r12` "a worker-computed number asserted as
+printed". **It is not.** The paper prints it: *"raises the ionic strength from 0.010 M to
+≈0.0105 M"*. Source `reported` is right, and the `ionic_strength_not_in_text` flag fired only
+because the paper writes `0.0105 M` where the row writes `10.5` — a unit-scale mismatch in the
+verifier.
+
+Checking it surfaced `FINDINGS.md` **E2c**: the same paper states its salt concentration twice,
+in Methods and in Results, **1 667× to 10 000× apart**, and the dataset silently chose one with
+no trace that a choice existed. That is a larger defect than anything on Card 2, and no guard in
+the pipeline can see it, because contradiction is a property of a pair of passages.
+
+Standing note: *the grader is often the one that is wrong.* Verify a reviewer's claim before
+acting on it — and verify it anyway when it is right, because that is where E2c came from.
+
+**Card 2 is withdrawn and will be re-issued** with the second caller named, the real mg/L
+population, a falsifiable target number, and the `contradictory` source question folded in.

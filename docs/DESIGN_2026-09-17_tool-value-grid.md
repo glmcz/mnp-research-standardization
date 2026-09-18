@@ -216,7 +216,84 @@ abstract, `PLAN_2026-09-28.md` §1 and §4, `ideas.md` §2 and §13. Verdicts ap
 
 ---
 
+## 4b. What the measurements changed — revision of 2026-09-18
+
+Four things were measured since this document was written. Three of them moved the plan.
+
+**The converter's value is not where §2 claimed.** E6 (`FINDINGS_selector_bakeoff.md`) measured
+five selectors against 1 890 rows of real ground truth. The 12 000-token budget binds on **12–13
+papers of 491**, so on ~97 % of papers the incumbent selects nothing. A perfect selector is worth
+about **1.6 % of end-to-end tokens**. **Do not rebuild the reading path.** Line citation still
+earned its place, but for verification and for making E6 possible at all, not for cost.
+
+**The graph is not supported as a selector.** The structured selector beat BM25 on a query built
+from a row's own fields and **tied** on an honest one. Over half a value query's terms are
+printed verbatim in the line it is meant to find. Its edge was the leak. Use BM25 in the
+retrieval cells: thirty lines, no schema coupling.
+
+**But the graph is rescued as a representation of relations, which is a different claim.**
+`AGENT_MNP_LEARNING_APPROACH.md` proposes asking whether two measurements *can be compared*. That
+is a predicate over a pair of records. No passage in the corpus states it; it exists only in the
+join. Retrieval cannot reach it by construction, exactly as absence cannot. This is the plan's
+strongest anti-retrieval argument extended from absence to **comparability**, which is what the
+abstract is actually about.
+
+**A new headline candidate, from E2b.** Only **5.6 %** of papers name the model converting
+mobility to zeta. So **94.4 %** report a zeta whose defining conversion is unstated, where
+Smoluchowski and Hückel differ by a factor of **1.5**. `conditions_complete = 3.3 %` says the
+context is missing; this says the reported quantity is **not fully defined**. It is a mention
+scan and needs one refinement before it goes on a slide — see §7.
+
+### The consequence for §3: a fifth query kind
+
+| kind | question | can a strong RAG baseline compete? |
+|---|---|---|
+| A conditioned lookup | value plus its conditions | yes |
+| B absence | what was not reported | no — nothing to retrieve |
+| C comparison | numeric filter across papers | no — not a similarity operation |
+| D mechanism / prose | why does a corona change zeta | **yes, and it should win** |
+| **E comparability** | **may these two rows be compared, and what blocks it** | **no — the fact is in the join, not in any passage** |
+
+Kind E is new and it is the cheapest strong result available. Its **ground truth is derivable
+deterministically** from the conditions already in `d1_zeta_table.csv`, at zero model tokens.
+Tokens are spent only asking agents to answer, not building the answer key.
+
+The obvious objection — "you chose a task the baseline cannot do" — is answered by the abstract
+itself: this is its central claim, not a contrived task. Kinds A and D stay in, and D is expected
+to be lost.
+
+---
+
 ## 5. The work, priced in tokens
+
+### Status, 2026-09-18 — read this before the table below
+
+**Done and committed**, all at zero model tokens: the converter (`lines.py`); line citations on
+**1 890 / 1 890** rows via `extract retrofit`; the dataset release with a card whose every
+statistic is computed at build time; both gate reviewers, exercised once for real; the narrowed
+verification change; E1b, E2b and E6. Suite at **899 passing**, `report reproduce` exits 0.
+
+**Next, in order. Everything here is free or cheap; the expensive cells wait.**
+
+| # | item | tokens | why now |
+|---|---|---|---|
+| N1 | **Kind E query set + deterministic answer key** | **~0** | The answer key is computable from conditions already in the table. Cheapest strong result available, and it is the abstract's thesis made executable |
+| N2 | Card 2 — the two extraction defects, through the gates | ~60 k | A published percentage moves, so the rule this repo wrote applies to it |
+| N3 | Refine the 94.4 % conversion-model figure (§7) | ~0 | It is a mention scan. Fix the denominator before it reaches a slide |
+| N4 | E1 re-commit: `tiktoken` + the three missing serialisers | ~0 | Every number in this document multiplies constants that cannot be regenerated |
+| N5 | Cell D — structured query layer, now including kind E | ~0.25 M | The product |
+| N6 | Cell B — BM25 retrieval, built to win | ~0.7 M | `src/mnp/eval/selectors.py` already contains the tuned BM25 |
+| N7 | Cell C — agentic, KB withheld | ~2.4 M | The rival that can kill the thesis |
+| N8 | Cell E — agentic with the KB | ~1.2 M | |
+
+**Cut, with reasons.** Cell A (long context) is dropped: E1b's arithmetic already makes the
+point for nothing, and running it costs ~2.4 M even cached. The query-conditioned selector is
+dropped from the *reading* path per E6; it survives only inside the retrieval cells, as BM25.
+
+**Unchanged:** never cut the results table, and never cut cell C.
+
+---
+
 
 **The organising rule: deterministic work is free, so do all of it, properly. Spend model
 tokens only where a model must actually read something.** This repo already proves the point —

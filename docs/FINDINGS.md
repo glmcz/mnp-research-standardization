@@ -383,6 +383,21 @@ conditions properly contribute more rows. The headline moves **3.3 % → 2.3 %**
 conditioned, and ionic strength **14.2 % → 8.7 %**. The conservative, defensible estimator is
 the one that makes the case harder, not softer.
 
+### Implementation trap, found by running it twice
+
+Two independent implementations were run. Point estimates, ICC, DEFF and `n_eff` agree exactly;
+the per-row cluster intervals agree to 0.3 pp, which is Monte Carlo noise. **The per-paper
+intervals did not agree, and the pandas implementation was wrong.**
+
+It resampled papers, concatenated their rows, then called `groupby("pmcid")`. A paper drawn
+twice is merged back into one group by that `groupby`, so the replacement silently cancels, the
+bootstrap is under-dispersed and the interval comes out **too narrow** — the exact error this
+entry exists to prevent.
+
+The correct form resamples paper *indices* and averages their proportions directly, so a paper
+drawn twice counts twice. Anyone re-implementing this must not group by the cluster key after
+resampling it.
+
 **What ships:** per-paper as the primary figure, cluster-bootstrap intervals, and the design
 effect stated. That combination is the standard treatment for clustered data in
 cluster-randomised trials and meta-analysis, and it is what a statistician will look for.

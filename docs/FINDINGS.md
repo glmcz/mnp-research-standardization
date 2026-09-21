@@ -342,6 +342,53 @@ to bind it. Four rows of `PMC12700194` sit on this.
 this bug, how many are the missing-input problem, and how many are something else has not been
 established, because establishing it needs the papers read, not the column.
 
+## E2e — the rows are clustered, so 1 890 is not the sample size
+
+**Question.** Every headline percentage in this project is computed per **row**. Rows are not
+independent: they cluster by paper, a median of 2 per paper but up to **90**, with the top 10 %
+of papers contributing **41.3 %** of all rows. Does that inflate the numbers, and by how much?
+
+**Method.** Intraclass correlation by one-way random-effects ANOVA, design effect
+`DEFF = 1 + (m₀ − 1)·ICC`, and a **cluster bootstrap** — resampling *papers* with replacement,
+never rows — at B = 10 000, seed 20260921. No model, no tokens.
+
+| condition | per row | per paper | ICC | DEFF | n_eff |
+|---|---|---|---|---|---|
+| medium reported | 83.2 % | **72.1 %** | 0.84 | 3.38 | 560 |
+| ionic strength reported | 14.2 % | **8.7 %** | 0.83 | 3.33 | 567 |
+| pH reported | 21.3 % | **16.8 %** | 0.78 | 3.22 | 588 |
+| temperature reported | 28.0 % | **20.9 %** | 0.94 | 3.66 | 517 |
+| instrument reported | 88.8 % | **81.0 %** | 0.94 | 3.66 | 517 |
+| **fully conditioned** | **3.3 %** | **2.3 %** | 0.80 | 3.27 | 577 |
+
+### Three things it says
+
+**1. The effective sample size is the paper, not the row.** `n_eff` lands at 517–588 against
+1 890 rows and 491 papers. The paper is the independent unit, almost exactly.
+
+**2. Naive confidence intervals are 2.1× to 4.1× too narrow.** Temperature is worst: a binomial
+interval gives ±2.0 pp where the cluster bootstrap gives ±8.4 pp. Any interval in this project
+computed as `√(p(1−p)/1890)` is wrong and must be replaced.
+
+**3. ICC of 0.78–0.94 is itself the finding.** Reporting completeness is overwhelmingly a
+property of the **laboratory**, not of the measurement. A group that reports pH reports it
+everywhere; a group that omits ionic strength omits it everywhere. That is an argument for
+fixing reporting standards at the level of journals and labs rather than chasing individual
+measurements — which is what the abstract asks for.
+
+### The correction strengthens the argument rather than weakening it
+
+Every per-paper figure is **lower** than its per-row counterpart, because papers that report
+conditions properly contribute more rows. The headline moves **3.3 % → 2.3 %** fully
+conditioned, and ionic strength **14.2 % → 8.7 %**. The conservative, defensible estimator is
+the one that makes the case harder, not softer.
+
+**What ships:** per-paper as the primary figure, cluster-bootstrap intervals, and the design
+effect stated. That combination is the standard treatment for clustered data in
+cluster-randomised trials and meta-analysis, and it is what a statistician will look for.
+
+---
+
 ## Open questions this raises
 
 - Does line-number citation change extraction accuracy, in either direction? (E2)

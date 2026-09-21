@@ -147,11 +147,6 @@ docela zásah do schématu.
 *Proč se ptám:* schéma dnes dovolí jednu metodu na řádek. Když někdo udělá Raman plus
 Py-GC/MS, nevím, jestli mám brát horší mez, nebo průnik, nebo to vést jako dvě měření.
 
-**C4. Zmiňovala se metoda "něco s protony" — která to je?**
-
-*Proč se ptám:* tipoval bych kvantitativní ¹H NMR, ale může to být i PIXE nebo něco jiného.
-Nechci to hádat. (Umím projet korpus a vypsat, jaké metody se v těch 491 pracích reálně
-objevují — jestli to pomůže, udělám to dopředu.)
 
 ### D. Stáří a stav povrchu
 
@@ -185,6 +180,73 @@ měření v různých režimech nepovažuju za srovnatelná, i když mají všec
 
 **E3. Debyeovu délku počítám pro 1:1 elektrolyt.** Pro CaCl₂ a fosfáty je to špatně. Jak moc to
 vadí, když to používám jen k zařazení do režimu, ne k opravě hodnoty?
+
+### G. Je celý mechanismus standardizace postavený správně?
+
+Tahle skupina je na ověření základů. Ukaž jim konkrétní práci a nech si říct, kde je to špatně.
+
+**G1. Příklad na jedné práci — je takhle správně?** (PMC10141840)
+
+Článek má v tabulce tři měření. Stejná částice, stejné pH, stejná teplota, stejný přístroj.
+Mění se **jen médium**:
+
+| médium | zeta |
+|---|---|
+| H₂O (0,55 µS) | **−67,81 mV** |
+| PBS | **−45,89 mV** |
+| RPMI-1640 (fs) | **−14,03 mV** |
+
+*Tohle je celý abstrakt v jedné tabulce.* Jedna a tatáž částice má v různých prostředích zetu
+lišící se o **54 mV**. Kdo vezme jedno z těch čísel bez média, nenese informaci o částici.
+
+Takhle jsme ty tři řádky standardizovali:
+
+| podmínka | výsledek | proč |
+|---|---|---|
+| médium | **uvedeno** — `DI_water`, `buffer`, `culture_medium` | článek kapalinu pojmenoval |
+| pH | **uvedeno**, 7,4 | stojí v titulku tabulky |
+| teplota | **uvedeno**, 25 °C | také v titulku tabulky |
+| přístroj | **uvedeno**, Zetasizer Pro (Malvern) | značka i model, doslova |
+| **iontová síla** | **NEUVEDENO** u všech tří | a to je ta zajímavá část |
+
+**Iontová síla padla třikrát, pokaždé z jiného důvodu:**
+
+1. `H₂O (0,55 µS)` — článek dal **vodivost**, ne iontovou sílu. Převod existuje, ale potřebuje
+   předpoklad o složení. Nepřevádíme.
+2. `PBS` — název pufru bez vytištěného složení. Nominální hodnotu PBS zná každý, ale
+   nedohledáváme ji. Kdyby článek složení vytiskl, počítalo by se jako **odvozená**.
+3. `RPMI-1640 (fs)` — kultivační médium, složení neuvedeno, navíc sérum.
+
+Takže ani jeden ze tří řádků není plně podmíněný, a ani jeden nelze porovnat s ničím mimo
+tenhle článek. Přitom je to slušně napsaná práce.
+
+**Zeptej se konkrétně na tohle:**
+
+- Je správné **nepřevádět vodivost na iontovou sílu**? Je to konzervativní, ale možná až moc.
+- Je správné **nedohledávat složení PBS**? Nominální hodnotu zná obor. Já to odmítám, protože
+  jinak by "neuvedeno" přestalo znamenat "neuvedeno". Souhlasíte?
+- Kdybyste tu tabulku četli vy, co byste z ní **bez zbytku článku** ještě uměli použít?
+
+**G2. Re-sampling — je práce ta správná jednotka nezávislosti?**
+
+*Co dělám:* řádky nejsou nezávislé, shlukují se do prací. Medián 2 řádky na práci, maximum 90,
+horních 10 % prací drží 41 % dat. Takže počítám procenta **na práci, s váhou 1 na práci**, a
+intervaly dělám bootstrapem, kde losuji **práce, ne řádky**. Vnitrotřídní korelace vyšla
+0,78–0,94, efektivní velikost vzorku 517–588 místo 1 890.
+
+*Otázky, kde si nejsem jistý:*
+
+- **Je práce správná jednotka, nebo má být laboratoř?** Dvě práce ze stejné skupiny taky
+  nejsou nezávislé — sdílejí přístroj, protokol i reportovací zvyky. Jestli ano, moje čísla
+  jsou pořád optimistická a skutečné *n* je ještě menší.
+- **Má mít každá práce váhu 1?** Nebo se má vážit počtem experimentů, počtem částic, nebo
+  něčím jiným? Práce se třemi měřeními a práce s devadesáti mají dnes stejný hlas.
+- **Je to vůbec ta správná otázka?** ICC 0,78–0,94 mi říká, že reportování je vlastnost
+  laboratoře, ne měření. Jestli je to pravda, popisná statistika napříč pracemi možná měří
+  spíš zvyky skupin než stav literatury.
+
+Ta poslední je pro mě nejdůležitější, protože kdyby platila, znamená to, že se má měřit něco
+jiného, než měřím.
 
 ### F. Otázky, které otevírají rozhovor
 

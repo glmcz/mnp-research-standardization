@@ -51,6 +51,34 @@ neuvedena" je tvrzení o článku, ověřitelné strojem, ne prázdná buňka.
 To poslední je nejsilnější věc, kterou máš. **Žádný zeta potenciál v tomhle korpusu nelze
 porovnat se zetou z jiné práce.** Ne málo. Nula.
 
+### Kterých pět podmínek, a jak se dnes počítá, že jsou "uvedené"
+
+Tohle je první věc, na kterou se tě vědec zeptá. Měj to po ruce doslova.
+
+| podmínka | proč bez ní zeta nic neznamená | počítá se jako uvedená | nepočítá se |
+|---|---|---|---|
+| **médium** | zeta je vlastnost částice **a** jejího média | jakékoli pojmenování kapaliny, i "DI water" i "PBS" | článek kapalinu nikdy nepojmenuje |
+| **iontová síla** (mM) | určuje Debyeovu délku; bez ní nemá křivka mobility osu x | "10 mM NaCl"; i vytištěné složení ("0,137 M NaCl, 0,0027 M KCl"), pak jako **odvozená** | "PBS" nebo "HEPES" samotné; složka, jejíž speciaci článek neuvádí; **nikdy se nedohledává nominální hodnota** |
+| **pH** | určuje disociaci povrchových skupin, u funkcionalizované částice mění i znaménko | číslo, i rozsah ("mezi 6,8 a 7,2") | "fyziologické pH" bez čísla |
+| **teplota** (°C) | vstupuje do ε, η a kT v každém modelu | číslo; i "room temperature", ale s příznakem *nominální* | teplota inkubace, expozice, skladování nebo kultivace — **ani když článek jinou neuvádí** |
+| **přístroj** | různé přístroje aplikují jiný převod mobility na zetu | i rodina ("Zetasizer"); značka a model je lepší a ukládá se doslova | nic neuvedeno |
+
+**Plně podmíněno** znamená všech pět **současně na jednom řádku**. Proto je to číslo tak nízké.
+Jednotlivě to vypadá mnohem líp — médium 72 %, přístroj 81 % — ale průnik spadne na 2,3 %.
+
+**Tři pravidla navíc, která rozhodují víc, než by se zdálo:**
+
+1. **Rozsah platnosti.** Podmínka platí jen uvnitř experimentu, který ji uvádí. Nepřenáší se na
+   jinou přípravu, ani když je ve stejném článku. Ratifikováno 13. 9.
+2. **Nepřítomnost se nikdy nedoplňuje.** "DI water" neznamená iontová síla nula. Znamená médium
+   uvedeno, iontová síla neuvedena. Tohle je jediné pravidlo, jehož zrušení by čísla změnilo
+   řádově — ověřeno, pustí 16 srovnatelných dvojic na 81 624.
+3. **Všechna čísla jsou horní odhad.** Protože "uvedeno" je měkčí než "uvedeno číslem": rozsah
+   pH se počítá, nominální teplota se počítá, rodina přístroje se počítá. Skutečná úplnost je
+   tedy ještě nižší než 2,3 %.
+
+---
+
 ---
 
 ## Část 2 — otázky pro vědce
@@ -168,8 +196,20 @@ To je nejdůležitější otázka v celém dokumentu. Odpověď rozhodne, co má
 
 **F2. Jaké minimum parametrů musí být uvedeno, aby se dalo měření vůbec použít?**
 
-Mám pět: médium, iontová síla, pH, teplota, přístroj. Zajímá mě, jestli je to málo, moc,
-nebo jiných pět.
+Mám pět: **médium, iontová síla, pH, teplota, přístroj.** Vyber si z těchhle tří otázek podle
+toho, kam se rozhovor stočí:
+
+- **Chybí něco?** Napadá mě velikost měřená v tomtéž médiu, doba od dispergace a protokol
+  sonikace. Zatím je nemám a nevím, jestli patří mezi povinné, nebo mezi volitelné.
+- **Je něco navíc?** Přístroj je z té pětice nejméně jistý. Beru ho jako zástupný ukazatel
+  převodního modelu, protože ten se uvádí jen v 6,8 % prací. Kdyby se model psal přímo,
+  přístroj by možná nebyl potřeba.
+- **Souhlasíte s tím, co počítám jako "uvedeno"?** Ukaž jim tabulku z části 1. Konkrétně:
+  bere se "room temperature" jako uvedená teplota? Stačí "Zetasizer" bez modelu? A je správné
+  odmítnout dohledání nominálního složení PBS, i když ho každý zná?
+
+Ta poslední otázka je nejcennější, protože moje definice "uvedeno" určuje **každé** procento
+v téhle práci. Když je nastavená jinak, než by ji nastavil obor, jsou všechna čísla vedle.
 
 **F3. Našel jsem práci, která uvádí svou koncentraci soli dvakrát a ta dvě čísla se liší
 tisícinásobně. Jak časté to je, a co s tím má dataset dělat?**

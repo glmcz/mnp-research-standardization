@@ -325,7 +325,11 @@ def test_the_summary_says_which_of_its_numbers_needed_a_model():
 # -- kind E --------------------------------------------------------------------------------
 
 
-def _kind_e_key(verdict="not_comparable", blockers="pH_unreported;medium_class_mismatch"):
+def _kind_e_key(
+    verdict="not_comparable",
+    blockers="medium_class_mismatch;pH_unreported",
+    blocker_fields="medium;pH",
+):
     return qs.answer_from_record(
         {
             "row_id_a": "PMCAAA-r1",
@@ -334,6 +338,7 @@ def _kind_e_key(verdict="not_comparable", blockers="pH_unreported;medium_class_m
             "pmcid_b": "PMCBBB",
             "verdict": verdict,
             "blockers": blockers,
+            "blocker_fields": blocker_fields,
             "question": "?",
         }
     )
@@ -352,7 +357,7 @@ def test_kind_e_also_scores_which_fields_were_named_as_blockers():
     answer = scoring.Answer(
         key.qid,
         "E",
-        {"verdict": "not_comparable", "blockers": ["pH_unreported", "instrument_mismatch"]},
+        {"verdict": "not_comparable", "blockers": ["pH", "instrument"]},
         "",
         0,
         0,
@@ -361,3 +366,33 @@ def test_kind_e_also_scores_which_fields_were_named_as_blockers():
     assert scored.metric("blocker_precision") == pytest.approx(0.5)
     assert scored.metric("blocker_recall") == pytest.approx(0.5)
     assert scored.metric("blockers_exact") == pytest.approx(0.0)
+
+
+def test_kind_e_blockers_are_fields_not_the_keys_finer_codes():
+    """The question asks which *fields* block. The first pilot answered `ionic_strength`,
+    `medium` — exactly the fields its prompt printed — and scored 0.0, because the key held
+    `ionic_strength_mismatch;medium_text_mismatch`. Every cell would have scored zero."""
+    key = _kind_e_key(
+        verdict="conditionally_comparable",
+        blockers="ionic_strength_mismatch;medium_text_mismatch",
+        blocker_fields="ionic_strength;medium",
+    )
+    answer = scoring.Answer(
+        key.qid,
+        "E",
+        {"verdict": "conditionally_comparable", "blockers": ["ionic_strength", "medium"]},
+        "",
+        0,
+        0,
+    )
+    scored = scoring.score_one(answer, key, corpus=None)
+    assert scored.metric("blockers_exact") == pytest.approx(1.0)
+
+
+def test_kind_e_blocker_names_match_regardless_of_case_and_spacing():
+    """A prose cell never sees the vocabulary spelled as an identifier."""
+    key = _kind_e_key()
+    answer = scoring.Answer(
+        key.qid, "E", {"verdict": "not_comparable", "blockers": ["Medium", "PH "]}, "", 0, 0
+    )
+    assert scoring.score_one(answer, key, corpus=None).metric("blockers_exact") == 1.0

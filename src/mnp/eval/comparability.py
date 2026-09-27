@@ -87,6 +87,23 @@ class Blocker:
     detail: str = ""
 
 
+#: Every value `Blocker.field` takes. Codes are finer (medium_class_mismatch and
+#: medium_text_mismatch are both `medium`); a kind E answer names fields, so this list is what
+#: the answer contract prints, identically for every cell.
+BLOCKER_FIELDS: tuple[str, ...] = (
+    "quantity",
+    "material",
+    "functionalisation",
+    "medium",
+    "ionic_strength",
+    "pH",
+    "temperature",
+    "instrument",
+    "size_measured_nm",
+    "conversion_model",
+)
+
+
 @dataclass(frozen=True)
 class Verdict:
     verdict: Comparability
@@ -280,9 +297,9 @@ FUNCTIONALISATION_SPELLINGS: dict[str, str] = {
     "none plain pristine": "BARE",
     "neutral unmodified": "BARE",
     "pristine unmodified": "BARE",
+    # "pristine" keys to BARE on its own, so the unaged in "pristine (unaged)" adds nothing.
+    # "unaged" alone is a weathering state, not a surface chemistry (Martin, 2026-09-27).
     "pristine unaged": "BARE",
-    "unaged": "BARE",
-    "fresh unaged": "BARE",
     "without functional groups": "BARE",
     "without other surface functional groups": "BARE",
 }
@@ -688,6 +705,9 @@ class PairSpec:
             "n_blockers": str(len(self.verdict.blockers)),
             "blockers": ";".join(self.verdict.codes),
             "blocker_kinds": ";".join(blocker.kind.value for blocker in self.verdict.blockers),
+            "blocker_fields": ";".join(
+                sorted({blocker.field for blocker in self.verdict.blockers})
+            ),
             "question": self.question,
         }
 
@@ -810,6 +830,7 @@ FIELDNAMES: tuple[str, ...] = (
     "n_blockers",
     "blockers",
     "blocker_kinds",
+    "blocker_fields",
     "question",
 )
 

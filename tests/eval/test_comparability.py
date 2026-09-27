@@ -109,6 +109,16 @@ def test_an_unreported_functionalisation_is_not_a_bare_surface():
     assert "functionalisation_unreported" in _codes(bare, silent)
 
 
+def test_unaged_is_a_weathering_state_not_a_bare_surface():
+    """'Unaged' says the particle was not weathered. It says nothing about whether its surface
+    carries COOH, so it cannot be merged with 'plain' (Martin, 2026-09-27)."""
+    for spelling in ("unaged", "fresh (unaged)"):
+        assert cmp.functionalisation_key(spelling) != "BARE", spelling
+    unaged = _row("A-r1", "PMCA", functionalisation="unaged")
+    plain = _row("B-r1", "PMCB", functionalisation="plain")
+    assert "functionalisation_mismatch" in _codes(unaged, plain)
+
+
 def test_spellings_of_the_same_surface_group_do_not_block():
     a = _row("A-r1", "PMCA", functionalisation="carboxylated (-COOH)")
     b = _row("B-r1", "PMCB", functionalisation="carboxyl groups")
@@ -460,6 +470,18 @@ def test_the_query_set_ground_truth_is_reproducible_from_the_rows():
         verdict = cmp.comparable(by_id[record["row_id_a"]], by_id[record["row_id_b"]])
         assert verdict.verdict.value == record["verdict"]
         assert ";".join(b.code for b in verdict.blockers) == record["blockers"]
+        assert ";".join(sorted({b.field for b in verdict.blockers})) == record["blocker_fields"]
+
+
+def test_every_blocker_field_is_in_the_vocabulary_the_answer_contract_prints():
+    fields = {
+        field
+        for record in cmp.read_query_set()
+        for field in record["blocker_fields"].split(";")
+        if field
+    }
+    assert fields
+    assert fields <= set(cmp.BLOCKER_FIELDS)
 
 
 def test_generation_is_deterministic():

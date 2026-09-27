@@ -357,15 +357,24 @@ def _score_d(answer: Answer, key: AnswerKey, corpus) -> Scored:
     )
 
 
+def _field_name(text: str) -> str:
+    """`PH ` and `ionic strength` are `ph` and `ionic_strength`: a prose cell writes words."""
+    return re.sub(r"[\s-]+", "_", text.strip()).lower()
+
+
 def _score_e(answer: Answer, key: AnswerKey, corpus) -> Scored:
-    """Verdict exactly, then the blockers as a set. The verdict alone is guessable three ways."""
+    """Verdict exactly, then the blocking *fields* as a set — what the question asks for.
+
+    Not the key's codes: those are finer than a field (medium_class_mismatch and
+    medium_text_mismatch are both `medium`), and only the structured cell ever sees them.
+    The verdict alone is guessable three ways."""
     wanted_verdict = key.get("verdict")
     said_verdict = str(answer.payload.get("verdict", "")).strip()
-    wanted = frozenset(_split(key.get("blockers")))
+    wanted = frozenset(_field_name(x) for x in _split(key.get("blocker_fields")))
     given = answer.payload.get("blockers") or []
     if isinstance(given, str):
         given = _split(given)
-    said = frozenset(str(x).strip() for x in given if str(x).strip())
+    said = frozenset(_field_name(str(x)) for x in given if str(x).strip())
     hit = len(said & wanted)
     precision = hit / len(said) if said else (1.0 if not wanted else 0.0)
     recall = hit / len(wanted) if wanted else 1.0

@@ -17,7 +17,7 @@ number the grid produces is a measure of copying.
 import pytest
 
 from mnp.corpus import lines
-from mnp.eval import cells, selectors
+from mnp.eval import cells, comparability, selectors
 from mnp.eval import query_sets as qs
 from mnp.eval.query_sets import QueryKind as K
 
@@ -346,6 +346,14 @@ def test_kind_e_gets_its_own_answer_contract(corpus):
     contract = cells.answer_contract(K.e)
     assert "conditionally_comparable" in contract
     assert contract in cells.session_e(qs.question_from_record(_kind_e_record())).prompt
+
+
+def test_the_kind_e_contract_names_every_field_a_blocker_can_be(corpus):
+    """Cells B and C read prose and never see the key's field names. Without the vocabulary in
+    the contract they could only lose on blockers, and the grid would be rigged."""
+    contract = cells.answer_contract(K.e)
+    for field in comparability.BLOCKER_FIELDS:
+        assert field in contract
 
 
 def test_cell_b_searches_every_paper_a_question_names_not_only_the_first(corpus, doc_a, doc_b):

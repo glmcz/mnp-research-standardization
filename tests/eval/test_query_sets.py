@@ -138,6 +138,36 @@ def test_kind_a_evidence_line_ids_resolve_in_the_paper_they_name():
         assert ids and ids <= known, record["qid"]
 
 
+def test_every_kind_a_question_singles_out_exactly_one_gold_value():
+    """A-001 and A-002 once asked one paper the same question and wanted 24.13 and -33.97:
+    two particle sizes, one phrase. Whatever a cell answered, one of the pair was wrong by
+    construction — 15 of 30 questions were like that when the first pilot read them."""
+    gold = qs.gold_rows()
+    for record in records(K.a):
+        matching = [
+            row
+            for row in gold
+            if qs._str(row["pmcid"]) == record["pmcid"]
+            and qs._str(row.get("quantity")) == "zeta_potential"
+            and qs._str(row.get("material")) == record["material"]
+            and qs._str(row.get("functionalisation")) == record["functionalisation"]
+            and qs._str(row.get("medium_text")) == record["medium_text"]
+            and (
+                not record["particle_name"]
+                or qs._str(row.get("particle_name")) == record["particle_name"]
+            )
+        ]
+        values = {qs._float(row.get("value")) for row in matching}
+        assert values == {float(record["answer_value"])}, record["qid"]
+
+
+def test_kind_a_names_the_particle_in_the_question_when_it_targets_one():
+    named = [record for record in records(K.a) if record["particle_name"]]
+    assert named, "no question needed a particle name, so the rule above is untested"
+    for record in named:
+        assert record["particle_name"] in record["question"], record["qid"]
+
+
 def test_kind_a_spreads_across_papers_rather_than_draining_one():
     pmcids = [record["pmcid"] for record in records(K.a)]
     assert len(set(pmcids)) >= 8
@@ -201,6 +231,19 @@ def test_kind_c_ground_truth_is_reproducible_by_running_the_filter_again():
         spec = qs.filter_from_record(record)
         pmcids = sorted({row["pmcid"] for row in qs.apply_filter(table, spec)})
         assert pmcids == record["answer_pmcids"].split(";")
+
+
+def test_kind_c_questions_are_asked_in_words_not_the_routers_codes():
+    """C-001 once asked for PE 'functionalised as BARE'. BARE is the router's key; the rows
+    say 'nonfunctionalized' and 'plain', so a reader answering from evidence found none."""
+    for record in records(K.c):
+        spec = qs.filter_from_record(record)
+        assert "BARE" not in record["question"], record["qid"]
+        if spec.material:
+            assert qs.MATERIAL_WORDS[spec.material] in record["question"], record["qid"]
+        if spec.functionalisation:
+            words = qs.FUNCTIONALISATION_WORDS[spec.functionalisation]
+            assert words in record["question"], record["qid"]
 
 
 def test_kind_c_answers_are_neither_empty_nor_the_whole_corpus():

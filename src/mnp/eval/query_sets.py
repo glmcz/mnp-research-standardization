@@ -102,6 +102,7 @@ FIELDNAMES: dict[QueryKind, tuple[str, ...]] = {
         "functionalisation",
         "medium_text",
         "quantity",
+        "particle_name",
         "gold_row_id",
         "answer_value",
         "answer_unit",
@@ -178,12 +179,13 @@ ANSWER_COLUMNS: frozenset[str] = frozenset(
         "n_blockers",
         "blockers",
         "blocker_kinds",
+        "blocker_fields",
     }
 )
 
 #: What a static router is allowed to condition on: the question's own stated conditions.
 TARGET_COLUMNS: dict[QueryKind, tuple[str, ...]] = {
-    QueryKind.a: ("material", "functionalisation", "medium_text", "quantity"),
+    QueryKind.a: ("material", "functionalisation", "medium_text", "quantity", "particle_name"),
     QueryKind.b: ("field",),
     QueryKind.c: ("filter_json",),
     QueryKind.d: ("topic", "structured_field"),
@@ -356,6 +358,35 @@ def _particle_phrase(row: Mapping[str, Any]) -> str:
     return material
 
 
+def _lookup_key(row: Mapping[str, Any], named: bool) -> tuple[str, ...]:
+    key = tuple(_str(row.get(c)) for c in ("pmcid", "material", "functionalisation", "medium_text"))
+    return (*key, _str(row.get("particle_name"))) if named else key
+
+
+def _values_per_phrase(named: bool) -> dict[tuple[str, ...], set[float | None]]:
+    """Every gold value a question phrased this way could mean, across the whole gold set.
+
+    Across all gold rows, not only the picked ones: a question can be unique within the set
+    and still match a second measurement in its paper.
+    """
+    values: dict[tuple[str, ...], set[float | None]] = {}
+    for row in gold_rows():
+        if _str(row.get("quantity")) == "zeta_potential":
+            values.setdefault(_lookup_key(row, named), set()).add(_float(row.get("value")))
+    return values
+
+
+def _needs_particle_name(row: Mapping[str, Any]) -> bool | None:
+    """False if the phrase alone singles the row out, True if its particle name does, and
+    `None` if nothing the question can state does — two printings of one particle in one
+    medium, told apart only by prose (PMC4958399's -20.0 reference and -20.3 control)."""
+    if len(_values_per_phrase(named=False)[_lookup_key(row, named=False)]) == 1:
+        return False
+    if len(_values_per_phrase(named=True)[_lookup_key(row, named=True)]) == 1:
+        return True
+    return None
+
+
 def _kind_a_candidates() -> list[dict[str, Any]]:
     return [
         row
@@ -366,6 +397,7 @@ def _kind_a_candidates() -> list[dict[str, Any]]:
         and _str(row.get("material"))
         and _str(row.get("evidence_quote"))
         and (config.EPMC_XML_DIR / f"{_str(row['pmcid'])}.xml").is_file()
+        and _needs_particle_name(row) is not None
     ]
 
 
@@ -405,6 +437,8 @@ def build_kind_a(seed: int = RANDOM_SEED) -> list[dict[str, str]]:
         if not numbers:
             continue
         reported = bool(row.get("I_reported")) and _float(row.get("ionic_strength_mM")) is not None
+        particle_name = _str(row.get("particle_name")) if _needs_particle_name(row) else ""
+        described = f' described as "{particle_name}"' if particle_name else ""
         records.append(
             {
                 "qid": f"A-{index:03d}",
@@ -412,13 +446,14 @@ def build_kind_a(seed: int = RANDOM_SEED) -> list[dict[str, str]]:
                 "pmcid": pmcid,
                 "question": (
                     f"In {pmcid}, what zeta potential was reported for "
-                    f"{_particle_phrase(row)} particles in {_str(row['medium_text'])}, "
+                    f"{_particle_phrase(row)} particles{described} in {_str(row['medium_text'])}, "
                     f"and at what ionic strength was that measurement made?"
                 ),
                 "material": _str(row.get("material")),
                 "functionalisation": _str(row.get("functionalisation")),
                 "medium_text": _str(row.get("medium_text")),
                 "quantity": "zeta_potential",
+                "particle_name": particle_name,
                 "gold_row_id": _str(row["row_id"]),
                 "answer_value": f"{_float(row['value'])}",
                 "answer_unit": _str(row.get("unit")) or "mV",
@@ -608,6 +643,25 @@ KIND_C_FAMILIES: tuple[str, ...] = (
 )
 KIND_C_PER_FAMILY = 2
 
+#: The router's codes, as a reader who never saw the code would be asked. A question in the
+#: router's own vocabulary ("functionalised as BARE") is answerable only by the structured cell.
+MATERIAL_WORDS = {
+    "PS": "polystyrene (PS)",
+    "PE": "polyethylene (PE)",
+    "PET": "polyethylene terephthalate (PET)",
+    "PVC": "polyvinyl chloride (PVC)",
+    "PP": "polypropylene (PP)",
+    "PMMA": "poly(methyl methacrylate) (PMMA)",
+}
+FUNCTIONALISATION_WORDS = {
+    "COOH": "carboxyl-functionalised (COOH)",
+    "NH2": "amine-functionalised (NH2)",
+    "BARE": "unfunctionalised (bare, plain)",
+    "SO4": "sulfate-functionalised (SO4)",
+    "AMIDINE": "amidine-functionalised",
+    "PEG": "PEG-coated (PEGylated)",
+}
+
 _QUANTITY_WORDS = {
     "zeta_potential": "zeta potential",
     "electrophoretic_mobility": "electrophoretic mobility",
@@ -685,6 +739,7 @@ def _kind_c_candidates() -> list[tuple[str, FilterSpec, str]]:
     """
     out: list[tuple[str, FilterSpec, str]] = []
     for material in ("PS", "PE", "PET", "PVC", "PP", "PMMA"):
+        named = MATERIAL_WORDS[material]
         for low, high in ((0.0, 10.0), (10.0, 100.0), (100.0, 200.0), (200.0, 1000.0)):
             out.append(
                 (
@@ -695,7 +750,7 @@ def _kind_c_candidates() -> list[tuple[str, FilterSpec, str]]:
                         ionic_strength_min=low,
                         ionic_strength_max=high,
                     ),
-                    f"Which papers report a zeta potential for {material} particles measured "
+                    f"Which papers report a zeta potential for {named} particles measured "
                     f"at an ionic strength between {low:g} and {high:g} mM?",
                 )
             )
@@ -709,7 +764,7 @@ def _kind_c_candidates() -> list[tuple[str, FilterSpec, str]]:
                         pH_min=low,
                         pH_max=high,
                     ),
-                    f"Which papers report a zeta potential for {material} particles measured "
+                    f"Which papers report a zeta potential for {named} particles measured "
                     f"at a pH between {low:g} and {high:g}?",
                 )
             )
@@ -723,12 +778,14 @@ def _kind_c_candidates() -> list[tuple[str, FilterSpec, str]]:
                         size_min=low,
                         size_max=high,
                     ),
-                    f"Which papers report a zeta potential for {material} particles whose "
+                    f"Which papers report a zeta potential for {named} particles whose "
                     f"measured size is between {low:g} and {high:g} nm?",
                 )
             )
     for material in ("PS", "PE", "PET"):
-        for functionalisation in ("COOH", "NH2", "BARE"):
+        # All six surface groups the key knows. With only three, un-merging "unaged" from BARE
+        # left this family one usable filter, and the stratification wants two.
+        for functionalisation in FUNCTIONALISATION_WORDS:
             out.append(
                 (
                     "functionalisation",
@@ -737,8 +794,9 @@ def _kind_c_candidates() -> list[tuple[str, FilterSpec, str]]:
                         material=material,
                         functionalisation=functionalisation,
                     ),
-                    f"Which papers report a zeta potential for {material} particles "
-                    f"functionalised as {functionalisation}?",
+                    f"Which papers report a zeta potential for "
+                    f"{FUNCTIONALISATION_WORDS[functionalisation]} {MATERIAL_WORDS[material]} "
+                    f"particles?",
                 )
             )
     for medium in ("DI_water", "buffer", "salt_solution", "culture_medium", "environmental_water"):
@@ -747,8 +805,8 @@ def _kind_c_candidates() -> list[tuple[str, FilterSpec, str]]:
                 (
                     "medium_class",
                     FilterSpec(quantity="zeta_potential", material=material, medium_class=medium),
-                    f"Which papers report a zeta potential for {material} particles measured "
-                    f"in {medium.replace('_', ' ')}?",
+                    f"Which papers report a zeta potential for {MATERIAL_WORDS[material]} "
+                    f"particles measured in {medium.replace('_', ' ')}?",
                 )
             )
     for low, high in ((100.0, 200.0), (10.0, 50.0)):

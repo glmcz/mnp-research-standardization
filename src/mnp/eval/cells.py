@@ -51,7 +51,13 @@ from mnp import config
 from mnp.corpus import jats, lines
 from mnp.corpus.lines import LinedDoc
 from mnp.eval import selectors
-from mnp.eval.comparability import ZetaRow, comparable, functionalisation_key, material_key
+from mnp.eval.comparability import (
+    BLOCKER_FIELDS,
+    ZetaRow,
+    comparable,
+    functionalisation_key,
+    material_key,
+)
 from mnp.eval.query_sets import FilterSpec, QueryKind, Question, apply_filter
 
 #: Top k for a question that names one paper. See the module note: a paper is ~44 lines.
@@ -261,7 +267,10 @@ Return exactly one JSON object and nothing else:
     QueryKind.e: """OUTPUT
 Return exactly one JSON object and nothing else:
 {"verdict": "comparable" | "conditionally_comparable" | "not_comparable",
- "blockers": ["<field that blocks the comparison>", ...], "citations": ["<citation>", ...]}""",
+ "blockers": ["<field that blocks the comparison>", ...], "citations": ["<citation>", ...]}
+Each blocker is one of these field names: """
+    + ", ".join(BLOCKER_FIELDS)
+    + ".",
     QueryKind.d: """OUTPUT
 Return exactly one JSON object and nothing else:
 {"answer": "<two to four sentences>", "citations": ["<citation>", ...]}""",

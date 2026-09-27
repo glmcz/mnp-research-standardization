@@ -227,6 +227,25 @@ Runs all four gates in one pass — did the worker do the work and record its br
 - **scored against** tests/edge/key.yaml and gold_50.csv
 - **stale when** answering an edge case, which changes what gate 2 scores
 
+### `eval cell`
+
+Runs one one-shot cell of the tool-value grid (B or D) over the query set. Each question's prompt is built deterministically and handed to a headless `claude -p` reader with every tool, setting source and MCP server switched off, in a directory with no instruction file above it, so the prompt is the only thing it sees. The reader is pinned by full model id and a reply from any other model is refused. Resumes: a question already answered is never asked again, and a reader failure is retried rather than scored. --pilot asks two per kind first.
+
+- **in** queries/kind_*.csv, d1_zeta_table.csv, the vendored corpus
+- **out** data/interim/runs/<run>/: manifest, asked.txt, answers.jsonl, scores.tsv
+- **kind** judgement · idem yes · net yes
+- **scored against** the answer keys in queries/kind_*.csv, scored by mnp.eval.scoring
+- **stale when** a change to the reader model, the system prompt, or any cell builder
+
+### `eval score`
+
+Re-scores a run's recorded answers with the model-free scorer, without asking anything. The denominator is asked.txt, written before any reading, so a question that never came back is reported as unanswered rather than dropped.
+
+- **in** data/interim/runs/<run>/answers.jsonl, asked.txt, queries/kind_*.csv
+- **out** scored.jsonl, scores.tsv in the run directory
+- **kind** deterministic · idem yes · net no
+- **stale when** a scorer change
+
 ## Deliverables
 
 ### `report d1`

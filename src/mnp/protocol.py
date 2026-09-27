@@ -750,6 +750,41 @@ STEPS: tuple[Step, ...] = (
         phase="Verification",
     ),
     Step(
+        command="eval cell",
+        purpose=(
+            "Runs one one-shot cell of the tool-value grid (B or D) over the query set. Each "
+            "question's prompt is built deterministically and handed to a headless `claude -p` "
+            "reader with every tool, setting source and MCP server switched off, in a directory "
+            "with no instruction file above it, so the prompt is the only thing it sees. The "
+            "reader is pinned by full model id and a reply from any other model is refused. "
+            "Resumes: a question already answered is never asked again, and a reader failure is "
+            "retried rather than scored. --pilot asks two per kind first."
+        ),
+        inputs="queries/kind_*.csv, d1_zeta_table.csv, the vendored corpus",
+        outputs="data/interim/runs/<run>/: manifest, asked.txt, answers.jsonl, scores.tsv",
+        kind=J,
+        idempotent=True,
+        network=True,
+        invalidated_by="a change to the reader model, the system prompt, or any cell builder",
+        ground_truth="the answer keys in queries/kind_*.csv, scored by mnp.eval.scoring",
+        phase="Evaluation",
+    ),
+    Step(
+        command="eval score",
+        purpose=(
+            "Re-scores a run's recorded answers with the model-free scorer, without asking "
+            "anything. The denominator is asked.txt, written before any reading, so a question "
+            "that never came back is reported as unanswered rather than dropped."
+        ),
+        inputs="data/interim/runs/<run>/answers.jsonl, asked.txt, queries/kind_*.csv",
+        outputs="scored.jsonl, scores.tsv in the run directory",
+        kind=D,
+        idempotent=True,
+        network=False,
+        invalidated_by="a scorer change",
+        phase="Evaluation",
+    ),
+    Step(
         command="report protocol",
         purpose=(
             "Renders this document from the registry in src/mnp/protocol.py, which is the only "

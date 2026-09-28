@@ -136,6 +136,17 @@ def test_unreported_synthetic_rows_every_branch():
     assert "never imputed" in di_by["ionic_strength"].reason.lower()
 
 
+def test_a_cleared_zero_names_its_own_cause(table):
+    """A 0 mM the 2026-09-28 rule cleared is not "nothing printed": the paper printed 0 mM."""
+    empty_doc = LinedDoc(pmcid="PMC11543686", lines=(), sections=())
+    row = _row(table, "PMC11543686-r1")
+    by = {s.condition: s for s in walk.walk_row(row, empty_doc)}
+    assert by["ionic_strength"].verdict == "unreported"
+    reason = by["ionic_strength"].reason
+    assert "0 mM is printed" in reason and "not a reported ionic strength" in reason
+    assert "nothing printed" not in reason
+
+
 def test_reported_ph_range_and_reported_ionic_strength_number():
     empty_doc = LinedDoc(pmcid="PMCX", lines=(), sections=())
     row = {

@@ -382,6 +382,13 @@ def test_the_card_states_absence_is_a_value(tmp_path):
     assert "0.0" in card and "never" in low
 
 
+def test_the_card_states_the_two_rules_that_clear_a_reading(tmp_path):
+    written = _build(tmp_path / "release")
+    card = next(p for p in written if p.name == "DATASET_CARD.md").read_text()
+    assert "0 mM" in card and "ionic_strength_zero_not_reported` (0 rows)" in card
+    assert "incubation" in card and "temperature_step_not_measurement` (0 rows)" in card
+
+
 def test_the_card_states_the_single_database_limit(tmp_path):
     written = _build(tmp_path / "release")
     card = next(p for p in written if p.name == "DATASET_CARD.md").read_text()

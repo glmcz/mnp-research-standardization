@@ -17,5 +17,31 @@
   "pilot": false,
   "model": "claude-sonnet-5",
   "reader": "claude -p, tools off, no setting sources (2.1.92 (Claude Code))",
-  "system_prompt_sha256": "bf23c3a4a2f5a98ffdd57a2db72c6d9278d36055a1d639f0e5b32e3fec23fcde"
+  "system_prompt_sha256": "bf23c3a4a2f5a98ffdd57a2db72c6d9278d36055a1d639f0e5b32e3fec23fcde",
+  "reasked": [
+    {
+      "at": "2026-09-28T21:45:28+00:00",
+      "qids": [
+        "B-025",
+        "B-026",
+        "B-028",
+        "B-029",
+        "B-030",
+        "E-PMC11543686-r1__PMC11543686-r22",
+        "E-PMC11543686-r23__PMC11543686-r37",
+        "E-PMC11543686-r2__PMC11543686-r27",
+        "E-PMC11543686-r3__PMC11543686-r9"
+      ],
+      "reason": "rules ratified 2026-09-28: an ionic strength of exactly 0 mM is not a reported ionic strength, and a temperature flagged temperature_step_not_measurement is cleared; the rebuilt table changed this question's prompt or answer key",
+      "code_commit": "f78a4f52e60f25cc3821ca45be612aa6e3061a2f",
+      "code_dirty": true,
+      "counts": {
+        "asked": 400,
+        "already_answered": 391,
+        "answered_now": 9,
+        "refused": 0,
+        "reader_failures": 0
+      }
+    }
+  ]
 }

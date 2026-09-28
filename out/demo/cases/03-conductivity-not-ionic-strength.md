@@ -103,7 +103,7 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 | conversion_model | 0.0% | 8.8% |
 | functionalisation | 100.0% | 75.6% |
 | instrument | 0.0% | 55.0% |
-| ionic_strength | 100.0% | 82.8% |
+| ionic_strength | 100.0% | 83.1% |
 | material | 66.7% | 22.8% |
 | medium | 66.7% | 90.6% |
 | pH | 50.0% | 76.9% |
@@ -129,9 +129,9 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 | metric | per-row (with paper) | per-row (without) | per-paper (with) | per-paper (without) |
 |---|---|---|---|---|
 | medium_reported | 83.2% | 83.1% | 72.1% | 72.1% |
-| ionic_strength_reported | 14.2% | 14.3% | 8.7% | 8.7% |
+| ionic_strength_reported | 13.7% | 13.7% | 8.6% | 8.6% |
 | pH_reported | 21.3% | 21.1% | 16.8% | 16.6% |
-| temperature_reported | 28.0% | 27.8% | 20.9% | 20.7% |
+| temperature_reported | 27.8% | 27.6% | 20.6% | 20.5% |
 | instrument_reported | 88.8% | 88.8% | 81.0% | 81.0% |
 | conditions_complete | 3.3% | 3.3% | 2.3% | 2.3% |
 

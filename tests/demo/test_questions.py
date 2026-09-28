@@ -124,3 +124,18 @@ def test_scoring_kind_e_correct_and_wrong(table):
     wrong = scoring.score_one(_answer(key.qid, wrong_payload), key)
     assert correct.correct is True
     assert wrong.correct is False
+
+
+@pytest.mark.parametrize("case", cases.CASES, ids=lambda c: c.slug)
+def test_no_lookup_is_built_on_a_value_a_rule_cleared(case, table):
+    """X12-A once asked about a row whose medium reads "no background electrolyte (ionic
+    strength 0 mM)": rule R1 clears that 0, but the question carried the paper's words, the
+    reader repeated them, and the answer was scored a fabrication. A reader cannot know a
+    project rule, so a lookup must not rest on a value one of them cleared."""
+    rule_flags = ("ionic_strength_zero_not_reported", "temperature_step_not_measurement")
+    by_id = table.set_index("row_id")
+    for question, key in questions.questions_for(case, table):
+        if question.kind is not QueryKind.a:
+            continue
+        flags = str(by_id.loc[key.get("gold_row_id"), "flags"] or "")
+        assert not any(f in flags for f in rule_flags), (question.qid, flags)

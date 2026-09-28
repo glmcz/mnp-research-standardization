@@ -34,6 +34,7 @@ from mnp.demo import walk as walk_mod
 from mnp.eval import cells, grid, scoring
 from mnp.eval import comparability as comp
 from mnp.eval.query_sets import AnswerKey, Question
+from mnp.extract.zeta import ZERO_IONIC_STRENGTH
 
 CELL_D_RUN = "demo-celld-20260928"
 CELL_B_RUN = "demo-cellb-20260928"
@@ -1114,6 +1115,8 @@ def _resampling_block(table: pd.DataFrame) -> str:
     row_shift = abs(temp_loo.per_row_full - temp_loo.per_row_without)
     paper_shift = abs(temp_loo.per_paper_full - temp_loo.per_paper_without)
     n_paper_rows = int((table["pmcid"] == loo_pmcid).sum())
+    flags = table["flags"].fillna("").astype(str).str.split(";")
+    zeroed = int(flags.map(lambda parts: ZERO_IONIC_STRENGTH in parts).sum())
 
     return "\n".join(
         [
@@ -1140,8 +1143,12 @@ def _resampling_block(table: pd.DataFrame) -> str:
             "-- every metric's cluster interval is at least twice the naive one.",
             "",
             f"**Ionic strength's ICC.** This rebuild gives **{ionic.icc:.4f}** ({ionic.icc:.2f} "
-            "in the table above), where FINDINGS.md §E2e printed 0.83 -- most likely 0.825 "
-            "rounded a second time. The difference is reported here, not tuned to match.",
+            "in the table above), where FINDINGS.md §E2e printed 0.83. FINDINGS predates the "
+            "rule of 2026-09-28 that a printed 0 mM is not a reported ionic strength; on the "
+            "table before it, this code gave 0.8247 (commit f78a4f5), which the printed 0.83 "
+            "most likely rounds twice (0.8247 -> 0.825 -> 0.83). The "
+            f"{zeroed} rows that rule cleared account for the rest. "
+            "The difference is reported here, not tuned to match.",
             "",
             f"**Leave-one-out, {loo_pmcid} (case 06, {n_paper_rows} rows -- the largest single "
             "paper in the corpus).** Dropping it moves the per-row temperature-reported "

@@ -10,8 +10,8 @@ Two things a reader should take from this card before using the data: only a sma
 
 | file | what it is | sha256 |
 |---|---|---|
-| `dataset.parquet` | 1890 rows × 44 columns | `a58981cfb330ddb3c27ea524fb30117d74293c5d5b4783a6ed0d1add2621ccab` |
-| `dataset.jsonl` | the same rows, one JSON object per line | `03941e61a58c967cbb131e80837f4e0a8a63ca55a4c662c58b38de83ba063669` |
+| `dataset.parquet` | 1890 rows × 44 columns | `867b742421ac0b093f29dc1644b37ba387d72af1c47e003ede4d26b7bb622ff6` |
+| `dataset.jsonl` | the same rows, one JSON object per line | `2ba1bfa755036bbd9216c14adcdd8032af0c28a6d3fe4249fbdca2197e4e222b` |
 | `schema.json` | JSON Schema 2020-12 for the record type, generated from the pydantic models in `mnp.schema.models`; the release's own evidence columns are `$defs/ReleasedEvidence` | `8976dc57ec31847920e727058140f0cb737356452ce4b5c8e28d449dd50edc4d` |
 | `LICENSE` | CC BY 4.0, and the attribution line | `b292b211874def0d2ff9e4d276880fdfa35d10450de3321040e4d341a622d606` |
 | `DATASET_CARD.md` | this file | — |
@@ -44,9 +44,9 @@ Row-level reporting of each condition:
 | condition | rows reporting it | |
 |---|---|---|
 | Dispersion medium | 1572 / 1890 | 83.2 % |
-| Ionic strength | 269 / 1890 | 14.2 % |
+| Ionic strength | 259 / 1890 | 13.7 % |
 | pH | 402 / 1890 | 21.3 % |
-| Temperature | 529 / 1890 | 28.0 % |
+| Temperature | 525 / 1890 | 27.8 % |
 | Instrument | 1679 / 1890 | 88.8 % |
 
 ## Absence is a value, not a gap
@@ -54,6 +54,8 @@ Row-level reporting of each condition:
 The five `*_reported` booleans are the reason this dataset exists. `ionic_strength_reported = False` is a **positive claim**: this paper did not report the ionic strength of the medium it measured in. It is not a null, not a missing value, and not an encoding of uncertainty. It is deterministically checkable against the source article, which is why it can be used as ground truth.
 
 Nothing is imputed. A condition that was not reported is never filled with a conventional default: **`not measured` is never written as 0.0 and never as 1.0**, because both are claims nobody checked. Where a paper reports a measurement but prints no number, `value` is null and `value_text` says so; where the ionic strength was inferred from a named salt rather than stated, `ionic_strength_source` records that it was inferred.
+
+Two readings are cleared rather than kept, by rules ratified on 2026-09-28. An ionic strength of exactly 0 mM is not a reported one: "no added electrolyte" says nothing was added, not that the medium holds no ions, so the row reads `ionic_strength_reported = False` and carries `ionic_strength_zero_not_reported` (10 rows). A temperature tied to an incubation or exposure step is not the measurement temperature, even when the paper gives no other, so it is removed and the row carries `temperature_step_not_measurement` (4 rows). The rows stay; the extraction record keeps the number the model read.
 
 This makes one query answerable that a text index cannot answer: *what ionic strength did this paper use?* when the true answer is that it never said. There is no passage to retrieve for that, so a retrieval system fabricates the nearest number. Here it is a boolean.
 
@@ -89,7 +91,7 @@ Per condition, over papers, with 95 % Wilson intervals:
 | Dispersion medium | 127 / 491 | 25.9 % | 22–30 % |
 | Ionic strength | 440 / 491 | 89.6 % | 87–92 % |
 | pH | 392 / 491 | 79.8 % | 76–83 % |
-| Temperature | 383 / 491 | 78.0 % | 74–81 % |
+| Temperature | 384 / 491 | 78.2 % | 74–82 % |
 | Instrument | 90 / 491 | 18.3 % | 15–22 % |
 | Any condition | 477 / 491 | 97.1 % | 95–98 % |
 

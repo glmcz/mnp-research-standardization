@@ -4,8 +4,9 @@ The rules are the ratified ones in `docs/2026-09-21-cile-a-otazky-pro-vedce.md` 
 walks one paper through them by hand): absence is never imputed, a condition derived from a
 printed composition is a different claim from one the paper states directly, and an unreported
 condition's reason must name the specific cause the row shows — conductivity printed instead
-of ionic strength, a buffer named without its composition, a culture or biological medium, or
-pure/DI water, which is a reported medium and an unreported ionic strength, never zero.
+of ionic strength, a buffer named without its composition, a culture or biological medium,
+pure/DI water, which is a reported medium and an unreported ionic strength, never zero, or a
+printed 0 mM, which since 2026-09-28 is not a reported ionic strength either.
 """
 
 from __future__ import annotations
@@ -18,6 +19,7 @@ from typing import Any
 
 from mnp.corpus import lines as corpus_lines
 from mnp.corpus.lines import LinedDoc
+from mnp.extract.zeta import ZERO_IONIC_STRENGTH
 
 CONDITIONS: tuple[str, ...] = ("medium", "ionic_strength", "pH", "temperature", "instrument")
 
@@ -101,6 +103,12 @@ def _ionic_strength_cause(row: Mapping[str, Any]) -> str:
     """Why this row's ionic strength is unreported — the specific cause, not a generic one."""
     medium_text = _str(row.get("medium_text"))
     medium_class = _str(row.get("medium_class"))
+    if ZERO_IONIC_STRENGTH in _str(row.get("flags")).split(";"):
+        return (
+            f'0 mM is printed ("{medium_text}"), and 0 mM is not a reported ionic strength: '
+            '"no added electrolyte" says nothing was added, not that the medium holds no ions '
+            "(ratified 2026-09-28)"
+        )
     if CONDUCTIVITY_RE.search(medium_text):
         return (
             f'conductivity is printed instead of ionic strength ("{medium_text}"); converting '

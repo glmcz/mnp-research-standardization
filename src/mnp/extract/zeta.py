@@ -386,6 +386,9 @@ def check_units(m, claimed_units: set[str], article_text: str) -> list[str]:
 
 # -- verification ------------------------------------------------------------------
 
+STEP_TEMPERATURE = "temperature_step_not_measurement"
+ZERO_IONIC_STRENGTH = "ionic_strength_zero_not_reported"
+
 
 def _norm(s: str) -> str:
     """Whitespace- and dash-insensitive form, for comparing a quote with the article.
@@ -544,7 +547,7 @@ def _scope_flags(c, quote: str) -> list[str]:
             # quote. Testing the whole join flagged correct rows whenever any other piece
             # mentioned a culture or an exposure, so workers trimmed their evidence to clear
             # it — the guard was punishing the more complete quote.
-            flags.append("temperature_step_not_measurement")
+            flags.append(STEP_TEMPERATURE)
     if c.ionic_strength_mM is not None and not _ionic_in(c, quote):
         flags.append("ionic_strength_not_in_evidence")
     return flags
@@ -562,6 +565,33 @@ def _ionic_in(c, quote: str) -> bool:
 
 
 # -- record --------------------------------------------------------------------------
+
+
+def row_conditions(
+    c: models.MeasurementConditions, flags: list[str]
+) -> tuple[models.MeasurementConditions, list[str]]:
+    """The conditions a table row carries, after the two rules Martin ratified on 2026-09-28.
+
+    Both keep the row and clear the value. An ionic strength of exactly 0 mM is not a reported
+    one: "no added electrolyte" says nothing was added, not that the medium holds no ions, and
+    absence is never imputed. A temperature the verifier tied to an incubation or exposure step
+    is not the measurement temperature, even when the paper gives no other.
+
+    Applied here and not in the record, which stays what the model read: that is provenance,
+    and the rule can be revisited without re-reading a paper. The `*_reported` properties are
+    computed from the fields, so the copy re-derives them.
+    """
+    update: dict = {}
+    flags = list(flags)
+    if c.ionic_strength_mM == 0:
+        update["ionic_strength_mM"] = None
+        update["ionic_strength_source"] = models.ValueSource.unreported
+        if ZERO_IONIC_STRENGTH not in flags:
+            flags.append(ZERO_IONIC_STRENGTH)
+    if STEP_TEMPERATURE in flags:
+        update["temperature_C"] = None
+        update["temperature_qualifier"] = None
+    return (c.model_copy(update=update) if update else c), flags
 
 
 @dataclass
@@ -604,8 +634,8 @@ class ExtractionRecord:
 
     def to_rows(self) -> list[dict]:
         rows = []
-        for m, flags in zip(self.measurements, self.row_flags, strict=True):
-            c = m.conditions
+        for m, stored_flags in zip(self.measurements, self.row_flags, strict=True):
+            c, flags = row_conditions(m.conditions, stored_flags)
             rows.append(
                 {
                     "pmcid": self.pmcid,

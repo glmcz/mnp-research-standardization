@@ -87,6 +87,9 @@ def _row_number(row: dict[str, Any]) -> int:
 # -- kind A: a lookup unique in its paper, always naming the particle -----------------------
 
 
+_RULE_CLEARED = ("ionic_strength_zero_not_reported", "temperature_step_not_measurement")
+
+
 def _kind_a(case: Case, rows: list[dict[str, Any]]) -> tuple[Question, AnswerKey] | None:
     counts: dict[tuple[str, ...], int] = {}
     for row in rows:
@@ -100,6 +103,9 @@ def _kind_a(case: Case, rows: list[dict[str, Any]]) -> tuple[Question, AnswerKey
         and _str(row.get("material"))
         and _str(row.get("medium_text"))
         and _float(row.get("value")) is not None
+        # a value a ratified rule cleared (0 mM, an incubation temperature) still sits in the
+        # paper's own words, which the question quotes; the reader cannot know the rule
+        and not any(flag in _str(row.get("flags")) for flag in _RULE_CLEARED)
     ]
     if not candidates:
         return None

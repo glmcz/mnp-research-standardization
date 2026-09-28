@@ -19,6 +19,7 @@ from mnp.demo import harmonise, resample
 from mnp.ek.constants import permittivity, viscosity
 from mnp.eval import comparability as comp
 from mnp.eval import grid
+from mnp.extract.zeta import STEP_TEMPERATURE, ZERO_IONIC_STRENGTH
 from mnp.report.release import COLUMN_GROUPS
 from mnp.report.review import AUDIT_SEED, CASES, COLUMNS, FLAGS, METRICS, RUN_IDS, Facts
 
@@ -77,6 +78,11 @@ def _check(label: str, shown: float, module: float) -> None:
 
 def _complete_rows(f: Facts) -> int:
     return int(f.table["conditions_complete"].sum())
+
+
+def _with_flag(t: pd.DataFrame, flag: str) -> pd.DataFrame:
+    """The rows carrying `flag` as one of their `;`-joined flags."""
+    return t[t["flags"].fillna("").astype(str).str.split(";").map(lambda parts: flag in parts)]
 
 
 def _any_complete(f: Facts) -> int:
@@ -371,6 +377,7 @@ def section_2(f: Facts) -> list[str]:
     counts = Counter(x for v in t["flags"].fillna("") for x in str(v).split(";") if x)
     multi = int(t["evidence_quote"].fillna("").str.contains("||", regex=False).sum())
     models = ", ".join(f"`{m}` {_int(n)} rows" for m, n in c["models_by_row"].items())
+    zeroed, stepped = len(_with_flag(t, ZERO_IONIC_STRENGTH)), len(_with_flag(t, STEP_TEMPERATURE))
     return [
         "## 2. Where the dataset comes from",
         "",
@@ -435,6 +442,7 @@ def section_2(f: Facts) -> list[str]:
         "     each quote located in the line-addressed document → evidence_line_ids",
         "                                                            │ extract table",
         "                                                            ▼",
+        "     two ratified rules clear a value: 0 mM ionic strength, a step temperature",
         "     one table row; the five *_reported flags computed from its fields",
         "```",
         "",
@@ -464,9 +472,15 @@ def section_2(f: Facts) -> list[str]:
         "section, line text), deliberately not the line number, so a parser fix that "
         "renumbers the document leaves the citation standing (`docs/PROTOCOL.md`, "
         "`extract retrofit`).",
-        "5. **Flag.** The five `*_reported` columns and `conditions_complete` are not read by "
-        "a model: they are computed from the row's own fields by the `MeasurementConditions` "
-        "properties in `src/mnp/schema/models.py` (section 4 gives each rule).",
+        "5. **Flag.** `extract table` (`ExtractionRecord.to_rows`) first applies the two rules "
+        "ratified on 2026-09-28, each of which keeps the row and clears the value: an ionic "
+        "strength of exactly 0 mM becomes unreported and gains the flag "
+        f"`{ZERO_IONIC_STRENGTH}` ({_int(zeroed)} rows), and a temperature flagged "
+        f"`{STEP_TEMPERATURE}` is removed ({_int(stepped)} rows). The record in "
+        "`extractions.jsonl` keeps what the model read. The five `*_reported` columns and "
+        "`conditions_complete` are not read by a model: they are computed from the row's own "
+        "fields by the `MeasurementConditions` properties in `src/mnp/schema/models.py` "
+        "(section 4 gives each rule).",
         "",
         f"{_kn(multi, len(t))} rows join two or more passages in their quote: the number and "
         "its conditions are routinely sections apart.",
@@ -793,7 +807,7 @@ def section_4(f: Facts) -> list[str]:
     sources = t.groupby("ionic_strength_source").agg(
         rows=("row_id", "size"), papers=("pmcid", "nunique")
     )
-    zero = t[(t["ionic_strength_mM"] == 0) & t["ionic_strength_reported"]]
+    zero = _with_flag(t, ZERO_IONIC_STRENGTH)
     ph_num = int(t["pH"].notna().sum())
     ph_text = t["pH"].isna() & t["pH_text"].notna()
     ph_digit = ph_text & t["pH_text"].fillna("").str.contains(r"\d")
@@ -801,16 +815,20 @@ def section_4(f: Facts) -> list[str]:
     t_num = int(t["temperature_C"].notna().sum())
     t_nom = t["temperature_C"].isna() & t["temperature_qualifier"].notna()
     quals = t.loc[t_nom, "temperature_qualifier"].value_counts()
-    step_flag = int(t["flags"].fillna("").str.contains("temperature_step_not_measurement").sum())
+    step_flag = len(_with_flag(t, STEP_TEMPERATURE))
     keys = t["instrument"].dropna().map(comp.instrument_key)
     family = int((keys == "malvern_zetasizer_family").sum())
     literal = int(keys.str.startswith("literal:").sum())
     zero_text = (
-        f"{_int(len(zero))} rows report an ionic strength of exactly 0 mM, from "
-        f'{_int(zero["pmcid"].nunique())} papers (for example "{_cell(zero["medium_text"].iloc[0])}'
-        '"); section 8 explains why that matters for κa.'
+        "An ionic strength of exactly 0 mM does not count either (ratified 2026-09-28): "
+        '"no added electrolyte" says nothing was added, not that the medium holds no ions. '
+        f"{_int(len(zero))} rows from {_int(zero['pmcid'].nunique())} papers printed one "
+        f'(for example "{_cell(zero["medium_text"].iloc[0])}"); they keep their row, with '
+        "`ionic_strength_mM` empty, `ionic_strength_source` `unreported` and the flag "
+        f"`{ZERO_IONIC_STRENGTH}`, and the record still holds the 0."
         if len(zero)
-        else "No row reports an ionic strength of 0 mM."
+        else "An ionic strength of exactly 0 mM does not count (ratified 2026-09-28); no row "
+        "printed one."
     )
     return [
         "## 4. The five parameters",
@@ -933,9 +951,12 @@ def section_4(f: Facts) -> list[str]:
         f"{_int(t_num)} rows give a number; {_int(int(t_nom.sum()))} count only through a "
         "qualifier, i.e. a *nominal* temperature ("
         + ", ".join(f'"{_cell(k, 30)}" {_int(v)}' for k, v in quals.head(3).items())
-        + f"). {_int(step_flag)} rows carry the flag `temperature_step_not_measurement`: the "
-        "number is attached to an incubation or exposure step in its own piece of the quote. "
-        "A flag never changes a field, so those rows still count as reporting temperature.",
+        + f"). {_int(step_flag)} rows carry the flag `{STEP_TEMPERATURE}`: the number is "
+        "attached to an incubation or exposure step in its own piece of the quote. Such a "
+        "temperature is not the measurement temperature, even when the paper gives no other "
+        "(ratified 2026-09-28), so those rows carry no `temperature_C` and no "
+        "`temperature_qualifier` and count as **not** reporting temperature; the flag stays to "
+        "say why, and the record still holds the number.",
         "",
         "Used by: `conditions_complete`; comparability (`temperature_unreported`; "
         "`temperature_not_numeric` when a side has only a qualifier; `temperature_mismatch` "
@@ -1267,8 +1288,13 @@ def section_5_4(f: Facts) -> list[str]:
         "",
         f"κa is known on {_kn(ka_known, len(h))} rows: both the ionic strength and the size must "
         "be reported. Edge cases in the code: an ionic strength of 0 mM gives an infinite Debye "
-        f"length, which the code turns into κa = 0 and f = 1.0 ({_int(len(zero))} rows here; "
-        "their `debye_length_nm` is blank); above κa = 700 the code returns f = 1.5 exactly, "
+        "length, which the code turns into κa = 0 and f = 1.0 ("
+        + (
+            f"{_int(len(zero))} rows here; their `debye_length_nm` is blank"
+            if len(zero)
+            else "no row here: since 2026-09-28 a 0 mM is not a reported ionic strength, §4.2"
+        )
+        + "); above κa = 700 the code returns f = 1.5 exactly, "
         f"which the formula approaches but does not reach ({_int(over)} rows here).",
         "",
         "**Worked examples**: the rows with the smallest, the median and the largest non-zero "
@@ -1992,8 +2018,9 @@ def section_8(f: Facts) -> list[str]:
     t, papers, x = f.table, f.papers, f.extra
     b = f.grid.get("B")
     k = len(papers)
-    zero = t[(t["ionic_strength_mM"] == 0) & t["ionic_strength_reported"]]
-    zero_sized = zero[zero["size_measured_nm"].notna()]
+    zero = _with_flag(t, ZERO_IONIC_STRENGTH)
+    stepped = _with_flag(t, STEP_TEMPERATURE)
+    kappa = f.harmonised["kappa_a"]
     single = next(
         (r for r in f.key
          if r["verdict"] == "not_comparable" and r["blockers"] == "conversion_regime_mismatch"),
@@ -2086,12 +2113,15 @@ def section_8(f: Facts) -> list[str]:
     ]
     if len(zero):
         found.append(
-            f"**{_int(len(zero))} rows state an ionic strength of 0 mM** "
+            f"**0 mM, decided.** {_int(len(zero))} rows state an ionic strength of 0 mM "
             f'({", ".join(sorted(zero["pmcid"].unique()))}; "{_cell(zero["medium_text"].iloc[0])}'
-            '" and similar). The code gives them an infinite Debye length, κa = 0 and f = 1.0, '
-            f"the Hückel end; {_int(len(zero_sized))} of them have a size, so that regime is "
-            'actually assigned. "No added electrolyte" is not a true zero, so this is the least '
-            "defensible κa in the table. A decision: keep it, or treat 0 mM as unusable for κa."
+            '" and similar). The code used to give them an infinite Debye length, κa = 0 and '
+            'f = 1.0, the least defensible κa in the table, since "no added electrolyte" is not '
+            "a true zero. Ratified 2026-09-28: 0 mM is not a reported ionic strength. The rows "
+            f"stay, with the value cleared and the flag `{ZERO_IONIC_STRENGTH}` (§4.2); κa is now "
+            f"known on {_int(int(kappa.notna().sum()))} rows, {_int(int((kappa == 0).sum()))} of "
+            f"them 0. The same decision removed the {_int(len(stepped))} step-flagged "
+            "temperatures (§4.4). Closed."
         )
     found.append(
         "**The 81 624 counterfactual is quoted, never recomputed.** No committed code produces "

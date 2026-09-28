@@ -47,13 +47,13 @@
     {
       "condition": "temperature",
       "label": "Temperature",
-      "k_missing": 383,
+      "k_missing": 384,
       "n": 491,
-      "fraction": 0.780040733197556,
-      "wilson_lo": 0.7413053725515117,
-      "wilson_hi": 0.8144280176889207,
-      "fraction_of_oa_records": 0.4443155452436195,
-      "fraction_of_all_hits_lower_bound": 0.3434977578475336
+      "fraction": 0.7820773930753564,
+      "wilson_lo": 0.7434470230699833,
+      "wilson_hi": 0.816328064554016,
+      "fraction_of_oa_records": 0.44547563805104406,
+      "fraction_of_all_hits_lower_bound": 0.34439461883408073
     },
     {
       "condition": "instrument",

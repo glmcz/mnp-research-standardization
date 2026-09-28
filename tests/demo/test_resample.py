@@ -22,6 +22,28 @@ PUBLISHED = {
     "conditions_complete": (3.3, 2.3, 0.80, 577),
 }
 
+# FINDINGS was measured before the rules of 2026-09-28 (a printed 0 mM is not a reported ionic
+# strength; a step temperature is not the measurement one). They moved these two on today's table.
+MOVED_BY_RULES = {
+    "ionic_strength_reported": (13.7, 8.6, 0.77, 595),
+    "temperature_reported": (27.8, 20.6, 0.94, 517),
+}
+
+
+def _flagged(table: pd.DataFrame, flag: str) -> pd.Series:
+    return table["flags"].fillna("").str.split(";").map(lambda parts: flag in parts)
+
+
+def _before_the_rules(table: pd.DataFrame) -> pd.DataFrame:
+    """The table FINDINGS read: the rules clear values only on the rows they flag, and every
+    cleared value had counted as reported, so flipping those flags back restores it exactly."""
+    before = table.copy()
+    zero, step = "ionic_strength_zero_not_reported", "temperature_step_not_measurement"
+    before.loc[_flagged(table, zero), "ionic_strength_reported"] = True
+    before.loc[_flagged(table, step), "temperature_reported"] = True
+    before["conditions_complete"] = before[list(METRICS[:-1])].astype(bool).all(axis=1)
+    return before
+
 
 @pytest.fixture(scope="module")
 def table() -> pd.DataFrame:
@@ -33,13 +55,21 @@ def results(table: pd.DataFrame):
     return {est.metric: est for est in estimates(table)}
 
 
-def test_reproduces_published_e2e_table(results):
-    for metric, (row_pct, paper_pct, icc, n_eff) in PUBLISHED.items():
+def _assert_matches(results, expected):
+    for metric, (row_pct, paper_pct, icc, n_eff) in expected.items():
         est = results[metric]
         assert est.per_row * 100 == pytest.approx(row_pct, abs=0.1), metric
         assert est.per_paper * 100 == pytest.approx(paper_pct, abs=0.1), metric
         assert est.icc == pytest.approx(icc, abs=0.01), metric
         assert est.n_eff == pytest.approx(n_eff, abs=2), metric
+
+
+def test_reproduces_published_e2e_table_on_the_table_it_was_measured_on(table):
+    _assert_matches({e.metric: e for e in estimates(_before_the_rules(table))}, PUBLISHED)
+
+
+def test_todays_table_moves_only_what_the_rules_touch(results):
+    _assert_matches(results, {**PUBLISHED, **MOVED_BY_RULES})
 
 
 def test_deff_is_internally_consistent(results):

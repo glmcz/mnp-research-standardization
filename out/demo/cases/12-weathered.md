@@ -17,9 +17,9 @@ Twenty-eight of this paper's forty-two rows carry "aged", "UV" or "weather" some
 
 | row_id | particle | value | medium | ionic strength | pH | T | instrument |
 |---|---|---|---|---|---|---|---|
-| PMC11543686-r1 | polystyrene | -43.2 mV | no background electrolyte (ionic strength 0 mM) | 0 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
-| PMC11543686-r2 | polystyrene, UV-aged | -46.9 mV | no background electrolyte (ionic strength 0 mM) | 0 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
-| PMC11543686-r3 | polystyrene, O3 (ozone)-aged | -47.3 mV | no background electrolyte (ionic strength 0 mM) | 0 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
+| PMC11543686-r1 | polystyrene | -43.2 mV | no background electrolyte (ionic strength 0 mM) | unreported | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
+| PMC11543686-r2 | polystyrene, UV-aged | -46.9 mV | no background electrolyte (ionic strength 0 mM) | unreported | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
+| PMC11543686-r3 | polystyrene, O3 (ozone)-aged | -47.3 mV | no background electrolyte (ionic strength 0 mM) | unreported | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
 | PMC11543686-r4 | polystyrene | -37.6 mV | Na+ background electrolyte (NaCl), ionic strength 1 mM | 1 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
 | PMC11543686-r5 | polystyrene | -31.3 mV | Na+ background electrolyte (NaCl), ionic strength 5 mM | 5 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
 | PMC11543686-r6 | polystyrene | -26.7 mV | Na+ background electrolyte (NaCl), ionic strength 10 mM | 10 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
@@ -38,9 +38,9 @@ Twenty-eight of this paper's forty-two rows carry "aged", "UV" or "weather" some
 | PMC11543686-r19 | polystyrene, O3 (ozone)-aged | -38.6 mV | Ca2+ background electrolyte (CaCl2), ionic strength 1 mM | 1 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
 | PMC11543686-r20 | polystyrene, O3 (ozone)-aged | -30.9 mV | Ca2+ background electrolyte (CaCl2), ionic strength 5 mM | 5 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
 | PMC11543686-r21 | polystyrene, O3 (ozone)-aged | -26.6 mV | Ca2+ background electrolyte (CaCl2), ionic strength 10 mM | 10 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
-| PMC11543686-r22 | polystyrene, Cu2+ adsorbed onto surface prior to zeta measurement | -37.6 mV | no background electrolyte, Cu2+ present (ionic strength 0 mM) | 0 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
-| PMC11543686-r23 | polystyrene, UV-aged; Cu2+ adsorbed onto surface prior to zeta measurement | -41.3 mV | no background electrolyte, Cu2+ present (ionic strength 0 mM) | 0 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
-| PMC11543686-r24 | polystyrene, O3 (ozone)-aged; Cu2+ adsorbed onto surface prior to zeta measurement | -41.6 mV | no background electrolyte, Cu2+ present (ionic strength 0 mM) | 0 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
+| PMC11543686-r22 | polystyrene, Cu2+ adsorbed onto surface prior to zeta measurement | -37.6 mV | no background electrolyte, Cu2+ present (ionic strength 0 mM) | unreported | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
+| PMC11543686-r23 | polystyrene, UV-aged; Cu2+ adsorbed onto surface prior to zeta measurement | -41.3 mV | no background electrolyte, Cu2+ present (ionic strength 0 mM) | unreported | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
+| PMC11543686-r24 | polystyrene, O3 (ozone)-aged; Cu2+ adsorbed onto surface prior to zeta measurement | -41.6 mV | no background electrolyte, Cu2+ present (ionic strength 0 mM) | unreported | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
 | PMC11543686-r25 | polystyrene, Cu2+ adsorbed onto surface prior to zeta measurement | -32.3 mV | Na+ background electrolyte (NaCl), ionic strength 1 mM, Cu2+ present (co-transport system) | 1 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
 | PMC11543686-r26 | polystyrene, Cu2+ adsorbed onto surface prior to zeta measurement | -26.6 mV | Na+ background electrolyte (NaCl), ionic strength 5 mM, Cu2+ present (co-transport system) | 5 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
 | PMC11543686-r27 | polystyrene, Cu2+ adsorbed onto surface prior to zeta measurement | -20.6 mV | Na+ background electrolyte (NaCl), ionic strength 10 mM, Cu2+ present (co-transport system) | 10 mM | unreported | unreported | ZETA PALS zeta potential analyser (Brookhaven, USA) |
@@ -192,17 +192,17 @@ Twenty-eight of this paper's forty-two rows carry "aged", "UV" or "weather" some
 | row_id | condition | verdict | reason | citations |
 |---|---|---|---|---|
 | PMC11543686-r1 | medium | reported | a liquid is named: "no background electrolyte (ionic strength 0 mM)" | PMC11543686:L27 |
-| PMC11543686-r1 | ionic_strength | reported | 0 mM stated directly | PMC11543686:L27 |
+| PMC11543686-r1 | ionic_strength | unreported | 0 mM is printed ("no background electrolyte (ionic strength 0 mM)"), and 0 mM is not a reported ionic strength: "no added electrolyte" says nothing was added, not that the medium holds no ions (ratified 2026-09-28) | PMC11543686:L27 |
 | PMC11543686-r1 | pH | unreported | no pH number or range is printed | PMC11543686:L27 |
 | PMC11543686-r1 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC11543686:L27 |
 | PMC11543686-r1 | instrument | reported | an instrument is named: "ZETA PALS zeta potential analyser (Brookhaven, USA)" | PMC11543686:L27 |
 | PMC11543686-r2 | medium | reported | a liquid is named: "no background electrolyte (ionic strength 0 mM)" | PMC11543686:L28 |
-| PMC11543686-r2 | ionic_strength | reported | 0 mM stated directly | PMC11543686:L28 |
+| PMC11543686-r2 | ionic_strength | unreported | 0 mM is printed ("no background electrolyte (ionic strength 0 mM)"), and 0 mM is not a reported ionic strength: "no added electrolyte" says nothing was added, not that the medium holds no ions (ratified 2026-09-28) | PMC11543686:L28 |
 | PMC11543686-r2 | pH | unreported | no pH number or range is printed | PMC11543686:L28 |
 | PMC11543686-r2 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC11543686:L28 |
 | PMC11543686-r2 | instrument | reported | an instrument is named: "ZETA PALS zeta potential analyser (Brookhaven, USA)" | PMC11543686:L28 |
 | PMC11543686-r3 | medium | reported | a liquid is named: "no background electrolyte (ionic strength 0 mM)" | PMC11543686:L29 |
-| PMC11543686-r3 | ionic_strength | reported | 0 mM stated directly | PMC11543686:L29 |
+| PMC11543686-r3 | ionic_strength | unreported | 0 mM is printed ("no background electrolyte (ionic strength 0 mM)"), and 0 mM is not a reported ionic strength: "no added electrolyte" says nothing was added, not that the medium holds no ions (ratified 2026-09-28) | PMC11543686:L29 |
 | PMC11543686-r3 | pH | unreported | no pH number or range is printed | PMC11543686:L29 |
 | PMC11543686-r3 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC11543686:L29 |
 | PMC11543686-r3 | instrument | reported | an instrument is named: "ZETA PALS zeta potential analyser (Brookhaven, USA)" | PMC11543686:L29 |
@@ -297,17 +297,17 @@ Twenty-eight of this paper's forty-two rows carry "aged", "UV" or "weather" some
 | PMC11543686-r21 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC11543686:L47 |
 | PMC11543686-r21 | instrument | reported | an instrument is named: "ZETA PALS zeta potential analyser (Brookhaven, USA)" | PMC11543686:L47 |
 | PMC11543686-r22 | medium | reported | a liquid is named: "no background electrolyte, Cu2+ present (ionic strength 0 mM)" | PMC11543686:L48 |
-| PMC11543686-r22 | ionic_strength | reported | 0 mM stated directly | PMC11543686:L48 |
+| PMC11543686-r22 | ionic_strength | unreported | 0 mM is printed ("no background electrolyte, Cu2+ present (ionic strength 0 mM)"), and 0 mM is not a reported ionic strength: "no added electrolyte" says nothing was added, not that the medium holds no ions (ratified 2026-09-28) | PMC11543686:L48 |
 | PMC11543686-r22 | pH | unreported | no pH number or range is printed | PMC11543686:L48 |
 | PMC11543686-r22 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC11543686:L48 |
 | PMC11543686-r22 | instrument | reported | an instrument is named: "ZETA PALS zeta potential analyser (Brookhaven, USA)" | PMC11543686:L48 |
 | PMC11543686-r23 | medium | reported | a liquid is named: "no background electrolyte, Cu2+ present (ionic strength 0 mM)" | PMC11543686:L49 |
-| PMC11543686-r23 | ionic_strength | reported | 0 mM stated directly | PMC11543686:L49 |
+| PMC11543686-r23 | ionic_strength | unreported | 0 mM is printed ("no background electrolyte, Cu2+ present (ionic strength 0 mM)"), and 0 mM is not a reported ionic strength: "no added electrolyte" says nothing was added, not that the medium holds no ions (ratified 2026-09-28) | PMC11543686:L49 |
 | PMC11543686-r23 | pH | unreported | no pH number or range is printed | PMC11543686:L49 |
 | PMC11543686-r23 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC11543686:L49 |
 | PMC11543686-r23 | instrument | reported | an instrument is named: "ZETA PALS zeta potential analyser (Brookhaven, USA)" | PMC11543686:L49 |
 | PMC11543686-r24 | medium | reported | a liquid is named: "no background electrolyte, Cu2+ present (ionic strength 0 mM)" | PMC11543686:L50 |
-| PMC11543686-r24 | ionic_strength | reported | 0 mM stated directly | PMC11543686:L50 |
+| PMC11543686-r24 | ionic_strength | unreported | 0 mM is printed ("no background electrolyte, Cu2+ present (ionic strength 0 mM)"), and 0 mM is not a reported ionic strength: "no added electrolyte" says nothing was added, not that the medium holds no ions (ratified 2026-09-28) | PMC11543686:L50 |
 | PMC11543686-r24 | pH | unreported | no pH number or range is printed | PMC11543686:L50 |
 | PMC11543686-r24 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC11543686:L50 |
 | PMC11543686-r24 | instrument | reported | an instrument is named: "ZETA PALS zeta potential analyser (Brookhaven, USA)" | PMC11543686:L50 |
@@ -408,21 +408,21 @@ Twenty-eight of this paper's forty-two rows carry "aged", "UV" or "weather" some
 
 | row_id_a | row_id_b | verdict | blockers |
 |---|---|---|---|
-| PMC11543686-r1 | PMC11543686-r10 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r11 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r12 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r13 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r14 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r15 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r16 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r17 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r18 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r19 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r2 | not_comparable | functionalisation_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r20 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r21 | not_comparable | functionalisation_unreported;ionic_strength_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r22 | not_comparable | functionalisation_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC11543686-r1 | PMC11543686-r23 | not_comparable | functionalisation_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r10 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r11 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r12 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r13 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r14 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r15 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r16 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r17 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r18 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r19 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r2 | not_comparable | functionalisation_unreported;ionic_strength_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r20 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r21 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r22 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC11543686-r1 | PMC11543686-r23 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
 
 ### Each row against the whole corpus
 
@@ -482,7 +482,7 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 | conversion_model | 0.0% | 8.8% |
 | functionalisation | 87.8% | 75.6% |
 | instrument | 0.0% | 55.0% |
-| ionic_strength | 75.3% | 82.8% |
+| ionic_strength | 77.0% | 83.1% |
 | material | 0.0% | 22.8% |
 | medium | 95.1% | 90.6% |
 | pH | 100.0% | 76.9% |
@@ -546,9 +546,9 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 | metric | per-row (with paper) | per-row (without) | per-paper (with) | per-paper (without) |
 |---|---|---|---|---|
 | medium_reported | 83.2% | 82.8% | 72.1% | 72.1% |
-| ionic_strength_reported | 14.2% | 12.3% | 8.7% | 8.5% |
+| ionic_strength_reported | 13.7% | 12.1% | 8.6% | 8.4% |
 | pH_reported | 21.3% | 21.8% | 16.8% | 16.8% |
-| temperature_reported | 28.0% | 28.6% | 20.9% | 20.9% |
+| temperature_reported | 27.8% | 28.4% | 20.6% | 20.7% |
 | instrument_reported | 88.8% | 88.6% | 81.0% | 81.0% |
 | conditions_complete | 3.3% | 3.4% | 2.3% | 2.3% |
 
@@ -556,19 +556,19 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 
 ### X12-A
 
-In PMC11543686, what zeta potential was reported for polystyrene particles described as "PS" in no background electrolyte (ionic strength 0 mM), and at what ionic strength was that measurement made?
+In PMC11543686, what zeta potential was reported for polystyrene particles described as "PS" in Na+ background electrolyte (NaCl), ionic strength 1 mM, and at what ionic strength was that measurement made?
 
 **cell D**
-- answer: `{"value": -43.2, "unit": "mV", "ionic_strength_reported": true, "ionic_strength_mM": 0.0, "citations": ["row:PMC11543686-r1"]}`
+- answer: `{"value": -37.6, "unit": "mV", "ionic_strength_reported": true, "ionic_strength_mM": 1.0, "citations": ["row:PMC11543686-r4"]}`
 - score: correct=True, fabricated=False, citation_precision=1.00, citation_recall=1.00, value_correct=1.00, condition_correct=1.00
 - cited lines:
-  - PMC11543686:L27	"PS	/	0	4	97.3	-43.2	-35.6"
+  - PMC11543686:L30	"PS	Na +	1	4	78.6	-37.6	-30.6"
 
 **cell B**
-- answer: `{"value": -43.2, "unit": "mV", "ionic_strength_reported": true, "ionic_strength_mM": 0, "citations": ["PMC11543686:L27"]}`
+- answer: `{"value": -37.6, "unit": "mV", "ionic_strength_reported": true, "ionic_strength_mM": 1, "citations": ["PMC11543686:L30"]}`
 - score: correct=True, fabricated=False, citation_precision=1.00, citation_recall=1.00, value_correct=1.00, condition_correct=1.00
 - cited lines:
-  - PMC11543686:L27	"PS	/	0	4	97.3	-43.2	-35.6"
+  - PMC11543686:L30	"PS	Na +	1	4	78.6	-37.6	-30.6"
 
 ### X12-B
 
@@ -590,15 +590,33 @@ What pH was used for the zeta-potential and electrophoretic-mobility measurement
 May the zeta_potential reported in PMC11543686 (row PMC11543686-r1) be compared with the zeta_potential reported in PMC11543686 (row PMC11543686-r10)? If not, which fields block the comparison?
 
 **cell D**
-- answer: `{"verdict": "not_comparable", "blockers": ["functionalisation", "ionic_strength", "medium", "pH", "temperature", "size_measured_nm"], "citations": ["row:PMC11543686-r1", "row:PMC11543686-r10"]}`
+- answer: `{"verdict": "not_comparable", "blockers": ["functionalisation", "ionic_strength", "medium", "pH", "size_measured_nm", "temperature"], "citations": ["row:PMC11543686-r1", "row:PMC11543686-r10"]}`
 - score: correct=True, blocker_precision=1.00, blocker_recall=1.00, blockers_exact=1.00
 - cited lines:
   - PMC11543686:L27	"PS	/	0	4	97.3	-43.2	-35.6"
   - PMC11543686:L36	"PS(UV)	Na +	1	4	95.5	-41.5	-30.9"
 
 **cell B**
-- answer: `{"verdict": "not_comparable", "blockers": ["material", "ionic_strength"], "citations": ["PMC11543686:L30", "PMC11543686:L44"]}`
-- score: correct=True, blocker_precision=0.50, blocker_recall=0.17, blockers_exact=0.00
+- answer: `{"verdict": "not_comparable", "blockers": ["material", "medium", "ionic_strength"], "citations": ["PMC11543686:L30", "PMC11543686:L33", "PMC11543686:L36", "PMC11543686:L39", "PMC11543686:L42", "PMC11543686:L45", "PMC11543686:L51", "PMC11543686:L54", "PMC11543686:L32", "PMC11543686:L35", "PMC11543686:L38", "PMC11543686:L41", "PMC11543686:L44", "PMC11543686:L47", "PMC11543686:L53", "PMC11543686:L56", "PMC11543686:L59", "PMC11543686:L62", "PMC11543686:L65", "PMC11543686:L68"]}`
+- score: correct=True, blocker_precision=0.67, blocker_recall=0.33, blockers_exact=0.00
 - cited lines:
   - PMC11543686:L30	"PS	Na +	1	4	78.6	-37.6	-30.6"
+  - PMC11543686:L32	"	Na +	10	4	42.4	-26.7	-22.4"
+  - PMC11543686:L33	"PS	Ca 2+	1	4	54.5	-33.4	-29.6"
+  - PMC11543686:L35	"	Ca 2+	10	4	37	-20.7	-16.6"
+  - PMC11543686:L36	"PS(UV)	Na +	1	4	95.5	-41.5	-30.9"
+  - PMC11543686:L38	"	Na +	10	4	88.1	-29.3	-22.9"
+  - PMC11543686:L39	"PS(UV)	Ca 2+	1	4	92.3	-38.3	-29.9"
+  - PMC11543686:L41	"	Ca 2+	10	4	79.7	-26.3	-15.7"
+  - PMC11543686:L42	"PS(O3)	Na +	1	4	95.8	-42.3	-30.6"
   - PMC11543686:L44	"	Na +	10	4	88.5	-31.9	-22.9"
+  - PMC11543686:L45	"PS(O3)	Ca 2+	1	4	97.6	-38.6	-29.6"
+  - PMC11543686:L47	"	Ca 2+	10	4	79.8	-26.6	-17.3"
+  - PMC11543686:L51	"Ps + Cu 2+	Na +	1	4	67.1	-32.3	-23.6"
+  - PMC11543686:L53	"	Na +	10	4	7.69	-20.6	-18.3"
+  - PMC11543686:L54	"Ps + Cu 2+	Ca 2+	1	4	56	-30.3	-22.6"
+  - PMC11543686:L56	"	Ca 2+	10	4	7.03	-17.5	-18.3"
+  - PMC11543686:L59	"	Na +	10	4	80.4	-29.3	-18.6"
+  - PMC11543686:L62	"	Ca 2+	10	4	40.2	-22.3	-16.3"
+  - PMC11543686:L65	"	Na +	10	4	63.1	-28.9	-16.3"
+  - PMC11543686:L68	"	Ca 2+	10	4	24	-22.3	-17.6"

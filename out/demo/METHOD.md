@@ -41,9 +41,9 @@ Every row's `ionic_strength_source`, counted at build time from `out/tables/d1_z
 
 | source | rows | papers |
 |---|---|---|
-| reported | 128 | 17 |
+| reported | 118 | 17 |
 | inferred_from_named_salt | 141 | 36 |
-| unreported | 1621 | 458 |
+| unreported | 1631 | 460 |
 
 Conductivity is never converted to ionic strength -- the conversion needs an assumed ionic composition the paper does not give -- and a buffer's nominal composition is never looked up even when the field knows it by heart. Both land in `unreported`, never in a value.
 
@@ -87,19 +87,19 @@ Every metric, rebuilt on the current table, per row and per paper, with both int
 | metric | per row | per paper | ICC | DEFF | n_eff | naive ± (row) | cluster ± (row) | cluster ± (paper) |
 |---|---|---|---|---|---|---|---|---|
 | medium_reported | 83.2% | 72.1% | 0.84 | 3.38 | 560 | 1.7 pp | 3.8 pp | 3.8 pp |
-| ionic_strength_reported | 14.2% | 8.7% | 0.82 | 3.33 | 567 | 1.6 pp | 5.6 pp | 2.3 pp |
+| ionic_strength_reported | 13.7% | 8.6% | 0.77 | 3.18 | 595 | 1.6 pp | 5.2 pp | 2.3 pp |
 | pH_reported | 21.3% | 16.8% | 0.78 | 3.22 | 588 | 1.8 pp | 5.3 pp | 3.1 pp |
-| temperature_reported | 28.0% | 20.9% | 0.94 | 3.66 | 517 | 2.0 pp | 8.7 pp | 3.4 pp |
+| temperature_reported | 27.8% | 20.6% | 0.94 | 3.66 | 517 | 2.0 pp | 8.6 pp | 3.4 pp |
 | instrument_reported | 88.8% | 81.0% | 0.94 | 3.66 | 517 | 1.4 pp | 2.9 pp | 3.4 pp |
 | conditions_complete | 3.3% | 2.3% | 0.80 | 3.27 | 577 | 0.8 pp | 2.3 pp | 1.3 pp |
 
-**Worked example -- temperature.** The naive binomial half-width is ±2.0 pp; the cluster bootstrap gives ±8.7 pp per row. Any interval this project computed as `sqrt(p(1-p)/1890)` is that far wrong.
+**Worked example -- temperature.** The naive binomial half-width is ±2.0 pp; the cluster bootstrap gives ±8.6 pp per row. Any interval this project computed as `sqrt(p(1-p)/1890)` is that far wrong.
 
 **Cluster/naive ratio across the six metrics: 2.04x to 4.28x** -- every metric's cluster interval is at least twice the naive one.
 
-**Ionic strength's ICC.** This rebuild gives **0.8247** (0.82 in the table above), where FINDINGS.md §E2e printed 0.83 -- most likely 0.825 rounded a second time. The difference is reported here, not tuned to match.
+**Ionic strength's ICC.** This rebuild gives **0.7688** (0.77 in the table above), where FINDINGS.md §E2e printed 0.83. FINDINGS predates the rule of 2026-09-28 that a printed 0 mM is not a reported ionic strength; on the table before it, this code gave 0.8247 (commit f78a4f5), which the printed 0.83 most likely rounds twice (0.8247 -> 0.825 -> 0.83). The 10 rows that rule cleared account for the rest. The difference is reported here, not tuned to match.
 
-**Leave-one-out, PMC8719689 (case 06, 90 rows -- the largest single paper in the corpus).** Dropping it moves the per-row temperature-reported estimate by 3.6 pp (28.0% -> 24.4%) but the per-paper estimate by only 0.2 pp (20.9% -> 20.7%) -- on a real paper, the demonstration of why per-paper is the more conservative unit: one large paper cannot move it much.
+**Leave-one-out, PMC8719689 (case 06, 90 rows -- the largest single paper in the corpus).** Dropping it moves the per-row temperature-reported estimate by 3.6 pp (27.8% -> 24.2%) but the per-paper estimate by only 0.2 pp (20.6% -> 20.5%) -- on a real paper, the demonstration of why per-paper is the more conservative unit: one large paper cannot move it much.
 
 ## The reader grid
 

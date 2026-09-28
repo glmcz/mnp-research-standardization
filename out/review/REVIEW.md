@@ -217,14 +217,15 @@ XML ──corpus parse──► extraction text ──a model reads it──► 
      each quote located in the line-addressed document → evidence_line_ids
                                                             │ extract table
                                                             ▼
+     two ratified rules clear a value: 0 mM ionic strength, a step temperature
      one table row; the five *_reported flags computed from its fields
 ```
 
 1. **Parse.** `corpus parse` turns each XML into the text an extractor reads: abstract, methods, extra sections, keyword-context windows, tables (caption, TSV, footnotes) and figure captions (`docs/FINDINGS.md` §E1 lists this block set).
 2. **Read.** A model returns JSON rows for the paper. The rows here came from `claude-code:opus` 84 rows, `claude-code:sonnet` 1 806 rows (`model` column). The instructions are a brief, `docs/briefs/extraction.md`, but only 134 of the 848 records carry a brief hash, 103 of them among the 491 records that hold rows. `README.md` ("The sweep") says the records without one were produced before briefs were versioned, and that the brief behind most of them was deleted with a session scratchpad.
-3. **Coerce and verify** (`mnp.extract.zeta.verify_row`). Every number is parsed deterministically from the string the model copied. The quote may join several passages with ` || `; every passage must be found in the article, after dashes and whitespace are folded, or the row is marked unverified and excluded from every number. The value must appear inside its own quote, and the pH, temperature and ionic strength must each appear both in the article and in the row's own quote (medium and instrument are not checked this way); a failure adds a flag, never a correction. 2 raw rows were dropped at coercion and are not in the table. 595 / 1 890 (31.5 %) rows carry at least one flag; the most common: `value_not_printed` 480, `unit_assumed_mV` 117, `approx` 27, `value_is_range` 26, `value_not_in_quote` 22, `unit_converted` 16.
+3. **Coerce and verify** (`mnp.extract.zeta.verify_row`). Every number is parsed deterministically from the string the model copied. The quote may join several passages with ` || `; every passage must be found in the article, after dashes and whitespace are folded, or the row is marked unverified and excluded from every number. The value must appear inside its own quote, and the pH, temperature and ionic strength must each appear both in the article and in the row's own quote (medium and instrument are not checked this way); a failure adds a flag, never a correction. 2 raw rows were dropped at coercion and are not in the table. 605 / 1 890 (32.0 %) rows carry at least one flag; the most common: `value_not_printed` 480, `unit_assumed_mV` 117, `approx` 27, `value_is_range` 26, `value_not_in_quote` 22, `unit_converted` 16.
 4. **Address.** `extract retrofit`, a one-off migration, located every verified quote in the line-addressed document and stored the ids of the lines it sits in. A line id is the first 16 hex characters of the sha256 of (section path, ordinal in the section, line text), deliberately not the line number, so a parser fix that renumbers the document leaves the citation standing (`docs/PROTOCOL.md`, `extract retrofit`).
-5. **Flag.** The five `*_reported` columns and `conditions_complete` are not read by a model: they are computed from the row's own fields by the `MeasurementConditions` properties in `src/mnp/schema/models.py` (section 4 gives each rule).
+5. **Flag.** `extract table` (`ExtractionRecord.to_rows`) first applies the two rules ratified on 2026-09-28, each of which keeps the row and clears the value: an ionic strength of exactly 0 mM becomes unreported and gains the flag `ionic_strength_zero_not_reported` (10 rows), and a temperature flagged `temperature_step_not_measurement` is removed (4 rows). The record in `extractions.jsonl` keeps what the model read. The five `*_reported` columns and `conditions_complete` are not read by a model: they are computed from the row's own fields by the `MeasurementConditions` properties in `src/mnp/schema/models.py` (section 4 gives each rule).
 
 1 169 / 1 890 (61.9 %) rows join two or more passages in their quote: the number and its conditions are routinely sections apart.
 
@@ -274,10 +275,10 @@ All 44 columns of `out/release/dataset.parquet`, in the release card's groups (`
 |---|---|---|---|---|---|---|---|
 | `medium_text` | str | the dispersion medium, as the paper composes it | text, 498 distinct | 318 | no liquid named | `0.3 mM NaCl` | `medium_reported`; `comparability` medium check (normalised text) |
 | `medium_class` | str | the medium's class | `DI_water` 567, `unreported` 318, `culture_medium` 315, `salt_solution` 281, `other` 183, `buffer` 150, `environmental_water` 48, `biofluid` 28 | 0 | never null; `unreported` when no medium is named | `salt_solution` | `medium_reported`; `comparability` medium check |
-| `ionic_strength_mM` | float64 | total ionic strength, mmol/L | number, 0 to 500 | 1 621 | not reported | `0.3` | `ionic_strength_reported`; Debye length and κa; `comparability` 10 % check |
+| `ionic_strength_mM` | float64 | total ionic strength, mmol/L | number, 0.1 to 500 | 1 631 | not reported | `0.3` | `ionic_strength_reported`; Debye length and κa; `comparability` 10 % check |
 | `pH` | float64 | pH, when the paper prints one number | number, 1 to 13.2 | 1 528 | no single number | `7.4` | `pH_reported`; `comparability` 0.2 check |
 | `pH_text` | str | pH verbatim when it is not one number (a range, `neutral`) | text, 24 distinct | 1 828 | no such text | `from pH 2 to 7` (row `PMC10458608-r1`) | `pH_reported` (counts only if it holds a digit); `comparability` (undecidable) |
-| `temperature_C` | float64 | measurement temperature, °C | number, 8 to 39.85 | 1 484 | no number | `25` | `temperature_reported`; `harmonise` mobility conversion (η and ε at T); `comparability` 2 °C check |
+| `temperature_C` | float64 | measurement temperature, °C | number, 8 to 39.85 | 1 488 | no number | `25` | `temperature_reported`; `harmonise` mobility conversion (η and ε at T); `comparability` 2 °C check |
 | `temperature_qualifier` | str | temperature verbatim when it is not a number (`room temperature`, `RT`) | `room temperature` 64, `RT` 57, `ambient temperature` 2 | 1 767 | no such text | `room temperature` (row `PMC10939171-r1`) | `temperature_reported` (counts, as nominal); `comparability` (undecidable) |
 | `instrument` | str | the instrument, as named | text, 361 distinct | 211 | none named | `Zetasizer Nano-ZS (Malvern Instruments Ltd, Malvern, United…` | `instrument_reported`; `comparability` through `instrument_key` |
 
@@ -286,12 +287,12 @@ All 44 columns of `out/release/dataset.parquet`, in the release card's groups (`
 | column | type | meaning | values | null | null means | example | read by |
 |---|---|---|---|---|---|---|---|
 | `medium_reported` | bool | computed from `medium_text` and `medium_class` (§4.1) | True 1 572, False 318 | 0 | never null | `True` | `conditions_complete`; `resample`; `d1`; the release card; cell D's prompt |
-| `ionic_strength_reported` | bool | computed from `ionic_strength_mM` and `ionic_strength_source` (§4.2) | True 269, False 1 621 | 0 | never null | `True` | as `medium_reported` |
+| `ionic_strength_reported` | bool | computed from `ionic_strength_mM` and `ionic_strength_source` (§4.2) | True 259, False 1 631 | 0 | never null | `True` | as `medium_reported` |
 | `pH_reported` | bool | computed from `pH` and `pH_text` (§4.3) | True 402, False 1 488 | 0 | never null | `True` | as `medium_reported` |
-| `temperature_reported` | bool | computed from `temperature_C` and `temperature_qualifier` (§4.4) | True 529, False 1 361 | 0 | never null | `True` | as `medium_reported` |
+| `temperature_reported` | bool | computed from `temperature_C` and `temperature_qualifier` (§4.4) | True 525, False 1 365 | 0 | never null | `True` | as `medium_reported` |
 | `instrument_reported` | bool | computed from `instrument` (§4.5) | True 1 679, False 211 | 0 | never null | `True` | as `medium_reported` |
 | `conditions_complete` | bool | all five flags true on this row | True 62, False 1 828 | 0 | never null | `True` | `resample`; the release card; cell D's prompt |
-| `ionic_strength_source` | str | printed (`reported`), computed from a printed composition (`inferred_from_named_salt`), or neither (`unreported`) | `unreported` 1 621, `inferred_from_named_salt` 141, `reported` 128 | 0 | never null | `inferred_from_named_salt` | `ionic_strength_reported` (true only when this is not `unreported`) |
+| `ionic_strength_source` | str | printed (`reported`), computed from a printed composition (`inferred_from_named_salt`), or neither (`unreported`) | `unreported` 1 631, `inferred_from_named_salt` 141, `reported` 118 | 0 | never null | `inferred_from_named_salt` | `ionic_strength_reported` (true only when this is not `unreported`) |
 | `medium_matches_exposure` | object | was the zeta measured in the medium the exposure used? | `True` 635, `False` 523 | 732 | not judged | `False` (row `PMC10045319-r1`) | nothing below |
 
 **evidence**
@@ -318,7 +319,7 @@ All 44 columns of `out/release/dataset.parquet`, in the release card's groups (`
 |---|---|---|---|---|---|---|---|
 | `model` | str | which extractor produced the row | `claude-code:sonnet` 1 806, `claude-code:opus` 84 | 0 | never null | `claude-code:sonnet` | nothing below |
 | `prompt_sha256` | str | sha256 of the extraction system prompt | `3a50d97a5880d5acae5db0911acbca7376446e8…` 1 463, `b3790c68b0ed28cb2b3f8ef42d2738438aba1ff…` 427 | 0 | never null | `b3790c68b0ed28cb2b3f8ef42d2738438aba1ff45efff89985f1bf003a7…` | nothing below |
-| `flags` | str | extraction flags, `;`-joined (§2 step 3) | text, 21 distinct | 1 295 | no flag | `value_not_printed` (row `PMC10458608-r1`) | the demo walk reads `derived_from_composition` and `ionic_strength_from_medium` |
+| `flags` | str | extraction flags, `;`-joined (§2 step 3) | text, 22 distinct | 1 285 | no flag | `value_not_printed` (row `PMC10458608-r1`) | the demo walk reads `derived_from_composition` and `ionic_strength_from_medium` |
 
 ## 4. The five parameters
 
@@ -376,15 +377,15 @@ Columns: `ionic_strength_mM` (the value), `ionic_strength_source` (how it got th
 
 Code rule (`MeasurementConditions.ionic_strength_reported`): `ionic_strength_mM` is not empty **and** `ionic_strength_source` is not `unreported`. Spreadsheet: `=AND(ISNUMBER(ionic_strength_mM), ionic_strength_source<>"unreported")`.
 
-Rows reporting it: **269 / 1 890 (14.2 %)**. Per paper (mean of each paper's share of rows): **8.7 %**. Papers with at least one row reporting it: 51 / 491 (10.4 %).
+Rows reporting it: **259 / 1 890 (13.7 %)**. Per paper (mean of each paper's share of rows): **8.6 %**. Papers with at least one row reporting it: 51 / 491 (10.4 %).
 
 | source | rows | papers |
 |---|---|---|
-| `reported` | 128 | 17 |
+| `reported` | 118 | 17 |
 | `inferred_from_named_salt` | 141 | 36 |
-| `unreported` | 1 621 | 458 |
+| `unreported` | 1 631 | 460 |
 
-`inferred_from_named_salt` means computed from a composition the paper printed; the nominal composition of a named buffer is never looked up, and a printed conductivity is never converted (`out/demo/METHOD.md`, "Ionic-strength sources"). 10 rows report an ionic strength of exactly 0 mM, from 2 papers (for example "no added electrolyte"); section 8 explains why that matters for κa.
+`inferred_from_named_salt` means computed from a composition the paper printed; the nominal composition of a named buffer is never looked up, and a printed conductivity is never converted (`out/demo/METHOD.md`, "Ionic-strength sources"). An ionic strength of exactly 0 mM does not count either (ratified 2026-09-28): "no added electrolyte" says nothing was added, not that the medium holds no ions. 10 rows from 2 papers printed one (for example "no added electrolyte"); they keep their row, with `ionic_strength_mM` empty, `ionic_strength_source` `unreported` and the flag `ionic_strength_zero_not_reported`, and the record still holds the 0.
 
 Used by: `conditions_complete`; comparability (`ionic_strength_unreported`; `ionic_strength_mismatch` beyond 10% relative; and, through κa, the conversion-regime check); harmonisation (κa, with the size).
 
@@ -406,9 +407,9 @@ Columns: `temperature_C` (a number), `temperature_qualifier` (verbatim otherwise
 
 Code rule (`MeasurementConditions.temperature_reported`): `temperature_C` is not empty, **or** `temperature_qualifier` is not empty. Spreadsheet: `=OR(ISNUMBER(temperature_C), LEN(temperature_qualifier)>0)`.
 
-Rows reporting it: **529 / 1 890 (28.0 %)**. Per paper (mean of each paper's share of rows): **20.9 %**. Papers with at least one row reporting it: 108 / 491 (22.0 %).
+Rows reporting it: **525 / 1 890 (27.8 %)**. Per paper (mean of each paper's share of rows): **20.6 %**. Papers with at least one row reporting it: 107 / 491 (21.8 %).
 
-406 rows give a number; 123 count only through a qualifier, i.e. a *nominal* temperature ("room temperature" 64, "RT" 57, "ambient temperature" 2). 4 rows carry the flag `temperature_step_not_measurement`: the number is attached to an incubation or exposure step in its own piece of the quote. A flag never changes a field, so those rows still count as reporting temperature.
+402 rows give a number; 123 count only through a qualifier, i.e. a *nominal* temperature ("room temperature" 64, "RT" 57, "ambient temperature" 2). 4 rows carry the flag `temperature_step_not_measurement`: the number is attached to an incubation or exposure step in its own piece of the quote. Such a temperature is not the measurement temperature, even when the paper gives no other (ratified 2026-09-28), so those rows carry no `temperature_C` and no `temperature_qualifier` and count as **not** reporting temperature; the flag stays to say why, and the record still holds the number.
 
 Used by: `conditions_complete`; comparability (`temperature_unreported`; `temperature_not_numeric` when a side has only a qualifier; `temperature_mismatch` beyond ±2 °C); harmonisation of **mobility** rows only (η and ε of water at T). The zeta correction does not read it: its Debye length is fixed at 25 °C (§5.4).
 
@@ -445,7 +446,7 @@ Per row, a paper with 90 rows has 90 votes; per paper, every paper has one. The 
 
 Spreadsheet: per paper `=I2/B2` (that is `temperature_reported_share`); per-paper mean `=AVERAGE(J2:J492)`; per row `=SUM(I2:I492)/SUM(B2:B492)`.
 
-**Worked example, temperature.** `PMC8719689` has 90 rows, 90 reporting temperature: share 1.0000. `PMC11309015` has 3 rows, 1 reporting it: share 0.3333. Over all 491 papers the per-row share is 28.0 % and the per-paper mean 20.9 %. Drop `PMC8719689` and they become 24.4 % and 20.7 % (`resample.leave_one_out`): that one paper moves the per-row figure by 3.6 points and the per-paper one by 0.2.
+**Worked example, temperature.** `PMC8719689` has 90 rows, 90 reporting temperature: share 1.0000. `PMC11309015` has 3 rows, 1 reporting it: share 0.3333. Over all 491 papers the per-row share is 27.8 % and the per-paper mean 20.6 %. Drop `PMC8719689` and they become 24.2 % and 20.5 % (`resample.leave_one_out`): that one paper moves the per-row figure by 3.6 points and the per-paper one by 0.2.
 
 **"Fully conditioned per paper" has three readings in this repo, and they are different numbers.** Keep them apart when quoting:
 
@@ -484,16 +485,16 @@ Every intermediate, per metric, computed on this build:
 | N = Σ n_i (rows) | 1 890 | 1 890 | 1 890 | 1 890 | 1 890 | 1 890 |
 | k (papers) | 491 | 491 | 491 | 491 | 491 | 491 |
 | Σ n_i² | 24 302 | 24 302 | 24 302 | 24 302 | 24 302 | 24 302 |
-| successes = Σ succ_i | 1 572 | 269 | 402 | 529 | 1 679 | 62 |
-| p̄ = successes / N | 0.831746 | 0.142328 | 0.212698 | 0.279894 | 0.888360 | 0.032804 |
-| SSB = Σ n_i (p_i − p̄)² | 232.782226 | 200.606614 | 265.346320 | 363.670755 | 178.879305 | 51.188360 |
-| SSW = Σ n_i p_i (1 − p_i) | 31.713012 | 30.107143 | 51.148918 | 17.265224 | 8.564610 | 8.777778 |
-| MSB = SSB / (k − 1) | 0.475066 | 0.409401 | 0.541523 | 0.742185 | 0.365060 | 0.104466 |
-| MSW = SSW / (N − k) | 0.022668 | 0.021520 | 0.036561 | 0.012341 | 0.006122 | 0.006274 |
+| successes = Σ succ_i | 1 572 | 259 | 402 | 525 | 1 679 | 62 |
+| p̄ = successes / N | 0.831746 | 0.137037 | 0.212698 | 0.277778 | 0.888360 | 0.032804 |
+| SSB = Σ n_i (p_i − p̄)² | 232.782226 | 185.057407 | 265.346320 | 361.901443 | 178.879305 | 51.188360 |
+| SSW = Σ n_i p_i (1 − p_i) | 31.713012 | 38.450000 | 51.148918 | 17.265224 | 8.564610 | 8.777778 |
+| MSB = SSB / (k − 1) | 0.475066 | 0.377668 | 0.541523 | 0.738574 | 0.365060 | 0.104466 |
+| MSW = SSW / (N − k) | 0.022668 | 0.027484 | 0.036561 | 0.012341 | 0.006122 | 0.006274 |
 | m0 = (N − Σ n_i² / N) / (k − 1) | 3.8309 | 3.8309 | 3.8309 | 3.8309 | 3.8309 | 3.8309 |
-| ICC = (MSB − MSW) / (MSB + (m0 − 1) MSW) | 0.8390 | 0.8247 | 0.7829 | 0.9392 | 0.9387 | 0.8033 |
-| DEFF = 1 + (m0 − 1) ICC | 3.3750 | 3.3347 | 3.2162 | 3.6587 | 3.6573 | 3.2742 |
-| n_eff = N / DEFF | 560.0 | 566.8 | 587.7 | 516.6 | 516.8 | 577.2 |
+| ICC = (MSB − MSW) / (MSB + (m0 − 1) MSW) | 0.8390 | 0.7688 | 0.7829 | 0.9389 | 0.9387 | 0.8033 |
+| DEFF = 1 + (m0 − 1) ICC | 3.3750 | 3.1765 | 3.2162 | 3.6579 | 3.6573 | 3.2742 |
+| n_eff = N / DEFF | 560.0 | 595.0 | 587.7 | 516.7 | 516.8 | 577.2 |
 
 **Recompute `conditions_complete` in a spreadsheet.** On `icc_worksheet.csv` the data sit in rows 2 to 492; `n_i` is column B, `conditions_complete_succ` column H. Use columns I, J, K as helpers and put the results in column M:
 
@@ -515,7 +516,7 @@ M11  =1+(M9-1)*M10                DEFF   → 3.2742
 M12  =M1/M11                      n_eff  → 577.2
 ```
 
-The ionic-strength ICC rebuilds as 0.8247; `docs/FINDINGS.md` §E2e printed 0.83 (`out/demo/METHOD.md` reports the difference rather than tuning it away).
+The ionic-strength ICC rebuilds as 0.7688; `docs/FINDINGS.md` §E2e printed 0.83 (`out/demo/METHOD.md` reports the difference rather than tuning it away).
 
 ### 5.3 The cluster bootstrap
 
@@ -532,13 +533,13 @@ The ionic-strength ICC rebuilds as 0.8247; `docs/FINDINGS.md` §E2e printed 0.83
 | metric | per row | 95 % cluster interval | naive ± (pp) | cluster ± (pp) | per paper | 95 % cluster interval |
 |---|---|---|---|---|---|---|
 | `medium_reported` | 83.2 % | 79.2 % to 86.8 % | ±1.7 | ±3.8 | 72.1 % | 68.3 % to 75.9 % |
-| `ionic_strength_reported` | 14.2 % | 8.9 % to 20.2 % | ±1.6 | ±5.6 | 8.7 % | 6.4 % to 11.1 % |
+| `ionic_strength_reported` | 13.7 % | 8.8 % to 19.2 % | ±1.6 | ±5.2 | 8.6 % | 6.4 % to 11.0 % |
 | `pH_reported` | 21.3 % | 16.2 % to 26.8 % | ±1.8 | ±5.3 | 16.8 % | 13.8 % to 19.9 % |
-| `temperature_reported` | 28.0 % | 19.9 % to 37.3 % | ±2.0 | ±8.7 | 20.9 % | 17.5 % to 24.3 % |
+| `temperature_reported` | 27.8 % | 19.8 % to 37.0 % | ±2.0 | ±8.6 | 20.6 % | 17.2 % to 24.1 % |
 | `instrument_reported` | 88.8 % | 85.7 % to 91.5 % | ±1.4 | ±2.9 | 81.0 % | 77.5 % to 84.4 % |
 | `conditions_complete` | 3.3 % | 1.3 % to 5.8 % | ±0.8 | ±2.3 | 2.3 % | 1.1 % to 3.7 % |
 
-Per row, the cluster interval is 2.04× to 4.28× the naive one. Temperature is the widest: naive ±2.0 pp against cluster ±8.7 pp.
+Per row, the cluster interval is 2.04× to 4.28× the naive one. Temperature is the widest: naive ±2.0 pp against cluster ±8.6 pp.
 
 ### 5.4 Debye length, κa and Henry's f
 
@@ -561,7 +562,7 @@ Per row, the cluster interval is 2.04× to 4.28× the naive one. Temperature is 
 
 Spreadsheet on `harmonised_all_rows.csv`: Debye `=0.304/SQRT(L2/1000)`; κa `=(M2/2)/P2`; f `=1+1/(2*(1+2.5/(Q2*(1+2*EXP(-Q2))))^3)` (section 1 gives the full formulas with the blank and zero cases).
 
-κa is known on 147 / 1 890 (7.8 %) rows: both the ionic strength and the size must be reported. Edge cases in the code: an ionic strength of 0 mM gives an infinite Debye length, which the code turns into κa = 0 and f = 1.0 (4 rows here; their `debye_length_nm` is blank); above κa = 700 the code returns f = 1.5 exactly, which the formula approaches but does not reach (10 rows here).
+κa is known on 143 / 1 890 (7.6 %) rows: both the ionic strength and the size must be reported. Edge cases in the code: an ionic strength of 0 mM gives an infinite Debye length, which the code turns into κa = 0 and f = 1.0 (no row here: since 2026-09-28 a 0 mM is not a reported ionic strength, §4.2); above κa = 700 the code returns f = 1.5 exactly, which the formula approaches but does not reach (10 rows here).
 
 **Worked examples**: the rows with the smallest, the median and the largest non-zero κa. Every line is recomputed from the two inputs, and the build refuses to render if it disagrees with the module.
 
@@ -650,15 +651,15 @@ Counts on this build:
 | H | zeta; Henry's function or Ohshima's approximation named: taken as reported | 52 |
 | Z1 | zeta; one textbook limit named, κa known: corrected to a point | 7 |
 | Z2 | zeta; one textbook limit named, κa unknown: an interval | 73 |
-| Z3 | zeta; conversion model unknown, κa known: an interval | 124 |
-| Z4 | zeta; conversion model unknown, κa unknown: an interval | 1 088 |
+| Z3 | zeta; conversion model unknown, κa known: an interval | 120 |
+| Z4 | zeta; conversion model unknown, κa unknown: an interval | 1 092 |
 | M1 | mobility; temperature and κa known: converted to a point | 5 |
 | M2 | mobility; temperature known, κa unknown: an interval | 10 |
 | M0 | mobility; temperature unreported: nothing | 25 |
 | U | mobility in a unit the conversion does not know: nothing | 0 |
 | N | no printed value: nothing | 506 |
 
-Most rows are Z4 (1 088): no model named and no κa, so the true value lies anywhere between ζ_rep / 1.5 and ζ_rep × 1.5. Every `none` carries its reason in `why`.
+Most rows are Z4 (1 092): no model named and no κa, so the true value lies anywhere between ζ_rep / 1.5 and ζ_rep × 1.5. Every `none` carries its reason in `why`.
 
 **Worked examples**, the first row of each case in table order. Each result is recomputed from the inputs shown and checked against the worksheet at build time.
 
@@ -825,10 +826,10 @@ Each claim: the sentence, the number, how it is computed, how to check it yourse
 
 #### C3. Ionic strength is the least reported condition
 
-- **Number.** per row 269 / 1 890 (14.2 %); per-paper mean 8.7 %; papers with any row reporting it 51 / 491 (10.4 %).
+- **Number.** per row 259 / 1 890 (13.7 %); per-paper mean 8.6 %; papers with any row reporting it 51 / 491 (10.4 %).
 - **Computed as.** §4.2 and §5.1.
 - **Check it.** `conditions_per_paper.csv`, the `ionic_strength_reported_*` columns; pandas `t.groupby('pmcid').ionic_strength_reported.any().sum()`.
-- **Caveats.** "8.7 % of papers report ionic strength" is the mean share, not the share of papers that report it on some row (10.4 %). The rule never converts conductivity and never looks up a buffer, which lowers it deliberately.
+- **Caveats.** "8.6 % of papers report ionic strength" is the mean share, not the share of papers that report it on some row (10.4 %). The rule never converts conductivity and never looks up a buffer, which lowers it deliberately.
 
 #### C4. Most papers that report zeta do not name the conversion model
 
@@ -846,14 +847,14 @@ Each claim: the sentence, the number, how it is computed, how to check it yourse
 
 #### C6. Reporting behaves like a property of the paper, not of the measurement
 
-- **Number.** ICC 0.78 to 0.94 across the six metrics.
+- **Number.** ICC 0.77 to 0.94 across the six metrics.
 - **Computed as.** §5.2, one-way random-effects ANOVA over papers.
 - **Check it.** recompute one metric from `icc_worksheet.csv` (§5.2 gives every cell).
 - **Caveats.** ICC says rows of one paper agree on whether a condition is reported; it does not say why. One Methods sentence often covers every row of a paper, which produces the same pattern with no habit behind it. And a paper is not a lab: two papers from one group count as independent here, which the Czech question list itself asks about (Part 2, G2). "A property of the laboratory" (`docs/FINDINGS.md` §E2e) is an interpretation.
 
 #### C7. The effective sample size is about the number of papers, not of rows
 
-- **Number.** n_eff 517 to 588, against 1 890 rows and 491 papers.
+- **Number.** n_eff 517 to 595, against 1 890 rows and 491 papers.
 - **Computed as.** n_eff = N / DEFF (§5.2).
 - **Check it.** `icc_worksheet.csv`, last step of §5.2.
 - **Caveats.** it differs by metric; the bootstrap intervals (§5.3) are the ones to quote. Naive intervals are 2.0× to 4.3× too narrow per row.
@@ -902,7 +903,7 @@ About an hour in a spreadsheet, most of it on step 6; the minutes per step are r
 5. **Evaluate one pair by hand** (10 min). Take pair P2 in `comparability_worked_pairs.csv`. For each line, read the two rows' fields in `d1`, apply the rule and tolerance from the §5.6 rule table, and decide blocks or passes before you look at `outcome`. Grade the pair with the three-line rule in §5.6 and compare with `verdict`.
 6. **Audit twenty rows against the papers** (the rest of the hour, or more). `audit_sample.csv` holds 20 rows, two drawn at random for each condition reported and two for each condition unreported (ten strata), from the release in its row order with `random.Random(20260928)`, so a rebuild draws the same rows. For each row:
    - open the paper at `europepmc_url`, or the vendored XML at `xml_path`;
-   - find the cited lines. For a row whose quote ships, `evidence_line_text` holds the text of each cited line (joined with ` || `) and `evidence_quote` the quote: search a distinctive phrase of it in the paper. For the 5 rows whose quote is withheld, only `evidence_lines` (`PMCID:Lnn`, line numbers of the line-addressed document) and `evidence_line_ids` are given: print that paper's numbered lines with the command below (run `unset VIRTUAL_ENV` first if a virtualenv is active), or restore the quotes locally with `uv run python -m mnp.report rehydrate`, which writes to `data/interim/rehydrated/` and never into `out/`;
+   - find the cited lines. For a row whose quote ships, `evidence_line_text` holds the text of each cited line (joined with ` || `) and `evidence_quote` the quote: search a distinctive phrase of it in the paper. For the 7 rows whose quote is withheld, only `evidence_lines` (`PMCID:Lnn`, line numbers of the line-addressed document) and `evidence_line_ids` are given: print that paper's numbered lines with the command below (run `unset VIRTUAL_ENV` first if a virtualenv is active), or restore the quotes locally with `uv run python -m mnp.report rehydrate`, which writes to `data/interim/rehydrated/` and never into `out/`;
    - compare `value`, `value_text` and `unit` with what the paper prints for this measurement, and each condition with what the paper states for **this** measurement, by the rules in §4 (an incubation temperature does not count; "PBS" alone is not an ionic strength);
    - write `yes`, `no` or `unsure` in `value_ok`, `medium_ok`, `ionic_strength_ok`, `pH_ok`, `temperature_ok` and `instrument_ok`, and anything else in `note`. For a condition the row calls unreported, `yes` means the paper indeed does not state it for this measurement.
 
@@ -931,8 +932,8 @@ This audit is small and not blind: you see the extracted values while you judge.
 10. **The Czech question list asks about the 1:1 Debye length under an old premise** (Part 2, E3): that it is used only to place a row in a regime, not to correct a value. `mnp.demo.harmonise` now corrects values with it (Z1 and M1 in §5.5), so reword E3 before it is asked.
 11. **A superseded denominator survives.** `docs/FINDINGS_comparability.md` R2 and R7, and `comparability.instrument_key`'s docstring, still say 5.6 % of papers name a conversion model (94.4 % do not). `docs/FINDINGS.md` §E2b corrected that to 33 / 485 papers with a zeta row (93.2 % not naming one).
 12. **"Fully conditioned per paper" means three things** (§5.1): 2.3 % as a mean of shares, 13 of 491 papers with a fully conditioned row, and 14 papers reporting every condition on some row. `d1_stats.json` stores the last one as `complete_fraction` (0.0285), a name that reads like the second. One name per reading would stop the three being swapped.
-13. **"8.7 % of papers report ionic strength"** (the Czech question list, Part 1, prints 8,7 %) is the mean of per-paper shares. The share of papers that report it on at least one row is 10.4 %.
-14. **10 rows state an ionic strength of 0 mM** (PMC11543686, PMC11899741; "no added electrolyte" and similar). The code gives them an infinite Debye length, κa = 0 and f = 1.0, the Hückel end; 4 of them have a size, so that regime is actually assigned. "No added electrolyte" is not a true zero, so this is the least defensible κa in the table. A decision: keep it, or treat 0 mM as unusable for κa.
+13. **"8.6 % of papers report ionic strength"** (the Czech question list, Part 1, prints 8,7 %) is the mean of per-paper shares. The share of papers that report it on at least one row is 10.4 %.
+14. **0 mM, decided.** 10 rows state an ionic strength of 0 mM (PMC11543686, PMC11899741; "no added electrolyte" and similar). The code used to give them an infinite Debye length, κa = 0 and f = 1.0, the least defensible κa in the table, since "no added electrolyte" is not a true zero. Ratified 2026-09-28: 0 mM is not a reported ionic strength. The rows stay, with the value cleared and the flag `ionic_strength_zero_not_reported` (§4.2); κa is now known on 143 rows, 0 of them 0. The same decision removed the 4 step-flagged temperatures (§4.4). Closed.
 15. **The 81 624 counterfactual is quoted, never recomputed.** No committed code produces it or the leave-one-rule-out table (`docs/FINDINGS_comparability.md` §4c, §4b), and `src/mnp/demo/render.py` prints 81 624 as a literal. The all-pairs blocker frequencies (§4a) could be recomputed with `comparability.blocker_distribution`, but no runner does.
 16. **Stale counts in two front documents.** `README.md` ("D1 result on the whole corpus") still reports 498 papers and 1910 rows, a reading from before the ratified rules; the table has 491 papers and 1 890 rows. `ideas.md` §12 says the table has 39 columns; it has 40.
 17. **`docs/FINDINGS.md` §E2e's temperature interval and ratio range** (±8.4 pp; 2.1× to 4.1×) came from an implementation that was never committed; the rebuild in §5.3 is the one to quote.

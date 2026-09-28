@@ -34,6 +34,7 @@ import pandas as pd
 
 from mnp.corpus.licence import CODES, QUOTE_ALLOWED, Licence
 from mnp.corpus.lines import LinedDoc
+from mnp.extract.zeta import STEP_TEMPERATURE, ZERO_IONIC_STRENGTH
 from mnp.report import quotes
 from mnp.report.reproduce import sha256_file
 from mnp.schema import export
@@ -325,6 +326,9 @@ def facts(
         "rows_printed": printed,
         "rows_not_printed": n - printed,
         "reported": [(label, _true(table, col)) for col, label in CONDITIONS if col in table],
+        "cleared": {
+            flag: _with_flag(table, flag) for flag in (ZERO_IONIC_STRENGTH, STEP_TEMPERATURE)
+        },
         "prompts": [str(p) for p in prompts],
         "models": [str(m) for m in models],
         "stats": stats,
@@ -336,6 +340,13 @@ def facts(
 
 def _true(table: pd.DataFrame, col: str) -> int:
     return int(table[col].astype(bool).sum()) if col in table.columns else 0
+
+
+def _with_flag(table: pd.DataFrame, flag: str) -> int:
+    if "flags" not in table.columns:
+        return 0
+    parts = table["flags"].fillna("").astype(str).str.split(";")
+    return int(parts.map(lambda p: flag in p).sum())
 
 
 def _any_missing(stats: dict) -> dict | None:
@@ -466,6 +477,16 @@ def _absence_section(f: dict) -> list[str]:
         "prints no number, `value` is null and `value_text` says so; where the ionic strength "
         "was inferred from a named salt rather than stated, `ionic_strength_source` records "
         "that it was inferred.",
+        "",
+        "Two readings are cleared rather than kept, by rules ratified on 2026-09-28. An ionic "
+        'strength of exactly 0 mM is not a reported one: "no added electrolyte" says nothing '
+        "was added, not that the medium holds no ions, so the row reads "
+        f"`ionic_strength_reported = False` and carries `{ZERO_IONIC_STRENGTH}` "
+        f"({f['cleared'][ZERO_IONIC_STRENGTH]} rows). A temperature tied to an incubation or "
+        "exposure step is not the measurement temperature, even when the paper gives no other, "
+        f"so it is removed and the row carries `{STEP_TEMPERATURE}` "
+        f"({f['cleared'][STEP_TEMPERATURE]} rows). The rows stay; the extraction record keeps "
+        "the number the model read.",
         "",
         "This makes one query answerable that a text index cannot answer: *what ionic strength "
         "did this paper use?* when the true answer is that it never said. There is no passage "

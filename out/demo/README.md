@@ -25,9 +25,9 @@ See `docs/DESIGN_2026-09-28_demo.md` for what this shows and `METHOD.md` for how
 | metric | per row | per paper | ICC | DEFF | n_eff | naive ± (row) | cluster ± (row) | cluster ± (paper) |
 |---|---|---|---|---|---|---|---|---|
 | medium_reported | 83.2% | 72.1% | 0.84 | 3.38 | 560 | 1.7 pp | 3.8 pp | 3.8 pp |
-| ionic_strength_reported | 14.2% | 8.7% | 0.82 | 3.33 | 567 | 1.6 pp | 5.6 pp | 2.3 pp |
+| ionic_strength_reported | 13.7% | 8.6% | 0.77 | 3.18 | 595 | 1.6 pp | 5.2 pp | 2.3 pp |
 | pH_reported | 21.3% | 16.8% | 0.78 | 3.22 | 588 | 1.8 pp | 5.3 pp | 3.1 pp |
-| temperature_reported | 28.0% | 20.9% | 0.94 | 3.66 | 517 | 2.0 pp | 8.7 pp | 3.4 pp |
+| temperature_reported | 27.8% | 20.6% | 0.94 | 3.66 | 517 | 2.0 pp | 8.6 pp | 3.4 pp |
 | instrument_reported | 88.8% | 81.0% | 0.94 | 3.66 | 517 | 1.4 pp | 2.9 pp | 3.4 pp |
 | conditions_complete | 3.3% | 2.3% | 0.80 | 3.27 | 577 | 0.8 pp | 2.3 pp | 1.3 pp |
 
@@ -44,13 +44,13 @@ Cell D is handed the matching structured rows for each question, so a high score
 
 cell D: 36 answered, 0 refused, 0 not answered
 cell	kind	n	accuracy	fabrication	cite_p	cite_r	tokens	calls
-D	A	12	1.000	0.000	1.000	1.000	2252	0.0
+D	A	12	1.000	0.000	1.000	1.000	2253	0.0
 D	B	11	1.000	0.000	1.000	1.000	4204	0.0
 D	E	13	0.923	-	-	-	723	0.0
 
 cell B: 36 answered, 0 refused, 0 not answered
 cell	kind	n	accuracy	fabrication	cite_p	cite_r	tokens	calls
-B	A	12	0.833	0.000	0.778	0.646	5788	0.0
+B	A	12	0.833	0.000	0.778	0.646	5656	0.0
 B	B	11	0.818	0.182	1.000	0.071	5759	0.0
 B	E	13	0.846	-	-	-	5974	0.0
 

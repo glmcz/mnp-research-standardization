@@ -61,6 +61,18 @@ class ReaderError(RuntimeError):
     """The reader did not produce an answer. Retried on resume; never scored."""
 
 
+class Refused(ReaderError):
+    """The API's usage-policy filter refused the prompt.
+
+    Unlike a timeout this is deterministic: D-008 was refused three times on ordinary colloid
+    text. Martin, 2026-09-28: refuse it. So a refusal is the cell's answer -- recorded, scored
+    wrong, kept in the denominator, and never asked again.
+    """
+
+
+_REFUSAL_MARK = "Usage Policy"
+
+
 @dataclass(frozen=True)
 class Reply:
     text: str
@@ -115,7 +127,10 @@ def parse_cli_output(stdout: str, model: str = READER_MODEL) -> Reply:
     except json.JSONDecodeError as exc:
         raise ReaderError(f"reader printed no JSON: {stdout[:200]!r}") from exc
     if body.get("is_error") or body.get("subtype") != "success":
-        raise ReaderError(f"reader failed: {str(body.get('result') or body.get('subtype'))[:300]}")
+        message = str(body.get("result") or body.get("subtype"))
+        if _REFUSAL_MARK in message:
+            raise Refused(f"reader refused: {message[:300]}")
+        raise ReaderError(f"reader failed: {message[:300]}")
     models = sorted(body.get("modelUsage") or {})
     if models != [model]:
         raise ReaderError(f"reply came from {models}, not {model}")
@@ -209,6 +224,19 @@ def load_answers(directory: Path) -> dict[str, dict[str, Any]]:
     return answers
 
 
+def _refused_before(directory: Path) -> set[str]:
+    """Questions an earlier run logged as a usage-policy failure, from before refusals were
+    their own outcome. They are recorded as refused rather than asked again."""
+    path = directory / "errors.jsonl"
+    if not path.is_file():
+        return set()
+    return {
+        json.loads(line)["qid"]
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip() and _REFUSAL_MARK in json.loads(line).get("error", "")
+    }
+
+
 def _asked(directory: Path) -> list[str]:
     path = directory / "asked.txt"
     return path.read_text(encoding="utf-8").split() if path.is_file() else []
@@ -231,20 +259,53 @@ def run_cell(
     directory.mkdir(parents=True, exist_ok=True)
     (directory / "asked.txt").write_text("".join(f"{q.qid}\n" for q in questions))
     done = load_answers(directory)
+    refused_before = _refused_before(directory)
     todo = [(q, build(q, corpus)) for q in questions if q.qid not in done]
     lock = threading.Lock()
 
-    def ask(item: tuple[Question, cells.Delivered]) -> bool:
+    def record_refusal(question: Question, delivered: cells.Delivered, message: str) -> None:
+        with lock:
+            _append(
+                directory / "answers.jsonl",
+                {
+                    "qid": question.qid,
+                    "kind": question.kind.value,
+                    "cell": cell,
+                    "route": delivered.route,
+                    "tokens_delivered": delivered.tokens,
+                    "prompt_sha256": sha256(delivered.prompt),
+                    "row_ids": list(delivered.row_ids),
+                    "line_ids": list(delivered.line_ids),
+                    "text": message,
+                    "refused": True,
+                    "model": READER_MODEL,
+                    "input_tokens": 0,
+                    "output_tokens": 0,
+                    "cost_usd": 0.0,
+                    "duration_ms": 0,
+                    "answered_at": _now(),
+                },
+            )
+
+    def ask(item: tuple[Question, cells.Delivered]) -> str:
         question, delivered = item
+        if question.qid in refused_before:
+            record_refusal(
+                question, delivered, "refused by the usage-policy filter in an earlier run"
+            )
+            return "refused"
         try:
             reply = reader(delivered.prompt)
+        except Refused as exc:
+            record_refusal(question, delivered, str(exc))
+            return "refused"
         except ReaderError as exc:
             with lock:
                 _append(
                     directory / "errors.jsonl",
                     {"qid": question.qid, "error": str(exc), "at": _now()},
                 )
-            return False
+            return "failed"
         record = {
             "qid": question.qid,
             "kind": question.kind.value,
@@ -264,15 +325,16 @@ def run_cell(
         }
         with lock:
             _append(directory / "answers.jsonl", record)
-        return True
+        return "answered"
 
     with ThreadPoolExecutor(max_workers=max(1, jobs)) as pool:
         outcomes = list(pool.map(ask, todo))
     return {
         "asked": len(questions),
         "already_answered": len(questions) - len(todo),
-        "answered_now": sum(outcomes),
-        "reader_failures": len(outcomes) - sum(outcomes),
+        "answered_now": outcomes.count("answered"),
+        "refused": outcomes.count("refused"),
+        "reader_failures": outcomes.count("failed"),
     }
 
 
@@ -305,8 +367,10 @@ def score_run(directory: Path, keys: Sequence[AnswerKey], corpus: cells.Corpus) 
     (directory / "scores.tsv").write_text(table + "\n")
 
     missing = [qid for qid in asked if qid not in answers]
+    refused = [qid for qid in asked if answers.get(qid, {}).get("refused")]
     lines = [
-        f"answered {len(answers)} of {len(asked)}",
+        f"answered {len(answers)} of {len(asked)}"
+        + (f"; refused {len(refused)}: {' '.join(refused)}" if refused else ""),
         f"reader tokens: {sum(r['input_tokens'] for r in answers.values())} in, "
         f"{sum(r['output_tokens'] for r in answers.values())} out",
         "",

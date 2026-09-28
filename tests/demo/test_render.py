@@ -135,6 +135,31 @@ def test_usage_policy_error_renders_as_refused(tmp_path, monkeypatch):
     assert answer.status == "refused"
 
 
+def test_a_refusal_recorded_as_the_cells_answer_renders_refused_and_counts_wrong(
+    tmp_path, monkeypatch
+):
+    """Martin, 2026-09-28: a refusal is the cell's answer -- shown as refused, in the
+    denominator, scored wrong. The runner now writes it to answers.jsonl, not errors.jsonl."""
+    directory = tmp_path / "demo-celld-20260928"
+    directory.mkdir()
+    (directory / "manifest.json").write_text("{}")
+    (directory / "answers.jsonl").write_text(
+        '{"qid": "X01-A", "cell": "D", "text": "reader refused: Usage Policy", '
+        '"refused": true, "tokens_delivered": 0}\n'
+    )
+    monkeypatch.setattr(render.runs, "runs_dir", lambda: tmp_path)
+    run = render.load_run("D")
+    assert run is not None
+    answer = render.reader_answer("D", run, "X01-A", _fake_key(), _fake_corpus(), "PMC0", {})
+    assert answer.status == "refused"
+    from mnp.eval.query_sets import QueryKind, Question
+
+    question = Question(qid="X01-A", kind=QueryKind.a, text="q")
+    summary = render._reader_summary_table("D", run, [(question, _fake_key())], _fake_corpus())
+    assert "0 answered, 1 refused" in summary
+    assert "\tA\t1\t0.000" in summary
+
+
 def test_a_reader_failure_with_no_policy_wording_is_not_answered(tmp_path, monkeypatch):
     directory = tmp_path / "demo-celld-20260928"
     directory.mkdir()

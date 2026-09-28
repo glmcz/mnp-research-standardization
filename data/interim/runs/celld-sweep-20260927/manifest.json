@@ -1,7 +1,7 @@
 {
   "run_id": "celld-sweep-20260927",
   "started_at": "2026-09-27T08:28:05+00:00",
-  "ended_at": "2026-09-27T08:35:52+00:00",
+  "ended_at": "2026-09-28T15:12:10+00:00",
   "code_commit": "e00e85ce9630c9263c98f997e49529ec792768ef",
   "code_dirty": true,
   "corpus_manifest_sha256": "3ea035fde33a175b0932143af00a60e68dc063172a4b7bb45c1a675ba0b1be25",
@@ -10,7 +10,8 @@
     "asked": 400,
     "already_answered": 399,
     "answered_now": 0,
-    "reader_failures": 1
+    "refused": 1,
+    "reader_failures": 0
   },
   "cell": "D",
   "pilot": false,

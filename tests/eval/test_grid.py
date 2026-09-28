@@ -162,6 +162,51 @@ def test_the_record_carries_what_was_delivered_and_what_it_cost(corpus, tmp_path
     assert record["input_tokens"] == 100
 
 
+REFUSAL = (
+    "API Error: Claude Code is unable to respond to this request, which appears to violate "
+    "our Usage Policy (https://www.anthropic.com/legal/aup)."
+)
+
+
+def test_a_usage_policy_refusal_is_its_own_error():
+    with pytest.raises(grid.Refused):
+        grid.parse_cli_output(_cli_output(is_error=True, result=REFUSAL))
+    assert issubclass(grid.Refused, grid.ReaderError)
+
+
+def test_a_refusal_is_the_cells_answer_and_is_scored_wrong(corpus, tmp_path):
+    """D-008 was refused three times on ordinary colloid text. Martin, 2026-09-28: refuse it --
+    count it wrong in the cell, keep it in the denominator, never ask again."""
+
+    def refusing(prompt: str) -> grid.Reply:
+        raise grid.Refused(REFUSAL)
+
+    counts = grid.run_cell("D", [ABSENCE], corpus, tmp_path, refusing)
+    record = grid.load_answers(tmp_path)["B-001"]
+    assert record["refused"] is True
+    assert counts["refused"] == 1
+    report = grid.score_run(tmp_path, [_absence_key()], corpus)
+    assert report.complete is True
+    assert [s.correct for s in report.scored] == [False]
+    assert "refused 1: B-001" in report.text
+
+
+def test_a_refusal_logged_as_a_failure_earlier_is_recorded_without_asking_again(corpus, tmp_path):
+    tmp_path.mkdir(exist_ok=True)
+    (tmp_path / "errors.jsonl").write_text(
+        json.dumps({"qid": "B-001", "error": f"reader failed: {REFUSAL}", "at": "x"}) + "\n"
+    )
+    asked: list[str] = []
+
+    def reader(prompt: str) -> grid.Reply:
+        asked.append(prompt)
+        return _reply("{}")
+
+    grid.run_cell("D", [ABSENCE], corpus, tmp_path, reader)
+    assert asked == []
+    assert grid.load_answers(tmp_path)["B-001"]["refused"] is True
+
+
 # -- scoring a run ---------------------------------------------------------------------------
 
 

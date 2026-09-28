@@ -564,6 +564,8 @@ def reader_answer(
     if run is None:
         return ReaderAnswer(cell, qid, "not_run")
     record = run.answers.get(qid)
+    if record is not None and record.get("refused"):
+        return ReaderAnswer(cell, qid, "refused")
     if record is None:
         error = run.errors.get(qid, "")
         status = "refused" if _USAGE_POLICY_MARK in error.lower() else "not_answered"
@@ -730,18 +732,25 @@ def _reader_summary_table(
     refused = 0
     for question, key in all_qas:
         record = run.answers.get(question.qid)
+        error = run.errors.get(question.qid, "")
+        if (record is not None and record.get("refused")) or (
+            record is None and _USAGE_POLICY_MARK in error.lower()
+        ):
+            # A refusal is the cell's answer (Martin, 2026-09-28): in the denominator, wrong.
+            refused += 1
+            scored.append(
+                scoring.score_one(scoring.parse_answer(question.qid, cell, ""), key, corpus)
+            )
+            continue
         if record is None:
-            error = run.errors.get(question.qid, "")
-            if _USAGE_POLICY_MARK in error.lower():
-                refused += 1
-            else:
-                not_answered += 1
+            not_answered += 1
             continue
         answer = scoring.parse_answer(
             question.qid, cell, record["text"], tokens_delivered=record.get("tokens_delivered", 0)
         )
         scored.append(scoring.score_one(answer, key, corpus))
-    lines = [f"cell {cell}: {len(scored)} answered, {refused} refused, {not_answered} not answered"]
+    answered = len(scored) - refused
+    lines = [f"cell {cell}: {answered} answered, {refused} refused, {not_answered} not answered"]
     if scored:
         lines.append(scoring.table(scoring.aggregate(scored)))
     return "\n".join(lines)
@@ -1168,8 +1177,9 @@ def _reader_grid_block(n_questions: int) -> str:
             "`errors.jsonl` and the question is asked again the next time the run resumes. "
             'The harness itself carries no "only once" limit on that resume; the two runs this '
             "demo reads happen to have each been resumed at most once. A usage-policy refusal "
-            "is recorded the same way in `errors.jsonl` and rendered as a refusal rather than "
-            "a missing answer.",
+            "is different: it is deterministic (D-008 was refused three times on ordinary "
+            "colloid text), so it is recorded as the cell's answer, scored wrong, kept in the "
+            "denominator and never asked again (Martin, 2026-09-28).",
             "",
             reader_framing_note(n_questions),
         ]

@@ -365,6 +365,10 @@ def score_run(directory: Path, keys: Sequence[AnswerKey], corpus: cells.Corpus) 
         for item in scored:
             handle.write(json.dumps(asdict(item), ensure_ascii=False) + "\n")
     (directory / "scores.tsv").write_text(table + "\n")
+    verdicts = scoring.verdict_table(scored)
+    has_e = verdicts.count("\n") > 0
+    if has_e:
+        (directory / "verdicts.tsv").write_text(verdicts + "\n")
 
     missing = [qid for qid in asked if qid not in answers]
     refused = [qid for qid in asked if answers.get(qid, {}).get("refused")]
@@ -376,6 +380,8 @@ def score_run(directory: Path, keys: Sequence[AnswerKey], corpus: cells.Corpus) 
         "",
         table,
     ]
+    if has_e:
+        lines += ["", verdicts]
     if missing:
         lines += ["", f"not yet answered: {' '.join(missing)}"]
     return RunScore(text="\n".join(lines), scored=scored, complete=not missing)

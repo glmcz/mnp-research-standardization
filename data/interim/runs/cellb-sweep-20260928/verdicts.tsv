@@ -1,0 +1,5 @@
+cell	true_verdict	n	correct	recall
+B	comparable	16	0	0.000
+B	conditionally_comparable	35	0	0.000
+B	not_comparable	269	268	0.996
+B	balanced_accuracy	320	-	0.332

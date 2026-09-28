@@ -378,6 +378,18 @@ def _field_name(text: str) -> str:
     return re.sub(r"[\s-]+", "_", text.strip()).lower()
 
 
+#: The three grades of the comparability key, in the order the recall table prints them.
+VERDICTS = ("comparable", "conditionally_comparable", "not_comparable")
+
+
+def _key_verdict(key: AnswerKey) -> tuple[tuple[str, float], ...]:
+    """The pair's true verdict, carried on every kind E score -- an unreadable answer too --
+    so recall can be counted per class. 84 % of the key is not_comparable: accuracy alone
+    rewards a cell that always says no."""
+    verdict = key.get("verdict")
+    return ((f"key_{verdict}", 1.0),) if key.kind == QueryKind.e and verdict in VERDICTS else ()
+
+
 def _score_e(answer: Answer, key: AnswerKey, corpus) -> Scored:
     """Verdict exactly, then the blocking *fields* as a set — what the question asks for.
 
@@ -405,6 +417,7 @@ def _score_e(answer: Answer, key: AnswerKey, corpus) -> Scored:
             ("blocker_precision", precision),
             ("blocker_recall", recall),
             ("blockers_exact", float(said == wanted)),
+            *_key_verdict(key),
         ),
     )
 
@@ -428,6 +441,7 @@ def score_one(answer: Answer, key: AnswerKey, corpus=None) -> Scored:
             fabricated=False if key.kind in (QueryKind.a, QueryKind.b) else None,
             tokens_delivered=answer.tokens_delivered,
             retrieval_calls=answer.retrieval_calls,
+            extra=_key_verdict(key),
             detail="unparseable answer",
         )
     return _RULES[QueryKind(key.kind)](answer, key, corpus)
@@ -496,6 +510,38 @@ def aggregate(scored: Iterable[Scored]) -> dict[tuple[str, QueryKind], Summary]:
 
 
 HEADER = "cell\tkind\tn\taccuracy\tfabrication\tcite_p\tcite_r\ttokens\tcalls"
+
+
+VERDICT_HEADER = "cell\ttrue_verdict\tn\tcorrect\trecall"
+
+
+def verdict_table(scored: Iterable[Scored]) -> str:
+    """Kind E recall per true verdict, then their mean (balanced accuracy), per cell.
+
+    A cell answering not_comparable to every pair scores 0.84 accuracy on this key and 0.33
+    balanced: the table exists so that number cannot pass for a result.
+    """
+    counts: dict[tuple[str, str], list[int]] = {}
+    for item in scored:
+        if QueryKind(item.kind) is not QueryKind.e:
+            continue
+        verdict = next((v for v in VERDICTS if item.metric(f"key_{v}")), None)
+        if verdict is None:
+            continue
+        tally = counts.setdefault((item.cell, verdict), [0, 0])
+        tally[0] += int(item.correct)
+        tally[1] += 1
+    lines = [VERDICT_HEADER]
+    for cell in sorted({cell for cell, _ in counts}):
+        recalls = []
+        for verdict in VERDICTS:
+            if (cell, verdict) in counts:
+                correct, n = counts[(cell, verdict)]
+                recalls.append(correct / n)
+                lines.append(f"{cell}\t{verdict}\t{n}\t{correct}\t{correct / n:.3f}")
+        total = sum(n for (c, _), (_, n) in counts.items() if c == cell)
+        lines.append(f"{cell}\tbalanced_accuracy\t{total}\t-\t{sum(recalls) / len(recalls):.3f}")
+    return "\n".join(lines)
 
 
 def table(summaries: Mapping[tuple[str, QueryKind], Summary]) -> str:

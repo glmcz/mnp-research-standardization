@@ -413,6 +413,37 @@ def test_kind_e_blockers_are_fields_not_the_keys_finer_codes():
     assert scored.metric("blockers_exact") == pytest.approx(1.0)
 
 
+def _e_key(qid, verdict):
+    return qs.AnswerKey(qid=qid, kind=K.e, fields=(("verdict", verdict), ("blocker_fields", "")))
+
+
+def test_kind_e_reports_recall_per_true_verdict_so_always_no_cannot_hide():
+    """Cell B answered not_comparable to every one of 320 pairs and scored 0.838 -- the share of
+    not_comparable in the key. Accuracy hid that it found none of the 51 pairs that can be
+    compared; recall per true verdict shows it."""
+    keys = [
+        _e_key("E-1", "comparable"),
+        _e_key("E-2", "conditionally_comparable"),
+        _e_key("E-3", "not_comparable"),
+        _e_key("E-4", "not_comparable"),
+    ]
+    answers = [
+        scoring.Answer(k.qid, "B", {"verdict": "not_comparable", "blockers": []}, "", 0, 0)
+        for k in keys
+    ]
+    table = scoring.verdict_table(scoring.score_all(answers, keys))
+    assert "B\tcomparable\t1\t0\t0.000" in table
+    assert "B\tconditionally_comparable\t1\t0\t0.000" in table
+    assert "B\tnot_comparable\t2\t2\t1.000" in table
+    assert "B\tbalanced_accuracy\t4\t-\t0.333" in table
+
+
+def test_an_unreadable_kind_e_answer_keeps_its_true_verdict_in_the_recall_table():
+    keys = [_e_key("E-1", "comparable")]
+    answers = [scoring.parse_answer("E-1", "B", "not json at all")]
+    assert "B\tcomparable\t1\t0\t0.000" in scoring.verdict_table(scoring.score_all(answers, keys))
+
+
 def test_kind_e_blocker_names_match_regardless_of_case_and_spacing():
     """A prose cell never sees the vocabulary spelled as an identifier."""
     key = _kind_e_key()

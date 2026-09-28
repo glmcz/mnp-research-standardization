@@ -234,6 +234,21 @@ def test_the_score_names_questions_asked_but_never_answered(corpus, tmp_path):
     assert report.complete is False
 
 
+def test_a_run_with_kind_e_reports_recall_per_true_verdict(corpus, tmp_path):
+    pair = Question(
+        qid="E-PMCAAA-r1__PMCBBB-r1",
+        kind=K.e,
+        text="May PMCAAA-r1 be compared with PMCBBB-r1?",
+        scope=("PMCAAA", "PMCBBB"),
+        target=(("row_id_a", "PMCAAA-r1"), ("row_id_b", "PMCBBB-r1")),
+    )
+    key = AnswerKey(qid=pair.qid, kind=K.e, fields=(("verdict", "comparable"),))
+    grid.run_cell("D", [pair], corpus, tmp_path, lambda p: _reply('{"verdict": "not_comparable"}'))
+    report = grid.score_run(tmp_path, [key], corpus)
+    assert "D\tcomparable\t1\t0\t0.000" in report.text
+    assert (tmp_path / "verdicts.tsv").read_text().startswith(scoring.VERDICT_HEADER)
+
+
 def test_scoring_goes_through_the_committed_scorer(corpus, tmp_path):
     grid.run_cell(
         "D",

@@ -211,13 +211,14 @@ CASES: tuple[Case, ...] = (
         pmcid="PMC11099890",
         mode="the rare success",
         why=(
-            "This is the one paper in the corpus that reports all five conditions -- medium, "
-            "ionic strength, pH, temperature and instrument -- on more than one row, so its "
-            "rows are among the rare ones the comparability key can place in the same regime. "
-            "Twelve of the sixteen fully comparable pairs in the entire 1,890-row corpus come "
-            "from inside this single paper, which is the exception the abstract argues "
-            "against: almost everywhere else, the rows a reviewer wants to compare cannot be, "
-            "because something ordinary went unreported."
+            "This paper's rows are among the rare ones the comparability key can place in the "
+            "same regime: twelve of the sixteen fully comparable pairs in the entire 1,890-row "
+            "corpus come from inside this single paper (`comparability.comparable_census`). Ten "
+            "papers report all five conditions on more than one row -- this is not unique to "
+            "this paper, and PMC12312160 (case 04) alone holds sixteen such rows -- but this "
+            "paper is the one whose rows the comparability key actually pairs up with each "
+            "other. Almost everywhere else in the corpus, the rows a reviewer wants to compare "
+            "cannot be, because something ordinary went unreported."
         ),
         check=_check_01_fully_conditioned,
     ),

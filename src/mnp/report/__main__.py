@@ -156,6 +156,19 @@ def run_e1(args: argparse.Namespace) -> list[Path]:
         return []
 
 
+def run_demo(args: argparse.Namespace) -> list[Path]:
+    """The 13-case demo: cases/, README.md and METHOD.md, plus the committed reader runs.
+
+    Reads `out/tables/d1_zeta_table.csv` the same way every other runner does, so a replay that
+    rebuilds it also moves the demo's numbers. It calls no model: the reader's answers come from
+    `data/interim/runs/demo-cell{d,b}-20260928`, read and never regenerated.
+    """
+    from mnp.demo import render
+
+    root, _, _, _ = _out(args)
+    return render.build(root)
+
+
 def run_release(args: argparse.Namespace) -> list[Path]:
     """The vanilla dataset release: parquet + JSONL + schema + card, from d1's own table.
 
@@ -327,6 +340,7 @@ RUNNERS = {
     "d3": run_d3,
     "d4": run_d4,
     "e1": run_e1,
+    "demo": run_demo,
     # Last: it reads the table d1 wrote into the same output root.
     "release": run_release,
 }

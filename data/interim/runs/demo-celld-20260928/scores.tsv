@@ -1,0 +1,4 @@
+cell	kind	n	accuracy	fabrication	cite_p	cite_r	tokens	calls
+D	A	12	1.000	0.000	1.000	1.000	2252	0.0
+D	B	11	1.000	0.000	1.000	1.000	4204	0.0
+D	E	13	0.923	-	-	-	723	0.0

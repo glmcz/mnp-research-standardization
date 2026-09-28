@@ -339,6 +339,15 @@ Re-runs the E1 representation bake-off: the 50 gold papers serialised seven ways
 - **kind** deterministic · idem yes · net no
 - **stale when** any parser fix that moves the block set, or a change to one of the seven serialisers in mnp.corpus.represent
 
+### `report demo`
+
+Renders the 13-case demo: one page per case (why it was picked, its rows, the standardisation walk, comparability against the paper and the whole corpus, the harmonised zeta, the resampling headline with and without the paper), a README with the corpus-wide E2e table and E2b scan, and METHOD.md. It calls no model. Its reader section reads the recorded judgement runs at data/interim/runs/demo-cell{d,b}-20260928 rather than asking anything itself, and renders a missing run as 'not run' and a recorded usage-policy refusal as one.
+
+- **in** d1_zeta_table.csv, the vendored corpus, data/interim/runs/demo-cell{d,b}-20260928
+- **out** out/demo/README.md, out/demo/cases/*.md, out/demo/METHOD.md
+- **kind** deterministic · idem yes · net no
+- **stale when** a change to d1_zeta_table.csv, the demo modules, or a re-run of the cells
+
 ### `report release`
 
 Packages the table D1 wrote as a citable dataset: the same rows as parquet and as JSONL, the JSON Schema re-exported from the pydantic models rather than copied, and a dataset card. Every statistic on the card is computed during the build from the table and from d1_stats.json, so a rebuild moves the numbers instead of leaving a stale one behind; the build refuses outright when the stats file no longer describes the table beside it. The card states what has not been established as plainly as what has — the gold set is unaudited, the licence is undecided, prompt provenance is coarse, and the corpus is one database.

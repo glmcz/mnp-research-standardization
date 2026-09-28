@@ -8,12 +8,16 @@ returns `True` cannot pass silently.
 
 from __future__ import annotations
 
+import re
+
 import pandas as pd
 import pytest
 
 from mnp import config
 from mnp.demo import cases
 from mnp.eval import cells
+
+_UNIQUENESS_RE = re.compile(r"\bthe one paper\b|\bthe only paper\b", re.IGNORECASE)
 
 
 @pytest.fixture(scope="module")
@@ -60,6 +64,20 @@ def test_verify_can_say_no_not_only_yes():
     empty_corpus = cells.Corpus(docs={}, table=pd.read_csv(config.OUT_TABLES / "d1_zeta_table.csv"))
     reason = cases.verify(case, empty_corpus.table, empty_corpus)
     assert reason is not None
+
+
+def test_no_case_why_claims_uniqueness_unless_only_one_paper_qualifies(table):
+    """Case 01 used to say it was "the one paper" reporting all five conditions on more than one
+    row. It is not: count papers with more than one `conditions_complete` row in the live table,
+    and a `why` may only claim uniqueness ("the one paper", "the only paper") when that count is
+    exactly 1. This must fail red against the old case 01 text before the fix."""
+    multi_conditioned_papers = (table.groupby("pmcid")["conditions_complete"].sum() > 1).sum()
+    for case in cases.CASES:
+        if _UNIQUENESS_RE.search(case.why):
+            assert multi_conditioned_papers == 1, (
+                f"case {case.nn} claims uniqueness but {multi_conditioned_papers} papers have "
+                "more than one conditions_complete row"
+            )
 
 
 def test_case_04_derived_check_fails_on_a_paper_with_no_derived_row(table, corpus):

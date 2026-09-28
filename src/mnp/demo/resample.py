@@ -86,7 +86,25 @@ def _cluster_arrays(table: pd.DataFrame, metric: str) -> tuple[np.ndarray, np.nd
     return grouped["size"].to_numpy(dtype=float), grouped["sum"].to_numpy(dtype=float)
 
 
-def _icc_and_deff(n_i: np.ndarray, succ_i: np.ndarray) -> tuple[float, float, float]:
+@dataclass(frozen=True)
+class Anova:
+    """Every intermediate of the one-way random-effects ANOVA behind ICC, so the result can be
+    recomputed by hand from the per-paper counts and checked term by term."""
+
+    n: float
+    k: int
+    sum_n_squared: float
+    grand_mean: float
+    ss_between: float
+    ss_within: float
+    ms_between: float
+    ms_within: float
+    m0: float
+    icc: float
+    deff: float
+
+
+def anova(n_i: np.ndarray, succ_i: np.ndarray) -> Anova:
     """One-way random-effects ANOVA: ICC, the unbalanced adjustment m0, and DEFF.
 
     Binary outcomes make the within-cluster sum of squares collapse to a closed form -
@@ -97,13 +115,40 @@ def _icc_and_deff(n_i: np.ndarray, succ_i: np.ndarray) -> tuple[float, float, fl
     k = len(n_i)
     p_i = succ_i / n_i
     grand_mean = succ_i.sum() / n
-    ms_between = (n_i * (p_i - grand_mean) ** 2).sum() / (k - 1)
-    ms_within = (n_i * p_i * (1 - p_i)).sum() / (n - k)
-    m0 = (n - (n_i**2).sum() / n) / (k - 1)
+    ss_between = (n_i * (p_i - grand_mean) ** 2).sum()
+    ss_within = (n_i * p_i * (1 - p_i)).sum()
+    ms_between = ss_between / (k - 1)
+    ms_within = ss_within / (n - k)
+    sum_n_squared = (n_i**2).sum()
+    m0 = (n - sum_n_squared / n) / (k - 1)
     denom = ms_between + (m0 - 1) * ms_within
     icc = 0.0 if denom == 0 else (ms_between - ms_within) / denom
     deff = 1 + (m0 - 1) * icc
-    return icc, m0, deff
+    # numpy scalars, exactly as `estimates` has always received them: np.float64 is a float.
+    return Anova(
+        n=n,
+        k=k,
+        sum_n_squared=sum_n_squared,
+        grand_mean=grand_mean,
+        ss_between=ss_between,
+        ss_within=ss_within,
+        ms_between=ms_between,
+        ms_within=ms_within,
+        m0=m0,
+        icc=icc,
+        deff=deff,
+    )
+
+
+def anova_for(table: pd.DataFrame, metric: str) -> Anova:
+    """`anova` on one metric of the table, clustered by paper in pmcid order."""
+    n_i, succ_i = _cluster_arrays(table, metric)
+    return anova(n_i, succ_i)
+
+
+def _icc_and_deff(n_i: np.ndarray, succ_i: np.ndarray) -> tuple[float, float, float]:
+    result = anova(n_i, succ_i)
+    return result.icc, result.m0, result.deff
 
 
 def _naive_half_width(p: float, n: int) -> float:

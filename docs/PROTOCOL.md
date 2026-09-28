@@ -357,6 +357,15 @@ Packages the table D1 wrote as a citable dataset under CC BY 4.0: the same rows 
 - **kind** deterministic · idem yes · net no
 - **stale when** any change to the D1 table, the schema models, the gold set, the licence classifier or the line parser
 
+### `report review`
+
+Writes out/review/: REVIEW.md, a guide for checking the dataset by hand, and five CSV worksheets a spreadsheet can recompute (conditions per paper, the ICC inputs, every row harmonised, four comparability pairs checked field by field, and a seeded audit sample of twenty rows with empty columns for the reviewer's verdicts). Every number in the guide is computed during the build by the modules it describes (resample, harmonise, comparability, scoring) or quoted with its file and section, and a worked example that does not reproduce the module's result refuses the build. The audit sample gives line numbers, never text, for a row whose quote the release withholds.
+
+- **in** out/tables/d1_zeta_table.csv, d1_stats.json, out/release/dataset.parquet, the vendored corpus, queries/kind_e_comparability.csv, the committed grid runs
+- **out** out/review/{REVIEW.md,conditions_per_paper.csv,icc_worksheet.csv,harmonised_all_rows.csv,comparability_worked_pairs.csv,audit_sample.csv}
+- **kind** deterministic · idem yes · net no
+- **stale when** a change to the table, the release, the demo or comparability modules, or a re-run of the grid cells
+
 ### `report rehydrate`
 
 Puts the withheld evidence quotes back into a local copy of the release. For each withheld row it rebuilds the source article's line-addressed text from the vendored XML, slices the stored address, and keeps the result only if it matches the stored sha256; a mismatch is named and left null, never approximated. It writes to data/interim/rehydrated (gitignored) and refuses any path under out/, because the restored text carries its sources' licences, not the dataset's. It reaches the network only with --fetch, for an article missing from the corpus. Not a builder: report all and report reproduce never run it.

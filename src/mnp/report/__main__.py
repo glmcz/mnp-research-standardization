@@ -1,4 +1,4 @@
-"""python -m mnp.report d1|d2|d3|d4|all|reproduce|rehydrate [--out DIR]"""
+"""python -m mnp.report d1|d2|d3|d4|release|review|all|reproduce|rehydrate [--out DIR]"""
 
 from __future__ import annotations
 
@@ -212,6 +212,25 @@ def run_release(args: argparse.Namespace) -> list[Path]:
     )
 
 
+def run_review(args: argparse.Namespace) -> list[Path]:
+    """A guide for checking the dataset by hand, and five worksheets to recompute it with.
+
+    Reads the table, stats and release out of the requested output root, like `release` does, so
+    a replay reviews what it rebuilt. Calls no model and reaches no network.
+    """
+    from mnp.report import review
+
+    root, tables, _, _ = _out(args)
+    needed = (tables / "d1_zeta_table.csv", tables / "d1_stats.json",
+              root / "release" / "dataset.parquet")  # fmt: skip
+    missing = [str(p) for p in needed if not p.is_file()]
+    if missing:
+        print(f"review: {', '.join(missing)} missing — run `report d1` and `report release` "
+              "first", file=sys.stderr)  # fmt: skip
+        return []
+    return review.build(root)
+
+
 def run_rehydrate(args: argparse.Namespace) -> int:
     """Put the withheld quotes back, locally, from the source articles. Not a builder.
 
@@ -407,8 +426,10 @@ RUNNERS = {
     "d4": run_d4,
     "e1": run_e1,
     "demo": run_demo,
-    # Last: it reads the table d1 wrote into the same output root.
+    # After d1: it reads the table d1 wrote into the same output root.
     "release": run_release,
+    # After release: it reads the released parquet as well as the table.
+    "review": run_review,
 }
 
 # Everything else the CLI offers. Not builders, so no loop over RUNNERS reaches them.

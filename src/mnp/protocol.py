@@ -650,6 +650,30 @@ STEPS: tuple[Step, ...] = (
         phase="Deliverables",
     ),
     Step(
+        command="report review",
+        purpose=(
+            "Writes out/review/: REVIEW.md, a guide for checking the dataset by hand, and five "
+            "CSV worksheets a spreadsheet can recompute (conditions per paper, the ICC inputs, "
+            "every row harmonised, four comparability pairs checked field by field, and a "
+            "seeded audit sample of twenty rows with empty columns for the reviewer's "
+            "verdicts). Every number in the guide is computed during the build by the modules "
+            "it describes (resample, harmonise, comparability, scoring) or quoted with its file "
+            "and section, and a worked example that does not reproduce the module's result "
+            "refuses the build. The audit sample gives line numbers, never text, for a row "
+            "whose quote the release withholds."
+        ),
+        inputs="out/tables/d1_zeta_table.csv, d1_stats.json, out/release/dataset.parquet, the "
+        "vendored corpus, queries/kind_e_comparability.csv, the committed grid runs",
+        outputs="out/review/{REVIEW.md,conditions_per_paper.csv,icc_worksheet.csv,"
+        "harmonised_all_rows.csv,comparability_worked_pairs.csv,audit_sample.csv}",
+        kind=D,
+        idempotent=True,
+        network=False,
+        invalidated_by="a change to the table, the release, the demo or comparability modules, "
+        "or a re-run of the grid cells",
+        phase="Deliverables",
+    ),
+    Step(
         command="report rehydrate",
         purpose=(
             "Puts the withheld evidence quotes back into a local copy of the release. For each "

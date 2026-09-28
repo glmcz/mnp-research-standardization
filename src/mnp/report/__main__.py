@@ -1,4 +1,4 @@
-"""python -m mnp.report d1|d2|d3|d4|all|reproduce [--out DIR]"""
+"""python -m mnp.report d1|d2|d3|d4|all|reproduce|rehydrate [--out DIR]"""
 
 from __future__ import annotations
 
@@ -170,11 +170,14 @@ def run_demo(args: argparse.Namespace) -> list[Path]:
 
 
 def run_release(args: argparse.Namespace) -> list[Path]:
-    """The vanilla dataset release: parquet + JSONL + schema + card, from d1's own table.
+    """The vanilla dataset release: parquet + JSONL + schema + LICENSE + card, from d1's table.
 
     It reads the table out of the requested output root rather than out of `data/processed`,
-    so a replay releases what that replay rebuilt and not what happens to be committed.
+    so a replay releases what that replay rebuilt and not what happens to be committed. Each
+    paper's licence, and the lines a withheld quote is addressed into, come from the vendored
+    XML — the one input a fresh clone restores from a tracked archive.
     """
+    from mnp.corpus import jats, licence, lines
     from mnp.report import release
 
     root, tables, _, _ = _out(args)
@@ -183,18 +186,80 @@ def run_release(args: argparse.Namespace) -> list[Path]:
         print(f"release: {table_path} or d1_stats.json missing — run `report d1` first",
               file=sys.stderr)  # fmt: skip
         return []
-    articles_path = config.DATA_INTERIM / "articles.parquet"
-    gold_path = config.ANNOTATION / "gold_50.csv"
+    table = pd.read_csv(table_path)
     xml_dir = config.EPMC_XML_DIR
+    pmcids = sorted(table["pmcid"].dropna().unique())
+    absent = [p for p in pmcids if not (xml_dir / f"{p}.xml").is_file()]
+    if absent:
+        print(f"release: {len(absent)} of {len(pmcids)} source XMLs are not in {xml_dir} "
+              f"({', '.join(absent[:3])}…) — run `corpus restore`; a licence cannot be read "
+              "from an article that is not here", file=sys.stderr)  # fmt: skip
+        return []
+
+    def documents(pmcid: str) -> lines.LinedDoc:
+        return lines.build_lines(jats.parse((xml_dir / f"{pmcid}.xml").read_bytes()))
+
+    gold_path = config.ANNOTATION / "gold_50.csv"
     return release.build(
-        pd.read_csv(table_path),
+        table,
         json.loads(stats_path.read_text()),
         root / "release",
-        articles=pd.read_parquet(articles_path) if articles_path.is_file() else None,
+        licences={p: licence.read(p, xml_dir) for p in pmcids},
+        documents=documents,
         gold=pd.read_csv(gold_path) if gold_path.is_file() else None,
         corpus_archive=xml_dir.parent / "xml.tar.gz",
         corpus_manifest=xml_dir.parent / "manifest.sha256",
     )
+
+
+def run_rehydrate(args: argparse.Namespace) -> int:
+    """Put the withheld quotes back, locally, from the source articles. Not a builder.
+
+    It writes outside `out/` and may reach the network, so it is kept out of RUNNERS: neither
+    `all` nor `reproduce` can run it by iterating them.
+    """
+    from mnp.report import quotes
+
+    release_dir = Path(args.release) if args.release else config.OUT / "release"
+    target = Path(args.out) if args.out else config.DATA_INTERIM / "rehydrated"
+    if target.resolve().is_relative_to(config.OUT.resolve()):
+        print(f"rehydrate: refusing to write into {config.OUT}/ — restored quotes carry their "
+              "sources' licences, not the dataset's, and must stay out of the published tree",
+              file=sys.stderr)  # fmt: skip
+        return 2
+    if not (release_dir / "dataset.parquet").is_file():
+        print(f"rehydrate: no dataset.parquet in {release_dir} — run `report release` first",
+              file=sys.stderr)  # fmt: skip
+        return 1
+    if args.fetch:
+        import httpx
+
+        from mnp.corpus import epmc
+
+        with httpx.Client() as client:
+            api = epmc.EuropePMC(client, target / "xml", target / "xml")
+
+            def fetch(pmcid: str) -> bytes | None:
+                path = api.fetch_full_text(pmcid)
+                return path.read_bytes() if path else None
+
+            result = quotes.rehydrate(release_dir, target, xml_dir=config.EPMC_XML_DIR, fetch=fetch)
+    else:
+        result = quotes.rehydrate(release_dir, target, xml_dir=config.EPMC_XML_DIR)
+    print(
+        f"rehydrate: {result.restored} / {result.withheld} withheld quotes restored and "
+        f"sha256-checked -> {target}"
+    )
+    if result.missing_xml:
+        shown = ", ".join(result.missing_xml[:5])
+        print(
+            f"  no source for {len(result.missing_xml)} papers ({shown}) — "
+            "run `corpus restore`, or pass --fetch"
+        )
+    if result.failed:
+        shown = ", ".join(result.failed[:10])
+        print(f"  {len(result.failed)} did not match their sha256 and were left null: {shown}")
+    return 1 if result.missing_xml or result.failed else 0
 
 
 def _tracked_artefacts(root: Path) -> list[str] | None:
@@ -331,6 +396,7 @@ def run_reproduce(args: argparse.Namespace) -> int:
     return code
 
 
+# Builders: each writes into the output root, and `all` and `reproduce` iterate them.
 RUNNERS = {
     "d1": run_d1,
     "d1-gold": run_d1_gold,
@@ -345,11 +411,25 @@ RUNNERS = {
     "release": run_release,
 }
 
+# Everything else the CLI offers. Not builders, so no loop over RUNNERS reaches them.
+COMMANDS = ("all", "reproduce", "protocol", "rehydrate")
+
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="python -m mnp.report")
-    p.add_argument("what", choices=[*RUNNERS, "all", "reproduce", "protocol"])
-    p.add_argument("--out", default=None, help="output root (default: out/)")
+    p.add_argument("what", choices=[*RUNNERS, *COMMANDS])
+    p.add_argument(
+        "--out",
+        default=None,
+        help="output root (default: out/); for rehydrate, where the local copy goes "
+        "(default: data/interim/rehydrated, never under out/)",
+    )
+    p.add_argument("--release", default=None, help="rehydrate only: default out/release")
+    p.add_argument(
+        "--fetch",
+        action="store_true",
+        help="rehydrate only: download an article missing from the corpus from Europe PMC",
+    )
     p.add_argument(
         "--slice",
         default=None,
@@ -360,6 +440,8 @@ def main(argv: list[str] | None = None) -> int:
         return run_reproduce(args)
     if args.what == "protocol":
         return run_protocol(args)
+    if args.what == "rehydrate":
+        return run_rehydrate(args)
     # `all` builds the deliverables; the gate is a check, run deliberately.
     targets = (
         [k for k in RUNNERS if k not in ("gate", "gates")] if args.what == "all" else [args.what]

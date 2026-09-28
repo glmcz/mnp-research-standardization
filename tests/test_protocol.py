@@ -35,7 +35,7 @@ def _subcommands_in_source(module: str) -> set[str]:
 def _report_subcommands() -> set[str]:
     from mnp.report import __main__ as report_cli
 
-    return {f"report {name}" for name in (*report_cli.RUNNERS, "all", "reproduce", "protocol")}
+    return {f"report {name}" for name in (*report_cli.RUNNERS, *report_cli.COMMANDS)}
 
 
 def _choice_subcommands(module: str) -> set[str]:

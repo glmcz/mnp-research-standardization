@@ -350,12 +350,21 @@ Renders the 13-case demo: one page per case (why it was picked, its rows, the st
 
 ### `report release`
 
-Packages the table D1 wrote as a citable dataset: the same rows as parquet and as JSONL, the JSON Schema re-exported from the pydantic models rather than copied, and a dataset card. Every statistic on the card is computed during the build from the table and from d1_stats.json, so a rebuild moves the numbers instead of leaving a stale one behind; the build refuses outright when the stats file no longer describes the table beside it. The card states what has not been established as plainly as what has — the gold set is unaudited, the licence is undecided, prompt provenance is coarse, and the corpus is one database.
+Packages the table D1 wrote as a citable dataset under CC BY 4.0: the same rows as parquet and as JSONL, the JSON Schema re-exported from the pydantic models rather than copied, a LICENSE, and a dataset card. Every statistic on the card is computed during the build from the table and from d1_stats.json, so a rebuild moves the numbers instead of leaving a stale one behind; the build refuses outright when the stats file no longer describes the table beside it. Each paper's licence is read from its vendored XML; a verbatim quote ships only from a CC BY or CC0 source, and every other quote is replaced by its sha256 and its address in the source lines. The build refuses when any withheld quote cannot be restored from that address byte for byte. The card states what has not been established as plainly as what has — the gold set is unaudited, prompt provenance is coarse, and the corpus is one database.
 
-- **in** out/tables/d1_zeta_table.csv, out/tables/d1_stats.json, articles.parquet, gold_50.csv, the vendored corpus manifest
-- **out** out/release/{dataset.parquet,dataset.jsonl,schema.json,DATASET_CARD.md}
+- **in** out/tables/d1_zeta_table.csv, out/tables/d1_stats.json, gold_50.csv, the vendored corpus (licences, line addresses) and its manifest
+- **out** out/release/{dataset.parquet,dataset.jsonl,schema.json,LICENSE,DATASET_CARD.md}
 - **kind** deterministic · idem yes · net no
-- **stale when** any change to the D1 table, the schema models or the gold set
+- **stale when** any change to the D1 table, the schema models, the gold set, the licence classifier or the line parser
+
+### `report rehydrate`
+
+Puts the withheld evidence quotes back into a local copy of the release. For each withheld row it rebuilds the source article's line-addressed text from the vendored XML, slices the stored address, and keeps the result only if it matches the stored sha256; a mismatch is named and left null, never approximated. It writes to data/interim/rehydrated (gitignored) and refuses any path under out/, because the restored text carries its sources' licences, not the dataset's. It reaches the network only with --fetch, for an article missing from the corpus. Not a builder: report all and report reproduce never run it.
+
+- **in** out/release/dataset.parquet, the vendored corpus (or Europe PMC, with --fetch)
+- **out** data/interim/rehydrated/{dataset.parquet,dataset.jsonl}
+- **kind** deterministic · idem yes · net no
+- **stale when** a new release, or a source re-typeset upstream (its rows then fail the sha256 check and are reported)
 
 ### `infer mcmc`
 

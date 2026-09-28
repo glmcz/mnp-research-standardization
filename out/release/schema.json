@@ -807,6 +807,115 @@
       ],
       "title": "ValueSource",
       "type": "string"
+    },
+    "SourceLicence": {
+      "description": "The licence a source article states, as `mnp.corpus.licence` reads it from the JATS.",
+      "enum": [
+        "CC-BY",
+        "CC0",
+        "CC-BY-NC",
+        "CC-BY-NC-ND",
+        "CC-BY-ND",
+        "CC-BY-SA",
+        "CC-BY-NC-SA",
+        "other-named",
+        "none"
+      ],
+      "title": "SourceLicence",
+      "type": "string"
+    },
+    "ReleasedEvidence": {
+      "additionalProperties": false,
+      "description": "The evidence columns of one row of the flat release in `out/release`.\n\nNot part of the record the extraction produces: the release adds these when it applies\nthe licence decision of 2026-09-28. A quote ships only for a CC BY or CC0 source; for any\nother it is withheld, and the row carries an address that restores it from the article\nand the sha256 that proves the restore.",
+      "properties": {
+        "source_licence": {
+          "$ref": "#/$defs/SourceLicence"
+        },
+        "quote_withheld": {
+          "description": "True when the source's licence does not allow the quote to ship.",
+          "title": "Quote Withheld",
+          "type": "boolean"
+        },
+        "evidence_quote": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The verbatim evidence; null exactly when quote_withheld is true.",
+          "title": "Evidence Quote"
+        },
+        "evidence_quote_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "sha256 of the original quote's UTF-8 bytes, shipped or withheld.",
+          "title": "Evidence Quote Sha256"
+        },
+        "evidence_quote_spans": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "contentMediaType": "application/json",
+          "contentSchema": {
+            "items": {
+              "oneOf": [
+                {
+                  "description": "[line_id, start, end]: that line's text sliced [start:end]",
+                  "items": false,
+                  "prefixItems": [
+                    {
+                      "pattern": "^[0-9a-f]{16}$",
+                      "type": "string"
+                    },
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  ],
+                  "type": "array"
+                },
+                {
+                  "description": "glue: separators, whitespace and dashes only, never text",
+                  "pattern": "^[\\s|\\-\u2010-\u2015\u2212\u02d7\ufe58\ufe63\uff0d]+$",
+                  "type": "string"
+                }
+              ]
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "description": "For a withheld quote only: a JSON array whose pieces concatenate to the quote. Line ids are corpus.lines ids of the source's line-addressed document. Restore with `python -m mnp.report rehydrate`.",
+          "title": "Evidence Quote Spans"
+        }
+      },
+      "required": [
+        "source_licence",
+        "quote_withheld",
+        "evidence_quote",
+        "evidence_quote_sha256",
+        "evidence_quote_spans"
+      ],
+      "title": "ReleasedEvidence",
+      "type": "object"
     }
   },
   "additionalProperties": false,

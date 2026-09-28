@@ -5,13 +5,52 @@ day it is written and is wrong at the next rebuild, so the tests that matter her
 inputs and demand that the card moves with them.
 """
 
+import hashlib
 import json
+import re
 
 import pandas as pd
 import pytest
 
 from mnp import config
-from mnp.report import release
+from mnp.corpus import jats, lines
+from mnp.corpus.licence import Licence
+from mnp.report import quotes, release
+
+# Each fixture row's quote, verbatim in its fixture paper. PMCC-r1 joins two passages.
+QUOTES = {
+    "PMCA-r1": "The zeta potential of PS beads was -30.0 mV in 10 mM NaCl at pH 7.0 and 25 °C.",
+    "PMCA-r2": "PE fragments measured -30.0 mV under the same conditions, by Zetasizer.",
+    "PMCB-r1": "Zeta potential of the nanoplastics in river water was -30.0 mV at pH 7.0.",
+    "PMCB-r2": "Values were measured but not printed for the aged particles in tap water.",
+    "PMCC-r1": "The zeta potential of the PMMA particles was -30.0 mV in 10 mM NaCl. || "
+    "Surface charge was measured with a Zetasizer Nano ZS in triplicate.",
+    "PMCC-r2": "Surface charge of PVC reached -30.0 mV after ageing in the medium tested.",
+}
+# PMCA may be quoted; PMCB and PMCC may not.
+LICENCES = {
+    "PMCA": Licence("CC-BY", "url", "https://creativecommons.org/licenses/by/4.0/"),
+    "PMCB": Licence("CC-BY-NC-ND", "url", "https://creativecommons.org/licenses/by-nc-nd/4.0/"),
+    "PMCC": Licence("none", "no statement", ""),
+}
+
+
+def _methods(pmcid: str) -> str:
+    passages = [
+        part.strip()
+        for row_id, quote in QUOTES.items()
+        if row_id.startswith(pmcid)
+        for part in quote.split("||")
+    ]
+    return "\n".join(["Particles were purchased from a commercial supplier.", *passages])
+
+
+def _documents(pmcid: str) -> lines.LinedDoc | None:
+    article = jats.Article(
+        pmcid=pmcid, doi=None, title=None, year=None, journal=None, license=None,
+        methods_text=_methods(pmcid), methods_source="title",
+    )  # fmt: skip
+    return lines.build_lines(article)
 
 
 def _table() -> pd.DataFrame:
@@ -30,6 +69,7 @@ def _table() -> pd.DataFrame:
             model="claude-code:opus", prompt_sha256="a" * 64,
         )  # fmt: skip
         base.update(over)
+        base["evidence_quote"] = QUOTES[row_id]
         return base
 
     rows.append(row("PMCA", "PMCA-r1"))
@@ -75,38 +115,30 @@ def _gold() -> pd.DataFrame:
     )  # fmt: skip
 
 
-def _articles() -> pd.DataFrame:
-    return pd.DataFrame(
-        {
-            "pmcid": ["PMCA", "PMCB", "PMCC", "PMCD"],
-            "license": [
-                "Open Access, https://creativecommons.org/licenses/by/4.0/ applies.",
-                "https://creativecommons.org/licenses/by-nc-nd/4.0/ non-commercial only.",
-                "All rights reserved by the publisher.",
-                None,
-            ],
-        }
-    )
-
-
 def _build(out_dir, table=None, stats=None, **kw):
     return release.build(
         table if table is not None else _table(),
         stats if stats is not None else _stats(),
         out_dir,
-        articles=kw.pop("articles", _articles()),
+        licences=kw.pop("licences", LICENCES),
+        documents=kw.pop("documents", _documents),
         gold=kw.pop("gold", _gold()),
         **kw,
     )
 
 
-def test_build_writes_the_four_release_files(tmp_path):
+def _card(written) -> str:
+    return next(p for p in written if p.name == "DATASET_CARD.md").read_text()
+
+
+def test_build_writes_the_five_release_files(tmp_path):
     written = _build(tmp_path / "release")
     assert {p.name for p in written} == {
         "dataset.parquet",
         "dataset.jsonl",
         "schema.json",
         "DATASET_CARD.md",
+        "LICENSE",
     }
     for p in written:
         assert p.is_file() and p.stat().st_size > 0
@@ -218,13 +250,127 @@ def test_the_card_says_the_kappa_audit_is_outstanding(tmp_path):
     assert "claude-opus-gold" in card
 
 
-def test_the_card_says_the_licence_is_undecided(tmp_path):
+def test_the_card_states_the_decided_licence(tmp_path):
+    card = _card(_build(tmp_path / "release"))
+    assert "UNRESOLVED" not in card
+    assert "CC BY 4.0" in card
+    assert "https://creativecommons.org/licenses/by/4.0/" in card
+    low = card.lower()
+    assert "not legal advice" in low
+    assert "python -m mnp.report rehydrate" in card
+    # what is a fact, what is a quote, and that the sources keep their own licences
+    assert "facts" in low and "verbatim" in low
+    assert "own licence" in low
+
+
+def _licence_rows(card: str) -> dict[str, tuple[int, int, int, int]]:
+    """The card's per-licence table, parsed back: code -> (papers, rows, shipped, withheld)."""
+    out = {}
+    for line in card.splitlines():
+        m = re.match(r"^\| `([^`]+)` \| (\d+) \| (\d+) \| (\d+) \| (\d+) \|$", line)
+        if m:
+            out[m.group(1)] = tuple(int(x) for x in m.groups()[1:])
+    return out
+
+
+def _counts(table: pd.DataFrame) -> dict[str, tuple[int, int, int, int]]:
+    out = {}
+    for code, g in table.groupby("source_licence"):
+        withheld = int(g["quote_withheld"].sum())
+        out[code] = (g["pmcid"].nunique(), len(g), len(g) - withheld, withheld)
+    return out
+
+
+def test_the_card_licence_table_equals_the_tables_own_counts(tmp_path):
+    out = tmp_path / "release"
+    card = _card(_build(out))
+    table = pd.read_parquet(out / "dataset.parquet")
+    assert _licence_rows(card) == _counts(table)
+    assert _licence_rows(card) == {
+        "CC-BY": (1, 2, 2, 0),
+        "CC-BY-NC-ND": (1, 2, 0, 2),
+        "none": (1, 2, 0, 2),
+    }
+
+
+def test_the_card_licence_table_moves_when_a_decision_moves(tmp_path):
+    card = _card(_build(tmp_path / "a"))
+    tighter = {**LICENCES, "PMCA": Licence("CC-BY-NC", "wording", "Attribution-NonCommercial")}
+    moved = _card(_build(tmp_path / "b", licences=tighter))
+    assert _licence_rows(card) != _licence_rows(moved)
+    assert _licence_rows(moved)["CC-BY-NC"] == (1, 2, 0, 2)
+
+
+def test_withheld_rows_ship_an_address_and_a_hash_but_no_quote(tmp_path):
+    out = tmp_path / "release"
+    _build(out)
+    table = pd.read_parquet(out / "dataset.parquet").set_index("row_id")
+    for row_id, quote in QUOTES.items():
+        row = table.loc[row_id]
+        assert row["evidence_quote_sha256"] == hashlib.sha256(quote.encode()).hexdigest()
+        if row_id.startswith("PMCA"):
+            assert not row["quote_withheld"] and row["source_licence"] == "CC-BY"
+            assert row["evidence_quote"] == quote
+            assert pd.isna(row["evidence_quote_spans"])
+        else:
+            assert row["quote_withheld"]
+            assert pd.isna(row["evidence_quote"])
+            pieces = json.loads(row["evidence_quote_spans"])
+            assert quotes.restore(_documents(row_id.split("-")[0]), pieces) == quote
+
+
+def test_no_withheld_quote_reaches_any_release_file(tmp_path):
+    out = tmp_path / "release"
+    _build(out)
+    withheld = [q for row_id, q in QUOTES.items() if not row_id.startswith("PMCA")]
+    parts = [p.strip() for q in withheld for p in q.split("||") if len(p.strip()) > 30]
+    frame = pd.read_parquet(out / "dataset.parquet")
+    decoded = "\n".join(str(v) for v in frame.to_numpy().ravel())
+    for path in out.iterdir():
+        text = path.read_bytes().decode("utf-8", errors="replace")
+        for part in parts:
+            assert part not in text, f"{path.name} carries a withheld passage"
+            assert json.dumps(part)[1:-1] not in text, f"{path.name} carries it JSON-escaped"
+    for part in parts:
+        assert part not in decoded
+
+
+def test_every_paper_needs_a_licence_decision(tmp_path):
+    partial = {k: v for k, v in LICENCES.items() if k != "PMCC"}
+    with pytest.raises(ValueError, match="PMCC"):
+        _build(tmp_path / "release", licences=partial)
+
+
+def test_a_withheld_quote_that_cannot_be_addressed_refuses_the_build(tmp_path):
+    """Withheld and unrecoverable is a row with its evidence silently deleted."""
+
+    def drifted(pmcid):
+        doc = _documents(pmcid)
+        if pmcid != "PMCB":
+            return doc
+        article = jats.Article(
+            pmcid=pmcid, doi=None, title=None, year=None, journal=None, license=None,
+            methods_text="A different paper altogether.", methods_source="title",
+        )  # fmt: skip
+        return lines.build_lines(article)
+
+    with pytest.raises(ValueError, match="PMCB-r1"):
+        _build(tmp_path / "release", documents=drifted)
+    assert not (tmp_path / "release" / "dataset.parquet").exists()
+
+
+def test_a_withheld_quote_without_its_source_refuses_the_build(tmp_path):
+    with pytest.raises(ValueError, match="PMCC"):
+        _build(tmp_path / "release", documents=lambda p: None if p == "PMCC" else _documents(p))
+
+
+def test_the_licence_file_is_cc_by_4_for_this_dataset(tmp_path):
     written = _build(tmp_path / "release")
-    card = next(p for p in written if p.name == "DATASET_CARD.md").read_text()
-    assert "UNRESOLVED" in card
-    assert "open decision" in card.lower()
-    # what travels and what does not
-    assert "full text" in card.lower()
+    text = next(p for p in written if p.name == "LICENSE").read_text()
+    assert "Creative Commons Attribution 4.0 International" in text
+    assert "https://creativecommons.org/licenses/by/4.0/" in text
+    assert release.DATASET_NAME in text
+    assert "Attribution" in text
 
 
 def test_the_card_states_absence_is_a_value(tmp_path):
@@ -285,9 +431,8 @@ def test_a_new_column_cannot_vanish_from_the_card(tmp_path):
     table = _table()
     table["brief_sha256"] = "c" * 64
     stats = {**_stats()}
-    written = release.build(table, stats, tmp_path / "release", articles=_articles(), gold=_gold())
-    card = next(p for p in written if p.name == "DATASET_CARD.md").read_text()
-    assert "brief_sha256" in card
+    written = _build(tmp_path / "release", table=table, stats=stats)
+    assert "brief_sha256" in _card(written)
 
 
 def test_the_corpus_hash_is_read_from_the_archive(tmp_path):
@@ -324,7 +469,28 @@ def workspace(tmp_path, monkeypatch):
     monkeypatch.setattr(config, "DATA_RAW", tmp_path / "raw")
     monkeypatch.setattr(config, "DATA_INTERIM", tmp_path / "interim")
     monkeypatch.setattr(config, "ANNOTATION", tmp_path / "interim" / "annotation")
+    monkeypatch.setattr(config, "EPMC_XML_DIR", tmp_path / "raw" / "epmc" / "xml")
     return tmp_path
+
+
+def _vendor_fixture_xmls(xml_dir):
+    """The three fixture papers as JATS, so the CLI reads licences and lines as it does live."""
+    urls = {"PMCA": "by/4.0", "PMCB": "by-nc-nd/4.0"}
+    xml_dir.mkdir(parents=True, exist_ok=True)
+    for pmcid in ("PMCA", "PMCB", "PMCC"):
+        permissions = (
+            f'<permissions><license xmlns:xlink="http://www.w3.org/1999/xlink" '
+            f'xlink:href="https://creativecommons.org/licenses/{urls[pmcid]}/"><license-p>'
+            "Open access.</license-p></license></permissions>"
+            if pmcid in urls
+            else ""
+        )
+        paras = "".join(f"<p>{line}</p>" for line in _methods(pmcid).split("\n"))
+        (xml_dir / f"{pmcid}.xml").write_text(
+            f'<?xml version="1.0"?><article><front><article-meta>{permissions}</article-meta>'
+            f'</front><body><sec sec-type="methods"><title>Methods</title>{paras}</sec></body>'
+            "</article>"
+        )
 
 
 def test_release_without_d1_output_skips_cleanly(workspace, capsys):
@@ -342,13 +508,30 @@ def test_release_reads_the_d1_table_from_the_requested_root(workspace, capsys):
     (out / "tables").mkdir(parents=True)
     _table().to_csv(out / "tables" / "d1_zeta_table.csv", index=False)
     (out / "tables" / "d1_stats.json").write_text(json.dumps(_stats()))
+    _vendor_fixture_xmls(config.EPMC_XML_DIR)
 
     assert cli.main(["release", "--out", str(out)]) == 0
-    assert (out / "release" / "dataset.parquet").is_file()
-    assert (out / "release" / "dataset.jsonl").is_file()
-    assert (out / "release" / "schema.json").is_file()
-    assert (out / "release" / "DATASET_CARD.md").is_file()
-    assert capsys.readouterr().out.count("release: ") == 4
+    for name in ("dataset.parquet", "dataset.jsonl", "schema.json", "DATASET_CARD.md", "LICENSE"):
+        assert (out / "release" / name).is_file()
+    assert capsys.readouterr().out.count("release: ") == 5
+    table = pd.read_parquet(out / "release" / "dataset.parquet").set_index("row_id")
+    assert table.loc["PMCA-r1", "source_licence"] == "CC-BY"
+    assert table.loc["PMCB-r1", "source_licence"] == "CC-BY-NC-ND"
+    assert table.loc["PMCC-r1", "source_licence"] == "none"
+    assert table["quote_withheld"].sum() == 4
+
+
+def test_release_without_its_source_xmls_refuses_rather_than_guessing(workspace, capsys):
+    from mnp.report import __main__ as cli
+
+    out = workspace / "out"
+    (out / "tables").mkdir(parents=True)
+    _table().to_csv(out / "tables" / "d1_zeta_table.csv", index=False)
+    (out / "tables" / "d1_stats.json").write_text(json.dumps(_stats()))
+
+    assert cli.main(["release", "--out", str(out)]) == 0
+    assert not (out / "release" / "dataset.parquet").exists()
+    assert "corpus restore" in capsys.readouterr().err
 
 
 def test_release_is_part_of_all(workspace):
@@ -376,7 +559,9 @@ def test_the_shipped_card_matches_the_committed_stats(tmp_path, committed):
     `d1_stats.json` itself and demands the card agree with it.
     """
     table, stats = committed
-    written = release.build(table, stats, tmp_path / "release")
+    # The statistics do not depend on the licences, so every paper is let through here.
+    permissive = {p: Licence("CC-BY", "url", "") for p in table["pmcid"].unique()}
+    written = release.build(table, stats, tmp_path / "release", licences=permissive)
     card = next(p for p in written if p.name == "DATASET_CARD.md").read_text()
 
     def kn(k, n):
@@ -393,3 +578,15 @@ def test_the_shipped_card_matches_the_committed_stats(tmp_path, committed):
     assert kn(int(table["evidence_verified"].sum()), len(table)) in card
     assert f"| distinct `material` values | {table['material'].nunique()} |" in card
     assert f"Only {table['prompt_sha256'].nunique()} distinct" in card
+
+
+def test_the_shipped_card_licence_table_equals_the_shipped_table():
+    """The published card against the published parquet beside it — no rebuild involved."""
+    shipped = config.ROOT / "out" / "release"
+    if not (shipped / "dataset.parquet").is_file():
+        pytest.skip("no committed release here")
+    table = pd.read_parquet(shipped / "dataset.parquet")
+    card = (shipped / "DATASET_CARD.md").read_text()
+    assert _licence_rows(card) == _counts(table)
+    total = f"| **total** | {table['pmcid'].nunique()} | {len(table)} |"
+    assert total in card

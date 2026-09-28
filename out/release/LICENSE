@@ -1,0 +1,12 @@
+MNP-KB v0 — micro- and nanoplastic surface measurements, with absence recorded
+
+Licensed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+You may share and adapt this dataset for any purpose, including commercially, provided you give appropriate credit, link to the licence, and indicate if changes were made. The licence is the text at the URL above; this file names it.
+
+Attribution: "MNP-KB v0 — micro- and nanoplastic surface measurements, with absence recorded", by [author not yet named — neither DATASET_CARD.md nor pyproject.toml names one; set release.AUTHOR before publishing]. Licensed under CC BY 4.0, https://creativecommons.org/licenses/by/4.0/
+
+Scope: the extracted values, units and conditions, the absence booleans, the source licence codes, and the quote addresses and hashes. Evidence quotes ship only from CC BY and CC0 sources; they remain their authors' work, attributed by each row's pmcid and doi. Quotes from every other source are withheld and are not part of this release. The source articles keep their own licences.
+
+This is a licensing decision, not legal advice.

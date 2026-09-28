@@ -20,3 +20,6 @@ data/interim/articles.parquet
 data/interim/extractions.jsonl.tmp
 .env
 .env.local
+
+# Quotes put back by `report rehydrate` carry their sources' licences: local only.
+data/interim/rehydrated/

@@ -128,6 +128,76 @@ class Evidence(BaseModel):
     )
 
 
+class SourceLicence(StrEnum):
+    """The licence a source article states, as `mnp.corpus.licence` reads it from the JATS."""
+
+    cc_by = "CC-BY"
+    cc0 = "CC0"
+    cc_by_nc = "CC-BY-NC"
+    cc_by_nc_nd = "CC-BY-NC-ND"
+    cc_by_nd = "CC-BY-ND"
+    cc_by_sa = "CC-BY-SA"
+    cc_by_nc_sa = "CC-BY-NC-SA"
+    other_named = "other-named"  # a licence that is not one of these, or a statement in doubt
+    none = "none"  # no licence statement at all
+
+
+_SPAN_PIECE = {
+    "oneOf": [
+        {
+            "type": "array",
+            "prefixItems": [
+                {"type": "string", "pattern": "^[0-9a-f]{16}$"},
+                {"type": "integer", "minimum": 0},
+                {"type": "integer", "minimum": 0},
+            ],
+            "items": False,
+            "description": "[line_id, start, end]: that line's text sliced [start:end]",
+        },
+        {
+            "type": "string",
+            "pattern": "^[\\s|\\-\u2010-\u2015\u2212\u02d7\ufe58\ufe63\uff0d]+$",
+            "description": "glue: separators, whitespace and dashes only, never text",
+        },
+    ]
+}
+
+
+class ReleasedEvidence(BaseModel):
+    """The evidence columns of one row of the flat release in `out/release`.
+
+    Not part of the record the extraction produces: the release adds these when it applies
+    the licence decision of 2026-09-28. A quote ships only for a CC BY or CC0 source; for any
+    other it is withheld, and the row carries an address that restores it from the article
+    and the sha256 that proves the restore.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    source_licence: SourceLicence
+    quote_withheld: bool = Field(
+        description="True when the source's licence does not allow the quote to ship."
+    )
+    evidence_quote: str | None = Field(
+        description="The verbatim evidence; null exactly when quote_withheld is true."
+    )
+    evidence_quote_sha256: str | None = Field(
+        pattern="^[0-9a-f]{64}$",
+        description="sha256 of the original quote's UTF-8 bytes, shipped or withheld.",
+    )
+    evidence_quote_spans: str | None = Field(
+        description=(
+            "For a withheld quote only: a JSON array whose pieces concatenate to the quote. "
+            "Line ids are corpus.lines ids of the source's line-addressed document. Restore "
+            "with `python -m mnp.report rehydrate`."
+        ),
+        json_schema_extra={
+            "contentMediaType": "application/json",
+            "contentSchema": {"type": "array", "minItems": 1, "items": _SPAN_PIECE},
+        },
+    )
+
+
 class MeasurementConditions(BaseModel):
     """The five conditions without which a zeta potential means nothing."""
 

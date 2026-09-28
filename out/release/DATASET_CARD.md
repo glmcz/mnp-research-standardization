@@ -10,9 +10,10 @@ Two things a reader should take from this card before using the data: only a sma
 
 | file | what it is | sha256 |
 |---|---|---|
-| `dataset.parquet` | 1890 rows × 40 columns | `ffa54c448f4de7c480cc6674edb35773520920cb65c9e7eb69d0d0113fb7a71c` |
-| `dataset.jsonl` | the same rows, one JSON object per line | `a3c5c4abed5e583e5a5342fb66efa5a8dff1214ef5c3d20be24c952fd25fc0c0` |
-| `schema.json` | JSON Schema 2020-12 for the record type, generated from the pydantic models in `mnp.schema.models` | `bb28b3a5029452a5649ad6e574daa9daf6ca7daded71a4d7d7cb5f2490278cc3` |
+| `dataset.parquet` | 1890 rows × 44 columns | `a58981cfb330ddb3c27ea524fb30117d74293c5d5b4783a6ed0d1add2621ccab` |
+| `dataset.jsonl` | the same rows, one JSON object per line | `03941e61a58c967cbb131e80837f4e0a8a63ca55a4c662c58b38de83ba063669` |
+| `schema.json` | JSON Schema 2020-12 for the record type, generated from the pydantic models in `mnp.schema.models`; the release's own evidence columns are `$defs/ReleasedEvidence` | `8976dc57ec31847920e727058140f0cb737356452ce4b5c8e28d449dd50edc4d` |
+| `LICENSE` | CC BY 4.0, and the attribution line | `b292b211874def0d2ff9e4d276880fdfa35d10450de3321040e4d341a622d606` |
 | `DATASET_CARD.md` | this file | — |
 
 The parquet and the JSONL carry identical content; the two formats exist so the dataset can be read without pandas. `schema.json` describes the nested record the extraction produces, of which the flat table here is one row per measurement.
@@ -24,7 +25,7 @@ The parquet and the JSONL carry identical content; the two formats exist so the 
 | rows (one surface measurement each) | 1890 |
 | papers | 491 |
 | distinct `material` values | 151 |
-| columns | 40 |
+| columns | 44 |
 | rows carrying a printed number | 1384 |
 | rows reporting a measurement with no retrievable number | 506 |
 | **fully conditioned rows** (`conditions_complete`) | **62 / 1890 — 3.3 %** |
@@ -58,7 +59,7 @@ This makes one query answerable that a text index cannot answer: *what ionic str
 
 ## Every quote is verbatim
 
-`evidence_verified` is true for every row here: **1890 / 1890 — 100.0 %**. Each row carries the sentence or sentences the value was read from, and each was checked as a substring of the source article's text. A row whose quote could not be located was dropped and counted, never silently kept.
+`evidence_verified` is true for every row here: **1890 / 1890 — 100.0 %**. Each row names the sentence or sentences the value was read from, and each was checked as a substring of the source article's text. A row whose quote could not be located was dropped and counted, never silently kept. Where the source's licence does not allow the quote to ship, the row carries its address and hash instead of its text — see *Licence* below.
 
 `evidence_quote` may join several passages with ` || `, because the value and its conditions are routinely sections apart — the number in Results or a table, the ionic strength in Methods. `evidence_location` names each.
 
@@ -68,7 +69,7 @@ This makes one query answerable that a text index cannot answer: *what ionic str
 
 `evidence_line_ids` carries **1890 / 1890 — 100.0 %** of rows, 3899 citations in all. A citation is a 16-character prefix of the SHA-256 of a line's section path, its ordinal within that section, and its normalised text — deliberately not the line number, so that a later fix to the parser which shifts numbering does not invalidate a stored address.
 
-The ids are semicolon-joined, flat, in the order the passages appear in `evidence_quote`. The grouping back onto ` || ` passages is not stored because it is recoverable: the quote is here, and re-running the locator reproduces it. An empty value means the row carries a flag saying why, and no row is silently left without one.
+The ids are semicolon-joined, flat, in the order the passages appear in `evidence_quote`. The grouping back onto ` || ` passages is not stored because it is recoverable: the quote is here, and re-running the locator reproduces it — or, for a withheld quote, `evidence_quote_spans` carries it. An empty value means the row carries a flag saying why, and no row is silently left without one.
 
 ## Paper-level denominators
 
@@ -117,31 +118,38 @@ The hashes present:
 
 Models that produced these rows: `claude-code:opus`, `claude-code:sonnet`.
 
-## Licence — UNRESOLVED
+## Licence — CC BY 4.0
 
-**This release does not yet carry a licence. That is an open decision, not an oversight, and it is recorded here so nobody assumes one.** Do not redistribute this dataset until it is settled.
+This dataset is released under the **Creative Commons Attribution 4.0 International licence (CC BY 4.0)**, <https://creativecommons.org/licenses/by/4.0/>. The notice and the attribution line are in `LICENSE`. The decision was taken on 2026-09-28.
 
-What is at issue. The source articles are open access, but their licences differ from paper to paper, and the dataset redistributes short verbatim quotes from them.
+**What is a fact and what is a quote.** The extracted values, units and conditions and the absence booleans are facts about what each paper reports. They ship for every row whatever the source's licence, with the row's source licence code and, where the quote is withheld, its address and hash. The evidence quotes are verbatim text from the source articles. A quote ships only where its source is licensed CC BY (any version) or CC0, which already permit redistribution with attribution. For every other source — non-commercial, no-derivatives, share-alike, a publisher's own terms, a statement that is ambiguous, or no licence statement at all — the quote is withheld: `evidence_quote` is null, `quote_withheld` is true, and the text is in no file of this release.
 
-| | |
-|---|---|
-| redistributed here | extracted values, conditions, the absence booleans, and short verbatim evidence quotes |
-| **not** redistributed here | the full texts of the source articles |
+Per source licence, as each paper's own JATS states it (`source_licence`, read from the vendored XML by `mnp.corpus.licence`: a creativecommons.org URL is preferred, the wording decides where there is none):
 
-Every row names its source by `pmcid` and `doi`, so the article itself can always be fetched from the publisher under whatever licence that publisher applies.
+| source licence | papers | rows | quotes shipped | quotes withheld |
+|---|---|---|---|---|
+| `CC-BY` | 353 | 1346 | 1346 | 0 |
+| `CC0` | 2 | 91 | 91 | 0 |
+| `CC-BY-NC` | 29 | 113 | 0 | 113 |
+| `CC-BY-NC-ND` | 87 | 296 | 0 | 296 |
+| `other-named` | 10 | 20 | 0 | 20 |
+| `none` | 10 | 24 | 0 | 24 |
+| **total** | 491 | 1890 | 1437 | 453 |
 
-Licence statements across the 858 fetched articles — 109 distinct strings, which is why they are grouped here by the Creative Commons code named in the statement:
+Quotes withheld: **453 / 1890 — 24.0 %** of rows, from 136 papers. `other-named` is a statement that names no Creative Commons licence, or whose URL and wording disagree — a publisher's own terms, *public domain unless otherwise noted*, a time-limited access grant. `none` is an article with no licence statement at all. Both are withheld: an unclear grant is not a grant.
 
-| licence named in the article | articles |
-|---|---|
-| CC BY | 534 |
-| CC BY-NC-ND | 139 |
-| CC BY-NC | 41 |
-| CC BY-ND | 2 |
-| no Creative Commons URL in the statement | 142 |
-| no licence statement at all | 16 |
+**Restoring withheld quotes locally.** A withheld row keeps `evidence_quote_sha256`, the hash of the original quote, and `evidence_quote_spans`, its address in the source: a JSON array of `[line_id, start, end]` slices of the article's line-addressed text, joined by glue that holds only separators, whitespace and dashes — never a letter or a digit. With the source articles on your machine:
 
-Note the last two rows. A non-commercial or no-derivatives term on a source article is not automatically satisfied by quoting from it, and the papers with no statement at all are not automatically permissive.
+```
+uv run python -m mnp.corpus restore      # the vendored articles
+uv run python -m mnp.report rehydrate [--release out/release] [--out <path>]
+```
+
+`rehydrate` rebuilds each article's lines, slices them, checks every result against its sha256, and writes a local copy of the dataset with the quotes put back — never into this directory. With `--fetch` it downloads an article missing from the corpus from Europe PMC. A quote that no longer matches its hash is reported and left null, never approximated. That local copy carries text under its sources' licences, not this one; keep it local.
+
+**The source articles keep their own licences.** Nothing here relicenses them, and their full texts are not in this release. Every row names its source by `pmcid` and `doi`: fetch the article from its publisher or from Europe PMC, under the terms its publisher applies. A quote shipped from a CC BY source remains its authors' work, attributed by that row's `pmcid` and `doi`.
+
+This is a licensing decision, not legal advice.
 
 ## Limits a citer needs to state
 
@@ -166,7 +174,8 @@ Note the last two rows. A non-commercial or no-derivatives term on a source arti
 | particle | `particle_name`, `material`, `functionalisation`, `supplier`, `size_nominal_nm`, `size_measured_nm` |
 | conditions | `medium_text`, `medium_class`, `ionic_strength_mM`, `pH`, `pH_text`, `temperature_C`, `temperature_qualifier`, `instrument` |
 | absence | `medium_reported`, `ionic_strength_reported`, `pH_reported`, `temperature_reported`, `instrument_reported`, `conditions_complete`, `ionic_strength_source`, `medium_matches_exposure` |
-| evidence | `evidence_quote`, `evidence_location`, `evidence_verified`, `evidence_line_ids` |
+| evidence | `evidence_quote`, `evidence_location`, `evidence_verified`, `evidence_line_ids`, `evidence_quote_sha256`, `evidence_quote_spans` |
+| licence | `source_licence`, `quote_withheld` |
 | provenance | `model`, `prompt_sha256`, `flags` |
 
 ## How to rebuild this

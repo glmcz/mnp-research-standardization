@@ -23,6 +23,7 @@ from mnp.schema.models import (
     MNPCharacterisation,
     Provenance,
     Quantity,
+    ReleasedEvidence,
     SizeMethod,
     SizeRange,
     Study,
@@ -93,6 +94,11 @@ def json_schema() -> dict:
         "nanoplastic study. Completeness is computed by consumers, not enforced "
         "here: an incomplete record is valid and is exactly what D1 counts."
     )
+    # The release's own evidence columns. Defined here, unreferenced by the record, so the
+    # repository keeps one schema and the release ships it whole.
+    released = ReleasedEvidence.model_json_schema(mode="validation")
+    schema["$defs"].update(released.pop("$defs", {}))
+    schema["$defs"]["ReleasedEvidence"] = released
     return schema
 
 

@@ -208,7 +208,8 @@ def _zeta_case(value: float, kappa_a: float | None, models: frozenset[str]) -> _
     reported value in this branch; kappa_a and f are reported alongside it only when they are
     independently computable, purely for the reviewer's context, never gating the value.
 
-    Deviation 2, a correction Martin made to the design doc on 2026-09-28: naming *both*
+    Deviation 2, a correction made in the parent session's review of this module's first pass
+    on 2026-09-28 (recorded in docs/DESIGN_2026-09-28_demo.md): naming *both*
     Smoluchowski and Huckel (with neither Henry nor Ohshima named) is NOT Henry-consistent.
     That combination usually means "we used Smoluchowski rather than Huckel" - a specific,
     single f_m - and a mention scan cannot tell which one was applied ("used Smoluchowski

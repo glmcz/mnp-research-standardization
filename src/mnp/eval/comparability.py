@@ -368,8 +368,9 @@ def debye_length_nm(ionic_strength_mM: float) -> float:
     """kappa^-1 in nm for a 1:1 electrolyte in water at 25 degC: 0.304 / sqrt(I[M]).
 
     The 1:1 assumption is the limitation this carries; a divalent medium has a shorter Debye
-    length than this returns. It is used only to place a row in a conversion regime, never to
-    correct a reported value.
+    length than this returns. The comparability key uses it only to place a row in a conversion
+    regime, but `mnp.demo.harmonise` also corrects reported values with it, and that is where
+    the 1:1 assumption matters most.
     """
     if ionic_strength_mM is None or ionic_strength_mM <= 0:
         return math.inf

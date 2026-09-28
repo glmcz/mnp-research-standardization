@@ -117,4 +117,4 @@ Cell D is handed the matching structured rows for each question, so a high score
 - **The gold set itself is model-annotated.** Every accuracy number this demo reports inherits that provenance.
 - **`models_named` records mentions, not the model actually applied.** Every harmonised value is conditional on "the named model is the one applied" -- an upper bound in the same sense the E2b scan itself is; a mention in a background paragraph is not evidence of what was used.
 - **The Debye length assumes a 1:1 electrolyte.** A medium with divalent ions has a shorter true Debye length than `debye_length_nm` returns.
-- **This dataset has no licence yet.** `out/release/DATASET_CARD.md` records that explicitly; do not redistribute it until that is settled.
+- **Quotes ship only from CC BY and CC0 sources.** The release is licensed CC BY 4.0; a quote from any other source is withheld and can be restored locally (`out/release/DATASET_CARD.md`, Licence).

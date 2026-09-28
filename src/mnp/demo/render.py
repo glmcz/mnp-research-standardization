@@ -596,7 +596,8 @@ def _score_line(scored: scoring.Scored) -> str:
     if scored.citation_recall is not None:
         parts.append(f"citation_recall={scored.citation_recall:.2f}")
     for name, value in scored.extra:
-        parts.append(f"{name}={value:.2f}")
+        if not name.startswith("key_"):  # the true verdict, carried for the recall table
+            parts.append(f"{name}={value:.2f}")
     return ", ".join(parts)
 
 
@@ -1278,8 +1279,9 @@ def method(table: pd.DataFrame, corpus: cells.Corpus) -> str:
         "shorter true Debye length than `debye_length_nm` returns."
     )
     out.append(
-        "- **This dataset has no licence yet.** `out/release/DATASET_CARD.md` records that "
-        "explicitly; do not redistribute it until that is settled."
+        "- **Quotes ship only from CC BY and CC0 sources.** The release is licensed CC BY 4.0; "
+        "a quote from any other source is withheld and can be restored locally "
+        "(`out/release/DATASET_CARD.md`, Licence)."
     )
     return "\n".join(out).rstrip() + "\n"
 

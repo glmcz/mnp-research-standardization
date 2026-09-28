@@ -325,3 +325,21 @@ def test_case_06_page_shows_computed_convergence_spreads(built: Path):
     assert f"{other_spread:.1f} mV" in text
     assert f"{culture_spread:.1f} mV" in text
     assert other_spread > culture_spread  # the claim the case's `why` makes: it narrows
+
+
+def test_a_score_line_never_shows_the_answer_key():
+    """`key_<verdict>` rides on a kind E score so recall can be counted per true verdict. It is
+    the key, not a score, and printing it put `key_not_comparable=1.00` on every case page."""
+    from mnp.eval import scoring
+    from mnp.eval.query_sets import QueryKind
+
+    scored = scoring.Scored(
+        qid="X01-E",
+        kind=QueryKind.e,
+        cell="D",
+        correct=True,
+        extra=(("blockers_exact", 1.0), ("key_not_comparable", 1.0)),
+    )
+    line = render._score_line(scored)
+    assert "blockers_exact=1.00" in line
+    assert "key_" not in line

@@ -1159,7 +1159,10 @@ def _reader_grid_block(n_questions: int) -> str:
             "`mnp.eval.scoring` scores every answer without a model: fabrication is counted on "
             "kind B (and on the absence half of kind A) whenever an answer states a value the "
             "paper never reported; an unparseable reply counts as wrong, never as excluded "
-            "from the denominator.",
+            "from the denominator. A citation counts whether it is listed in the `citations` "
+            "field or written inside the answer's own text, as a scientist would write it -- "
+            "but only as a full address (`PMCID:Lnn` or `row:ID`); a bare `L3` in a sentence "
+            "is not one.",
             "",
             "A reader failure (timeout, wrong model, no JSON) is not an answer -- it goes to "
             "`errors.jsonl` and the question is asked again the next time the run resumes. "

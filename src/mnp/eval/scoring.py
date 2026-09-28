@@ -76,10 +76,26 @@ class Answer:
 
     @property
     def citations(self) -> tuple[str, ...]:
+        """The `citations` field, then every address written inside the answer's own text.
+
+        A scientist cites in the prose, and a reader answering like one should not be scored
+        ungrounded for it. Only full addresses count inline — `PMCID:Lnn` and `row:ID` — since a
+        bare `L3` in a sentence could be anything.
+        """
         found = self.payload.get("citations") or ()
         if isinstance(found, str):
             found = [found]
-        return tuple(str(x).strip() for x in found if str(x).strip())
+        listed = [str(x).strip() for x in found if str(x).strip()]
+        inline = [
+            match.group(0)
+            for name, value in self.payload.items()
+            if name != "citations" and isinstance(value, str)
+            for match in _INLINE_CITATION.finditer(value)
+        ]
+        return tuple(dict.fromkeys([*listed, *inline]))
+
+
+_INLINE_CITATION = re.compile(r"\bPMC[A-Za-z0-9]+:L\d+\b|\brow:[A-Za-z0-9][\w-]*[A-Za-z0-9]")
 
 
 _OBJECT = re.compile(r"\{.*\}", re.DOTALL)

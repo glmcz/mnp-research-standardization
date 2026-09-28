@@ -195,6 +195,30 @@ def test_an_uncited_kind_d_answer_is_not_grounded_however_fluent_it_is(corpus, d
     assert scored.metric("term_coverage") == pytest.approx(1.0)
 
 
+def test_a_citation_written_inside_the_answer_text_counts(corpus, doc_a):
+    """Citing in the prose is how a scientist writes. The sweep's D-001 and D-007 did exactly
+    that, left the `citations` field out, and were scored ungrounded."""
+    key = _key(K.d, acceptable_line_ids=doc_a.lines[2].line_id, content_terms="double layer")
+    answer = _answer(K.d, answer="The double layer was screened (PMCAAA:L3).")
+    scored = scoring.score_one(answer, key, corpus)
+    assert scored.correct is True
+    assert scored.metric("n_citations") == 1.0
+
+
+def test_inline_and_listed_citations_are_merged_without_counting_one_twice():
+    answer = _answer(
+        K.d,
+        answer="Screened (PMCAAA:L3; PMCBBB:L2), see also row:PMCAAA-r1.",
+        citations=["PMCAAA:L3"],
+    )
+    assert answer.citations == ("PMCAAA:L3", "PMCBBB:L2", "row:PMCAAA-r1")
+
+
+def test_an_unqualified_line_number_in_prose_is_not_a_citation():
+    """`L3` alone could be anything in a sentence; only `PMCID:Lnn` and `row:ID` are addresses."""
+    assert _answer(K.d, answer="as in Fig. L3 and table L12").citations == ()
+
+
 def test_padding_kind_d_with_citations_costs_precision(corpus, doc_a):
     key = _key(K.d, acceptable_line_ids=doc_a.lines[2].line_id, content_terms="double layer")
     answer = _answer(

@@ -397,6 +397,83 @@ def test_the_card_states_the_single_database_limit(tmp_path):
     assert "OpenAlex" in card
 
 
+def _origin() -> dict:
+    """The shape `report origin` writes, with the fields the card reads."""
+    envs = (
+        "freshwater",
+        "seawater",
+        "wastewater",
+        "soil",
+        "sediment",
+        "air_dust",
+        "biota",
+        "other",
+    )
+    affected = {
+        "medium": 0,
+        "ionic_strength": 0,
+        "pH": 1,
+        "temperature": 0,
+        "instrument": 1,
+        "complete": 0,
+    }
+    rest = {
+        "medium": 2,
+        "ionic_strength": 1,
+        "pH": 2,
+        "temperature": 1,
+        "instrument": 2,
+        "complete": 0,
+    }
+    return {
+        "rows": 6,
+        "papers": 3,
+        "hand_corrected": {
+            "origin": {"rows": {"commercial": 3, "lab_fabricated": 1, "environmental": 1,
+                                "unclear": 1, "unanswered": 0}},
+            "synthetic": {"rows": 4},
+            "environment": {"rows": {e: int(e == "wastewater") for e in envs},
+                            "papers": {e: int(e == "wastewater") for e in envs}},
+            "environmental_rows": {"rows": 1, "papers": 1},
+        },
+        "lost_methods": {
+            "papers": 3, "papers_affected": 1, "pmcids": ["PMCB"],
+            "affected": {"papers": 1, "rows": 2,
+                         "any_row": {k: {"n": v, "share": v / 1} for k, v in affected.items()}},
+            "unaffected": {"papers": 2, "rows": 4,
+                           "any_row": {k: {"n": v, "share": v / 2} for k, v in rest.items()}},
+        },
+    }  # fmt: skip
+
+
+def test_the_card_states_where_the_particles_came_from(tmp_path):
+    card = _card(_build(tmp_path / "release", origin=_origin()))
+    limits = card.split("## Limits a citer needs to state")[1].split("\n## ")[0]
+    assert "**The measured particles are synthetic.**" in limits
+    assert "4 / 6 — 66.7 %" in limits
+    assert "1 row, from 1 paper" in limits and "wastewater 1" in limits
+    assert "air or dust: 0" in limits
+    assert "`out/tables/sample_origin_stats.json`" in card
+
+
+def test_the_card_states_the_parser_defect_as_a_limit_of_the_extraction(tmp_path):
+    card = _card(_build(tmp_path / "release", origin=_origin()))
+    limits = card.split("## Limits a citer needs to state")[1].split("\n## ")[0]
+    item = next(line for line in limits.splitlines() if "supplementary-materials" in line)
+    assert "1 of 3 papers" in item
+    assert "temperature 0.0 % against 50.0 %" in item
+    assert "biased downward" in item
+    higher = _origin()
+    higher["lost_methods"]["affected"]["any_row"]["temperature"] = {"n": 1, "share": 1.0}
+    card = _card(_build(tmp_path / "again", origin=higher))
+    assert "temperature 100.0 % against 50.0 %" in card and "biased downward" not in card
+
+
+def test_a_card_without_the_origin_table_says_nothing_about_origin(tmp_path):
+    card = _card(_build(tmp_path / "release"))
+    assert "synthetic" not in card and "supplementary-materials" not in card
+
+
 def test_the_card_reports_the_coarse_prompt_provenance(tmp_path):
     written = _build(tmp_path / "release")
     card = next(p for p in written if p.name == "DATASET_CARD.md").read_text()
@@ -598,3 +675,19 @@ def test_the_shipped_card_licence_table_equals_the_shipped_table():
     assert _licence_rows(card) == _counts(table)
     total = f"| **total** | {table['pmcid'].nunique()} | {len(table)} |"
     assert total in card
+
+
+def test_the_shipped_card_states_the_committed_origin(tmp_path, committed):
+    path = config.ROOT / "out" / "tables" / "sample_origin_stats.json"
+    if not path.is_file():
+        pytest.skip("no committed origin table in this tree")
+    table, stats = committed
+    origin = json.loads(path.read_text())
+    permissive = {p: Licence("CC-BY", "url", "") for p in table["pmcid"].unique()}
+    written = release.build(table, stats, tmp_path / "release", licences=permissive, origin=origin)
+    card = _card(written)
+    h, n = origin["hand_corrected"], origin["rows"]
+    k = h["synthetic"]["rows"]
+    assert f"{k} / {n} — {100 * k / n:.1f} %" in card
+    lm = origin["lost_methods"]
+    assert f"{lm['papers_affected']} of {lm['papers']} papers" in card

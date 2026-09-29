@@ -1,4 +1,4 @@
-"""python -m mnp.report d1|d2|d3|d4|release|review|all|reproduce|rehydrate [--out DIR]"""
+"""python -m mnp.report d1|d2|d3|d4|origin|release|review|all|reproduce|rehydrate [--out DIR]"""
 
 from __future__ import annotations
 
@@ -169,6 +169,35 @@ def run_demo(args: argparse.Namespace) -> list[Path]:
     return render.build(root)
 
 
+def run_origin(args: argparse.Namespace) -> list[Path]:
+    """Where every measured particle came from, rebuilt from recorded judgement. Asks nothing.
+
+    The reader's answers and the hand verdicts under data/interim/origin are read, never
+    regenerated; they are matched to the D1 table in the requested output root, so a replay
+    rebuilds them against the table it rebuilt.
+    """
+    from mnp.extract import origin as reader
+    from mnp.report import origin
+
+    _, tables, _, _ = _out(args)
+    table_path = tables / "d1_zeta_table.csv"
+    answers = reader.answers_dir() / "answers.jsonl"
+    if not table_path.is_file():
+        print(f"origin: {table_path} missing — run `report d1` first", file=sys.stderr)
+        return []
+    if not answers.is_file():
+        print(f"origin: {answers} missing — no recorded reader answers to match", file=sys.stderr)
+        return []
+    pmcids = sorted(pd.read_csv(table_path)["pmcid"].dropna().unique())
+    absent = [p for p in pmcids if not (config.EPMC_XML_DIR / f"{p}.xml").is_file()]
+    if absent:
+        print(f"origin: {len(absent)} of {len(pmcids)} source XMLs are not in "
+              f"{config.EPMC_XML_DIR} — run `corpus restore`", file=sys.stderr)  # fmt: skip
+        return []
+    origin.build(reader.RUN_ID, tables)
+    return [tables / "sample_origin.csv", tables / "sample_origin_stats.json"]
+
+
 def run_release(args: argparse.Namespace) -> list[Path]:
     """The vanilla dataset release: parquet + JSONL + schema + LICENSE + card, from d1's table.
 
@@ -200,6 +229,7 @@ def run_release(args: argparse.Namespace) -> list[Path]:
         return lines.build_lines(jats.parse((xml_dir / f"{pmcid}.xml").read_bytes()))
 
     gold_path = config.ANNOTATION / "gold_50.csv"
+    origin_path = tables / "sample_origin_stats.json"
     return release.build(
         table,
         json.loads(stats_path.read_text()),
@@ -207,6 +237,7 @@ def run_release(args: argparse.Namespace) -> list[Path]:
         licences={p: licence.read(p, xml_dir) for p in pmcids},
         documents=documents,
         gold=pd.read_csv(gold_path) if gold_path.is_file() else None,
+        origin=json.loads(origin_path.read_text()) if origin_path.is_file() else None,
         corpus_archive=xml_dir.parent / "xml.tar.gz",
         corpus_manifest=xml_dir.parent / "manifest.sha256",
     )
@@ -426,6 +457,9 @@ RUNNERS = {
     "d4": run_d4,
     "e1": run_e1,
     "demo": run_demo,
+    # After d1, whose table it matches the recorded answers to; before release and review,
+    # which read its stats.
+    "origin": run_origin,
     # After d1: it reads the table d1 wrote into the same output root.
     "release": run_release,
     # After release: it reads the released parquet as well as the table.

@@ -624,6 +624,35 @@ STEPS: tuple[Step, ...] = (
         phase="Deliverables",
     ),
     Step(
+        command="report origin",
+        purpose=(
+            "Rebuilds where every measured particle came from (bought, made in a lab, or "
+            "collected from a real environment) out of judgements already recorded, and asks "
+            "nothing itself. The reader's answers in data/interim/origin/answers.jsonl, one "
+            "call per paper through the grid's isolated reader with a cited line for every "
+            "particle, are matched back to the rows by particle name; every citation is "
+            "resolved against that paper's lines; and the hand verdicts replace the reader's "
+            "answer wherever a person read the paper (every environmental particle, the unclear "
+            "ones up to a cap, and a seeded sample of the rest). The reading was judgement and "
+            "is never re-run here, so this step is deterministic. It also names the papers whose "
+            "methods the parser took from a supplementary-materials section and compares their "
+            "condition reporting with the rest, and it refuses to build when an environmental "
+            "paper prints a conductivity nobody has read against its rows, or when a row listed "
+            "as not the authors' own measurement has left the table."
+        ),
+        inputs="out/tables/d1_zeta_table.csv, data/interim/origin/{answers.jsonl,"
+        "hand_check-*.jsonl,hand_check_sample-*.jsonl}, the run manifest, the vendored corpus",
+        outputs="out/tables/sample_origin.csv, out/tables/sample_origin_stats.json",
+        kind=D,
+        idempotent=True,
+        network=False,
+        invalidated_by="a change to the D1 table (answers are matched to rows by particle name), "
+        "a new reader run, a new hand verdict, or a parser change",
+        ground_truth="the hand-check file: every environmental particle, the unclear ones up to "
+        "a cap, a seeded sample of the rest",
+        phase="Deliverables",
+    ),
+    Step(
         command="report release",
         purpose=(
             "Packages the table D1 wrote as a citable dataset under CC BY 4.0: the same rows as "
@@ -640,13 +669,14 @@ STEPS: tuple[Step, ...] = (
             "database."
         ),
         inputs="out/tables/d1_zeta_table.csv, out/tables/d1_stats.json, gold_50.csv, the "
-        "vendored corpus (licences, line addresses) and its manifest",
+        "vendored corpus (licences, line addresses) and its manifest, and "
+        "out/tables/sample_origin_stats.json when present",
         outputs="out/release/{dataset.parquet,dataset.jsonl,schema.json,LICENSE,DATASET_CARD.md}",
         kind=D,
         idempotent=True,
         network=False,
         invalidated_by="any change to the D1 table, the schema models, the gold set, the licence "
-        "classifier or the line parser",
+        "classifier, the line parser or the origin stats",
         phase="Deliverables",
     ),
     Step(
@@ -662,15 +692,16 @@ STEPS: tuple[Step, ...] = (
             "refuses the build. The audit sample gives line numbers, never text, for a row "
             "whose quote the release withholds."
         ),
-        inputs="out/tables/d1_zeta_table.csv, d1_stats.json, out/release/dataset.parquet, the "
-        "vendored corpus, queries/kind_e_comparability.csv, the committed grid runs",
+        inputs="out/tables/d1_zeta_table.csv, d1_stats.json, sample_origin_stats.json, "
+        "out/release/dataset.parquet, the vendored corpus, queries/kind_e_comparability.csv, "
+        "the committed grid runs",
         outputs="out/review/{REVIEW.md,conditions_per_paper.csv,icc_worksheet.csv,"
         "harmonised_all_rows.csv,comparability_worked_pairs.csv,audit_sample.csv}",
         kind=D,
         idempotent=True,
         network=False,
-        invalidated_by="a change to the table, the release, the demo or comparability modules, "
-        "or a re-run of the grid cells",
+        invalidated_by="a change to the table, the release, the origin stats, the demo or "
+        "comparability modules, or a re-run of the grid cells",
         phase="Deliverables",
     ),
     Step(

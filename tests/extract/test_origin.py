@@ -159,6 +159,20 @@ def test_a_paper_whose_methods_were_found_keeps_its_line_document_exactly(tmp_pa
     assert origin.load_doc("PMC9", xml_dir=tmp_path) == canonical
 
 
+def test_the_papers_whose_methods_the_parser_lost_are_named():
+    """`load_doc` repairs these locally; the extraction read them unrepaired."""
+    assert origin.methods_lost(_XML.format(body=LOST_METHODS).encode())
+    found = "<sec><title>Materials and methods</title><p>PS from Magsphere.</p></sec>"
+    assert not origin.methods_lost(_XML.format(body=found).encode())
+    both = (
+        '<sec sec-type="methods"><title>Methods</title><p>PS from Magsphere.</p></sec>'
+        '<sec sec-type="supplementary-materials"><p>Data S1.</p></sec>'
+    )
+    assert not origin.methods_lost(_XML.format(body=both).encode()), "the methods did arrive"
+    none = "<sec><title>Results</title><p>PS from Magsphere.</p></sec>"
+    assert not origin.methods_lost(_XML.format(body=none).encode()), "no methods, not this defect"
+
+
 def test_a_paper_with_no_methods_section_gets_every_paragraph_left_out(tmp_path):
     _write(
         tmp_path,

@@ -19,7 +19,9 @@ from mnp.demo import harmonise, resample
 from mnp.ek.constants import permittivity, viscosity
 from mnp.eval import comparability as comp
 from mnp.eval import grid
+from mnp.extract.origin import ENVIRONMENTS
 from mnp.extract.zeta import OTHER_STEP_TEMPERATURE, STEP_TEMPERATURE, ZERO_IONIC_STRENGTH
+from mnp.report.origin import ROW_COLUMNS
 from mnp.report.release import COLUMN_GROUPS
 from mnp.report.review import AUDIT_SEED, CASES, COLUMNS, FLAGS, METRICS, RUN_IDS, Facts
 
@@ -28,6 +30,27 @@ PER_PAPER = "conditions_per_paper.csv"
 ICC = "icc_worksheet.csv"
 PAIRS = "comparability_worked_pairs.csv"
 AUDIT = "audit_sample.csv"
+ORIGIN_ROWS = "sample_origin.csv"
+
+#: Griffin and Jurinak (1973): I (mol/L) ≈ 0.013 × EC (mS/cm), which is I (mM) ≈ 0.013 × EC (µS/cm).
+GRIFFIN_JURINAK = 0.013
+ENV_LABEL = {
+    "freshwater": "freshwater",
+    "seawater": "seawater",
+    "wastewater": "wastewater effluent",
+    "soil": "soil",
+    "sediment": "sediment",
+    "air_dust": "air or dust",
+    "biota": "organisms",
+    "other": "other",
+}
+ORIGIN_CONDITIONS = (
+    ("medium", "medium"),
+    ("ionic_strength", "ionic strength"),
+    ("pH", "pH"),
+    ("temperature", "temperature"),
+    ("instrument", "instrument"),
+)
 
 
 def _int(n: Any) -> str:
@@ -334,6 +357,19 @@ def section_1(f: Facts) -> list[str]:
         "by field | evaluate a pair by hand (§5.6) |",
         f"| `out/review/{AUDIT}` | {_int(len(f.audit))} rows drawn at random, with the lines "
         "they cite and empty columns for your verdicts | audit rows against the papers (§7) |",
+        *(
+            [
+                f"| `out/tables/{ORIGIN_ROWS}` | one line per row, in the table's order: where its "
+                "particle came from, as the reader classified it with the lines it cited, and "
+                "`final_origin`, the person's verdict wherever one was given | recount C11 (§6) |",
+                "| `out/tables/sample_origin_stats.json` | the origin counts before and after the "
+                "hand check, the agreement, the environmental rows' conditions, the parser "
+                "defect and the rows that are not an own measurement | the numbers of C11, the "
+                "environmental rows (§6) and §8 |",
+            ]
+            if f.extra.get("origin")
+            else []
+        ),
         "",
         "How they relate:",
         "",
@@ -1907,6 +1943,10 @@ def section_6(f: Facts) -> list[str]:
         f"`{AUDIT}`, twenty rows against the papers (§7).",
         'it proves the text exists, not that it was read correctly (§2, "What verified means").',
     )
+    o = f.extra.get("origin")
+    if o:
+        lines += _origin_claim(o)
+        lines += _environmental_conditions(o)
     g = f.extra.get("gold") or {}
     annot = ", ".join(f"`{a}` {v}" for a, v in (g.get("annotators") or {}).items()) or "unknown"
     lines += [
@@ -1942,9 +1982,174 @@ def section_6(f: Facts) -> list[str]:
         "- **That two comparable rows hold the same particle.** The key compares the reported "
         "*description*; suppliers, charge densities and ageing that were not printed are "
         "invisible (`docs/FINDINGS_comparability.md` §6).",
+        *([_origin_not_proved(o)] if o else []),
         "",
     ]
     return lines
+
+
+def _origin_claim(o: dict) -> list[str]:
+    h, n = o["hand_corrected"], o["rows"]
+    rows, where, env = h["origin"]["rows"], h["environment"], h["environmental_rows"]
+    hc, reader = o["hand_check"], o["reader"]
+    elsewhere = [
+        f"{where['rows'][e]} {ENV_LABEL[e]}"
+        for e in ENVIRONMENTS
+        if e != "wastewater" and where["rows"][e]
+    ]
+    empty = [ENV_LABEL[e] for e in ENVIRONMENTS if e != "air_dust" and not where["rows"][e]]
+    unclear_missed = [d for d in hc["disagreements"] if d["stratum"] == "unclear"]
+    stated = sum(d["hand_origin"] != "unclear" for d in unclear_missed)
+    whole = env.get("whole_sample_papers") or []
+    rnd = hc["random"]
+    fo = _letter(ROW_COLUMNS.index("final_origin"))
+    return _claim(
+        "C11. The particles measured are almost all synthetic",
+        f"{_kn(h['synthetic']['rows'], n)} rows measure a synthetic particle: "
+        f"{_kn(rows['commercial'], n)} bought ready-made (`commercial`) and "
+        f"{_kn(rows['lab_fabricated'], n)} made in a lab (`lab_fabricated`). "
+        f"{_kn(rows['environmental'], n)} are real environmental particles, from "
+        f"{env['papers']} papers: {where['rows']['wastewater']} of them wastewater effluent, "
+        f"from {where['papers']['wastewater']} papers"
+        + (f", and {', '.join(elsewhere)}" if elsewhere else "")
+        + f". {_kn(rows['unclear'], n)} stay `unclear`"
+        + (f", and {_int(rows['unanswered'])} were never answered" if rows["unanswered"] else "")
+        + f". Air or dust: {where['rows']['air_dust']} rows; "
+        + (", ".join(empty) + ": 0 rows each." if empty else "every other environment has a row."),
+        f"one question per paper, asked of all {_int(o['papers'])} papers by the grid's "
+        f"isolated reader (`{reader['model']}`, run `{o['run_id']}`) over the lines that speak "
+        "to where the particles came from, with a cited line for every particle it classified "
+        f"({_int(reader['total']['calls'])} calls with the pilots, "
+        f"{reader['total']['input_tokens'] / 1e6:.2f} M input tokens, "
+        f"${reader['total']['cost_usd']:.2f}). Bought means received ready-made as particles; "
+        "made in a lab covers milling, fragmentation, synthesis or release from a product, even "
+        "from a bought or collected bulk plastic; environmental means collected from a real "
+        "environment and isolated. The liquid is not the origin: a bought bead dispersed in "
+        "lake water is commercial. `report origin` matches each answer to the rows by "
+        f"`particle_name` ({_int(o['matching']['rows_exact'])} of {_int(n)} exactly) and takes "
+        "the person's verdict wherever the paper was read by hand "
+        f"({_int(h['particles_with_a_hand_verdict'])} particles).",
+        f"`out/tables/{ORIGIN_ROWS}`, one line per row in the table's order. `final_origin` "
+        "(column " + fo + ") is the person's verdict where `hand_checked` is true and the "
+        "reader's `origin` everywhere else, and `final_environment` likewise: "
+        f'`=COUNTIF({fo}:{fo},"commercial")` and so on over `=COUNTA(A:A)-1`; pandas '
+        '`o = pd.read_csv("out/tables/sample_origin.csv"); o.final_origin.value_counts()`, and '
+        '`o[o.final_origin == "environmental"].groupby("final_environment").pmcid'
+        '.agg(["size", "nunique"])`. `origin_citations` gives the lines the reader cited '
+        f"(`PMCID:Lnn`); the verdicts and their notes are "
+        f"`data/interim/origin/hand_check-{o['run_id']}.jsonl`.",
+        "outside the hand check the reader's answer stands. The check read every "
+        f"environmental particle ({hc['environmental']['agree']} / {hc['environmental']['n']} "
+        f"agree), {hc['unclear']['n']} of the unclear ones ({hc['unclear']['agree']} / "
+        f"{hc['unclear']['n']}; "
+        + (
+            f"each of the {stated} disagreements is"
+            if stated == len(unclear_missed)
+            else f"{stated} of the {len(unclear_missed)} disagreements are"
+        )
+        + " an origin the paper states and the reader missed) and a seeded "
+        f"{rnd['n']} of the rest ({rnd['agree']} / {rnd['n']}, {_pct(rnd['agree'], rnd['n'])}, "
+        f"on the four classes; {rnd['agree_synthetic_split']} / {rnd['n']} on synthetic against "
+        "environmental). So `unclear` is an upper bound on what the papers leave unsaid, and the "
+        "split between bought and lab-made is the least certain part. "
+        + (
+            f"In {len(whole)} of the {where['papers']['wastewater']} wastewater papers the zeta "
+            "potential is of the collected effluent as a whole, not of isolated plastic, and "
+            if whole
+            else ""
+        )
+        + f"{len(o['not_own_measurement'])} rows are not the authors' own measurement of a "
+        "plastic particle (§8); all are left in the counts above.",
+    )
+
+
+def _environmental_conditions(o: dict) -> list[str]:
+    env = o["hand_corrected"]["environmental_rows"]
+    k, reported = env["rows"], env["reported"]
+    medium = env["medium_class"]
+    whole = env.get("whole_sample_papers") or []
+    printed = env.get("conductivity_in_text") or []
+    rows = [
+        f"| {label} | **{reported[key]['n']} / {k}** |"
+        if key == "ionic_strength"
+        else f"| {label} | {reported[key]['n']} / {k} |"
+        for key, label in ORIGIN_CONDITIONS
+    ]
+    lines = [
+        "### The environmental rows' conditions",
+        "",
+        f"The {k} rows a person confirmed as environmental (C11), from {env['papers']} papers, "
+        "against the five conditions:",
+        "",
+        "| condition | rows reporting it |",
+        "|---|---|",
+        *rows,
+        f"| all five | {env['conditions_complete']['n']} / {k} |",
+        "",
+        f"{env['own_sample_liquid']} / {k} were measured in the sample's own liquid ("
+        + ", ".join(f"{v} filed `{c}`" for c, v in sorted(medium.items()))
+        + f") and {env['lab_liquid']} in a laboratory liquid."
+        + (
+            f" In {len(whole)} of the {env['papers']} papers ({', '.join(whole)}) the zeta "
+            "potential is of the collected effluent as a whole, not of plastic isolated from it."
+            if whole
+            else ""
+        ),
+        "",
+        "> **Ionic strength: not reported, and not estimable for these rows.** Not one of the "
+        f"{k} environmental rows reports an ionic strength ({reported['ionic_strength']['n']} / "
+        f"{k}). Where a paper prints the conductivity of the liquid a particle was measured in, an "
+        "ionic strength could be estimated from it with Griffin and Jurinak's relation, "
+        f"I (mM) ≈ {GRIFFIN_JURINAK} × EC (µS/cm), and it would have to be marked as estimated, "
+        "never as reported. **Here that is not possible for any of them:** no conductivity "
+        f"reaches a row ({env['conductivity_printed']} / {k} print one in their medium or their "
+        "quote), so the dataset holds no ionic strength, reported or estimated, for any "
+        "environmental particle.",
+    ]
+    if printed:
+        papers = ", ".join(p["pmcid"] for p in printed)
+        lines += [
+            ">",
+            f"> The full texts print a conductivity in {len(printed)} of the {env['papers']} "
+            f"papers ({papers}), and none of it belongs to a row's measurement:",
+            ">",
+            "> | line | the sentence |",
+            "> |---|---|",
+            *(
+                f"> | `{x['line']}` | "
+                + (
+                    _cell(x["sentence"], 320)
+                    if x["sentence"]
+                    else "withheld: the licence allows no quote"
+                )
+                + " |"
+                for p in printed
+                for x in p["lines"]
+            ),  # fmt: skip
+            ">",
+            *(f"> {p['pmcid']}: {p['why']}" for p in printed),
+        ]
+    return [*lines, ""]
+
+
+def _origin_not_proved(o: dict) -> str:
+    h = o["hand_corrected"]
+    where = h["environment"]["rows"]
+    ambient = ("air_dust", "freshwater", "seawater", "soil", "sediment", "biota")
+    syn = h["synthetic"]
+    return (
+        "- **How environmental micro- and nanoplastics behave.** The particles measured are "
+        f"synthetic ({_pct(syn['rows'], o['rows'])} of rows, C11): bought beads and lab-made "
+        f"fragments, {_int(syn['medium']['lab_liquid'])} of their {_int(syn['rows'])} rows "
+        "measured in a laboratory liquid (deionised water, salt solution, buffer, culture "
+        f"medium or biofluid) and {_int(syn['medium']['environmental_water'])} in an "
+        "environmental water. "
+        "Rows from a real environment: "
+        f"{h['environmental_rows']['rows']}, {where['wastewater']} of them wastewater effluent; "
+        + ", ".join(f"{ENV_LABEL[e]} {where[e]}" for e in ambient)
+        + ". The numbers describe how manufactured particles are reported, not how plastic in "
+        "air, water or soil behaves."
+    )
 
 
 # --- 7 -----------------------------------------------------------------------------------------
@@ -2175,12 +2380,66 @@ def section_8(f: Facts) -> list[str]:
         "4.1×) came from an implementation that was never committed; the rebuild in §5.3 is the "
         "one to quote.",
     ]
+    if x.get("origin"):
+        found += _origin_open(x["origin"])
     lines = ["## 8. Open issues and decisions", "", "### From `HANDOFF_2026-09-28.md` §4", ""]
     lines += [f"{i}. {item}" for i, item in enumerate(handoff, 1)]
     lines += ["", "### Found while building this guide", ""]
     lines += [f"{i}. {item}" for i, item in enumerate(found, len(handoff) + 1)]
     lines.append("")
     return lines
+
+
+def _origin_open(o: dict) -> list[str]:
+    """What checking the particles' origin found that is not about origin, and is still open."""
+    out = []
+    lm = o.get("lost_methods")
+    if lm:
+        a, u = lm["affected"], lm["unaffected"]
+        shown = ORIGIN_CONDITIONS[:2] + ORIGIN_CONDITIONS[3:4]
+
+        def pct(block: dict, key: str) -> str:
+            return _pct(block["any_row"][key]["n"], block["papers"])
+
+        lower = all(
+            a["any_row"][key]["n"] / a["papers"] < u["any_row"][key]["n"] / u["papers"]
+            for key, _ in shown
+        )
+        out.append(
+            f"**In {lm['papers_affected']} of {lm['papers']} papers the extraction did not get "
+            "the Methods section. Open, a decision for Martin.** `jats._find_methods` takes "
+            "every section whose `sec-type` matches `method|materials`, and "
+            "`supplementary-materials` matches, so in those papers a supplementary-materials "
+            "section was taken for the Methods and the section titles were never tried. The "
+            "Methods reached the text the extraction read only where a zeta keyword window or a "
+            "characterisation subsection covered them. `report origin` repairs this for its own "
+            "reading (`extract.origin.load_doc`); the D1 extraction is unrepaired. Papers with at "
+            f"least one row reporting the condition, those {a['papers']} against the other "
+            f"{u['papers']}: "
+            + "; ".join(f"{label} {pct(a, key)} against {pct(u, key)}" for key, label in shown)
+            + " (`sample_origin_stats.json` → `lost_methods`, which lists the papers). "
+            + (
+                "They report conditions less often, so the headline condition-reporting "
+                "numbers (§4, C1 to C3) may be biased downward. "
+                if lower
+                else "The headline condition-reporting numbers (§4, C1 to C3) may be biased by it. "
+            )
+            + "The decision: fix the parser and re-extract those papers, or keep the "
+            "extraction and state the bias. Open."
+        )
+    own = o.get("not_own_measurement") or []
+    if own:
+        by_why: dict[str, list[str]] = {}
+        for r in own:
+            by_why.setdefault(r["why"], []).append(f"`{r['row_id']}`")
+        out.append(
+            f"**{len(own)} rows are not the authors' own measurement of a plastic particle**, "
+            "found while checking origin by hand: "
+            + "; ".join(f"{', '.join(ids)} ({why})" for why, ids in by_why.items())
+            + ". They are rows of the table and counted everywhere, C11 included. Open: drop "
+            "them or flag them (`sample_origin_stats.json` → `not_own_measurement`)."
+        )
+    return out
 
 
 def render(f: Facts) -> str:

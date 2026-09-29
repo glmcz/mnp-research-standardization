@@ -7,7 +7,10 @@ checked deterministically rather than trusted: every citation must address a lin
 (and one the reader was shown), and every row whose `supplier` is filled but whose particle is
 not called commercial is listed for a human to look at.
 
-Not registered in `report.__main__` RUNNERS: nothing downstream reads these files yet.
+`report origin` runs `build`: it reads the recorded answers and hand verdicts and asks nothing,
+so the rebuild is deterministic though the reading was judgement. REVIEW.md (C11) and the
+dataset card read the stats it writes. It also counts the papers whose methods the parser lost
+(`extract.origin.methods_lost`), because the origin reading is where that defect was found.
 
 python -m mnp.report.origin build [--run RUN_ID]
 python -m mnp.report.origin sample [--run RUN_ID]
@@ -26,8 +29,8 @@ from typing import Any
 
 import pandas as pd
 
-from mnp import config
-from mnp.corpus import lines
+from mnp import config, runs
+from mnp.corpus import licence, lines
 from mnp.eval import grid
 from mnp.extract import origin
 from mnp.report.d1 import CONDITIONS
@@ -41,13 +44,105 @@ SAMPLE_N = 40
 #: and so is `other`: both environmental rows filed there were measured in their own sample liquid.
 LAB_LIQUIDS = frozenset({"DI_water", "salt_solution", "buffer", "culture_medium", "biofluid"})
 
+#: Found by hand while checking origin, 2026-09-29: D1 rows that are not the authors' own
+#: measurement of a plastic particle. Row ids, so a re-extraction that drops one fails the build.
+NOT_OWN_MEASUREMENT = {
+    "PMC11644763-r1": "a polyester fabric, not a particle",
+    "PMC12462602-r2": "PEG 4000, a water-soluble polymer the authors use in place of polystyrene",
+    "PMC12878436-r4": "a value cited from Arenas et al. 2022, not measured in this paper",
+    "PMC12878436-r5": "a value cited from Arenas et al. 2022, not measured in this paper",
+    "PMC12878436-r6": "a value cited from Na et al. 2021, not measured in this paper",
+    "PMC12878436-r7": "a value cited from Na et al. 2021, not measured in this paper",
+    "PMC9645706-r4": "a passing remark about naturally fragmented plastics; nothing was collected "
+    "or measured",
+}
+
+#: Read by hand, 2026-09-29, for every environmental paper whose text prints a conductivity: why
+#: none of it gives that paper's environmental rows an ionic strength. Martin's rule allows an
+#: ionic strength estimated from a printed conductivity only when it is marked as estimated.
+CONDUCTIVITY_NOT_THE_ROWS = {
+    "PMC11211448": (
+        "The sentence about the liquid of its environmental row, the industrial wastewater as "
+        "diluted for the experiments, gives that dispersion's pH, conductivity and an average "
+        "zeta potential, and that average is not a row of the table. The row the table holds is "
+        "the zeta potential followed down a pH series and shown only in a figure; acid changes "
+        "the conductivity along the series, so the printed one does not describe it. The other "
+        "sentences are about the model dispersions, water made to simulate one, and other "
+        "wastewaters that have no zeta row."
+    ),
+}
+
+#: The words the hand checker used for a zeta potential of the collected sample, not the plastic.
+WHOLE_SAMPLE_NOTE = "as a whole"
+
+#: sample_origin.csv, in order. The reader's `origin` and the hand-checked `final_origin` sit
+#: side by side, so the confirmed counts can be recounted from this one file.
+ROW_COLUMNS = (
+    "pmcid",
+    "row_id",
+    "particle_name",
+    "material",
+    "supplier",
+    "medium_text",
+    "medium_class",
+    "origin",
+    "environment",
+    "aged_in_lab",
+    "origin_citations",
+    "origin_reason",
+    "matched_by",
+    "hand_checked",
+    "final_origin",
+    "final_environment",
+)
+
 _CONDUCTIVITY = re.compile(
     r"(?i:conductiv)|(?<![A-Za-z])[µμumd]?S\s*(?:/|·|\s)\s*c?m(?:-1|−1|⁻¹)?(?![A-Za-z])"
 )
+#: A number with a conductivity unit after it: printed, not just the word "conductive".
+_CONDUCTIVITY_VALUE = re.compile(r"\d\s*[µμumd]?S\s*(?:/|·|\s)\s*c?m(?:-1|−1|⁻¹)?(?![A-Za-z])")
 
 
 def prints_conductivity(medium_text: Any, quote: Any) -> bool:
     return any(_CONDUCTIVITY.search(str(t)) for t in (medium_text, quote) if _text(t))
+
+
+def conductivity_sentences(doc: lines.LinedDoc) -> list[tuple[str, str]]:
+    """Every sentence of the paper that prints a conductivity value, with its line address."""
+    return [
+        (f"{doc.pmcid}:L{line.n}", sentence)
+        for line in doc.lines
+        for sentence in origin._SENTENCE.split(line.text)
+        if _CONDUCTIVITY_VALUE.search(sentence)
+    ]
+
+
+def conductivity_in_text(
+    found: Mapping[str, list[tuple[str, str]]],
+    reasons: Mapping[str, str] = CONDUCTIVITY_NOT_THE_ROWS,
+    quotable: set[str] | frozenset[str] = frozenset(),
+) -> list[dict[str, Any]]:
+    """The conductivities the environmental papers print, each paper with the recorded reason it
+    gives its rows no ionic strength. A paper nobody has read for that refuses the build; a
+    sentence ships only from a source whose licence allows a quote."""
+    unread = sorted(p for p, hits in found.items() if hits and p not in reasons)
+    if unread:
+        raise ValueError(
+            f"environmental papers print a conductivity that nobody has read against their rows: "
+            f"{unread} — add a reason to CONDUCTIVITY_NOT_THE_ROWS"
+        )
+    return [
+        {
+            "pmcid": pmcid,
+            "why": reasons[pmcid],
+            "lines": [
+                {"line": line, "sentence": sentence if pmcid in quotable else None}
+                for line, sentence in hits
+            ],
+        }
+        for pmcid, hits in sorted(found.items())
+        if hits
+    ]
 
 
 def _text(value: Any) -> str:
@@ -232,6 +327,7 @@ def stats(rows: pd.DataFrame, classes: pd.DataFrame) -> dict[str, Any]:
     ]
     conductivity = pd.Series(conductivity, index=env.index, dtype=bool)
     answered = rows[rows["origin"] != UNANSWERED]
+    syn_medium = rows.loc[rows["origin"].isin(SYNTHETIC), "medium_class"].fillna("unreported")
 
     return {
         "papers": int(rows["pmcid"].nunique()),
@@ -269,6 +365,12 @@ def stats(rows: pd.DataFrame, classes: pd.DataFrame) -> dict[str, Any]:
             "row_share": _share(int(rows["origin"].isin(SYNTHETIC).sum()), len(rows)),
             "papers_any": int(papers.apply(lambda s: s.isin(SYNTHETIC).any()).sum()),
             "papers_only": int(papers.apply(lambda s: s.isin(SYNTHETIC).all()).sum()),
+            "medium": {
+                "lab_liquid": int(syn_medium.isin(LAB_LIQUIDS).sum()),
+                "environmental_water": int((syn_medium == "environmental_water").sum()),
+                "other": int((syn_medium == "other").sum()),
+                "unreported": int((syn_medium == "unreported").sum()),
+            },
         },
         "environment": {
             "rows": {e: int((env["environment"] == e).sum()) for e in origin.ENVIRONMENTS}
@@ -311,6 +413,9 @@ def stats(rows: pd.DataFrame, classes: pd.DataFrame) -> dict[str, Any]:
             ),
             "medium_class": env_medium.value_counts().sort_index().astype(int).to_dict(),
             "own_environmental_water": int((env_medium == "environmental_water").sum()),
+            "own_sample_liquid": int(
+                (~env_medium.isin(LAB_LIQUIDS) & (env_medium != "unreported")).sum()
+            ),
             "lab_liquid": int(env_medium.isin(LAB_LIQUIDS).sum()),
             "medium_unreported": int((env_medium == "unreported").sum()),
             "medium_other": int((env_medium == "other").sum()),
@@ -378,6 +483,72 @@ def apply_hand(rows: pd.DataFrame, hand: pd.DataFrame) -> pd.DataFrame:
     return fixed
 
 
+def with_final(rows: pd.DataFrame, hand: pd.DataFrame | None) -> pd.DataFrame:
+    """The rows with the hand verdict beside the reader's answer: `final_origin` is the hand
+    verdict where a person read the particle and the reader's answer everywhere else."""
+    out = rows.copy()
+    if hand is None or hand.empty:
+        out["hand_checked"] = False
+        out["final_origin"], out["final_environment"] = rows["origin"], rows["environment"]
+        return out
+    read = {(p, n) for p, n in zip(hand["pmcid"], hand["particle_name"], strict=True)}
+    fixed = apply_hand(rows, hand)
+    out["hand_checked"] = [
+        (p, _text(n)) in read for p, n in zip(rows["pmcid"], rows["particle_name"], strict=True)
+    ]
+    out["final_origin"], out["final_environment"] = fixed["origin"], fixed["environment"]
+    return out
+
+
+def whole_sample_papers(hand: pd.DataFrame) -> list[str]:
+    """Environmental papers whose zeta potential the hand checker found to be of the collected
+    sample as a whole rather than of isolated plastic."""
+    env = hand[hand["hand_origin"] == "environmental"]
+    return sorted(set(env.loc[env["note"].fillna("").str.contains(WHOLE_SAMPLE_NOTE), "pmcid"]))
+
+
+def not_own_rows(
+    table: pd.DataFrame, listing: Mapping[str, str] = NOT_OWN_MEASUREMENT
+) -> list[dict[str, str]]:
+    by_id = table.set_index("row_id")
+    stale = sorted(set(listing) - set(by_id.index))
+    if stale:
+        raise ValueError(f"rows listed as not an own measurement are not in the table: {stale}")
+    return [
+        {
+            "row_id": row_id,
+            "pmcid": str(by_id.at[row_id, "pmcid"]),
+            "particle_name": _text(by_id.at[row_id, "particle_name"]),
+            "why": why,
+        }
+        for row_id, why in sorted(listing.items())
+    ]
+
+
+def lost_methods(table: pd.DataFrame, lost: set[str] | frozenset[str]) -> dict[str, Any]:
+    """Papers whose methods the parser lost against the rest: the share of papers with at least
+    one row reporting each condition, which is where an unread Methods section would show."""
+    cols = {name: col for name, col, _ in CONDITIONS} | {"complete": "conditions_complete"}
+    per_paper = table[list(cols.values())].astype(bool).groupby(table["pmcid"]).any()
+    hit = per_paper.index.isin(sorted(lost))
+
+    def block(mask: Any) -> dict[str, Any]:
+        g = per_paper[mask]
+        return {
+            "papers": int(len(g)),
+            "rows": int(table["pmcid"].isin(g.index).sum()),
+            "any_row": {name: _n_share(g[col]) for name, col in cols.items()},
+        }
+
+    return {
+        "papers": int(len(per_paper)),
+        "papers_affected": int(hit.sum()),
+        "affected": block(hit),
+        "unaffected": block(~hit),
+        "pmcids": sorted(set(per_paper.index[hit])),
+    }
+
+
 def agreement(sample: pd.DataFrame, hand: pd.DataFrame) -> dict[str, Any]:
     verdicts = hand.drop(columns=[c for c in ("stratum",) if c in hand.columns])
     merged = sample.merge(verdicts, on=["pmcid", "particle_name"], how="inner")
@@ -410,11 +581,11 @@ def agreement(sample: pd.DataFrame, hand: pd.DataFrame) -> dict[str, Any]:
 # -- files ---------------------------------------------------------------------------------------
 
 
-def _paths(run_id: str) -> dict[str, Path]:
-    base = origin.answers_dir()
+def _paths(run_id: str, tables: Path | None = None) -> dict[str, Path]:
+    base, tables = origin.answers_dir(), tables or config.OUT_TABLES
     return {
-        "rows": config.OUT_TABLES / "sample_origin.csv",
-        "stats": config.OUT_TABLES / "sample_origin_stats.json",
+        "rows": tables / "sample_origin.csv",
+        "stats": tables / "sample_origin_stats.json",
         "sample": base / f"hand_check_sample-{run_id}.jsonl",
         "packet": base / f"hand_check_packet-{run_id}.txt",
         "hand": base / f"hand_check-{run_id}.jsonl",
@@ -448,13 +619,16 @@ def reader_spend(directory: Path) -> dict[str, Any]:
     return {"per_run": per_run, "total": total, "input_token_limit": origin.INPUT_TOKEN_LIMIT}
 
 
-def build(run_id: str) -> dict[str, Any]:
-    table = origin.load_table()
+def build(run_id: str, tables: Path | None = None) -> dict[str, Any]:
+    """Rebuild `sample_origin.csv` and `sample_origin_stats.json` in `tables` (default
+    out/tables) from the D1 table beside them, the recorded answers and the hand verdicts."""
+    paths = _paths(run_id, tables)
+    table = pd.read_csv(paths["rows"].parent / "d1_zeta_table.csv")
     answers = origin.load_answers(origin.answers_dir(), run_id)
     classes = classifications(answers)
     rows = attach(table, classes)
 
-    docs, shown, stale = {}, {}, []
+    docs, shown, stale, lost = {}, {}, [], set()
     for pmcid, group in table.groupby("pmcid"):
         doc = origin.load_doc(pmcid)
         names = origin.particle_names(group)
@@ -463,42 +637,39 @@ def build(run_id: str) -> dict[str, Any]:
         record = answers.get(pmcid)
         if record and record["prompt_sha256"] != grid.sha256(origin.prompt_for(pmcid, names, ev)):
             stale.append(pmcid)
+        if origin.methods_lost((config.EPMC_XML_DIR / f"{pmcid}.xml").read_bytes()):
+            lost.add(pmcid)
 
     result = stats(rows, classes)
     result["run_id"] = run_id
-    result["reader"] = reader_spend(origin.answers_dir())
+    result["reader"] = reader_spend(origin.answers_dir()) | {"model": runs.load(run_id)["model"]}
     result["checks"] = citation_checks(classes, docs, shown) | {
         "answers_whose_prompt_no_longer_rebuilds": stale,
         "supplier_named_but_not_commercial": supplier_disagreements(rows),
     }
-    paths = _paths(run_id)
+    hand = None
     if paths["hand"].is_file() and paths["sample"].is_file():
         hand = _read_jsonl(paths["hand"])
         result["hand_check"] = agreement(_read_jsonl(paths["sample"]), hand)
         # Every environmental particle was read by hand, so this is the confirmed picture;
         # outside the sample the reader's answer stands.
-        confirmed = stats(apply_hand(rows, hand), classes)
+        fixed = apply_hand(rows, hand)
+        confirmed = stats(fixed, classes)
+        env = confirmed["environmental_rows"]
+        env_papers = sorted(set(fixed.loc[fixed["origin"] == "environmental", "pmcid"]))
+        env["whole_sample_papers"] = whole_sample_papers(hand)
+        env["conductivity_in_text"] = conductivity_in_text(
+            {p: conductivity_sentences(docs[p]) for p in env_papers},
+            quotable={p for p in env_papers if licence.read(p).code in licence.QUOTE_ALLOWED},
+        )
         result["hand_corrected"] = {
             k: confirmed[k] for k in ("origin", "synthetic", "environment", "environmental_rows")
         } | {"particles_with_a_hand_verdict": int(len(hand))}
+    result["not_own_measurement"] = not_own_rows(table)
+    result["lost_methods"] = lost_methods(table, lost)
 
-    keep = [
-        "pmcid",
-        "row_id",
-        "particle_name",
-        "material",
-        "supplier",
-        "medium_text",
-        "medium_class",
-        "origin",
-        "environment",
-        "aged_in_lab",
-        "origin_citations",
-        "origin_reason",
-        "matched_by",
-    ]
     paths["rows"].parent.mkdir(parents=True, exist_ok=True)
-    rows[keep].to_csv(paths["rows"], index=False)
+    with_final(rows, hand)[list(ROW_COLUMNS)].to_csv(paths["rows"], index=False)
     paths["stats"].write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n")
     return result
 

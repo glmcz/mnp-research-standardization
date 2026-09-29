@@ -304,6 +304,7 @@ def facts(
     gold: pd.DataFrame | None = None,
     corpus_archive: Path | None = None,
     corpus_manifest: Path | None = None,
+    origin: dict | None = None,
 ) -> dict:
     n = len(table)
     verified = _true(table, "evidence_verified")
@@ -336,6 +337,7 @@ def facts(
         "corpus": corpus_facts(corpus_archive, corpus_manifest),
         "licences": licence_facts(table),
         "gold": gold_facts(gold),
+        "origin": origin,
     }
 
 
@@ -701,6 +703,58 @@ def _limits_section(f: dict) -> list[str]:
         "not state a pH. It does not mean the experiment had no pH.",
         "",
     ]
+    if f.get("origin"):
+        lines += _origin_limits(f["origin"])
+    return lines
+
+
+def _origin_limits(o: dict) -> list[str]:
+    """Where the particles came from, and the parser defect found while asking."""
+    h, n = o["hand_corrected"], o["rows"]
+    where, env = h["environment"]["rows"], h["environmental_rows"]
+    places = ", ".join(f"{e.replace('_', ' ')} {k}" for e, k in where.items() if k and e != "null")
+    lines = [
+        f"7. **The measured particles are synthetic.** {_kn(h['synthetic']['rows'], n)} of "
+        "rows measure a particle bought ready-made or made in a lab. "
+        f"{env['rows']} row{'s' if env['rows'] != 1 else ''}, from {env['papers']} "
+        f"paper{'s' if env['papers'] != 1 else ''}, measure a particle collected from a real "
+        f"environment ({places}); from air or dust: {where['air_dust']}. The values describe "
+        "manufactured particles in laboratory liquids, not how micro- and nanoplastics behave "
+        "in the environment. A reader classified every row and a person checked every "
+        "environmental one and a sample of the rest (`out/tables/sample_origin_stats.json`, "
+        "`out/review/REVIEW.md` C11).",
+        "",
+    ]
+    lm = o.get("lost_methods")
+    if not lm:
+        return lines
+    a, u = lm["affected"], lm["unaffected"]
+    shown = (("medium", "medium"), ("ionic_strength", "ionic strength"),
+             ("temperature", "temperature"))  # fmt: skip
+
+    def share(block: dict, name: str) -> float:
+        return _pct(block["any_row"][name]["n"], block["papers"])
+
+    pairs = "; ".join(
+        f"{label} {share(a, k):.1f} % against {share(u, k):.1f} %" for k, label in shown
+    )
+    lower = all(share(a, k) < share(u, k) for k, _ in shown)
+    lines += [
+        "8. **The extraction did not read every paper's Methods.** In "
+        f"{lm['papers_affected']} of {lm['papers']} papers the parser took a "
+        "supplementary-materials section for the Methods, so the Methods reached the text the "
+        "extraction read only where a zeta keyword window or a characterisation subsection "
+        "covered them. Papers with at least one row reporting the condition, those papers "
+        f"against the rest: {pairs}. "
+        + (
+            "They report conditions less often, so the condition-reporting shares on this card "
+            "may be biased downward."
+            if lower
+            else "The condition-reporting shares on this card may be biased by it."
+        )
+        + " The parser is not fixed and those papers have not been re-extracted.",
+        "",
+    ]
     return lines
 
 
@@ -751,8 +805,13 @@ def card(f: dict, digests: dict[str, str]) -> str:
         "were not reported, an explicit record that they were not.",
         "",
         "**Every number in this card was computed when the card was built**, from "
-        "`out/tables/d1_zeta_table.csv` and `out/tables/d1_stats.json`. None is typed in. "
-        "Rebuild the card and any number that has moved will move with it.",
+        "`out/tables/d1_zeta_table.csv` and `out/tables/d1_stats.json`"
+        + (
+            ", and the particles' origin from `out/tables/sample_origin_stats.json`"
+            if f.get("origin")
+            else ""
+        )
+        + ". None is typed in. Rebuild the card and any number that has moved will move with it.",
         "",
         "Two things a reader should take from this card before using the data: only a small "
         "minority of published measurements are fully conditioned, and the accuracy scores "
@@ -775,6 +834,11 @@ def card(f: dict, digests: dict[str, str]) -> str:
         "",
         "```",
         "uv run python -m mnp.report d1        # the table and d1_stats.json",
+        *(
+            ["uv run python -m mnp.report origin    # sample_origin_stats.json"]
+            if f.get("origin")
+            else []
+        ),
         "uv run python -m mnp.report release   # this directory",
         "uv run python -m mnp.report reproduce # rebuild everything offline and diff it",
         "```",
@@ -828,6 +892,7 @@ def build(
     gold: pd.DataFrame | None = None,
     corpus_archive: Path | None = None,
     corpus_manifest: Path | None = None,
+    origin: dict | None = None,
 ) -> list[Path]:
     check_agrees(table, stats)
     table = withhold(table, licences, documents)
@@ -855,6 +920,7 @@ def build(
         gold=gold,
         corpus_archive=corpus_archive,
         corpus_manifest=corpus_manifest,
+        origin=origin,
     )
     card_path = out_dir / "DATASET_CARD.md"
     card_path.write_text(card(f, digests))

@@ -812,7 +812,9 @@ def gather(root: Path) -> Facts:
     pairs = pick_pairs(table, graded, key)
     method = root / "demo" / "METHOD.md"
     gold = config.ANNOTATION / "gold_50.csv"
+    origin = root / "tables" / "sample_origin_stats.json"
     extra = {
+        "origin": json.loads(origin.read_text()) if origin.is_file() else None,
         "method_says_no_licence": method.is_file()
         and "This dataset has no licence yet" in method.read_text(encoding="utf-8"),
         "lock_ignored": "uv.lock"

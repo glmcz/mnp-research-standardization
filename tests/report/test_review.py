@@ -10,6 +10,7 @@ the audit sample against the licence decision it has to respect.
 
 from __future__ import annotations
 
+import json
 import math
 import re
 import shutil
@@ -54,7 +55,7 @@ FLAGS = (
 def _seed_root(root: Path) -> Path:
     (root / "tables").mkdir(parents=True)
     (root / "release").mkdir(parents=True)
-    for name in ("d1_zeta_table.csv", "d1_stats.json"):
+    for name in ("d1_zeta_table.csv", "d1_stats.json", "sample_origin_stats.json"):
         shutil.copyfile(config.OUT_TABLES / name, root / "tables" / name)
     shutil.copyfile(
         config.OUT / "release" / "dataset.parquet", root / "release" / "dataset.parquet"
@@ -72,6 +73,23 @@ def built(tmp_path_factory) -> Path:
 @pytest.fixture(scope="module")
 def guide(built: Path) -> str:
     return (built / "REVIEW.md").read_text(encoding="utf-8")
+
+
+@pytest.fixture(scope="module")
+def origin() -> dict:
+    return json.loads((config.OUT_TABLES / "sample_origin_stats.json").read_text())
+
+
+def _part(text: str, start: str, *ends: str) -> str:
+    """The text from `start` up to the first of `ends` after it."""
+    assert start in text, start
+    rest = text.split(start, 1)[1]
+    cut = min((rest.find(e) for e in ends if e in rest), default=len(rest))
+    return rest[:cut]
+
+
+def _kn(k: int, n: int) -> str:
+    return f"{k:,} / {n:,} ({100 * k / n:.1f} %)".replace(",", " ")
 
 
 @pytest.fixture(scope="module")
@@ -281,3 +299,69 @@ def test_review_is_a_runner_after_release():
     names = list(cli.RUNNERS)
     assert "review" in names
     assert names.index("review") > names.index("release")
+
+
+def test_c11_states_where_the_particles_came_from(guide: str, origin: dict):
+    h, n = origin["hand_corrected"], origin["rows"]
+    c11 = _part(guide, "#### C11. The particles measured are almost all synthetic", "\n#### ",
+                "\n### ")  # fmt: skip
+    assert _kn(h["synthetic"]["rows"], n) in c11
+    for name in ("commercial", "lab_fabricated", "environmental", "unclear"):
+        assert _kn(h["origin"]["rows"][name], n) in c11, name
+    env, where = h["environmental_rows"], h["environment"]
+    assert f"from {env['papers']} papers" in c11
+    ww = f"{where['rows']['wastewater']} of them wastewater effluent, from "
+    assert ww + f"{where['papers']['wastewater']} papers" in c11
+    assert f"Air or dust: {where['rows']['air_dust']} rows" in c11
+    hc = origin["hand_check"]
+    for stratum in ("environmental", "unclear", "random"):
+        assert f"{hc[stratum]['agree']} / {hc[stratum]['n']}" in c11, stratum
+    assert f"{hc['random']['agree_synthetic_split']} / {hc['random']['n']} on synthetic" in c11
+    assert "`out/tables/sample_origin.csv`" in c11 and "`final_origin`" in c11
+
+
+def test_the_environmental_rows_ionic_strength_is_stated_as_not_estimable(guide: str, origin):
+    env = origin["hand_corrected"]["environmental_rows"]
+    sub = _part(guide, "### The environmental rows' conditions", "\n### ", "\n## ")
+    n_is = env["reported"]["ionic_strength"]["n"]
+    assert f"| ionic strength | **{n_is} / {env['rows']}** |" in sub
+    for name in ("medium", "pH", "temperature", "instrument"):
+        assert f"| {name} | {env['reported'][name]['n']} / {env['rows']} |" in sub, name
+    assert "Griffin" in sub and "0.013" in sub
+    assert "marked as estimated, never as reported" in sub
+    assert "not possible for any of them" in sub
+    assert f"{env['conductivity_printed']} / {env['rows']}" in sub
+    for paper in env["conductivity_in_text"]:
+        assert paper["why"] in sub
+        for entry in paper["lines"]:
+            assert f"`{entry['line']}`" in sub
+    assert f"{env['own_sample_liquid']} / {env['rows']}" in sub
+    whole = env["whole_sample_papers"]
+    assert f"In {len(whole)} of the {env['papers']} papers" in sub
+
+
+def test_the_guide_does_not_claim_how_environmental_plastics_behave(guide: str, origin):
+    part = _part(guide, "### What the dataset does NOT prove", "\n## ")
+    assert "How environmental micro- and nanoplastics behave" in part
+    assert f"air or dust {origin['hand_corrected']['environment']['rows']['air_dust']}" in part
+
+
+def test_section_8_carries_the_parser_defect_as_open_with_its_bias(guide: str, origin):
+    s8 = _part(guide, "## 8. Open issues and decisions", "\n## ")
+    lm = origin["lost_methods"]
+    item = next(line for line in s8.splitlines() if "supplementary-materials" in line)
+    assert f"{lm['papers_affected']} of {lm['papers']} papers" in item
+    for name in ("medium", "ionic_strength", "temperature"):
+        a, u = lm["affected"]["any_row"][name], lm["unaffected"]["any_row"][name]
+        assert f"{100 * a['n'] / lm['affected']['papers']:.1f} %" in item, name
+        assert f"{100 * u['n'] / lm['unaffected']['papers']:.1f} %" in item, name
+    assert "Open" in item and "Martin" in item
+    own = next(line for line in s8.splitlines() if "own measurement" in line)
+    for row in origin["not_own_measurement"]:
+        assert f"`{row['row_id']}`" in own
+
+
+def test_section_1_lists_the_origin_tables(guide: str):
+    s1 = _part(guide, "## 1. How to use this guide", "\n## 2.")
+    assert "`out/tables/sample_origin.csv`" in s1
+    assert "`out/tables/sample_origin_stats.json`" in s1

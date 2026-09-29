@@ -315,6 +315,20 @@ def _methods_like(sec: Any) -> bool:
     return bool(jats.METHODS_TITLE_RE.match(title) or jats.METHODS_SECTYPE_RE.search(kind))
 
 
+def methods_lost(raw: bytes) -> bool:
+    """True when every section `jats._find_methods` took for the methods is supplementary
+    material: the parser defect `load_doc` repairs here and the extraction's text still carries.
+    """
+    root = etree.fromstring(raw, parser=etree.XMLParser(recover=True, huge_tree=True))
+    body = root.find("body")
+    if body is None:
+        return False
+    secs, source = jats._find_methods(body)
+    return source == "sec-type" and all(
+        _NOT_METHODS_SECTYPE.search(s.get("sec-type") or "") for s in secs
+    )
+
+
 def _append_lost_methods(doc: lines.LinedDoc, raw: bytes) -> lines.LinedDoc:
     """Body paragraphs missing from `doc` that sit in a methods-like section — or, in a paper
     with no methods-like section at all, every body paragraph missing from it."""

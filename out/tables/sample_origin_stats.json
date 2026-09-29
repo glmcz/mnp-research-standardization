@@ -49,7 +49,13 @@
     "rows": 1759,
     "row_share": 0.9307,
     "papers_any": 467,
-    "papers_only": 456
+    "papers_only": 456,
+    "medium": {
+      "lab_liquid": 1253,
+      "environmental_water": 31,
+      "other": 174,
+      "unreported": 301
+    }
   },
   "environment": {
     "rows": {
@@ -136,6 +142,7 @@
       "unreported": 1
     },
     "own_environmental_water": 17,
+    "own_sample_liquid": 18,
     "lab_liquid": 1,
     "medium_unreported": 1,
     "medium_other": 1,
@@ -394,7 +401,8 @@
       "output_tokens": 257795,
       "cost_usd": 24.06
     },
-    "input_token_limit": 4000000
+    "input_token_limit": 4000000,
+    "model": "claude-sonnet-5"
   },
   "checks": {
     "citations": 2450,
@@ -1832,7 +1840,13 @@
       "rows": 1784,
       "row_share": 0.9439,
       "papers_any": 472,
-      "papers_only": 463
+      "papers_only": 463,
+      "medium": {
+        "lab_liquid": 1275,
+        "environmental_water": 31,
+        "other": 175,
+        "unreported": 303
+      }
     },
     "environment": {
       "rows": {
@@ -1894,6 +1908,7 @@
         "other": 2
       },
       "own_environmental_water": 17,
+      "own_sample_liquid": 19,
       "lab_liquid": 0,
       "medium_unreported": 0,
       "medium_other": 2,
@@ -2069,8 +2084,362 @@
           "ionic_strength_reported": false,
           "conductivity_printed": false
         }
+      ],
+      "whole_sample_papers": [
+        "PMC11478531",
+        "PMC9318256"
+      ],
+      "conductivity_in_text": [
+        {
+          "pmcid": "PMC11211448",
+          "why": "The sentence about the liquid of its environmental row, the industrial wastewater as diluted for the experiments, gives that dispersion's pH, conductivity and an average zeta potential, and that average is not a row of the table. The row the table holds is the zeta potential followed down a pH series and shown only in a figure; acid changes the conductivity along the series, so the printed one does not describe it. The other sentences are about the model dispersions, water made to simulate one, and other wastewaters that have no zeta row.",
+          "lines": [
+            {
+              "line": "PMC11211448:L19",
+              "sentence": "The conductivity was ≈ 1600 µS cm-1."
+            },
+            {
+              "line": "PMC11211448:L20",
+              "sentence": "PS-carboxylate, PS-sulfonate and PS- amidine had conductivities of 560 µS cm-1, 400 µS cm-1 and 130 µS cm-1 respectively, which required applying a voltage of 70 V instead of 50 V during a total average time of 20 min (5 cycles for PS- carboxylate and PS-amidine; and 6 cycles for PS-sulfonate)."
+            },
+            {
+              "line": "PMC11211448:L20",
+              "sentence": "However, in the case of PBMA, the conductivity was 3 mS cm-1; thus, the applied voltage was decreased to 32 V during a total time of 20 min too (5 cycles)."
+            },
+            {
+              "line": "PMC11211448:L22",
+              "sentence": "The pH of the water was adjusted to 2.7 using nitric acid 0.1 M and ionic strength was kept constant by maintaining a conductivity of ≈ 1.65 mS cm-1 adjusted using 1 M CaSO4 solution to simulate the properties of a 1 wt.% PMMA dispersion."
+            },
+            {
+              "line": "PMC11211448:L26",
+              "sentence": "The dispersion had a pH value between 5.8 and 6.2, a conductivity between 1000 to 1050 μS cm-1, an average density between 950 and 1000 kg m-3, an average particle size of 130 nm and an average Zeta potential of -49 mV."
+            },
+            {
+              "line": "PMC11211448:L28",
+              "sentence": "The wastewater from water-based paint and polishing of eyeglasses and contact lenses had conductivities of 330 μS cm-1 and 375 μS cm-1, respectively."
+            }
+          ]
+        }
       ]
     },
     "particles_with_a_hand_verdict": 102
+  },
+  "not_own_measurement": [
+    {
+      "row_id": "PMC11644763-r1",
+      "pmcid": "PMC11644763",
+      "particle_name": "PES_N (untreated polyester fabric)",
+      "why": "a polyester fabric, not a particle"
+    },
+    {
+      "row_id": "PMC12462602-r2",
+      "pmcid": "PMC12462602",
+      "particle_name": "PEG 4000 (used as a microplastic degradation model, in place of polystyrene)",
+      "why": "PEG 4000, a water-soluble polymer the authors use in place of polystyrene"
+    },
+    {
+      "row_id": "PMC12878436-r4",
+      "pmcid": "PMC12878436",
+      "particle_name": "PS nanoplastics (cited: Arenas et al. 2022)",
+      "why": "a value cited from Arenas et al. 2022, not measured in this paper"
+    },
+    {
+      "row_id": "PMC12878436-r5",
+      "pmcid": "PMC12878436",
+      "particle_name": "PS nanoplastics (cited: Arenas et al. 2022)",
+      "why": "a value cited from Arenas et al. 2022, not measured in this paper"
+    },
+    {
+      "row_id": "PMC12878436-r6",
+      "pmcid": "PMC12878436",
+      "particle_name": "PS MPs (cited: Na et al. 2021)",
+      "why": "a value cited from Na et al. 2021, not measured in this paper"
+    },
+    {
+      "row_id": "PMC12878436-r7",
+      "pmcid": "PMC12878436",
+      "particle_name": "PS MPs (cited: Na et al. 2021)",
+      "why": "a value cited from Na et al. 2021, not measured in this paper"
+    },
+    {
+      "row_id": "PMC9645706-r4",
+      "pmcid": "PMC9645706",
+      "particle_name": "naturally fragmented plastic particles (environmental, unspecified polymer)",
+      "why": "a passing remark about naturally fragmented plastics; nothing was collected or measured"
+    }
+  ],
+  "lost_methods": {
+    "papers": 491,
+    "papers_affected": 208,
+    "affected": {
+      "papers": 208,
+      "rows": 769,
+      "any_row": {
+        "medium": {
+          "n": 148,
+          "share": 0.7115
+        },
+        "ionic_strength": {
+          "n": 18,
+          "share": 0.0865
+        },
+        "pH": {
+          "n": 41,
+          "share": 0.1971
+        },
+        "temperature": {
+          "n": 40,
+          "share": 0.1923
+        },
+        "instrument": {
+          "n": 168,
+          "share": 0.8077
+        },
+        "complete": {
+          "n": 6,
+          "share": 0.0288
+        }
+      }
+    },
+    "unaffected": {
+      "papers": 283,
+      "rows": 1121,
+      "any_row": {
+        "medium": {
+          "n": 216,
+          "share": 0.7633
+        },
+        "ionic_strength": {
+          "n": 33,
+          "share": 0.1166
+        },
+        "pH": {
+          "n": 58,
+          "share": 0.2049
+        },
+        "temperature": {
+          "n": 65,
+          "share": 0.2297
+        },
+        "instrument": {
+          "n": 233,
+          "share": 0.8233
+        },
+        "complete": {
+          "n": 6,
+          "share": 0.0212
+        }
+      }
+    },
+    "pmcids": [
+      "PMC10081693",
+      "PMC10099137",
+      "PMC10103693",
+      "PMC10213243",
+      "PMC10220640",
+      "PMC10295233",
+      "PMC10323628",
+      "PMC10340104",
+      "PMC10383551",
+      "PMC10423972",
+      "PMC10450312",
+      "PMC10483464",
+      "PMC10610651",
+      "PMC10646276",
+      "PMC10648906",
+      "PMC10664492",
+      "PMC10685678",
+      "PMC10702630",
+      "PMC10762848",
+      "PMC10834790",
+      "PMC10909871",
+      "PMC10909942",
+      "PMC10952355",
+      "PMC10959865",
+      "PMC10974996",
+      "PMC10978833",
+      "PMC11007712",
+      "PMC11010371",
+      "PMC11057139",
+      "PMC11085467",
+      "PMC11085749",
+      "PMC11117817",
+      "PMC11125576",
+      "PMC11126148",
+      "PMC11260858",
+      "PMC11298679",
+      "PMC11342339",
+      "PMC11369379",
+      "PMC11397364",
+      "PMC11403556",
+      "PMC11481666",
+      "PMC11489330",
+      "PMC11543686",
+      "PMC11614646",
+      "PMC11615417",
+      "PMC11670657",
+      "PMC11722969",
+      "PMC11780734",
+      "PMC11840474",
+      "PMC11846901",
+      "PMC11872506",
+      "PMC11894927",
+      "PMC11938024",
+      "PMC11966731",
+      "PMC11990616",
+      "PMC11990826",
+      "PMC12030773",
+      "PMC12035802",
+      "PMC12063461",
+      "PMC12090009",
+      "PMC12092862",
+      "PMC12109039",
+      "PMC12111990",
+      "PMC12115821",
+      "PMC12115889",
+      "PMC12157050",
+      "PMC12165037",
+      "PMC12218389",
+      "PMC12250219",
+      "PMC12261319",
+      "PMC12279941",
+      "PMC12281096",
+      "PMC12312160",
+      "PMC12319994",
+      "PMC12333422",
+      "PMC12346606",
+      "PMC12356328",
+      "PMC12371250",
+      "PMC12376499",
+      "PMC12376923",
+      "PMC12395032",
+      "PMC12406979",
+      "PMC12475273",
+      "PMC12526631",
+      "PMC12548188",
+      "PMC12590796",
+      "PMC12635965",
+      "PMC12641161",
+      "PMC12641657",
+      "PMC12645312",
+      "PMC12650146",
+      "PMC12656232",
+      "PMC12691734",
+      "PMC12697767",
+      "PMC12729904",
+      "PMC12765340",
+      "PMC12780347",
+      "PMC12783835",
+      "PMC12787226",
+      "PMC12797264",
+      "PMC12797957",
+      "PMC12835115",
+      "PMC12845872",
+      "PMC12864305",
+      "PMC12866875",
+      "PMC12878436",
+      "PMC12893296",
+      "PMC12924321",
+      "PMC12943577",
+      "PMC12945053",
+      "PMC12955872",
+      "PMC12961878",
+      "PMC12966456",
+      "PMC12969122",
+      "PMC12990424",
+      "PMC12996544",
+      "PMC13057466",
+      "PMC13059191",
+      "PMC13104249",
+      "PMC13139601",
+      "PMC13153429",
+      "PMC13159399",
+      "PMC13173803",
+      "PMC13181784",
+      "PMC13195470",
+      "PMC13206469",
+      "PMC13211033",
+      "PMC13211750",
+      "PMC13241894",
+      "PMC13256201",
+      "PMC13258071",
+      "PMC13271390",
+      "PMC13280856",
+      "PMC13288247",
+      "PMC13298883",
+      "PMC13328142",
+      "PMC13329907",
+      "PMC13335070",
+      "PMC13343657",
+      "PMC13364793",
+      "PMC13376373",
+      "PMC13379464",
+      "PMC13386366",
+      "PMC13386373",
+      "PMC13391378",
+      "PMC13403680",
+      "PMC13405344",
+      "PMC13405854",
+      "PMC13424375",
+      "PMC13440390",
+      "PMC13470545",
+      "PMC13484639",
+      "PMC13491635",
+      "PMC3990004",
+      "PMC4861966",
+      "PMC5608696",
+      "PMC5876397",
+      "PMC5937892",
+      "PMC6316338",
+      "PMC6631359",
+      "PMC6923483",
+      "PMC6926673",
+      "PMC7174705",
+      "PMC7248110",
+      "PMC7305267",
+      "PMC7487953",
+      "PMC7496070",
+      "PMC7673751",
+      "PMC7893703",
+      "PMC7918465",
+      "PMC7996764",
+      "PMC8168913",
+      "PMC8383278",
+      "PMC8402430",
+      "PMC8541305",
+      "PMC8549819",
+      "PMC8552707",
+      "PMC8599475",
+      "PMC8760192",
+      "PMC8851716",
+      "PMC8915849",
+      "PMC8915914",
+      "PMC8928475",
+      "PMC8953984",
+      "PMC8983699",
+      "PMC9033670",
+      "PMC9087019",
+      "PMC9142603",
+      "PMC9230722",
+      "PMC9313510",
+      "PMC9332795",
+      "PMC9370135",
+      "PMC9376074",
+      "PMC9417664",
+      "PMC9455956",
+      "PMC9472436",
+      "PMC9488007",
+      "PMC9535493",
+      "PMC9555296",
+      "PMC9643204",
+      "PMC9654599",
+      "PMC9691371",
+      "PMC9735686",
+      "PMC9775992",
+      "PMC9853403",
+      "PMC9894871",
+      "PMC9939864",
+      "PMC9974068"
+    ]
   }
 }

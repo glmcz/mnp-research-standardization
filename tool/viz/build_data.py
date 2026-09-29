@@ -60,6 +60,12 @@ WORKED_ROWS = {
     "Z4": "PMC10340104-r3",
 }
 
+ORIGIN_STATS = "out/tables/sample_origin_stats.json"
+ORIGINS = ("commercial", "lab_fabricated", "environmental", "unclear")
+ENVIRONMENTS = ("freshwater", "seawater", "wastewater", "soil", "sediment", "air_dust", "biota",
+                "other")  # fmt: skip
+ORIGIN_CONDITIONS = ("medium", "ionic_strength", "pH", "temperature", "instrument")
+
 TARGET_WINDOW = "1-5000 \N{MICRO SIGN}m"
 OTHER_WINDOW = "0.1-5000 \N{MICRO SIGN}m"
 
@@ -69,6 +75,11 @@ def show(ref: str, path: str) -> str:
         ["git", "-C", str(REPO), "show", f"{ref}:{path}"], capture_output=True, check=True
     )
     return out.stdout.decode("utf-8")
+
+
+def exists(ref: str, path: str) -> bool:
+    done = subprocess.run(["git", "-C", str(REPO), "cat-file", "-e", f"{ref}:{path}"])
+    return done.returncode == 0
 
 
 def read_csv(ref: str, path: str, delimiter: str = ",") -> list[dict[str, str]]:
@@ -533,6 +544,38 @@ def gold_section(ref: str) -> dict:
     return {"rows": facts["rows"], "papers": facts["papers"], "human": facts["human_rows"]}
 
 
+def origin_section(ref: str) -> dict | None:
+    """The hand-corrected origin counts, or None at a ref that predates `report origin`."""
+    if not exists(ref, ORIGIN_STATS):
+        return None
+    stats = json.loads(show(ref, ORIGIN_STATS))
+    h, hc = stats["hand_corrected"], stats["hand_check"]
+    env = h["environmental_rows"]
+    return {
+        "rows": stats["rows"],
+        "papers": stats["papers"],
+        "synthetic_rows": h["synthetic"]["rows"],
+        "synthetic_papers": h["synthetic"]["papers_any"],
+        "classes": [
+            {"key": k, "rows": h["origin"]["rows"][k], "papers": h["origin"]["papers_any"][k]}
+            for k in ORIGINS
+        ],
+        "environments": [
+            {"key": e, "rows": h["environment"]["rows"][e], "papers": h["environment"]["papers"][e]}
+            for e in ENVIRONMENTS
+        ],
+        "env_rows": env["rows"],
+        "env_papers": env["papers"],
+        "env_conditions": [{"key": k, "n": env["reported"][k]["n"]} for k in ORIGIN_CONDITIONS],
+        "env_complete": env["conditions_complete"]["n"],
+        "env_conductivity": env["conductivity_printed"],
+        "hand": {
+            s: {"n": hc[s]["n"], "agree": hc[s]["agree"], "split": hc[s]["agree_synthetic_split"]}
+            for s in ("environmental", "unclear", "random")
+        },
+    }
+
+
 # ---- cross-check against REVIEW.md ----------------------------------------------------------
 
 
@@ -736,6 +779,65 @@ def review_checks(ref: str, data: dict) -> list[dict]:
             ),
             (int(total), int(comp), int(cond), int(notc)),
         )
+
+    o = data.get("origin")
+    if not (o and o["cross_checked"]):
+        return checks
+    by = {c["key"]: c for c in o["classes"]}
+    where = {e["key"]: e for e in o["environments"]}
+    syn, total = one(
+        r"- \*\*Number\.\*\* ([\d ]+) / ([\d ]+) \([\d.]+ %\) rows measure a synthetic"
+    )
+    check("origin rows", o["rows"], int(n(total)))
+    check("origin synthetic rows", o["synthetic_rows"], int(n(syn)))
+    for key, words in (("commercial", "bought ready-made"), ("lab_fabricated", "made in a lab"),
+                       ("unclear", "stay")):  # fmt: skip
+        got = one(rf"([\d ]+) / [\d ]+ \([\d.]+ %\) {words} \(?`{key}`")[0]
+        check(f"origin {key} rows", by[key]["rows"], int(n(got)))
+    env_rows, env_papers, ww_rows, ww_papers = one(
+        r"([\d ]+) / [\d ]+ \([\d.]+ %\) are real environmental particles, from (\d+) papers: "
+        r"(\d+) of them wastewater effluent, from (\d+) papers"
+    )
+    check("origin environmental rows", by["environmental"]["rows"], int(n(env_rows)))
+    check("origin environmental papers", o["env_papers"], int(env_papers))
+    check("origin wastewater rows", where["wastewater"]["rows"], int(ww_rows))
+    check("origin wastewater papers", where["wastewater"]["papers"], int(ww_papers))
+    check(
+        "origin air or dust rows",
+        where["air_dust"]["rows"],
+        int(one(r"Air or dust: (\d+) rows")[0]),
+    )
+    hand = o["hand"]
+    agree, k = one(r"every environmental particle \((\d+) / (\d+) agree\)")
+    check("origin hand check environmental", (hand["environmental"]["agree"],
+          hand["environmental"]["n"]), (int(agree), int(k)))  # fmt: skip
+    _, agree, k = one(r"(\d+) of the unclear ones \((\d+) / (\d+);")
+    check("origin hand check unclear", (hand["unclear"]["agree"], hand["unclear"]["n"]),
+          (int(agree), int(k)))  # fmt: skip
+    agree, k, split, k2 = one(
+        r"a seeded \d+ of the rest \((\d+) / (\d+), [\d.]+ %, on the four classes; "
+        r"(\d+) / (\d+) on synthetic against environmental\)"
+    )
+    r = hand["random"]
+    check("origin hand check random", (r["agree"], r["n"]), (int(agree), int(k)))
+    check("origin hand check synthetic split", (r["split"], r["n"]), (int(split), int(k2)))
+    part = text.split("### The environmental rows' conditions", 1)[-1].split("\n### ", 1)[0]
+    table = dict(
+        (label, (int(a), int(b)))
+        for label, a, b in re.findall(
+            r"^\| (medium|ionic strength|pH|temperature|instrument) \| \**(\d+) / (\d+)\** \|$",
+            part,
+            re.M,
+        )
+    )
+    if len(table) != len(o["env_conditions"]):
+        raise SystemExit(f"REVIEW.md: environmental conditions table has {len(table)} rows")
+    for c in o["env_conditions"]:
+        check(f"origin environmental {c['key']}", (c["n"], o["env_rows"]),
+              table[c["key"].replace("_", " ")])  # fmt: skip
+    printed, k = one(r"no conductivity reaches a row \((\d+) / (\d+) print one")
+    check("origin environmental conductivity", (o["env_conductivity"], o["env_rows"]),
+          (int(printed), int(k)))  # fmt: skip
     return checks
 
 
@@ -764,6 +866,12 @@ def build(ref: str) -> dict:
     data["grid"] = grid_section(ref)
     data["explorer"] = explorer(d1, harm)
     data["gold"] = gold_section(ref)
+    origin = origin_section(ref)
+    if origin is not None:
+        # REVIEW.md gained C11 after the origin table was first committed; at such a ref the
+        # page shows the section and says it is not cross-checked, rather than failing.
+        origin["cross_checked"] = "#### C11." in show(ref, "out/review/REVIEW.md")
+        data["origin"] = origin
     data["checks"] = review_checks(ref, data)
     return data
 

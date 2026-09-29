@@ -21,6 +21,8 @@ Read it with the worksheets open. Each section says which worksheet lets you red
 | `out/review/harmonised_all_rows.csv` | one line per row: the five flags, the inputs of the zeta correction, Debye length, κa, f(κa), and the harmonised point or interval | recompute conditions_complete, κa, f and the correction (§4, §5.4, §5.5) |
 | `out/review/comparability_worked_pairs.csv` | 4 real pairs, every comparability check field by field | evaluate a pair by hand (§5.6) |
 | `out/review/audit_sample.csv` | 20 rows drawn at random, with the lines they cite and empty columns for your verdicts | audit rows against the papers (§7) |
+| `out/tables/sample_origin.csv` | one line per row, in the table's order: where its particle came from, as the reader classified it with the lines it cited, and `final_origin`, the person's verdict wherever one was given | recount C11 (§6) |
+| `out/tables/sample_origin_stats.json` | the origin counts before and after the hand check, the agreement, the environmental rows' conditions, the parser defect and the rows that are not an own measurement | the numbers of C11, the environmental rows (§6) and §8 |
 
 How they relate:
 
@@ -882,6 +884,43 @@ Each claim: the sentence, the number, how it is computed, how to check it yourse
 - **Check it.** `audit_sample.csv`, twenty rows against the papers (§7).
 - **Caveats.** it proves the text exists, not that it was read correctly (§2, "What verified means").
 
+#### C11. The particles measured are almost all synthetic
+
+- **Number.** 1 784 / 1 890 (94.4 %) rows measure a synthetic particle: 1 290 / 1 890 (68.3 %) bought ready-made (`commercial`) and 494 / 1 890 (26.1 %) made in a lab (`lab_fabricated`). 19 / 1 890 (1.0 %) are real environmental particles, from 4 papers: 18 of them wastewater effluent, from 3 papers, and 1 other. 87 / 1 890 (4.6 %) stay `unclear`. Air or dust: 0 rows; freshwater, seawater, soil, sediment, organisms: 0 rows each.
+- **Computed as.** one question per paper, asked of all 491 papers by the grid's isolated reader (`claude-sonnet-5`, run `origin-20260929b`) over the lines that speak to where the particles came from, with a cited line for every particle it classified (589 calls with the pilots, 2.85 M input tokens, $24.06). Bought means received ready-made as particles; made in a lab covers milling, fragmentation, synthesis or release from a product, even from a bought or collected bulk plastic; environmental means collected from a real environment and isolated. The liquid is not the origin: a bought bead dispersed in lake water is commercial. `report origin` matches each answer to the rows by `particle_name` (1 890 of 1 890 exactly) and takes the person's verdict wherever the paper was read by hand (102 particles).
+- **Check it.** `out/tables/sample_origin.csv`, one line per row in the table's order. `final_origin` (column O) is the person's verdict where `hand_checked` is true and the reader's `origin` everywhere else, and `final_environment` likewise: `=COUNTIF(O:O,"commercial")` and so on over `=COUNTA(A:A)-1`; pandas `o = pd.read_csv("out/tables/sample_origin.csv"); o.final_origin.value_counts()`, and `o[o.final_origin == "environmental"].groupby("final_environment").pmcid.agg(["size", "nunique"])`. `origin_citations` gives the lines the reader cited (`PMCID:Lnn`); the verdicts and their notes are `data/interim/origin/hand_check-origin-20260929b.jsonl`.
+- **Caveats.** outside the hand check the reader's answer stands. The check read every environmental particle (18 / 20 agree), 40 of the unclear ones (30 / 40; each of the 10 disagreements is an origin the paper states and the reader missed) and a seeded 40 of the rest (37 / 40, 92.5 %, on the four classes; 40 / 40 on synthetic against environmental). So `unclear` is an upper bound on what the papers leave unsaid, and the split between bought and lab-made is the least certain part. In 2 of the 3 wastewater papers the zeta potential is of the collected effluent as a whole, not of isolated plastic, and 7 rows are not the authors' own measurement of a plastic particle (§8); all are left in the counts above.
+
+### The environmental rows' conditions
+
+The 19 rows a person confirmed as environmental (C11), from 4 papers, against the five conditions:
+
+| condition | rows reporting it |
+|---|---|
+| medium | 19 / 19 |
+| ionic strength | **0 / 19** |
+| pH | 6 / 19 |
+| temperature | 16 / 19 |
+| instrument | 16 / 19 |
+| all five | 0 / 19 |
+
+19 / 19 were measured in the sample's own liquid (17 filed `environmental_water`, 2 filed `other`) and 0 in a laboratory liquid. In 2 of the 4 papers (PMC11478531, PMC9318256) the zeta potential is of the collected effluent as a whole, not of plastic isolated from it.
+
+> **Ionic strength: not reported, and not estimable for these rows.** Not one of the 19 environmental rows reports an ionic strength (0 / 19). Where a paper prints the conductivity of the liquid a particle was measured in, an ionic strength could be estimated from it with Griffin and Jurinak's relation, I (mM) ≈ 0.013 × EC (µS/cm), and it would have to be marked as estimated, never as reported. **Here that is not possible for any of them:** no conductivity reaches a row (0 / 19 print one in their medium or their quote), so the dataset holds no ionic strength, reported or estimated, for any environmental particle.
+>
+> The full texts print a conductivity in 1 of the 4 papers (PMC11211448), and none of it belongs to a row's measurement:
+>
+> | line | the sentence |
+> |---|---|
+> | `PMC11211448:L19` | The conductivity was ≈ 1600 µS cm-1. |
+> | `PMC11211448:L20` | PS-carboxylate, PS-sulfonate and PS- amidine had conductivities of 560 µS cm-1, 400 µS cm-1 and 130 µS cm-1 respectively, which required applying a voltage of 70 V instead of 50 V during a total average time of 20 min (5 cycles for PS- carboxylate and PS-amidine; and 6 cycles for PS-sulfonate). |
+> | `PMC11211448:L20` | However, in the case of PBMA, the conductivity was 3 mS cm-1; thus, the applied voltage was decreased to 32 V during a total time of 20 min too (5 cycles). |
+> | `PMC11211448:L22` | The pH of the water was adjusted to 2.7 using nitric acid 0.1 M and ionic strength was kept constant by maintaining a conductivity of ≈ 1.65 mS cm-1 adjusted using 1 M CaSO4 solution to simulate the properties of a 1 wt.% PMMA dispersion. |
+> | `PMC11211448:L26` | The dispersion had a pH value between 5.8 and 6.2, a conductivity between 1000 to 1050 μS cm-1, an average density between 950 and 1000 kg m-3, an average particle size of 130 nm and an average Zeta potential of -49 mV. |
+> | `PMC11211448:L28` | The wastewater from water-based paint and polishing of eyeglasses and contact lenses had conductivities of 330 μS cm-1 and 375 μS cm-1, respectively. |
+>
+> PMC11211448: The sentence about the liquid of its environmental row, the industrial wastewater as diluted for the experiments, gives that dispersion's pH, conductivity and an average zeta potential, and that average is not a row of the table. The row the table holds is the zeta potential followed down a pH series and shown only in a figure; acid changes the conductivity along the series, so the printed one does not describe it. The other sentences are about the model dispersions, water made to simulate one, and other wastewaters that have no zeta row.
+
 ### What the dataset does NOT prove
 
 - **That the values are physically true.** A row is a reported measurement, not a verified quantity: the quote is checked against the paper, the paper is not checked against reality (`out/release/DATASET_CARD.md`, limit 5).
@@ -893,6 +932,7 @@ Each claim: the sentence, the number, how it is computed, how to check it yourse
 - **Anything about agentic retrieval.** Cells C and E, where the reader chooses what to fetch, have not been run (`grid.BUILDERS` holds only B, D).
 - **That the comparability verdicts are the field's.** The kind E key is this project's own rules and tolerances; nobody outside the project has ratified them (the Czech question list, Part 2 E1–E3, asks scientists exactly this).
 - **That two comparable rows hold the same particle.** The key compares the reported *description*; suppliers, charge densities and ageing that were not printed are invisible (`docs/FINDINGS_comparability.md` §6).
+- **How environmental micro- and nanoplastics behave.** The particles measured are synthetic (94.4 % of rows, C11): bought beads and lab-made fragments, 1 275 of their 1 784 rows measured in a laboratory liquid (deionised water, salt solution, buffer, culture medium or biofluid) and 31 in an environmental water. Rows from a real environment: 19, 18 of them wastewater effluent; air or dust 0, freshwater 0, seawater 0, soil 0, sediment 0, organisms 0. The numbers describe how manufactured particles are reported, not how plastic in air, water or soil behaves.
 
 ## 7. How to review it yourself, step by step
 
@@ -939,3 +979,5 @@ This audit is small and not blind: you see the extracted values while you judge.
 15. **The 81 624 counterfactual is quoted, never recomputed.** No committed code produces it or the leave-one-rule-out table (`docs/FINDINGS_comparability.md` §4c, §4b), and `src/mnp/demo/render.py` prints 81 624 as a literal. The all-pairs blocker frequencies (§4a) could be recomputed with `comparability.blocker_distribution`, but no runner does.
 16. **Stale counts in two front documents.** `README.md` ("D1 result on the whole corpus") still reports 498 papers and 1910 rows, a reading from before the ratified rules; the table has 491 papers and 1 890 rows. `ideas.md` §12 says the table has 39 columns; it has 40.
 17. **`docs/FINDINGS.md` §E2e's temperature interval and ratio range** (±8.4 pp; 2.1× to 4.1×) came from an implementation that was never committed; the rebuild in §5.3 is the one to quote.
+18. **In 208 of 491 papers the extraction did not get the Methods section. Open, a decision for Martin.** `jats._find_methods` takes every section whose `sec-type` matches `method|materials`, and `supplementary-materials` matches, so in those papers a supplementary-materials section was taken for the Methods and the section titles were never tried. The Methods reached the text the extraction read only where a zeta keyword window or a characterisation subsection covered them. `report origin` repairs this for its own reading (`extract.origin.load_doc`); the D1 extraction is unrepaired. Papers with at least one row reporting the condition, those 208 against the other 283: medium 71.2 % against 76.3 %; ionic strength 8.7 % against 11.7 %; temperature 19.2 % against 23.0 % (`sample_origin_stats.json` → `lost_methods`, which lists the papers). They report conditions less often, so the headline condition-reporting numbers (§4, C1 to C3) may be biased downward. The decision: fix the parser and re-extract those papers, or keep the extraction and state the bias. Open.
+19. **7 rows are not the authors' own measurement of a plastic particle**, found while checking origin by hand: `PMC11644763-r1` (a polyester fabric, not a particle); `PMC12462602-r2` (PEG 4000, a water-soluble polymer the authors use in place of polystyrene); `PMC12878436-r4`, `PMC12878436-r5` (a value cited from Arenas et al. 2022, not measured in this paper); `PMC12878436-r6`, `PMC12878436-r7` (a value cited from Na et al. 2021, not measured in this paper); `PMC9645706-r4` (a passing remark about naturally fragmented plastics; nothing was collected or measured). They are rows of the table and counted everywhere, C11 included. Open: drop them or flag them (`sample_origin_stats.json` → `not_own_measurement`).

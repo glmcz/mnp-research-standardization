@@ -4,6 +4,7 @@ counted, checked against the suppliers the table already names, and sampled for 
 import json
 
 import pandas as pd
+import pytest
 
 from mnp.report import origin as report
 
@@ -117,6 +118,9 @@ def test_origin_counts_rows_and_papers_and_names_every_environment():
     assert stats["aged_in_lab"]["rows_true"] == 1
     assert stats["answers"]["refused"] == 1
     assert stats["matching"]["names_not_in_rows"] == [["PMCA", "PP"]]
+    assert stats["synthetic"]["medium"] == {
+        "lab_liquid": 2, "environmental_water": 1, "other": 0, "unreported": 0
+    }  # fmt: skip
 
 
 def test_environmental_rows_report_their_conditions_conductivity_and_own_water():
@@ -238,3 +242,111 @@ def test_a_medium_class_of_other_is_not_counted_as_a_lab_liquid():
         report.attach(table, report.classifications(answers)), report.classifications(answers)
     )["environmental_rows"]
     assert env["lab_liquid"] == 0 and env["medium_other"] == 1
+
+
+def test_the_row_table_carries_the_hand_verdict_beside_the_readers():
+    hand = pd.DataFrame(
+        [
+            {
+                "pmcid": "PMCB",
+                "particle_name": "Beach MPs",
+                "hand_origin": "lab_fabricated",
+                "hand_environment": None,
+            }
+        ]
+    )
+    out = report.with_final(_rows(), hand).set_index("row_id")
+    assert out.loc["PMCB-r1", "origin"] == "environmental", "the reader's answer is kept"
+    assert out.loc["PMCB-r1", "final_origin"] == "lab_fabricated"
+    assert pd.isna(out.loc["PMCB-r1", "final_environment"])
+    assert out.loc["PMCB-r1", "hand_checked"] and out.loc["PMCB-r2", "hand_checked"]
+    assert not out.loc["PMCA-r1", "hand_checked"]
+    assert out.loc["PMCA-r1", "final_origin"] == "commercial"
+    fixed = report.apply_hand(_rows(), hand)
+    assert out["final_origin"].tolist() == fixed["origin"].tolist()
+
+
+def test_papers_whose_methods_the_parser_lost_are_compared_with_the_rest():
+    got = report.lost_methods(TABLE, {"PMCB"})
+    assert got["papers"] == 4 and got["papers_affected"] == 1
+    assert got["pmcids"] == ["PMCB"]
+    affected, rest = got["affected"], got["unaffected"]
+    assert (affected["papers"], affected["rows"]) == (1, 2)
+    assert (rest["papers"], rest["rows"]) == (3, 5)
+    assert affected["any_row"]["ionic_strength"] == {"n": 1, "share": 1.0}
+    assert rest["any_row"]["ionic_strength"] == {"n": 0, "share": 0.0}
+    assert rest["any_row"]["medium"] == {"n": 3, "share": 1.0}
+    assert set(affected["any_row"]) == {"medium", "ionic_strength", "pH", "temperature",
+                                        "instrument", "complete"}  # fmt: skip
+
+
+def test_rows_that_are_not_the_authors_own_measurement_are_listed_by_row_id():
+    got = report.not_own_rows(TABLE, {"PMCA-r3": "a fabric"})
+    assert got == [
+        {"row_id": "PMCA-r3", "pmcid": "PMCA", "particle_name": "PE  fragments", "why": "a fabric"}
+    ]
+    with pytest.raises(ValueError, match="PMCZ-r1"):
+        report.not_own_rows(TABLE, {"PMCZ-r1": "a row that is gone"})
+
+
+def test_papers_measuring_the_whole_sample_are_read_from_the_hand_notes():
+    hand = pd.DataFrame(
+        [
+            {"pmcid": "PMCB", "hand_origin": "environmental",
+             "note": "agree; the zeta potential is of the collected effluent as a whole"},
+            {"pmcid": "PMCC", "hand_origin": "environmental", "note": "agree"},
+            {"pmcid": "PMCD", "hand_origin": "unclear", "note": "the sample as a whole"},
+        ]
+    )  # fmt: skip
+    assert report.whole_sample_papers(hand) == ["PMCB"]
+
+
+def test_a_printed_conductivity_value_is_found_sentence_by_sentence():
+    from mnp.corpus import lines
+
+    texts = (
+        "Samples were filtered. The effluent had a conductivity of 1000 to 1050 μS cm-1.",
+        "The electrode was placed on a conductive substrate.",
+        "Wastewaters had conductivities of 330 μS cm-1 and 1.2 mS/cm, respectively.",
+    )
+    doc = lines.LinedDoc(
+        "PMCB",
+        tuple(
+            lines.Line(i + 1, t, "methods", i, lines.line_id("methods", i, t))
+            for i, t in enumerate(texts)
+        ),  # fmt: skip
+        (),
+    )
+    got = report.conductivity_sentences(doc)
+    assert got == [
+        ("PMCB:L1", "The effluent had a conductivity of 1000 to 1050 μS cm-1."),
+        ("PMCB:L3", texts[2]),
+    ]
+
+
+def test_a_conductivity_in_an_environmental_paper_needs_a_recorded_reason():
+    found = {"PMCB": [("PMCB:L1", "EC 850 µS/cm.")]}
+    with pytest.raises(ValueError, match="PMCB"):
+        report.conductivity_in_text(found, reasons={}, quotable={"PMCB"})
+    got = report.conductivity_in_text(found, reasons={"PMCB": "why"}, quotable=set())
+    assert got == [
+        {"pmcid": "PMCB", "why": "why", "lines": [{"line": "PMCB:L1", "sentence": None}]}
+    ]
+    shown = report.conductivity_in_text(found, reasons={"PMCB": "why"}, quotable={"PMCB"})
+    assert shown[0]["lines"][0]["sentence"] == "EC 850 µS/cm."
+
+
+def test_origin_is_a_runner_after_d1_and_before_release_and_review():
+    from mnp.report import __main__ as cli
+
+    names = list(cli.RUNNERS)
+    assert names.index("d1") < names.index("origin") < names.index("release")
+    assert names.index("origin") < names.index("review")
+
+
+def test_origin_without_d1_output_skips_cleanly(tmp_path, capsys):
+    from mnp.report import __main__ as cli
+
+    assert cli.main(["origin", "--out", str(tmp_path / "out")]) == 0
+    assert "d1_zeta_table.csv" in capsys.readouterr().err
+    assert not (tmp_path / "out" / "tables" / "sample_origin.csv").exists()

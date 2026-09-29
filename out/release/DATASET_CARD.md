@@ -2,7 +2,7 @@
 
 1890 surface-charge measurements extracted from 491 open-access papers, each with the conditions it was measured under — and, where those conditions were not reported, an explicit record that they were not.
 
-**Every number in this card was computed when the card was built**, from `out/tables/d1_zeta_table.csv` and `out/tables/d1_stats.json`. None is typed in. Rebuild the card and any number that has moved will move with it.
+**Every number in this card was computed when the card was built**, from `out/tables/d1_zeta_table.csv` and `out/tables/d1_stats.json`, and the particles' origin from `out/tables/sample_origin_stats.json`. None is typed in. Rebuild the card and any number that has moved will move with it.
 
 Two things a reader should take from this card before using the data: only a small minority of published measurements are fully conditioned, and the accuracy scores for this extraction have not yet been audited by a human.
 
@@ -167,6 +167,10 @@ This is a licensing decision, not legal advice.
 
 6. **Absence is absence of reporting.** `pH_reported = False` means the paper did not state a pH. It does not mean the experiment had no pH.
 
+7. **The measured particles are synthetic.** 1784 / 1890 — 94.4 % of rows measure a particle bought ready-made or made in a lab. 19 rows, from 4 papers, measure a particle collected from a real environment (wastewater 18, other 1); from air or dust: 0. The values describe manufactured particles in laboratory liquids, not how micro- and nanoplastics behave in the environment. A reader classified every row and a person checked every environmental one and a sample of the rest (`out/tables/sample_origin_stats.json`, `out/review/REVIEW.md` C11).
+
+8. **The extraction did not read every paper's Methods.** In 208 of 491 papers the parser took a supplementary-materials section for the Methods, so the Methods reached the text the extraction read only where a zeta keyword window or a characterisation subsection covered them. Papers with at least one row reporting the condition, those papers against the rest: medium 71.2 % against 76.3 %; ionic strength 8.7 % against 11.7 %; temperature 19.2 % against 23.0 %. They report conditions less often, so the condition-reporting shares on this card may be biased downward. The parser is not fixed and those papers have not been re-extracted.
+
 ## Columns
 
 | group | columns |
@@ -184,6 +188,7 @@ This is a licensing decision, not legal advice.
 
 ```
 uv run python -m mnp.report d1        # the table and d1_stats.json
+uv run python -m mnp.report origin    # sample_origin_stats.json
 uv run python -m mnp.report release   # this directory
 uv run python -m mnp.report reproduce # rebuild everything offline and diff it
 ```

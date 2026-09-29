@@ -348,23 +348,33 @@ Renders the 13-case demo: one page per case (why it was picked, its rows, the st
 - **kind** deterministic · idem yes · net no
 - **stale when** a change to d1_zeta_table.csv, the demo modules, or a re-run of the cells
 
+### `report origin`
+
+Rebuilds where every measured particle came from (bought, made in a lab, or collected from a real environment) out of judgements already recorded, and asks nothing itself. The reader's answers in data/interim/origin/answers.jsonl, one call per paper through the grid's isolated reader with a cited line for every particle, are matched back to the rows by particle name; every citation is resolved against that paper's lines; and the hand verdicts replace the reader's answer wherever a person read the paper (every environmental particle, the unclear ones up to a cap, and a seeded sample of the rest). The reading was judgement and is never re-run here, so this step is deterministic. It also names the papers whose methods the parser took from a supplementary-materials section and compares their condition reporting with the rest, and it refuses to build when an environmental paper prints a conductivity nobody has read against its rows, or when a row listed as not the authors' own measurement has left the table.
+
+- **in** out/tables/d1_zeta_table.csv, data/interim/origin/{answers.jsonl,hand_check-*.jsonl,hand_check_sample-*.jsonl}, the run manifest, the vendored corpus
+- **out** out/tables/sample_origin.csv, out/tables/sample_origin_stats.json
+- **kind** deterministic · idem yes · net no
+- **scored against** the hand-check file: every environmental particle, the unclear ones up to a cap, a seeded sample of the rest
+- **stale when** a change to the D1 table (answers are matched to rows by particle name), a new reader run, a new hand verdict, or a parser change
+
 ### `report release`
 
 Packages the table D1 wrote as a citable dataset under CC BY 4.0: the same rows as parquet and as JSONL, the JSON Schema re-exported from the pydantic models rather than copied, a LICENSE, and a dataset card. Every statistic on the card is computed during the build from the table and from d1_stats.json, so a rebuild moves the numbers instead of leaving a stale one behind; the build refuses outright when the stats file no longer describes the table beside it. Each paper's licence is read from its vendored XML; a verbatim quote ships only from a CC BY or CC0 source, and every other quote is replaced by its sha256 and its address in the source lines. The build refuses when any withheld quote cannot be restored from that address byte for byte. The card states what has not been established as plainly as what has — the gold set is unaudited, prompt provenance is coarse, and the corpus is one database.
 
-- **in** out/tables/d1_zeta_table.csv, out/tables/d1_stats.json, gold_50.csv, the vendored corpus (licences, line addresses) and its manifest
+- **in** out/tables/d1_zeta_table.csv, out/tables/d1_stats.json, gold_50.csv, the vendored corpus (licences, line addresses) and its manifest, and out/tables/sample_origin_stats.json when present
 - **out** out/release/{dataset.parquet,dataset.jsonl,schema.json,LICENSE,DATASET_CARD.md}
 - **kind** deterministic · idem yes · net no
-- **stale when** any change to the D1 table, the schema models, the gold set, the licence classifier or the line parser
+- **stale when** any change to the D1 table, the schema models, the gold set, the licence classifier, the line parser or the origin stats
 
 ### `report review`
 
 Writes out/review/: REVIEW.md, a guide for checking the dataset by hand, and five CSV worksheets a spreadsheet can recompute (conditions per paper, the ICC inputs, every row harmonised, four comparability pairs checked field by field, and a seeded audit sample of twenty rows with empty columns for the reviewer's verdicts). Every number in the guide is computed during the build by the modules it describes (resample, harmonise, comparability, scoring) or quoted with its file and section, and a worked example that does not reproduce the module's result refuses the build. The audit sample gives line numbers, never text, for a row whose quote the release withholds.
 
-- **in** out/tables/d1_zeta_table.csv, d1_stats.json, out/release/dataset.parquet, the vendored corpus, queries/kind_e_comparability.csv, the committed grid runs
+- **in** out/tables/d1_zeta_table.csv, d1_stats.json, sample_origin_stats.json, out/release/dataset.parquet, the vendored corpus, queries/kind_e_comparability.csv, the committed grid runs
 - **out** out/review/{REVIEW.md,conditions_per_paper.csv,icc_worksheet.csv,harmonised_all_rows.csv,comparability_worked_pairs.csv,audit_sample.csv}
 - **kind** deterministic · idem yes · net no
-- **stale when** a change to the table, the release, the demo or comparability modules, or a re-run of the grid cells
+- **stale when** a change to the table, the release, the origin stats, the demo or comparability modules, or a re-run of the grid cells
 
 ### `report rehydrate`
 

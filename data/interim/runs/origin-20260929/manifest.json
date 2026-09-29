@@ -1,0 +1,26 @@
+{
+  "run_id": "origin-20260929",
+  "started_at": "2026-09-29T19:52:45+00:00",
+  "ended_at": "2026-09-29T20:03:09+00:00",
+  "code_commit": "0056e12015b63041238aa6f52fbebebe3a5f6d8a",
+  "code_dirty": true,
+  "corpus_manifest_sha256": "3ea035fde33a175b0932143af00a60e68dc063172a4b7bb45c1a675ba0b1be25",
+  "env_keys_present": [],
+  "counts": {
+    "asked": 491,
+    "answered_now": 224,
+    "refused": 0,
+    "input_tokens_spent": 1008450
+  },
+  "task": "sample origin of every measured particle (confirmation only)",
+  "model": "claude-sonnet-5",
+  "reader": "claude -p, tools off, no setting sources (2.1.92 (Claude Code))",
+  "system_prompt_sha256": "bf23c3a4a2f5a98ffdd57a2db72c6d9278d36055a1d639f0e5b32e3fec23fcde",
+  "budget_tokens_per_paper": 3000,
+  "input_token_limit": 4000000,
+  "answers": "data/interim/origin/answers.jsonl",
+  "stopped": {
+    "at_papers": 224,
+    "reason": "the line document lacks the Materials/Experimental section of 208 of 491 papers (jats._find_methods takes sec-type 'supplementary-materials' for the methods and never tries titles), so most 'unclear' answers were an artefact of missing text; superseded by origin-20260929b, which reads the repaired document and reuses this run's answers wherever the prompt came out byte-identical"
+  }
+}

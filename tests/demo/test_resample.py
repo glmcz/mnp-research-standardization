@@ -22,11 +22,14 @@ PUBLISHED = {
     "conditions_complete": (3.3, 2.3, 0.80, 577),
 }
 
-# FINDINGS was measured before the rules of 2026-09-28 (a printed 0 mM is not a reported ionic
-# strength; a step temperature is not the measurement one). They moved these two on today's table.
+# FINDINGS was measured before the rules of 2026-09-28 and 29 (a printed 0 mM is not a reported
+# ionic strength; a step temperature, or one its source prints only for storage or incubation, is
+# not the measurement one). They moved these three on today's table. R2b took the only fully
+# conditioned row of PMC7584143 (a hydra-culture 20 °C), which is why per paper moves 0.2 pp.
 MOVED_BY_RULES = {
     "ionic_strength_reported": (13.7, 8.6, 0.77, 595),
-    "temperature_reported": (27.8, 20.6, 0.94, 517),
+    "temperature_reported": (25.6, 20.3, 0.86, 549),
+    "conditions_complete": (3.2, 2.1, 0.80, 579),
 }
 
 
@@ -39,8 +42,9 @@ def _before_the_rules(table: pd.DataFrame) -> pd.DataFrame:
     cleared value had counted as reported, so flipping those flags back restores it exactly."""
     before = table.copy()
     zero, step = "ionic_strength_zero_not_reported", "temperature_step_not_measurement"
+    other = "temperature_from_other_step"
     before.loc[_flagged(table, zero), "ionic_strength_reported"] = True
-    before.loc[_flagged(table, step), "temperature_reported"] = True
+    before.loc[_flagged(table, step) | _flagged(table, other), "temperature_reported"] = True
     before["conditions_complete"] = before[list(METRICS[:-1])].astype(bool).all(axis=1)
     return before
 
@@ -124,13 +128,22 @@ def test_cluster_interval_wider_than_naive_for_every_metric(results):
         assert est.paper_half_width > est.naive_half_width, metric
 
 
-def test_temperature_half_width_near_published(results):
+def test_temperature_half_width_near_published(table):
     """FINDINGS: naive +-2.0 pp, cluster +-8.4 pp for temperature. This is the metric it names
-    explicitly as the worst case for trusting the naive interval.
+    explicitly as the worst case for trusting the naive interval. Measured on the table FINDINGS
+    read, i.e. before the rules.
     """
-    temp = results["temperature_reported"]
+    temp = {e.metric: e for e in estimates(_before_the_rules(table))}["temperature_reported"]
     assert temp.naive_half_width * 100 == pytest.approx(2.0, abs=0.3)
     assert temp.row_half_width * 100 == pytest.approx(8.4, abs=1.5)
+
+
+def test_r2b_narrows_the_temperature_interval(results):
+    """R2b cleared 36 of PMC8719689's 90 temperatures, so its rows no longer all agree and the
+    largest cluster stops dominating: the cluster interval falls to about +-6.4 pp."""
+    temp = results["temperature_reported"]
+    assert temp.naive_half_width * 100 == pytest.approx(2.0, abs=0.3)
+    assert temp.row_half_width * 100 == pytest.approx(6.4, abs=0.2)
 
 
 def test_leave_one_out_moves_per_row_more_than_per_paper(table):

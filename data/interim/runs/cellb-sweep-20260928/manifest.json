@@ -42,6 +42,14 @@
         "refused": 0,
         "reader_failures": 0
       }
+    },
+    {
+      "at": "2026-09-29T18:06:22+00:00",
+      "rule": "R2b",
+      "superseded": 32,
+      "asked_now": 32,
+      "refused": 0,
+      "reader_failures": 0
     }
   ]
 }

@@ -27,9 +27,9 @@ See `docs/DESIGN_2026-09-28_demo.md` for what this shows and `METHOD.md` for how
 | medium_reported | 83.2% | 72.1% | 0.84 | 3.38 | 560 | 1.7 pp | 3.8 pp | 3.8 pp |
 | ionic_strength_reported | 13.7% | 8.6% | 0.77 | 3.18 | 595 | 1.6 pp | 5.2 pp | 2.3 pp |
 | pH_reported | 21.3% | 16.8% | 0.78 | 3.22 | 588 | 1.8 pp | 5.3 pp | 3.1 pp |
-| temperature_reported | 27.8% | 20.6% | 0.94 | 3.66 | 517 | 2.0 pp | 8.6 pp | 3.4 pp |
+| temperature_reported | 25.6% | 20.3% | 0.86 | 3.44 | 549 | 2.0 pp | 6.4 pp | 3.4 pp |
 | instrument_reported | 88.8% | 81.0% | 0.94 | 3.66 | 517 | 1.4 pp | 2.9 pp | 3.4 pp |
-| conditions_complete | 3.3% | 2.3% | 0.80 | 3.27 | 577 | 0.8 pp | 2.3 pp | 1.3 pp |
+| conditions_complete | 3.2% | 2.1% | 0.80 | 3.27 | 579 | 0.8 pp | 2.3 pp | 1.2 pp |
 
 ## Conversion-model scan (E2b, rebuilt)
 
@@ -45,7 +45,7 @@ Cell D is handed the matching structured rows for each question, so a high score
 cell D: 36 answered, 0 refused, 0 not answered
 cell	kind	n	accuracy	fabrication	cite_p	cite_r	tokens	calls
 D	A	12	1.000	0.000	1.000	1.000	2253	0.0
-D	B	11	1.000	0.000	1.000	1.000	4204	0.0
+D	B	11	1.000	0.000	1.000	1.000	4205	0.0
 D	E	13	0.923	-	-	-	723	0.0
 
 cell B: 36 answered, 0 refused, 0 not answered

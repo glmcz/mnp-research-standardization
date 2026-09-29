@@ -34,7 +34,7 @@ import pandas as pd
 
 from mnp.corpus.licence import CODES, QUOTE_ALLOWED, Licence
 from mnp.corpus.lines import LinedDoc
-from mnp.extract.zeta import STEP_TEMPERATURE, ZERO_IONIC_STRENGTH
+from mnp.extract.zeta import OTHER_STEP_TEMPERATURE, STEP_TEMPERATURE, ZERO_IONIC_STRENGTH
 from mnp.report import quotes
 from mnp.report.reproduce import sha256_file
 from mnp.schema import export
@@ -327,7 +327,8 @@ def facts(
         "rows_not_printed": n - printed,
         "reported": [(label, _true(table, col)) for col, label in CONDITIONS if col in table],
         "cleared": {
-            flag: _with_flag(table, flag) for flag in (ZERO_IONIC_STRENGTH, STEP_TEMPERATURE)
+            flag: _with_flag(table, flag)
+            for flag in (ZERO_IONIC_STRENGTH, STEP_TEMPERATURE, OTHER_STEP_TEMPERATURE)
         },
         "prompts": [str(p) for p in prompts],
         "models": [str(m) for m in models],
@@ -478,15 +479,19 @@ def _absence_section(f: dict) -> list[str]:
         "was inferred from a named salt rather than stated, `ionic_strength_source` records "
         "that it was inferred.",
         "",
-        "Two readings are cleared rather than kept, by rules ratified on 2026-09-28. An ionic "
-        'strength of exactly 0 mM is not a reported one: "no added electrolyte" says nothing '
-        "was added, not that the medium holds no ions, so the row reads "
+        "Some readings are cleared rather than kept, by rules ratified on 2026-09-28 and 29. "
+        'R1: an ionic strength of exactly 0 mM is not a reported one: "no added electrolyte" '
+        "says nothing was added, not that the medium holds no ions, so the row reads "
         f"`ionic_strength_reported = False` and carries `{ZERO_IONIC_STRENGTH}` "
-        f"({f['cleared'][ZERO_IONIC_STRENGTH]} rows). A temperature tied to an incubation or "
-        "exposure step is not the measurement temperature, even when the paper gives no other, "
-        f"so it is removed and the row carries `{STEP_TEMPERATURE}` "
-        f"({f['cleared'][STEP_TEMPERATURE]} rows). The rows stay; the extraction record keeps "
-        "the number the model read.",
+        f"({f['cleared'][ZERO_IONIC_STRENGTH]} rows). R2: a temperature tied to an incubation "
+        "or exposure step is not the measurement temperature, even when the paper gives no "
+        f"other, so it is removed and the row carries `{STEP_TEMPERATURE}` "
+        f"({f['cleared'][STEP_TEMPERATURE]} rows). R2b: nor is a temperature the row's own "
+        "quote does not state when its source prints it only for storage, incubation, exposure "
+        'or culture — a medium label such as "RPMI (stored at 37 ˚C for 24 h)", or, when the '
+        "row prints it nowhere, a paper that gives it only for such a step; the row carries "
+        f"`{OTHER_STEP_TEMPERATURE}` ({f['cleared'][OTHER_STEP_TEMPERATURE]} rows). The rows "
+        "stay; the extraction record keeps the number the model read.",
         "",
         "This makes one query answerable that a text index cannot answer: *what ionic strength "
         "did this paper use?* when the true answer is that it never said. There is no passage "

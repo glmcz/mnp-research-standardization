@@ -89,17 +89,17 @@ Every metric, rebuilt on the current table, per row and per paper, with both int
 | medium_reported | 83.2% | 72.1% | 0.84 | 3.38 | 560 | 1.7 pp | 3.8 pp | 3.8 pp |
 | ionic_strength_reported | 13.7% | 8.6% | 0.77 | 3.18 | 595 | 1.6 pp | 5.2 pp | 2.3 pp |
 | pH_reported | 21.3% | 16.8% | 0.78 | 3.22 | 588 | 1.8 pp | 5.3 pp | 3.1 pp |
-| temperature_reported | 27.8% | 20.6% | 0.94 | 3.66 | 517 | 2.0 pp | 8.6 pp | 3.4 pp |
+| temperature_reported | 25.6% | 20.3% | 0.86 | 3.44 | 549 | 2.0 pp | 6.4 pp | 3.4 pp |
 | instrument_reported | 88.8% | 81.0% | 0.94 | 3.66 | 517 | 1.4 pp | 2.9 pp | 3.4 pp |
-| conditions_complete | 3.3% | 2.3% | 0.80 | 3.27 | 577 | 0.8 pp | 2.3 pp | 1.3 pp |
+| conditions_complete | 3.2% | 2.1% | 0.80 | 3.27 | 579 | 0.8 pp | 2.3 pp | 1.2 pp |
 
-**Worked example -- temperature.** The naive binomial half-width is ±2.0 pp; the cluster bootstrap gives ±8.6 pp per row. Any interval this project computed as `sqrt(p(1-p)/1890)` is that far wrong.
+**Worked example -- temperature.** The naive binomial half-width is ±2.0 pp; the cluster bootstrap gives ±6.4 pp per row. Any interval this project computed as `sqrt(p(1-p)/1890)` is that far wrong.
 
-**Cluster/naive ratio across the six metrics: 2.04x to 4.28x** -- every metric's cluster interval is at least twice the naive one.
+**Cluster/naive ratio across the six metrics: 2.04x to 3.33x** -- every metric's cluster interval is at least twice the naive one.
 
 **Ionic strength's ICC.** This rebuild gives **0.7688** (0.77 in the table above), where FINDINGS.md §E2e printed 0.83. FINDINGS predates the rule of 2026-09-28 that a printed 0 mM is not a reported ionic strength; on the table before it, this code gave 0.8247 (commit f78a4f5), which the printed 0.83 most likely rounds twice (0.8247 -> 0.825 -> 0.83). The 10 rows that rule cleared account for the rest. The difference is reported here, not tuned to match.
 
-**Leave-one-out, PMC8719689 (case 06, 90 rows -- the largest single paper in the corpus).** Dropping it moves the per-row temperature-reported estimate by 3.6 pp (27.8% -> 24.2%) but the per-paper estimate by only 0.2 pp (20.6% -> 20.5%) -- on a real paper, the demonstration of why per-paper is the more conservative unit: one large paper cannot move it much.
+**Leave-one-out, PMC8719689 (case 06, 90 rows -- the largest single paper in the corpus).** Dropping it moves the per-row temperature-reported estimate by 1.7 pp (25.6% -> 23.9%) but the per-paper estimate by only 0.1 pp (20.3% -> 20.2%) -- on a real paper, the demonstration of why per-paper is the more conservative unit: one large paper cannot move it much.
 
 ## The reader grid
 

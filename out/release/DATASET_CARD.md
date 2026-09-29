@@ -10,8 +10,8 @@ Two things a reader should take from this card before using the data: only a sma
 
 | file | what it is | sha256 |
 |---|---|---|
-| `dataset.parquet` | 1890 rows × 44 columns | `867b742421ac0b093f29dc1644b37ba387d72af1c47e003ede4d26b7bb622ff6` |
-| `dataset.jsonl` | the same rows, one JSON object per line | `2ba1bfa755036bbd9216c14adcdd8032af0c28a6d3fe4249fbdca2197e4e222b` |
+| `dataset.parquet` | 1890 rows × 44 columns | `49a7dc46f7be6b59061b3bf92fe55cbe95f915e14a9e0c1283ab8cb6ee432666` |
+| `dataset.jsonl` | the same rows, one JSON object per line | `eb304784d874dd91c4c44a1f5fee54182e8cb8f5bc92cd9c5d135be5d95885ba` |
 | `schema.json` | JSON Schema 2020-12 for the record type, generated from the pydantic models in `mnp.schema.models`; the release's own evidence columns are `$defs/ReleasedEvidence` | `8976dc57ec31847920e727058140f0cb737356452ce4b5c8e28d449dd50edc4d` |
 | `LICENSE` | CC BY 4.0, and the attribution line | `b292b211874def0d2ff9e4d276880fdfa35d10450de3321040e4d341a622d606` |
 | `DATASET_CARD.md` | this file | — |
@@ -28,14 +28,14 @@ The parquet and the JSONL carry identical content; the two formats exist so the 
 | columns | 44 |
 | rows carrying a printed number | 1384 |
 | rows reporting a measurement with no retrievable number | 506 |
-| **fully conditioned rows** (`conditions_complete`) | **62 / 1890 — 3.3 %** |
+| **fully conditioned rows** (`conditions_complete`) | **61 / 1890 — 3.2 %** |
 | evidence quotes found verbatim in the source | 1890 / 1890 — 100.0 % |
 
 Source corpus: 858 XML files, vendored as one archive of 27747267 bytes (27.7 MB), sha256 `9791cc01550bbd840060e0265dc985644971b2d77a479a223a0fddccb989305b`.
 
-## 3.3 % of rows are fully conditioned
+## 3.2 % of rows are fully conditioned
 
-Fully conditioned rows: **62 / 1890 — 3.3 %**. Those are the rows carrying all five of the conditions needed to interpret the number — dispersion medium, ionic strength, pH, temperature and instrument. Every other row is missing at least one of them.
+Fully conditioned rows: **61 / 1890 — 3.2 %**. Those are the rows carrying all five of the conditions needed to interpret the number — dispersion medium, ionic strength, pH, temperature and instrument. Every other row is missing at least one of them.
 
 This is the dataset's finding, not a defect in it. A zeta potential without its ionic strength is not a property of the particle; it is a property of one unrecorded experiment. The dataset exists to make that countable.
 
@@ -46,7 +46,7 @@ Row-level reporting of each condition:
 | Dispersion medium | 1572 / 1890 | 83.2 % |
 | Ionic strength | 259 / 1890 | 13.7 % |
 | pH | 402 / 1890 | 21.3 % |
-| Temperature | 525 / 1890 | 27.8 % |
+| Temperature | 484 / 1890 | 25.6 % |
 | Instrument | 1679 / 1890 | 88.8 % |
 
 ## Absence is a value, not a gap
@@ -55,7 +55,7 @@ The five `*_reported` booleans are the reason this dataset exists. `ionic_streng
 
 Nothing is imputed. A condition that was not reported is never filled with a conventional default: **`not measured` is never written as 0.0 and never as 1.0**, because both are claims nobody checked. Where a paper reports a measurement but prints no number, `value` is null and `value_text` says so; where the ionic strength was inferred from a named salt rather than stated, `ionic_strength_source` records that it was inferred.
 
-Two readings are cleared rather than kept, by rules ratified on 2026-09-28. An ionic strength of exactly 0 mM is not a reported one: "no added electrolyte" says nothing was added, not that the medium holds no ions, so the row reads `ionic_strength_reported = False` and carries `ionic_strength_zero_not_reported` (10 rows). A temperature tied to an incubation or exposure step is not the measurement temperature, even when the paper gives no other, so it is removed and the row carries `temperature_step_not_measurement` (4 rows). The rows stay; the extraction record keeps the number the model read.
+Some readings are cleared rather than kept, by rules ratified on 2026-09-28 and 29. R1: an ionic strength of exactly 0 mM is not a reported one: "no added electrolyte" says nothing was added, not that the medium holds no ions, so the row reads `ionic_strength_reported = False` and carries `ionic_strength_zero_not_reported` (10 rows). R2: a temperature tied to an incubation or exposure step is not the measurement temperature, even when the paper gives no other, so it is removed and the row carries `temperature_step_not_measurement` (4 rows). R2b: nor is a temperature the row's own quote does not state when its source prints it only for storage, incubation, exposure or culture — a medium label such as "RPMI (stored at 37 ˚C for 24 h)", or, when the row prints it nowhere, a paper that gives it only for such a step; the row carries `temperature_from_other_step` (41 rows). The rows stay; the extraction record keeps the number the model read.
 
 This makes one query answerable that a text index cannot answer: *what ionic strength did this paper use?* when the true answer is that it never said. There is no passage to retrieve for that, so a retrieval system fabricates the nearest number. Here it is a boolean.
 
@@ -80,7 +80,7 @@ Counted over papers rather than rows, and taken from `out/tables/d1_stats.json`,
 | | |
 |---|---|
 | papers with at least one verified measurement | 491 |
-| **papers omitting at least one of the five conditions** | **477 / 491 — 97.1 %** |
+| **papers omitting at least one of the five conditions** | **478 / 491 — 97.4 %** |
 | open-access records the query returned | 862 |
 | all hits, including paywalled | 1115 |
 
@@ -91,9 +91,9 @@ Per condition, over papers, with 95 % Wilson intervals:
 | Dispersion medium | 127 / 491 | 25.9 % | 22–30 % |
 | Ionic strength | 440 / 491 | 89.6 % | 87–92 % |
 | pH | 392 / 491 | 79.8 % | 76–83 % |
-| Temperature | 384 / 491 | 78.2 % | 74–82 % |
+| Temperature | 386 / 491 | 78.6 % | 75–82 % |
 | Instrument | 90 / 491 | 18.3 % | 15–22 % |
-| Any condition | 477 / 491 | 97.1 % | 95–98 % |
+| Any condition | 478 / 491 | 97.4 % | 96–98 % |
 
 Of 858 fetched XMLs, 11 carry no retrievable text at all — conference-abstract volumes and PDF-only deposits. They were not read and found to report nothing, and are counted apart from papers that were.
 

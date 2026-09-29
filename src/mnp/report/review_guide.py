@@ -19,7 +19,7 @@ from mnp.demo import harmonise, resample
 from mnp.ek.constants import permittivity, viscosity
 from mnp.eval import comparability as comp
 from mnp.eval import grid
-from mnp.extract.zeta import STEP_TEMPERATURE, ZERO_IONIC_STRENGTH
+from mnp.extract.zeta import OTHER_STEP_TEMPERATURE, STEP_TEMPERATURE, ZERO_IONIC_STRENGTH
 from mnp.report.release import COLUMN_GROUPS
 from mnp.report.review import AUDIT_SEED, CASES, COLUMNS, FLAGS, METRICS, RUN_IDS, Facts
 
@@ -378,6 +378,7 @@ def section_2(f: Facts) -> list[str]:
     multi = int(t["evidence_quote"].fillna("").str.contains("||", regex=False).sum())
     models = ", ".join(f"`{m}` {_int(n)} rows" for m, n in c["models_by_row"].items())
     zeroed, stepped = len(_with_flag(t, ZERO_IONIC_STRENGTH)), len(_with_flag(t, STEP_TEMPERATURE))
+    other = _with_flag(t, OTHER_STEP_TEMPERATURE)
     return [
         "## 2. Where the dataset comes from",
         "",
@@ -472,11 +473,16 @@ def section_2(f: Facts) -> list[str]:
         "section, line text), deliberately not the line number, so a parser fix that "
         "renumbers the document leaves the citation standing (`docs/PROTOCOL.md`, "
         "`extract retrofit`).",
-        "5. **Flag.** `extract table` (`ExtractionRecord.to_rows`) first applies the two rules "
-        "ratified on 2026-09-28, each of which keeps the row and clears the value: an ionic "
-        "strength of exactly 0 mM becomes unreported and gains the flag "
-        f"`{ZERO_IONIC_STRENGTH}` ({_int(zeroed)} rows), and a temperature flagged "
-        f"`{STEP_TEMPERATURE}` is removed ({_int(stepped)} rows). The record in "
+        "5. **Flag.** `extract table` (`ExtractionRecord.to_rows`) first applies the rules "
+        "ratified on 2026-09-28 and 29, each of which keeps the row and clears the value: R1, "
+        "an ionic strength of exactly 0 mM becomes unreported and gains the flag "
+        f"`{ZERO_IONIC_STRENGTH}` ({_int(zeroed)} rows); R2, a temperature flagged "
+        f"`{STEP_TEMPERATURE}` is removed ({_int(stepped)} rows); R2b, a temperature the "
+        "row's quote does not state and its source prints only for storage, incubation, "
+        f"exposure or culture is removed and flagged `{OTHER_STEP_TEMPERATURE}` "
+        f"({_int(len(other))} rows in {_int(other['pmcid'].nunique())} papers, §4.4). R2b is "
+        "the one rule that may read the paper, and only for a row whose temperature neither "
+        "its quote nor its medium prints. The record in "
         "`extractions.jsonl` keeps what the model read. The five `*_reported` columns and "
         "`conditions_complete` are not read by a model: they are computed from the row's own "
         "fields by the `MeasurementConditions` properties in `src/mnp/schema/models.py` "
@@ -816,6 +822,8 @@ def section_4(f: Facts) -> list[str]:
     t_nom = t["temperature_C"].isna() & t["temperature_qualifier"].notna()
     quals = t.loc[t_nom, "temperature_qualifier"].value_counts()
     step_flag = len(_with_flag(t, STEP_TEMPERATURE))
+    other = _with_flag(t, OTHER_STEP_TEMPERATURE)
+    labelled = other[other["medium_text"].fillna("").str.contains(r"[°˚º℃]")]
     keys = t["instrument"].dropna().map(comp.instrument_key)
     family = int((keys == "malvern_zetasizer_family").sum())
     literal = int(keys.str.startswith("literal:").sum())
@@ -957,6 +965,18 @@ def section_4(f: Facts) -> list[str]:
         "(ratified 2026-09-28), so those rows carry no `temperature_C` and no "
         "`temperature_qualifier` and count as **not** reporting temperature; the flag stays to "
         "say why, and the record still holds the number.",
+        "",
+        f"R2b (ratified 2026-09-29) clears {_int(len(other))} more, in "
+        f"{_int(other['pmcid'].nunique())} papers, flagged `{OTHER_STEP_TEMPERATURE}`. Their "
+        "quote does not state the temperature at all, so the verifier's step check never "
+        "saw it. The rule asks where the number came from: the row's medium label when the "
+        "label prints it, otherwise the paper, and clears it when that source prints it only "
+        "in a phrase about storage, incubation, exposure or culture (`coerce.OTHER_STEP_RE`). "
+        f"{_int(len(labelled))} rows took it from a label"
+        + (f' such as "{_cell(labelled["medium_text"].iloc[0], 60)}"' if len(labelled) else "")
+        + f"; {_int(len(other) - len(labelled))} from a paper that prints it only for such a "
+        'step. A label that says the sample was measured at once, "(0 h at RT)", is not a '
+        "step and stands; so does any temperature the paper prints once outside a step.",
         "",
         "Used by: `conditions_complete`; comparability (`temperature_unreported`; "
         "`temperature_not_numeric` when a side has only a qualifier; `temperature_mismatch` "
@@ -2020,6 +2040,7 @@ def section_8(f: Facts) -> list[str]:
     k = len(papers)
     zero = _with_flag(t, ZERO_IONIC_STRENGTH)
     stepped = _with_flag(t, STEP_TEMPERATURE)
+    other = _with_flag(t, OTHER_STEP_TEMPERATURE)
     kappa = f.harmonised["kappa_a"]
     single = next(
         (r for r in f.key
@@ -2121,7 +2142,8 @@ def section_8(f: Facts) -> list[str]:
             f"stay, with the value cleared and the flag `{ZERO_IONIC_STRENGTH}` (§4.2); κa is now "
             f"known on {_int(int(kappa.notna().sum()))} rows, {_int(int((kappa == 0).sum()))} of "
             f"them 0. The same decision removed the {_int(len(stepped))} step-flagged "
-            "temperatures (§4.4). Closed."
+            f"temperatures, and R2b (2026-09-29) {_int(len(other))} storage and incubation "
+            "temperatures read from outside the row's quote (§4.4). Closed."
         )
     found.append(
         "**The 81 624 counterfactual is quoted, never recomputed.** No committed code produces "

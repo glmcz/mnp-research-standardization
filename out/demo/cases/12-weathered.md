@@ -479,16 +479,16 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 
 | field | this paper (of 861 pairs) | kind E sample (of 320 pairs) |
 |---|---|---|
-| conversion_model | 0.0% | 8.8% |
-| functionalisation | 87.8% | 75.6% |
+| conversion_model | 0.0% | 9.7% |
+| functionalisation | 87.8% | 76.2% |
 | instrument | 0.0% | 55.0% |
-| ionic_strength | 77.0% | 83.1% |
-| material | 0.0% | 22.8% |
-| medium | 95.1% | 90.6% |
-| pH | 100.0% | 76.9% |
+| ionic_strength | 77.0% | 84.1% |
+| material | 0.0% | 23.1% |
+| medium | 95.1% | 90.9% |
+| pH | 100.0% | 76.2% |
 | quantity | 0.0% | 5.6% |
 | size_measured_nm | 100.0% | 36.2% |
-| temperature | 100.0% | 65.0% |
+| temperature | 100.0% | 66.2% |
 
 ## 5. Harmonised value
 
@@ -548,9 +548,9 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 | medium_reported | 83.2% | 82.8% | 72.1% | 72.1% |
 | ionic_strength_reported | 13.7% | 12.1% | 8.6% | 8.4% |
 | pH_reported | 21.3% | 21.8% | 16.8% | 16.8% |
-| temperature_reported | 27.8% | 28.4% | 20.6% | 20.7% |
+| temperature_reported | 25.6% | 26.2% | 20.3% | 20.3% |
 | instrument_reported | 88.8% | 88.6% | 81.0% | 81.0% |
-| conditions_complete | 3.3% | 3.4% | 2.3% | 2.3% |
+| conditions_complete | 3.2% | 3.3% | 2.1% | 2.1% |
 
 ## 7. Reader
 

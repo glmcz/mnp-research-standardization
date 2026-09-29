@@ -13,8 +13,8 @@ Denominators: (1) papers with a verified measurement, with 95% Wilson intervals;
 | Dispersion medium | 127 / 491 | 25.9% | 22–30% | 14.7% | 11.4% |
 | Ionic strength | 440 / 491 | 89.6% | 87–92% | 51.0% | 39.5% |
 | pH | 392 / 491 | 79.8% | 76–83% | 45.5% | 35.2% |
-| Temperature | 384 / 491 | 78.2% | 74–82% | 44.5% | 34.4% |
+| Temperature | 386 / 491 | 78.6% | 75–82% | 44.8% | 34.6% |
 | Instrument | 90 / 491 | 18.3% | 15–22% | 10.4% | 8.1% |
-| Any condition | 477 / 491 | 97.1% | 95–98% | 55.3% | 42.8% |
+| Any condition | 478 / 491 | 97.4% | 96–98% | 55.5% | 42.9% |
 
 Rows whose evidence quote was not found verbatim in the article are excluded from every number above (see `flags` in d1_zeta_table.csv).

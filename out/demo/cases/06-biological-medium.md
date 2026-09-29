@@ -26,93 +26,93 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r1 | polystyrene, aminated | 41.9 ± 3.7 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r2 | polystyrene, aminated | 25.8 ± 0.9 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r3 | polystyrene, aminated | 7.6 ± 3.4 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r4 | polystyrene, aminated | 14.5 ± 5.9 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r5 | polystyrene, aminated | 6.3 ± 2.3 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r4 | polystyrene, aminated | 14.5 ± 5.9 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r5 | polystyrene, aminated | 6.3 ± 2.3 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r6 | polystyrene, aminated | 40.3 ± 2.3 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r7 | polystyrene, aminated | 14.2 ± 1.2 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r8 | polystyrene, aminated | 4 ± 2.3 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r9 | polystyrene, aminated | 3.3 ± 1.9 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r10 | polystyrene, aminated | 1.3 ± 1.1 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r9 | polystyrene, aminated | 3.3 ± 1.9 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r10 | polystyrene, aminated | 1.3 ± 1.1 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r11 | polystyrene, aminated | 31.1 ± 0.7 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r12 | polystyrene, aminated | 7.7 ± 0.7 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r13 | polystyrene, aminated | 4.1 ± 1.5 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r14 | polystyrene, aminated | -5.2 ± 1.7 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r15 | polystyrene, aminated | -0.64 ± 1.1 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r14 | polystyrene, aminated | -5.2 ± 1.7 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r15 | polystyrene, aminated | -0.64 ± 1.1 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r16 | polystyrene, aminated | 60.5 ± 0.4 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r17 | polystyrene, aminated | 11.7 ± 0.3 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r18 | polystyrene, aminated | -1.1 ± 1 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r19 | polystyrene, aminated | 9.5 ± 0.6 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r20 | polystyrene, aminated | -0.1 ± 0.4 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r19 | polystyrene, aminated | 9.5 ± 0.6 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r20 | polystyrene, aminated | -0.1 ± 0.4 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r21 | polystyrene, aminated | -15.1 ± 0.4 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r22 | polystyrene, aminated | -4.5 ± 0.3 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r23 | polystyrene, aminated | -3.3 ± 0.3 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r24 | polystyrene, aminated | -4.9 ± 1 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r25 | polystyrene, aminated | -3.9 ± 0.2 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r24 | polystyrene, aminated | -4.9 ± 1 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r25 | polystyrene, aminated | -3.9 ± 0.2 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r26 | polystyrene, aminated | -14.8 ± 8.6 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r27 | polystyrene, aminated | -5.7 ± 1.6 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r28 | polystyrene, aminated | -3.4 ± 1.4 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r29 | polystyrene, aminated | -5 ± 1 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r30 | polystyrene, aminated | -3.7 ± 1 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r29 | polystyrene, aminated | -5 ± 1 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r30 | polystyrene, aminated | -3.7 ± 1 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r31 | polystyrene, carboxylated | -25.1 ± 1.8 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r32 | polystyrene, carboxylated | -19.9 ± 1.9 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r33 | polystyrene, carboxylated | -14.3 ± 0.7 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r34 | polystyrene, carboxylated | -21 ± 1.1 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r35 | polystyrene, carboxylated | -14.8 ± 0.4 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r34 | polystyrene, carboxylated | -21 ± 1.1 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r35 | polystyrene, carboxylated | -14.8 ± 0.4 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r36 | polystyrene, carboxylated | -21.5 ± 1.3 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r37 | polystyrene, carboxylated | -24.4 ± 2.4 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r38 | polystyrene, carboxylated | -13.4 ± 1.6 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r39 | polystyrene, carboxylated | -24.5 ± 4 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r40 | polystyrene, carboxylated | -14.4 ± 1.2 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r39 | polystyrene, carboxylated | -24.5 ± 4 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r40 | polystyrene, carboxylated | -14.4 ± 1.2 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r41 | polystyrene, carboxylated | -28.1 ± 0.2 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r42 | polystyrene, carboxylated | -27.7 ± 3.5 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r43 | polystyrene, carboxylated | -20.7 ± 2.7 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r44 | polystyrene, carboxylated | -30.5 ± 2.5 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r45 | polystyrene, carboxylated | -20.3 ± 2.4 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r44 | polystyrene, carboxylated | -30.5 ± 2.5 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r45 | polystyrene, carboxylated | -20.3 ± 2.4 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r46 | polystyrene, carboxylated | -16.9 ± 1.5 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r47 | polystyrene, carboxylated | -21.2 ± 1.2 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r48 | polystyrene, carboxylated | -16.8 ± 0.7 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r49 | polystyrene, carboxylated | -19.9 ± 0.3 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r50 | polystyrene, carboxylated | -15.6 ± 0.3 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r49 | polystyrene, carboxylated | -19.9 ± 0.3 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r50 | polystyrene, carboxylated | -15.6 ± 0.3 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r51 | polystyrene, carboxylated | -23 ± 4.5 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r52 | polystyrene, carboxylated | -17.5 ± 0.7 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r53 | polystyrene, carboxylated | -13.5 ± 0.1 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r54 | polystyrene, carboxylated | -20.3 ± 0.3 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r55 | polystyrene, carboxylated | -12.5 ± 0.1 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r54 | polystyrene, carboxylated | -20.3 ± 0.3 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r55 | polystyrene, carboxylated | -12.5 ± 0.1 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r56 | polystyrene, carboxylated | -57.5 ± 3.2 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r57 | polystyrene, carboxylated | -12.6 ± 2 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r58 | polystyrene, carboxylated | -4.3 ± 1.3 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r59 | polystyrene, carboxylated | -11.3 ± 0.8 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r60 | polystyrene, carboxylated | -4.6 ± 1.7 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r59 | polystyrene, carboxylated | -11.3 ± 0.8 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r60 | polystyrene, carboxylated | -4.6 ± 1.7 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r61 | polystyrene, non-functionalized (NF) | -17.2 ± 5.8 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r62 | polystyrene, non-functionalized (NF) | -32.7 ± 2 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r63 | polystyrene, non-functionalized (NF) | -14.7 ± 3 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r64 | polystyrene, non-functionalized (NF) | -32.1 ± 2.9 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r65 | polystyrene, non-functionalized (NF) | -18.9 ± 1.9 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r64 | polystyrene, non-functionalized (NF) | -32.1 ± 2.9 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r65 | polystyrene, non-functionalized (NF) | -18.9 ± 1.9 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r66 | polystyrene, non-functionalized (NF) | -24.3 ± 0.9 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r67 | polystyrene, non-functionalized (NF) | -31.4 ± 2.8 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r68 | polystyrene, non-functionalized (NF) | -11.8 ± 4.7 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r69 | polystyrene, non-functionalized (NF) | -33.4 ± 1.1 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r70 | polystyrene, non-functionalized (NF) | -14.4 ± 2.5 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r69 | polystyrene, non-functionalized (NF) | -33.4 ± 1.1 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r70 | polystyrene, non-functionalized (NF) | -14.4 ± 2.5 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r71 | polystyrene, non-functionalized (NF) | -26.3 ± 0.6 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r72 | polystyrene, non-functionalized (NF) | -35.6 ± 1.8 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r73 | polystyrene, non-functionalized (NF) | -5.3 ± 1.6 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r74 | polystyrene, non-functionalized (NF) | -35.3 ± 3.2 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r75 | polystyrene, non-functionalized (NF) | -7.4 ± 3.8 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r74 | polystyrene, non-functionalized (NF) | -35.3 ± 3.2 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r75 | polystyrene, non-functionalized (NF) | -7.4 ± 3.8 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r76 | polystyrene, non-functionalized (NF) | -22.8 ± 2.4 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r77 | polystyrene, non-functionalized (NF) | -31.4 ± 2.2 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r78 | polystyrene, non-functionalized (NF) | -10.1 ± 0.2 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r79 | polystyrene, non-functionalized (NF) | -30.7 ± 0.9 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r80 | polystyrene, non-functionalized (NF) | -9.4 ± 0.2 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r79 | polystyrene, non-functionalized (NF) | -30.7 ± 0.9 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r80 | polystyrene, non-functionalized (NF) | -9.4 ± 0.2 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r81 | polystyrene, non-functionalized (NF) | -30.1 ± 0.3 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r82 | polystyrene, non-functionalized (NF) | -29.1 ± 0.8 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r83 | polystyrene, non-functionalized (NF) | -10.9 ± 0.3 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r84 | polystyrene, non-functionalized (NF) | -33.1 ± 0.1 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r85 | polystyrene, non-functionalized (NF) | -10.6 ± 0.4 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r84 | polystyrene, non-functionalized (NF) | -33.1 ± 0.1 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r85 | polystyrene, non-functionalized (NF) | -10.6 ± 0.4 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer ZS90 (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r86 | polystyrene, non-functionalized (NF) | -38.3 ± 4.7 mV | Water (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r87 | polystyrene, non-functionalized (NF) | -3.5 ± 0.6 mV | RPMI (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 | PMC8719689-r88 | polystyrene, non-functionalized (NF) | -4.9 ± 1.2 mV | RPMI + 0.0025% v/v Tween 20 (0 h at RT) | unreported | unreported | RT (nominal) | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r89 | polystyrene, non-functionalized (NF) | -5.5 ± 0.2 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
-| PMC8719689-r90 | polystyrene, non-functionalized (NF) | -4.6 ± 0.5 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | 37 °C | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r89 | polystyrene, non-functionalized (NF) | -5.5 ± 0.2 mV | RPMI (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
+| PMC8719689-r90 | polystyrene, non-functionalized (NF) | -4.6 ± 0.5 mV | RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h) | unreported | unreported | unreported | Zetasizer Ultra (Malvern Panalytical, Malvern, UK) |
 
 **PMC8719689-r1** evidence:
 - PMC8719689:L89: “50 nm Amine	41.9 ± 3.7	25.8 ± 0.9	7.6 ± 3.4	14.5 ± 5.9	6.3 ± 2.3”
@@ -407,12 +407,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r4 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L89 |
 | PMC8719689-r4 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L89 |
 | PMC8719689-r4 | pH | unreported | no pH number or range is printed | PMC8719689:L89 |
-| PMC8719689-r4 | temperature | reported | 37 °C stated directly | PMC8719689:L89 |
+| PMC8719689-r4 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L89 |
 | PMC8719689-r4 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L89 |
 | PMC8719689-r5 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L89 |
 | PMC8719689-r5 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L89 |
 | PMC8719689-r5 | pH | unreported | no pH number or range is printed | PMC8719689:L89 |
-| PMC8719689-r5 | temperature | reported | 37 °C stated directly | PMC8719689:L89 |
+| PMC8719689-r5 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L89 |
 | PMC8719689-r5 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L89 |
 | PMC8719689-r6 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L90 |
 | PMC8719689-r6 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L90 |
@@ -432,12 +432,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r9 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L90 |
 | PMC8719689-r9 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L90 |
 | PMC8719689-r9 | pH | unreported | no pH number or range is printed | PMC8719689:L90 |
-| PMC8719689-r9 | temperature | reported | 37 °C stated directly | PMC8719689:L90 |
+| PMC8719689-r9 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L90 |
 | PMC8719689-r9 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L90 |
 | PMC8719689-r10 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L90 |
 | PMC8719689-r10 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L90 |
 | PMC8719689-r10 | pH | unreported | no pH number or range is printed | PMC8719689:L90 |
-| PMC8719689-r10 | temperature | reported | 37 °C stated directly | PMC8719689:L90 |
+| PMC8719689-r10 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L90 |
 | PMC8719689-r10 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L90 |
 | PMC8719689-r11 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L91 |
 | PMC8719689-r11 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L91 |
@@ -457,12 +457,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r14 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L91 |
 | PMC8719689-r14 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L91 |
 | PMC8719689-r14 | pH | unreported | no pH number or range is printed | PMC8719689:L91 |
-| PMC8719689-r14 | temperature | reported | 37 °C stated directly | PMC8719689:L91 |
+| PMC8719689-r14 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L91 |
 | PMC8719689-r14 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L91 |
 | PMC8719689-r15 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L91 |
 | PMC8719689-r15 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L91 |
 | PMC8719689-r15 | pH | unreported | no pH number or range is printed | PMC8719689:L91 |
-| PMC8719689-r15 | temperature | reported | 37 °C stated directly | PMC8719689:L91 |
+| PMC8719689-r15 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L91 |
 | PMC8719689-r15 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L91 |
 | PMC8719689-r16 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L92 |
 | PMC8719689-r16 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L92 |
@@ -482,12 +482,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r19 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L92 |
 | PMC8719689-r19 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L92 |
 | PMC8719689-r19 | pH | unreported | no pH number or range is printed | PMC8719689:L92 |
-| PMC8719689-r19 | temperature | reported | 37 °C stated directly | PMC8719689:L92 |
+| PMC8719689-r19 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L92 |
 | PMC8719689-r19 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L92 |
 | PMC8719689-r20 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L92 |
 | PMC8719689-r20 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L92 |
 | PMC8719689-r20 | pH | unreported | no pH number or range is printed | PMC8719689:L92 |
-| PMC8719689-r20 | temperature | reported | 37 °C stated directly | PMC8719689:L92 |
+| PMC8719689-r20 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L92 |
 | PMC8719689-r20 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L92 |
 | PMC8719689-r21 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L93 |
 | PMC8719689-r21 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L93 |
@@ -507,12 +507,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r24 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L93 |
 | PMC8719689-r24 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L93 |
 | PMC8719689-r24 | pH | unreported | no pH number or range is printed | PMC8719689:L93 |
-| PMC8719689-r24 | temperature | reported | 37 °C stated directly | PMC8719689:L93 |
+| PMC8719689-r24 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L93 |
 | PMC8719689-r24 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L93 |
 | PMC8719689-r25 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L93 |
 | PMC8719689-r25 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L93 |
 | PMC8719689-r25 | pH | unreported | no pH number or range is printed | PMC8719689:L93 |
-| PMC8719689-r25 | temperature | reported | 37 °C stated directly | PMC8719689:L93 |
+| PMC8719689-r25 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L93 |
 | PMC8719689-r25 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L93 |
 | PMC8719689-r26 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L94 |
 | PMC8719689-r26 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L94 |
@@ -532,12 +532,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r29 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L94 |
 | PMC8719689-r29 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L94 |
 | PMC8719689-r29 | pH | unreported | no pH number or range is printed | PMC8719689:L94 |
-| PMC8719689-r29 | temperature | reported | 37 °C stated directly | PMC8719689:L94 |
+| PMC8719689-r29 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L94 |
 | PMC8719689-r29 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L94 |
 | PMC8719689-r30 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L94 |
 | PMC8719689-r30 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L94 |
 | PMC8719689-r30 | pH | unreported | no pH number or range is printed | PMC8719689:L94 |
-| PMC8719689-r30 | temperature | reported | 37 °C stated directly | PMC8719689:L94 |
+| PMC8719689-r30 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L94 |
 | PMC8719689-r30 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L94 |
 | PMC8719689-r31 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L95 |
 | PMC8719689-r31 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L95 |
@@ -557,12 +557,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r34 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L95 |
 | PMC8719689-r34 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L95 |
 | PMC8719689-r34 | pH | unreported | no pH number or range is printed | PMC8719689:L95 |
-| PMC8719689-r34 | temperature | reported | 37 °C stated directly | PMC8719689:L95 |
+| PMC8719689-r34 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L95 |
 | PMC8719689-r34 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L95 |
 | PMC8719689-r35 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L95 |
 | PMC8719689-r35 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L95 |
 | PMC8719689-r35 | pH | unreported | no pH number or range is printed | PMC8719689:L95 |
-| PMC8719689-r35 | temperature | reported | 37 °C stated directly | PMC8719689:L95 |
+| PMC8719689-r35 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L95 |
 | PMC8719689-r35 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L95 |
 | PMC8719689-r36 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L96 |
 | PMC8719689-r36 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L96 |
@@ -582,12 +582,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r39 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L96 |
 | PMC8719689-r39 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L96 |
 | PMC8719689-r39 | pH | unreported | no pH number or range is printed | PMC8719689:L96 |
-| PMC8719689-r39 | temperature | reported | 37 °C stated directly | PMC8719689:L96 |
+| PMC8719689-r39 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L96 |
 | PMC8719689-r39 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L96 |
 | PMC8719689-r40 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L96 |
 | PMC8719689-r40 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L96 |
 | PMC8719689-r40 | pH | unreported | no pH number or range is printed | PMC8719689:L96 |
-| PMC8719689-r40 | temperature | reported | 37 °C stated directly | PMC8719689:L96 |
+| PMC8719689-r40 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L96 |
 | PMC8719689-r40 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L96 |
 | PMC8719689-r41 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L97 |
 | PMC8719689-r41 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L97 |
@@ -607,12 +607,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r44 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L97 |
 | PMC8719689-r44 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L97 |
 | PMC8719689-r44 | pH | unreported | no pH number or range is printed | PMC8719689:L97 |
-| PMC8719689-r44 | temperature | reported | 37 °C stated directly | PMC8719689:L97 |
+| PMC8719689-r44 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L97 |
 | PMC8719689-r44 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L97 |
 | PMC8719689-r45 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L97 |
 | PMC8719689-r45 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L97 |
 | PMC8719689-r45 | pH | unreported | no pH number or range is printed | PMC8719689:L97 |
-| PMC8719689-r45 | temperature | reported | 37 °C stated directly | PMC8719689:L97 |
+| PMC8719689-r45 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L97 |
 | PMC8719689-r45 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L97 |
 | PMC8719689-r46 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L98 |
 | PMC8719689-r46 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L98 |
@@ -632,12 +632,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r49 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L98 |
 | PMC8719689-r49 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L98 |
 | PMC8719689-r49 | pH | unreported | no pH number or range is printed | PMC8719689:L98 |
-| PMC8719689-r49 | temperature | reported | 37 °C stated directly | PMC8719689:L98 |
+| PMC8719689-r49 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L98 |
 | PMC8719689-r49 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L98 |
 | PMC8719689-r50 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L98 |
 | PMC8719689-r50 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L98 |
 | PMC8719689-r50 | pH | unreported | no pH number or range is printed | PMC8719689:L98 |
-| PMC8719689-r50 | temperature | reported | 37 °C stated directly | PMC8719689:L98 |
+| PMC8719689-r50 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L98 |
 | PMC8719689-r50 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L98 |
 | PMC8719689-r51 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L99 |
 | PMC8719689-r51 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L99 |
@@ -657,12 +657,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r54 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L99 |
 | PMC8719689-r54 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L99 |
 | PMC8719689-r54 | pH | unreported | no pH number or range is printed | PMC8719689:L99 |
-| PMC8719689-r54 | temperature | reported | 37 °C stated directly | PMC8719689:L99 |
+| PMC8719689-r54 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L99 |
 | PMC8719689-r54 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L99 |
 | PMC8719689-r55 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L99 |
 | PMC8719689-r55 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L99 |
 | PMC8719689-r55 | pH | unreported | no pH number or range is printed | PMC8719689:L99 |
-| PMC8719689-r55 | temperature | reported | 37 °C stated directly | PMC8719689:L99 |
+| PMC8719689-r55 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L99 |
 | PMC8719689-r55 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L99 |
 | PMC8719689-r56 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L100 |
 | PMC8719689-r56 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L100 |
@@ -682,12 +682,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r59 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L100 |
 | PMC8719689-r59 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L100 |
 | PMC8719689-r59 | pH | unreported | no pH number or range is printed | PMC8719689:L100 |
-| PMC8719689-r59 | temperature | reported | 37 °C stated directly | PMC8719689:L100 |
+| PMC8719689-r59 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L100 |
 | PMC8719689-r59 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L100 |
 | PMC8719689-r60 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L100 |
 | PMC8719689-r60 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L100 |
 | PMC8719689-r60 | pH | unreported | no pH number or range is printed | PMC8719689:L100 |
-| PMC8719689-r60 | temperature | reported | 37 °C stated directly | PMC8719689:L100 |
+| PMC8719689-r60 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L100 |
 | PMC8719689-r60 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L100 |
 | PMC8719689-r61 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L101 |
 | PMC8719689-r61 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L101 |
@@ -707,12 +707,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r64 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L101 |
 | PMC8719689-r64 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L101 |
 | PMC8719689-r64 | pH | unreported | no pH number or range is printed | PMC8719689:L101 |
-| PMC8719689-r64 | temperature | reported | 37 °C stated directly | PMC8719689:L101 |
+| PMC8719689-r64 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L101 |
 | PMC8719689-r64 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L101 |
 | PMC8719689-r65 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L101 |
 | PMC8719689-r65 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L101 |
 | PMC8719689-r65 | pH | unreported | no pH number or range is printed | PMC8719689:L101 |
-| PMC8719689-r65 | temperature | reported | 37 °C stated directly | PMC8719689:L101 |
+| PMC8719689-r65 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L101 |
 | PMC8719689-r65 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L101 |
 | PMC8719689-r66 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L102 |
 | PMC8719689-r66 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L102 |
@@ -732,12 +732,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r69 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L102 |
 | PMC8719689-r69 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L102 |
 | PMC8719689-r69 | pH | unreported | no pH number or range is printed | PMC8719689:L102 |
-| PMC8719689-r69 | temperature | reported | 37 °C stated directly | PMC8719689:L102 |
+| PMC8719689-r69 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L102 |
 | PMC8719689-r69 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L102 |
 | PMC8719689-r70 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L102 |
 | PMC8719689-r70 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L102 |
 | PMC8719689-r70 | pH | unreported | no pH number or range is printed | PMC8719689:L102 |
-| PMC8719689-r70 | temperature | reported | 37 °C stated directly | PMC8719689:L102 |
+| PMC8719689-r70 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L102 |
 | PMC8719689-r70 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L102 |
 | PMC8719689-r71 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L103 |
 | PMC8719689-r71 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L103 |
@@ -757,12 +757,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r74 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L103 |
 | PMC8719689-r74 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L103 |
 | PMC8719689-r74 | pH | unreported | no pH number or range is printed | PMC8719689:L103 |
-| PMC8719689-r74 | temperature | reported | 37 °C stated directly | PMC8719689:L103 |
+| PMC8719689-r74 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L103 |
 | PMC8719689-r74 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L103 |
 | PMC8719689-r75 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L103 |
 | PMC8719689-r75 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L103 |
 | PMC8719689-r75 | pH | unreported | no pH number or range is printed | PMC8719689:L103 |
-| PMC8719689-r75 | temperature | reported | 37 °C stated directly | PMC8719689:L103 |
+| PMC8719689-r75 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L103 |
 | PMC8719689-r75 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L103 |
 | PMC8719689-r76 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L104 |
 | PMC8719689-r76 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L104 |
@@ -782,12 +782,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r79 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L104 |
 | PMC8719689-r79 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L104 |
 | PMC8719689-r79 | pH | unreported | no pH number or range is printed | PMC8719689:L104 |
-| PMC8719689-r79 | temperature | reported | 37 °C stated directly | PMC8719689:L104 |
+| PMC8719689-r79 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L104 |
 | PMC8719689-r79 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L104 |
 | PMC8719689-r80 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L104 |
 | PMC8719689-r80 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L104 |
 | PMC8719689-r80 | pH | unreported | no pH number or range is printed | PMC8719689:L104 |
-| PMC8719689-r80 | temperature | reported | 37 °C stated directly | PMC8719689:L104 |
+| PMC8719689-r80 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L104 |
 | PMC8719689-r80 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L104 |
 | PMC8719689-r81 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L105 |
 | PMC8719689-r81 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L105 |
@@ -807,12 +807,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r84 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L105 |
 | PMC8719689-r84 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L105 |
 | PMC8719689-r84 | pH | unreported | no pH number or range is printed | PMC8719689:L105 |
-| PMC8719689-r84 | temperature | reported | 37 °C stated directly | PMC8719689:L105 |
+| PMC8719689-r84 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L105 |
 | PMC8719689-r84 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L105 |
 | PMC8719689-r85 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L105 |
 | PMC8719689-r85 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L105 |
 | PMC8719689-r85 | pH | unreported | no pH number or range is printed | PMC8719689:L105 |
-| PMC8719689-r85 | temperature | reported | 37 °C stated directly | PMC8719689:L105 |
+| PMC8719689-r85 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L105 |
 | PMC8719689-r85 | instrument | reported | an instrument is named: "Zetasizer ZS90 (Malvern Panalytical, Malvern, UK)" | PMC8719689:L105 |
 | PMC8719689-r86 | medium | reported | a liquid is named: "Water (0 h at RT)" | PMC8719689:L106 |
 | PMC8719689-r86 | ionic_strength | unreported | the medium is named as pure/DI water ("Water (0 h at RT)"); DI water does not mean ionic strength zero — absence is never imputed | PMC8719689:L106 |
@@ -832,12 +832,12 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 | PMC8719689-r89 | medium | reported | a liquid is named: "RPMI (stored at 37 ˚C for 24 h)" | PMC8719689:L106 |
 | PMC8719689-r89 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L106 |
 | PMC8719689-r89 | pH | unreported | no pH number or range is printed | PMC8719689:L106 |
-| PMC8719689-r89 | temperature | reported | 37 °C stated directly | PMC8719689:L106 |
+| PMC8719689-r89 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L106 |
 | PMC8719689-r89 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L106 |
 | PMC8719689-r90 | medium | reported | a liquid is named: "RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)" | PMC8719689:L106 |
 | PMC8719689-r90 | ionic_strength | unreported | the medium is a culture or biological medium ("RPMI + 0.0025% v/v Tween 20 (stored at 37 ˚C for 24 h)"); its composition is not printed as a checkable ionic strength | PMC8719689:L106 |
 | PMC8719689-r90 | pH | unreported | no pH number or range is printed | PMC8719689:L106 |
-| PMC8719689-r90 | temperature | reported | 37 °C stated directly | PMC8719689:L106 |
+| PMC8719689-r90 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC8719689:L106 |
 | PMC8719689-r90 | instrument | reported | an instrument is named: "Zetasizer Ultra (Malvern Panalytical, Malvern, UK)" | PMC8719689:L106 |
 
 ## 4. Comparability
@@ -846,18 +846,18 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 
 | row_id_a | row_id_b | verdict | blockers |
 |---|---|---|---|
-| PMC8719689-r1 | PMC8719689-r10 | not_comparable | ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
+| PMC8719689-r1 | PMC8719689-r10 | not_comparable | ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_unreported |
 | PMC8719689-r1 | PMC8719689-r11 | not_comparable | ionic_strength_unreported;pH_unreported;temperature_not_numeric |
 | PMC8719689-r1 | PMC8719689-r12 | not_comparable | ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
 | PMC8719689-r1 | PMC8719689-r13 | not_comparable | ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
-| PMC8719689-r1 | PMC8719689-r14 | not_comparable | ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
-| PMC8719689-r1 | PMC8719689-r15 | not_comparable | ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
+| PMC8719689-r1 | PMC8719689-r14 | not_comparable | ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_unreported |
+| PMC8719689-r1 | PMC8719689-r15 | not_comparable | ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_unreported |
 | PMC8719689-r1 | PMC8719689-r16 | not_comparable | instrument_mismatch;ionic_strength_unreported;pH_unreported;temperature_not_numeric |
 | PMC8719689-r1 | PMC8719689-r17 | not_comparable | instrument_mismatch;ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
 | PMC8719689-r1 | PMC8719689-r18 | not_comparable | instrument_mismatch;ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
-| PMC8719689-r1 | PMC8719689-r19 | not_comparable | instrument_mismatch;ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
+| PMC8719689-r1 | PMC8719689-r19 | not_comparable | instrument_mismatch;ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_unreported |
 | PMC8719689-r1 | PMC8719689-r2 | not_comparable | ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
-| PMC8719689-r1 | PMC8719689-r20 | not_comparable | instrument_mismatch;ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
+| PMC8719689-r1 | PMC8719689-r20 | not_comparable | instrument_mismatch;ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_unreported |
 | PMC8719689-r1 | PMC8719689-r21 | not_comparable | instrument_mismatch;ionic_strength_unreported;pH_unreported;temperature_not_numeric |
 | PMC8719689-r1 | PMC8719689-r22 | not_comparable | instrument_mismatch;ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
 | PMC8719689-r1 | PMC8719689-r23 | not_comparable | instrument_mismatch;ionic_strength_unreported;medium_class_mismatch;pH_unreported;temperature_not_numeric |
@@ -965,16 +965,16 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 
 | field | this paper (of 4005 pairs) | kind E sample (of 320 pairs) |
 |---|---|---|
-| conversion_model | 0.0% | 8.8% |
-| functionalisation | 67.4% | 75.6% |
+| conversion_model | 0.0% | 9.7% |
+| functionalisation | 67.4% | 76.2% |
 | instrument | 44.9% | 55.0% |
-| ionic_strength | 100.0% | 83.1% |
-| material | 0.0% | 22.8% |
-| medium | 80.9% | 90.6% |
-| pH | 100.0% | 76.9% |
+| ionic_strength | 100.0% | 84.1% |
+| material | 0.0% | 23.1% |
+| medium | 80.9% | 90.9% |
+| pH | 100.0% | 76.2% |
 | quantity | 0.0% | 5.6% |
 | size_measured_nm | 0.0% | 36.2% |
-| temperature | 84.3% | 65.0% |
+| temperature | 100.0% | 66.2% |
 
 ## 5. Harmonised value
 
@@ -1082,9 +1082,9 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 | medium_reported | 83.2% | 82.3% | 72.1% | 72.1% |
 | ionic_strength_reported | 13.7% | 14.4% | 8.6% | 8.6% |
 | pH_reported | 21.3% | 22.3% | 16.8% | 16.8% |
-| temperature_reported | 27.8% | 24.2% | 20.6% | 20.5% |
+| temperature_reported | 25.6% | 23.9% | 20.3% | 20.2% |
 | instrument_reported | 88.8% | 88.3% | 81.0% | 81.0% |
-| conditions_complete | 3.3% | 3.4% | 2.3% | 2.3% |
+| conditions_complete | 3.2% | 3.4% | 2.1% | 2.1% |
 
 ## 7. Reader
 

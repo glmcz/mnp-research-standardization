@@ -109,8 +109,26 @@ def _hash_counts(values) -> dict[str, int]:
     return dict(sorted(counts.items(), key=lambda kv: (-kv[1], kv[0])))
 
 
+def _paper_for(rec: zeta.ExtractionRecord) -> str | None:
+    """The article's full text when rule R2b must read it, else None — most records never do.
+
+    Missing XML is refused rather than skipped: without the paper the rule would silently keep
+    a temperature it clears when the corpus is present, and the table would depend on which
+    checkout built it.
+    """
+    if not any(zeta.needs_paper(m) for m in rec.measurements):
+        return None
+    article = _article(rec.pmcid)
+    if article is None:
+        raise SystemExit(
+            f"{rec.pmcid}: no XML, and rule R2b needs the paper to build its rows; "
+            "run `python -m mnp.corpus restore`"
+        )
+    return article.full_text
+
+
 def _write_table(done: dict[str, zeta.ExtractionRecord], quiet: bool = False) -> None:
-    rows = [r for rec in done.values() for r in rec.to_rows()]
+    rows = [r for rec in done.values() for r in rec.to_rows(_paper_for(rec))]
     table = pd.DataFrame(rows)
     config.DATA_PROCESSED.mkdir(parents=True, exist_ok=True)
     table.to_parquet(config.DATA_PROCESSED / "zeta_table.parquet", index=False)

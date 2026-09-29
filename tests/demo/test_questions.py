@@ -132,7 +132,11 @@ def test_no_lookup_is_built_on_a_value_a_rule_cleared(case, table):
     strength 0 mM)": rule R1 clears that 0, but the question carried the paper's words, the
     reader repeated them, and the answer was scored a fabrication. A reader cannot know a
     project rule, so a lookup must not rest on a value one of them cleared."""
-    rule_flags = ("ionic_strength_zero_not_reported", "temperature_step_not_measurement")
+    rule_flags = (
+        "ionic_strength_zero_not_reported",
+        "temperature_step_not_measurement",
+        "temperature_from_other_step",
+    )
     by_id = table.set_index("row_id")
     for question, key in questions.questions_for(case, table):
         if question.kind is not QueryKind.a:

@@ -1,25 +1,30 @@
-"""The two row rules Martin ratified on 2026-09-28, and the record they must leave alone.
+"""The row rules Martin ratified on 2026-09-28 and 29, and the record they must leave alone.
 
 R1: an ionic strength of exactly 0 mM is not a reported one ("no added electrolyte" is not a
 zero). R2: a temperature the verifier flags `temperature_step_not_measurement` belongs to an
-incubation or exposure step, never to the measurement. Both clear the value where a record
-becomes a row; the record keeps what the model read.
+incubation or exposure step, never to the measurement. R2b: a temperature the row's own quote
+does not state, whose source prints it only for another step (the medium label "RPMI (stored at
+37 ˚C for 24 h)", or a paper that gives it only for an incubation), is not the measurement's
+either. All clear the value where a record becomes a row; the record keeps what the model read.
 """
 
 from __future__ import annotations
 
 import json
+import re
 
 import pandas as pd
 import pytest
 
 from mnp import config
 from mnp.eval import comparability as comp
-from mnp.extract import zeta
+from mnp.extract import coerce, zeta
 from mnp.schema import models
 
 STEP = "temperature_step_not_measurement"
 ZERO = "ionic_strength_zero_not_reported"
+OTHER = "temperature_from_other_step"
+STORED = "RPMI (stored at 37 ˚C for 24 h)"
 
 # Every other condition reported, so `conditions_complete` is True until a rule clears one.
 COMPLETE = {
@@ -33,7 +38,9 @@ COMPLETE = {
 }
 
 
-def _record(flags: list[str], **conditions) -> zeta.ExtractionRecord:
+def _record(
+    flags: list[str], quote: str = "The zeta potential was -30.0 mV.", **conditions
+) -> zeta.ExtractionRecord:
     m = models.SurfaceMeasurement(
         particle_name="PS",
         material="polystyrene",
@@ -41,7 +48,7 @@ def _record(flags: list[str], **conditions) -> zeta.ExtractionRecord:
         value=-30.0,
         unit=models.Unit.mV,
         conditions=models.MeasurementConditions(**{**COMPLETE, **conditions}),
-        evidence=models.Evidence(quote="The zeta potential was -30.0 mV."),
+        evidence=models.Evidence(quote=quote),
     )
     return zeta.ExtractionRecord(
         pmcid="PMC1",
@@ -117,6 +124,102 @@ def test_the_record_keeps_what_the_model_read():
     assert rec.row_flags == [[STEP]]
 
 
+# -- R2b ---------------------------------------------------------------------------------------
+
+
+def _cleared(row: dict) -> bool:
+    return (
+        row["temperature_C"] is None
+        and row["temperature_qualifier"] is None
+        and row["temperature_reported"] is False
+        and OTHER in row["flags"].split(";")
+    )
+
+
+def test_a_storage_temperature_read_off_the_medium_label_is_cleared():
+    """PMC8719689: the column "RPMI (stored at 37 ˚C for 24 h)", the quote only the table row."""
+    row = _record([], medium_text=STORED, temperature_C=37.0).to_rows()[0]
+    assert _cleared(row)
+    assert row["conditions_complete"] is False
+    assert row["medium_text"] == STORED
+
+
+def test_room_temperature_at_zero_hours_is_kept():
+    """The same table's "(0 h at RT)" columns were measured straight away: that RT stands."""
+    row = _record(
+        [], medium_text="RPMI (0 h at RT)", temperature_C=None, temperature_qualifier="RT"
+    ).to_rows()[0]
+    assert row["temperature_qualifier"] == "RT"
+    assert row["temperature_reported"] is True
+    assert OTHER not in row["flags"]
+
+
+def test_a_measurement_temperature_is_kept():
+    paper = "Cells were incubated at 37 °C. The zeta potential was measured at 25 °C."
+    quote = "The zeta potential was -30.0 mV, measured at 25 °C."
+    row = _record([], quote=quote, temperature_C=25.0).to_rows(paper=paper)[0]
+    assert row["temperature_C"] == 25.0
+    assert row["temperature_reported"] is True
+    assert OTHER not in row["flags"]
+
+
+def test_a_label_temperature_the_quote_also_states_is_kept():
+    quote = "The zeta potential, measured at 37 °C, was -30.0 mV."
+    row = _record([], quote=quote, medium_text=STORED, temperature_C=37.0).to_rows()[0]
+    assert row["temperature_C"] == 37.0
+    assert OTHER not in row["flags"]
+
+
+def test_a_step_label_at_another_temperature_leaves_the_row_alone():
+    """PMC13520334: "t = 24 h (incubated at 37 °C)", measured at room temperature."""
+    medium = "cell culture medium, t = 24 h (incubated at 37 °C)"
+    rt = _record(
+        [], medium_text=medium, temperature_C=None, temperature_qualifier="room temperature"
+    ).to_rows()[0]
+    assert rt["temperature_qualifier"] == "room temperature"
+    assert OTHER not in rt["flags"]
+    at_25 = _record([], medium_text=medium, temperature_C=25.0).to_rows()[0]
+    assert at_25["temperature_C"] == 25.0
+    assert OTHER not in at_25["flags"]
+
+
+def test_a_temperature_the_paper_gives_only_for_a_step_is_cleared():
+    """PMC13288247: 37 °C appears once, for the SGF incubation; the quote has no temperature."""
+    paper = (
+        "Particles were incubated in simulated gastric fluid (SGF) at 37 °C for 30 min, after "
+        "which zeta potential was measured in triplicate."
+    )
+    row = _record([], medium_text="simulated gastric fluid (SGF)", temperature_C=37.0)
+    assert _cleared(row.to_rows(paper=paper)[0])
+
+
+def test_one_measurement_sentence_in_the_paper_keeps_it():
+    paper = "Cells were incubated at 37 °C. The zeta potential was measured at 37 °C."
+    row = _record([], temperature_C=37.0).to_rows(paper=paper)[0]
+    assert row["temperature_C"] == 37.0
+    assert OTHER not in row["flags"]
+
+
+def test_a_temperature_the_paper_never_prints_in_degrees_is_kept():
+    """PMC10734291 prints 298 K; the row holds 24.85 °C. Absence is not a step."""
+    row = _record([], temperature_C=24.85).to_rows(paper="Measured at T = 298 K.")[0]
+    assert row["temperature_C"] == 24.85
+    assert OTHER not in row["flags"]
+
+
+def test_without_the_paper_only_the_row_is_read():
+    row = _record([], temperature_C=37.0).to_rows()[0]
+    assert row["temperature_C"] == 37.0
+
+
+def test_r2b_leaves_the_record_alone():
+    rec = _record([], medium_text=STORED, temperature_C=37.0)
+    before = rec.to_json()
+    assert _cleared(rec.to_rows()[0])
+    assert rec.to_json() == before
+    assert rec.row_flags == [[]]
+
+
 # -- the committed artefacts -------------------------------------------------------------------
 
 TABLES = {
@@ -188,3 +291,49 @@ def test_the_record_still_holds_what_the_rules_cleared():
     assert zeros > 0 and steps > 0
     assert int(_flagged(built, ZERO).sum()) == zeros
     assert int(_flagged(built, STEP).sum()) == steps
+
+
+# A number with a degree sign, as a medium label prints a temperature. Deliberately not the
+# rule's own helper: the check below must be able to disagree with it.
+_DEGREE_NUMBER = re.compile(r"(\d+(?:[.,]\d+)?)\s*(?:±\s*[\d.,]+\s*)?[°˚º℃]")
+
+
+def _step_phrase_temperatures(medium: str) -> set[float]:
+    found = set()
+    for segment in re.split(r"[(),;]", medium):
+        if coerce.OTHER_STEP_RE.search(segment):
+            found |= {float(n.replace(",", ".")) for n in _DEGREE_NUMBER.findall(segment)}
+    return found
+
+
+def test_no_committed_temperature_sits_in_a_step_phrase_of_its_own_medium(table):
+    """R2b on the artefact: "RPMI (stored at 37 ˚C for 24 h)" never leaves 37 °C behind."""
+    wrong = [
+        (r["row_id"], r["temperature_C"], r["medium_text"])
+        for r in table.to_dict(orient="records")
+        if isinstance(r["medium_text"], str)
+        and pd.notna(r["temperature_C"])
+        and r["temperature_C"] in _step_phrase_temperatures(r["medium_text"])
+    ]
+    assert wrong == []
+
+
+def test_no_other_step_flagged_committed_row_has_a_temperature(table):
+    other = table[_flagged(table, OTHER)]
+    assert len(other) > 0
+    assert other["temperature_C"].isna().all()
+    assert other["temperature_qualifier"].isna().all()
+    assert not other["temperature_reported"].astype(bool).any()
+
+
+def test_the_record_still_holds_every_other_step_temperature():
+    """Provenance for R2b: each row it cleared still carries its temperature in the record."""
+    held = {}
+    for line in (config.DATA_INTERIM / "extractions.jsonl").read_text().splitlines():
+        if line.strip():
+            for m in json.loads(line)["measurements"]:
+                held[m["row_id"]] = m["conditions"].get("temperature_C")
+    built = pd.read_parquet(config.DATA_PROCESSED / "zeta_table.parquet")
+    cleared = built.loc[_flagged(built, OTHER), "row_id"].tolist()
+    assert cleared
+    assert [r for r in cleared if held.get(r) is None] == []

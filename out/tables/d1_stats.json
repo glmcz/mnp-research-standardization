@@ -47,13 +47,13 @@
     {
       "condition": "temperature",
       "label": "Temperature",
-      "k_missing": 384,
+      "k_missing": 386,
       "n": 491,
-      "fraction": 0.7820773930753564,
-      "wilson_lo": 0.7434470230699833,
-      "wilson_hi": 0.816328064554016,
-      "fraction_of_oa_records": 0.44547563805104406,
-      "fraction_of_all_hits_lower_bound": 0.34439461883408073
+      "fraction": 0.7861507128309573,
+      "wilson_lo": 0.747734181756262,
+      "wilson_hi": 0.820124300634871,
+      "fraction_of_oa_records": 0.44779582366589327,
+      "fraction_of_all_hits_lower_bound": 0.34618834080717487
     },
     {
       "condition": "instrument",
@@ -69,16 +69,16 @@
     {
       "condition": "any",
       "label": "Any condition",
-      "k_missing": 477,
+      "k_missing": 478,
       "n": 491,
-      "fraction": 0.9714867617107943,
-      "wilson_lo": 0.9527121501214041,
-      "wilson_hi": 0.9829407941743059,
-      "fraction_of_oa_records": 0.5533642691415314,
-      "fraction_of_all_hits_lower_bound": 0.42780269058295967
+      "fraction": 0.9735234215885947,
+      "wilson_lo": 0.9552316786862792,
+      "wilson_hi": 0.9844629629929976,
+      "fraction_of_oa_records": 0.5545243619489559,
+      "fraction_of_all_hits_lower_bound": 0.42869955156950673
     }
   ],
-  "complete_fraction": 0.02851323828920571,
+  "complete_fraction": 0.02647657841140527,
   "denominator_note": null,
   "text_availability": {
     "fetched": 858,

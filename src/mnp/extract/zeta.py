@@ -387,6 +387,7 @@ def check_units(m, claimed_units: set[str], article_text: str) -> list[str]:
 # -- verification ------------------------------------------------------------------
 
 STEP_TEMPERATURE = "temperature_step_not_measurement"
+OTHER_STEP_TEMPERATURE = "temperature_from_other_step"
 ZERO_IONIC_STRENGTH = "ionic_strength_zero_not_reported"
 
 
@@ -567,15 +568,63 @@ def _ionic_in(c, quote: str) -> bool:
 # -- record --------------------------------------------------------------------------
 
 
-def row_conditions(
-    c: models.MeasurementConditions, flags: list[str]
-) -> tuple[models.MeasurementConditions, list[str]]:
-    """The conditions a table row carries, after the two rules Martin ratified on 2026-09-28.
+# A temperature as a paper prints one: a number, perhaps "± x", then a degree sign. The ring
+# (˚) and the ordinal (º) stand in for the degree sign often enough to matter.
+_DEGREES = re.compile(r"(?<![\d.,])(\d+(?:[.,]\d+)?)\s*(?:±\s*\d+(?:[.,]\d+)?\s*)?[°˚º℃]")
+_SENTENCE_END = re.compile(r"(?<=[.;!?])\s+(?=[A-Z(])")
 
-    Both keep the row and clear the value. An ionic strength of exactly 0 mM is not a reported
-    one: "no added electrolyte" says nothing was added, not that the medium holds no ions, and
-    absence is never imputed. A temperature the verifier tied to an incubation or exposure step
-    is not the measurement temperature, even when the paper gives no other.
+
+def step_only(text: str) -> dict[float, bool]:
+    """Every temperature `text` prints → whether each sentence printing it is about another step.
+
+    A step sentence is one `coerce.OTHER_STEP_RE` matches: storage, incubation, exposure,
+    culture, digestion. One sentence outside a step is enough to say False, because the paper
+    may be stating the measurement there.
+    """
+    only: dict[float, bool] = {}
+    for line in text.splitlines():
+        for sentence in _SENTENCE_END.split(line):
+            step = bool(coerce.OTHER_STEP_RE.search(sentence))
+            for m in _DEGREES.finditer(sentence):
+                value = float(m.group(1).replace(",", "."))
+                only[value] = only.get(value, True) and step
+    return only
+
+
+def _other_step_temperature(
+    c: models.MeasurementConditions, quote: str, paper: dict[float, bool] | None
+) -> bool:
+    """R2b: is this temperature another step's, read from outside the row's own quote?
+
+    The row's source for a temperature its quote does not state is its medium label, when the
+    label prints it, and otherwise the paper. It is another step's when that source prints it
+    only in a step phrase.
+    """
+    t = c.temperature_C
+    if t is None or _number_in(t, quote):
+        return False
+    if c.medium_text and t in (label := step_only(c.medium_text)):
+        return label[t]
+    return bool(paper and paper.get(t))
+
+
+def row_conditions(
+    c: models.MeasurementConditions,
+    flags: list[str],
+    quote: str = "",
+    paper: dict[float, bool] | None = None,
+) -> tuple[models.MeasurementConditions, list[str]]:
+    """The conditions a table row carries, after the rules Martin ratified on 2026-09-28 and 29.
+
+    All keep the row and clear the value. R1: an ionic strength of exactly 0 mM is not a
+    reported one: "no added electrolyte" says nothing was added, not that the medium holds no
+    ions, and absence is never imputed. R2: a temperature the verifier tied to an incubation or
+    exposure step is not the measurement temperature, even when the paper gives no other.
+    R2b: nor is a temperature the row's quote does not state, when its source prints it only
+    for storage, incubation, exposure or culture — the medium label "RPMI (stored at 37 ˚C for
+    24 h)" (PMC8719689), or a paper whose only 37 °C is an incubation in gastric fluid.
+
+    `paper` is `step_only` of the article; without it R2b reads the row alone.
 
     Applied here and not in the record, which stays what the model read: that is provenance,
     and the rule can be revisited without re-reading a paper. The `*_reported` properties are
@@ -588,10 +637,25 @@ def row_conditions(
         update["ionic_strength_source"] = models.ValueSource.unreported
         if ZERO_IONIC_STRENGTH not in flags:
             flags.append(ZERO_IONIC_STRENGTH)
-    if STEP_TEMPERATURE in flags:
+    if STEP_TEMPERATURE in flags or _other_step_temperature(c, quote, paper):
         update["temperature_C"] = None
         update["temperature_qualifier"] = None
+        if STEP_TEMPERATURE not in flags and OTHER_STEP_TEMPERATURE not in flags:
+            flags.append(OTHER_STEP_TEMPERATURE)
     return (c.model_copy(update=update) if update else c), flags
+
+
+def _quote_of(m: SurfaceMeasurement) -> str:
+    return _norm(m.evidence.quote) if m.evidence and m.evidence.quote else ""
+
+
+def needs_paper(m: SurfaceMeasurement) -> bool:
+    """Does R2b have to read the paper for this row: a temperature neither its quote nor its
+    medium label prints?"""
+    t = m.conditions.temperature_C
+    if t is None:
+        return False
+    return not _number_in(t, _quote_of(m)) and t not in step_only(m.conditions.medium_text or "")
 
 
 @dataclass
@@ -632,10 +696,13 @@ class ExtractionRecord:
         d["measurements"] = [SurfaceMeasurement.model_validate(m) for m in d["measurements"]]
         return cls(**d)
 
-    def to_rows(self) -> list[dict]:
+    def to_rows(self, paper: str | None = None) -> list[dict]:
+        """One dict per measurement. `paper` is the article's full text, which R2b needs only
+        for a row where `needs_paper` holds."""
+        steps = step_only(paper) if paper else None
         rows = []
         for m, stored_flags in zip(self.measurements, self.row_flags, strict=True):
-            c, flags = row_conditions(m.conditions, stored_flags)
+            c, flags = row_conditions(m.conditions, stored_flags, _quote_of(m), steps)
             rows.append(
                 {
                     "pmcid": self.pmcid,

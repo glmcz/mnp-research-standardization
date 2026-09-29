@@ -23,3 +23,7 @@ data/interim/extractions.jsonl.tmp
 
 # Quotes put back by `report rehydrate` carry their sources' licences: local only.
 data/interim/rehydrated/
+
+# rebuilt by tool/viz/build_data.py + build_page.py; publish, do not commit
+tool/viz/data.json
+tool/viz/mnp-results.html

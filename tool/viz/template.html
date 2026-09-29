@@ -1,0 +1,1523 @@
+<title>MNP-KB v0 Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root {
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #6c6a65;
+  --axis-text: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --line: rgba(11, 11, 11, 0.10);
+  --s1: #2a78d6;
+  --s2: #eb6834;
+  --s3: #1baf7a;
+  --absent: #d4d2ca;
+  --s1-wash: rgba(42, 120, 214, 0.10);
+  --s2-wash: rgba(235, 104, 52, 0.12);
+  --link: #1c5cab;
+  --code-bg: #f0efea;
+  --hover: rgba(11, 11, 11, 0.04);
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #a5a49c;
+    --axis-text: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --line: rgba(255, 255, 255, 0.10);
+    --s1: #3987e5;
+    --s2: #d95926;
+    --s3: #199e70;
+    --absent: #43423d;
+    --s1-wash: rgba(57, 135, 229, 0.16);
+    --s2-wash: rgba(217, 89, 38, 0.18);
+    --link: #86b6ef;
+    --code-bg: #222220;
+    --hover: rgba(255, 255, 255, 0.05);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --muted: #a5a49c;
+  --axis-text: #898781;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --line: rgba(255, 255, 255, 0.10);
+  --s1: #3987e5;
+  --s2: #d95926;
+  --s3: #199e70;
+  --absent: #43423d;
+  --s1-wash: rgba(57, 135, 229, 0.16);
+  --s2-wash: rgba(217, 89, 38, 0.18);
+  --link: #86b6ef;
+  --code-bg: #222220;
+  --hover: rgba(255, 255, 255, 0.05);
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  padding-inline: 16px;
+}
+main { max-width: 980px; margin: 0 auto; padding-block: 40px 72px; }
+a { color: var(--link); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--s1); outline-offset: 2px;
+}
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h1 {
+  font-family: var(--display);
+  font-stretch: 78%;
+  font-weight: 750;
+  font-size: clamp(2rem, 5.2vw, 3.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+h2 {
+  font-family: var(--display);
+  font-stretch: 85%;
+  font-weight: 650;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  line-height: 1.15;
+}
+h3 { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+p { margin: 0; max-width: 68ch; }
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.num { font-variant-numeric: tabular-nums; }
+code, .mono { font-family: var(--mono); font-size: 0.88em; }
+
+.masthead { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.masthead .lede { font-size: 1.08rem; color: var(--ink-2); max-width: 70ch; }
+.masthead .lede b { color: var(--ink); font-weight: 600; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 0.9rem; color: var(--ink-2); }
+.facts b { font-family: var(--display); font-stretch: 85%; font-size: 1.35rem; font-weight: 700; color: var(--ink); margin-right: 4px; }
+.toc { display: flex; flex-wrap: wrap; gap: 6px 8px; list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+.toc a {
+  display: inline-flex; gap: 6px; align-items: baseline;
+  padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px;
+  text-decoration: none; color: var(--ink); font-size: 0.88rem; background: var(--surface);
+}
+.toc a span { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+.toc a:hover { background: var(--hover); }
+
+.sec { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; padding-block: 44px 8px; }
+.sec + .sec { border-top: 1px solid var(--line); margin-top: 28px; }
+.sec > header { display: grid; gap: 8px; }
+.gloss { color: var(--ink-2); font-size: 0.95rem; }
+.sub { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.sub + .sub { margin-top: 18px; }
+.sub-title { font-weight: 600; font-size: 1.02rem; }
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 0;
+}
+.read { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; }
+.read > div { display: grid; gap: 4px; align-content: start; min-width: 0; }
+.read p { font-size: 0.94rem; color: var(--ink-2); }
+@media (max-width: 680px) { .read { grid-template-columns: minmax(0, 1fr); } }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.82rem; color: var(--ink-2); margin-bottom: 10px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; flex: none; }
+.sw.line { height: 2px; border-radius: 1px; width: 14px; }
+.sw.dot { border-radius: 50%; width: 9px; height: 9px; }
+.sw.tick { width: 2px; height: 14px; border-radius: 0; background: var(--ink); }
+.bg-s1 { background: var(--s1); } .bg-s2 { background: var(--s2); } .bg-s3 { background: var(--s3); }
+.bg-absent { background: var(--absent); } .bg-ink { background: var(--ink); } .bg-ink2 { background: var(--ink-2); }
+
+/* horizontal bars built from HTML */
+.hb { display: grid; gap: 10px; }
+.hb-row { display: grid; grid-template-columns: minmax(150px, 34%) 1fr; gap: 4px 14px; align-items: center; border-radius: 4px; }
+.hb-row:hover, .hb-row:focus-visible { background: var(--hover); }
+.hb-label { font-size: 0.88rem; line-height: 1.3; min-width: 0; }
+.hb-label small { display: block; color: var(--muted); font-size: 0.78rem; }
+.hb-unit { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); border: 1px solid var(--line); border-radius: 3px; padding: 0 4px; margin-left: 6px; white-space: nowrap; }
+.hb-track { position: relative; height: 22px; margin-right: 76px; }
+.hb-tick { position: absolute; top: -3px; bottom: -3px; width: 1px; background: var(--grid); }
+.hb-tick.base { background: var(--axis); }
+.hb-bar { position: absolute; left: 0; top: 2px; height: 18px; border-radius: 0 4px 4px 0; }
+.hb-val { position: absolute; top: 0; line-height: 22px; font-size: 0.82rem; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); }
+.hb-val.zero { color: var(--ink-2); font-weight: 600; }
+.hb-axis { display: grid; grid-template-columns: minmax(150px, 34%) 1fr; gap: 14px; }
+.hb-axis .ticks { position: relative; height: 16px; margin-right: 76px; font-size: 0.72rem; color: var(--axis-text); font-variant-numeric: tabular-nums; }
+.hb-axis .ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+.hb-axis .ticks span:first-child { transform: none; }
+.hb-note { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
+@media (max-width: 560px) {
+  .hb-row, .hb-axis { grid-template-columns: minmax(0, 1fr); }
+  .hb-axis > div:first-child { display: none; }
+  .hb-track, .hb-axis .ticks { margin-right: 60px; }
+}
+.stack { position: absolute; inset: 2px 0 2px 0; display: flex; gap: 2px; }
+.stack > div { min-width: 0; position: relative; }
+.stack > div:last-child { border-radius: 0 4px 4px 0; }
+.stack > div span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.74rem; font-variant-numeric: tabular-nums; color: #fff; }
+.stack > .bg-absent span { color: var(--ink); }
+.ptick { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--ink); border-radius: 1px; }
+.hb-track.stacked { margin-right: 0; height: 26px; }
+
+.chart { width: 100%; position: relative; }
+.chart svg { display: block; overflow: visible; }
+.chart svg text { font-family: var(--sans); font-size: 11.5px; fill: var(--axis-text); font-variant-numeric: tabular-nums; }
+.chart svg text.lab { fill: var(--ink-2); font-size: 12px; }
+.chart svg text.val { fill: var(--ink); font-size: 12px; }
+.chart svg text.strong { fill: var(--ink); font-weight: 600; }
+.gridline { stroke: var(--grid); stroke-width: 1; }
+.baseline { stroke: var(--axis); stroke-width: 1; }
+.f-s1 { fill: var(--s1); } .f-s2 { fill: var(--s2); } .f-s3 { fill: var(--s3); } .f-ink { fill: var(--ink); } .f-ink2 { fill: var(--ink-2); } .f-absent { fill: var(--absent); } .f-surface { fill: var(--surface); }
+.st-s1 { stroke: var(--s1); } .st-s2 { stroke: var(--s2); } .st-ink { stroke: var(--ink); } .st-surface { stroke: var(--surface); }
+.hit { fill: transparent; cursor: crosshair; }
+
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+.seg button, .btn {
+  font: inherit; font-size: 0.84rem; padding: 5px 11px; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.btn:hover, .seg button:hover { background: var(--hover); }
+.seg button[aria-pressed="true"]:hover { background: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.chip { font-size: 0.84rem; padding: 3px 10px; border-radius: 999px; background: var(--code-bg); color: var(--ink-2); }
+.chip b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.ci-block { display: grid; gap: 2px; padding-block: 8px; border-bottom: 1px solid var(--grid); }
+.ci-block:last-child { border-bottom: 0; }
+.ci-head { display: flex; flex-wrap: wrap; gap: 2px 14px; align-items: baseline; font-size: 0.86rem; color: var(--ink-2); }
+.ci-head b { color: var(--ink); font-size: 0.95rem; }
+
+.cases { display: grid; gap: 8px; }
+.case-code { font-family: var(--mono); font-weight: 500; font-size: 0.8rem; padding: 1px 6px; border-radius: 4px; background: var(--code-bg); margin-right: 6px; color: var(--ink); }
+
+/* calculator */
+.calc { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 20px; }
+@media (max-width: 720px) { .calc { grid-template-columns: minmax(0, 1fr); } }
+.calc form { display: grid; gap: 12px; align-content: start; }
+.field { display: grid; gap: 4px; }
+.field label { font-size: 0.84rem; font-weight: 500; }
+.field small { color: var(--muted); font-size: 0.76rem; }
+.field input, .field select, .xf input, .xf select {
+  font: inherit; font-size: 0.95rem; padding: 7px 9px; border-radius: 6px;
+  border: 1px solid var(--axis); background: var(--page); color: var(--ink); width: 100%;
+}
+.presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.presets .btn { font-family: var(--mono); font-size: 0.78rem; padding: 3px 9px; }
+.presets .btn[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.readout { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.result-big { font-family: var(--display); font-stretch: 85%; font-weight: 700; font-size: clamp(1.7rem, 4vw, 2.3rem); line-height: 1.1; }
+.result-case { font-size: 0.9rem; color: var(--ink-2); }
+.steps {
+  font-family: var(--mono); font-size: 0.8rem; line-height: 1.65; background: var(--code-bg);
+  border-radius: 6px; padding: 12px 14px; margin: 0; white-space: pre; overflow-x: auto; color: var(--ink);
+}
+.verify { font-size: 0.86rem; padding: 6px 10px; border-radius: 6px; background: var(--s1-wash); }
+.verify.bad { background: var(--s2-wash); }
+
+/* grading diagram */
+.rule { display: grid; gap: 8px; }
+.rule-row { display: grid; grid-template-columns: minmax(0, 1.3fr) 24px minmax(0, 1fr); gap: 10px; align-items: center; }
+.rule-if { font-size: 0.9rem; padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--page); }
+.rule-if code { font-size: 0.78rem; }
+.rule-arrow { color: var(--muted); text-align: center; }
+.rule-then { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.92rem; }
+.rule-then small { font-weight: 400; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) { .rule-row { grid-template-columns: 1fr; gap: 4px; } .rule-arrow { display: none; } }
+
+.tiles { display: flex; flex-wrap: wrap; gap: 12px; }
+.tile { flex: 1 1 180px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); display: grid; gap: 2px; }
+.tile .t-label { font-size: 0.82rem; color: var(--ink-2); display: flex; align-items: center; gap: 6px; }
+.tile .t-value { font-family: var(--sans); font-weight: 600; font-size: 2rem; line-height: 1.1; }
+.tile .t-note { font-size: 0.8rem; color: var(--muted); }
+.callout { border-left: 3px solid var(--s2); padding: 6px 12px; font-size: 0.92rem; color: var(--ink-2); background: var(--s2-wash); border-radius: 0 6px 6px 0; max-width: 72ch; }
+
+/* explorer */
+.xbar { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin-bottom: 10px; font-size: 0.88rem; }
+.xbar .count { margin-right: auto; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.xbar .count b { color: var(--ink); }
+.xwrap { max-height: 72vh; overflow: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table.x { border-collapse: separate; border-spacing: 0; font-size: 0.8rem; width: max-content; min-width: 100%; }
+table.x th, table.x td { padding: 5px 8px; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
+table.x thead th { position: sticky; top: 0; background: var(--surface); z-index: 2; border-bottom: 1px solid var(--axis); vertical-align: bottom; }
+table.x th .h { display: flex; align-items: center; gap: 4px; cursor: pointer; white-space: nowrap; font-weight: 600; color: var(--ink); user-select: none; background: none; border: 0; padding: 0; font: inherit; font-weight: 600; }
+table.x th .h .arr { color: var(--muted); font-size: 0.7rem; width: 0.8em; }
+table.x th .xf { margin-top: 4px; }
+table.x th .xf input { font-size: 0.78rem; padding: 3px 6px; min-width: 64px; }
+table.x th .xf select { font-size: 0.78rem; padding: 3px 4px; min-width: 50px; }
+table.x td { font-variant-numeric: tabular-nums; }
+table.x td.w { max-width: 32ch; overflow-wrap: anywhere; }
+table.x td.flag { text-align: center; font-weight: 600; }
+table.x td.yes { color: var(--ink); background: var(--s1-wash); }
+table.x td.no { color: var(--muted); }
+table.x td.n { text-align: right; }
+table.x tbody tr:hover td { background: var(--hover); }
+table.x tbody tr:hover td.yes { background: var(--s1-wash); }
+.csvbox { width: 100%; height: 120px; font-family: var(--mono); font-size: 0.75rem; margin-top: 8px; background: var(--page); color: var(--ink); border: 1px solid var(--axis); border-radius: 6px; padding: 6px; }
+
+.limits ul { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; max-width: 72ch; }
+.limits li { color: var(--ink-2); }
+.limits li b { color: var(--ink); font-weight: 600; }
+footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--muted); display: grid; gap: 4px; }
+
+#tip {
+  position: fixed; z-index: 50; pointer-events: none; max-width: 300px;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14); border-radius: 6px; padding: 8px 10px; font-size: 0.8rem;
+}
+#tip .tip-h { color: var(--ink-2); margin-bottom: 4px; font-size: 0.76rem; }
+#tip .tip-r { display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+#tip .tip-r b { font-weight: 600; }
+#tip .tip-r span.l { color: var(--ink-2); }
+#tip .tip-k { width: 12px; height: 2px; border-radius: 1px; flex: none; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<main>
+  <header class="masthead">
+    <p class="eyebrow">MNP-KB v0 · surface charge of micro- and nanoplastics · commit <span data-k="commit"></span></p>
+    <h1>What <span data-k="rows"></span> zeta measurements can and cannot tell you</h1>
+    <p class="lede">MNP-KB v0 is a table of <b><span data-k="rows"></span> surface-charge measurements</b> of plastic particles (the zeta potential, in mV, and a few raw electrophoretic mobilities), read out of <b><span data-k="papers"></span> open-access papers</b>. Next to every number it stores the five conditions that number depends on, and when a paper did not state one, it stores that absence as a fact instead of guessing a default. Think of a sensor reading logged without its calibration or ambient conditions: the value exists, but you cannot compare it with anyone else's. Each section below is one picture of one claim.</p>
+    <div class="facts">
+      <span><b><span data-k="rows"></span></b>rows</span>
+      <span><b><span data-k="papers"></span></b>papers</span>
+      <span><b><span data-k="complete"></span></b>rows with all five conditions</span>
+      <span><b><span data-k="comparable"></span></b>comparable pairs, all within one paper</span>
+    </div>
+    <nav aria-label="Sections">
+      <ol class="toc">
+        <li><a href="#funnel"><span>1</span>The funnel</a></li>
+        <li><a href="#five"><span>2</span>The five conditions</a></li>
+        <li><a href="#papers"><span>3</span>Papers, not rows</a></li>
+        <li><a href="#henry"><span>4</span>The correction formula</a></li>
+        <li><a href="#compare"><span>5</span>Comparability</a></li>
+        <li><a href="#rescale"><span>6</span>Size rescaling</a></li>
+        <li><a href="#grid"><span>7</span>The eval grid</a></li>
+        <li><a href="#explorer"><span>8</span>Explorer</a></li>
+        <li><a href="#limits"><span>·</span>What it does not prove</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <section class="sec" id="funnel">
+    <header>
+      <p class="eyebrow">1 · The funnel</p>
+      <h2>From <span data-k="hits_all"></span> search hits to <span data-k="comparable_zeta_cross"></span> zeta pairs that can be compared across papers</h2>
+    </header>
+    <div class="panel"><div id="c-funnel" class="hb"></div></div>
+    <div class="read">
+      <div><h3>How to read this</h3><p>Each bar is one step of the pipeline. The scale is logarithmic: each gridline is ten times the one before, so a bar half as long is about a hundred times smaller. The unit changes on the way down, from articles to rows (one row is one reported measurement) to pairs of rows.</p></div>
+      <div><h3>What it means</h3><p>Measurements are not scarce: <span data-k="rows"></span> of them exist. The drop comes at the conditions. Only <span data-k="complete"></span> rows state all five, and of <span data-k="all_pairs"></span> possible pairs of rows only <span data-k="comparable"></span> may be compared, every one of them inside a single paper. The last bar is empty.</p></div>
+    </div>
+  </section>
+
+  <section class="sec" id="five">
+    <header>
+      <p class="eyebrow">2 · The five conditions</p>
+      <h2>Almost no measurement comes with all five conditions it depends on</h2>
+      <p class="gloss">A zeta value is read against five conditions: the <b>medium</b> (the liquid), its <b>ionic strength</b> (dissolved salt in mM; it sets how far the particle's charge reaches into the liquid), its <b>pH</b>, the <b>temperature</b>, and the <b>instrument</b>. Missing one is like a voltage reading with no load stated.</p>
+    </header>
+    <div class="sub">
+      <p class="sub-title">How many of the five each row states</p>
+      <div class="panel"><div id="c-hist" class="chart"></div></div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>Each column counts rows by how many of the five conditions they state, from none to all five. The last column is the fully conditioned rows.</p></div>
+        <div><h3>What it means</h3><p>Most rows state two or three conditions. Only <span data-k="complete"></span> of <span data-k="rows"></span> (<span data-k="complete_pct"></span>) state all five, and those come from just <span data-k="complete_papers"></span> papers.</p></div>
+      </div>
+    </div>
+    <div class="sub">
+      <p class="sub-title">Each condition, row by row</p>
+      <div class="panel">
+        <div class="legend">
+          <span><i class="sw bg-s1"></i>stated plainly</span>
+          <span><i class="sw bg-s2"></i>stated in a softer form that still counts</span>
+          <span><i class="sw bg-absent"></i>not stated</span>
+          <span><i class="sw tick"></i>same share, averaged per paper</span>
+        </div>
+        <div id="c-params" class="hb"></div>
+      </div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>Each bar is all <span data-k="rows"></span> rows. Orange is a softer form: an ionic strength computed from a printed salt recipe, a pH range, or “room temperature”. The black tick is the share averaged over papers, where every paper counts once however many rows it has.</p></div>
+        <div><h3>What it means</h3><p>Medium and instrument are almost always named. The three that enter the physics are not: ionic strength is stated on <span data-k="ionic_pct"></span> of rows. Fully conditioned needs all five at once, so the weakest one caps it. Every share is an upper bound, because the soft forms count as stated.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="papers">
+    <header>
+      <p class="eyebrow">3 · Papers, not rows</p>
+      <h2>Reporting is a habit of the paper, so the honest sample size is the number of papers</h2>
+    </header>
+    <div class="sub">
+      <p class="sub-title">Each paper's share of rows that state a condition</p>
+      <div class="panel">
+        <div class="seg" id="metric-seg" role="group" aria-label="Condition shown"></div>
+        <div class="chips" id="bubble-chips"></div>
+        <div id="c-bubble" class="chart"></div>
+      </div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>A bubble is a group of papers with the same number of rows (x, log scale) and the same share of those rows stating the selected condition (y). Bubble area is the number of papers in the group. Pick a condition above the chart.</p></div>
+        <div><h3>What it means</h3><p>Nearly every bubble sits on the 0 % or the 100 % line: a paper states a condition for all its measurements or for none. That is what an ICC of <span data-k="icc_range"></span> means (ICC, intraclass correlation: the share of the variation that lies between papers; 1 would mean every paper is all-or-nothing). So <span data-k="rows"></span> rows are worth only about <span data-k="neff_range"></span> independent rows.</p></div>
+      </div>
+    </div>
+    <div class="sub">
+      <p class="sub-title">The same estimate with naive and honest 95 % intervals</p>
+      <div class="panel">
+        <div class="legend">
+          <span><i class="sw bg-s1"></i>per row, 95 % interval re-drawing whole papers</span>
+          <span><i class="sw line bg-ink"></i>per row, naive 95 % interval (rows treated as independent)</span>
+          <span><i class="sw bg-s2"></i>per paper, 95 % interval re-drawing whole papers</span>
+          <span><i class="sw dot bg-ink"></i>estimate</span>
+        </div>
+        <div id="c-ci"></div>
+      </div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>Each strip is a window <span data-k="ci_window"></span> percentage points wide, shifted to where that condition's numbers are; the scale is the same in every strip. The blue bar comes from a cluster bootstrap: <span data-k="boot_B"></span> times, re-draw <span data-k="papers"></span> papers with replacement and recompute.</p></div>
+        <div><h3>What it means</h3><p>The honest per-row intervals are <span data-k="ci_ratio"></span> times wider than the naive ones. Quote the cluster interval: ionic strength is stated on <span data-k="ionic_ci"></span> of rows, not <span data-k="ionic_naive"></span>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="henry">
+    <header>
+      <p class="eyebrow">4 · The correction formula (Henry)</p>
+      <h2>Most zeta values come with an unstated conversion that makes them uncertain by up to a factor of 1.5</h2>
+      <p class="gloss">The instrument measures <b>mobility</b>: how fast the particle drifts in an electric field. Zeta is computed from it with a factor <i>f</i> that runs from 1.0 (the <b>Hückel</b> limit: a small particle in a thick cloud of ions) to 1.5 (the <b>Smoluchowski</b> limit: a large particle in a thin cloud). The right <i>f</i> depends on <b>κa</b>, the particle radius measured in <b>Debye lengths</b> (the thickness of that ion cloud), so it needs the ionic strength and the size. If a paper does not say which factor it used, the true value lies anywhere between ζ ÷ 1.5 and ζ × 1.5.</p>
+    </header>
+    <div class="sub">
+      <p class="sub-title">Every zeta row with a printed value: reported number and where the true value can lie</p>
+      <div class="panel">
+        <div class="legend">
+          <span><i class="sw dot bg-ink2"></i>reported value</span>
+          <span><i class="sw line bg-s2"></i>corrected value: an interval</span>
+          <span><i class="sw dot bg-s1"></i>corrected value: one number</span>
+          <span><i class="sw bg-absent"></i>nothing to plot: <span data-k="none_rows"></span> rows (<span data-k="n_case"></span> print no number, <span data-k="m0_case"></span> mobilities lack a temperature)</span>
+        </div>
+        <div id="c-range" class="chart"></div>
+      </div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>Each thin vertical line is one of <span data-k="zeta_plotted"></span> zeta rows, sorted left to right by its reported value (the grey curve). The orange line spans the values the truth can take; a blue dot marks a row whose corrected value is a single number. Hover to read a row.</p></div>
+        <div><h3>What it means</h3><p>The orange fan is the norm: <span data-k="z4"></span> of <span data-k="zeta_plotted"></span> rows name no conversion model and lack κa, so a reported −30 mV means anything from −20 to −45 mV. Only <span data-k="zeta_points"></span> zeta rows can be pinned to one number.</p></div>
+      </div>
+    </div>
+    <div class="sub">
+      <p class="sub-title">How many rows land in each case</p>
+      <div class="panel">
+        <div class="legend">
+          <span><i class="sw bg-s1"></i>one number</span>
+          <span><i class="sw bg-s2"></i>an interval</span>
+          <span><i class="sw bg-absent"></i>nothing</span>
+        </div>
+        <div id="c-cases" class="hb"></div>
+      </div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>Z cases are zeta rows, M cases are mobility rows (converted to zeta here), N rows print no number at all. The model counts as named when the paper's full text mentions it, which is a mention, not proof it was applied.</p></div>
+        <div><h3>What it means</h3><p>Totals: <span data-k="res_point"></span> rows give one number, <span data-k="res_interval"></span> an interval, <span data-k="res_none"></span> nothing. That is why the released dataset carries no harmonised column: an interval is not a value.</p></div>
+      </div>
+    </div>
+    <div class="sub">
+      <p class="sub-title">Try the formula yourself</p>
+      <div class="panel calc">
+        <form id="calc" autocomplete="off">
+          <div class="field">
+            <label>Load a worked example from REVIEW.md</label>
+            <div class="presets" id="presets"></div>
+          </div>
+          <div class="field">
+            <label for="cz">ζ as reported (mV)</label>
+            <input id="cz" type="number" step="any" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label for="ci">Ionic strength (mM)</label>
+            <input id="ci" type="number" step="any" min="0" inputmode="decimal" placeholder="not stated">
+            <small>Leave blank if the paper does not state it. 0 mM counts as not stated (rule R1).</small>
+          </div>
+          <div class="field">
+            <label for="cs">Measured particle size, diameter (nm)</label>
+            <input id="cs" type="number" step="any" min="0" inputmode="decimal" placeholder="not stated">
+            <small>Leave blank if not measured.</small>
+          </div>
+          <div class="field">
+            <label for="cm">Conversion model the paper names</label>
+            <select id="cm">
+              <option value="smoluchowski">Smoluchowski (f = 1.5)</option>
+              <option value="huckel">Hückel (f = 1.0)</option>
+              <option value="henry">Henry or Ohshima (the full formula)</option>
+              <option value="none">none, or both limits</option>
+            </select>
+          </div>
+        </form>
+        <div class="readout" aria-live="polite">
+          <div>
+            <div class="result-big" id="cr-big"></div>
+            <div class="result-case" id="cr-case"></div>
+          </div>
+          <div id="c-calcline" class="chart"></div>
+          <pre class="steps" id="cr-steps"></pre>
+          <div class="verify" id="cr-verify" hidden></div>
+        </div>
+      </div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>Fill in what a paper states. A blank field widens the answer to an interval; nothing is ever filled with a default. The lines show every step, with the constants from REVIEW.md §5.4: κ⁻¹ = 0.304 / √(I / 1000) nm assumes a 1:1 salt in water at 25 °C.</p></div>
+        <div><h3>What it means</h3><p>It opens on the Z1 example: a paper that names Smoluchowski and states both ionic strength and size, where the reported −28.77 mV corrects to about −36.76 mV. Clear the ionic strength and the answer becomes an interval.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="compare">
+    <header>
+      <p class="eyebrow">5 · Comparability</p>
+      <h2>Only <span data-k="comparable"></span> of <span data-k="all_pairs"></span> pairs may be compared, and none of them crosses a paper</h2>
+      <p class="gloss">Two rows are <b>comparable</b> when a difference between their values can be blamed on the particle: same measured quantity, same particle description, and every condition stated and matching (ionic strength within 10 %, pH within ±0.2, temperature within ±2 °C, same instrument, same conversion regime). The value itself is never used.</p>
+    </header>
+    <div class="sub">
+      <p class="sub-title">The census of all pairs</p>
+      <div class="panel"><div id="c-census" class="hb"></div></div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>A condition missing on one row blocks every pair that row is in, so the check first keeps the <span data-k="rows_passing"></span> rows that state everything. That leaves <span data-k="pairs_checked"></span> pairs to check instead of <span data-k="all_pairs"></span>. Log scale again.</p></div>
+        <div><h3>What it means</h3><p><span data-k="comparable"></span> pairs are comparable (<span data-k="comparable_zeta"></span> of them zeta against zeta) and <span data-k="conditional"></span> are comparable along one axis, such as two ionic strengths in a titration (<span data-k="conditional_cross"></span> of those cross papers). Everything else is blocked.</p></div>
+      </div>
+    </div>
+    <div class="sub">
+      <p class="sub-title">What blocks a comparison</p>
+      <div class="panel">
+        <div class="legend">
+          <span><i class="sw bg-absent"></i>at least one row never stated it</span>
+          <span><i class="sw bg-s1"></i>both stated it, and they differ</span>
+        </div>
+        <div id="c-blockers" class="hb"></div>
+        <p class="hb-note">A stratified sample: the <span data-k="kind_e_pairs"></span> pairs of the kind E answer key, not all pairs. One pair usually has several blockers, so the bars add up to more than <span data-k="kind_e_pairs"></span>.</p>
+      </div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>The sample holds <span data-k="ke_same"></span> pairs from inside one paper, <span data-k="ke_cross"></span> across papers, and <span data-k="ke_complete"></span> pairs among rows that state everything, which include every comparable pair, so rare ones are not sampled away. A bar counts the pairs that field blocks.</p></div>
+        <div><h3>What it means</h3><p>Silence blocks more than disagreement: ionic strength, pH, temperature and size block mostly because a row never stated them. The medium blocks mostly by differing, because the sample deliberately pairs different experiments.</p></div>
+      </div>
+    </div>
+    <div class="sub">
+      <p class="sub-title">The grading rule</p>
+      <div class="panel rule" id="c-rule"></div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>Every blocker is a named check that failed. An axis difference is a stated, measured difference in a condition, which places two rows on a common axis rather than in a comparison.</p></div>
+        <div><h3>What it means</h3><p>A different instrument, particle, measured quantity or conversion regime is never an axis, so a single one of them makes the pair not comparable.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="rescale">
+    <header>
+      <p class="eyebrow">6 · Size rescaling (Koelmans, demo D3)</p>
+      <h2>Putting particle counts on one size window narrows an <span data-k="d3_measured"></span>-decade spread by only <span data-k="d3_removed_default"></span> of a decade</h2>
+      <p class="gloss">A separate demo on water-sample concentrations from Koelmans et al. 2019: studies counted particles over different size windows, so the counts are rescaled to one window (1 to 5000 µm) with a power law of slope α. It rescales particle concentrations between size windows and uses none of the five zeta parameters.</p>
+    </header>
+    <div class="panel">
+      <div class="seg" id="d3-seg" role="group" aria-label="Concentration unit"></div>
+      <div class="legend">
+        <span><i class="sw bg-ink2"></i>as measured</span>
+        <span><i class="sw bg-s1"></i>after rescaling at slope α</span>
+      </div>
+      <div id="c-d3" class="hb"></div>
+    </div>
+    <div class="read">
+      <div><h3>How to read this</h3><p>Each bar runs from the lowest to the highest concentration across the studies, on a log axis (one gridline is ×10). The number at the right is the spread in decades, i.e. powers of ten. The top bar is as measured; the others after rescaling at each α tried, with α = 1.6 the default.</p></div>
+      <div><h3>What it means</h3><p>At the default α the spread shrinks from <span data-k="d3_measured"></span> to <span data-k="d3_default"></span> decades; even the steepest α tried leaves <span data-k="d3_best"></span>. Different size windows explain only a small part of why studies disagree by a factor of about a hundred million. In n/km² steep slopes even widen the spread.</p></div>
+    </div>
+  </section>
+
+  <section class="sec" id="grid">
+    <header>
+      <p class="eyebrow">7 · The eval grid</p>
+      <h2>The structured reader wins every question kind, and kind E shows why accuracy alone misleads</h2>
+      <p class="gloss">Cell D is given the structured table row; cell B gets only text passages found by keyword search (BM25) and no table. Same reader model (<span data-k="grid_model"></span>), one run per cell, <span data-k="grid_asked"></span> questions each.</p>
+    </header>
+    <div class="sub">
+      <p class="sub-title">Accuracy per question kind</p>
+      <div class="panel">
+        <div class="legend">
+          <span><i class="sw bg-s1"></i>cell D, structured</span>
+          <span><i class="sw bg-s2"></i>cell B, retrieval</span>
+        </div>
+        <div id="c-kinds" class="hb"></div>
+      </div>
+    </div>
+    <div class="sub">
+      <p class="sub-title">Kind E, split by the true answer</p>
+      <div class="panel">
+        <div class="legend">
+          <span><i class="sw bg-s1"></i>cell D, structured</span>
+          <span><i class="sw bg-s2"></i>cell B, retrieval</span>
+        </div>
+        <div id="c-recall" class="hb"></div>
+      </div>
+      <div class="tiles" id="c-tiles"></div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>Recall is the share of pairs with a given true verdict that the cell got right. Balanced accuracy is the mean of the three recalls, so a cell that always gives the majority answer cannot score well.</p></div>
+        <div><h3>What it means</h3><p>Cell B scores <span data-k="b_e_acc"></span> on kind E, which looks fine until you split it: it answered “not comparable” to <span data-k="b_said_not"></span> of <span data-k="kind_e_pairs"></span> pairs, and <span data-k="true_not"></span> of the true answers are “not comparable”. It never found one comparable pair.</p></div>
+      </div>
+      <p class="callout">Cell D's kind E prompt contains the computed verdict and its blockers, so its perfect kind E score measures reading the answer key back, not reasoning. The kind E result shows how retrieval fails, not that the reader reasons better with a table.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="explorer">
+    <header>
+      <p class="eyebrow">8 · Explorer</p>
+      <h2>Every row, like a spreadsheet</h2>
+      <p class="gloss">All <span data-k="rows"></span> rows with the five conditions (✓ stated, ✗ not stated) and the result of the correction formula. Click a header to sort. Type in a header box to filter: text matches anywhere; number columns also take <code>&lt;-30</code>, <code>&gt;=10</code> or <code>=0</code>. Flags filter by ✓ or ✗. Paper ids open the paper on Europe PMC.</p>
+    </header>
+    <div>
+      <div class="xbar">
+        <span class="count" id="x-count"></span>
+        <button class="btn" type="button" id="x-complete">Only fully conditioned rows</button>
+        <button class="btn" type="button" id="x-reset">Clear filters</button>
+        <button class="btn" type="button" id="x-copy">Copy filtered rows as CSV</button>
+      </div>
+      <div class="xwrap" id="x-wrap">
+        <table class="x" id="x-table"><thead></thead><tbody></tbody></table>
+      </div>
+      <p class="hb-note" id="x-copy-msg" aria-live="polite"></p>
+      <textarea class="csvbox" id="x-csv" hidden readonly aria-label="CSV of the filtered rows"></textarea>
+    </div>
+  </section>
+
+  <section class="sec limits" id="limits">
+    <header>
+      <p class="eyebrow">What this does not prove</p>
+      <h2>Read every number above with these limits</h2>
+    </header>
+    <ul>
+      <li><b>That the values are physically true.</b> A row is a reported measurement. Its quote was checked against the paper; the paper was not checked against reality.</li>
+      <li><b>That it represents the literature.</b> One database, open access only: <span data-k="hits_oa"></span> of <span data-k="hits_all"></span> Europe PMC hits. The shares are shares of that subset.</li>
+      <li><b>That the extraction is accurate.</b> The gold set it is scored against (<span data-k="gold_rows"></span> rows, <span data-k="gold_papers"></span> papers) was annotated by a model; rows re-judged by a human: <span data-k="gold_human"></span>.</li>
+      <li><b>Which conversion model a paper applied.</b> The scan finds mentions. Every corrected single number assumes the mention is the model used.</li>
+      <li><b>The Debye length of media with divalent ions.</b> κ⁻¹ assumes a 1:1 salt in water at 25 °C, so κa is underestimated for CaCl₂ or phosphate.</li>
+      <li><b>How a reader performs in general.</b> One reader model, one run per cell, on this project's own questions. The agentic cells, where the reader chooses what to fetch, have not run.</li>
+      <li><b>That the comparability verdicts are the field's.</b> The rules and tolerances are this project's own; no one outside it has ratified them.</li>
+      <li><b>That two comparable rows hold the same particle.</b> The check compares the printed description; supplier, charge density and ageing that were not printed are invisible to it.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>Built from the committed files of mnp-research at <span class="mono" data-k="commit"></span> (<span class="mono" data-k="ref"></span>) by build_data.py; no number on this page is typed in by hand.</span>
+    <span><span data-k="checks_ok"></span> of <span data-k="checks_n"></span> cross-checks against out/review/REVIEW.md agree.</span>
+  </footer>
+</main>
+<div id="tip" hidden></div>
+
+<script type="application/json" id="mnp-data">__DATA__</script>
+<script>
+(() => {
+'use strict';
+const DATA = JSON.parse(document.getElementById('mnp-data').textContent);
+const NB = ' ';
+const MINUS = '−';
+
+function fmt(x, d = 0) {
+  if (x === null || x === undefined || x === '' || Number.isNaN(+x)) return '';
+  const s = Math.abs(+x).toFixed(d);
+  const [i, f] = s.split('.');
+  const g = i.replace(/\B(?=(\d{3})+(?!\d))/g, NB);
+  const neg = +x < 0 && +s !== 0;
+  return (neg ? MINUS : '') + g + (f ? '.' + f : '');
+}
+const pct = (x, d = 1) => fmt(x * 100, d) + NB + '%';
+const signed = (s) => String(s).replace(/-/g, MINUS);
+
+// ---------- key numbers ----------
+const F = DATA.funnel, C = DATA.census, FV = DATA.five, CL = DATA.clustering;
+const HM = DATA.harmonise, CM = DATA.comparability, G = DATA.grid, D3 = DATA.d3;
+const byKey = Object.fromEntries(CL.metrics.map(m => [m.key, m]));
+const iccs = CL.metrics.map(m => m.icc), neffs = CL.metrics.map(m => m.n_eff);
+const ratios = CL.metrics.map(m => ((m.row_hi - m.row_lo) / 2) / m.naive_hw);
+const ionic = byKey.ionic_strength_reported;
+const zetaPlotted = HM.zeta.length;
+const zetaPoints = HM.zeta.filter(z => z[2] !== null).length;
+const d3L = D3.units['n/L'];
+const d3Measured = d3L.find(x => x.alpha === null);
+const d3Default = d3L.find(x => x.alpha === 1.6);
+const d3Best = d3L.reduce((a, b) => (b.alpha !== null && b.range < a.range ? b : a), d3Default);
+const ciWindow = Math.ceil((Math.max(...CL.metrics.map(m => Math.max(m.row_hi, m.paper_hi, m.naive_hi) - Math.min(m.row_lo, m.paper_lo, m.naive_lo))) * 100 + 4) / 2) * 2;
+const K = {
+  commit: DATA.commit, ref: DATA.ref,
+  hits_all: fmt(F[0].n), hits_oa: fmt(F[1].n), papers: fmt(F[3].n), rows: fmt(F[4].n),
+  complete: fmt(F[5].n), complete_pct: pct(F[5].n / F[4].n),
+  complete_papers: fmt(FV.complete_papers_any),
+  comparable: fmt(C.comparable), comparable_zeta: fmt(C.comparable_zeta),
+  comparable_zeta_cross: fmt(C.comparable_zeta_cross),
+  conditional: fmt(C.conditional), conditional_cross: fmt(C.conditional_cross),
+  all_pairs: fmt(C.all_pairs), rows_passing: fmt(C.rows_passing), pairs_checked: fmt(C.pairs_checked),
+  ionic_pct: pct(FV.params[1].rows_share),
+  icc_range: fmt(Math.min(...iccs), 2) + '–' + fmt(Math.max(...iccs), 2),
+  neff_range: fmt(Math.min(...neffs)) + '–' + fmt(Math.max(...neffs)),
+  ci_window: fmt(ciWindow), boot_B: fmt(CL.B),
+  ci_ratio: fmt(Math.min(...ratios), 1) + ' to ' + fmt(Math.max(...ratios), 1),
+  ionic_ci: fmt(ionic.row_lo * 100, 1) + '–' + pct(ionic.row_hi),
+  ionic_naive: fmt(ionic.per_row * 100, 1) + ' ± ' + fmt(ionic.naive_hw * 100, 1) + NB + '%',
+  none_rows: fmt(HM.results.none), n_case: fmt(HM.cases.N), m0_case: fmt(HM.cases.M0),
+  zeta_plotted: fmt(zetaPlotted), z4: fmt(HM.cases.Z4), zeta_points: fmt(zetaPoints),
+  res_point: fmt(HM.results.point), res_interval: fmt(HM.results.interval), res_none: fmt(HM.results.none),
+  kind_e_pairs: fmt(CM.n_pairs),
+  d3_measured: fmt(d3Measured.range, 2), d3_default: fmt(d3Default.range, 2), d3_best: fmt(d3Best.range, 2),
+  d3_removed_default: fmt(d3Measured.range - d3Default.range, 1),
+  grid_model: G.D.model, grid_asked: fmt(G.D.asked),
+  b_e_acc: G.B.kinds.E.correct + '/' + G.B.kinds.E.n,
+  b_said_not: fmt(G.B.kind_e_said.not_comparable || 0),
+  true_not: fmt(G.B.recall.not_comparable.n),
+  gold_rows: fmt(DATA.gold.rows), gold_papers: fmt(DATA.gold.papers), gold_human: fmt(DATA.gold.human),
+  ke_same: fmt(Object.values(CM.strata.same_paper).reduce((a, b) => a + b, 0)),
+  ke_cross: fmt(Object.entries(CM.strata).filter(([k]) => k.startsWith('cross_paper')).reduce((s, [, v]) => s + Object.values(v).reduce((a, b) => a + b, 0), 0)),
+  ke_complete: fmt(Object.values(CM.strata.both_conditions_complete).reduce((a, b) => a + b, 0)),
+  checks_n: fmt(DATA.checks.length), checks_ok: fmt(DATA.checks.filter(c => c.ok).length),
+};
+document.querySelectorAll('[data-k]').forEach(e => {
+  const v = K[e.dataset.k];
+  e.textContent = v === undefined ? '?' : v;
+});
+
+// ---------- tooltip ----------
+const tip = document.getElementById('tip');
+function showTip(x, y, head, rows) {
+  tip.replaceChildren();
+  if (head) { const h = document.createElement('div'); h.className = 'tip-h'; h.textContent = head; tip.append(h); }
+  for (const r of rows) {
+    const row = document.createElement('div'); row.className = 'tip-r';
+    if (r.c) { const k = document.createElement('i'); k.className = 'tip-k'; k.style.background = r.c; row.append(k); }
+    const v = document.createElement('b'); v.textContent = r.v; row.append(v);
+    if (r.l) { const l = document.createElement('span'); l.className = 'l'; l.textContent = r.l; row.append(l); }
+    tip.append(row);
+  }
+  tip.hidden = false;
+  const b = tip.getBoundingClientRect();
+  let left = x + 14, top = y + 14;
+  if (left + b.width > innerWidth - 8) left = x - b.width - 14;
+  if (top + b.height > innerHeight - 8) top = y - b.height - 14;
+  tip.style.left = Math.max(8, left) + 'px';
+  tip.style.top = Math.max(8, top) + 'px';
+}
+const hideTip = () => { tip.hidden = true; };
+function bindTip(el, fn) {
+  el.addEventListener('pointermove', e => { const t = fn(); showTip(e.clientX, e.clientY, t.h, t.rows); });
+  el.addEventListener('pointerleave', hideTip);
+  el.addEventListener('focus', () => { const b = el.getBoundingClientRect(); const t = fn(); showTip(b.left + Math.min(b.width, 260), b.top, t.h, t.rows); });
+  el.addEventListener('blur', hideTip);
+}
+
+// ---------- small DOM / SVG helpers ----------
+const NS = 'http://www.w3.org/2000/svg';
+function S(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function T(parent, x, y, text, attrs = {}) { const t = S('text', { x, y, ...attrs }, parent); t.textContent = text; return t; }
+function H(tag, cls, text, parent) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined && text !== null) e.textContent = text;
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function mount(el, draw) {
+  let w = 0;
+  const redraw = () => { const nw = Math.round(el.clientWidth); if (nw && nw !== w) { w = nw; el.replaceChildren(); draw(el, w); } };
+  new ResizeObserver(redraw).observe(el);
+  el._redraw = () => { w = 0; redraw(); };
+}
+const COLOR = { s1: 'var(--s1)', s2: 'var(--s2)', s3: 'var(--s3)', absent: 'var(--absent)', ink: 'var(--ink)', ink2: 'var(--ink-2)' };
+const log10 = Math.log10;
+const supDigits = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
+const pow10 = (e) => e === 0 ? '1' : e === 1 ? '10' : '10' + String(e).split('').map(c => supDigits[c]).join('');
+
+// A row of the HTML bar charts: label | track with ticks | bar(s) and a value at the tip.
+function hbAxis(parent, ticks) {
+  const ax = H('div', 'hb-axis', null, parent);
+  H('div', null, null, ax);
+  const t = H('div', 'ticks', null, ax);
+  for (const [pos, label] of ticks) { const s = H('span', null, label, t); s.style.left = pos + '%'; }
+}
+function hbRow(parent, label, sub, unit) {
+  const row = H('div', 'hb-row', null, parent);
+  row.tabIndex = 0;
+  const lab = H('div', 'hb-label', null, row);
+  const name = H('span', null, label, lab);
+  if (unit) H('span', 'hb-unit', unit, lab);
+  if (sub) H('small', null, sub, lab);
+  const track = H('div', 'hb-track', null, row);
+  return { row, track, name };
+}
+function ticksInto(track, positions) {
+  positions.forEach((p, i) => { const t = H('div', 'hb-tick' + (i === 0 ? ' base' : ''), null, track); t.style.left = p + '%'; });
+}
+function bar(track, pct0, cls, top, height) {
+  const b = H('div', 'hb-bar ' + cls, null, track);
+  b.style.width = Math.max(pct0, 0.4) + '%';
+  if (top !== undefined) { b.style.top = top + 'px'; b.style.height = height + 'px'; }
+  return b;
+}
+function tipVal(track, pctPos, text, top, cls) {
+  const v = H('span', 'hb-val' + (cls ? ' ' + cls : ''), text, track);
+  v.style.left = 'calc(' + pctPos + '% + 6px)';
+  if (top !== undefined) { v.style.top = top + 'px'; v.style.lineHeight = '14px'; }
+  return v;
+}
+
+// ---------- 1. funnel ----------
+(function funnel() {
+  const el = document.getElementById('c-funnel');
+  const maxExp = 4;
+  const x = (n) => n <= 0 ? 0 : (log10(n) / maxExp) * 100;
+  const ticks = [0, 1, 2, 3, 4].map(e => [e / maxExp * 100, pow10(e)]);
+  F.forEach((s, i) => {
+    const { row, track } = hbRow(el, s.label, s.note, s.unit);
+    ticksInto(track, ticks.map(t => t[0]));
+    if (s.n > 0) {
+      bar(track, x(s.n), 'bg-s1');
+      tipVal(track, x(s.n), fmt(s.n));
+    } else {
+      tipVal(track, 0, '0, none', undefined, 'zero');
+    }
+    const prev = i > 0 ? F[i - 1] : null;
+    bindTip(row, () => ({ h: s.label, rows: [
+      { v: fmt(s.n), l: ' ' + s.unit, c: COLOR.s1 },
+      ...(prev && prev.unit === s.unit && prev.n > 0 ? [{ v: pct(s.n / prev.n), l: ' of the step before' }] : []),
+    ] }));
+  });
+  hbAxis(el, ticks);
+  H('p', 'hb-note', 'Log scale. The units change: articles, then papers, rows (single measurements) and pairs of rows.', el);
+})();
+
+// ---------- 2a. histogram ----------
+mount(document.getElementById('c-hist'), (el, w) => {
+  const h = 230, m = { l: 44, r: 8, t: 22, b: 40 };
+  const svg = S('svg', { width: w, height: h, role: 'img', 'aria-label': 'Rows by number of the five conditions stated' }, el);
+  const hist = FV.histogram, max = Math.max(...hist);
+  const top = Math.ceil(max / 200) * 200;
+  const pw = w - m.l - m.r, ph = h - m.t - m.b;
+  const y = (v) => m.t + ph - (v / top) * ph;
+  for (let v = 0; v <= top; v += 200) {
+    S('line', { x1: m.l, x2: w - m.r, y1: y(v), y2: y(v), class: v === 0 ? 'baseline' : 'gridline' }, svg);
+    T(svg, m.l - 6, y(v) + 4, fmt(v), { 'text-anchor': 'end' });
+  }
+  const band = pw / hist.length, bw = Math.min(56, band * 0.6);
+  hist.forEach((v, i) => {
+    const cx = m.l + band * i + band / 2, x0 = cx - bw / 2, y0 = y(v), hh = m.t + ph - y0, r = Math.min(4, hh);
+    S('path', { d: `M${x0},${m.t + ph} V${y0 + r} Q${x0},${y0} ${x0 + r},${y0} H${x0 + bw - r} Q${x0 + bw},${y0} ${x0 + bw},${y0 + r} V${m.t + ph} Z`,
+      class: i === 5 ? 'f-s1' : 'f-s1', opacity: i === 5 ? 1 : 0.55 }, svg);
+    T(svg, cx, y0 - 6, fmt(v), { 'text-anchor': 'middle', class: i === 5 ? 'val strong' : 'val' });
+    T(svg, cx, m.t + ph + 16, i + ' of 5', { 'text-anchor': 'middle', class: 'lab' });
+    const hit = S('rect', { x: m.l + band * i, y: m.t, width: band, height: ph, class: 'hit', tabindex: 0 }, svg);
+    bindTip(hit, () => ({ h: i + ' of the 5 conditions stated', rows: [{ v: fmt(v), l: ' rows (' + pct(v / F[4].n) + ')', c: COLOR.s1 }] }));
+  });
+  T(svg, m.l + pw / 2, h - 4, 'conditions stated on the row', { 'text-anchor': 'middle' });
+});
+
+// ---------- 2b. per-parameter stacks ----------
+(function params() {
+  const el = document.getElementById('c-params');
+  for (const p of FV.params) {
+    const n = FV.n_rows;
+    const sub = pct(p.rows_share) + ' of rows · ' + pct(p.paper_mean_share) + ' per paper';
+    const { row, track } = hbRow(el, p.name, sub);
+    track.classList.add('stacked');
+    const st = H('div', 'stack', null, track);
+    const segs = [[p.strong, 'bg-s1', p.strong_label], [p.soft, 'bg-s2', p.soft_label], [p.unreported, 'bg-absent', 'not stated']];
+    for (const [v, cls] of segs) {
+      if (!v) continue;
+      const d = H('div', cls, null, st);
+      d.style.flex = v + ' 1 0';
+      const lab = H('span', null, fmt(v), d);
+      requestAnimationFrame(() => { if (d.clientWidth < fmt(v).length * 7 + 14) lab.remove(); });
+    }
+    const t = H('div', 'ptick', null, track);
+    t.style.left = 'calc(' + (p.paper_mean_share * 100) + '% - 1px)';
+    bindTip(row, () => ({ h: p.name + ', ' + fmt(n) + ' rows', rows: [
+      { v: fmt(p.strong), l: ' ' + p.strong_label, c: COLOR.s1 },
+      ...(p.soft_label ? [{ v: fmt(p.soft), l: ' ' + p.soft_label, c: COLOR.s2 }] : []),
+      { v: fmt(p.unreported), l: ' not stated', c: COLOR.absent },
+      { v: pct(p.paper_mean_share), l: ' averaged per paper', c: COLOR.ink },
+      { v: fmt(p.papers_any) + ' of ' + fmt(FV.n_papers), l: ' papers state it on some row' },
+    ] }));
+  }
+})();
+
+// ---------- 3a. bubbles ----------
+const METRIC_LABEL = {
+  medium_reported: 'Medium', ionic_strength_reported: 'Ionic strength', pH_reported: 'pH',
+  temperature_reported: 'Temperature', instrument_reported: 'Instrument', conditions_complete: 'All five',
+};
+const METRICS = CL.metrics.map(m => m.key);
+let bubbleMetric = 'ionic_strength_reported';
+const seg = document.getElementById('metric-seg');
+for (const key of METRICS) {
+  const b = H('button', null, METRIC_LABEL[key], seg);
+  b.type = 'button';
+  b.setAttribute('aria-pressed', String(key === bubbleMetric));
+  b.addEventListener('click', () => {
+    bubbleMetric = key;
+    seg.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    drawChips();
+    document.getElementById('c-bubble')._redraw();
+  });
+}
+function drawChips() {
+  const i = METRICS.indexOf(bubbleMetric) + 1;
+  const shares = CL.papers.map(p => p[i]);
+  const zero = shares.filter(s => s === 0).length, one = shares.filter(s => s === 1).length;
+  const chips = document.getElementById('bubble-chips');
+  chips.replaceChildren();
+  const m = byKey[bubbleMetric];
+  const add = (label, value) => { const c = H('span', 'chip', null, chips); H('b', null, value, c); c.append(' ' + label); };
+  add('papers at 0 %', fmt(zero));
+  add('papers at 100 %', fmt(one));
+  add('in between', fmt(shares.length - zero - one));
+  add('ICC', fmt(m.icc, 2));
+}
+drawChips();
+mount(document.getElementById('c-bubble'), (el, w) => {
+  const h = 300, m = { l: 48, r: 16, t: 14, b: 42 };
+  const svg = S('svg', { width: w, height: h, role: 'img', 'aria-label': 'Papers by rows and share stating the condition' }, el);
+  const pw = w - m.l - m.r, ph = h - m.t - m.b;
+  const x0 = log10(0.75), x1 = log10(130);
+  const x = (n) => m.l + ((log10(n) - x0) / (x1 - x0)) * pw;
+  const y = (s) => m.t + ph - s * ph;
+  [0, 0.25, 0.5, 0.75, 1].forEach(s => {
+    S('line', { x1: m.l, x2: w - m.r, y1: y(s), y2: y(s), class: s === 0 ? 'baseline' : 'gridline' }, svg);
+    T(svg, m.l - 6, y(s) + 4, fmt(s * 100) + '%', { 'text-anchor': 'end' });
+  });
+  [1, 2, 5, 10, 20, 50, 100].forEach(n => {
+    S('line', { x1: x(n), x2: x(n), y1: m.t, y2: m.t + ph, class: 'gridline' }, svg);
+    T(svg, x(n), m.t + ph + 16, fmt(n), { 'text-anchor': 'middle' });
+  });
+  T(svg, m.l + pw / 2, h - 4, 'rows in the paper (log scale)', { 'text-anchor': 'middle' });
+  const i = METRICS.indexOf(bubbleMetric) + 1;
+  const groups = new Map();
+  for (const p of CL.papers) {
+    const key = p[0] + '|' + p[i].toFixed(4);
+    const g = groups.get(key) || { n: p[0], s: p[i], c: 0 };
+    g.c++;
+    groups.set(key, g);
+  }
+  const gs = [...groups.values()].sort((a, b) => b.c - a.c);
+  const cmax = gs[0].c, rmax = Math.max(10, Math.min(26, w / 32));
+  const rOf = (c) => Math.max(3.5, rmax * Math.sqrt(c / cmax));
+  const pts = gs.map(g => ({ ...g, cx: x(g.n), cy: y(g.s), r: rOf(g.c) }));
+  for (const p of pts) {
+    S('circle', { cx: p.cx, cy: p.cy, r: p.r, class: 'f-s1 st-surface', 'fill-opacity': 0.6, 'stroke-width': 1.5 }, svg);
+  }
+  const hl = S('circle', { r: 0, fill: 'none', class: 'st-ink', 'stroke-width': 1.5, visibility: 'hidden' }, svg);
+  const hit = S('rect', { x: m.l - 10, y: m.t - 10, width: pw + 20, height: ph + 20, class: 'hit' }, svg);
+  hit.addEventListener('pointermove', (e) => {
+    const b = svg.getBoundingClientRect(), mx = e.clientX - b.left, my = e.clientY - b.top;
+    let best = null, bd = 1e9;
+    for (const p of pts) { const d = Math.hypot(p.cx - mx, p.cy - my) - p.r; if (d < bd) { bd = d; best = p; } }
+    if (!best || bd > 24) { hideTip(); hl.setAttribute('visibility', 'hidden'); return; }
+    hl.setAttribute('cx', best.cx); hl.setAttribute('cy', best.cy); hl.setAttribute('r', best.r + 2); hl.setAttribute('visibility', 'visible');
+    showTip(e.clientX, e.clientY, METRIC_LABEL[bubbleMetric], [
+      { v: fmt(best.c) + (best.c === 1 ? ' paper' : ' papers'), c: COLOR.s1 },
+      { v: fmt(best.n), l: best.n === 1 ? ' row each' : ' rows each' },
+      { v: pct(best.s), l: ' of their rows state it' },
+    ]);
+  });
+  hit.addEventListener('pointerleave', () => { hideTip(); hl.setAttribute('visibility', 'hidden'); });
+});
+
+// ---------- 3b. naive vs cluster intervals ----------
+mount(document.getElementById('c-ci'), (el, w) => {
+  for (const m of CL.metrics) {
+    const block = H('div', 'ci-block', null, el);
+    const head = H('div', 'ci-head', null, block);
+    H('b', null, METRIC_LABEL[m.key], head);
+    H('span', null, 'per row ' + pct(m.per_row) + ': naive ±' + fmt(m.naive_hw * 100, 1) + ', honest ' + fmt(m.row_lo * 100, 1) + '–' + pct(m.row_hi), head);
+    H('span', null, 'per paper ' + pct(m.per_paper) + ' (' + fmt(m.paper_lo * 100, 1) + '–' + pct(m.paper_hi) + ')', head);
+    H('span', null, 'ICC ' + fmt(m.icc, 2) + ' · n_eff ' + fmt(m.n_eff), head);
+    const lo = Math.min(m.row_lo, m.paper_lo, m.naive_lo) * 100, hi = Math.max(m.row_hi, m.paper_hi, m.naive_hi) * 100;
+    let a = (lo + hi) / 2 - ciWindow / 2;
+    a = Math.max(0, Math.min(100 - ciWindow, a));
+    const b = a + ciWindow;
+    const h = 64, pl = 8, pr = 8, pw = w - pl - pr;
+    const x = (v) => pl + ((v * 100 - a) / (b - a)) * pw;
+    const svg = S('svg', { width: w, height: h, role: 'img', 'aria-label': METRIC_LABEL[m.key] + ' intervals' }, block);
+    const y1 = 14, y2 = 34;
+    for (let t = Math.ceil(a / 5) * 5; t <= b + 1e-9; t += 5) {
+      const xx = pl + ((t - a) / (b - a)) * pw;
+      S('line', { x1: xx, x2: xx, y1: 4, y2: 44, class: 'gridline' }, svg);
+      T(svg, xx, 58, fmt(t) + '%', { 'text-anchor': 'middle' });
+    }
+    const band = (lo0, hi0, yy, cls) => S('rect', { x: x(lo0), y: yy - 4, width: Math.max(2, x(hi0) - x(lo0)), height: 8, rx: 4, class: cls }, svg);
+    band(m.row_lo, m.row_hi, y1, 'f-s1');
+    S('line', { x1: x(m.naive_lo), x2: x(m.naive_hi), y1, y2: y1, class: 'st-ink', 'stroke-width': 2, 'stroke-linecap': 'round' }, svg);
+    S('circle', { cx: x(m.per_row), cy: y1, r: 4.5, class: 'f-ink st-surface', 'stroke-width': 2 }, svg);
+    band(m.paper_lo, m.paper_hi, y2, 'f-s2');
+    S('circle', { cx: x(m.per_paper), cy: y2, r: 4.5, class: 'f-ink st-surface', 'stroke-width': 2 }, svg);
+    const hit = S('rect', { x: 0, y: 0, width: w, height: 46, class: 'hit', tabindex: 0 }, svg);
+    bindTip(hit, () => ({ h: METRIC_LABEL[m.key], rows: [
+      { v: pct(m.per_row), l: ' per row' },
+      { v: fmt(m.naive_lo * 100, 1) + '–' + pct(m.naive_hi), l: ' naive 95 %', c: COLOR.ink },
+      { v: fmt(m.row_lo * 100, 1) + '–' + pct(m.row_hi), l: ' cluster 95 %', c: COLOR.s1 },
+      { v: pct(m.per_paper), l: ' per paper' },
+      { v: fmt(m.paper_lo * 100, 1) + '–' + pct(m.paper_hi), l: ' cluster 95 %', c: COLOR.s2 },
+    ] }));
+  }
+});
+
+// ---------- 4a. range plot ----------
+const CASE_RESULT = { H: 'point', Z1: 'point', M1: 'point', Z2: 'interval', Z3: 'interval', Z4: 'interval', M2: 'interval', M0: 'none', U: 'none', N: 'none' };
+mount(document.getElementById('c-range'), (el, w) => {
+  const Z = HM.zeta, n = Z.length;
+  const h = Math.max(280, Math.min(380, w * 0.45)), m = { l: 52, r: 10, t: 12, b: 36 };
+  const svg = S('svg', { width: w, height: h, role: 'img', 'aria-label': 'Reported zeta and corrected range for every zeta row' }, el);
+  const pw = w - m.l - m.r, ph = h - m.t - m.b;
+  let ymin = 0, ymax = 0;
+  for (const z of Z) { ymin = Math.min(ymin, z[0], z[3] ?? z[0], z[2] ?? z[0]); ymax = Math.max(ymax, z[0], z[4] ?? z[0], z[2] ?? z[0]); }
+  ymin = Math.floor(ymin / 50) * 50; ymax = Math.ceil(ymax / 50) * 50;
+  const x = (i) => m.l + ((i + 0.5) / n) * pw;
+  const y = (v) => m.t + ((ymax - v) / (ymax - ymin)) * ph;
+  for (let v = ymin; v <= ymax; v += 50) {
+    S('line', { x1: m.l, x2: w - m.r, y1: y(v), y2: y(v), class: v === 0 ? 'baseline' : 'gridline' }, svg);
+    T(svg, m.l - 6, y(v) + 4, fmt(v), { 'text-anchor': 'end' });
+  }
+  T(svg, 12, m.t + ph / 2, 'ζ, mV', { 'text-anchor': 'middle', transform: `rotate(-90 12 ${m.t + ph / 2})` });
+  T(svg, m.l + pw / 2, h - 6, 'zeta rows, sorted by reported value', { 'text-anchor': 'middle' });
+  let dI = '', dR = '', dP = '';
+  const sw = Math.max(1, pw / n);
+  Z.forEach((z, i) => {
+    const xi = x(i).toFixed(2);
+    if (z[3] !== null) dI += `M${xi},${y(z[3]).toFixed(2)}V${y(z[4]).toFixed(2)}`;
+    dR += `M${xi},${y(z[0]).toFixed(2)}h0.01`;
+    if (z[2] !== null) dP += `M${xi},${y(z[2]).toFixed(2)}h0.01`;
+  });
+  S('path', { d: dI, class: 'st-s2', 'stroke-width': sw, 'stroke-opacity': 0.55, fill: 'none' }, svg);
+  S('path', { d: dR, stroke: 'var(--ink-2)', 'stroke-width': 2.4, 'stroke-linecap': 'round', fill: 'none' }, svg);
+  S('path', { d: dP, class: 'st-surface', 'stroke-width': 11, 'stroke-linecap': 'round', fill: 'none' }, svg);
+  S('path', { d: dP, class: 'st-s1', 'stroke-width': 8, 'stroke-linecap': 'round', fill: 'none' }, svg);
+  const cross = S('line', { y1: m.t, y2: m.t + ph, class: 'st-ink', 'stroke-width': 1, visibility: 'hidden' }, svg);
+  const hit = S('rect', { x: m.l, y: m.t, width: pw, height: ph, class: 'hit' }, svg);
+  hit.addEventListener('pointermove', (e) => {
+    const b = svg.getBoundingClientRect();
+    const i = Math.max(0, Math.min(n - 1, Math.floor(((e.clientX - b.left - m.l) / pw) * n)));
+    const z = Z[i];
+    cross.setAttribute('x1', x(i)); cross.setAttribute('x2', x(i)); cross.setAttribute('visibility', 'visible');
+    const res = z[2] !== null ? { v: fmt(z[2], 2) + ' mV', l: ' one number', c: COLOR.s1 }
+      : { v: fmt(z[3], 1) + ' to ' + fmt(z[4], 1) + ' mV', l: ' interval', c: COLOR.s2 };
+    showTip(e.clientX, e.clientY, z[5] + ' · case ' + z[1], [{ v: fmt(z[0], 2) + ' mV', l: ' reported', c: COLOR.ink2 }, res]);
+  });
+  hit.addEventListener('pointerleave', () => { hideTip(); cross.setAttribute('visibility', 'hidden'); });
+});
+
+// ---------- 4b. cases ----------
+(function cases() {
+  const el = document.getElementById('c-cases');
+  const MEANING = {
+    H: ['zeta; Henry or Ohshima named', 'taken as reported'],
+    Z1: ['zeta; one limit named, κa known', 'corrected to one number'],
+    Z2: ['zeta; one limit named, κa unknown', 'interval over f from 1 to 1.5'],
+    Z3: ['zeta; no model named, κa known', 'interval over the unknown model'],
+    Z4: ['zeta; no model named, κa unknown', 'ζ ÷ 1.5 to ζ × 1.5'],
+    M1: ['mobility; temperature and κa known', 'converted to one number'],
+    M2: ['mobility; temperature known, κa unknown', 'interval'],
+    M0: ['mobility; no temperature', 'nothing, never a 25 °C default'],
+    N: ['no printed number', 'nothing to correct'],
+  };
+  const order = ['H', 'Z1', 'Z2', 'Z3', 'Z4', 'M1', 'M2', 'M0', 'N'];
+  const max = Math.max(...order.map(c => HM.cases[c]));
+  const top = Math.ceil(max / 250) * 250;
+  const ticks = [];
+  for (let v = 0; v <= top; v += 250) ticks.push([v / top * 100, fmt(v)]);
+  for (const c of order) {
+    const v = HM.cases[c], res = CASE_RESULT[c];
+    const { row, name } = (() => {
+      const r = hbRow(el, MEANING[c][0], MEANING[c][1]);
+      const code = document.createElement('span'); code.className = 'case-code'; code.textContent = c;
+      r.name.before(code);
+      return r;
+    })();
+    const track = row.querySelector('.hb-track');
+    ticksInto(track, ticks.map(t => t[0]));
+    const cls = res === 'point' ? 'bg-s1' : res === 'interval' ? 'bg-s2' : 'bg-absent';
+    bar(track, v / top * 100, cls);
+    tipVal(track, v / top * 100, fmt(v));
+    bindTip(row, () => ({ h: 'Case ' + c + ': ' + MEANING[c][0], rows: [{ v: fmt(v), l: ' rows, ' + MEANING[c][1], c: COLOR[res === 'point' ? 's1' : res === 'interval' ? 's2' : 'absent'] }] }));
+  }
+  hbAxis(el, ticks);
+})();
+
+// ---------- 4c. calculator ----------
+function henryF(ka) {
+  if (ka <= 0) return 1.0;
+  if (ka > 700) return 1.5;
+  const d = ka * (1 + 2 * Math.exp(-ka));
+  return 1 + 1 / (2 * Math.pow(1 + 2.5 / d, 3));
+}
+function harmoniseZeta(v, I, size, model) {
+  const out = { steps: [] };
+  const f4 = (x) => signed(Number(x).toFixed(4));
+  if (v === null) return { ...out, case: 'N', result: 'none', why: 'no reported value: nothing to correct' };
+  if (I === 0) {
+    // rule R1 (2026-09-28): "no added electrolyte" is not a zero ionic strength
+    out.steps.push('I    = 0 mM is not a reported ionic strength (rule R1): treated as not stated');
+    I = null;
+  }
+  let ka = null, f = null;
+  if (I !== null && size !== null) {
+    const a = size / 2;
+    const debye = 0.304 / Math.sqrt(I / 1000);
+    ka = a / debye;
+    out.steps.push(`κ⁻¹  = 0.304 / √(${I}/1000)   = ${f4(debye)} nm`, `a    = ${size} / 2         = ${f4(a)} nm`, `κa   = ${f4(a)} / ${f4(debye)} = ${f4(ka)}`);
+    f = henryF(ka);
+    if (ka > 0) out.steps.push(ka > 700 ? 'f    = 1.5  (κa > 700: flat at Smoluchowski)' : `f    = 1 + 1/(2·(1 + 2.5/(κa·(1+2e^−κa)))³) = ${f4(f)}`);
+  } else {
+    out.steps.push('κa   unknown: ' + (I === null ? 'ionic strength' : 'size') + (I === null && size === null ? ' and size' : '') + ' not stated', 'f    anywhere in [1, 1.5]');
+  }
+  out.ka = ka; out.f = f;
+  const vs = signed(v);
+  if (model === 'henry') {
+    out.steps.push(`point = reported = ${vs} mV`);
+    return { ...out, case: 'H', result: 'point', point: v };
+  }
+  if (model === 'smoluchowski' || model === 'huckel') {
+    const fm = model === 'smoluchowski' ? 1.5 : 1.0;
+    if (f !== null) {
+      const p = v * fm / f;
+      out.steps.push(`point = ${vs} × ${fm.toFixed(1)} / ${f4(f)} = ${f4(p)} mV`);
+      return { ...out, case: 'Z1', result: 'point', point: p, fm };
+    }
+    const a1 = v * fm / 1.5, a2 = v * fm / 1.0;
+    out.steps.push(`${vs} × ${fm.toFixed(1)} / 1.5 = ${f4(a1)}`, `${vs} × ${fm.toFixed(1)} / 1   = ${f4(a2)}`);
+    return { ...out, case: 'Z2', result: 'interval', low: Math.min(a1, a2), high: Math.max(a1, a2), fm };
+  }
+  if (f !== null) {
+    const a1 = v * 1 / f, a2 = v * 1.5 / f;
+    out.steps.push('model unknown: f_m is 1 (Hückel) or 1.5 (Smoluchowski)', `${vs} × 1 / ${f4(f)}   = ${f4(a1)}`, `${vs} × 1.5 / ${f4(f)} = ${f4(a2)}`);
+    return { ...out, case: 'Z3', result: 'interval', low: Math.min(a1, a2), high: Math.max(a1, a2) };
+  }
+  const a1 = v / 1.5, a2 = v * 1.5;
+  out.steps.push('model unknown and f unknown: ratio anywhere in [1/1.5, 1.5]', `${vs} / 1.5 = ${f4(a1)}`, `${vs} × 1.5 = ${f4(a2)}`);
+  return { ...out, case: 'Z4', result: 'interval', low: Math.min(a1, a2), high: Math.max(a1, a2) };
+}
+const CASE_TEXT = {
+  H: 'Case H: the paper used the full formula, so its value stands.',
+  Z1: 'Case Z1: one limit named and κa known, so the value corrects to one number.',
+  Z2: 'Case Z2: one limit named but κa unknown, so the true f is anywhere from 1 to 1.5.',
+  Z3: 'Case Z3: κa known but the model is not named, so it could be either limit.',
+  Z4: 'Case Z4: neither model nor κa known, the widest interval.',
+  N: 'Case N: no value.',
+};
+const cz = document.getElementById('cz'), ci = document.getElementById('ci'), cs = document.getElementById('cs'), cm = document.getElementById('cm');
+let loaded = null;
+const numOrNull = (el) => el.value.trim() === '' || Number.isNaN(+el.value) ? null : +el.value;
+function calc() {
+  const v = numOrNull(cz), I = numOrNull(ci), size = numOrNull(cs);
+  const r = harmoniseZeta(v, I !== null && I < 0 ? null : I, size !== null && size <= 0 ? null : size, cm.value);
+  const big = document.getElementById('cr-big');
+  big.textContent = r.result === 'point' ? fmt(r.point, 2) + ' mV' : r.result === 'interval' ? '[' + fmt(r.low, 2) + ', ' + fmt(r.high, 2) + '] mV' : 'nothing';
+  document.getElementById('cr-case').textContent = CASE_TEXT[r.case];
+  document.getElementById('cr-steps').textContent = r.steps.join('\n');
+  const ver = document.getElementById('cr-verify');
+  if (loaded) {
+    const ex = HM.examples[loaded];
+    const same = v === ex.value && I === ex.ionic_strength_mM && size === ex.size_nm && cm.value === ex.model;
+    if (same) {
+      const want = ex.point !== null ? fmt(ex.point, 4) + ' mV' : '[' + fmt(ex.low, 4) + ', ' + fmt(ex.high, 4) + '] mV';
+      const got = r.point !== undefined ? fmt(r.point, 4) + ' mV' : '[' + fmt(r.low, 4) + ', ' + fmt(r.high, 4) + '] mV';
+      const ok = want === got && r.case === loaded;
+      ver.hidden = false;
+      ver.classList.toggle('bad', !ok);
+      ver.textContent = (ok ? 'Matches' : 'Does not match') + ' the worksheet row ' + ex.row_id + ' (' + loaded + '): ' + want + '. Models the paper names: ' + ex.models_named.replace(/;/g, ', ') + '.';
+    } else {
+      ver.hidden = false;
+      ver.classList.remove('bad');
+      ver.textContent = 'Inputs changed from worksheet row ' + ex.row_id + '.';
+    }
+  }
+  drawCalcLine(v, r);
+}
+function drawCalcLine(v, r) {
+  const el = document.getElementById('c-calcline');
+  el.replaceChildren();
+  if (v === null || r.result === 'none') return;
+  const w = Math.round(el.clientWidth) || 300, h = 46, pad = 14;
+  const vals = [v, r.point, r.low, r.high].filter(x => x !== undefined && x !== null);
+  let a = Math.min(...vals), b = Math.max(...vals);
+  const span = Math.max(Math.abs(v) * 1.6, 10);
+  const mid = (a + b) / 2; a = Math.min(a, mid - span / 2); b = Math.max(b, mid + span / 2);
+  const x = (t) => pad + ((t - a) / (b - a)) * (w - 2 * pad);
+  const svg = S('svg', { width: w, height: h, role: 'img', 'aria-label': 'Reported value and corrected value on one axis' }, el);
+  S('line', { x1: pad, x2: w - pad, y1: 22, y2: 22, class: 'baseline' }, svg);
+  if (r.result === 'interval') S('line', { x1: x(r.low), x2: x(r.high), y1: 22, y2: 22, class: 'st-s2', 'stroke-width': 6, 'stroke-linecap': 'round' }, svg);
+  if (r.result === 'point') S('circle', { cx: x(r.point), cy: 22, r: 6, class: 'f-s1 st-surface', 'stroke-width': 2 }, svg);
+  S('circle', { cx: x(v), cy: 22, r: 4.5, class: 'f-ink2 st-surface', 'stroke-width': 2 }, svg);
+  T(svg, x(v), 10, 'reported ' + fmt(v, 2), { 'text-anchor': 'middle', class: 'lab' });
+  const tick = (t) => T(svg, x(t), 42, fmt(t, 1), { 'text-anchor': 'middle' });
+  if (r.result === 'interval') { tick(r.low); tick(r.high); } else tick(r.point);
+}
+const presets = document.getElementById('presets');
+function load(c) {
+  const ex = HM.examples[c];
+  cz.value = ex.value;
+  ci.value = ex.ionic_strength_mM ?? '';
+  cs.value = ex.size_nm ?? '';
+  cm.value = ex.model;
+  loaded = c;
+  presets.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.c === c)));
+  calc();
+}
+for (const c of Object.keys(HM.examples)) {
+  const b = H('button', 'btn', c, presets);
+  b.type = 'button'; b.dataset.c = c;
+  b.title = 'Row ' + HM.examples[c].row_id;
+  b.addEventListener('click', () => load(c));
+}
+[cz, ci, cs, cm].forEach(e => e.addEventListener('input', calc));
+document.getElementById('calc').addEventListener('submit', e => e.preventDefault());
+new ResizeObserver(() => calc()).observe(document.getElementById('c-calcline'));
+load('Z1');
+
+// ---------- 5a. census ----------
+(function census() {
+  const el = document.getElementById('c-census');
+  const maxExp = 7;
+  const x = (n) => n <= 0 ? 0 : (log10(n) / maxExp) * 100;
+  const ticks = [0, 1, 2, 3, 4, 5, 6, 7].map(e => [e / maxExp * 100, pow10(e)]);
+  const stages = [
+    ['all pairs of rows', 'every row against every other', 'pairs', C.all_pairs, 'bg-ink2'],
+    ['rows that state everything', 'the only rows that can be half of a comparable pair', 'rows', C.rows_passing, 'bg-ink2'],
+    ['pairs checked', 'all pairs among those rows', 'pairs', C.pairs_checked, 'bg-ink2'],
+  ];
+  for (const [label, sub, unit, n, cls] of stages) {
+    const { row, track } = hbRow(el, label, sub, unit);
+    ticksInto(track, ticks.map(t => t[0]));
+    bar(track, x(n), cls);
+    tipVal(track, x(n), fmt(n));
+    bindTip(row, () => ({ h: label, rows: [{ v: fmt(n), l: ' ' + unit, c: COLOR.ink2 }] }));
+  }
+  const { row, track } = hbRow(el, 'verdicts on the pairs checked', null, 'pairs');
+  track.style.height = '52px';
+  ticksInto(track, ticks.map(t => t[0]));
+  const outs = [[C.comparable, 'bg-s1', 'comparable', COLOR.s1], [C.conditional, 'bg-s2', 'conditionally comparable', COLOR.s2], [C.not_comparable_checked, 'bg-absent', 'not comparable', COLOR.absent]];
+  outs.forEach(([n, cls, lab], i) => {
+    bar(track, x(n), cls, 2 + i * 17, 14);
+    tipVal(track, x(n), fmt(n) + ' ' + lab, i * 17 + 2);
+  });
+  bindTip(row, () => ({ h: 'Verdicts on ' + fmt(C.pairs_checked) + ' pairs', rows: outs.map(([n, , lab, c]) => ({ v: fmt(n), l: ' ' + lab, c })) }));
+  hbAxis(el, ticks);
+})();
+
+// ---------- 5b. blockers ----------
+(function blockers() {
+  const el = document.getElementById('c-blockers');
+  const NAME = {
+    medium: ['medium', 'the liquid'], ionic_strength: ['ionic strength', 'salt concentration'], pH: ['pH', null],
+    temperature: ['temperature', null], functionalisation: ['surface groups', 'functionalisation'],
+    instrument: ['instrument', null], size_measured_nm: ['measured size', 'needed for κa'],
+    material: ['material', 'the polymer'], conversion_model: ['conversion regime', 'κa puts f in different places'],
+    quantity: ['measured quantity', 'zeta against mobility'],
+  };
+  const top = CM.n_pairs;
+  const ticks = [0, 80, 160, 240, 320].filter(v => v <= top).map(v => [v / top * 100, fmt(v)]);
+  for (const f of CM.fields) {
+    const [label, sub] = NAME[f.field] || [f.field, null];
+    const { row, track } = hbRow(el, label, sub);
+    ticksInto(track, ticks.map(t => t[0]));
+    const st = H('div', 'stack', null, track);
+    st.style.right = 'auto';
+    st.style.width = (f.pairs / top * 100) + '%';
+    for (const [v, cls] of [[f.unreported, 'bg-absent'], [f.stated, 'bg-s1']]) {
+      if (!v) continue;
+      const d = H('div', cls, null, st);
+      d.style.flex = v + ' 1 0';
+    }
+    tipVal(track, f.pairs / top * 100, fmt(f.pairs));
+    bindTip(row, () => ({ h: label + ' blocks ' + fmt(f.pairs) + ' of ' + fmt(top) + ' pairs', rows: [
+      { v: fmt(f.unreported), l: ' at least one row never stated it', c: COLOR.absent },
+      { v: fmt(f.stated), l: ' both stated it, and they differ', c: COLOR.s1 },
+    ] }));
+  }
+  hbAxis(el, ticks);
+})();
+
+// ---------- 5c. grading rule ----------
+(function rule() {
+  const el = document.getElementById('c-rule');
+  const rows = [
+    ['No blocker at all', 'comparable', C.comparable, 'bg-s1'],
+    ['Every blocker is an axis difference: <code>ionic_strength</code>, <code>medium_class</code>, <code>medium_text</code>, <code>pH</code> or <code>temperature</code> mismatch', 'conditionally comparable', C.conditional, 'bg-s2'],
+    ['Anything else: a condition never stated, a different particle, instrument, measured quantity or conversion regime', 'not comparable', C.not_comparable_checked, 'bg-absent'],
+  ];
+  for (const [cond, verdict, n, cls] of rows) {
+    const r = H('div', 'rule-row', null, el);
+    const c = H('div', 'rule-if', null, r);
+    c.innerHTML = cond; // fixed text written in this file, not data
+    H('div', 'rule-arrow', '→', r);
+    const t = H('div', 'rule-then', null, r);
+    H('i', 'sw ' + cls, null, t);
+    H('span', null, verdict, t);
+    H('small', null, fmt(n) + ' of ' + fmt(C.pairs_checked) + ' pairs checked', t);
+  }
+})();
+
+// ---------- 6. D3 ----------
+let d3Unit = 'n/L';
+const d3seg = document.getElementById('d3-seg');
+for (const u of Object.keys(D3.units)) {
+  const b = H('button', null, u === 'n/L' ? 'particles per litre (n/L)' : 'particles per km² (n/km²)', d3seg);
+  b.type = 'button';
+  b.setAttribute('aria-pressed', String(u === d3Unit));
+  b.addEventListener('click', () => { d3Unit = u; d3seg.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); drawD3(); });
+}
+function drawD3() {
+  const el = document.getElementById('c-d3');
+  el.replaceChildren();
+  const rows = D3.units[d3Unit];
+  const lo = Math.floor(Math.min(...rows.map(r => r.log_min))), hi = Math.ceil(Math.max(...rows.map(r => r.log_max)));
+  const pos = (v) => (v - lo) / (hi - lo) * 100;
+  const step = hi - lo > 8 ? 2 : 1;
+  const ticks = [];
+  for (let e = lo; e <= hi; e += step) ticks.push([pos(e), pow10(e)]);
+  for (const r of rows) {
+    const label = r.alpha === null ? 'as measured' : 'α = ' + r.alpha.toFixed(1) + (r.alpha === 1.6 ? ', default' : '');
+    const sub = (r.alpha === null ? fmt(r.n) + ' studies · ' : '') + fmt(r.range, 2) + ' decades';
+    const { row, track } = hbRow(el, label, sub);
+    ticksInto(track, ticks.map(t => t[0]));
+    const b = bar(track, pos(r.log_max) - pos(r.log_min), r.alpha === null ? 'bg-ink2' : 'bg-s1');
+    b.style.left = pos(r.log_min) + '%';
+    b.style.borderRadius = '4px';
+    bindTip(row, () => ({ h: label + ' · ' + d3Unit, rows: [
+      { v: fmt(r.range, 2), l: ' decades of spread', c: r.alpha === null ? COLOR.ink2 : COLOR.s1 },
+      { v: '10^' + fmt(r.log_min, 2) + ' to 10^' + fmt(r.log_max, 2), l: ' ' + d3Unit },
+      ...(r.source ? [{ v: 'α from', l: ' ' + r.source }] : []),
+    ] }));
+  }
+  hbAxis(el, ticks);
+  H('p', 'hb-note', 'Target window 1–5000 µm. The other window in d3_spread.csv (0.1–5000 µm) ' + (D3.windows_same_spread ? 'gives the same spreads, only shifted.' : 'gives different spreads.'), el);
+}
+drawD3();
+
+// ---------- 7. grid ----------
+(function grid() {
+  const KIND = {
+    A: ['A · a value with its condition', 'key from the gold set'],
+    B: ['B · what a paper did not report', 'key: the reported flags'],
+    C: ['C · a numeric filter across papers', null],
+    D: ['D · a mechanism', 'judged against every passage stating it'],
+    E: ['E · comparability', 'key: the rule in section 5'],
+  };
+  const pairsBars = (el, items, head) => {
+    const ticks = [0, 25, 50, 75, 100].map(v => [v, v + '%']);
+    for (const it of items) {
+      const { row, track } = hbRow(el, it.label, it.sub);
+      track.style.height = '36px';
+      ticksInto(track, ticks.map(t => t[0]));
+      const cells = [['D', 'bg-s1', COLOR.s1, it.d], ['B', 'bg-s2', COLOR.s2, it.b]];
+      cells.forEach(([cell, cls, , v], i) => {
+        const p = v.n ? v.correct / v.n * 100 : 0;
+        bar(track, p, cls, 2 + i * 17, 14);
+        tipVal(track, p, v.correct + '/' + v.n, i * 17 + 2);
+      });
+      bindTip(row, () => ({ h: head(it), rows: cells.map(([cell, , c, v]) => ({ v: v.correct + '/' + v.n + ' (' + pct(v.correct / v.n, 0) + ')', l: ' cell ' + cell, c })) }));
+    }
+    hbAxis(el, ticks);
+  };
+  pairsBars(document.getElementById('c-kinds'), Object.keys(G.D.kinds).map(k => ({
+    label: KIND[k][0], sub: KIND[k][1], d: G.D.kinds[k], b: G.B.kinds[k],
+  })), it => it.label);
+  const VER = [['comparable', 'truly comparable'], ['conditionally_comparable', 'truly conditionally comparable'], ['not_comparable', 'truly not comparable']];
+  pairsBars(document.getElementById('c-recall'), VER.map(([k, label]) => ({
+    label, sub: fmt(G.D.recall[k].n) + ' pairs', d: G.D.recall[k], b: G.B.recall[k],
+  })), it => it.label);
+  const tiles = document.getElementById('c-tiles');
+  for (const [cell, cls, name] of [['D', 'bg-s1', 'Cell D, structured'], ['B', 'bg-s2', 'Cell B, retrieval']]) {
+    const t = H('div', 'tile', null, tiles);
+    const l = H('div', 't-label', null, t); H('i', 'sw ' + cls, null, l); l.append(name + ', balanced accuracy on kind E');
+    H('div', 't-value', fmt(G[cell].recall.balanced_accuracy.recall, 2), t);
+    H('div', 't-note', 'plain accuracy ' + G[cell].kinds.E.correct + '/' + G[cell].kinds.E.n, t);
+  }
+})();
+
+// ---------- 8. explorer ----------
+(function explorer() {
+  const X = DATA.explorer, idx = Object.fromEntries(X.cols.map((c, i) => [c, i]));
+  const COLS = [
+    { k: 'pmcid', label: 'Paper', t: 'link' },
+    { k: 'row', label: 'Row', t: 'text' },
+    { k: 'particle', label: 'Particle', t: 'text', w: 1 },
+    { k: 'material', label: 'Material', t: 'text', w: 1 },
+    { k: 'qty', label: 'Qty', t: 'text', title: 'ζ zeta potential, μ electrophoretic mobility' },
+    { k: 'value', label: 'Value', t: 'num' },
+    { k: 'unit', label: 'Unit', t: 'text' },
+    { k: 'medium', label: 'Medium', t: 'text', w: 1 },
+    { k: 'medium_ok', label: 'Med.', t: 'flag', title: 'medium stated' },
+    { k: 'ionic_mM', label: 'I (mM)', t: 'num' },
+    { k: 'ionic_ok', label: 'I', t: 'flag', title: 'ionic strength stated' },
+    { k: 'pH', label: 'pH', t: 'num' },
+    { k: 'pH_ok', label: 'pH', t: 'flag', title: 'pH stated' },
+    { k: 'temp', label: 'T (°C)', t: 'num' },
+    { k: 'temp_ok', label: 'T', t: 'flag', title: 'temperature stated' },
+    { k: 'instrument', label: 'Instrument', t: 'text', w: 1 },
+    { k: 'instr_ok', label: 'Instr.', t: 'flag', title: 'instrument stated' },
+    { k: 'complete', label: 'All 5', t: 'flag', title: 'fully conditioned' },
+    { k: 'size_nm', label: 'Size (nm)', t: 'num' },
+    { k: 'case', label: 'Case', t: 'text', title: 'harmonisation case, section 4' },
+    { k: 'harmonised', label: 'Corrected ζ (mV)', t: 'harm' },
+  ];
+  const rows = X.rows.map((r, i) => ({ r, i }));
+  const filters = {};
+  let sortKey = null, sortDir = 1, view = rows;
+  const table = document.getElementById('x-table'), thead = table.tHead, tbody = table.tBodies[0];
+  const asNum = (v) => { if (v === '' || v === null || v === undefined) return null; const n = +String(v).replace(MINUS, '-'); return Number.isFinite(n) ? n : null; };
+  const cellVal = (row, c) => {
+    if (c.t === 'harm') { const lo = row[idx.h_lo], hi = row[idx.h_hi]; return lo === null ? null : (lo + hi) / 2; }
+    return row[idx[c.k]];
+  };
+  const esc = (s) => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+
+  const tr = document.createElement('tr');
+  for (const c of COLS) {
+    const th = document.createElement('th');
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'h';
+    btn.append(c.label);
+    const arr = document.createElement('span'); arr.className = 'arr'; btn.append(arr);
+    if (c.title) btn.title = c.title;
+    btn.addEventListener('click', () => {
+      if (sortKey === c.k) sortDir = -sortDir; else { sortKey = c.k; sortDir = 1; }
+      thead.querySelectorAll('.arr').forEach(a => { a.textContent = ''; });
+      arr.textContent = sortDir === 1 ? '▲' : '▼';
+      apply();
+    });
+    th.append(btn);
+    const wrap = document.createElement('div'); wrap.className = 'xf';
+    if (c.t === 'flag') {
+      const sel = document.createElement('select');
+      sel.id = 'xf-' + c.k;
+      sel.setAttribute('aria-label', 'Filter ' + (c.title || c.label));
+      for (const [v, l] of [['', 'all'], ['1', '✓'], ['0', '✗']]) { const o = document.createElement('option'); o.value = v; o.textContent = l; sel.append(o); }
+      sel.addEventListener('change', () => { filters[c.k] = sel.value; apply(); });
+      wrap.append(sel);
+    } else {
+      const inp = document.createElement('input');
+      inp.id = 'xf-' + c.k; inp.type = 'search';
+      inp.setAttribute('aria-label', 'Filter ' + c.label);
+      inp.placeholder = c.t === 'num' || c.t === 'harm' ? '<, >, =' : 'contains';
+      let tmo;
+      inp.addEventListener('input', () => { clearTimeout(tmo); tmo = setTimeout(() => { filters[c.k] = inp.value; apply(); }, 140); });
+      wrap.append(inp);
+    }
+    th.append(wrap);
+    tr.append(th);
+  }
+  thead.append(tr);
+
+  function matcher(c, q) {
+    if (!q) return null;
+    if (c.t === 'flag') return (row) => String(row[idx[c.k]]) === q;
+    const m = q.replace(MINUS, '-').match(/^\s*(<=|>=|<|>|=)\s*(-?\d+(?:\.\d+)?)\s*$/);
+    if (m && (c.t === 'num' || c.t === 'harm')) {
+      const t = +m[2], op = m[1];
+      return (row) => {
+        const v = asNum(cellVal(row, c));
+        if (v === null) return false;
+        return op === '<' ? v < t : op === '>' ? v > t : op === '<=' ? v <= t : op === '>=' ? v >= t : v === t;
+      };
+    }
+    const needle = q.trim().toLowerCase();
+    return (row) => display(row, c).toLowerCase().includes(needle);
+  }
+  function display(row, c) {
+    const v = row[idx[c.k]];
+    if (c.t === 'flag') return v ? '✓' : '✗';
+    if (v === null || v === undefined) return '';
+    return String(v);
+  }
+  function apply() {
+    const ms = COLS.map(c => matcher(c, filters[c.k])).filter(Boolean);
+    view = ms.length ? rows.filter(({ r }) => ms.every(f => f(r))) : rows.slice();
+    if (sortKey) {
+      const c = COLS.find(x => x.k === sortKey);
+      view.sort((A, B) => {
+        const a = cellVal(A.r, c), b = cellVal(B.r, c);
+        const an = asNum(a), bn = asNum(b);
+        const ae = a === '' || a === null, be = b === '' || b === null;
+        if (ae !== be) return ae ? 1 : -1;
+        if (an !== null && bn !== null) return (an - bn) * sortDir || A.i - B.i;
+        if ((an !== null) !== (bn !== null)) return an !== null ? -1 : 1;
+        return String(a).localeCompare(String(b)) * sortDir || A.i - B.i;
+      });
+    }
+    render();
+  }
+  function render() {
+    const out = [];
+    for (const { r } of view) {
+      let s = '<tr>';
+      for (const c of COLS) {
+        const v = r[idx[c.k]];
+        if (c.t === 'link') s += `<td><a href="https://europepmc.org/article/PMC/${esc(v)}" target="_blank" rel="noopener">${esc(v)}</a></td>`;
+        else if (c.t === 'flag') s += v ? '<td class="flag yes">✓</td>' : '<td class="flag no">✗</td>';
+        else if (c.t === 'num') s += `<td class="n">${esc(v === null ? '' : typeof v === 'number' ? signed(v) : v)}</td>`;
+        else if (c.t === 'harm') s += `<td class="n">${esc(signed(v))}</td>`;
+        else s += `<td${c.w ? ' class="w"' : ''}>${esc(v ?? '')}</td>`;
+      }
+      out.push(s + '</tr>');
+    }
+    tbody.innerHTML = out.join('');
+    document.getElementById('x-count').innerHTML = `Showing <b>${fmt(view.length)}</b> of ${fmt(rows.length)} rows`;
+  }
+  document.getElementById('x-reset').addEventListener('click', () => {
+    for (const k in filters) delete filters[k];
+    thead.querySelectorAll('input, select').forEach(e => { e.value = ''; });
+    apply();
+  });
+  document.getElementById('x-complete').addEventListener('click', () => {
+    filters.complete = '1';
+    document.getElementById('xf-complete').value = '1';
+    apply();
+  });
+  function csv() {
+    const head = ['row_id', 'pmcid', 'particle', 'material', 'quantity', 'value', 'unit', 'medium', 'medium_reported', 'ionic_strength_mM', 'ionic_strength_reported', 'pH', 'pH_reported', 'temperature', 'temperature_reported', 'instrument', 'instrument_reported', 'conditions_complete', 'size_measured_nm', 'case', 'harmonised_low', 'harmonised_high'];
+    const q = (v) => { const s = v === null || v === undefined ? '' : String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const lines = [head.join(',')];
+    for (const { r } of view) {
+      const g = (k) => r[idx[k]];
+      const b = (k) => (g(k) ? 'True' : 'False');
+      lines.push([g('pmcid') + '-' + g('row'), g('pmcid'), g('particle'), g('material'), g('qty') === 'ζ' ? 'zeta_potential' : 'electrophoretic_mobility', g('value'), g('unit'), g('medium'), b('medium_ok'), g('ionic_mM'), b('ionic_ok'), g('pH'), b('pH_ok'), g('temp'), b('temp_ok'), g('instrument'), b('instr_ok'), b('complete'), g('size_nm'), g('case'), g('h_lo'), g('h_hi')].map(q).join(','));
+    }
+    return lines.join('\n');
+  }
+  document.getElementById('x-copy').addEventListener('click', () => {
+    const text = csv(), msg = document.getElementById('x-copy-msg'), box = document.getElementById('x-csv');
+    const n = fmt(view.length);
+    const fallback = () => { box.hidden = false; box.value = text; box.focus(); box.select(); msg.textContent = 'Copying is blocked here. The CSV of ' + n + ' rows is selected below; press Ctrl+C or ⌘C.'; };
+    try {
+      navigator.clipboard.writeText(text).then(() => { box.hidden = true; msg.textContent = 'Copied ' + n + ' rows as CSV. Paste into a spreadsheet.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  apply();
+})();
+})();
+</script>

@@ -15,7 +15,7 @@ import pytest
 from mnp import config
 from mnp.corpus import jats, lines
 from mnp.corpus.licence import Licence
-from mnp.report import quotes, release
+from mnp.report import quotes, release, scope
 
 # Each fixture row's quote, verbatim in its fixture paper. PMCC-r1 joins two passages.
 QUOTES = {
@@ -469,6 +469,13 @@ def test_the_card_states_the_parser_defect_as_a_limit_of_the_extraction(tmp_path
     assert "temperature 100.0 % against 50.0 %" in card and "biased downward" not in card
 
 
+def test_the_card_opens_with_the_scope_block_under_its_title(tmp_path):
+    card = _card(_build(tmp_path / "release", origin=_origin()))
+    block = "\n".join(scope.block(_table(), _stats(), _origin()))
+    assert card.startswith(f"# {release.DATASET_TITLE}\n\n{block}\n\n"), card[:600]
+    assert "4 / 6" in block and "55 hits, 40 of them open access, 44 full texts fetched" in block
+
+
 def test_a_card_without_the_origin_table_says_nothing_about_origin(tmp_path):
     card = _card(_build(tmp_path / "release"))
     assert "synthetic" not in card and "supplementary-materials" not in card
@@ -691,3 +698,5 @@ def test_the_shipped_card_states_the_committed_origin(tmp_path, committed):
     assert f"{k} / {n} — {100 * k / n:.1f} %" in card
     lm = origin["lost_methods"]
     assert f"{lm['papers_affected']} of {lm['papers']} papers" in card
+    block = "\n".join(scope.block(table, stats, origin))
+    assert card.startswith(f"# {release.DATASET_TITLE}\n\n{block}\n\n")

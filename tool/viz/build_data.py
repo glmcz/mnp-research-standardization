@@ -32,7 +32,7 @@ import pandas as pd
 from mnp.demo import harmonise, resample
 from mnp.eval import comparability, scoring
 from mnp.eval.query_sets import QueryKind
-from mnp.report import release, review
+from mnp.report import release, review, scope
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
@@ -576,6 +576,25 @@ def origin_section(ref: str) -> dict | None:
     }
 
 
+def scope_section(ref: str, table: pd.DataFrame) -> dict | None:
+    """The block every generated document opens with, rendered from this ref's tables by the
+    same function; None at a ref that predates `report origin`, so the page hides the box."""
+    if not exists(ref, ORIGIN_STATS):
+        return None
+    facts = scope.gather(
+        table,
+        json.loads(show(ref, "out/tables/d1_stats.json")),
+        json.loads(show(ref, ORIGIN_STATS)),
+    )
+    return {
+        "title": scope.TITLE,
+        "items": [list(item) for item in scope.items(facts)],
+        # The documents gained the block after the origin table was committed; at such a ref the
+        # page shows the box and says it is not cross-checked, rather than failing.
+        "cross_checked": scope.extract(show(ref, "out/review/REVIEW.md")) is not None,
+    }
+
+
 # ---- cross-check against REVIEW.md ----------------------------------------------------------
 
 
@@ -780,6 +799,11 @@ def review_checks(ref: str, data: dict) -> list[dict]:
             (int(total), int(comp), int(cond), int(notc)),
         )
 
+    sc = data.get("scope")
+    if sc and sc["cross_checked"]:
+        check("scope block, word for word", "\n".join(scope.markdown(sc["items"])),
+              scope.extract(text))  # fmt: skip
+
     o = data.get("origin")
     if not (o and o["cross_checked"]):
         return checks
@@ -872,6 +896,9 @@ def build(ref: str) -> dict:
         # page shows the section and says it is not cross-checked, rather than failing.
         origin["cross_checked"] = "#### C11." in show(ref, "out/review/REVIEW.md")
         data["origin"] = origin
+    box = scope_section(ref, table)
+    if box is not None:
+        data["scope"] = box
     data["checks"] = review_checks(ref, data)
     return data
 

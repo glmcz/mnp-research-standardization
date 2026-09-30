@@ -605,25 +605,6 @@ STEPS: tuple[Step, ...] = (
         phase="Deliverables",
     ),
     Step(
-        command="report demo",
-        purpose=(
-            "Renders the 13-case demo: one page per case (why it was picked, its rows, the "
-            "standardisation walk, comparability against the paper and the whole corpus, the "
-            "harmonised zeta, the resampling headline with and without the paper), a README "
-            "with the corpus-wide E2e table and E2b scan, and METHOD.md. It calls no model. Its "
-            "reader section reads the recorded judgement runs at "
-            "data/interim/runs/demo-cell{d,b}-20260928 rather than asking anything itself, and "
-            "renders a missing run as 'not run' and a recorded usage-policy refusal as one."
-        ),
-        inputs="d1_zeta_table.csv, the vendored corpus, data/interim/runs/demo-cell{d,b}-20260928",
-        outputs="out/demo/README.md, out/demo/cases/*.md, out/demo/METHOD.md",
-        kind=D,
-        idempotent=True,
-        network=False,
-        invalidated_by="a change to d1_zeta_table.csv, the demo modules, or a re-run of the cells",
-        phase="Deliverables",
-    ),
-    Step(
         command="report origin",
         purpose=(
             "Rebuilds where every measured particle came from (bought, made in a lab, or "
@@ -653,6 +634,29 @@ STEPS: tuple[Step, ...] = (
         phase="Deliverables",
     ),
     Step(
+        command="report demo",
+        purpose=(
+            "Renders the 13-case demo: one page per case (why it was picked, its rows, the "
+            "standardisation walk, comparability against the paper and the whole corpus, the "
+            "harmonised zeta, the resampling headline with and without the paper), a README "
+            "with the corpus-wide E2e table and E2b scan, and METHOD.md. It calls no model. Its "
+            "reader section reads the recorded judgement runs at "
+            "data/interim/runs/demo-cell{d,b}-20260928 rather than asking anything itself, and "
+            "renders a missing run as 'not run' and a recorded usage-policy refusal as one. "
+            "README.md and METHOD.md open with the scope block REVIEW.md and the card open with "
+            "(mnp.report.scope), so it runs after report origin."
+        ),
+        inputs="d1_zeta_table.csv, d1_stats.json, sample_origin_stats.json when present, the "
+        "vendored corpus, data/interim/runs/demo-cell{d,b}-20260928",
+        outputs="out/demo/README.md, out/demo/cases/*.md, out/demo/METHOD.md",
+        kind=D,
+        idempotent=True,
+        network=False,
+        invalidated_by="a change to d1_zeta_table.csv, d1_stats.json or the origin stats, the "
+        "demo modules, or a re-run of the cells",
+        phase="Deliverables",
+    ),
+    Step(
         command="report release",
         purpose=(
             "Packages the table D1 wrote as a citable dataset under CC BY 4.0: the same rows as "
@@ -666,7 +670,8 @@ STEPS: tuple[Step, ...] = (
             "The build refuses when any withheld quote cannot be restored from that address "
             "byte for byte. The card states what has not been established as plainly as what "
             "has — the gold set is unaudited, prompt provenance is coarse, and the corpus is one "
-            "database."
+            "database — and opens, under its title, with the scope block every reader-facing "
+            "document shares (mnp.report.scope)."
         ),
         inputs="out/tables/d1_zeta_table.csv, out/tables/d1_stats.json, gold_50.csv, the "
         "vendored corpus (licences, line addresses) and its manifest, and "
@@ -690,7 +695,8 @@ STEPS: tuple[Step, ...] = (
             "it describes (resample, harmonise, comparability, scoring) or quoted with its file "
             "and section, and a worked example that does not reproduce the module's result "
             "refuses the build. The audit sample gives line numbers, never text, for a row "
-            "whose quote the release withholds."
+            "whose quote the release withholds. The guide opens with the scope block the card "
+            "and the demo share (mnp.report.scope)."
         ),
         inputs="out/tables/d1_zeta_table.csv, d1_stats.json, sample_origin_stats.json, "
         "out/release/dataset.parquet, the vendored corpus, queries/kind_e_comparability.csv, "

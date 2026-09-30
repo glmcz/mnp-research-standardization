@@ -1,5 +1,17 @@
 # mnp-research
 
+**Scope, read this first.** The dataset is the surface charge of micro- and nanoplastic
+particles (the zeta potential, plus a few electrophoretic mobilities) as measured in liquids in
+laboratory studies. A zeta potential exists only in a liquid, so every value describes the
+particle in the liquid it was measured in, not in the environment it came from. Almost every
+particle measured is synthetic, bought or made in a lab; the few collected from a real
+environment are nearly all wastewater effluent (`out/review/REVIEW.md` C11,
+`out/release/DATASET_CARD.md`). The papers are the open-access subset of one database, Europe
+PMC, for one query; what that leaves out is in `docs/2026-09-30-corpus-scope-notes.md`. Use the
+data to study how laboratory measurements are reported and whether they can be compared, not how
+plastics behave in air, water or soil. The generated documents open with the same statement,
+with its numbers.
+
 Evidence for the talk *From Detection to Predicting MNP Behavior*. Four deliverables:
 
 | | Deliverable | Headline |

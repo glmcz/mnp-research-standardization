@@ -456,10 +456,12 @@ RUNNERS = {
     "d3": run_d3,
     "d4": run_d4,
     "e1": run_e1,
-    "demo": run_demo,
-    # After d1, whose table it matches the recorded answers to; before release and review,
+    # After d1, whose table it matches the recorded answers to; before demo, release and review,
     # which read its stats.
     "origin": run_origin,
+    # After origin: README.md and METHOD.md open with the scope block, which states the origin.
+    # Before review, which reads METHOD.md.
+    "demo": run_demo,
     # After d1: it reads the table d1 wrote into the same output root.
     "release": run_release,
     # After release: it reads the released parquet as well as the table.

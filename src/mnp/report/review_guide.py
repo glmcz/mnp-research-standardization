@@ -21,6 +21,7 @@ from mnp.eval import comparability as comp
 from mnp.eval import grid
 from mnp.extract.origin import ENVIRONMENTS
 from mnp.extract.zeta import OTHER_STEP_TEMPERATURE, STEP_TEMPERATURE, ZERO_IONIC_STRENGTH
+from mnp.report import scope
 from mnp.report.origin import ROW_COLUMNS
 from mnp.report.release import COLUMN_GROUPS
 from mnp.report.review import AUDIT_SEED, CASES, COLUMNS, FLAGS, METRICS, RUN_IDS, Facts
@@ -2386,7 +2387,15 @@ def section_8(f: Facts) -> list[str]:
     lines += [f"{i}. {item}" for i, item in enumerate(handoff, 1)]
     lines += ["", "### Found while building this guide", ""]
     lines += [f"{i}. {item}" for i, item in enumerate(found, len(handoff) + 1)]
-    lines.append("")
+    lines += [
+        "",
+        "### The corpus",
+        "",
+        "Not enlarged for now (Martin, 2026-09-30). What the corpus leaves out, why that may "
+        "raise the synthetic share, and the cheapest test when it is revisited: "
+        f"`{scope.NOTES}`.",
+        "",
+    ]
     return lines
 
 
@@ -2445,6 +2454,8 @@ def _origin_open(o: dict) -> list[str]:
 def render(f: Facts) -> str:
     lines = [
         "# Reviewing the MNP dataset by hand",
+        "",
+        *scope.block(f.table, f.stats, f.extra.get("origin")),
         "",
         f"A guide to every detail of `MNP-KB v0`: {_int(len(f.table))} surface-charge "
         f"measurements from {_int(f.table['pmcid'].nunique())} papers, with the conditions they "

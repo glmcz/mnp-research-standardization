@@ -1,5 +1,14 @@
 # Reviewing the MNP dataset by hand
 
+**Scope: read this first.**
+
+- **What it is.** The surface charge of micro- and nanoplastic particles as measured in liquids in laboratory studies: 1 890 rows from 491 papers, 1 834 zeta potentials and 56 electrophoretic mobilities (`d1_zeta_table.csv`).
+- **Measured in a liquid.** A zeta potential exists only in a liquid, so every value describes the particle in the liquid it was measured in, not in the environment it came from.
+- **Where the particles came from.** 94.4 % of rows (1 784 / 1 890) measure a synthetic particle, bought or made in a lab. Only 19 rows, from 4 papers, measure particles collected from a real environment: 18 from wastewater effluent (3 papers) and 1 classed "other" (1 paper). From air or dust, freshwater, seawater, soil or sediment: 0 rows. Hand-checked (`sample_origin_stats.json`, REVIEW.md C11).
+- **The measurement liquids.** Rows per `medium_class`: DI water 567, culture medium 315, salt solution 281, buffer 150, environmental water 48, biofluid 28, other 183, unreported 318.
+- **The corpus.** The open-access subset of one database (Europe PMC) for one query: 1 115 hits, 862 of them open access, 858 full texts fetched, 491 papers with a measurement (`d1_stats.json`). What that leaves out: `docs/2026-09-30-corpus-scope-notes.md`.
+- **What it can be used for.** How laboratory measurements are reported and whether they can be compared. Not how plastics behave in air, water or soil.
+
 A guide to every detail of `MNP-KB v0`: 1 890 surface-charge measurements from 491 papers, with the conditions they were measured under and an explicit record of every condition a paper did not report. What it proves, what it does not, and how to check each number yourself.
 
 Contents: 1 how to use this guide · 2 where the data comes from · 3 every column · 4 the five parameters · 5 every formula · 6 what it proves and does not · 7 a one-hour review · 8 open issues.
@@ -981,3 +990,7 @@ This audit is small and not blind: you see the extracted values while you judge.
 17. **`docs/FINDINGS.md` §E2e's temperature interval and ratio range** (±8.4 pp; 2.1× to 4.1×) came from an implementation that was never committed; the rebuild in §5.3 is the one to quote.
 18. **In 208 of 491 papers the extraction did not get the Methods section. Open, a decision for Martin.** `jats._find_methods` takes every section whose `sec-type` matches `method|materials`, and `supplementary-materials` matches, so in those papers a supplementary-materials section was taken for the Methods and the section titles were never tried. The Methods reached the text the extraction read only where a zeta keyword window or a characterisation subsection covered them. `report origin` repairs this for its own reading (`extract.origin.load_doc`); the D1 extraction is unrepaired. Papers with at least one row reporting the condition, those 208 against the other 283: medium 71.2 % against 76.3 %; ionic strength 8.7 % against 11.7 %; temperature 19.2 % against 23.0 % (`sample_origin_stats.json` → `lost_methods`, which lists the papers). They report conditions less often, so the headline condition-reporting numbers (§4, C1 to C3) may be biased downward. The decision: fix the parser and re-extract those papers, or keep the extraction and state the bias. Open.
 19. **7 rows are not the authors' own measurement of a plastic particle**, found while checking origin by hand: `PMC11644763-r1` (a polyester fabric, not a particle); `PMC12462602-r2` (PEG 4000, a water-soluble polymer the authors use in place of polystyrene); `PMC12878436-r4`, `PMC12878436-r5` (a value cited from Arenas et al. 2022, not measured in this paper); `PMC12878436-r6`, `PMC12878436-r7` (a value cited from Na et al. 2021, not measured in this paper); `PMC9645706-r4` (a passing remark about naturally fragmented plastics; nothing was collected or measured). They are rows of the table and counted everywhere, C11 included. Open: drop them or flag them (`sample_origin_stats.json` → `not_own_measurement`).
+
+### The corpus
+
+Not enlarged for now (Martin, 2026-09-30). What the corpus leaves out, why that may raise the synthetic share, and the cheapest test when it is revisited: `docs/2026-09-30-corpus-scope-notes.md`.

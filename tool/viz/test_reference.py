@@ -70,7 +70,7 @@ def _show(ref: str, path: str) -> str | None:
 
 def test_build_data_reproduces_the_reference(tmp_path: Path) -> None:
     got = _build(REF, tmp_path / "data.json")
-    assert _show(REF, ORIGIN_STATS) is None and "origin" not in got
+    assert _show(REF, ORIGIN_STATS) is None and "origin" not in got and "scope" not in got
     want = json.loads((HERE / "reference_4a3087c.json").read_text(encoding="utf-8"))
     assert got.pop("ref") == REF
     assert want.pop("ref") == "HEAD"
@@ -100,3 +100,33 @@ def test_the_origin_section_is_built_where_the_ref_has_the_origin_table(tmp_path
     reported = h["environmental_rows"]["reported"]
     assert conditions == {k: v["n"] for k, v in reported.items()}
     assert origin["env_rows"] == h["environmental_rows"]["rows"]
+
+
+def test_the_scope_box_is_built_at_head_from_the_shared_block(tmp_path: Path) -> None:
+    """The page's box carries the same sentences the generated documents open with."""
+    import io
+
+    import pandas as pd
+
+    from mnp.report import scope
+
+    stats = _show("HEAD", ORIGIN_STATS)
+    if stats is None:
+        pytest.skip("HEAD has no origin table")
+    data = _build("HEAD", tmp_path / "data.json")
+    table = pd.read_csv(io.StringIO(_show("HEAD", "out/tables/d1_zeta_table.csv")))
+    d1 = json.loads(_show("HEAD", "out/tables/d1_stats.json"))
+    items = scope.items(scope.gather(table, d1, json.loads(stats)))
+    assert data["scope"]["title"] == scope.TITLE
+    assert data["scope"]["items"] == [list(i) for i in items]
+    review = _show("HEAD", "out/review/REVIEW.md") or ""
+    assert data["scope"]["cross_checked"] == (scope.extract(review) is not None)
+
+
+def test_the_scope_box_is_hidden_unless_the_data_carries_it() -> None:
+    template = (HERE / "template.html").read_text(encoding="utf-8")
+    box = next(line for line in template.splitlines() if 'id="scope"' in line)
+    assert " hidden" in box, box
+    # `hidden` only hides what no author rule displays; the box and the sections set display.
+    assert "[hidden] { display: none !important; }" in template
+    assert "DATA.scope" in template

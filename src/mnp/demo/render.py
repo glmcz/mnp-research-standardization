@@ -26,7 +26,7 @@ from typing import Any
 
 import pandas as pd
 
-from mnp import runs
+from mnp import config, runs
 from mnp.demo import cases as cases_mod
 from mnp.demo import harmonise, resample
 from mnp.demo import questions as questions_mod
@@ -35,6 +35,7 @@ from mnp.eval import cells, grid, scoring
 from mnp.eval import comparability as comp
 from mnp.eval.query_sets import AnswerKey, Question
 from mnp.extract.zeta import ZERO_IONIC_STRENGTH
+from mnp.report import scope
 
 CELL_D_RUN = "demo-celld-20260928"
 CELL_B_RUN = "demo-cellb-20260928"
@@ -95,6 +96,17 @@ def _md_table(header: list[str], rows: list[list[str]]) -> str:
 def load() -> tuple[pd.DataFrame, cells.Corpus]:
     corpus = cells.load_corpus()
     return corpus.table, corpus
+
+
+def scope_block(table: pd.DataFrame) -> list[str]:
+    """The block REVIEW.md and the card open with, from the stats beside the table read here."""
+    tables = config.OUT_TABLES
+    origin = tables / "sample_origin_stats.json"
+    return scope.block(
+        table,
+        json.loads((tables / "d1_stats.json").read_text()),
+        json.loads(origin.read_text()) if origin.is_file() else None,
+    )
 
 
 def paper_rows(table: pd.DataFrame, pmcid: str) -> list[dict[str, Any]]:
@@ -865,8 +877,10 @@ def readme(
     corpus: cells.Corpus,
     runs_by_cell: dict[str, RunHandle | None],
     all_qas: list[tuple[Question, AnswerKey]],
+    scope_lines: list[str],
 ) -> str:
     out = ["# The demo: thirteen real cases, each re-sampled four ways\n"]
+    out.append("\n".join(scope_lines) + "\n")
     out.append(
         "See `docs/DESIGN_2026-09-28_demo.md` for what this shows and `METHOD.md` for how every "
         "number below is computed. One page per case is in `cases/`."
@@ -1194,7 +1208,7 @@ def _reader_grid_block(n_questions: int) -> str:
     )
 
 
-def method(table: pd.DataFrame, corpus: cells.Corpus) -> str:
+def method(table: pd.DataFrame, corpus: cells.Corpus, scope_lines: list[str]) -> str:
     census = corpus_wide_census(table)
     n_comparable = sum(1 for s in census if s.verdict.verdict is comp.Comparability.comparable)
     scan = harmonise.scan(table)
@@ -1202,6 +1216,7 @@ def method(table: pd.DataFrame, corpus: cells.Corpus) -> str:
     n_questions = sum(len(questions_mod.questions_for(case, table)) for case in cases_mod.CASES)
 
     out = ["# METHOD — how the PoC measures\n"]
+    out.append("\n".join(scope_lines) + "\n")
     out.append(
         "Every number below is either computed at build time from the repo's own code and data, "
         "or quoted with the exact FINDINGS file and section that measured it. None is typed by "
@@ -1318,12 +1333,13 @@ def build(root: Path) -> list[Path]:
         path.write_text(text, encoding="utf-8")
         written.append(path)
 
+    block = scope_block(table)
     readme_path = demo_dir / "README.md"
-    readme_path.write_text(readme(table, corpus, runs_by_cell, all_qas), encoding="utf-8")
+    readme_path.write_text(readme(table, corpus, runs_by_cell, all_qas, block), encoding="utf-8")
     written.append(readme_path)
 
     method_path = demo_dir / "METHOD.md"
-    method_path.write_text(method(table, corpus), encoding="utf-8")
+    method_path.write_text(method(table, corpus, block), encoding="utf-8")
     written.append(method_path)
 
     return sorted(written)

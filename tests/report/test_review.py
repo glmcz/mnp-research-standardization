@@ -22,7 +22,7 @@ import pytest
 from mnp import config
 from mnp.demo import harmonise, resample
 from mnp.eval import comparability as comp
-from mnp.report import review
+from mnp.report import review, scope
 
 HEADINGS = (
     "## 1. How to use this guide",
@@ -365,3 +365,17 @@ def test_section_1_lists_the_origin_tables(guide: str):
     s1 = _part(guide, "## 1. How to use this guide", "\n## 2.")
     assert "`out/tables/sample_origin.csv`" in s1
     assert "`out/tables/sample_origin_stats.json`" in s1
+
+
+def test_the_guide_opens_with_the_scope_block(guide: str, table, origin):
+    stats = json.loads((config.OUT_TABLES / "d1_stats.json").read_text())
+    block = "\n".join(scope.block(table, stats, origin))
+    title = guide.split("\n", 1)[0]
+    assert guide.startswith(f"{title}\n\n{block}\n\n"), guide[:400]
+    assert guide.index(block) < guide.index("## 1. How to use this guide")
+
+
+def test_section_8_points_to_the_corpus_notes(guide: str):
+    s8 = _part(guide, "## 8. Open issues and decisions", "\n## ")
+    line = next(t for t in s8.splitlines() if scope.NOTES in t)
+    assert "Martin, 2026-09-30" in line

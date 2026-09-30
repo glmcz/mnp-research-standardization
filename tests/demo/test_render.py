@@ -10,14 +10,18 @@ one.
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
+import pandas as pd
 import pytest
 
+from mnp import config
 from mnp.demo import cases as cases_mod
 from mnp.demo import harmonise, render, resample
 from mnp.eval import cells
 from mnp.eval import comparability as comp
+from mnp.report import scope
 
 SECTIONS = (
     "## 1. Why this case",
@@ -343,3 +347,18 @@ def test_a_score_line_never_shows_the_answer_key():
     line = render._score_line(scored)
     assert "blockers_exact=1.00" in line
     assert "key_" not in line
+
+
+@pytest.mark.parametrize("name", ["README.md", "METHOD.md"])
+def test_readme_and_method_open_with_the_scope_block(built: Path, name: str):
+    tables = config.OUT_TABLES
+    block = "\n".join(
+        scope.block(
+            pd.read_csv(tables / "d1_zeta_table.csv"),
+            json.loads((tables / "d1_stats.json").read_text()),
+            json.loads((tables / "sample_origin_stats.json").read_text()),
+        )
+    )
+    text = (built / name).read_text(encoding="utf-8")
+    title = text.split("\n", 1)[0]
+    assert text.startswith(f"{title}\n\n{block}\n\n"), text[:500]

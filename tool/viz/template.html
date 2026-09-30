@@ -113,6 +113,12 @@ p { margin: 0; max-width: 68ch; }
 .num { font-variant-numeric: tabular-nums; }
 code, .mono { font-family: var(--mono); font-size: 0.88em; }
 
+[hidden] { display: none !important; }
+.scope { display: grid; gap: 8px; max-width: 78ch; padding: 12px 16px; border-left: 3px solid var(--s1); background: var(--s1-wash); border-radius: 0 8px 8px 0; font-size: 0.92rem; color: var(--ink-2); }
+.scope .scope-h { font-weight: 600; color: var(--ink); }
+.scope ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+.scope li b { color: var(--ink); font-weight: 600; }
+.scope code { background: var(--code-bg); padding: 0 3px; border-radius: 3px; overflow-wrap: anywhere; }
 .masthead { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
 .masthead .lede { font-size: 1.08rem; color: var(--ink-2); max-width: 70ch; }
 .masthead .lede b { color: var(--ink); font-weight: 600; }
@@ -308,6 +314,11 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
     <p class="eyebrow">MNP-KB v0 · surface charge of micro- and nanoplastics · commit <span data-k="commit"></span></p>
     <h1>What <span data-k="rows"></span> zeta measurements can and cannot tell you</h1>
     <p class="lede">MNP-KB v0 is a table of <b><span data-k="rows"></span> surface-charge measurements</b> of plastic particles (the zeta potential, in mV, and a few raw electrophoretic mobilities), read out of <b><span data-k="papers"></span> open-access papers</b>. Next to every number it stores the five conditions that number depends on, and when a paper did not state one, it stores that absence as a fact instead of guessing a default. Think of a sensor reading logged without its calibration or ambient conditions: the value exists, but you cannot compare it with anyone else's. Each section below is one picture of one claim.</p>
+    <aside class="scope" id="scope" hidden aria-labelledby="scope-h">
+      <p class="scope-h" id="scope-h"></p>
+      <ul id="scope-items"></ul>
+      <p class="hb-note" id="scope-unchecked" hidden>REVIEW.md at this commit does not open with this block yet, so it is not cross-checked against it.</p>
+    </aside>
     <div class="facts">
       <span><b><span data-k="rows"></span></b>rows</span>
       <span><b><span data-k="papers"></span></b>papers</span>
@@ -840,6 +851,22 @@ function tipVal(track, pctPos, text, top, cls) {
   if (top !== undefined) { v.style.top = top + 'px'; v.style.lineHeight = '14px'; }
   return v;
 }
+
+// ---------- scope box: the block every generated document opens with ----------
+(function scopeBox() {
+  const SC = DATA.scope;
+  if (!SC) return;
+  document.getElementById('scope-h').textContent = SC.title;
+  const ul = document.getElementById('scope-items');
+  for (const [lead, text] of SC.items) {
+    const li = H('li', null, null, ul);
+    H('b', null, lead, li);
+    li.append(' ');
+    text.split('`').forEach((part, i) => { if (i % 2) H('code', null, part, li); else li.append(part); });
+  }
+  document.getElementById('scope-unchecked').hidden = SC.cross_checked;
+  document.getElementById('scope').hidden = false;
+})();
 
 // ---------- 1. funnel ----------
 (function funnel() {

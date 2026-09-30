@@ -339,15 +339,6 @@ Re-runs the E1 representation bake-off: the 50 gold papers serialised seven ways
 - **kind** deterministic · idem yes · net no
 - **stale when** any parser fix that moves the block set, or a change to one of the seven serialisers in mnp.corpus.represent
 
-### `report demo`
-
-Renders the 13-case demo: one page per case (why it was picked, its rows, the standardisation walk, comparability against the paper and the whole corpus, the harmonised zeta, the resampling headline with and without the paper), a README with the corpus-wide E2e table and E2b scan, and METHOD.md. It calls no model. Its reader section reads the recorded judgement runs at data/interim/runs/demo-cell{d,b}-20260928 rather than asking anything itself, and renders a missing run as 'not run' and a recorded usage-policy refusal as one.
-
-- **in** d1_zeta_table.csv, the vendored corpus, data/interim/runs/demo-cell{d,b}-20260928
-- **out** out/demo/README.md, out/demo/cases/*.md, out/demo/METHOD.md
-- **kind** deterministic · idem yes · net no
-- **stale when** a change to d1_zeta_table.csv, the demo modules, or a re-run of the cells
-
 ### `report origin`
 
 Rebuilds where every measured particle came from (bought, made in a lab, or collected from a real environment) out of judgements already recorded, and asks nothing itself. The reader's answers in data/interim/origin/answers.jsonl, one call per paper through the grid's isolated reader with a cited line for every particle, are matched back to the rows by particle name; every citation is resolved against that paper's lines; and the hand verdicts replace the reader's answer wherever a person read the paper (every environmental particle, the unclear ones up to a cap, and a seeded sample of the rest). The reading was judgement and is never re-run here, so this step is deterministic. It also names the papers whose methods the parser took from a supplementary-materials section and compares their condition reporting with the rest, and it refuses to build when an environmental paper prints a conductivity nobody has read against its rows, or when a row listed as not the authors' own measurement has left the table.
@@ -358,9 +349,18 @@ Rebuilds where every measured particle came from (bought, made in a lab, or coll
 - **scored against** the hand-check file: every environmental particle, the unclear ones up to a cap, a seeded sample of the rest
 - **stale when** a change to the D1 table (answers are matched to rows by particle name), a new reader run, a new hand verdict, or a parser change
 
+### `report demo`
+
+Renders the 13-case demo: one page per case (why it was picked, its rows, the standardisation walk, comparability against the paper and the whole corpus, the harmonised zeta, the resampling headline with and without the paper), a README with the corpus-wide E2e table and E2b scan, and METHOD.md. It calls no model. Its reader section reads the recorded judgement runs at data/interim/runs/demo-cell{d,b}-20260928 rather than asking anything itself, and renders a missing run as 'not run' and a recorded usage-policy refusal as one. README.md and METHOD.md open with the scope block REVIEW.md and the card open with (mnp.report.scope), so it runs after report origin.
+
+- **in** d1_zeta_table.csv, d1_stats.json, sample_origin_stats.json when present, the vendored corpus, data/interim/runs/demo-cell{d,b}-20260928
+- **out** out/demo/README.md, out/demo/cases/*.md, out/demo/METHOD.md
+- **kind** deterministic · idem yes · net no
+- **stale when** a change to d1_zeta_table.csv, d1_stats.json or the origin stats, the demo modules, or a re-run of the cells
+
 ### `report release`
 
-Packages the table D1 wrote as a citable dataset under CC BY 4.0: the same rows as parquet and as JSONL, the JSON Schema re-exported from the pydantic models rather than copied, a LICENSE, and a dataset card. Every statistic on the card is computed during the build from the table and from d1_stats.json, so a rebuild moves the numbers instead of leaving a stale one behind; the build refuses outright when the stats file no longer describes the table beside it. Each paper's licence is read from its vendored XML; a verbatim quote ships only from a CC BY or CC0 source, and every other quote is replaced by its sha256 and its address in the source lines. The build refuses when any withheld quote cannot be restored from that address byte for byte. The card states what has not been established as plainly as what has — the gold set is unaudited, prompt provenance is coarse, and the corpus is one database.
+Packages the table D1 wrote as a citable dataset under CC BY 4.0: the same rows as parquet and as JSONL, the JSON Schema re-exported from the pydantic models rather than copied, a LICENSE, and a dataset card. Every statistic on the card is computed during the build from the table and from d1_stats.json, so a rebuild moves the numbers instead of leaving a stale one behind; the build refuses outright when the stats file no longer describes the table beside it. Each paper's licence is read from its vendored XML; a verbatim quote ships only from a CC BY or CC0 source, and every other quote is replaced by its sha256 and its address in the source lines. The build refuses when any withheld quote cannot be restored from that address byte for byte. The card states what has not been established as plainly as what has — the gold set is unaudited, prompt provenance is coarse, and the corpus is one database — and opens, under its title, with the scope block every reader-facing document shares (mnp.report.scope).
 
 - **in** out/tables/d1_zeta_table.csv, out/tables/d1_stats.json, gold_50.csv, the vendored corpus (licences, line addresses) and its manifest, and out/tables/sample_origin_stats.json when present
 - **out** out/release/{dataset.parquet,dataset.jsonl,schema.json,LICENSE,DATASET_CARD.md}
@@ -369,7 +369,7 @@ Packages the table D1 wrote as a citable dataset under CC BY 4.0: the same rows 
 
 ### `report review`
 
-Writes out/review/: REVIEW.md, a guide for checking the dataset by hand, and five CSV worksheets a spreadsheet can recompute (conditions per paper, the ICC inputs, every row harmonised, four comparability pairs checked field by field, and a seeded audit sample of twenty rows with empty columns for the reviewer's verdicts). Every number in the guide is computed during the build by the modules it describes (resample, harmonise, comparability, scoring) or quoted with its file and section, and a worked example that does not reproduce the module's result refuses the build. The audit sample gives line numbers, never text, for a row whose quote the release withholds.
+Writes out/review/: REVIEW.md, a guide for checking the dataset by hand, and five CSV worksheets a spreadsheet can recompute (conditions per paper, the ICC inputs, every row harmonised, four comparability pairs checked field by field, and a seeded audit sample of twenty rows with empty columns for the reviewer's verdicts). Every number in the guide is computed during the build by the modules it describes (resample, harmonise, comparability, scoring) or quoted with its file and section, and a worked example that does not reproduce the module's result refuses the build. The audit sample gives line numbers, never text, for a row whose quote the release withholds. The guide opens with the scope block the card and the demo share (mnp.report.scope).
 
 - **in** out/tables/d1_zeta_table.csv, d1_stats.json, sample_origin_stats.json, out/release/dataset.parquet, the vendored corpus, queries/kind_e_comparability.csv, the committed grid runs
 - **out** out/review/{REVIEW.md,conditions_per_paper.csv,icc_worksheet.csv,harmonised_all_rows.csv,comparability_worked_pairs.csv,audit_sample.csv}

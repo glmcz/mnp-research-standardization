@@ -1,5 +1,14 @@
 # The demo: thirteen real cases, each re-sampled four ways
 
+**Scope: read this first.**
+
+- **What it is.** The surface charge of micro- and nanoplastic particles as measured in liquids in laboratory studies: 1 890 rows from 491 papers, 1 834 zeta potentials and 56 electrophoretic mobilities (`d1_zeta_table.csv`).
+- **Measured in a liquid.** A zeta potential exists only in a liquid, so every value describes the particle in the liquid it was measured in, not in the environment it came from.
+- **Where the particles came from.** 94.4 % of rows (1 784 / 1 890) measure a synthetic particle, bought or made in a lab. Only 19 rows, from 4 papers, measure particles collected from a real environment: 18 from wastewater effluent (3 papers) and 1 classed "other" (1 paper). From air or dust, freshwater, seawater, soil or sediment: 0 rows. Hand-checked (`sample_origin_stats.json`, REVIEW.md C11).
+- **The measurement liquids.** Rows per `medium_class`: DI water 567, culture medium 315, salt solution 281, buffer 150, environmental water 48, biofluid 28, other 183, unreported 318.
+- **The corpus.** The open-access subset of one database (Europe PMC) for one query: 1 115 hits, 862 of them open access, 858 full texts fetched, 491 papers with a measurement (`d1_stats.json`). What that leaves out: `docs/2026-09-30-corpus-scope-notes.md`.
+- **What it can be used for.** How laboratory measurements are reported and whether they can be compared. Not how plastics behave in air, water or soil.
+
 See `docs/DESIGN_2026-09-28_demo.md` for what this shows and `METHOD.md` for how every number below is computed. One page per case is in `cases/`.
 
 ## Cases

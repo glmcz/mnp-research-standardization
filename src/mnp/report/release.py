@@ -35,7 +35,7 @@ import pandas as pd
 from mnp.corpus.licence import CODES, QUOTE_ALLOWED, Licence
 from mnp.corpus.lines import LinedDoc
 from mnp.extract.zeta import OTHER_STEP_TEMPERATURE, STEP_TEMPERATURE, ZERO_IONIC_STRENGTH
-from mnp.report import quotes
+from mnp.report import quotes, scope
 from mnp.report.reproduce import sha256_file
 from mnp.schema import export
 
@@ -338,6 +338,7 @@ def facts(
         "licences": licence_facts(table),
         "gold": gold_facts(gold),
         "origin": origin,
+        "scope": scope.block(table, stats, origin),
     }
 
 
@@ -799,6 +800,8 @@ def _files_section(digests: dict[str, str], rows: int, columns: int) -> list[str
 def card(f: dict, digests: dict[str, str]) -> str:
     lines = [
         f"# {DATASET_TITLE}",
+        "",
+        *f["scope"],
         "",
         f"{f['rows']} surface-charge measurements extracted from {f['papers']} open-access "
         "papers, each with the conditions it was measured under — and, where those conditions "

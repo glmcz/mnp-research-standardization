@@ -78,6 +78,13 @@ Each moves exactly one variable.
 | **D → E** | does agency help with structure? | ship the static router, skip the loop |
 | **A vs rest** | does retrieval earn anything at all? | retrieval only pays at corpus scale |
 
+**Kind E in cells D and E (note, 2026-09-28).** Cell D is handed the pair's verdict and
+blockers, and cell E's `compare_rows` returns them, both computed by the same `comparable()`
+that writes kind E's answer key. On kind E those two cells score transcription of the product's
+verdict, close to 100 % by construction. B → D and C → E on kind E therefore measure what the
+verdict saves a reader, not whether the verdict is right; that needs pairs judged independently
+of the code.
+
 ---
 
 ## 2. S1 — the converter, specified

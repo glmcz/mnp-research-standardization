@@ -51,4 +51,4 @@ disagreements are adjudicated separately, and a call you hid is a call nobody ca
 ## Output
 
 A JSON list of row objects to the path you are given, then report a table
-`PMCID | rows | notes-summary` plus up to three genuinely ambiguous cases.
+`PMCID | rows | notes-summary` and, below it, every borderline call, one line each.

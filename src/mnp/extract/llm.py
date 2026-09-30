@@ -96,6 +96,8 @@ class Completion:
     attempts: list[dict] = field(default_factory=list)
     prompt_tokens: int | None = None
     completion_tokens: int | None = None
+    # "length" means the reply hit max_tokens: a missing JSON object is truncation, not refusal
+    finish_reason: str | None = None
 
 
 class LLMClient:
@@ -154,7 +156,15 @@ class LLMClient:
         path = self.cache_dir / f"{cache_key(model, system, user)}.json"
         if path.is_file():
             entry = json.loads(path.read_text())
-            return Completion(entry["text"], entry["model"], True, attempts)
+            return Completion(
+                entry["text"],
+                entry["model"],
+                True,
+                attempts,
+                entry.get("prompt_tokens"),
+                entry.get("completion_tokens"),
+                entry.get("finish_reason"),
+            )
         use_json = json_mode
         for _ in range(2):
             try:
@@ -172,6 +182,7 @@ class LLMClient:
                 attempts.append({"model": model, "status": None, "error": str(e)[:300]})
                 raise self._ModelFailed() from e
             text = resp.choices[0].message.content or ""
+            finish_reason = getattr(resp.choices[0], "finish_reason", None)
             usage = getattr(resp, "usage", None)
             attempts.append({"model": model, "status": 200})
             path.write_text(
@@ -181,6 +192,9 @@ class LLMClient:
                         "served_model": getattr(resp, "model", model),
                         "text": text,
                         "json_mode": use_json,
+                        "prompt_tokens": getattr(usage, "prompt_tokens", None),
+                        "completion_tokens": getattr(usage, "completion_tokens", None),
+                        "finish_reason": finish_reason,
                         "created": datetime.now(UTC).isoformat(timespec="seconds"),
                     }
                 )
@@ -192,6 +206,7 @@ class LLMClient:
                 attempts,
                 getattr(usage, "prompt_tokens", None),
                 getattr(usage, "completion_tokens", None),
+                finish_reason,
             )
         raise self._ModelFailed()
 
@@ -238,7 +253,7 @@ class LLMClient:
             "Return exactly one JSON object and nothing else."
         )
         for model in self.chain:
-            for prompt, label in ((user, "no_json"), (nudged, "no_json_after_nudge")):
+            for prompt, suffix in ((user, ""), (nudged, "_after_nudge")):
                 try:
                     completion = self._complete_one(
                         model, system, prompt, attempts, json_mode, temperature
@@ -249,7 +264,8 @@ class LLMClient:
                 if data is not None:
                     completion.attempts = attempts
                     return data, completion
-                attempts.append({"model": model, "status": label})
+                failure = "truncated" if completion.finish_reason == "length" else "no_json"
+                attempts.append({"model": model, "status": failure + suffix})
         raise ParseError(f"no JSON object from any model: {self._summary(attempts)}")
 
 

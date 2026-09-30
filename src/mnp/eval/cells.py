@@ -59,6 +59,7 @@ from mnp.eval.comparability import (
     material_key,
 )
 from mnp.eval.query_sets import FilterSpec, QueryKind, Question, apply_filter
+from mnp.schema.models import MediumClass, Quantity
 
 #: Top k for a question that names one paper. See the module note: a paper is ~44 lines.
 PAPER_K = 30
@@ -500,6 +501,10 @@ def build_d_comparability(
 
     Kind E's key already exists in `comparability.py`; this only renders it as context, so cell
     D answers the same question the other cells are asked rather than a reformulation of it.
+
+    The verdict printed here comes from the same `comparable()` that writes the answer key, so
+    cell D's kind E score measures whether the reader transcribes it, not whether it can judge
+    comparability, and it cannot show whether `comparable()` itself is right.
     """
     left, right = corpus.row(row_id_a), corpus.row(row_id_b)
     if left is None or right is None:
@@ -548,9 +553,11 @@ TOOLS_PROSE: tuple[ToolSpec, ...] = (
     ),
     ToolSpec(
         "read_paper",
-        "read_paper(pmcid: str, start: int = 1, count: int = 40)",
-        "consecutive lines of that paper, as PMCID:Lnn<TAB>text",
-        "Read a window of one paper in written order. Use it after search_lines locates a line.",
+        f"read_paper(pmcid: str, start: int = 1, count: int = {PAGE})",
+        f"at most {PAGE} consecutive lines of that paper, as PMCID:Lnn<TAB>text, then the "
+        "paper's total line count",
+        f"Read a window of one paper in written order; count is capped at {PAGE}, so page on "
+        "with start. Use it after search_lines locates a line.",
     ),
     ToolSpec(
         "list_papers",
@@ -571,8 +578,15 @@ TOOLS_KB: tuple[ToolSpec, ...] = (
             "pH_max: number | null = null, size_min: number | null = null, "
             "size_max: number | null = null, limit: int = 50)"
         ),
-        "one extracted record per line, every field named, including the *_reported booleans",
-        "Filter the extracted records. A record whose value is unreported never matches a range.",
+        "at most `limit` records, one per line, every field named, including the *_reported "
+        "booleans; it does not say how many more matched",
+        "Filter the extracted records. quantity is "
+        + " or ".join(q.value for q in Quantity)
+        + "; medium_class is one of "
+        + ", ".join(m.value for m in MediumClass)
+        + "; material and functionalisation take common spellings (PS, polystyrene). "
+        "ionic_strength_* is in mM and size_* is the measured size in nm. A record whose value "
+        "is unreported never matches a range.",
     ),
     ToolSpec(
         "get_row",
@@ -636,7 +650,7 @@ class Session:
 
 _LOOP = """HOW TO WORK
 - You may call the tools above as many times as you need, one at a time, and you decide when
-  you have enough. Every call is counted and reported, so do not call a tool you do not need.
+  you have enough.
 - Write a call as a single line: CALL <name> <json object of arguments>
 - You will be given that call's result, and then you may call again or answer.
 - When you are ready, stop calling tools and emit the JSON object described under OUTPUT."""

@@ -11,6 +11,10 @@ of **how often such a measurement is reported without its measurement conditions
 Work only inside `services/mnp-research` (a `uv` project; run commands with `uv run`). You do
 the work yourself: you have no ability to delegate, and none is needed.
 
+Before the first paper, read `docs/briefs/extraction.md` in full unless your task message
+already contains it. It is the rule set `--brief` stamps on every row you ingest, and where it
+is more specific than this file — what counts as the measurand, above all — follow it.
+
 ## The loop, one paper at a time
 
 1. `uv run python -m mnp.extract show --pmcid <PMCID> --no-system` — read it **fully**,
@@ -51,7 +55,8 @@ One row per (particle × medium × condition) the paper reports:
   for character including odd spacing. The ingest verifies it against the article; a quote
   you tidied up will fail.
 - Also: `particle_name`, `material`, `functionalisation`, `supplier`, `size_nominal_nm`,
-  `size_measured_nm`, `medium_matches_exposure`, `evidence_location`.
+  `size_measured_nm`, `evidence_location`, and `medium_matches_exposure` — was the zeta
+  measured in the same medium the exposure or experiment used (true / false / null).
 
 `medium_class` ∈ DI_water, buffer, salt_solution, culture_medium, biofluid,
 environmental_water, other, unreported.
@@ -77,6 +82,7 @@ this study.
 
 ## Report back
 
-A compact table only: `PMCID | rows | flagged | coverage | note`, where note is one short
-phrase ("ok", "no plastic zeta in paper", "figure-only values", "unmatched are not plastics",
-or the problem you could not resolve). Add at most three lines on genuinely ambiguous calls.
+A compact table, `PMCID | rows | flagged | coverage | note`, where note is one short phrase
+("ok", "no plastic zeta in paper", "figure-only values", "unmatched are not plastics", or the
+problem you could not resolve). Below it, one line for every genuinely ambiguous call: the
+PMCID and the rule the paper leaves open.

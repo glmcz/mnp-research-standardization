@@ -46,8 +46,12 @@ stated basis is `ESCALATE` — the estimate is the thing you are here to argue w
 
 **Check the arithmetic.** If a card says "0.7 M because 80 questions × 8 k", multiply it
 yourself. The measured constants in this repo are: **17.8 k tokens per paper** end to end for
-extraction, **5 373 tokens per paper** for converted reading text, 491 papers, 1 890 rows, 858
-XMLs, 80 questions in the eval set. A card that contradicts one of those without saying why is
+extraction (wave 1, 2026-09-15, `sonnet`-alias workers; the tokenizer used from Opus 4.7 on
+counts up to about a third more for the same text, so a newer model measuring above 17.8 k is
+not by itself an error), **5 373 tokens per paper** for converted reading text (a `cl100k_base`
+count, not a Claude one), 491 papers, 1 890 rows, 858
+XMLs, 400 questions in the eval set (30/30/10/10 for kinds A–D, 320 kind E pairs). A card that
+contradicts one of those without saying why is
 escalating on the number alone.
 
 ## Blocking cons — any one of these escalates

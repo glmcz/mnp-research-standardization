@@ -36,8 +36,8 @@ Three claims, in the author's words, and each one is a trap a build step can fal
 
 1. **Different methods see different size ranges, so reported concentrations are not
    comparable.** Any step that pools or compares concentrations across methods without
-   carrying the method's lower size limit is escalating. `SizeRange.size_floor_um` exists for
-   this.
+   carrying the method's lower size limit is escalating. `SizeRange.detection_floor_um` (from
+   `DETECTION_FLOOR_UM` in `src/mnp/schema/models.py`) exists for this.
 2. **MNPs are not a homogeneous class.** Behaviour comes from size, shape, polymer, chemistry,
    functionalisation, ageing, hydrophobicity, surface charge and colloidal stability *together*.
    A step that keys on polymer name alone is treating PS-COOH, PS-NH₂ and bare PS latex as one
@@ -76,8 +76,10 @@ is the most likely way this dataset becomes wrong.
 - **Mobility-to-zeta conversion.** Zeta is a model-dependent conversion of the measured
   mobility, not a measured quantity. Smoluchowski and Hückel differ by a factor of 1.5 and are
   valid in opposite κa regimes. The Debye length in water at 25 °C is roughly
-  κ⁻¹ ≈ 0.304/√I nm for a 1:1 electrolyte, so a 100 nm particle at I = 10 mM sits at κa ≈ 33
-  (Smoluchowski is fine) and at I = 0.1 mM sits at κa ≈ 1.6 (neither limit is clean). A step
+  κ⁻¹ ≈ 0.304/√I nm for a 1:1 electrolyte (I in mol/L), and a is the radius, so a 100 nm
+  particle at I = 10 mM sits at κa ≈ 16, where Henry's f ≈ 1.33 and Smoluchowski's 1.5 is
+  already ~11 % off, and at I = 0.1 mM at κa ≈ 1.6, f ≈ 1.05, near the Hückel end.
+  `ZetaRow.kappa_a` and `henry_f` in `src/mnp/eval/comparability.py` compute both. A step
   that pools zeta values across instruments without carrying the instrument is escalating.
 - **Temperature.** An incubation, exposure, culture, digestion or storage temperature is **not**
   a measurement temperature, even when the paper states no other one.

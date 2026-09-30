@@ -17,9 +17,10 @@ def article(fixtures_dir):
 class ScriptedLLM:
     """Stands in for llm.LLMClient: returns canned parsed JSON, records prompts."""
 
-    def __init__(self, payloads, chain=("fake-model",)):
+    def __init__(self, payloads, chain=("fake-model",), usage=(None, None)):
         self.payloads = list(payloads)
         self.chain = list(chain)
+        self.usage = usage
         self.calls = []
 
     def complete_json(self, system, user, **kw):
@@ -27,7 +28,14 @@ class ScriptedLLM:
         item = self.payloads.pop(0)
         if isinstance(item, Exception):
             raise item
-        return item, SimpleNamespace(model=self.chain[0], cached=False, attempts=[])
+        prompt_tokens, completion_tokens = self.usage
+        return item, SimpleNamespace(
+            model=self.chain[0],
+            cached=False,
+            attempts=[],
+            prompt_tokens=prompt_tokens,
+            completion_tokens=completion_tokens,
+        )
 
 
 def _payload(*rows):
@@ -271,6 +279,15 @@ def test_extract_paper_tolerates_a_bare_list_or_a_single_object(article):
     assert len(zeta.extract_paper(article, fake).measurements) == 1
     fake = ScriptedLLM([{"rows": [ROW_NACL]}])
     assert len(zeta.extract_paper(article, fake).measurements) == 1
+
+
+def test_extract_paper_records_what_the_model_call_cost(article):
+    """extraction_tokens is len/4 of the input; the provider's count is what the quota spends."""
+    fake = ScriptedLLM([_payload(ROW_NACL)], usage=(1200, 340))
+    rec = zeta.extract_paper(article, fake)
+    assert (rec.model_prompt_tokens, rec.model_completion_tokens) == (1200, 340)
+    back = zeta.ExtractionRecord.from_json(rec.to_json())
+    assert (back.model_prompt_tokens, back.model_completion_tokens) == (1200, 340)
 
 
 def test_record_roundtrips_through_jsonl(article, tmp_path):

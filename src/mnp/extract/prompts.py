@@ -23,7 +23,8 @@ OUTPUT_TEMPLATE = {
             "size_nominal_nm": "as printed, e.g. '100 nm' | null",
             "size_measured_nm": "as printed, e.g. '112 ± 3 nm' | null",
             "quantity": "'zeta potential' | 'electrophoretic mobility'",
-            "value": "as printed, e.g. '-50 ± 9.7' (keep the sign, keep ±)",
+            "value": "as printed, e.g. '-50 ± 9.7' (keep the sign, keep ±) | null when "
+            "the paper reports the measurement but prints no number in this text",
             "unit": "as printed, e.g. 'mV' or 'µm cm/Vs' or '10^-8 m2/Vs'",
             "n": "number of replicates as printed | null",
             "conditions": {
@@ -34,7 +35,8 @@ OUTPUT_TEMPLATE = {
                 "temperature": "as written, e.g. '25 °C' or 'room temperature' | null",
                 "instrument": "make and model, e.g. 'Malvern Zetasizer Nano ZS' | null",
             },
-            "medium_matches_exposure": "true | false | null",
+            "medium_matches_exposure": "was the zeta measured in the medium the "
+            "exposure/experiment used? true | false | null",
             "evidence_quote": "verbatim copy of the sentence or table row the value comes from",
             "evidence_location": "e.g. 'Methods, para 2' or 'Table 1'",
         }
@@ -83,8 +85,25 @@ Rules — each one matters:
    0.137 M sodium chloride"): copy the composition verbatim into ionic_strength
    and let the pipeline do the arithmetic. Never look up what a buffer's name
    nominally means.
-9. If the article reports no zeta potential or mobility of a plastic particle,
-   return {{"measurements": []}}.
+9. A measurement the paper reports without printing its number here (only in a
+   figure, only in the supplement, or only as a statement such as "became less
+   negative") is still a measurement and the most important case in this study:
+   return its object with value null, its conditions, and as evidence_quote the
+   sentence that names the zeta potential or mobility measurement.
+10. If the article reports no zeta potential or mobility of a plastic particle,
+    return {{"measurements": []}}.
+
+What counts: a synthetic-polymer particle (PS, PE, PP, PET, PVC, PMMA, PLA, PLGA,
+PCL, nylon, PTFE, PBAT, latex or polymer beads; any polymer, weathered or
+surface-modified), and only when it is what was measured. Return no object for
+natural polymers, inorganic particles or a polymer coating on an inorganic core;
+for a supernatant the particles were removed from;
+for a protein, cell or other material that would be in the cuvette without the
+plastic; or for two free particle populations measured together. A plastic
+particle in a treated or complex medium counts, with that liquid as its medium,
+and so does one carrying an adsorbed corona. Values cited from other studies,
+stability thresholds ("above ±30 mV is stable"), applied voltages and calibration
+standards are not this study's measurements.
 
 Why the conditions matter (a value without them is not comparable):
 {_field_notes()}

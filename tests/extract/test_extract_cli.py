@@ -27,7 +27,9 @@ class ScriptedLLM:
 
     def complete_json(self, system, user, **kw):
         self.calls += 1
-        return self.payload, SimpleNamespace(model="scripted", cached=False, attempts=[])
+        return self.payload, SimpleNamespace(
+            model="scripted", cached=False, attempts=[], prompt_tokens=None, completion_tokens=None
+        )
 
 
 @pytest.fixture

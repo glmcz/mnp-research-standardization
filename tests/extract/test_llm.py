@@ -63,7 +63,7 @@ def _status_error(status: int, message: str = "boom") -> openai.APIStatusError:
 
 
 class FakeClient:
-    """Each script entry is either a str (content) or an Exception to raise."""
+    """Each script entry is a str (content), a (content, finish_reason) pair, or an Exception."""
 
     def __init__(self, script):
         self.script = list(script)
@@ -75,8 +75,13 @@ class FakeClient:
         item = self.script.pop(0)
         if isinstance(item, Exception):
             raise item
+        content, finish_reason = item if isinstance(item, tuple) else (item, "stop")
         return SimpleNamespace(
-            choices=[SimpleNamespace(message=SimpleNamespace(content=item))],
+            choices=[
+                SimpleNamespace(
+                    message=SimpleNamespace(content=content), finish_reason=finish_reason
+                )
+            ],
             model=kwargs["model"],
             usage=SimpleNamespace(prompt_tokens=10, completion_tokens=5),
         )
@@ -152,6 +157,25 @@ def test_second_identical_call_is_served_from_cache(tmp_path):
     entry = json.loads((tmp_path / f"{key}.json").read_text())
     assert entry["text"] == '{"ok": 1}'
     assert entry["model"] == "m1"
+
+
+def test_a_cached_reply_still_says_what_its_call_cost(tmp_path):
+    """The token quota is the project's binding constraint; a rerun from cache must not lose it."""
+    fake, c = _client(tmp_path, ['{"ok": 1}'])
+    c.complete("s", "u")
+    again = c.complete("s", "u")
+    assert again.cached is True
+    assert (again.prompt_tokens, again.completion_tokens) == (10, 5)
+
+
+def test_a_reply_cut_off_at_max_tokens_is_recorded_as_truncated(tmp_path):
+    """A reasoning model that spends max_tokens before the JSON was logged as no_json, which
+    reads as a model that ignored the format rather than one that ran out of room."""
+    fake, c = _client(tmp_path, [('{"measurements": [{"value": "-5', "length"), '{"a": 1}'])
+    _, completion = c.complete_json("s", "u")
+    assert [a["status"] for a in completion.attempts] == [200, "truncated", 200]
+    _, replayed = c.complete_json("s", "u")
+    assert [a["status"] for a in replayed.attempts] == ["truncated"]
 
 
 def test_cache_is_keyed_on_the_model_that_would_be_called(tmp_path):

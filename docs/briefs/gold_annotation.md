@@ -4,8 +4,9 @@
 briefs were versioned, so this file states the rules the annotation *followed*, recovered from
 `data/interim/annotation/gold_50.csv`, the plan, and `docs/METHODOLOGY.md` — it is not the text
 the annotator read. Treat it as the rules a *future* annotator must follow, and as a
-description, not a provenance record, of the existing rows. Its hash is recorded on any record
-produced under it from now on.
+description, not a provenance record, of the existing rows. Nothing records its hash yet:
+`extract gold-merge` writes no brief column, so a row annotated under this file cannot be traced
+to it.
 
 ---
 

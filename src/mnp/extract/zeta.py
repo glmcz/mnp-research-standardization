@@ -677,6 +677,9 @@ class ExtractionRecord:
     error: str | None = None
     cached: bool = False
     extraction_tokens: int = 0
+    # provider-reported usage of the call behind this record; extraction_tokens is len/4
+    model_prompt_tokens: int | None = None
+    model_completion_tokens: int | None = None
     methods_source: str | None = None
     year: int | None = None
     journal: str | None = None
@@ -858,4 +861,6 @@ def extract_paper(article: jats.Article, client: LLMClient) -> ExtractionRecord:
         return record
     record = extract_from_payload(article, data, completion.model)
     record.cached = completion.cached
+    record.model_prompt_tokens = completion.prompt_tokens
+    record.model_completion_tokens = completion.completion_tokens
     return record

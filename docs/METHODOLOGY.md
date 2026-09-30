@@ -93,7 +93,9 @@ verification step, every aggregate, and the whole test suite. Re-running `corpus
 **Not reproducible.** The judgement. The worker briefs lived in the session scratchpad, not
 in the repository:
 
-- `nonumber_brief.md` survived and is now committed here (`docs/nonumber_brief.md`).
+- `nonumber_brief.md` survived and is now committed here (`docs/briefs/archive/nonumber_brief.md`,
+  kept out of `docs/briefs/` so no worker is pointed at it: it predates the `--brief` rule and
+  its "use mV" default).
 - The main extraction brief — the one that governed ~65 workers and most of the corpus —
   **was deleted with the scratchpad and is gone.**
 

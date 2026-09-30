@@ -373,6 +373,12 @@ def test_the_licence_file_is_cc_by_4_for_this_dataset(tmp_path):
     assert "Attribution" in text
 
 
+def test_the_licence_names_its_author():
+    text = release.licence_notice()
+    assert '", by Martin Durak. Licensed under' in text
+    assert "not yet named" not in text
+
+
 def test_the_card_states_absence_is_a_value(tmp_path):
     written = _build(tmp_path / "release")
     card = next(p for p in written if p.name == "DATASET_CARD.md").read_text()

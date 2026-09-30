@@ -22,7 +22,7 @@ Two things a reader should take from this card before using the data: only a sma
 | `dataset.parquet` | 1890 rows × 44 columns | `49a7dc46f7be6b59061b3bf92fe55cbe95f915e14a9e0c1283ab8cb6ee432666` |
 | `dataset.jsonl` | the same rows, one JSON object per line | `eb304784d874dd91c4c44a1f5fee54182e8cb8f5bc92cd9c5d135be5d95885ba` |
 | `schema.json` | JSON Schema 2020-12 for the record type, generated from the pydantic models in `mnp.schema.models`; the release's own evidence columns are `$defs/ReleasedEvidence` | `8976dc57ec31847920e727058140f0cb737356452ce4b5c8e28d449dd50edc4d` |
-| `LICENSE` | CC BY 4.0, and the attribution line | `b292b211874def0d2ff9e4d276880fdfa35d10450de3321040e4d341a622d606` |
+| `LICENSE` | CC BY 4.0, and the attribution line | `e11af74d9ed4f47fc35f3f679bdf4c9e3cd01e2eb69de613847c44fc0adc3667` |
 | `DATASET_CARD.md` | this file | — |
 
 The parquet and the JSONL carry identical content; the two formats exist so the dataset can be read without pandas. `schema.json` describes the nested record the extraction produces, of which the flat table here is one row per measurement.

@@ -969,7 +969,7 @@ This audit is small and not blind: you see the extracted values while you judge.
 ### From `HANDOFF_2026-09-28.md` §4
 
 1. **Cell B, full run** (item 1, then 358/400). The committed run directory `cellb-sweep-20260928` now holds 400 answers of 400 asked, 1 of them a recorded refusal (commit `e1b4624`). Closed.
-2. **The LICENSE author** (item 2). `release.AUTHOR` is still unset, so `LICENSE` carries a placeholder. Open.
+2. **The LICENSE author** (item 2). `release.AUTHOR` is set to Martin Durak. Closed.
 3. **`uv.lock`** (item 3). Still listed in `.gitignore`, so a fresh clone can resolve a newer pandas and change the `pandas_version` string inside `dataset.parquet`. Open.
 4. **The repository redistributes non-CC-BY text** (item 4): `xml.tar.gz` holds 244 full texts that are not CC BY or CC0 (the handoff's count), `d1_zeta_table.csv` and `extractions.jsonl` hold the 453 withheld-class quotes, and demo case 12 quotes an NC-ND paper. It matters only if the repository is or becomes public.
 5. **EHP "public domain unless otherwise noted"** (item 5): 4 papers withheld as uncertain; they could ship.

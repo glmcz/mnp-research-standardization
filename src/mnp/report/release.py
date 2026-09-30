@@ -46,9 +46,8 @@ DATASET_TITLE = (
 LICENCE_NAME = "Creative Commons Attribution 4.0 International"
 LICENCE_SHORT = "CC BY 4.0"
 LICENCE_URL = "https://creativecommons.org/licenses/by/4.0/"
-# Neither this card nor pyproject.toml names an author, and a licence's attribution line is
-# not the place to guess one. Set it here and the card and LICENSE follow.
-AUTHOR: str | None = None
+# Named by Martin, 2026-09-30. The card and LICENSE follow this line.
+AUTHOR: str | None = "Martin Durak"
 
 # Released after `evidence_line_ids`, in this order.
 RELEASE_COLUMNS = (

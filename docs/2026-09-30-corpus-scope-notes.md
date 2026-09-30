@@ -131,6 +131,34 @@ If the unread papers' environmental share is several times ours, the synthetic s
 property of this corpus, and the scope statement already says the numbers are this corpus's. If
 it is about the same, the finding stands for the field's open and closed literature alike.
 
+## Open direction: telling airborne plastic apart by charge
+
+Martin, 2026-09-30: nanoparticles in air (aerosols) might be told apart from nanoplastics by their
+charge or by another parameter. Recorded as an open direction, not tested.
+
+**What a search found.** A PubMed search on 2026-09-30 found no method that identifies plastic in
+an aerosol by its charge. The papers that identify airborne plastic use its chemistry: thermal
+desorption proton-transfer-reaction mass spectrometry, TD-PTR-MS (doi:10.1016/j.envres.2022.112741),
+and optical photothermal infrared spectroscopy, O-PTIR (doi:10.1007/s00204-025-04092-2). One search
+is not a review; the absence may be a gap in the query, not in the field.
+
+**Why it is not an extension of this dataset.** A zeta potential exists only in a liquid. A
+particle in air carries a net charge instead, a count of elementary charges. That charge comes from
+how the particle was charged, not only from what it is made of. Standard aerosol sizers (SMPS: a
+differential mobility analyser behind a neutraliser) first set particles to a known charge
+distribution, then classify them by electrical mobility to measure size. So the charge they read
+is imposed, and says nothing about material. An airborne-charge measurement is a different
+measurand, with its own conditions (relative humidity, charger, flow), and would need its own table.
+
+**Where it could work.** Plastics charge strongly by contact (triboelectric charging), so the
+charge a particle carries *before* any neutraliser might differ between plastic, mineral dust and
+soot. That is the testable form of the idea.
+
+**The cheapest test, when revisited.** Search Europe PMC and OpenAlex for triboelectric or native
+charge of airborne microplastics, and for electrical-mobility measurements of plastic aerosols.
+Record the queries, the date and the counts. If papers exist, check whether any measures charge on
+plastic and non-plastic particles side by side; that is the comparison the idea needs.
+
 ## Decision
 
 Not now (Martin, 2026-09-30). The corpus stays at 491 papers. Every reader-facing document opens

@@ -17,6 +17,9 @@ from lxml import etree
 
 KEYWORD_RE = re.compile(r"zeta|mobilit|zetasizer|ζ|electrophore", re.IGNORECASE)
 METHODS_SECTYPE_RE = re.compile(r"method|materials", re.IGNORECASE)
+# "supplementary-materials" matches "materials". Taking it for the methods stopped the title
+# fallback, and in 208 of the 491 papers with rows the real methods never reached the model.
+NOT_METHODS_SECTYPE_RE = re.compile(r"supplement|associated", re.IGNORECASE)
 METHODS_TITLE_RE = re.compile(
     r"^\s*(?:\d+(?:\.\d+)*\.?\s*)?"
     r"(?:materials?\s*(?:and|&)\s*methods?|methods?|"
@@ -178,7 +181,8 @@ def _find_methods(body: etree._Element) -> tuple[list[etree._Element], str]:
     by_type = [
         s
         for s in body.iter("sec")
-        if s.get("sec-type") and METHODS_SECTYPE_RE.search(s.get("sec-type"))
+        if METHODS_SECTYPE_RE.search(kind := s.get("sec-type") or "")
+        and not NOT_METHODS_SECTYPE_RE.search(kind)
     ]
     by_type = _drop_nested(by_type)
     if by_type:

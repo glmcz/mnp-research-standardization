@@ -297,9 +297,6 @@ def load_doc(pmcid: str, xml_dir: Path | None = None) -> lines.LinedDoc:
     return _append_lost_methods(lines.build_lines(article), raw)
 
 
-_NOT_METHODS_SECTYPE = re.compile(r"supplement|associated", re.IGNORECASE)
-
-
 def _methods_like(sec: Any) -> bool:
     """The parser's own test for a methods section, minus its false match.
 
@@ -309,7 +306,7 @@ def _methods_like(sec: Any) -> bool:
     and the Materials section, where a supplier is named, never reached the line document.
     """
     kind = sec.get("sec-type") or ""
-    if _NOT_METHODS_SECTYPE.search(kind):
+    if jats.NOT_METHODS_SECTYPE_RE.search(kind):
         return False
     title = jats._sec_title(sec)
     return bool(jats.METHODS_TITLE_RE.match(title) or jats.METHODS_SECTYPE_RE.search(kind))
@@ -325,7 +322,7 @@ def methods_lost(raw: bytes) -> bool:
         return False
     secs, source = jats._find_methods(body)
     return source == "sec-type" and all(
-        _NOT_METHODS_SECTYPE.search(s.get("sec-type") or "") for s in secs
+        jats.NOT_METHODS_SECTYPE_RE.search(s.get("sec-type") or "") for s in secs
     )
 
 

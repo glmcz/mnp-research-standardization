@@ -68,6 +68,35 @@ def test_the_first_sec_is_not_mistaken_for_methods():
     assert "Intro says" not in a.methods_text
 
 
+SUPPLEMENT = (
+    '<sec sec-type="supplementary-materials"><title>Supplementary Materials</title>'
+    "<p>Figure S1 and Table S2.</p></sec>"
+)
+
+
+def test_a_supplementary_materials_section_is_not_the_methods():
+    """sec-type "supplementary-materials" matches "materials"; taking it stopped the title
+    fallback, and the real methods never reached methods_text in 208 of 491 papers."""
+    a = _article(
+        "<sec><title>Introduction</title><p>Intro text.</p></sec>"
+        "<sec><title>Materials and methods</title>"
+        "<p>PS beads from Magsphere were dispersed in 10 mM NaCl.</p></sec>" + SUPPLEMENT
+    )
+    assert "10 mM NaCl" in a.methods_text
+    assert "Figure S1" not in a.methods_text
+    assert a.methods_source == "title"
+
+
+def test_a_real_methods_sec_type_is_taken_and_the_supplement_beside_it_is_not():
+    a = _article(
+        '<sec sec-type="materials|methods"><title>Experimental</title>'
+        "<p>Zeta was measured in 1 mM KCl.</p></sec>" + SUPPLEMENT
+    )
+    assert a.methods_source == "sec-type"
+    assert "1 mM KCl" in a.methods_text
+    assert "Figure S1" not in a.methods_text
+
+
 def test_characterisation_sections_outside_methods_are_always_added():
     a = _article(
         "<sec><title>Methods</title><p>M.</p></sec>"

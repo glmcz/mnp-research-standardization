@@ -290,6 +290,25 @@ STEPS: tuple[Step, ...] = (
         phase="Extraction",
     ),
     Step(
+        command="extract reverify",
+        purpose=(
+            "Recomputes the verifier's flags on every stored row, without re-reading a paper or "
+            "calling a model. The flags are stored at ingest and rule R2 reads them, so a fix to "
+            "the verifier changes nothing in the table until they are recomputed; the 2026-10-03 "
+            "fixes (an ionic strength in molar, a temperature in kelvin, the step guard reading "
+            "one sentence) each left correct rows flagged. Only the verifier's own flags move: "
+            "the coercer's were raised from the raw reply and stay as recorded. With --check it "
+            "reports stale records and exits non-zero without writing."
+        ),
+        inputs="extractions.jsonl, data/raw/epmc/xml/",
+        outputs="row_flags on each record, rebuilt zeta_table.parquet",
+        kind=D,
+        idempotent=True,
+        network=False,
+        invalidated_by="a verifier change; `--check` reports staleness without writing",
+        phase="Extraction",
+    ),
+    Step(
         command="extract review-measurand",
         purpose=(
             "Lists papers where the thing measured may not have been the plastic — particles "

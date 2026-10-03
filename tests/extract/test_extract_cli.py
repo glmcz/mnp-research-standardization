@@ -722,3 +722,31 @@ def test_todo_can_list_papers_whose_record_carries_no_brief(workspace, tmp_path,
 
     assert cli.main(["todo"]) == 0
     assert capsys.readouterr().out.split() == [], "both papers already have records"
+
+
+def test_reverify_replaces_stale_verifier_flags_and_keeps_the_rest(workspace, tmp_path, capsys):
+    """A verifier fix leaves every stored record's flags stale (OD-09). Reverify recomputes the
+    verifier's own flags from the record and the article; the coercer's flags, which only the
+    raw reply could reproduce, stay as recorded."""
+    _articles_parquet(workspace)
+    payload = tmp_path / "p.json"
+    payload.write_text(json.dumps({"measurements": [ROW]}))
+    cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload), "--no-brief"])
+    path = workspace / "interim" / "extractions.jsonl"
+    rec = json.loads(path.read_text())
+    fresh = list(rec["row_flags"][0])
+    rec["row_flags"][0] = ["kelvin_converted", "temperature_not_in_text", *fresh]
+    path.write_text(json.dumps(rec) + "\n")
+    stale = path.read_text()
+    capsys.readouterr()
+
+    assert cli.main(["reverify", "--check"]) == 1
+    assert path.read_text() == stale, "--check writes nothing"
+    assert "1 of 1" in capsys.readouterr().out
+
+    assert cli.main(["reverify"]) == 0
+    flags = json.loads(path.read_text())["row_flags"][0]
+    assert "temperature_not_in_text" not in flags
+    assert "kelvin_converted" in flags
+    assert sorted(flags) == sorted(["kelvin_converted", *fresh])
+    assert cli.main(["reverify", "--check"]) == 0

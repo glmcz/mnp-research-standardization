@@ -858,6 +858,35 @@ def _new_record(article: jats.Article, text: str) -> ExtractionRecord:
     )
 
 
+#: Every flag `verify_row` can raise. `reverify` replaces exactly these on a stored row and keeps
+#: the rest, which the coercer and the unit check raised from the raw reply.
+VERIFY_FLAGS = frozenset(
+    {
+        "evidence_missing",
+        "evidence_unverified",
+        "value_not_in_quote",
+        "value_text_not_in_quote",
+        "pH_not_in_text",
+        "pH_not_in_evidence",
+        "temperature_not_in_text",
+        "temperature_not_in_evidence",
+        STEP_TEMPERATURE,
+        "ionic_strength_not_in_text",
+        "ionic_strength_not_in_evidence",
+    }
+)
+
+
+def reverify(rec: ExtractionRecord, article: jats.Article) -> list[list[str]]:
+    """The row flags `rec` would carry under today's verifier. A verifier fix makes every stored
+    flag stale at once, and re-reading a paper to refresh them would cost a model call."""
+    doc = lines.build_lines(article)
+    return [
+        [f for f in old if f not in VERIFY_FLAGS] + verify_row(m, article.full_text, doc)
+        for m, old in zip(rec.measurements, rec.row_flags, strict=True)
+    ]
+
+
 def extract_from_payload(article: jats.Article, data: dict, model: str) -> ExtractionRecord:
     """Coerce, verify and score a parsed model reply — whoever produced it."""
     text = jats.extraction_text(article, max_tokens=MAX_TOKENS)

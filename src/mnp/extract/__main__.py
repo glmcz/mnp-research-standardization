@@ -412,6 +412,43 @@ def cmd_recount(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_reverify(args: argparse.Namespace) -> int:
+    """Recompute the verifier's flags on every stored row. No model calls.
+
+    The flags R2 reads are stored at ingest, so a verifier fix changes nothing in the table
+    until they are recomputed. Only the verifier's own flags move; the coercer's stay as
+    recorded, because only the raw reply could reproduce them.
+    """
+    path = _jsonl_path()
+    with _locked(path):
+        done = _load_records(path)
+        stale = []
+        for pmcid, rec in done.items():
+            article = _article(pmcid)
+            if article is None or not rec.measurements:
+                continue
+            fresh = zeta.reverify(rec, article)
+            if fresh != rec.row_flags:
+                stale.append(pmcid)
+                if not args.check:
+                    rec.row_flags = fresh
+        if stale and not args.check:
+            _rewrite(path, done)
+            _write_table(done, quiet=True)
+    if args.check:
+        if stale:
+            shown = ", ".join(stale[:5]) + (" …" if len(stale) > 5 else "")
+            print(
+                f"STALE: {len(stale)} of {len(done)} records carry outdated verifier flags: {shown}"
+            )
+            print("run `extract reverify` to refresh them")
+            return 1
+        print(f"verifier flags are current: {len(done)} records agree with the verifier")
+        return 0
+    print(f"reverified {len(done)} records, {len(stale)} changed")
+    return 0
+
+
 # The two ways a stored quote fails to become a citation. Kept apart because they are
 # different facts: one says the line document does not contain this quote, the other says
 # there was no line document to look in.
@@ -740,6 +777,9 @@ def main(argv: list[str] | None = None) -> int:
         help="report stale coverage numbers and exit 1, without writing to the record",
     )
     rc.set_defaults(fn=cmd_recount)
+    rv = sub.add_parser("reverify")
+    rv.add_argument("--check", action="store_true", help="report stale flags, write nothing")
+    rv.set_defaults(fn=cmd_reverify)
     rf = sub.add_parser("retrofit")
     rf.add_argument(
         "--dry-run",

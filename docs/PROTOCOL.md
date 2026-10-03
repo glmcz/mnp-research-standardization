@@ -149,6 +149,15 @@ Gives every stored evidence quote the line address it already implies, without r
 - **kind** deterministic · idem yes · net no
 - **stale when** a parser change that alters section paths, ordinals or line text
 
+### `extract reverify`
+
+Recomputes the verifier's flags on every stored row, without re-reading a paper or calling a model. The flags are stored at ingest and rule R2 reads them, so a fix to the verifier changes nothing in the table until they are recomputed; the 2026-10-03 fixes (an ionic strength in molar, a temperature in kelvin, the step guard reading one sentence) each left correct rows flagged. Only the verifier's own flags move: the coercer's were raised from the raw reply and stay as recorded. With --check it reports stale records and exits non-zero without writing.
+
+- **in** extractions.jsonl, data/raw/epmc/xml/
+- **out** row_flags on each record, rebuilt zeta_table.parquet
+- **kind** deterministic · idem yes · net no
+- **stale when** a verifier change; `--check` reports staleness without writing
+
 ### `extract review-measurand`
 
 Lists papers where the thing measured may not have been the plastic — particles filtered out before the measurement, a supernatant analysed, or the zeta of another material exposed to plastic (ratified rule S8). It decides nothing: the rule is a judgement about what a paper measured, and no regex settles that. What it does is make sure the question is asked, since the rule was found by a worker reading one paper and most of the corpus has not been read under it.
@@ -259,7 +268,7 @@ Builds the missing-conditions statistic: how often a published zeta or mobility 
 
 ### `report d1-gold`
 
-Computes the same statistic on the 50 hand-annotated papers, as an estimate produced by a different method. Quoting either is defensible; quoting both is the point, because they agree. It is untouched by re-extraction of the corpus.
+Computes the same statistic on the 50 papers Claude annotated for the gold set, as an estimate produced by a different method. Quoting either is defensible; quoting both is the point, because they agree. It is untouched by re-extraction of the corpus.
 
 - **in** gold_50.csv
 - **out** out/tables/d1_gold_*.{csv,md,json}
@@ -341,13 +350,13 @@ Re-runs the E1 representation bake-off: the 50 gold papers serialised seven ways
 
 ### `report origin`
 
-Rebuilds where every measured particle came from (bought, made in a lab, or collected from a real environment) out of judgements already recorded, and asks nothing itself. The reader's answers in data/interim/origin/answers.jsonl, one call per paper through the grid's isolated reader with a cited line for every particle, are matched back to the rows by particle name; every citation is resolved against that paper's lines; and the hand verdicts replace the reader's answer wherever a person read the paper (every environmental particle, the unclear ones up to a cap, and a seeded sample of the rest). The reading was judgement and is never re-run here, so this step is deterministic. It also names the papers whose methods the parser took from a supplementary-materials section and compares their condition reporting with the rest, and it refuses to build when an environmental paper prints a conductivity nobody has read against its rows, or when a row listed as not the authors' own measurement has left the table.
+Rebuilds where every measured particle came from (bought, made in a lab, or collected from a real environment) out of judgements already recorded, and asks nothing itself. The reader's answers in data/interim/origin/answers.jsonl, one call per paper through the grid's isolated reader with a cited line for every particle, are matched back to the rows by particle name; every citation is resolved against that paper's lines; and the verdicts of a second reading, by a Claude agent with the paper's full text, replace the reader's answer wherever it read the particle (every environmental particle, the unclear ones up to a cap, and a seeded sample of the rest). No person has checked either reading. Both readings were judgement and are never re-run here, so this step is deterministic. It also names the papers whose methods the parser took from a supplementary-materials section and compares their condition reporting with the rest, and it refuses to build when an environmental paper prints a conductivity nobody has read against its rows, or when a row listed as not the authors' own measurement has left the table.
 
 - **in** out/tables/d1_zeta_table.csv, data/interim/origin/{answers.jsonl,hand_check-*.jsonl,hand_check_sample-*.jsonl}, the run manifest, the vendored corpus
 - **out** out/tables/sample_origin.csv, out/tables/sample_origin_stats.json
 - **kind** deterministic · idem yes · net no
-- **scored against** the hand-check file: every environmental particle, the unclear ones up to a cap, a seeded sample of the rest
-- **stale when** a change to the D1 table (answers are matched to rows by particle name), a new reader run, a new hand verdict, or a parser change
+- **scored against** the second reading by a Claude agent, recorded in the hand_check file (the name is history): every environmental particle, the unclear ones up to a cap, a seeded sample of the rest; not checked by a person
+- **stale when** a change to the D1 table (answers are matched to rows by particle name), a new reader run, a new second reading, or a parser change
 
 ### `report demo`
 
@@ -444,7 +453,7 @@ Rebuilds every committed artefact from the vendored corpus and the stored record
 
 ### `eval all`
 
-Measures each pipeline stage separately against its own ground truth: parse against hand-located sentences, the scanner against the values a human read out of the gold papers, the model's reading against the gold set, coercion against a case table covering every ratified rule, the verifier against fabrications that reached production, and the aggregate against the committed tables. Before this existed, a parser or coercion defect could only appear as a worse end-to-end score with nothing to say which stage caused it. A stage with no ground truth reports not measured — never 0.00 and never 1.00, because both are claims nobody checked.
+Measures each pipeline stage separately against its own ground truth: parse against sentences located in a fixture article, the scanner against the values Claude read out of the gold papers, the model's reading against the gold set, coercion against a case table covering every ratified rule, the verifier against fabrications that reached production, and the aggregate against the committed tables. Before this existed, a parser or coercion defect could only appear as a worse end-to-end score with nothing to say which stage caused it. A stage with no ground truth reports not measured — never 0.00 and never 1.00, because both are claims nobody checked.
 
 - **in** fixtures in tests/eval/, gold_50.csv, the parsed corpus
 - **out** out/tables/eval_stages.md, eval_stages.csv

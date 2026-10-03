@@ -1116,3 +1116,57 @@ def test_a_passage_glued_across_non_consecutive_lines_does_not_verify():
     flags = zeta.verify_row(m, case["article_text"], doc)
     assert m.evidence.verified is False
     assert case["expect_flag"] in flags
+
+
+# -- R3, Martin 2026-10-03: a buffer's concentration is not its ionic strength ----------------
+
+
+def _reported_is(mM, medium_text):
+    return models.MeasurementConditions(
+        medium_text=medium_text,
+        ionic_strength_mM=mM,
+        ionic_strength_source=models.ValueSource.reported,
+    )
+
+
+@pytest.mark.parametrize(
+    ("mM", "medium", "quote"),
+    [
+        # PMC8169765: the table's "is" once read as the abbreviation IS
+        (10.0, "10 mM phosphate buffer pH 7.0", "aThe size in parentheses is the size reported"),
+        # PMC11099890, demo case 01
+        (5.0, "Buffer containing 5 mM phosphate +5 mM SDS (pH = 8.9)", "PS\t31 ±"),
+        # PMC11679349: the number sits in the quote, in molar
+        (100.0, "ChE reaction buffer", "the ChE reaction buffer (0.1 M Na2PO4, pH 7.2"),
+        # PMC7441690, PMC4861966
+        (10.0, "10.0 mM Tris buffer (pH 8.1)", ""),
+        (10.0, "10 mM TrisHCl pH 7.0", ""),
+    ],
+)
+def test_a_buffer_concentration_is_cleared_as_an_ionic_strength(mM, medium, quote):
+    c, flags = zeta.row_conditions(_reported_is(mM, medium), [], quote)
+    assert c.ionic_strength_mM is None
+    assert c.ionic_strength_source == models.ValueSource.unreported
+    assert flags == [zeta.BUFFER_IONIC_STRENGTH]
+
+
+@pytest.mark.parametrize(
+    ("mM", "medium", "quote"),
+    [
+        # PMC12598813: the paper itself calls 10 mM HEPES an ionic strength of 0.010 M
+        (10.0, "10 mM HEPES", "raises the ionic strength from 0.010 M to ≈0.0105 M (10 mM HEPES)"),
+        # PMC9455956
+        (1.0, "", "under IS = 1 mM with the mixture of 0.3 mM Na2HPO4 and 0.4 mM NaH2PO4"),
+        # a salt bound to the number, a buffer beside it
+        (10.0, "10 mM NaCl in 5 mM phosphate buffer", ""),
+        # no buffer at all (PMC11532844)
+        (26.0, "HNO3 (0,026 M aqueous solution)", ""),
+        # the buffer word is in the next passage or the one before: another sentence
+        (10.0, "", "measured at 10 mM || phosphate buffer was used to wash the cells"),
+        (10.0, "", "cells were washed in phosphate buffer || measured at 10 mM"),
+    ],
+)
+def test_an_ionic_strength_that_is_not_a_buffer_concentration_stays(mM, medium, quote):
+    c, flags = zeta.row_conditions(_reported_is(mM, medium), [], quote)
+    assert c.ionic_strength_mM == mM
+    assert zeta.BUFFER_IONIC_STRENGTH not in flags

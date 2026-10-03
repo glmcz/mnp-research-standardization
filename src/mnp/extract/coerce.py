@@ -289,7 +289,40 @@ def _salt_terms(s: str) -> list[tuple[float, float]]:
     return terms
 
 
-_IONIC_PHRASE = re.compile(r"ionic\s*strength|\bIS\b|salinity", re.IGNORECASE)
+# "IS" only in capitals: matched case-insensitively it took the English word "is" for the
+# abbreviation, and a medium or quote that says "is" anywhere then kept its buffer
+# concentration as an ionic strength (PMC8169765, PMC7378059).
+IONIC_PHRASE = re.compile(r"(?i:ionic\s*strength|salinity)|\bIS\b")
+# A buffer named beside a concentration. Its ionic strength depends on a speciation at the
+# measured pH that papers rarely print, so the number is the buffer's, not the solution's.
+BUFFER_RE = re.compile(
+    r"buffer|phosphate|\bPBS\b|HEPES|\bTris|\bMES\b|MOPS|PIPES|citrate|acetate|"
+    r"bicarbonate|borate|carbonate|glycine",
+    re.IGNORECASE,
+)
+_BUFFER_REACH = 40  # characters either side of the concentration
+
+
+def buffer_concentration(text: str, mM: float) -> bool:
+    """Is `mM` printed in `text` as a buffer's concentration that the text never calls an ionic
+    strength? A salt bound to the number ("10 mM NaCl in phosphate buffer") makes it a salt's;
+    a paper that names its ionic strength keeps it, right or wrong (Martin, 2026-10-03)."""
+    if IONIC_PHRASE.search(text):
+        return False
+    for regex, scale in ((_UM_RE, 0.001), (_MM_RE, 1.0), (_M_RE, 1000.0)):
+        for m in regex.finditer(text):
+            if abs(float(m.group(1)) * scale - mM) > 1e-6 * max(1.0, mM):
+                continue
+            if _bound_salt(text, m.start(), m.end()):
+                continue
+            # the window stops at a passage break: the next passage is another sentence
+            left = text.rfind("||", 0, m.start())
+            right = text.find("||", m.end())
+            lo = max(m.start() - _BUFFER_REACH, left + 2 if left >= 0 else 0)
+            hi = min(m.end() + _BUFFER_REACH, right if right >= 0 else len(text))
+            if BUFFER_RE.search(text[lo:hi]):
+                return True
+    return False
 
 
 def parse_ionic_strength(
@@ -333,7 +366,7 @@ def parse_ionic_strength(
     mM = _concentration_mM(s)
     if mM is None:
         return None, ValueSource.unreported, []
-    if from_medium and not _IONIC_PHRASE.search(s):
+    if from_medium and not IONIC_PHRASE.search(s):
         return None, ValueSource.unreported, ["concentration_not_an_ionic_strength"]
     return mM, ValueSource.reported, []
 

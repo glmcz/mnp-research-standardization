@@ -702,3 +702,12 @@ def test_the_units_the_code_does_know_still_work():
     for raw in ("mV", "mv", "µm cm/Vs", "m2/Vs"):
         unit, _ = coerce.normalise_unit(raw)
         assert unit is not None, raw
+
+
+def test_the_word_is_is_not_the_abbreviation_IS():
+    """`\\bIS\\b` matched case-insensitively took the English "is" for "ionic strength", so a
+    medium that says "is" anywhere had its buffer concentration recorded as one."""
+    mM, source, flags = coerce.parse_ionic_strength("water that is 10 mM Tris", from_medium=True)
+    assert (mM, source) == (None, ValueSource.unreported)
+    assert flags == ["concentration_not_an_ionic_strength"]
+    assert coerce.parse_ionic_strength("IS = 10 mM", from_medium=True)[0] == 10.0

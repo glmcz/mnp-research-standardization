@@ -389,6 +389,7 @@ def check_units(m, claimed_units: set[str], article_text: str) -> list[str]:
 STEP_TEMPERATURE = "temperature_step_not_measurement"
 OTHER_STEP_TEMPERATURE = "temperature_from_other_step"
 ZERO_IONIC_STRENGTH = "ionic_strength_zero_not_reported"
+BUFFER_IONIC_STRENGTH = "buffer_concentration_not_ionic_strength"
 
 
 def _norm(s: str) -> str:
@@ -623,6 +624,10 @@ def row_conditions(
     R2b: nor is a temperature the row's quote does not state, when its source prints it only
     for storage, incubation, exposure or culture — the medium label "RPMI (stored at 37 ˚C for
     24 h)" (PMC8719689), or a paper whose only 37 °C is an incubation in gastric fluid.
+    R3 (2026-10-03): a buffer's concentration taken as a reported ionic strength is not one.
+    "10 mM phosphate buffer pH 7.0" holds about 18 mM of ions, and the brief already says a
+    component whose speciation the paper does not print contributes nothing. A paper that
+    calls its number an ionic strength keeps it.
 
     `paper` is `step_only` of the article; without it R2b reads the row alone.
 
@@ -637,6 +642,15 @@ def row_conditions(
         update["ionic_strength_source"] = models.ValueSource.unreported
         if ZERO_IONIC_STRENGTH not in flags:
             flags.append(ZERO_IONIC_STRENGTH)
+    if (
+        c.ionic_strength_source == models.ValueSource.reported
+        and c.ionic_strength_mM
+        and coerce.buffer_concentration(f"{c.medium_text or ''} || {quote}", c.ionic_strength_mM)
+    ):
+        update["ionic_strength_mM"] = None
+        update["ionic_strength_source"] = models.ValueSource.unreported
+        if BUFFER_IONIC_STRENGTH not in flags:
+            flags.append(BUFFER_IONIC_STRENGTH)
     if STEP_TEMPERATURE in flags or _other_step_temperature(c, quote, paper):
         update["temperature_C"] = None
         update["temperature_qualifier"] = None

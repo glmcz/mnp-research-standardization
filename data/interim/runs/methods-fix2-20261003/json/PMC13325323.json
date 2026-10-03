@@ -1,0 +1,119 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-51",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "approximately 40–44 nm",
+   "quantity": "zeta potential",
+   "value": "-19.6 to -22.8",
+   "unit": "mV",
+   "n": "30",
+   "conditions": {
+    "medium_text": "deionised water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Advance Ultra (Malvern Instruments, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The average particle sizes were approximately 40–44 nm, and the zeta potentials ranged from -19.6 to -22.8 mV. || The confidence intervals were calculated using n = 30, 9, and 9 for PS-51, PS-52, and PS-53, respectively. || Deionised water was used in all experiments. || The samples were characterised in terms of particle (hydrodynamic) size and zeta potential using a Malvern Zetasizer Advance Ultra (Malvern Instruments, UK) and the ZS Xplorer software version 4.0.0 (Malvern Instruments, UK).",
+   "evidence_location": "Characterization section"
+  },
+  {
+   "particle_name": "PS-52",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "61 to 62",
+   "quantity": "zeta potential",
+   "value": "-19.4 to -23.5",
+   "unit": "mV",
+   "n": "9",
+   "conditions": {
+    "medium_text": "deionised water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Advance Ultra (Malvern Instruments, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potentials were slightly more negative, ranging from -19.4 to -23.5 mV for PS-52 and from -22.5 to -25.3 mV for PS-53. || The confidence intervals were calculated using n = 30, 9, and 9 for PS-51, PS-52, and PS-53, respectively. || Deionised water was used in all experiments. || The samples were characterised in terms of particle (hydrodynamic) size and zeta potential using a Malvern Zetasizer Advance Ultra (Malvern Instruments, UK) and the ZS Xplorer software version 4.0.0 (Malvern Instruments, UK).",
+   "evidence_location": "Characterization section"
+  },
+  {
+   "particle_name": "PS-53",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "113 to 118",
+   "quantity": "zeta potential",
+   "value": "-22.5 to -25.3",
+   "unit": "mV",
+   "n": "9",
+   "conditions": {
+    "medium_text": "deionised water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Advance Ultra (Malvern Instruments, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potentials were slightly more negative, ranging from -19.4 to -23.5 mV for PS-52 and from -22.5 to -25.3 mV for PS-53. || The confidence intervals were calculated using n = 30, 9, and 9 for PS-51, PS-52, and PS-53, respectively. || Deionised water was used in all experiments. || The samples were characterised in terms of particle (hydrodynamic) size and zeta potential using a Malvern Zetasizer Advance Ultra (Malvern Instruments, UK) and the ZS Xplorer software version 4.0.0 (Malvern Instruments, UK).",
+   "evidence_location": "Characterization section"
+  },
+  {
+   "particle_name": "PS-51",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "approximately 40–44 nm",
+   "quantity": "zeta potential",
+   "value": "-21",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "deionised water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": "about 6",
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Advance Ultra (Malvern Instruments, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The pH value of PS-51 nanosuspensions was about 6 which corresponds to the zeta potential of -21 mV. || Deionised water was used in all experiments. || The samples were characterised in terms of particle (hydrodynamic) size and zeta potential using a Malvern Zetasizer Advance Ultra (Malvern Instruments, UK) and the ZS Xplorer software version 4.0.0 (Malvern Instruments, UK).",
+   "evidence_location": "Context 2 para 2"
+  },
+  {
+   "particle_name": "PS-51",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "approximately 40–44 nm",
+   "quantity": "zeta potential",
+   "value": "-50",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "deionised water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": "8–10",
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Advance Ultra (Malvern Instruments, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Fig. 5 also shows that the lowest zeta potentials of -50 mV can be reached at pH 8–10. || Deionised water was used in all experiments. || The samples were characterised in terms of particle (hydrodynamic) size and zeta potential using a Malvern Zetasizer Advance Ultra (Malvern Instruments, UK) and the ZS Xplorer software version 4.0.0 (Malvern Instruments, UK).",
+   "evidence_location": "Context 2 para 2"
+  }
+ ]
+}

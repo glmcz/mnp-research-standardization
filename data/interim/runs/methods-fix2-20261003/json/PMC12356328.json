@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PET microplastic (ground water-bottle PET)",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "180-250 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-0.51",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": "7",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The measured zeta potentials for PET and PP are -0.51 and 6.53 mV, respectively (at pH 7 and zero salinity; see Table S4 in SM). || The zeta potential of MPs and glass beads was analyzed using Zetasizer Nano ZS90 (Malvern, UK).",
+   "evidence_location": "Methods, Materials; Quantification and statistical analysis"
+  },
+  {
+   "particle_name": "PP microplastic (ground welding rod PP)",
+   "material": "polypropylene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "180-250 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "6.53",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": "7",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The measured zeta potentials for PET and PP are -0.51 and 6.53 mV, respectively (at pH 7 and zero salinity; see Table S4 in SM). || The zeta potential of MPs and glass beads was analyzed using Zetasizer Nano ZS90 (Malvern, UK).",
+   "evidence_location": "Methods, Materials; Quantification and statistical analysis"
+  }
+ ]
+}

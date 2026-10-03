@@ -1,0 +1,142 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS particles 0.05 µm (Nile Red)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Spherotech",
+   "size_nominal_nm": "0.05 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "Millipore water, typically 100× diluted",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Dynamic light scattering (DLS) was used to determine the average particle size and the zeta potential of samples, typically 100× diluted in Millipore water using a Zetasizer Nano-ZS (Malvern Instruments, Malvern, United Kingdom). The DLS analyses were done in triplicate and the average was reported (Table S2).",
+   "evidence_location": "Particle characterization; Table S2 (supplement)"
+  },
+  {
+   "particle_name": "PS particles 0.25 µm (Nile Red)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Spherotech",
+   "size_nominal_nm": "0.25 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "Millipore water, typically 100× diluted",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Dynamic light scattering (DLS) was used to determine the average particle size and the zeta potential of samples, typically 100× diluted in Millipore water using a Zetasizer Nano-ZS (Malvern Instruments, Malvern, United Kingdom). The DLS analyses were done in triplicate and the average was reported (Table S2).",
+   "evidence_location": "Particle characterization; Table S2 (supplement)"
+  },
+  {
+   "particle_name": "PS particles 0.53 µm (Nile Red)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Spherotech",
+   "size_nominal_nm": "0.53 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "Millipore water, typically 100× diluted",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Dynamic light scattering (DLS) was used to determine the average particle size and the zeta potential of samples, typically 100× diluted in Millipore water using a Zetasizer Nano-ZS (Malvern Instruments, Malvern, United Kingdom). The DLS analyses were done in triplicate and the average was reported (Table S2).",
+   "evidence_location": "Particle characterization; Table S2 (supplement)"
+  },
+  {
+   "particle_name": "PS particles 2.1 µm (Nile Red)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Spherotech",
+   "size_nominal_nm": "2.1 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "Millipore water, typically 100× diluted",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Dynamic light scattering (DLS) was used to determine the average particle size and the zeta potential of samples, typically 100× diluted in Millipore water using a Zetasizer Nano-ZS (Malvern Instruments, Malvern, United Kingdom). The DLS analyses were done in triplicate and the average was reported (Table S2).",
+   "evidence_location": "Particle characterization; Table S2 (supplement)"
+  },
+  {
+   "particle_name": "PS particles 6.02 µm (Nile Red)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Spherotech",
+   "size_nominal_nm": "6.02 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "Millipore water, typically 100× diluted",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Dynamic light scattering (DLS) was used to determine the average particle size and the zeta potential of samples, typically 100× diluted in Millipore water using a Zetasizer Nano-ZS (Malvern Instruments, Malvern, United Kingdom). The DLS analyses were done in triplicate and the average was reported (Table S2).",
+   "evidence_location": "Particle characterization; Table S2 (supplement)"
+  },
+  {
+   "particle_name": "PS particles 10.2 µm (Nile Red)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Spherotech",
+   "size_nominal_nm": "10.2 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "Millipore water, typically 100× diluted",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Dynamic light scattering (DLS) was used to determine the average particle size and the zeta potential of samples, typically 100× diluted in Millipore water using a Zetasizer Nano-ZS (Malvern Instruments, Malvern, United Kingdom). The DLS analyses were done in triplicate and the average was reported (Table S2).",
+   "evidence_location": "Particle characterization; Table S2 (supplement)"
+  }
+ ]
+}

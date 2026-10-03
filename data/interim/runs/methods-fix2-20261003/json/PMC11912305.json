@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS nanoplastics",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "250 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-46 ± 2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "Milli-Q water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nanodevice (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Furthermore, ζ measurements conducted in Milli-Q water indicated a negative charge for PS (-46 ± 2 mV), PVC (-48 ± 1 mV), and SiO2 (-27 ± 4 mV) particles. || The hydrodynamic size of the particles and the zeta potential (ζ) were assessed by utilizing a Zetasizer Nanodevice (Malvern Panalytical, Malvern, UK).",
+   "evidence_location": "Particle Characterization"
+  },
+  {
+   "particle_name": "PS nanoplastics in CaCl2 (CCC series)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "250 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "CaCl2 solutions of different concentrations",
+    "medium_class": "salt_solution",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nanodevice (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "First, we determined the CCC values of PS and PVC nanoplastics in different CaCl2 concentrations using DLS. || The measured ζ values are reported in Table S3. || The hydrodynamic size of the particles and the zeta potential (ζ) were assessed by utilizing a Zetasizer Nanodevice (Malvern Panalytical, Malvern, UK).",
+   "evidence_location": "Results (CCC); Table S3 not shown"
+  },
+  {
+   "particle_name": "PVC nanoplastics",
+   "material": "poly(vinyl chloride)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "250 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-48 ± 1",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "Milli-Q water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nanodevice (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Furthermore, ζ measurements conducted in Milli-Q water indicated a negative charge for PS (-46 ± 2 mV), PVC (-48 ± 1 mV), and SiO2 (-27 ± 4 mV) particles. || The hydrodynamic size of the particles and the zeta potential (ζ) were assessed by utilizing a Zetasizer Nanodevice (Malvern Panalytical, Malvern, UK).",
+   "evidence_location": "Particle Characterization"
+  },
+  {
+   "particle_name": "PVC nanoplastics in CaCl2 (CCC series)",
+   "material": "poly(vinyl chloride)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "250 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "CaCl2 solutions of different concentrations",
+    "medium_class": "salt_solution",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nanodevice (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "First, we determined the CCC values of PS and PVC nanoplastics in different CaCl2 concentrations using DLS. || The measured ζ values are reported in Table S3. || The hydrodynamic size of the particles and the zeta potential (ζ) were assessed by utilizing a Zetasizer Nanodevice (Malvern Panalytical, Malvern, UK).",
+   "evidence_location": "Results (CCC); Table S3 not shown"
+  }
+ ]
+}

@@ -2,8 +2,8 @@
   "papers": 848,
   "papers_with_error": 0,
   "papers_with_rows": 467,
-  "rows": 1908,
-  "rows_verified": 1908,
+  "rows": 1903,
+  "rows_verified": 1903,
   "rows_dropped": 2,
   "candidates": 2333,
   "candidates_matched": 1199,
@@ -13,13 +13,13 @@
     "claude-code:sonnet"
   ],
   "prompt_sha256_in_records": {
-    "7b89a830e2b2f0ef3b98adf614521cb254771a04bac2b587580ced642cf8f393": 447,
-    "3a50d97a5880d5acae5db0911acbca7376446e8050c08843e38c6c6f924efd1d": 331,
-    "b3790c68b0ed28cb2b3f8ef42d2738438aba1ff45efff89985f1bf003a78edf1": 70
+    "7b89a830e2b2f0ef3b98adf614521cb254771a04bac2b587580ced642cf8f393": 461,
+    "3a50d97a5880d5acae5db0911acbca7376446e8050c08843e38c6c6f924efd1d": 321,
+    "b3790c68b0ed28cb2b3f8ef42d2738438aba1ff45efff89985f1bf003a78edf1": 66
   },
   "brief_sha256_in_records": {
-    "b1baf33eff796a4c47619c745777941747a415623e4bdc9d8ee14a7586a2d88b": 493,
-    "none": 326,
+    "b1baf33eff796a4c47619c745777941747a415623e4bdc9d8ee14a7586a2d88b": 503,
+    "none": 316,
     "21f2ad534dc1906fbfdd651402e3c0f684ef5eb0e35b23bf4523ec20f6b1329d": 20,
     "0266af56db287bd365c973fefb4e8aa1cd87f7e202c0e015b4d0a5c75ec7ad1f": 5,
     "25082cec61acaf73424f74cf04663e9f9e41b0691f6f8963285cc593b2957c90": 4

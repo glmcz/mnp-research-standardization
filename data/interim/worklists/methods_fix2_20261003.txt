@@ -1,0 +1,33 @@
+# Papers whose extraction text changed with the second Methods fix (commit above c306ca8),
+# 20 with rows and 11 without; re-read 2026-10-03. Model: the family that read each before.
+PMC10373654	claude-code:sonnet	m01
+PMC11044580	claude-code:sonnet	m01
+PMC11125995	claude-code:sonnet	m01
+PMC11369379	claude-code:sonnet	m01
+PMC11520165	claude-code:sonnet	m01
+PMC11851392	claude-code:sonnet	m01
+PMC11912305	claude-code:sonnet	m01
+PMC12038248	claude-code:sonnet	m01
+PMC12175420	claude-code:sonnet	m01
+PMC12356328	claude-code:sonnet	m01
+PMC12439659	claude-code:sonnet	m01
+PMC12922732	claude-code:sonnet	m02
+PMC12937549	claude-code:sonnet	m02
+PMC13030399	claude-code:sonnet	m02
+PMC13325323	claude-code:sonnet	m02
+PMC6993004	claude-code:sonnet	m02
+PMC8694221	claude-code:sonnet	m02
+PMC8915914	claude-code:sonnet	m02
+PMC9032828	claude-code:sonnet	m02
+PMC9691371	claude-code:sonnet	m02
+PMC10020838	claude-code:sonnet	m02
+PMC10212970	claude-code:sonnet	m02
+PMC10284950	claude-code:sonnet	m03
+PMC10818710	claude-code:sonnet	m03
+PMC11112980	claude-code:sonnet	m03
+PMC11735553	claude-code:sonnet	m03
+PMC11736390	claude-code:sonnet	m03
+PMC12702224	claude-code:sonnet	m03
+PMC12945270	claude-code:sonnet	m03
+PMC13468130	claude-code:sonnet	m03
+PMC9659182	claude-code:sonnet	m03

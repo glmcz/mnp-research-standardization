@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-NPs + Mn (0.1 μm)",
+   "material": "polystyrene",
+   "functionalisation": "Mn adsorbed (incubated with MnCl2)",
+   "supplier": "Macklin",
+   "size_nominal_nm": "0.1 μm",
+   "size_measured_nm": "97.3 nm",
+   "quantity": "zeta potential",
+   "value": "-32.81 ± 0.59",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "dd H2O",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ZETA VIEW system (Particle Metrix)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "And the surface charge of PS NPs + Mn (0.1 μm) is -32.81 ± 0.59 mV (Fig. 1d). || The hydrodynamic diameter and surface charge of the particles in dd H2O were measured using a ZETA VIEW system (Particle Metrix, Germany).",
+   "evidence_location": "Characterization of PS-NPs/PS-MPs; Methods"
+  }
+ ]
+}

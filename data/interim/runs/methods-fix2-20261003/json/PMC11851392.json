@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "BIO microplastics (Mater-Bi, PBAT-starch mulch film), unweathered",
+   "material": "PBAT/starch biodegradable film (Mater-Bi)",
+   "functionalisation": null,
+   "supplier": "Novamont (Agrobiofilm, Silvex)",
+   "size_nominal_nm": "<0.25 mm to >2.8 mm fractions",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-23.8",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS 90 (Malvern Instruments Ltd.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The surface charge for BIO microplastics was found to be -23.8 (mV) based on the zeta values. || The surface charge of BIO microparticles was measured by a zeta potential tester (Zetasizer Nano-ZS 90, Malvern Instruments Ltd., Malvern, Worcestershire, UK)",
+   "evidence_location": "3.1.5 Zeta Potential; 2.1.3"
+  }
+ ]
+}

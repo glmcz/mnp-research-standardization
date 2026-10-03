@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "Au-Tracer@PS",
+   "material": "polystyrene shell on PS-co-P2VP core with embedded Au nanoparticles",
+   "functionalisation": "PS shell",
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "446 ± 195 (DLS)",
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "Instant Ocean salinity series and SRHA DOC additions",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential measurements (Supplementary Table S12) indicate that the particle surface charge decreased toward zero and increasing salinities, brought on by electrical double layer compression, and also decreased with increasing DOC addition through charge neutralization. || Zeta potential measurements were performed for a select number of aquatic conditions for the Au-Tracer@PS particles. || These measurements were performed using a Malvern Zetasizer (Malvern Panalytical).",
+   "evidence_location": "Results, Context 1 para 3; Methods"
+  }
+ ]
+}

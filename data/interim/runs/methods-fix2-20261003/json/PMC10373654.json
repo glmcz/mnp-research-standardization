@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "IgG-coated polystyrene nanoparticles",
+   "material": "polystyrene",
+   "functionalisation": "carboxylated, IgG-coated",
+   "supplier": "Bangslabs",
+   "size_nominal_nm": "190 nm",
+   "size_measured_nm": "278 ± 5",
+   "quantity": "zeta potential",
+   "value": "-13.4 ± 0.8",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta Potential (mV)\t-13.4 ± 0.8\t-16.1 ± 0.6\t-6.78 ± 0.18\t-7.00 ± 0.48\t-10.0 ± 0.7\t-8.33 ± 1.05",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "ICAM-targeted polystyrene nanoparticles",
+   "material": "polystyrene",
+   "functionalisation": "carboxylated, anti-ICAM antibody-coated",
+   "supplier": "Bangslabs",
+   "size_nominal_nm": "190 nm",
+   "size_measured_nm": "241 ± 6",
+   "quantity": "zeta potential",
+   "value": "-16.1 ± 0.6",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta Potential (mV)\t-13.4 ± 0.8\t-16.1 ± 0.6\t-6.78 ± 0.18\t-7.00 ± 0.48\t-10.0 ± 0.7\t-8.33 ± 1.05",
+   "evidence_location": "Table 1"
+  }
+ ]
+}

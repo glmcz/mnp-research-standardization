@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "naturally dried SAP powder (sodium polyacrylate)",
+   "material": "sodium polyacrylate (cross-linked superabsorbent polymer)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "around 300 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "7.444",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "ethanol",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential analysis of the naturally dried SAP powder was carried out to understand its surface charge characteristics by creating a stable suspension of the naturally dried SAP powder dispersed in ethanol. A mean zeta potential value of 7.444 mV with a standard deviation of 2.391 mV was observed using a Litesizer 500 zeta potential analyzer instrument, as shown in Figure 4G.",
+   "evidence_location": "Characterization techniques"
+  }
+ ]
+}

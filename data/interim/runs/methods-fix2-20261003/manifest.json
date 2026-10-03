@@ -1,0 +1,17 @@
+{
+  "run_id": "methods-fix2-20261003",
+  "started_at": "2026-10-03T13:13:24+00:00",
+  "ended_at": "2026-10-03T13:17:43+00:00",
+  "code_commit": "234be225cd79b01fc64b3fc3350b01ca19c3a4f9",
+  "code_dirty": true,
+  "corpus_manifest_sha256": "3ea035fde33a175b0932143af00a60e68dc063172a4b7bb45c1a675ba0b1be25",
+  "env_keys_present": [],
+  "counts": {
+    "papers": 31,
+    "ingests": 32,
+    "rows": 81,
+    "papers_with_no_rows": 11
+  },
+  "model": "claude-code:sonnet",
+  "brief_sha256": "b1baf33eff796a4c47619c745777941747a415623e4bdc9d8ee14a7586a2d88b"
+}

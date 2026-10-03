@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PEGylated polystyrene nanoparticles 100 nm",
+   "material": "polystyrene",
+   "functionalisation": "PEG coating",
+   "supplier": null,
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer (software version 7.11)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The success of PEGylation was verified by a slightly larger hydrodynamic diameter with a near-neutral surface potential (Table S1). || Size and zeta potential measurement was performed and processed using Malvern Zetasizer software (version 7.11).",
+   "evidence_location": "Results, Context 1 para 3 (Table S1)"
+  },
+  {
+   "particle_name": "Polystyrene nanoparticles 20, 100 and 1000 nm (before PEGylation)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "20, 100 and 1000 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer (software version 7.11)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "We also subjected the nanoparticles to PEGylation to minimize the large variation in surface potential. || Size and zeta potential measurement was performed and processed using Malvern Zetasizer software (version 7.11).",
+   "evidence_location": "Results, Context 1 para 5 (Table S1)"
+  },
+  {
+   "particle_name": "PEGylated polystyrene nanoparticles 20, 100 and 1000 nm",
+   "material": "polystyrene",
+   "functionalisation": "PEG coating",
+   "supplier": null,
+   "size_nominal_nm": "20, 100 and 1000 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer (software version 7.11)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Size and zeta potential measurement showed that the PEGylation reduced this variation without considerably changing the size (Table S1). || Size and zeta potential measurement was performed and processed using Malvern Zetasizer software (version 7.11).",
+   "evidence_location": "Results, Context 1 para 5 (Table S1)"
+  }
+ ]
+}

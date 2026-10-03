@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "synthesized polystyrene microspheres, 400-2600 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "400 to 2600 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern laser particle size analyzer"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "All the prepared polystyrene particles exhibit a negative charge, as illustrated in Figure 1b. || The particle size distribution, polydispersity index (PDI), and zeta potential of the prepared polystyrene standard were determined using a Malvern laser particle size analyzer.",
+   "evidence_location": "Results 3.1; Methods 2.2"
+  }
+ ]
+}

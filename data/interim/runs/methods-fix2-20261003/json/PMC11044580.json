@@ -1,0 +1,142 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS microcolloids, PAA 0.01% (w/v)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich",
+   "size_nominal_nm": "1 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-67.2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "HPLC water with 5 mM NaNO3",
+    "medium_class": "salt_solution",
+    "ionic_strength": "5 mM NaNO3",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "We observed a reduction in the zeta potential of the microcolloids from -67.2 to -51.9 mV when the polymer concentration was increased from ϕm = 0.01 to 0.5% (w/v); see supporting file (Table S1). || To isolate the contribution of depletion attraction between microcolloids, we kept the ionic concentration at 5 mM NaNO3 (Spectrum, Sigma-Aldrich, 99%) throughout the experiments. || We measure the zeta potential and size distribution of the particles using a Zetasizer Nano-ZS (Malvern).",
+   "evidence_location": "Results, para 3"
+  },
+  {
+   "particle_name": "PS microcolloids, PAA 0.5% (w/v)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich",
+   "size_nominal_nm": "1 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-51.9",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "HPLC water with 5 mM NaNO3",
+    "medium_class": "salt_solution",
+    "ionic_strength": "5 mM NaNO3",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "We observed a reduction in the zeta potential of the microcolloids from -67.2 to -51.9 mV when the polymer concentration was increased from ϕm = 0.01 to 0.5% (w/v); see supporting file (Table S1). || To isolate the contribution of depletion attraction between microcolloids, we kept the ionic concentration at 5 mM NaNO3 (Spectrum, Sigma-Aldrich, 99%) throughout the experiments. || We measure the zeta potential and size distribution of the particles using a Zetasizer Nano-ZS (Malvern).",
+   "evidence_location": "Results, para 3"
+  },
+  {
+   "particle_name": "PS microparticles",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich",
+   "size_nominal_nm": "1 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-67.21",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "HPLC water with 5 mM NaNO3",
+    "medium_class": "salt_solution",
+    "ionic_strength": "5 mM NaNO3",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The glass substrate exhibits a zeta potential level of -54.35 mV, while the PS microparticles and nanoparticles support values of -67.21 and -41.53 mV, respectively, under 5 mM NaNO3 ionic conditions; see supporting file (Table S2). || We measure the zeta potential and size distribution of the particles using a Zetasizer Nano-ZS (Malvern).",
+   "evidence_location": "Results, para 4"
+  },
+  {
+   "particle_name": "PS nanoparticles",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Spherotech",
+   "size_nominal_nm": "85 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-41.53",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "HPLC water with 5 mM NaNO3",
+    "medium_class": "salt_solution",
+    "ionic_strength": "5 mM NaNO3",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The glass substrate exhibits a zeta potential level of -54.35 mV, while the PS microparticles and nanoparticles support values of -67.21 and -41.53 mV, respectively, under 5 mM NaNO3 ionic conditions; see supporting file (Table S2). || We measure the zeta potential and size distribution of the particles using a Zetasizer Nano-ZS (Malvern).",
+   "evidence_location": "Results, para 4"
+  },
+  {
+   "particle_name": "PS microcolloids, pH 4",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich",
+   "size_nominal_nm": "1 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-54",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "HPLC water with 5 mM NaNO3",
+    "medium_class": "salt_solution",
+    "ionic_strength": "5 mM NaNO3",
+    "pH": "4",
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Specifically, the microcolloids displayed zeta potentials that increased moderately from -54 mV at pH 4 to -57 mV at pH 9. || To isolate the contribution of depletion attraction between microcolloids, we kept the ionic concentration at 5 mM NaNO3 (Spectrum, Sigma-Aldrich, 99%) throughout the experiments. || We measure the zeta potential and size distribution of the particles using a Zetasizer Nano-ZS (Malvern).",
+   "evidence_location": "Results, pH paragraph"
+  },
+  {
+   "particle_name": "PS microcolloids, pH 9",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich",
+   "size_nominal_nm": "1 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-57",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "HPLC water with 5 mM NaNO3",
+    "medium_class": "salt_solution",
+    "ionic_strength": "5 mM NaNO3",
+    "pH": "9",
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Specifically, the microcolloids displayed zeta potentials that increased moderately from -54 mV at pH 4 to -57 mV at pH 9. || To isolate the contribution of depletion attraction between microcolloids, we kept the ionic concentration at 5 mM NaNO3 (Spectrum, Sigma-Aldrich, 99%) throughout the experiments. || We measure the zeta potential and size distribution of the particles using a Zetasizer Nano-ZS (Malvern).",
+   "evidence_location": "Results, pH paragraph"
+  }
+ ]
+}

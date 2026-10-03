@@ -60,7 +60,7 @@ Status:
 | CP-04 | A line is a paragraph, addressed by a content hash | Agent | built | `f29fe71` |
 | CP-05 | Add line addresses to the stored rows, do not re-extract | Agent (acceptance not recorded) | built | `0749420` |
 | CP-06 | Do not rebuild the reading path around a selector | Agent | built | `2a96b3e`, `ce49f01` |
-| CP-07 | Fix the parser's Methods defect | Martin | decided-not-built | (uncommitted) |
+| CP-07 | Fix the parser's Methods defect | Martin | built | `9b17a6c`, `5012fdf` |
 | EX-01 | Scanner, worker, verifier; only the worker judges | Not recorded | built | `1cfc5a5`, `67d551d` |
 | EX-02 | Quotes must be verbatim; unverified rows dropped and counted | Not recorded | built | `1cfc5a5` |
 | EX-03 | Extraction by Claude Code subagents, no API key | Not recorded | built | `1cfc5a5` |
@@ -69,6 +69,9 @@ Status:
 | EX-06 | Refuse an unreadable unit; step guard reads only the number's piece | Agent | built | `550f8f9` |
 | EX-07 | Value checked on the cited line; condition scope stays the quote | Martin | built | `f9249bb` |
 | EX-08 | Apply the 2026-09-28 prompt audit | Not recorded (another session) | built | `d3d89c9`, `769b0a4` |
+| EX-09 | Measure reading noise with a blind re-read control | Agent | built | `09c11cd` |
+| EX-10 | Re-read the 239 papers not read under the current brief | Martin | decided-not-built | (run in progress) |
+| EX-11 | Keep each worker's raw JSON in the run directory | Agent | built (from `reread-brief-20261003`) | — |
 | RC-01 | Five conditions; fully conditioned = all five on one row | Not recorded | built | `1cfc5a5`, `35d340e` |
 | RC-02 | A printed composition counts, flagged derived (Q1) | Martin | built | `1cfc5a5` |
 | RC-03 | An incubation temperature is not the measurement temperature (Q2) | Martin | built | `1cfc5a5` |
@@ -78,6 +81,7 @@ Status:
 | RC-07 | "Reported" is generous; every figure is an upper bound | Not recorded | built | `1cfc5a5`, `35d340e` |
 | RC-08 | R1/R2: 0 mM and step temperatures cleared, row kept | Martin | built | `4a3087c` |
 | RC-09 | R2b: storage and incubation temperatures cleared | Martin | built | `d538ce5` |
+| RC-10 | R3: a buffer's concentration is not a reported ionic strength | Martin | built | `6a93c69` |
 | CM-01 | Comparability is a pair predicate in code (kind E) | Agent (acceptance not recorded) | built | `ce49f01`, `0858865` |
 | CM-02 | The comparability rules and their tolerances | Agent | built | `0858865` |
 | CM-03 | The reported value is never evidence of comparability | Agent | built | `0858865` |
@@ -112,6 +116,7 @@ Status:
 | RV-01 | A generated review guide with worksheets | Martin (request); agent (form) | built | `78a65ac`, `f78a4f5` |
 | RV-02 | An HTML results page, builder kept in the repo | Martin (request); agent (form) | built | `0056e12` |
 | RV-03 | Every reader-facing document opens with one generated scope block | Martin | built | `0f3d549` |
+| RV-04 | A check done by a Claude agent is called that, never a hand check | Martin's standard (R6) | built | `32fc0d3` |
 | LR-01 | v0 = parquet, JSONL, schema, a self-computing card | Martin (date); agent (form) | built | `f29fe71` |
 | LR-02 | CC BY 4.0; quotes only from CC BY and CC0 sources | Martin | built | `61aa0a7` |
 | LR-03 | Licence read from each article's JATS; unclear means withheld | Agent | built | `61aa0a7` |
@@ -128,6 +133,7 @@ Status:
 | PR-06 | An LLM judge panel routes disputes; Martin decides | Martin | built | `1cfc5a5` |
 | PR-07 | Tests are proven red | Agent | built | `220223d` |
 | PR-08 | Corrections stay in place | Agent | built | `1fedb71` |
+| PR-09 | `ingest --dry-run`: verify a reading without recording it | Agent | built | `0e739d4` |
 
 ---
 
@@ -261,11 +267,16 @@ not re-extracted.**
     (`tool/methods_fix_impact.py`, `data/interim/methods_fix_impact.json`).
   - `REVIEW.md` §8 item 18 and card limit 8 still say "open". Both must change when the fix
     lands.
-- Built: not yet. On 2026-10-01 the working tree held uncommitted changes to
-  `src/mnp/corpus/jats.py`, `src/mnp/extract/origin.py` and `tests/corpus/test_jats.py`, plus
-  an untracked `tool/methods_fix_impact.py`.
-- Verified: not yet. The 208-against-283 comparison is pinned by
-  `tests/report/test_origin_report.py::test_papers_whose_methods_the_parser_lost_are_compared_with_the_rest`.
+- Built: the parser fix `9b17a6c` (branch `methods-fix`), with `tool/methods_fix_impact.py`, which
+  measured the fix before any model was called. The re-extraction is `5012fdf`, run
+  `methods-fix-20261001`: 208 papers, 224 ingests, 778 rows from 198 papers (769 from 208
+  before). Ten papers now hold no row. Their only zeta was cited from another study, came from a
+  review, or belonged to a gold-core particle.
+- Verified: `tests/corpus/test_jats.py` (two tests, red before the fix). The impact JSON was
+  checked independently: the 77 lines the window rule hides are evidence for 0 rows. The 283
+  untouched papers rebuild to identical rows. Condition reporting on the 208 moved down, not
+  up: medium 81.5 → 76.5 %, pH 20.0 → 15.3 %, temperature 19.5 → 16.2 % per row. EX-09
+  explains why.
 
 ## Extraction and verification
 
@@ -385,6 +396,44 @@ brief.**
     and one docstring. So the prompts of cells B and D did not change.
 - Verified: the `code_prompt_sha256` field in `data/processed/extraction_summary.json`, which
   `report reproduce` writes (`769b0a4`).
+
+**EX-09 · Reading noise is measured, not assumed: 30 papers read twice, blind.**
+- Question: is a difference between two extractions a property of the paper, or of the reading?
+- Choice: a seeded sample of 30 papers the Methods fix did not touch (seed 20261002). Six
+  workers read each paper twice, readings A and B, under the current brief. Ingest ran with
+  `--dry-run` (PR-09), so nothing was recorded. `tool/reread_control.py` runs every reading
+  through the dataset's own pipeline.
+- Decided by: the agent, after the 208 re-extraction moved condition reporting *down* and
+  nobody could say whether that was noise.
+- Result (`data/interim/reread_control/summary.json`):
+  - A against B, on rows matched by value: ionic strength, pH, temperature and fully
+    conditioned agree 124/124, medium 114/124. The readings differ mostly on which rows exist
+    (the same row count in 21 of 30 papers).
+  - A against the recorded extraction: instrument 107/137, temperature 117/137. In 3 of the 30
+    papers the recorded rows are values cited from other studies.
+- Limits: four control agents stopped before reporting, so their last file may be a first pass.
+  All 60 files passed a dry-run ingest.
+- Built: `09c11cd`, `aa4ffa1`.
+
+**EX-10 · Re-read the 239 papers with rows that were not read under the current brief.**
+- Options: re-read the 239; re-read all 594 not read under the current brief (141 of the 355
+  without rows print a zeta candidate); or give only the 26 papers a citation regex marks a
+  second reading.
+- Decided by: Martin, 2026-10-03, "Re-read the 239".
+- Why: EX-09. The old readings differ from the current brief in a systematic way, so CP-07's
+  premise that "re-reading the untouched papers adds nothing" was wrong. One brief for every
+  record with rows is the strongest provenance statement.
+- Limits: the 355 records without rows keep their old reading, so a measurement the old run
+  missed stays missed. That is a recall limit, to be stated on the card.
+- Built: run `reread-brief-20261003`, in progress, with each worker's JSON kept (EX-11).
+
+**EX-11 · Each worker's raw JSON is kept with its run.**
+- Why: the 208 re-extraction wrote its JSON to the session scratchpad, which a restart wiped. The
+  records keep only the coerced result, so the raw reading (for example, the ionic-strength text
+  as the worker typed it) is lost for those papers, and a coercer fix cannot be replayed onto
+  them. From `reread-brief-20261003` on, the JSON sits in
+  `data/interim/runs/<run>/json/<PMCID>.json`.
+- Decided by: the agent.
 
 ## The five conditions and what counts as reported
 
@@ -546,6 +595,30 @@ prints it for storage, incubation, exposure or culture.**
   (`test_a_storage_temperature_read_off_the_medium_label_is_cleared`,
   `test_room_temperature_at_zero_hours_is_kept`,
   `test_no_committed_temperature_sits_in_a_step_phrase_of_its_own_medium`).
+
+**RC-10 · R3: a buffer's concentration taken as a reported ionic strength becomes unreported.
+The row stays.**
+- Question: "10 mM phosphate buffer pH 7.0" was stored as a reported ionic strength of 10 mM, in
+  44 rows from 8 papers. Extraction worker w18 flagged the coercer path, and the main session
+  confirmed it and measured it.
+- Options: (a) unreported, strictly; (b) derive the value from the buffer's pKa and the printed
+  pH, as an interval; (c) leave it as it is.
+- Decided by: Martin, 2026-10-03: "Unreported, strict".
+- Why: 10 mM phosphate at pH 7 holds about 18 mM of ions. The brief already says that a
+  component whose speciation the paper does not print contributes nothing, and option (b) would
+  look up a pKa, which RC-06 refuses.
+- Limits: a paper that calls the number an ionic strength keeps it. PMC12598813 states "ionic
+  strength 0.010 M (10 mM HEPES)", and the dataset records what is reported, right or wrong.
+  The rule fires only when the stored value is printed within 40 characters of a buffer name in
+  the same passage and no salt is bound to the number.
+- Effect: reported ionic strength 265 → 221 rows (8.4 → 7.0 % per paper); fully conditioned
+  57 → 47; comparable pairs **16 → 4**. Case 01 (PMC11099890) loses its pairs.
+- Found on the way: `coerce` matched `IS` case-insensitively, so the English "is" counted as the
+  abbreviation. It now matches only in capitals.
+- Built: `6a93c69` (`zeta.row_conditions`, `coerce.buffer_concentration`).
+- Verified: `tests/extract/test_zeta.py` (5 cleared, 6 kept, all real cases) and
+  `tests/extract/test_coerce.py::test_the_word_is_is_not_the_abbreviation_IS`. All five guards
+  were mutation-checked, and removing any one fails a test.
 
 ## Comparability
 
@@ -989,6 +1062,19 @@ mode.**
 - Verified: `tests/report/test_scope.py::test_the_shipped_documents_carry_the_same_block_word_for_word`
   and `::test_the_block_moves_with_the_stats`.
 
+**RV-04 · A check a Claude agent did is called that. Nothing claims a human check that did not
+happen.**
+- What was wrong: `REVIEW.md` said "the person's verdict", the card said "a gold set of
+  hand-checked rows", and the scope block said "Hand-checked". Claude agents did the origin
+  check, the R2b read and the gold set. No row has been checked by a person (OD-03).
+- Decided by: Martin's own standard (ideas.md R6): a dataset others must validate cannot rest
+  on an unstated or false check.
+- Choice: "second reading" by a Claude agent, and "agent-checked". The word "hand" is kept for
+  the human audit still to come. The column and key names changed too (`hand_checked` →
+  `agent_checked`).
+- Built: `32fc0d3`. Verified: `tests/report/test_no_claimed_human_check.py`, red before the
+  change.
+
 ## Licence and release
 
 **LR-01 · Version 0 ships as parquet, JSONL, a JSON Schema and a dataset card that computes its
@@ -1180,6 +1266,12 @@ majority-of-three vote was not relied on.**
 
 ---
 
+**PR-09 · `ingest --dry-run` verifies a reading and prints the usual feedback, but records
+nothing.**
+- Why: the re-read control (EX-09) needed workers to see exactly what a real worker sees, without
+  touching the dataset.
+- Built: `0e739d4`. Verified: `tests/extract/test_extract_cli.py`, red before the change.
+
 ## Agent actions and how they were checked
 
 **What was delegated.** Agents did the following work, according to the record:
@@ -1196,8 +1288,11 @@ majority-of-three vote was not relied on.**
 - **The demo modules**: agent A (`resample`), agent B (`harmonise`), agent C (`cases`, `walk`,
   `questions`) and agent D (render and reader runs) (`DESIGN_2026-09-28_demo.md`).
 - **The 2026-09-28 prompt audit**, done in another session (`d3d89c9`).
-- **This register**, written by a subagent on 2026-10-01 and not committed. Treat it like any
-  other agent output until the main session has checked it.
+- **This register**, written by a subagent on 2026-10-01. The main session checked it and
+  committed it (`b3280cd`), and keeps it current.
+- **The Methods fix and its impact measurement** (`9b17a6c`), **the re-extraction** (18 workers,
+  `5012fdf`), **the re-read control** (6 workers, `09c11cd`), **the wording fix** (`32fc0d3`) and
+  **the re-read of the 239** (20 workers, in progress).
 
 The cell readers and the origin reader are not subagents. They are isolated `claude -p` calls
 (GR-06, OS-01).
@@ -1254,6 +1349,23 @@ The record holds more defects of the same kind:
 - **Analysis.** The shared-citation investigator's first pass matched "1.5" inside
   "−56.3 ± 1.5" (`fe51a4b`). A pandas bootstrap grouped by `pmcid` after resampling
   (`ff05351`).
+- **The re-extraction, 2026-10-01/02.** The main session read every worker report and sent three
+  papers back (`5012fdf`):
+  - PMC13298883 carried an n the paper never states;
+  - PMC8168913 recorded DLVO model inputs as measurements, and on the first correction dropped
+    a measurement the paper says it made but does not print, which the brief calls the most
+    important case;
+  - PMC9643204's medium and temperature were checked against L32, and they stood.
+
+  One worker found its shared scratch file overwritten by another and re-read the paper; from
+  then on each worker wrote only to its own paths.
+- **The main session, 2026-10-01/03.**
+  - It recommended an "additive" window rule on the premise that it was a local, one-line
+    change. Measured, it would have changed 652 papers, so Martin reversed the choice (CP-07).
+  - It committed a script while ruff was failing, because a `;` chain did not stop on the
+    error (`aa4ffa1` fixed it).
+  - It wrote "four papers" in a commit message for three, and amended it before anything was
+    pushed.
 
 ---
 
@@ -1273,6 +1385,10 @@ change. A recommendation marked *(register)* is this file's own, not the record'
   from another study", and also fabrics (`docs/briefs/extraction.md`). Record the ruling in
   `tests/edge/key.yaml`.
 - What changes: 1 890 → 1 883 rows. Every count and the origin tables rebuild.
+- **Decided 2026-10-01 (Martin): drop them.** Not yet built. `NOT_OWN_MEASUREMENT` is keyed by
+  row id, and the re-extractions renumber rows: PMC12878436's cited rows are already gone after
+  `5012fdf`. The list has to be derived again from the final records before it is applied, or it
+  will drop the wrong rows.
 
 **OD-02 · The missing environmental row at PMC11211448 L26.**
 - What it is: L26 prints the diluted wastewater's pH 5.8–6.2, its conductivity of
@@ -1405,6 +1521,8 @@ change. A recommendation marked *(register)* is this file's own, not the record'
   working tree on 2026-10-01. Its name suggests that measurement, but this register did not read
   it.
 - What changes: the condition-reporting headline, and `REVIEW.md` §8 item 18 and card limit 8.
+- **Resolved 2026-10-01.** See CP-07: re-extract the 208, ask every reader question again, and
+  apply one window rule for every paper.
 
 **OD-17 · Edge cases S5, S29 and S31 are unruled.**
 - State: `tests/edge/key.yaml` answers 8 of 69 cases.
@@ -1440,6 +1558,8 @@ change. A recommendation marked *(register)* is this file's own, not the record'
   `d4be112`) or the R2b read of 212 rows (`d538ce5`).
 - Recommendation: Martin confirms who did them, and `REVIEW.md` says so. Right now "the
   person's verdict" can be read as a human audit.
+- **Resolved 2026-10-02.** The session record shows Claude agents did both checks. RV-04 changed
+  the wording.
 
 **OD-23 · Reasons to record.**
 - These entries say "reason not recorded":
@@ -1460,3 +1580,14 @@ change. A recommendation marked *(register)* is this file's own, not the record'
   - Martin ratifies them, and `docs/DECISIONS_NEEDED.md` or `tests/edge/key.yaml` records it.
   - `METHOD.md` (`src/mnp/demo/render.py`) stops calling them ratified.
 - What changes: the wording of a generated document that scientists will read first.
+
+**OD-25 · PMC13057466 stores a CaCl₂ concentration as its ionic strength.**
+- What: "50 mmol L⁻¹ CaCl₂" is stored as a reported 50 mM, where the ratified salt rule (RC-02)
+  gives 150 mM, derived. The coercer does not read the superscript unit `L⁻¹`, so the salt rule
+  never ran. That is 5 rows in one paper. The table headers show that PMC11899741 and
+  PMC11543686 really do state these numbers as ionic strengths ("IS", "Ionic strength (mM)"), so
+  their values stand.
+- Plan: fix the unit pattern test-first once the 239 re-read has finished, because changing
+  `coerce` mid-run would parse half the run one way. Then replay the stored JSON, and send
+  PMC13057466, whose JSON was lost (EX-11), back to a reader.
+

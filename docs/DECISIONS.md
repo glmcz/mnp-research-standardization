@@ -61,6 +61,7 @@ Status:
 | CP-05 | Add line addresses to the stored rows, do not re-extract | Agent (acceptance not recorded) | built | `0749420` |
 | CP-06 | Do not rebuild the reading path around a selector | Agent | built | `2a96b3e`, `ce49f01` |
 | CP-07 | Fix the parser's Methods defect | Martin | built | `9b17a6c`, `5012fdf` |
+| CP-08 | Fix the Methods finder's two further gaps (25 papers) | Martin | built (re-read in progress) | `234be22` |
 | EX-01 | Scanner, worker, verifier; only the worker judges | Not recorded | built | `1cfc5a5`, `67d551d` |
 | EX-02 | Quotes must be verbatim; unverified rows dropped and counted | Not recorded | built | `1cfc5a5` |
 | EX-03 | Extraction by Claude Code subagents, no API key | Not recorded | built | `1cfc5a5` |
@@ -72,6 +73,8 @@ Status:
 | EX-09 | Measure reading noise with a blind re-read control | Agent | built | `09c11cd` |
 | EX-10 | Re-read the 239 papers not read under the current brief | Martin | decided-not-built | (run in progress) |
 | EX-11 | Keep each worker's raw JSON in the run directory | Agent | built (from `reread-brief-20261003`) | — |
+| EX-12 | Fix the guards that pushed correct values toward absence | Agent (reported by workers) | built | `bfc90ac`, `2683d24` |
+| EX-13 | A worker never deletes a printed value to clear a flag | Agent | built (worker brief) | — |
 | RC-01 | Five conditions; fully conditioned = all five on one row | Not recorded | built | `1cfc5a5`, `35d340e` |
 | RC-02 | A printed composition counts, flagged derived (Q1) | Martin | built | `1cfc5a5` |
 | RC-03 | An incubation temperature is not the measurement temperature (Q2) | Martin | built | `1cfc5a5` |
@@ -113,6 +116,7 @@ Status:
 | DM-02 | Each case pins a paper and a check that proves its mode | Agent | built | `220223d` |
 | DM-03 | Demo answers are read from committed runs, never regenerated | Agent | built | `d35f82d` |
 | DM-04 | No demo lookup rests on a value a rule cleared | Agent | built | `4a3087c` |
+| DM-05 | Case 01 → PMC12955872; case 11 reads the paper's words; new case 14 | Martin | built | `c306ca8` |
 | RV-01 | A generated review guide with worksheets | Martin (request); agent (form) | built | `78a65ac`, `f78a4f5` |
 | RV-02 | An HTML results page, builder kept in the repo | Martin (request); agent (form) | built | `0056e12` |
 | RV-03 | Every reader-facing document opens with one generated scope block | Martin | built | `0f3d549` |
@@ -134,6 +138,7 @@ Status:
 | PR-07 | Tests are proven red | Agent | built | `220223d` |
 | PR-08 | Corrections stay in place | Agent | built | `1fedb71` |
 | PR-09 | `ingest --dry-run`: verify a reading without recording it | Agent | built | `0e739d4` |
+| PR-10 | `extract reverify`: recompute stored verifier flags without a model | Agent | built | `e67eaba` |
 
 ---
 
@@ -277,6 +282,39 @@ not re-extracted.**
   untouched papers rebuild to identical rows. Condition reporting on the 208 moved down, not
   up: medium 81.5 → 76.5 %, pH 20.0 → 15.3 %, temperature 19.5 → 16.2 % per row. EX-09
   explains why.
+
+**CP-08 · The Methods finder had two more gaps. Fixed, and the 31 papers whose text changed
+are read again.**
+- How it was found: the origin reader had its own repair of the line document (CP-07's
+  workaround). Retiring it (`c907386`) meant measuring what it still appended after the first
+  fix: 826 lines in 25 papers. Those 25 papers were exactly where the finder still failed, so
+  the extraction had never seen their Methods either. The repair had been hiding the symptom
+  from the one consumer that showed it.
+- Why the parser missed them:
+  - `METHODS_TITLE_RE` knew only three headings: "Materials and Methods", "Methods" and
+    "Experimental (Section|Procedures|Methods|Part)". The corpus also writes "Methods and
+    Materials" (5 papers), "Methods and Experimental Section", "Experiment", "Experimental
+    Section/Methods" (3), "Experimental details", "Method details" (2), "STAR★Methods" and
+    "材料与方法". Five more papers have no Methods in the body at all; theirs are in the
+    supplement, and the parser is right to find none.
+  - A sec-type match ended the search. A subsection marked `sec-type="methods"` ("2.4 Sample
+    pretreatment") was therefore taken alone, and its sibling "2.1 Materials and Reagents" was
+    dropped (PMC11125995, PMC11851392).
+- Why nobody saw it: the parser reports `methods_source = none` without complaint. Every
+  downstream count treats a paper with no Methods as a paper that states nothing, so a missed
+  heading looks exactly like absence, which is the quantity the study measures.
+- Decided by: Martin, 2026-10-03: fix it now, stop cell B, and document exactly why the parser
+  missed it and how it was found.
+- Effect, measured without a model: the extraction text of 31 of 858 papers changes, 20 with
+  rows and 11 without. All 31 are read again (run `methods-fix2-20261003`), under the CP-07 rule
+  that every paper whose text changed is re-read.
+- Cost: the cell D sweep (`celld-sweep-20261003`, 355/355) and the partial cell B sweep (200 of
+  355) answered over the old documents, so both are superseded and asked again.
+- Built: `234be22`. Verified: `tests/corpus/test_jats.py`. Every heading the corpus uses is a
+  test that was red before the fix, and "Method validation", "Statistical methods" and
+  "Experimental results" stay not taken.
+- What would catch the next one: a count of papers with rows and `methods_source = none`, each
+  read once by hand. That is 26 papers today, 5 of them legitimately without Methods.
 
 ## Extraction and verification
 
@@ -434,6 +472,31 @@ brief.**
   them. From `reread-brief-20261003` on, the JSON sits in
   `data/interim/runs/<run>/json/<PMCID>.json`.
 - Decided by: the agent.
+
+**EX-12 · Four guards pushed correct values toward absence. Fixed.**
+- What: each of these made a value the paper prints look unsupported or unparseable. The
+  extractor's instructions say to act on flags, so a worker deleted the value to clear the flag.
+  That bias points toward absence, the quantity the study measures.
+  - An ionic strength printed in molar ("∼0.15 M") or with a decimal comma ("0,026 M") was not
+    found, because the check looked for "150" and "26" (`bfc90ac`). Worker b04 deleted
+    PMC11726606's value to clear the flag. Seven papers that print an ionic strength in M or µM
+    were re-read (`verifier-fix-20261003`). One had been harmed; in five the value belongs to
+    another experiment.
+  - "mmol L⁻¹" / "mmol L-1": the exponent sat between the number and its salt, so no salt
+    bound, and a medium stating 10 mmol L-1 NaCl recorded no ionic strength.
+  - "KCl 10–3 mol/L" was read as −3000 mM, and the rows dropped.
+  - A temperature in kelvin ("298 ± 0.1K") was not found.
+  - The step guard read the whole quote passage, so "sonicated … before measurement" in the
+    next sentence cleared a temperature the paper ties to the Zetasizer.
+- How they were found: the extraction workers reported each one. The re-read brief asked for
+  "every flag you believe is wrong".
+- Built: `bfc90ac`, `2683d24`. Each case is a test that was red before the fix. Applied to stored
+  records by `extract reverify` (PR-10, 4 records), and by re-reading the two papers whose
+  JSON could not be replayed (`coerce-fix-20261003`).
+
+**EX-13 · A worker never deletes a value the paper prints just to clear a flag.**
+- From b07 on, every worker brief says so, and asks the worker to report the flag and the
+  printed text instead. EX-12 is why.
 
 ## The five conditions and what counts as reported
 
@@ -1014,6 +1077,21 @@ mode.**
   answer it correctly (`4a3087c`).
 - Verified: `tests/demo/test_questions.py::test_no_lookup_is_built_on_a_value_a_rule_cleared`.
 
+**DM-05 · Case 01 moves to PMC12955872, case 11 reads the paper's words, and there is a new
+case 14.**
+- Why: after the re-read and R3, case 01's paper (PMC11099890) has no comparable pair, because
+  its "ionic strength" was 5 mM phosphate. Case 11's check used `medium_class`, and the re-read
+  filed the industrial effluent as `other`. That class is a reader's label. The old reading and
+  the new one disagree on it in 341 of the 1 777 rows matched by id. (In conversation the agent
+  first gave Martin 340 of 1 908, which was a different comparison: the reader's label against
+  the pipeline's own regex.)
+- Case 14 is the only cross-paper comparable pair in the corpus: one Białystok lab's 100 nm
+  polystyrene in 0.3 mM NaCl at pH 7.4 and 25 °C, on a Zetasizer Nano-ZS, in two papers
+  three years apart. The values are −48.7 and −14.7 mV: comparable on all five conditions, yet
+  34 mV apart, and their harmonised intervals do not overlap.
+- Decided by: Martin, 2026-10-03 (both options as recommended).
+- Built: `c306ca8`.
+
 ## Review outputs and the results page
 
 **RV-01 · A generated review guide with worksheets, so every number can be checked by hand.**
@@ -1272,6 +1350,13 @@ nothing.**
   touching the dataset.
 - Built: `0e739d4`. Verified: `tests/extract/test_extract_cli.py`, red before the change.
 
+**PR-10 · `extract reverify` recomputes the verifier's flags on stored rows.**
+- Why: R2 reads flags that are stored at ingest, so a verifier fix changed nothing in the table
+  until the flags were recomputed (OD-09). Only `zeta.VERIFY_FLAGS` move; the coercer's flags
+  stay as recorded. `--check` writes nothing and exits non-zero when anything is stale.
+- Built: `e67eaba`, registered in the protocol. Verified:
+  `tests/extract/test_extract_cli.py::test_reverify_replaces_stale_verifier_flags_and_keeps_the_rest`.
+
 ## Agent actions and how they were checked
 
 **What was delegated.** Agents did the following work, according to the record:
@@ -1366,6 +1451,16 @@ The record holds more defects of the same kind:
     error (`aa4ffa1` fixed it).
   - It wrote "four papers" in a commit message for three, and amended it before anything was
     pushed.
+  - It told Martin that two readers disagree on `medium_class` in "340 of 1 908 rows". The
+    number was the reader's label against the pipeline's regex; the reader-against-reader
+    figure is 341 of 1 777 (DM-05).
+  - Its heuristic flagged PMC8225560's n = 1 as stated nowhere. The paper says "One
+    experimental replicate". The reader was right, and kept the value.
+- **The re-read of the 239 papers, 2026-10-03.** 20 workers. The main session sent back
+  PMC13306949 (a temperature and instrument stated for size measurement, carried onto zeta
+  rows), PMC13147724 (one reading counted as both zeta and mobility), PMC12462602 (PEG 4000,
+  a dissolved polymer) and PMC8225560 (n, which stood). One worker read two long papers by
+  keyword search instead of in full; from b12 on, the brief requires reading every line.
 
 ---
 
@@ -1385,7 +1480,9 @@ change. A recommendation marked *(register)* is this file's own, not the record'
   from another study", and also fabrics (`docs/briefs/extraction.md`). Record the ruling in
   `tests/edge/key.yaml`.
 - What changes: 1 890 → 1 883 rows. Every count and the origin tables rebuild.
-- **Decided 2026-10-01 (Martin): drop them.** Not yet built. `NOT_OWN_MEASUREMENT` is keyed by
+- **Resolved 2026-10-03.** All seven rows are gone. The re-read removed six under the brief's own
+  rules: the fabric, four cited values and the passing remark. PEG 4000 went back to its reader
+  with Martin's ruling. Originally decided 2026-10-01 (Martin): drop them. Not yet built at the time. `NOT_OWN_MEASUREMENT` is keyed by
   row id, and the re-extractions renumber rows: PMC12878436's cited rows are already gone after
   `5012fdf`. The list has to be derived again from the final records before it is applied, or it
   will drop the wrong rows.
@@ -1454,6 +1551,9 @@ change. A recommendation marked *(register)* is this file's own, not the record'
 - Options: keep them and disclose it, or replace both and re-ask (4 reader calls).
 - Recommendation *(register)*: replace them, because it is cheap.
 - What changes: kind A by at most 2 of 30 per cell.
+- 2026-10-03: the regenerated set still has the leak, and it now cuts the other way. A-012 and
+  A-013 ask about rows in "10 mM TrisHCl pH 7.0", which R3 clears. The reader answers 10 mM and
+  loses the condition point, although the value is right (cell D, `celld-sweep-20261003`).
 
 **OD-09 · 162 rows carry stale verifier flags.**
 - Source: `d538ce5`. Flags are computed once at ingest and never recomputed, so 162 rows in 34
@@ -1465,6 +1565,9 @@ change. A recommendation marked *(register)* is this file's own, not the record'
   - Leave them.
 - Recommendation: fix the pattern, then recompute, with a per-row account of what changed.
 - What changes: the flags on those rows, and any figure that a cleared value feeds.
+- **Resolved 2026-10-03.** The step guard now reads one sentence (EX-12), and `extract reverify`
+  (PR-10) recomputed every stored flag. After the re-read, 4 records were stale, and none are
+  now (`reverify --check`).
 
 **OD-10 · EHP's "public domain unless otherwise noted" (4 papers).**
 - Options: ship their quotes, or keep them withheld (HANDOFF §4.5).
@@ -1581,7 +1684,11 @@ change. A recommendation marked *(register)* is this file's own, not the record'
   - `METHOD.md` (`src/mnp/demo/render.py`) stops calling them ratified.
 - What changes: the wording of a generated document that scientists will read first.
 
-**OD-25 · PMC13057466 stores a CaCl₂ concentration as its ionic strength.**
+**OD-25 · PMC13057466 stores a CaCl₂ concentration as its ionic strength. Resolved
+2026-10-03 (EX-12, `coerce-fix-20261003`): 150 mM, derived.** One correction: PMC11899741's
+"IS" column is contradicted by its own Methods ("1 mM and 5 mM NaCl or CaCl2"). Three current
+readings agree on the concentration reading (3 mM derived), so that paper is now a
+self-contradiction, not a stated ionic strength.
 - What: "50 mmol L⁻¹ CaCl₂" is stored as a reported 50 mM, where the ratified salt rule (RC-02)
   gives 150 mM, derived. The coercer does not read the superscript unit `L⁻¹`, so the salt rule
   never ran. That is 5 rows in one paper. The table headers show that PMC11899741 and
@@ -1590,4 +1697,29 @@ change. A recommendation marked *(register)* is this file's own, not the record'
 - Plan: fix the unit pattern test-first once the 239 re-read has finished, because changing
   `coerce` mid-run would parse half the run one way. Then replay the stored JSON, and send
   PMC13057466, whose JSON was lost (EX-11), back to a reader.
+
+**OD-26 · The verifier never checks n.**
+- What: in 175 rows the n is not stated in the quote. In 171 of them it is stated elsewhere in
+  the paper, and the last 4 turned out to be stated too. Worker w11, though, wrote an n = 3
+  the paper never states, and nothing would have caught it.
+- Options: an `n_not_in_text` check like the others, or leave it, since n is not one of the five
+  conditions and feeds no headline figure.
+
+**OD-27 · `infer_medium_class` matches without word boundaries.**
+- What: `pond` matches "corres**pond**ing", so a medium described as "…solutions above their
+  corresponding CMC" would be classed `environmental_water`. It only matters for rows where the
+  reader gave no class.
+- Recommendation *(register)*: add word boundaries, test-first.
+
+**OD-28 · Tyre-wear particles: plastic or not?**
+- What: worker b11 left out PMC12907065's tyre-wear particles as "not a listed polymer". Tyre
+  wear is a synthetic-rubber composite, and much of the literature counts it as microplastic.
+  The brief does not say. `tests/edge/key.yaml` holds a related open edge case on elastomers.
+
+**OD-29 · The origin reader's cumulative token limit.**
+- What: `INPUT_TOKEN_LIMIT` (4 M) counts every origin run so far, and about 3 M are spent. The
+  re-read changed particle names, so the origin answers and their second reading must be
+  redone, and the limit refuses a new run.
+- Options: raise the limit for one more run (its estimate goes in the manifest), or make the
+  limit per run.
 

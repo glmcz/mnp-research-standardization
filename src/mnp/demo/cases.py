@@ -1,14 +1,16 @@
-"""The thirteen demo cases — one paper per failure mode the corpus actually contains.
+"""The demo cases — one paper per failure mode the corpus actually contains, and one pair.
 
 Each `Case` pins a paper **and** a check that proves the paper still shows its mode against the
 live `d1_zeta_table.csv`. `verify` runs that check; when it fails, `docs/DESIGN_2026-09-28_demo.md`
 says to replace the paper with the best-fitting one from the table, which is what happened here
-for case 03 — see the note above `CASES`.
+for cases 03 and 01 — see the note above `CASES`. Case 14's mode only exists across two papers,
+so it also pins the pair of rows it is built on.
 """
 
 from __future__ import annotations
 
 import math
+import re
 from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any
@@ -54,16 +56,30 @@ class Case:
     mode: str
     why: str
     check: Check
+    #: The two row ids a case is built on when its mode only shows across papers.
+    pair: tuple[str, str] | None = None
+
+    @property
+    def pmcids(self) -> tuple[str, ...]:
+        """Every paper the case shows: its own first, then the other side of its pair."""
+        if self.pair is None:
+            return (self.pmcid,)
+        # row ids are "<pmcid>-r<n>" (mnp.extract.zeta)
+        others = sorted({row_id.rsplit("-r", 1)[0] for row_id in self.pair} - {self.pmcid})
+        return (self.pmcid, *others)
+
+
+def _comparable_pairs(table: pd.DataFrame) -> list[comp.PairSpec]:
+    rows = [comp.ZetaRow.from_mapping(r) for r in table.to_dict(orient="records")]
+    return comp.comparable_census(rows)
 
 
 # -- the checks, one per case, each literally the design table's own words ------------------
 
 
 def _check_01_fully_conditioned(pmcid: str, table: pd.DataFrame, corpus: Corpus) -> bool:
-    """>=1 pair of this paper's rows is in the corpus-wide fully-comparable census."""
-    rows = [comp.ZetaRow.from_mapping(r) for r in table.to_dict(orient="records")]
-    census = comp.comparable_census(rows)
-    return any(spec.a.pmcid == pmcid or spec.b.pmcid == pmcid for spec in census)
+    """>=1 pair of this paper's rows -- both of them its own -- is in the comparable census."""
+    return any(spec.a.pmcid == spec.b.pmcid == pmcid for spec in _comparable_pairs(table))
 
 
 def _check_02_one_particle_three_media(pmcid: str, table: pd.DataFrame, corpus: Corpus) -> bool:
@@ -161,10 +177,17 @@ def _check_10_size_regime(pmcid: str, table: pd.DataFrame, corpus: Corpus) -> bo
     return False
 
 
+#: A natural water named in the paper's own words. medium_class is a reader's label, and two
+#: readings disagree on it often enough that the re-read filed case 11's effluents as `other`.
+ENVIRONMENTAL_WATER_RE = re.compile(
+    r"\b(?:effluent|wastewater|river|lake|seawater|groundwater)\b", re.IGNORECASE
+)
+
+
 def _check_11_environmental_matrix(pmcid: str, table: pd.DataFrame, corpus: Corpus) -> bool:
-    """>=1 row with medium_class == environmental_water."""
+    """>=1 row whose medium_text names an environmental water, never its medium_class."""
     rows = _rows(table, pmcid)
-    return any(_str(row.get("medium_class")) == "environmental_water" for row in rows)
+    return any(ENVIRONMENTAL_WATER_RE.search(_str(row.get("medium_text"))) for row in rows)
 
 
 def _check_12_weathered(pmcid: str, table: pd.DataFrame, corpus: Corpus) -> bool:
@@ -195,6 +218,27 @@ def _check_13_self_contradiction(pmcid: str, table: pd.DataFrame, corpus: Corpus
     )
 
 
+#: The only cross-paper comparable pair on the 2026-10-03 table: one lab's 100 nm polystyrene
+#: in 0.3 mM NaCl, pH 7.4, 25 C, Zetasizer Nano-ZS, in two papers three years apart.
+CASE_14_PAIR = ("PMC10260929-r1", "PMC13298883-r1")
+CASE_14_MIN_GAP_MV = 20.0
+
+
+def _check_14_comparable_yet_apart(pmcid: str, table: pd.DataFrame, corpus: Corpus) -> bool:
+    """The pinned pair is in the comparable census, this paper is one side, values >=20 mV apart."""
+    first, second = CASE_14_PAIR
+    if not any(row_id.startswith(f"{pmcid}-r") for row_id in CASE_14_PAIR):
+        return False
+    if not any((s.a.row_id, s.b.row_id) == CASE_14_PAIR for s in _comparable_pairs(table)):
+        return False
+    values = {
+        _str(row.get("row_id")): _float(row.get("value"))
+        for row in table[table["row_id"].isin(CASE_14_PAIR)].to_dict(orient="records")
+    }
+    a, b = values.get(first), values.get(second)
+    return a is not None and b is not None and abs(a - b) >= CASE_14_MIN_GAP_MV
+
+
 # -- the cases --------------------------------------------------------------------------------
 #
 # Case 03 was pinned to PMC13181784 in the design table. Its own rows never print a
@@ -203,22 +247,33 @@ def _check_13_self_contradiction(pmcid: str, table: pd.DataFrame, corpus: Corpus
 # "4,000 uS/cm (NaCl solution)"), on all four of its rows, and none of them reports an ionic
 # strength. Replaced per the design file's own instruction ("pick the paper that best
 # satisfies it ... and say so").
+#
+# Case 01 was pinned to PMC11099890. Its pairs were built on an "ionic strength" of "5 mM
+# phosphate", a buffer concentration that rule R3 clears, so after the 2026-10-03 re-read it has
+# none. PMC12955872 has a pair inside it (Martin, 2026-10-03).
+#
+# Case 14 is pinned to PMC13298883 rather than PMC10260929, though either is one side of its
+# pair: PS-100 is unique in its paper, so kind A asks about the pair's own row, while
+# PMC10260929-r1 shares its lookup key with r6 (same particle, same 0.3 mM NaCl, value not
+# printed) and a kind A there would land off the pair. Neither paper has a kind B.
 
 CASES: tuple[Case, ...] = (
     Case(
         nn="01",
         slug="fully-conditioned",
-        pmcid="PMC11099890",
+        pmcid="PMC12955872",
         mode="the rare success",
         why=(
-            "This paper's rows are among the rare ones the comparability key can place in the "
-            "same regime: twelve of the sixteen fully comparable pairs in the entire 1,890-row "
-            "corpus come from inside this single paper (`comparability.comparable_census`). Ten "
-            "papers report all five conditions on more than one row -- this is not unique to "
-            "this paper, and PMC12312160 (case 04) alone holds sixteen such rows -- but this "
-            "paper is the one whose rows the comparability key actually pairs up with each "
-            "other. Almost everywhere else in the corpus, the rows a reviewer wants to compare "
-            "cannot be, because something ordinary went unreported."
+            "Two PEGylated carboxylate polystyrene particles, nominally 20 and 40 nm, give -2.91 "
+            "and -2.04 mV in the same 15x diluted PBS (~10 mM NaCl, pH 7.4) at 25 C on the same "
+            "Zetasizer NanoZS: every condition is printed, and these two rows are one of only "
+            "two fully comparable pairs in the 1,908-row corpus "
+            "(`comparability.comparable_census`). Their measured sizes, 56.2 and 60.9 nm, put "
+            "kappa*a at 9.2 and 10.0, so Henry's f differs by about 1% and the key can place "
+            "both values on one scale. The paper's 100 nm sibling in the same medium (139.8 nm, "
+            "kappa*a 23) is refused on exactly that axis: a fully conditioned row is necessary "
+            "for a comparison, and still not enough once the particles sit in different "
+            "conversion regimes."
         ),
         check=_check_01_fully_conditioned,
     ),
@@ -372,12 +427,14 @@ CASES: tuple[Case, ...] = (
         mode="effluent before/after treatment",
         why=(
             "Ten rows span five industrial effluents -- resin, paint, pharmaceutical, PVC and "
-            "textile -- each measured before and after in-house wastewater treatment. This is "
-            "a zeta potential measured on whatever microplastics were actually present in the "
-            "water, not on a particle dispersed on purpose in the lab, so its medium_class is "
-            "environmental_water rather than a prepared dispersion. Comparing it with a "
-            "lab-prepared row elsewhere in the corpus would compare two different kinds of "
-            "experiment even where the numbers happen to look similar."
+            "textile -- each sampled before and after in-house wastewater treatment, so the "
+            "zeta potential belongs to whatever particles the effluent carried, in a matrix "
+            "whose ionic strength and pH are never given. Comparing it with a lab-prepared "
+            "dispersion elsewhere in the corpus would compare two kinds of experiment even where "
+            "the numbers look alike. The case is recognised by what the paper prints "
+            '("effluent"), not by medium_class: that field is a reader\'s label, and the '
+            "re-read filed these rows under `other` where the earlier reading had "
+            "environmental_water."
         ),
         check=_check_11_environmental_matrix,
     ),
@@ -412,6 +469,26 @@ CASES: tuple[Case, ...] = (
             'silently choose which of two contradicting numbers the paper "really" meant.'
         ),
         check=_check_13_self_contradiction,
+    ),
+    Case(
+        nn="14",
+        slug="comparable-yet-apart",
+        pmcid="PMC13298883",
+        mode="comparable on all five conditions, yet 34 mV apart within one lab",
+        why=(
+            "Two papers from one laboratory (Bioelectrochemistry, University of Bialystok; "
+            "every author of the 2026 paper also signs the 2023 one) measure nominally 100 nm "
+            "plain polystyrene under the same printed conditions -- 0.3 mM NaCl, pH 7.4, 25 C, "
+            "Zetasizer Nano-ZS -- and report -48.7 +/- 1.4 mV (Sigma-Aldrich 43302, "
+            "119.5 nm measured) and -14.7 +/- 0.29 mV (supplier not stated, 158.1 nm measured). "
+            "This is the only pair in the 1,908-row corpus that the comparability key passes "
+            "across a paper boundary, and the 34 mV gap is not the conversion model's: neither "
+            "paper names one, yet with f_m left open between Huckel and Smoluchowski on both "
+            "rows the harmonised intervals still do not overlap. Five reported conditions make "
+            'two rows comparable; they do not make two lots of "100 nm PS" the same particle.'
+        ),
+        check=_check_14_comparable_yet_apart,
+        pair=CASE_14_PAIR,
     ),
 )
 

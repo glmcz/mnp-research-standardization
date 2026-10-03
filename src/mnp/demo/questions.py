@@ -202,7 +202,7 @@ def _kind_b(case: Case, rows: list[dict[str, Any]]) -> tuple[Question, AnswerKey
     return None
 
 
-# -- kind E: one within-paper pair, keyed exactly as comparability.PairSpec -------------------
+# -- kind E: one pair of the case, keyed exactly as comparability.PairSpec --------------------
 
 
 def _pairs(rows: list[dict[str, Any]]) -> list[tuple[dict[str, Any], dict[str, Any]]]:
@@ -241,9 +241,24 @@ def _widest_spread_pair(rows: list[dict[str, Any]]) -> tuple[dict[str, Any], dic
 _PAIR_PICKERS = {"02": _widest_spread_pair}
 
 
-def _kind_e(case: Case, rows: list[dict[str, Any]]) -> tuple[Question, AnswerKey] | None:
-    picker = _PAIR_PICKERS.get(case.nn, _best_pair)
-    pair = picker(rows)
+def _pinned_pair(
+    pair: tuple[str, str], table: pd.DataFrame
+) -> tuple[dict[str, Any], dict[str, Any]] | None:
+    """A case built on a pair (case 14, across two papers) is asked about that pair."""
+    by_id = {
+        _str(row.get("row_id")): row
+        for row in table[table["row_id"].isin(pair)].to_dict(orient="records")
+    }
+    if any(row_id not in by_id for row_id in pair):
+        return None
+    return by_id[pair[0]], by_id[pair[1]]
+
+
+def _kind_e(case: Case, table: pd.DataFrame) -> tuple[Question, AnswerKey] | None:
+    if case.pair is not None:
+        pair = _pinned_pair(case.pair, table)
+    else:
+        pair = _PAIR_PICKERS.get(case.nn, _best_pair)(_rows(table, case.pmcid))
     if pair is None:
         return None
     row_a = comp.ZetaRow.from_mapping(pair[0])
@@ -271,16 +286,19 @@ def _kind_e(case: Case, rows: list[dict[str, Any]]) -> tuple[Question, AnswerKey
 def questions_for(case: Case, table: pd.DataFrame) -> list[tuple[Question, AnswerKey]]:
     """This case's demo questions: kind A, then B, then E, skipping any kind with no honest row.
 
-    Case 04 (PMC12312160) and case 13 (PMC12598813) come back with two, not three: neither
-    paper has a condition every one of its rows agrees on being present or absent (ionic
-    strength, pH and temperature are each a mix of reported/derived/unreported across their
-    rows), so `_kind_b` has nothing to build without forcing a question the data does not
-    support.
+    Kinds A and B ask about the case's own paper; kind E asks about a pair inside it, or about
+    the case's pinned pair when it has one (case 14, across two papers).
+
+    On the 2026-10-03 table, five cases come back with two, not three:
+    - no kind B for case 01 (PMC12955872), case 13 (PMC12598813) and case 14 (PMC13298883):
+      none has a condition every one of its rows agrees on being present or absent (ionic
+      strength, pH and temperature are each a mix of reported/derived/unreported across its
+      rows), so `_kind_b` has nothing to build without forcing a question the data does not
+      support. Case 14's other paper, PMC10260929, has none either.
+    - no kind A for case 11 (PMC9318256), whose rows name no material, and case 12
+      (PMC11543686), whose rows unique in the paper print no medium or rest on a 0 mM that
+      rule R1 cleared.
     """
     rows = _rows(table, case.pmcid)
-    out: list[tuple[Question, AnswerKey]] = []
-    for builder in (_kind_a, _kind_b, _kind_e):
-        built = builder(case, rows)
-        if built is not None:
-            out.append(built)
-    return out
+    built = [_kind_a(case, rows), _kind_b(case, rows), _kind_e(case, table)]
+    return [question for question in built if question is not None]

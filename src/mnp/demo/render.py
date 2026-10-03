@@ -1,6 +1,7 @@
 """Renders the demo's three outputs from the committed cases/walk/questions/resample/harmonise
 modules, plus the recorded reader runs: ``out/demo/README.md``, ``out/demo/cases/NN-<slug>.md``
-(13 of them) and ``out/demo/METHOD.md``.
+(one per case) and ``out/demo/METHOD.md``. A case built on a pair across papers (case 14) shows
+every paper it spans, in `Case.pmcids` order.
 
 Nothing here calls a model. The reader's answers are **read**, never regenerated, from
 ``data/interim/runs/demo-cell{d,b}-20260928`` (see ``mnp.eval.grid`` for what wrote them); a
@@ -114,6 +115,10 @@ def paper_rows(table: pd.DataFrame, pmcid: str) -> list[dict[str, Any]]:
     return sorted(rows, key=_row_number)
 
 
+def case_rows(table: pd.DataFrame, case: cases_mod.Case) -> list[dict[str, Any]]:
+    return [row for pmcid in case.pmcids for row in paper_rows(table, pmcid)]
+
+
 # -- section 1: why this case -------------------------------------------------------------------
 
 
@@ -187,12 +192,14 @@ def _case_06_convergence_note(table: pd.DataFrame, pmcid: str) -> str | None:
 
 
 def section_1(case: cases_mod.Case, table: pd.DataFrame) -> str:
-    doi, year, journal = _paper_meta(table, case.pmcid)
-    out = ["## 1. Why this case\n", case.why, ""]
-    out.append(f"- pmcid: {case.pmcid}")
-    out.append(f"- doi: {doi or 'unreported'}")
-    out.append(f"- year: {year or 'unreported'}")
-    out.append(f"- journal: {journal or 'unreported'}")
+    out = ["## 1. Why this case\n", case.why]
+    for pmcid in case.pmcids:
+        doi, year, journal = _paper_meta(table, pmcid)
+        out.append("")
+        out.append(f"- pmcid: {pmcid}")
+        out.append(f"- doi: {doi or 'unreported'}")
+        out.append(f"- year: {year or 'unreported'}")
+        out.append(f"- journal: {journal or 'unreported'}")
     if case.nn == "06":
         note = _case_06_convergence_note(table, case.pmcid)
         if note:
@@ -259,8 +266,7 @@ def _row_citations(row: dict[str, Any], doc) -> tuple[str, ...]:
 
 
 def section_2(case: cases_mod.Case, table: pd.DataFrame, corpus: cells.Corpus) -> str:
-    rows = paper_rows(table, case.pmcid)
-    doc = corpus.docs.get(case.pmcid)
+    rows = case_rows(table, case)
     out = ["## 2. Rows\n"]
     header = ["row_id", "particle", "value", "medium", "ionic strength", "pH", "T", "instrument"]
     body = []
@@ -280,6 +286,7 @@ def section_2(case: cases_mod.Case, table: pd.DataFrame, corpus: cells.Corpus) -
     out.append(_md_table(header, body))
     out.append("")
     for row in rows:
+        doc = corpus.docs.get(_str(row.get("pmcid")))
         citations = _row_citations(row, doc) if doc is not None else ()
         out.append(f"**{_str(row.get('row_id'))}** evidence:")
         if not citations:
@@ -308,12 +315,12 @@ def _cite_text(cite: str, corpus: cells.Corpus) -> str:
 
 
 def section_3(case: cases_mod.Case, table: pd.DataFrame, corpus: cells.Corpus) -> str:
-    rows = paper_rows(table, case.pmcid)
-    doc = corpus.docs.get(case.pmcid)
+    rows = case_rows(table, case)
     out = ["## 3. Standardisation walk\n"]
     header = ["row_id", "condition", "verdict", "reason", "citations"]
     body = []
     for row in rows:
+        doc = corpus.docs.get(_str(row.get("pmcid")))
         if doc is None:
             continue
         for step in walk_mod.walk_row(row, doc):
@@ -357,37 +364,68 @@ def _blocker_field_counter(fields_column: list[str]) -> Counter[str]:
     return counter
 
 
+def _verdicts(
+    pairs: list[tuple[dict[str, Any], dict[str, Any]]],
+) -> list[tuple[dict[str, Any], dict[str, Any], comp.Verdict]]:
+    return [
+        (a, b, comp.comparable(comp.ZetaRow.from_mapping(a), comp.ZetaRow.from_mapping(b)))
+        for a, b in pairs
+    ]
+
+
+def _verdicts_table(verdicts: list[tuple[dict[str, Any], dict[str, Any], comp.Verdict]]) -> str:
+    header = ["row_id_a", "row_id_b", "verdict", "blockers"]
+    body = [
+        [_str(a["row_id"]), _str(b["row_id"]), v.verdict.value, ";".join(v.codes) or "(none)"]
+        for a, b, v in verdicts
+    ]
+    return _md_table(header, body)
+
+
+def _case_pair(
+    case: cases_mod.Case, rows: list[dict[str, Any]]
+) -> list[tuple[dict[str, Any], dict[str, Any]]]:
+    if case.pair is None:
+        return []
+    by_id = {_str(row.get("row_id")): row for row in rows}
+    first, second = case.pair
+    return [(by_id[first], by_id[second])] if first in by_id and second in by_id else []
+
+
 def section_4(
     case: cases_mod.Case,
     table: pd.DataFrame,
     census: list[comp.PairSpec],
     kind_e_sample: list[dict[str, str]],
 ) -> str:
-    rows = paper_rows(table, case.pmcid)
-    pairs = _intra_paper_pairs(rows)
+    rows = case_rows(table, case)
     out = ["## 4. Comparability\n"]
+    one_paper = len(case.pmcids) == 1
 
-    verdicts = [
-        (a, b, comp.comparable(comp.ZetaRow.from_mapping(a), comp.ZetaRow.from_mapping(b)))
-        for a, b in pairs
-    ]
-    shown = verdicts if len(verdicts) <= MAX_INTRA_PAIRS else verdicts[:MAX_INTRA_PAIRS]
-    note = (
-        ""
-        if len(verdicts) <= MAX_INTRA_PAIRS
-        else f" (first {MAX_INTRA_PAIRS} of {len(verdicts)} pairs, by row_id)"
-    )
-    out.append(f"### Pairs inside this paper{note}\n")
-    if shown:
-        header = ["row_id_a", "row_id_b", "verdict", "blockers"]
-        body = [
-            [_str(a["row_id"]), _str(b["row_id"]), v.verdict.value, ";".join(v.codes) or "(none)"]
-            for a, b, v in shown
-        ]
-        out.append(_md_table(header, body))
-    else:
-        out.append("(this paper has fewer than two rows -- no intra-paper pair exists)")
-    out.append("")
+    verdicts = _verdicts(_case_pair(case, rows))
+    if case.pair is not None:
+        out.append("### The case's pair, across papers\n")
+        if verdicts:
+            out.append(_verdicts_table(verdicts))
+        else:
+            out.append(f"(one of {', '.join(case.pair)} is no longer in the table)")
+        out.append("")
+
+    for pmcid in case.pmcids:
+        inside = _verdicts(_intra_paper_pairs(paper_rows(table, pmcid)))
+        verdicts += inside
+        shown = inside if len(inside) <= MAX_INTRA_PAIRS else inside[:MAX_INTRA_PAIRS]
+        note = (
+            ""
+            if len(inside) <= MAX_INTRA_PAIRS
+            else f" (first {MAX_INTRA_PAIRS} of {len(inside)} pairs, by row_id)"
+        )
+        out.append(f"### Pairs inside {'this paper' if one_paper else pmcid}{note}\n")
+        if shown:
+            out.append(_verdicts_table(shown))
+        else:
+            out.append("(this paper has fewer than two rows -- no intra-paper pair exists)")
+        out.append("")
 
     out.append("### Each row against the whole corpus\n")
     out.append(
@@ -415,11 +453,12 @@ def section_4(
     out.append(_md_table(header2, body2))
     out.append("")
 
-    out.append("### Blocker fields: this paper versus the kind E query set\n")
+    scope = "this paper" if one_paper else "this case"
+    out.append(f"### Blocker fields: {scope} versus the kind E query set\n")
     out.append(
-        "The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair stratified "
-        "sample**, not the full 1,785,105 possible pairs in the corpus. Share of pairs blocked "
-        "on each field, side by side."
+        f"The kind E query set (`queries/kind_e_comparability.csv`) is a **{len(kind_e_sample)}"
+        f"-pair stratified sample**, not the full {len(table) * (len(table) - 1) // 2:,} "
+        "possible pairs in the corpus. Share of pairs blocked on each field, side by side."
     )
     out.append("")
     paper_fields = _blocker_field_counter(
@@ -430,7 +469,7 @@ def section_4(
     all_fields = sorted(set(paper_fields) | set(sample_fields))
     header3 = [
         "field",
-        f"this paper (of {n_paper_pairs} pairs)",
+        f"{scope} (of {n_paper_pairs} pairs)",
         f"kind E sample (of {n_sample_pairs} pairs)",
     ]
     body3 = []
@@ -459,8 +498,14 @@ def _interval_text(h: harmonise.Harmonised) -> str:
 
 
 def section_5(case: cases_mod.Case, table: pd.DataFrame) -> str:
-    harmonised = harmonise.harmonise_paper(case.pmcid, table)
-    harmonised = sorted(harmonised, key=lambda h: _row_number({"row_id": h.row_id}))
+    harmonised = [
+        h
+        for pmcid in case.pmcids
+        for h in sorted(
+            harmonise.harmonise_paper(pmcid, table),
+            key=lambda h: _row_number({"row_id": h.row_id}),
+        )
+    ]
     out = ["## 5. Harmonised value\n"]
     header = ["row_id", "reported", "model", "kappa_a", "f(kappa_a)", "harmonised", "why"]
     body = []
@@ -486,15 +531,24 @@ def section_5(case: cases_mod.Case, table: pd.DataFrame) -> str:
 
 
 def section_6(case: cases_mod.Case, table: pd.DataFrame) -> str:
+    out = ["## 6. Resampling\n"]
+    for pmcid in case.pmcids:
+        if len(case.pmcids) > 1:
+            out.append(f"### {pmcid}\n")
+        out += _resampling_lines(table, pmcid)
+        out.append("")
+    return "\n".join(out).rstrip()
+
+
+def _resampling_lines(table: pd.DataFrame, pmcid: str) -> list[str]:
     n_total = len(table)
     k_total = int(table["pmcid"].nunique())
-    n_paper = len(table[table["pmcid"] == case.pmcid])
-    out = ["## 6. Resampling\n"]
-    out.append(f"- rows in this paper: {n_paper}")
+    n_paper = len(table[table["pmcid"] == pmcid])
+    out = [f"- rows in this paper: {n_paper}"]
     out.append(f"- weight per row (n / {n_total}): {n_paper / n_total:.5f}")
     out.append(f"- weight per paper (1 / {k_total}): {1 / k_total:.5f}")
     out.append("")
-    loo = resample.leave_one_out(table, case.pmcid)
+    loo = resample.leave_one_out(table, pmcid)
     header = [
         "metric",
         "per-row (with paper)",
@@ -513,7 +567,7 @@ def section_6(case: cases_mod.Case, table: pd.DataFrame) -> str:
         for item in loo
     ]
     out.append(_md_table(header, body))
-    return "\n".join(out)
+    return out
 
 
 # -- section 7: reader ------------------------------------------------------------------------
@@ -684,7 +738,7 @@ def case_page(
 
 
 def _case_index_row(case: cases_mod.Case) -> list[str]:
-    return [case.nn, case.slug, case.pmcid, case.mode, _first_sentence(case.why)]
+    return [case.nn, case.slug, ", ".join(case.pmcids), case.mode, _first_sentence(case.why)]
 
 
 def _pp(value: float, nd: int = 1) -> str:
@@ -879,7 +933,7 @@ def readme(
     all_qas: list[tuple[Question, AnswerKey]],
     scope_lines: list[str],
 ) -> str:
-    out = ["# The demo: thirteen real cases, each re-sampled four ways\n"]
+    out = [f"# The demo: {len(cases_mod.CASES)} real cases, each re-sampled four ways\n"]
     out.append("\n".join(scope_lines) + "\n")
     out.append(
         "See `docs/DESIGN_2026-09-28_demo.md` for what this shows and `METHOD.md` for how every "
@@ -1312,7 +1366,7 @@ def method(table: pd.DataFrame, corpus: cells.Corpus, scope_lines: list[str]) ->
 
 
 def build(root: Path) -> list[Path]:
-    """Write `README.md`, `cases/NN-<slug>.md` (13) and `METHOD.md` under `root/demo/`."""
+    """Write `README.md`, `cases/NN-<slug>.md` (one per case) and `METHOD.md` under `root/demo/`."""
     table, corpus = load()
     demo_dir = root / "demo"
     cases_dir = demo_dir / "cases"

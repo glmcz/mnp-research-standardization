@@ -1,8 +1,8 @@
-"""`render.py` writes `out/demo/README.md`, `out/demo/cases/NN-<slug>.md` (13) and
+"""`render.py` writes `out/demo/README.md`, `out/demo/cases/NN-<slug>.md` (one per case) and
 `out/demo/METHOD.md` from the committed cases/walk/questions/resample/harmonise modules and the
 recorded reader runs. These tests build into a scratch directory -- never into the real `out/` --
 and check the structural and determinism guarantees `docs/DESIGN_2026-09-28_demo.md` states:
-every case page carries all seven sections, the README lists all thirteen cases, rendering twice
+every case page carries all seven sections, the README lists every case, rendering twice
 is byte-identical, METHOD.md's headline numbers are the modules' own numbers (never typed by
 hand), a missing run directory renders "not run", and a recorded usage-policy refusal renders as
 one.
@@ -19,6 +19,7 @@ import pytest
 from mnp import config
 from mnp.demo import cases as cases_mod
 from mnp.demo import harmonise, render, resample
+from mnp.demo import questions as questions_mod
 from mnp.eval import cells
 from mnp.eval import comparability as comp
 from mnp.report import scope
@@ -45,9 +46,9 @@ def _case_path(built: Path, case: cases_mod.Case) -> Path:
     return built / "cases" / f"{case.nn}-{case.slug}.md"
 
 
-def test_thirteen_case_pages_are_written(built: Path):
+def test_one_case_page_per_case_is_written(built: Path):
     pages = sorted((built / "cases").glob("*.md"))
-    assert len(pages) == 13
+    assert len(pages) == len(cases_mod.CASES)
 
 
 def test_every_case_page_has_all_seven_sections(built: Path):
@@ -64,12 +65,13 @@ def test_every_case_page_shows_its_own_mode(built: Path):
         assert case.pmcid in text
 
 
-def test_readme_lists_all_thirteen_cases(built: Path):
+def test_readme_lists_every_case(built: Path):
     text = (built / "README.md").read_text(encoding="utf-8")
     for case in cases_mod.CASES:
         assert case.nn in text
         assert case.slug in text
-        assert case.pmcid in text
+        for pmcid in case.pmcids:
+            assert pmcid in text
 
 
 def test_rendering_twice_is_byte_identical(tmp_path_factory):
@@ -285,7 +287,9 @@ def test_method_reader_grid_wording_is_corrected(built: Path):
     assert "carries no" in text
     assert "handed the matching structured rows" in text
     assert "illustration of the grid" in text
-    assert "36 questions" in text
+    table = resample.load_table()
+    n_questions = sum(len(questions_mod.questions_for(c, table)) for c in cases_mod.CASES)
+    assert f"{n_questions} questions" in text
 
 
 # -- README.md: items 8-9 ---------------------------------------------------------------------
@@ -362,3 +366,58 @@ def test_readme_and_method_open_with_the_scope_block(built: Path, name: str):
     text = (built / name).read_text(encoding="utf-8")
     title = text.split("\n", 1)[0]
     assert text.startswith(f"{title}\n\n{block}\n\n"), text[:500]
+
+
+# -- a case built on a pair across two papers (case 14), and the count that follows CASES -------
+
+
+def _pair_case() -> cases_mod.Case:
+    found = [case for case in cases_mod.CASES if case.nn == "14"]
+    assert found, "no case 14"
+    return found[0]
+
+
+def _section(page: str, n: int) -> str:
+    return next(part for part in page.split("\n## ") if part.startswith(f"{n}. "))
+
+
+@pytest.fixture(scope="module")
+def pair_page() -> str:
+    """Rendered without `build`, so it needs no scope block and no recorded run."""
+    case = _pair_case()
+    table = resample.load_table()
+    corpus = cells.load_corpus(case.pmcids)
+    return render.case_page(
+        case,
+        table,
+        corpus,
+        render.corpus_wide_census(table),
+        comp.read_query_set(),
+        {cell: None for cell in render.CELLS},
+        render._line_index(corpus),
+    )
+
+
+@pytest.mark.parametrize("n", [1, 2, 3, 5, 6])
+def test_a_pair_case_page_shows_both_papers(pair_page: str, n: int):
+    for pmcid in _pair_case().pmcids:
+        assert pmcid in _section(pair_page, n), (n, pmcid)
+
+
+def test_a_pair_case_page_shows_its_cross_paper_pair(pair_page: str):
+    a, b = _pair_case().pair
+    assert f"| {a} | {b} | comparable | (none) |" in _section(pair_page, 4)
+
+
+def test_readme_title_and_index_follow_the_case_count():
+    table = resample.load_table()
+    no_runs = {cell: None for cell in render.CELLS}
+    text = render.readme(table, cells.Corpus(table=table), no_runs, [], [])
+    assert f"{len(cases_mod.CASES)} real cases" in text.split("\n", 1)[0]
+    assert "thirteen" not in text.lower()
+    case = _pair_case()
+    row = next(
+        line for line in text.splitlines() if line.startswith(f"| {case.nn} | {case.slug} |")
+    )
+    for pmcid in case.pmcids:
+        assert pmcid in row

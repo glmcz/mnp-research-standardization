@@ -1,4 +1,4 @@
-# The demo: thirteen real cases, each re-sampled four ways
+# The demo: real cases, each re-sampled four ways
 
 Written 2026-09-28. Agreed with Martin the same day. This file is the one source of truth for
 the agents that build it. If code and this file disagree, fix one of them; don't guess.
@@ -6,9 +6,9 @@ the agents that build it. If code and this file disagree, fix one of them; don't
 **Audience:** colloid and micro/nanoplastic scientists reviewing the method. They know zeta
 potential and will attack the method. Written in English, at full technical depth.
 
-**What it shows.** Thirteen papers, one per failure mode the corpus actually contains. For each
-paper the reviewer sees how its measurements are **re-sampled**, and that word covers four
-things:
+**What it shows.** Thirteen papers, one per failure mode the corpus actually contains, and one
+pair of rows across two papers (case 14, added 2026-10-03). For each paper the reviewer sees
+how its measurements are **re-sampled**, and that word covers four things:
 
 1. **Standardisation walk.** Each row, and each of the five conditions: is it reported, derived,
    nominal or unreported, and why? Every "why" cites the line of the paper it came from.
@@ -52,7 +52,7 @@ every check. If a pinned paper fails its check, pick the paper that best satisfi
 
 | NN | slug | pmcid | mode | check (on the paper's rows unless stated) |
 |---|---|---|---|---|
-| 01 | fully-conditioned | PMC11099890 | the rare success | ≥1 pair of its rows is in `comparability.comparable_census` |
+| 01 | fully-conditioned | PMC12955872 (was PMC11099890, whose pairs rested on "5 mM phosphate", a buffer concentration R3 clears; Martin, 2026-10-03) | the rare success | ≥1 pair of its rows, both of them its own, is in `comparability.comparable_census` |
 | 02 | one-particle-three-media | PMC10141840 | medium alone moves zeta 54 mV | ≥3 rows of one particle, ≥3 distinct `medium_class`, zeta spread ≥ 50 mV |
 | 03 | conductivity-not-ionic-strength | PMC12673110 (was PMC13181784, whose rows print no conductivity at all) | a number printed, not the one needed | `medium_text` matches conductivity (µS, mS/cm, "conductiv"), `ionic_strength_reported` False on those rows |
 | 04 | derived-from-composition | PMC12312160 | ionic strength derived from a printed composition, never looked up | ≥1 row with `ionic_strength_source == inferred_from_named_salt` |
@@ -62,9 +62,10 @@ every check. If a pinned paper fails its check, pick the paper that best satisfi
 | 08 | room-temperature | PMC13520334 | "room temperature" counts as reported, flagged nominal | ≥1 row with non-null `temperature_qualifier` |
 | 09 | mobility-reported | PMC11117817 | the measured quantity; zeta computable per model | ≥1 row with `quantity == electrophoretic_mobility` |
 | 10 | size-regime | PMC10145996 | 50 nm vs 1 µm PS-NH2: +24 vs −34 mV | two rows of one material + functionalisation + medium, sizes ≥10× apart, opposite signs |
-| 11 | environmental-matrix | PMC9318256 | effluent before/after treatment | ≥1 row with `medium_class == environmental_water` |
+| 11 | environmental-matrix | PMC9318256 | effluent before/after treatment | ≥1 row whose `medium_text` names effluent, wastewater, river, lake, seawater or groundwater as a whole word (was `medium_class == environmental_water`: a reader's label, and the 2026-10-03 re-read filed these rows `other`; Martin, 2026-10-03) |
 | 12 | weathered | PMC11543686 | aging changes charge and has no field | "aged", "weather" or "UV" in `functionalisation` or `particle_name` |
 | 13 | self-contradiction | PMC12598813 | one salt concentration printed twice, ~10³–10⁴× apart (FINDINGS E2c) | the two contradicting lines, pinned by line id, both resolve in the paper |
+| 14 | comparable-yet-apart | PMC13298883, with PMC10260929 (`Case.pair`) | comparable on all five conditions, yet 34 mV apart within one lab | the pair (PMC10260929-r1, PMC13298883-r1) is in `comparability.comparable_census`, and its two values differ by ≥ 20 mV (Martin, 2026-10-03) |
 
 Each case also carries a 2–3 sentence `why` that tells the reviewer what the case shows. It is
 static text written in `cases.py`, and every number in it must be checked against the data.

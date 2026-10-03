@@ -43,12 +43,37 @@ def test_qids_are_xnn_kind_and_question_matches_key(case, table):
         assert question.qid == f"X{case.nn}-{key.kind.value}"
 
 
-def test_cases_04_and_13_have_no_kind_b_question(table):
-    """Neither paper has a condition every one of its rows agrees on being present or absent."""
-    for nn in ("04", "13"):
-        case = next(c for c in cases.CASES if c.nn == nn)
-        kinds = {key.kind for _, key in questions.questions_for(case, table)}
+def _case(nn: str) -> cases.Case:
+    found = [case for case in cases.CASES if case.nn == nn]
+    assert found, f"no case {nn}"
+    return found[0]
+
+
+def test_cases_01_13_and_14_have_no_kind_b_question(table):
+    """None of these papers has a condition every one of its rows agrees on being present or
+    absent. (Case 04 was on this list; since the 2026-10-03 re-read all 16 of its rows print
+    pH 7.4, so it has an honest kind B now.)"""
+    for nn in ("01", "13", "14"):
+        kinds = {key.kind for _, key in questions.questions_for(_case(nn), table)}
         assert QueryKind.b not in kinds, nn
+
+
+def test_case_14_kind_e_is_its_cross_paper_pair(table):
+    case = _case("14")
+    key = next(k for _, k in questions.questions_for(case, table) if k.kind is QueryKind.e)
+    assert (key.get("row_id_a"), key.get("row_id_b")) == case.pair
+    assert key.get("same_paper") == "False"
+    assert key.get("verdict") == "comparable"
+    assert key.get("blocker_fields") == ""
+
+
+def test_case_14_kind_a_asks_about_a_row_of_its_pair(table):
+    """Why case 14 is pinned to PMC13298883: its PS-100 row is unique in its paper. In
+    PMC10260929 the pair's row shares its lookup key with r6 (same particle, same 0.3 mM NaCl,
+    value not printed), so a kind A there would land on a row off the pair."""
+    case = _case("14")
+    key = next(k for _, k in questions.questions_for(case, table) if k.kind is QueryKind.a)
+    assert key.get("gold_row_id") in case.pair
 
 
 @pytest.mark.parametrize("case", cases.CASES, ids=lambda c: f"{c.nn}-{c.slug}")
@@ -97,7 +122,7 @@ def test_scoring_kind_a_correct_and_wrong(table):
 
 
 def test_scoring_kind_b_correct_and_wrong(table):
-    case = next(c for c in cases.CASES if c.nn == "01")
+    case = _case("02")
     _, key = next((q, k) for q, k in questions.questions_for(case, table) if k.kind is QueryKind.b)
     reported = key.get("answer_reported") == "True"
     if reported:

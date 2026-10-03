@@ -7,7 +7,7 @@ import pandas as pd
 import pytest
 
 from mnp import config
-from mnp.corpus import lines
+from mnp.corpus import jats, lines
 from mnp.eval import grid
 from mnp.extract import origin
 
@@ -128,58 +128,47 @@ def _write(tmp_path, body: str) -> None:
     (tmp_path / "PMC9.xml").write_text(_XML.format(body=body))
 
 
-def test_a_methods_section_the_parser_lost_is_appended_after_the_line_document(tmp_path):
-    """jats._find_methods takes sec-type "supplementary-materials" for the methods and then
-    never looks at the "Experimental Section" title: 208 of the 491 papers."""
-    from mnp.corpus import jats
+def _canonical(tmp_path) -> lines.LinedDoc:
+    return lines.build_lines(jats.parse((tmp_path / "PMC9.xml").read_bytes()))
 
+
+def test_the_methods_beside_a_supplementary_section_reach_the_reader_through_the_parser(tmp_path):
+    """Before 9b17a6c the parser took sec-type "supplementary-materials" for the methods and
+    never tried the "Experimental Section" title (208 of 491 papers), and `load_doc` appended
+    the lost paragraphs for the origin reader alone. Now the parser finds them, so the supplier
+    line is a Methods line of the document every consumer reads."""
     _write(tmp_path, LOST_METHODS)
-    canonical = lines.build_lines(jats.parse((tmp_path / "PMC9.xml").read_bytes()))
-    assert not any("Magsphere" in x.text for x in canonical.lines)
-
     doc = origin.load_doc("PMC9", xml_dir=tmp_path)
-    assert doc.lines[: len(canonical.lines)] == canonical.lines, "canonical addresses unchanged"
-    (added,) = doc.lines[len(canonical.lines) :]
-    assert added.text == "PS beads were purchased from Magsphere."
-    assert added.n == len(canonical.lines) + 1
-    assert doc.sections[-1].header == "== Experimental Section / Nanoplastics"
-    assert "Plastics are milled" not in [x.text for x in doc.lines], "only methods-like sections"
+    supplier = next(x for x in doc.lines if x.text == "PS beads were purchased from Magsphere.")
+    assert supplier.section_path == "methods"
+    assert doc == _canonical(tmp_path)
 
 
-def test_a_paper_whose_methods_were_found_keeps_its_line_document_exactly(tmp_path):
-    from mnp.corpus import jats
-
-    _write(
-        tmp_path,
-        "<sec><title>Introduction</title><p>Plastics are milled by waves at sea.</p></sec>"
-        "<sec><title>Materials and methods</title>"
-        "<p>PS beads were purchased from Magsphere.</p></sec>",
-    )
-    canonical = lines.build_lines(jats.parse((tmp_path / "PMC9.xml").read_bytes()))
-    assert origin.load_doc("PMC9", xml_dir=tmp_path) == canonical
-
-
-def test_the_papers_whose_methods_the_parser_lost_are_named():
-    """`load_doc` repairs these locally; the extraction read them unrepaired."""
-    assert origin.methods_lost(_XML.format(body=LOST_METHODS).encode())
-    found = "<sec><title>Materials and methods</title><p>PS from Magsphere.</p></sec>"
-    assert not origin.methods_lost(_XML.format(body=found).encode())
-    both = (
-        '<sec sec-type="methods"><title>Methods</title><p>PS from Magsphere.</p></sec>'
-        '<sec sec-type="supplementary-materials"><p>Data S1.</p></sec>'
-    )
-    assert not origin.methods_lost(_XML.format(body=both).encode()), "the methods did arrive"
-    none = "<sec><title>Results</title><p>PS from Magsphere.</p></sec>"
-    assert not origin.methods_lost(_XML.format(body=none).encode()), "no methods, not this defect"
+FOUND = (
+    "<sec><title>Introduction</title><p>Plastics are milled by waves at sea.</p></sec>"
+    "<sec><title>Materials and methods</title><p>PS beads were purchased from Magsphere.</p></sec>"
+)
+#: The two shapes the old repair still patched after the fix: no section the parser takes for
+#: the methods, and a methods-typed subsection that hides its untyped "Materials" sibling.
+NO_METHODS = "<sec><title>Results</title><p>PS beads were purchased from Magsphere.</p></sec>"
+TYPED_SUBSECTION = (
+    "<sec><title>2. Materials and Methods</title>"
+    "<sec><title>2.1. Materials</title><p>PS beads were purchased from Magsphere.</p></sec>"
+    '<sec sec-type="methods"><title>2.2. Procedure</title><p>Beads were dispersed.</p></sec>'
+    "</sec>"
+)
 
 
-def test_a_paper_with_no_methods_section_gets_every_paragraph_left_out(tmp_path):
-    _write(
-        tmp_path,
-        "<sec><title>Results</title><p>PS beads were purchased from Magsphere.</p></sec>",
-    )
-    doc = origin.load_doc("PMC9", xml_dir=tmp_path)
-    assert doc.lines[-1].text == "PS beads were purchased from Magsphere."
+@pytest.mark.parametrize(
+    "body",
+    [LOST_METHODS, FOUND, NO_METHODS, TYPED_SUBSECTION],
+    ids=["supplement_beside_methods", "found", "no_methods", "typed_subsection"],
+)
+def test_the_origin_reader_reads_the_line_document_every_consumer_reads(tmp_path, body):
+    """Nothing is appended for origin alone: a Methods the parser misses is missed for the
+    extraction too, and is fixed in the parser or not at all."""
+    _write(tmp_path, body)
+    assert origin.load_doc("PMC9", xml_dir=tmp_path) == _canonical(tmp_path)
 
 
 # -- the prompt ------------------------------------------------------------------------------------

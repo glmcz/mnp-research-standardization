@@ -415,22 +415,6 @@ def _origin() -> dict:
         "biota",
         "other",
     )
-    affected = {
-        "medium": 0,
-        "ionic_strength": 0,
-        "pH": 1,
-        "temperature": 0,
-        "instrument": 1,
-        "complete": 0,
-    }
-    rest = {
-        "medium": 2,
-        "ionic_strength": 1,
-        "pH": 2,
-        "temperature": 1,
-        "instrument": 2,
-        "complete": 0,
-    }
     return {
         "rows": 6,
         "papers": 3,
@@ -441,13 +425,6 @@ def _origin() -> dict:
             "environment": {"rows": {e: int(e == "wastewater") for e in envs},
                             "papers": {e: int(e == "wastewater") for e in envs}},
             "environmental_rows": {"rows": 1, "papers": 1},
-        },
-        "lost_methods": {
-            "papers": 3, "papers_affected": 1, "pmcids": ["PMCB"],
-            "affected": {"papers": 1, "rows": 2,
-                         "any_row": {k: {"n": v, "share": v / 1} for k, v in affected.items()}},
-            "unaffected": {"papers": 2, "rows": 4,
-                           "any_row": {k: {"n": v, "share": v / 2} for k, v in rest.items()}},
         },
     }  # fmt: skip
 
@@ -462,17 +439,25 @@ def test_the_card_states_where_the_particles_came_from(tmp_path):
     assert "`out/tables/sample_origin_stats.json`" in card
 
 
-def test_the_card_states_the_parser_defect_as_a_limit_of_the_extraction(tmp_path):
-    card = _card(_build(tmp_path / "release", origin=_origin()))
-    limits = card.split("## Limits a citer needs to state")[1].split("\n## ")[0]
-    item = next(line for line in limits.splitlines() if "supplementary-materials" in line)
-    assert "1 of 3 papers" in item
-    assert "temperature 0.0 % against 50.0 %" in item
-    assert "biased downward" in item
-    higher = _origin()
-    higher["lost_methods"]["affected"]["any_row"]["temperature"] = {"n": 1, "share": 1.0}
-    card = _card(_build(tmp_path / "again", origin=higher))
-    assert "temperature 100.0 % against 50.0 %" in card and "biased downward" not in card
+def test_a_fixed_methods_defect_is_not_a_limit_even_in_stale_origin_stats(tmp_path):
+    """The parser fix (9b17a6c) and the re-extraction (5012fdf) closed it. Origin stats built
+    before then still carry `lost_methods`; the card must not turn that back into a limit."""
+    keys = ("medium", "ionic_strength", "pH", "temperature", "instrument", "complete")
+    stale = _origin() | {
+        "lost_methods": {
+            "papers": 3, "papers_affected": 1, "pmcids": ["PMCB"],
+            "affected": {"papers": 1, "rows": 2,
+                         "any_row": {k: {"n": 0, "share": 0.0} for k in keys}},
+            "unaffected": {"papers": 2, "rows": 4,
+                           "any_row": {k: {"n": 1, "share": 0.5} for k in keys}},
+        }
+    }  # fmt: skip
+    for i, origin in enumerate((_origin(), stale)):
+        card = _card(_build(tmp_path / f"release{i}", origin=origin))
+        limits = card.split("## Limits a citer needs to state")[1].split("\n## ")[0]
+        numbered = [line.split(".", 1)[0] for line in limits.splitlines() if line[:1].isdigit()]
+        assert numbered == [str(i) for i in range(1, 8)], numbered
+        assert "supplementary-materials" not in card and "parser is not fixed" not in card
 
 
 def test_the_card_opens_with_the_scope_block_under_its_title(tmp_path):
@@ -702,7 +687,6 @@ def test_the_shipped_card_states_the_committed_origin(tmp_path, committed):
     h, n = origin["after_second_reading"], origin["rows"]
     k = h["synthetic"]["rows"]
     assert f"{k} / {n} — {100 * k / n:.1f} %" in card
-    lm = origin["lost_methods"]
-    assert f"{lm['papers_affected']} of {lm['papers']} papers" in card
+    assert "supplementary-materials" not in card, "the Methods defect is fixed, not a limit"
     block = "\n".join(scope.block(table, stats, origin))
     assert card.startswith(f"# {release.DATASET_TITLE}\n\n{block}\n\n")

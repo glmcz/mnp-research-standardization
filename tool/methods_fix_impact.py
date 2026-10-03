@@ -31,7 +31,7 @@ from mnp import config
 from mnp.corpus import jats, lines
 from mnp.demo import cases as demo_cases
 from mnp.eval.cells import Corpus
-from mnp.extract import origin, zeta
+from mnp.extract import zeta
 from mnp.report import quotes
 
 OUT = config.DATA_INTERIM / "methods_fix_impact.json"
@@ -161,9 +161,66 @@ def candidates_in(text: str) -> dict[str, bool]:
 # -- line documents -----------------------------------------------------------------------------
 
 
+# The repair `extract.origin.load_doc` carried when this was measured. The origin reader has
+# since gone back to `lines.build_lines`, so these are private copies, like the old finder above.
+
+
+def _methods_like(sec: etree._Element) -> bool:
+    kind = sec.get("sec-type") or ""
+    if jats.NOT_METHODS_SECTYPE_RE.search(kind):
+        return False
+    title = jats._sec_title(sec)
+    return bool(jats.METHODS_TITLE_RE.match(title) or jats.METHODS_SECTYPE_RE.search(kind))
+
+
+def _methods_lost(raw: bytes) -> bool:
+    """Every section `jats._find_methods` took for the methods is supplementary material."""
+    root = etree.fromstring(raw, parser=etree.XMLParser(recover=True, huge_tree=True))
+    body = root.find("body")
+    if body is None:
+        return False
+    secs, source = jats._find_methods(body)
+    return source == "sec-type" and all(
+        jats.NOT_METHODS_SECTYPE_RE.search(s.get("sec-type") or "") for s in secs
+    )
+
+
+def _append_lost_methods(doc: lines.LinedDoc, raw: bytes) -> lines.LinedDoc:
+    """Body paragraphs missing from `doc` that sit in a methods-like section — or, in a paper
+    with no methods-like section at all, every body paragraph missing from it."""
+    root = etree.fromstring(raw, parser=etree.XMLParser(recover=True, huge_tree=True))
+    body = root.find("body")
+    if body is None:
+        return doc
+    have = {x.text for x in doc.lines}
+    any_methods = any(_methods_like(s) for s in body.iter("sec"))
+    groups: dict[str, list[str]] = {}
+    for para in jats._paragraphs(body):
+        text = jats._para_text(para)
+        if not text or text in have:
+            continue
+        secs = [a for a in para.iterancestors() if a.tag == "sec"][::-1]
+        if any_methods and not any(_methods_like(s) for s in secs):
+            continue
+        titles = " / ".join(t for t in (jats._sec_title(s) for s in secs) if t) or "Body"
+        groups.setdefault(titles, []).append(text)
+    if not groups:
+        return doc
+    rows, spans, taken = list(doc.lines), list(doc.sections), {}
+    for titles, texts in groups.items():
+        path = lines._unique(f"body:{titles}", taken)
+        start = len(rows)
+        for ordinal, text in enumerate(texts):
+            rows.append(
+                lines.Line(len(rows) + 1, text, path, ordinal, lines.line_id(path, ordinal, text))
+            )
+        spans.append(lines.SectionSpan(path, f"== {titles}", start, len(rows)))
+    return lines.LinedDoc(doc.pmcid, tuple(rows), tuple(spans))
+
+
 def _load_doc(article: jats.Article, raw: bytes) -> lines.LinedDoc:
-    """`extract.origin.load_doc` for an article already parsed, old or new."""
-    return origin._append_lost_methods(lines.build_lines(article), raw)
+    """`extract.origin.load_doc` as it was, for an article already parsed, old or new."""
+    return _append_lost_methods(lines.build_lines(article), raw)
 
 
 def _appends(article: jats.Article, raw: bytes) -> int:
@@ -634,7 +691,7 @@ def main() -> int:
                     1 for p in with_rows if _old_methods_lost(papers[p].raw)
                 ),
                 "papers_with_rows_methods_lost_new": sum(
-                    1 for p in with_rows if origin.methods_lost(papers[p].raw)
+                    1 for p in with_rows if _methods_lost(papers[p].raw)
                 ),
                 "papers_with_rows_where_load_doc_appends_old": sum(
                     1 for p in with_rows if _appends(papers[p].old, papers[p].raw)
@@ -668,9 +725,9 @@ def main() -> int:
 
 
 def _old_methods_lost(raw: bytes) -> bool:
-    """`origin.methods_lost` as it answered with the old finder."""
+    """`_methods_lost` as it answered with the old finder."""
     with _old_finder():
-        return origin.methods_lost(raw)
+        return _methods_lost(raw)
 
 
 if __name__ == "__main__":

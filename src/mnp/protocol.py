@@ -635,11 +635,10 @@ STEPS: tuple[Step, ...] = (
             "Claude agent with the paper's full text, replace the reader's answer wherever it "
             "read the particle (every environmental particle, the unclear ones up to a cap, and "
             "a seeded sample of the rest). No person has checked either reading. Both readings "
-            "were judgement and are never re-run here, so this step is deterministic. It also "
-            "names the papers whose methods the parser took from a supplementary-materials "
-            "section and compares their condition reporting with the rest, and it refuses to "
-            "build when an environmental paper prints a conductivity nobody has read against its "
-            "rows, or when a row listed as not the authors' own measurement has left the table."
+            "were judgement and are never re-run here, so this step is deterministic. It "
+            "refuses to build when an environmental paper prints a conductivity nobody has read "
+            "against its rows, or when a row listed as not the authors' own measurement has left "
+            "the table."
         ),
         inputs="out/tables/d1_zeta_table.csv, data/interim/origin/{answers.jsonl,"
         "hand_check-*.jsonl,hand_check_sample-*.jsonl}, the run manifest, the vendored corpus",

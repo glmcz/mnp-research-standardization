@@ -70,6 +70,10 @@ def _pp(x: float) -> str:
     return f"{100 * x:.1f} %"
 
 
+def _and(items: list[str]) -> str:
+    return " and ".join([", ".join(items[:-1]), items[-1]] if len(items) > 1 else items)
+
+
 def _cell(value: Any, width: int = 70) -> str:
     if value is None or (isinstance(value, float) and math.isnan(value)):
         return "—"
@@ -365,9 +369,9 @@ def section_1(f: Facts) -> list[str]:
                 "`final_origin`, the verdict of a second reading by a Claude agent wherever there "
                 "was one (`agent_checked`) | recount C11 (§6) |",
                 "| `out/tables/sample_origin_stats.json` | the origin counts before and after the "
-                "second reading, the agreement, the environmental rows' conditions, the parser "
-                "defect and the rows that are not an own measurement | the numbers of C11, the "
-                "environmental rows (§6) and §8 |",
+                "second reading, the agreement, the environmental rows' conditions and the rows "
+                "that are not an own measurement | the numbers of C11, the environmental rows "
+                "(§6) and §8 |",
             ]
             if f.extra.get("origin")
             else []
@@ -2385,6 +2389,8 @@ def section_8(f: Facts) -> list[str]:
         "4.1×) came from an implementation that was never committed; the rebuild in §5.3 is the "
         "one to quote.",
     ]
+    if x.get("methods_fix"):
+        found.append(_methods_fix(x["methods_fix"]))
     if x.get("origin"):
         found += _origin_open(x["origin"])
     lines = ["## 8. Open issues and decisions", "", "### From `HANDOFF_2026-09-28.md` §4", ""]
@@ -2403,43 +2409,48 @@ def section_8(f: Facts) -> list[str]:
     return lines
 
 
+def _methods_fix(m: dict) -> str:
+    """The Methods defect the origin reading found, closed: before the fix against now."""
+    b, n = m["before"], m["now"]
+
+    def share(side: dict, key: str) -> float | None:
+        k = side["reported"][f"{key}_reported"]
+        return round(100 * k / side["rows"], 1) if side["rows"] else None
+
+    moved = [(label, share(b, key), share(n, key)) for key, label in ORIGIN_CONDITIONS]
+    shares = "; ".join(
+        f"{label} {'—' if then is None else f'{then:.1f} %'} → "
+        f"{'—' if now is None else f'{now:.1f} %'}"
+        for label, then, now in moved
+    )
+    known = [(label, then, now) for label, then, now in moved if None not in (then, now)]
+    fell = [label for label, then, now in known if now < then]
+    rose = [label for label, then, now in known if now > then]
+    parts = [f"fell for {_and(fell)}"] * bool(fell) + [f"rose for {_and(rose)}"] * bool(rose)
+    direction = f"It {', and '.join(parts)}. " if parts else ""
+    bt, nt = b["table"], n["table"]
+    return (
+        f"**The extraction did not get the Methods of {_int(b['papers'])} of "
+        f"{_int(bt['papers'])} papers. Found, fixed, re-extracted.** The origin reading found it "
+        "(`d4be112`): `jats._find_methods` took a `supplementary-materials` section for the "
+        "Methods, so the section titles were never tried. The parser was fixed in `9b17a6c` "
+        "and those papers were re-extracted in `5012fdf` (`docs/DECISIONS.md` CP-07). Share of "
+        f"their rows reporting each condition, before the fix → now: {shares} "
+        f"({_int(b['rows'])} rows then, {_int(n['rows'])} from {_int(n['papers'])} papers now). "
+        f"{direction}The re-extraction also read them under the current brief, and readings "
+        "under it differ systematically from the old ones (`docs/DECISIONS.md` EX-09, EX-10), "
+        "so every other paper with rows was re-read under it too (`92db4fb`). The whole table: "
+        f"{_int(bt['rows'])} rows from {_int(bt['papers'])} papers before the fix, "
+        f"{_int(nt['rows'])} from {_int(nt['papers'])} now; fully conditioned rows "
+        f"{_int(bt['complete'])} → {_int(nt['complete'])}. Before is what "
+        "`tool/methods_fix_impact.py` measured on the table the fix was made against "
+        "(`data/interim/methods_fix_impact.json`); now is this table. Closed."
+    )
+
+
 def _origin_open(o: dict) -> list[str]:
     """What checking the particles' origin found that is not about origin, and is still open."""
     out = []
-    lm = o.get("lost_methods")
-    if lm:
-        a, u = lm["affected"], lm["unaffected"]
-        shown = ORIGIN_CONDITIONS[:2] + ORIGIN_CONDITIONS[3:4]
-
-        def pct(block: dict, key: str) -> str:
-            return _pct(block["any_row"][key]["n"], block["papers"])
-
-        lower = all(
-            a["any_row"][key]["n"] / a["papers"] < u["any_row"][key]["n"] / u["papers"]
-            for key, _ in shown
-        )
-        out.append(
-            f"**In {lm['papers_affected']} of {lm['papers']} papers the extraction did not get "
-            "the Methods section. Open, a decision for Martin.** `jats._find_methods` takes "
-            "every section whose `sec-type` matches `method|materials`, and "
-            "`supplementary-materials` matches, so in those papers a supplementary-materials "
-            "section was taken for the Methods and the section titles were never tried. The "
-            "Methods reached the text the extraction read only where a zeta keyword window or a "
-            "characterisation subsection covered them. `report origin` repairs this for its own "
-            "reading (`extract.origin.load_doc`); the D1 extraction is unrepaired. Papers with at "
-            f"least one row reporting the condition, those {a['papers']} against the other "
-            f"{u['papers']}: "
-            + "; ".join(f"{label} {pct(a, key)} against {pct(u, key)}" for key, label in shown)
-            + " (`sample_origin_stats.json` → `lost_methods`, which lists the papers). "
-            + (
-                "They report conditions less often, so the headline condition-reporting "
-                "numbers (§4, C1 to C3) may be biased downward. "
-                if lower
-                else "The headline condition-reporting numbers (§4, C1 to C3) may be biased by it. "
-            )
-            + "The decision: fix the parser and re-extract those papers, or keep the "
-            "extraction and state the bias. Open."
-        )
     own = o.get("not_own_measurement") or []
     if own:
         by_why: dict[str, list[str]] = {}

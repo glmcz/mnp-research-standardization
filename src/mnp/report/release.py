@@ -709,11 +709,11 @@ def _limits_section(f: dict) -> list[str]:
 
 
 def _origin_limits(o: dict) -> list[str]:
-    """Where the particles came from, and the parser defect found while asking."""
+    """Where the particles came from."""
     h, n = o["after_second_reading"], o["rows"]
     where, env = h["environment"]["rows"], h["environmental_rows"]
     places = ", ".join(f"{e.replace('_', ' ')} {k}" for e, k in where.items() if k and e != "null")
-    lines = [
+    return [
         f"7. **The measured particles are synthetic.** {_kn(h['synthetic']['rows'], n)} of "
         "rows measure a particle bought ready-made or made in a lab. "
         f"{env['rows']} row{'s' if env['rows'] != 1 else ''}, from {env['papers']} "
@@ -726,37 +726,6 @@ def _origin_limits(o: dict) -> list[str]:
         "`out/review/REVIEW.md` C11).",
         "",
     ]
-    lm = o.get("lost_methods")
-    if not lm:
-        return lines
-    a, u = lm["affected"], lm["unaffected"]
-    shown = (("medium", "medium"), ("ionic_strength", "ionic strength"),
-             ("temperature", "temperature"))  # fmt: skip
-
-    def share(block: dict, name: str) -> float:
-        return _pct(block["any_row"][name]["n"], block["papers"])
-
-    pairs = "; ".join(
-        f"{label} {share(a, k):.1f} % against {share(u, k):.1f} %" for k, label in shown
-    )
-    lower = all(share(a, k) < share(u, k) for k, _ in shown)
-    lines += [
-        "8. **The extraction did not read every paper's Methods.** In "
-        f"{lm['papers_affected']} of {lm['papers']} papers the parser took a "
-        "supplementary-materials section for the Methods, so the Methods reached the text the "
-        "extraction read only where a zeta keyword window or a characterisation subsection "
-        "covered them. Papers with at least one row reporting the condition, those papers "
-        f"against the rest: {pairs}. "
-        + (
-            "They report conditions less often, so the condition-reporting shares on this card "
-            "may be biased downward."
-            if lower
-            else "The condition-reporting shares on this card may be biased by it."
-        )
-        + " The parser is not fixed and those papers have not been re-extracted.",
-        "",
-    ]
-    return lines
 
 
 def _columns_section(f: dict) -> list[str]:

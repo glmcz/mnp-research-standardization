@@ -270,20 +270,6 @@ def test_the_row_table_carries_the_hand_verdict_beside_the_readers():
     assert out["final_origin"].tolist() == fixed["origin"].tolist()
 
 
-def test_papers_whose_methods_the_parser_lost_are_compared_with_the_rest():
-    got = report.lost_methods(TABLE, {"PMCB"})
-    assert got["papers"] == 4 and got["papers_affected"] == 1
-    assert got["pmcids"] == ["PMCB"]
-    affected, rest = got["affected"], got["unaffected"]
-    assert (affected["papers"], affected["rows"]) == (1, 2)
-    assert (rest["papers"], rest["rows"]) == (3, 5)
-    assert affected["any_row"]["ionic_strength"] == {"n": 1, "share": 1.0}
-    assert rest["any_row"]["ionic_strength"] == {"n": 0, "share": 0.0}
-    assert rest["any_row"]["medium"] == {"n": 3, "share": 1.0}
-    assert set(affected["any_row"]) == {"medium", "ionic_strength", "pH", "temperature",
-                                        "instrument", "complete"}  # fmt: skip
-
-
 def test_rows_that_are_not_the_authors_own_measurement_are_listed_by_row_id():
     got = report.not_own_rows(TABLE, {"PMCA-r3": "a fabric"})
     assert got == [

@@ -22,7 +22,7 @@ import pytest
 from mnp import config
 from mnp.demo import harmonise, resample
 from mnp.eval import comparability as comp
-from mnp.report import review, scope
+from mnp.report import review, review_guide, scope
 
 HEADINGS = (
     "## 1. How to use this guide",
@@ -348,19 +348,55 @@ def test_the_guide_does_not_claim_how_environmental_plastics_behave(guide: str, 
     )
 
 
-def test_section_8_carries_the_parser_defect_as_open_with_its_bias(guide: str, origin):
+def test_section_8_carries_the_methods_defect_as_fixed_with_its_effect(guide: str, table, origin):
     s8 = _part(guide, "## 8. Open issues and decisions", "\n## ")
-    lm = origin["lost_methods"]
-    item = next(line for line in s8.splitlines() if "supplementary-materials" in line)
-    assert f"{lm['papers_affected']} of {lm['papers']} papers" in item
-    for name in ("medium", "ionic_strength", "temperature"):
-        a, u = lm["affected"]["any_row"][name], lm["unaffected"]["any_row"][name]
-        assert f"{100 * a['n'] / lm['affected']['papers']:.1f} %" in item, name
-        assert f"{100 * u['n'] / lm['unaffected']['papers']:.1f} %" in item, name
-    assert "Open" in item and "Martin" in item
+    item = next(line for line in s8.splitlines() if "`9b17a6c`" in line)
+    assert item.endswith("Closed.") and "Open" not in item
+    assert item.split(". ", 1)[1] == review_guide._methods_fix(review.methods_fix(table))
+    assert not any("Open, a decision for Martin" in line and "Methods" in line
+                   for line in s8.splitlines())  # fmt: skip
     own = next(line for line in s8.splitlines() if "own measurement" in line)
     for row in origin["not_own_measurement"]:
         assert f"`{row['row_id']}`" in own
+
+
+def test_the_methods_fix_reads_before_from_its_impact_file_and_now_from_the_table(table):
+    """Before is history, measured on the table the fix was made against (`d538ce5`'s, 1 890 rows
+    from 491 papers) and committed beside the fix; now moves with the table."""
+    impact = json.loads((config.DATA_INTERIM / "methods_fix_impact.json").read_text())
+    changed = set(impact["MEASURED"]["parse"]["changed_pmcids_with_rows"])
+    rows = table[table["pmcid"].isin(changed)]
+    item = review_guide._methods_fix(review.methods_fix(table))
+    assert "Methods of 208 of 491 papers" in item
+    assert "medium 81.5 % → " in item and "pH 20.0 % → " in item
+    assert "temperature 19.5 % → " in item and "769 rows then" in item
+    assert "1 890 rows from 491 papers before the fix" in item and "rows 61 → " in item
+    for flag in FLAGS:
+        assert f" → {100 * rows[flag].astype(bool).mean():.1f} %" in item, flag
+    assert f"{len(rows)} from {rows['pmcid'].nunique()} papers now" in item
+    complete = int(table["conditions_complete"].astype(bool).sum())
+    assert f"{len(table):,} from {table['pmcid'].nunique()} now".replace(",", " ") in item
+    assert f"rows 61 → {complete}." in item
+    for commit in ("`d4be112`", "`9b17a6c`", "`5012fdf`", "`92db4fb`"):
+        assert commit in item
+
+
+def test_the_methods_fix_item_survives_papers_with_no_rows_left():
+    """`report origin` built after the fix wrote `lost_methods` with 0 papers affected, and the
+    open item divided by that. Neither a stale stats file nor an empty side may crash the guide."""
+    keys = ("medium", "ionic_strength", "pH", "temperature", "instrument", "complete")
+
+    def side(papers: int, n: int) -> dict:
+        any_row = {k: {"n": n, "share": n / max(papers, 1)} for k in keys}
+        return {"papers": papers, "rows": 4 * papers, "any_row": any_row}
+
+    stale = {"lost_methods": {"papers": 467, "papers_affected": 0, "pmcids": [],
+                              "affected": side(0, 0), "unaffected": side(467, 9)}}  # fmt: skip
+    assert review_guide._origin_open(stale) == []
+    empty = {"papers": 0, "rows": 0, "reported": dict.fromkeys(FLAGS, 0),
+             "table": {"rows": 0, "papers": 0, "complete": 0}}  # fmt: skip
+    item = review_guide._methods_fix({"before": empty, "now": empty})
+    assert "medium — → —" in item and "It fell" not in item and "rose" not in item
 
 
 def test_section_1_lists_the_origin_tables(guide: str):

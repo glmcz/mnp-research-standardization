@@ -12,10 +12,13 @@ in lake water is commercial; the lake is where it was measured, not where it cam
 prompt says so twice because the table's `medium_class` already carries "environmental_water"
 for 48 rows, and a reader that conflates the two would report those as environmental samples.
 
-The lines come from the paper's line document with its lost methods appended (`load_doc`): in
-208 of the 491 papers the parser took a supplementary-materials section for the methods, and the
-Materials paragraph that names a supplier never reached the line document. The first run
-(origin-20260929) read the unrepaired document and answered "unclear" for most of those papers.
+The lines come from the paper's line document, `lines.build_lines`: the document the extraction
+read and every stored citation addresses. The two recorded runs read something else. Until
+9b17a6c the parser took a supplementary-materials section for the Methods in 208 of the 491
+papers, so the Materials paragraph that names a supplier never reached the line document;
+origin-20260929 read it that way, and origin-20260929b read it with those Methods appended here.
+After the fix the appendix patched only papers whose Methods heading the parser still does not
+recognise, a parser gap the extraction shares, so it was dropped: one document for every reader.
 
 python -m mnp.extract.origin estimate
 python -m mnp.extract.origin run [--run RUN_ID] [--reuse-from RUN_ID] [--jobs N] [--only ...]
@@ -36,7 +39,6 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
-from lxml import etree
 
 from mnp import config, runs
 from mnp.corpus import jats, lines
@@ -56,8 +58,10 @@ ENVIRONMENTS = (
 BUDGET_TOKENS = 3000
 #: Martin, 2026-09-29: stop and report before the reader spends more than this.
 INPUT_TOKEN_LIMIT = 4_000_000
-#: origin-20260929 read the unrepaired line document and was stopped at 224 papers; this run
-#: reads the repaired one and reuses its answers wherever the prompt came out identical.
+#: origin-20260929 read the unrepaired line document and was stopped at 224 papers;
+#: origin-20260929b read it with the lost Methods appended. Neither read `build_lines` as
+#: `load_doc` now does, so the next run needs a new id: resuming this one skips every paper it
+#: answered, whatever its prompt is now.
 RUN_ID = "origin-20260929b"
 PREVIOUS_RUN_ID = "origin-20260929"
 
@@ -285,78 +289,10 @@ def load_table() -> pd.DataFrame:
 
 
 def load_doc(pmcid: str, xml_dir: Path | None = None) -> lines.LinedDoc:
-    """The paper's line document, with the methods paragraphs the parser lost appended.
-
-    Every line of `lines.build_lines` keeps its number and id; appended lines are numbered on
-    after the last of them, so a row's `evidence_line_ids` and every canonical citation still
-    resolve. For a paper whose methods the parser found, this is `build_lines` exactly.
-    """
-    raw = ((xml_dir or config.EPMC_XML_DIR) / f"{pmcid}.xml").read_bytes()
-    article = jats.parse(raw)
+    """The paper's line document: `lines.build_lines`, the one every other consumer reads."""
+    article = jats.parse(((xml_dir or config.EPMC_XML_DIR) / f"{pmcid}.xml").read_bytes())
     article.pmcid = pmcid
-    return _append_lost_methods(lines.build_lines(article), raw)
-
-
-def _methods_like(sec: Any) -> bool:
-    """The parser's own test for a methods section, minus its false match.
-
-    `jats.METHODS_SECTYPE_RE` ("method|materials") also matches sec-type
-    "supplementary-materials", and a sec-type match stops `jats._find_methods` from ever trying
-    titles. In 208 of the 491 papers the "methods" found were a supplementary-materials list
-    and the Materials section, where a supplier is named, never reached the line document.
-    """
-    kind = sec.get("sec-type") or ""
-    if jats.NOT_METHODS_SECTYPE_RE.search(kind):
-        return False
-    title = jats._sec_title(sec)
-    return bool(jats.METHODS_TITLE_RE.match(title) or jats.METHODS_SECTYPE_RE.search(kind))
-
-
-def methods_lost(raw: bytes) -> bool:
-    """True when every section `jats._find_methods` took for the methods is supplementary
-    material: the parser defect `load_doc` repairs here and the extraction's text still carries.
-    """
-    root = etree.fromstring(raw, parser=etree.XMLParser(recover=True, huge_tree=True))
-    body = root.find("body")
-    if body is None:
-        return False
-    secs, source = jats._find_methods(body)
-    return source == "sec-type" and all(
-        jats.NOT_METHODS_SECTYPE_RE.search(s.get("sec-type") or "") for s in secs
-    )
-
-
-def _append_lost_methods(doc: lines.LinedDoc, raw: bytes) -> lines.LinedDoc:
-    """Body paragraphs missing from `doc` that sit in a methods-like section — or, in a paper
-    with no methods-like section at all, every body paragraph missing from it."""
-    root = etree.fromstring(raw, parser=etree.XMLParser(recover=True, huge_tree=True))
-    body = root.find("body")
-    if body is None:
-        return doc
-    have = {x.text for x in doc.lines}
-    any_methods = any(_methods_like(s) for s in body.iter("sec"))
-    groups: dict[str, list[str]] = {}
-    for para in jats._paragraphs(body):
-        text = jats._para_text(para)
-        if not text or text in have:
-            continue
-        secs = [a for a in para.iterancestors() if a.tag == "sec"][::-1]
-        if any_methods and not any(_methods_like(s) for s in secs):
-            continue
-        titles = " / ".join(t for t in (jats._sec_title(s) for s in secs) if t) or "Body"
-        groups.setdefault(titles, []).append(text)
-    if not groups:
-        return doc
-    rows, spans, taken = list(doc.lines), list(doc.sections), {}
-    for titles, texts in groups.items():
-        path = lines._unique(f"body:{titles}", taken)
-        start = len(rows)
-        for ordinal, text in enumerate(texts):
-            rows.append(
-                lines.Line(len(rows) + 1, text, path, ordinal, lines.line_id(path, ordinal, text))
-            )
-        spans.append(lines.SectionSpan(path, f"== {titles}", start, len(rows)))
-    return lines.LinedDoc(doc.pmcid, tuple(rows), tuple(spans))
+    return lines.build_lines(article)
 
 
 def cited_ids(rows: pd.DataFrame) -> frozenset[str]:

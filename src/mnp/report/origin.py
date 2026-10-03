@@ -11,9 +11,7 @@ not called commercial is listed for a human to look at.
 second reading, and asks nothing, so the rebuild is deterministic though both readings were
 judgement. The second reading (2026-09-29) was done by a Claude agent with each paper's full
 text, not by a person; its files under data/interim/origin/ keep their `hand_check` names, which
-are history. REVIEW.md (C11) and the dataset card read the stats it writes. It also counts the
-papers whose methods the parser lost (`extract.origin.methods_lost`), because the origin reading
-is where that defect was found.
+are history. REVIEW.md (C11) and the dataset card read the stats it writes.
 
 python -m mnp.report.origin build [--run RUN_ID]
 python -m mnp.report.origin sample [--run RUN_ID]
@@ -533,30 +531,6 @@ def not_own_rows(
     ]
 
 
-def lost_methods(table: pd.DataFrame, lost: set[str] | frozenset[str]) -> dict[str, Any]:
-    """Papers whose methods the parser lost against the rest: the share of papers with at least
-    one row reporting each condition, which is where an unread Methods section would show."""
-    cols = {name: col for name, col, _ in CONDITIONS} | {"complete": "conditions_complete"}
-    per_paper = table[list(cols.values())].astype(bool).groupby(table["pmcid"]).any()
-    hit = per_paper.index.isin(sorted(lost))
-
-    def block(mask: Any) -> dict[str, Any]:
-        g = per_paper[mask]
-        return {
-            "papers": int(len(g)),
-            "rows": int(table["pmcid"].isin(g.index).sum()),
-            "any_row": {name: _n_share(g[col]) for name, col in cols.items()},
-        }
-
-    return {
-        "papers": int(len(per_paper)),
-        "papers_affected": int(hit.sum()),
-        "affected": block(hit),
-        "unaffected": block(~hit),
-        "pmcids": sorted(set(per_paper.index[hit])),
-    }
-
-
 def agreement(sample: pd.DataFrame, hand: pd.DataFrame) -> dict[str, Any]:
     verdicts = hand.drop(columns=[c for c in ("stratum",) if c in hand.columns])
     merged = sample.merge(verdicts, on=["pmcid", "particle_name"], how="inner")
@@ -643,7 +617,7 @@ def build(run_id: str, tables: Path | None = None) -> dict[str, Any]:
     classes = classifications(answers)
     rows = attach(table, classes)
 
-    docs, shown, stale, lost = {}, {}, [], set()
+    docs, shown, stale = {}, {}, []
     for pmcid, group in table.groupby("pmcid"):
         doc = origin.load_doc(pmcid)
         names = origin.particle_names(group)
@@ -652,8 +626,6 @@ def build(run_id: str, tables: Path | None = None) -> dict[str, Any]:
         record = answers.get(pmcid)
         if record and record["prompt_sha256"] != grid.sha256(origin.prompt_for(pmcid, names, ev)):
             stale.append(pmcid)
-        if origin.methods_lost((config.EPMC_XML_DIR / f"{pmcid}.xml").read_bytes()):
-            lost.add(pmcid)
 
     result = stats(rows, classes)
     result["run_id"] = run_id
@@ -682,7 +654,6 @@ def build(run_id: str, tables: Path | None = None) -> dict[str, Any]:
             k: confirmed[k] for k in ("origin", "synthetic", "environment", "environmental_rows")
         } | {"particles_with_a_second_reading": int(len(hand))}
     result["not_own_measurement"] = not_own_rows(table)
-    result["lost_methods"] = lost_methods(table, lost)
 
     paths["rows"].parent.mkdir(parents=True, exist_ok=True)
     with_final(rows, hand)[list(ROW_COLUMNS)].to_csv(paths["rows"], index=False)

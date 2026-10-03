@@ -803,6 +803,47 @@ def corpus_chain(table: pd.DataFrame, stats: dict) -> dict[str, Any]:
     }
 
 
+def methods_fix(table: pd.DataFrame, impact: Path | None = None) -> dict[str, Any] | None:
+    """The papers whose Methods the parser fix (`9b17a6c`) changed, before the fix against now.
+
+    Before is what `tool/methods_fix_impact.py` measured on the table the fix was made against
+    and committed with it; now is `table`. None where that file is absent.
+    """
+    path = impact or config.DATA_INTERIM / "methods_fix_impact.json"
+    if not path.is_file():
+        return None
+    measured = json.loads(path.read_text())
+    parse, then = measured["MEASURED"]["parse"], measured["ESTIMATE"]
+    papers = set(parse["changed_pmcids_with_rows"])
+    rows = table[table["pmcid"].isin(papers)]
+    n = then["rows_in_changed_papers"]
+    return {
+        "before": {
+            "papers": len(papers),
+            "rows": n,
+            "reported": {
+                flag: n - then["per_condition"][flag.removesuffix("_reported")]["rows_unreported"]
+                for flag in FLAGS
+            },
+            "table": {
+                "rows": then["all_rows"],
+                "papers": parse["papers_with_rows"],
+                "complete": then["fully_conditioned_now_all_rows"],
+            },
+        },
+        "now": {
+            "papers": int(rows["pmcid"].nunique()),
+            "rows": len(rows),
+            "reported": {flag: int(rows[flag].astype(bool).sum()) for flag in FLAGS},
+            "table": {
+                "rows": len(table),
+                "papers": int(table["pmcid"].nunique()),
+                "complete": int(table["conditions_complete"].astype(bool).sum()),
+            },
+        },
+    }
+
+
 def gather(root: Path) -> Facts:
     table = pd.read_csv(root / "tables" / "d1_zeta_table.csv")
     stats = json.loads((root / "tables" / "d1_stats.json").read_text())
@@ -815,6 +856,7 @@ def gather(root: Path) -> Facts:
     origin = root / "tables" / "sample_origin_stats.json"
     extra = {
         "origin": json.loads(origin.read_text()) if origin.is_file() else None,
+        "methods_fix": methods_fix(table),
         "method_says_no_licence": method.is_file()
         and "This dataset has no licence yet" in method.read_text(encoding="utf-8"),
         "lock_ignored": "uv.lock"

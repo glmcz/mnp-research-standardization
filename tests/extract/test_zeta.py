@@ -1207,3 +1207,25 @@ def test_a_number_without_a_concentration_unit_is_not_an_ionic_strength():
     quote = "zeta was -20 mV after 0.15 mg of particles were added"
     flags = zeta.verify_row(_is_row(150.0, quote), quote)
     assert "ionic_strength_not_in_text" in flags
+
+
+def test_the_step_guard_reads_the_sentence_that_carries_the_temperature():
+    """PMC12929567: 25 °C is stated for the Zetasizer; "before measurement" belongs to the next
+    sentence, about sonication. R2 cleared the measurement temperature."""
+    quote = (
+        "a zeta potential of about -31 mV (Fig. 1b). || The zeta potential of PS-MPs was "
+        "determined using Malvern Zetasizer Ultra at 25 °C. Suspensions were prepared in "
+        "distilled water and sonicated for 30 min before measurement."
+    )
+    m = _scope_row(quote, temperature_C=25.0)
+    assert "temperature_step_not_measurement" not in zeta.verify_row(m, quote)
+
+
+def test_a_temperature_printed_in_kelvin_is_found():
+    """PMC9687657: "fixed at 298 ± 0.1K" is stored as 24.85 °C; looking for "24.85" flagged it
+    as not in the text, the same defect as a molar ionic strength."""
+    quote = "zeta was -20 mV. The temperature of experiments was fixed at 298 ± 0.1K."
+    m = _scope_row(quote, temperature_C=24.85)
+    flags = zeta.verify_row(m, quote)
+    assert "temperature_not_in_text" not in flags
+    assert "temperature_not_in_evidence" not in flags

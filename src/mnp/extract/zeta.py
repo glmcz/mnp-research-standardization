@@ -418,6 +418,20 @@ def _number_in(value: float, text: str) -> bool:
     return False
 
 
+_KELVIN = re.compile(r"(?<![\d.,])(\d+(?:[.,]\d+)?)\s*(?:±\s*\d+(?:[.,]\d+)?\s*)?K\b")
+
+
+def _temperature_in(celsius: float, text: str) -> bool:
+    """Is this temperature printed in text, in °C or in kelvin? "298 ± 0.1K" is stored as
+    24.85 °C, and looking only for "24.85" flagged it as absent (PMC9687657)."""
+    if _number_in(celsius, text):
+        return True
+    return any(
+        abs(float(m.group(1).replace(",", ".")) - 273.15 - celsius) < 0.06
+        for m in _KELVIN.finditer(text)
+    )
+
+
 def _ionic_number_in(mM: float, text: str) -> bool:
     """Is this ionic strength printed in text, in mM or in any other concentration unit?"""
     if _number_in(mM, text):
@@ -503,7 +517,7 @@ def verify_row(
         nums = [float(x) for x in re.findall(r"\d+(?:\.\d+)?", c.pH_text)]
         if nums and not all(_number_in(x, text) for x in nums):
             flags.append("pH_not_in_text")
-    if c.temperature_C is not None and not _number_in(c.temperature_C, text):
+    if c.temperature_C is not None and not _temperature_in(c.temperature_C, text):
         flags.append("temperature_not_in_text")
     if c.ionic_strength_mM is not None:
         ok = _ionic_number_in(c.ionic_strength_mM, text)
@@ -517,11 +531,18 @@ def verify_row(
     return flags
 
 
-def _piece_with(value: float, quote: str) -> str:
-    """The piece of a `" || "`-joined quote that carries this number, or the whole quote."""
+def _sentence_with(celsius: float, quote: str) -> str:
+    """The sentence of a `" || "`-joined quote that carries this temperature, or the whole quote.
+
+    A passage is often several sentences. "...Zetasizer Ultra at 25 °C. Suspensions were ...
+    sonicated for 30 min before measurement." put the sonication's "before measurement" in the
+    measurement temperature's piece, and R2 cleared a temperature the paper ties to the
+    instrument (PMC12929567, PMC12886875).
+    """
     for piece in quote.split("||"):
-        if _number_in(value, piece):
-            return piece
+        for sentence in _SENTENCE_END.split(piece):
+            if _temperature_in(celsius, sentence):
+                return sentence
     return quote
 
 
@@ -549,10 +570,10 @@ def _scope_flags(c, quote: str) -> list[str]:
         if not all(_number_in(x, quote) for x in nums):
             flags.append("pH_not_in_evidence")
     if c.temperature_C is not None:
-        if not _number_in(c.temperature_C, quote):
+        if not _temperature_in(c.temperature_C, quote):
             flags.append("temperature_not_in_evidence")
-        elif coerce.OTHER_STEP_RE.search(_piece_with(c.temperature_C, quote)):
-            # the number is attached to incubation or exposure *in its own piece* of the
+        elif coerce.OTHER_STEP_RE.search(_sentence_with(c.temperature_C, quote)):
+            # the number is attached to incubation or exposure *in its own sentence* of the
             # quote. Testing the whole join flagged correct rows whenever any other piece
             # mentioned a culture or an exposure, so workers trimmed their evidence to clear
             # it — the guard was punishing the more complete quote.
@@ -609,7 +630,7 @@ def _other_step_temperature(
     only in a step phrase.
     """
     t = c.temperature_C
-    if t is None or _number_in(t, quote):
+    if t is None or _temperature_in(t, quote):
         return False
     if c.medium_text and t in (label := step_only(c.medium_text)):
         return label[t]
@@ -676,7 +697,8 @@ def needs_paper(m: SurfaceMeasurement) -> bool:
     t = m.conditions.temperature_C
     if t is None:
         return False
-    return not _number_in(t, _quote_of(m)) and t not in step_only(m.conditions.medium_text or "")
+    label = step_only(m.conditions.medium_text or "")
+    return not _temperature_in(t, _quote_of(m)) and t not in label
 
 
 @dataclass

@@ -319,8 +319,10 @@ def test_no_committed_temperature_sits_in_a_step_phrase_of_its_own_medium(table)
 
 
 def test_no_other_step_flagged_committed_row_has_a_temperature(table):
+    # Since the re-read under the current brief (92db4fb) no record holds another step's
+    # temperature, so R2b clears none and this can hold with no row. R2b itself is proven on
+    # real cases by the tests above; the committed data is checked by the step-phrase test.
     other = table[_flagged(table, OTHER)]
-    assert len(other) > 0
     assert other["temperature_C"].isna().all()
     assert other["temperature_qualifier"].isna().all()
     assert not other["temperature_reported"].astype(bool).any()
@@ -335,5 +337,5 @@ def test_the_record_still_holds_every_other_step_temperature():
                 held[m["row_id"]] = m["conditions"].get("temperature_C")
     built = pd.read_parquet(config.DATA_PROCESSED / "zeta_table.parquet")
     cleared = built.loc[_flagged(built, OTHER), "row_id"].tolist()
-    assert cleared
+    # empty since 92db4fb, for the reason given above
     assert [r for r in cleared if held.get(r) is None] == []

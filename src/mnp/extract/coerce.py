@@ -230,10 +230,34 @@ SALT_RE = re.compile(
     r"\b(" + "|".join(re.escape(k) for k in sorted(_SALT_ALIASES, key=len, reverse=True)) + r")\b",
     re.IGNORECASE,
 )
-_UM_RE = re.compile(rf"({_NUM})\s*(?:[µμu]M\b|[µμu]mol\s*/?\s*L)")
-_MM_RE = re.compile(rf"({_NUM})\s*(?:mM\b|mmol\s*/?\s*L|mmol\s*L\s*-1)", re.IGNORECASE)
-_M_RE = re.compile(rf"({_NUM})\s*(?:M\b|mol\s*/?\s*L)")
+# "per litre" may carry its exponent: "mmol L-1", "mmol L⁻¹". Matching "mmol L" alone left the
+# exponent between the number and its salt, so "50 mmol L⁻¹ CaCl2" bound no salt (PMC13057466).
+_PER_L = r"L(?:\s*[-−–]\s*1(?!\d)|⁻¹)?"
+_UM_RE = re.compile(rf"({_NUM})\s*(?:[µμu]M\b|[µμu]mol\s*/?\s*{_PER_L})")
+_MM_RE = re.compile(rf"({_NUM})\s*(?:mM\b|mmol\s*/?\s*{_PER_L})", re.IGNORECASE)
+_M_RE = re.compile(rf"({_NUM})\s*(?:M\b|mol\s*/?\s*{_PER_L})")
 _SEGMENT = re.compile(r"[,;)(]|\band\b|\bplus\b|\+")
+
+
+# A molar concentration in powers of ten: "10–3 mol/L", "1 × 10−3 M", "10⁻² M". Read as a minus
+# sign, "10–3 mol/L" became -3000 mM and the row dropped (PMC12637955). Only base 10, a one-digit
+# negative exponent and a molar unit, so a range such as "10–30 mM" is never taken for one.
+_SUPERSCRIPT = str.maketrans("⁰¹²³⁴⁵⁶⁷⁸⁹", "0123456789")
+_POWER_OF_TEN = re.compile(
+    r"(?:(\d+(?:\.\d+)?)\s*[×x·*]\s*)?10\s*\^?\s*(?:[-−–]\s*([1-9])|⁻([¹²³⁴⁵⁶⁷⁸⁹]))(?!\d)"
+    r"(?=\s*(?:M\b|mol\s*/?\s*L))"
+)
+
+
+def _powers_of_ten(s: str) -> str:
+    """Every molar concentration written in powers of ten, rewritten as a plain decimal."""
+
+    def plain(m: re.Match) -> str:
+        exponent = int((m.group(2) or m.group(3)).translate(_SUPERSCRIPT))
+        value = float(m.group(1) or 1) * 10.0**-exponent
+        return f"{value:.12f}".rstrip("0").rstrip(".")
+
+    return _POWER_OF_TEN.sub(plain, s)
 
 
 def _concentration_mM(s: str) -> float | None:
@@ -306,6 +330,7 @@ _CONCENTRATIONS = (
 
 def concentrations_mM(text: str) -> list[float]:
     """Every concentration printed in `text`, converted to mM."""
+    text = _powers_of_ten(text)
     return [
         float(m.group(1).replace(",", ".")) * scale
         for regex, scale in _CONCENTRATIONS
@@ -367,7 +392,7 @@ def parse_ionic_strength(
     s = clean(raw)
     if s is None:
         return None, ValueSource.unreported, []
-    s = _minus(s)
+    s = _powers_of_ten(_minus(s))
     terms = _salt_terms(s)
     if not terms:
         # the salt and its concentration may sit either side of a segment break — but they

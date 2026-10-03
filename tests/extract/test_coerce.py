@@ -711,3 +711,37 @@ def test_the_word_is_is_not_the_abbreviation_IS():
     assert (mM, source) == (None, ValueSource.unreported)
     assert flags == ["concentration_not_an_ionic_strength"]
     assert coerce.parse_ionic_strength("IS = 10 mM", from_medium=True)[0] == 10.0
+
+
+@pytest.mark.parametrize(
+    ("text", "mM"),
+    [
+        ("10 mmol L-1 NaCl", 10.0),
+        ("50 mmol L⁻¹ CaCl2", 150.0),  # PMC13057466
+        ("1 mmol L−1 CaCl2", 3.0),
+        ("0.01 mol L-1 KCl", 10.0),
+    ],
+)
+def test_a_per_litre_unit_written_with_an_exponent_still_binds_its_salt(text, mM):
+    """`mmol\\s*/?\\s*L` matched "50 mmol L" and left "⁻¹" between the number and the salt, so
+    the salt never bound and a medium stating 10 mmol L-1 NaCl recorded no ionic strength."""
+    for from_medium in (False, True):
+        value, source, _ = coerce.parse_ionic_strength(text, from_medium=from_medium)
+        assert value == pytest.approx(mM)
+        assert source == ValueSource.inferred_from_named_salt
+
+
+@pytest.mark.parametrize(
+    ("text", "concentration_mM", "ionic_strength_mM"),
+    [
+        ("KCl 10–3 mol/L", 1.0, 1.0),  # PMC12637955, read as -3000 mM and the rows dropped
+        ("1 × 10−3 M NaCl", 1.0, 1.0),
+        ("10⁻² M KCl", 10.0, 10.0),
+        ("5 x 10-4 mol/L CaCl2", 0.5, 1.5),
+    ],
+)
+def test_a_concentration_in_powers_of_ten_is_read_as_one(text, concentration_mM, ionic_strength_mM):
+    value, source, _ = coerce.parse_ionic_strength(text, from_medium=True)
+    assert value == pytest.approx(ionic_strength_mM)
+    assert source == ValueSource.inferred_from_named_salt
+    assert concentration_mM in [pytest.approx(v) for v in coerce.concentrations_mM(text)]

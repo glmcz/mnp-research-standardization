@@ -20,10 +20,17 @@ METHODS_SECTYPE_RE = re.compile(r"method|materials", re.IGNORECASE)
 # "supplementary-materials" matches "materials". Taking it for the methods stopped the title
 # fallback, and in 208 of the 491 papers with rows the real methods never reached the model.
 NOT_METHODS_SECTYPE_RE = re.compile(r"supplement|associated", re.IGNORECASE)
+# Every heading form the corpus gives its methods. Missing "Methods and Materials", "Experimental
+# Section/Methods", "Method details", "STAR★Methods" and "材料与方法" left 21 papers with rows
+# without their methods (found 2026-10-03; see docs/DECISIONS.md CP-08).
 METHODS_TITLE_RE = re.compile(
     r"^\s*(?:\d+(?:\.\d+)*\.?\s*)?"
-    r"(?:materials?\s*(?:and|&)\s*methods?|methods?|"
-    r"experimental(?:\s+(?:section|procedures?|methods?|part))?)\s*$",
+    r"(?:(?:materials?|reagents?)\s*(?:and|&)\s*methods?"
+    r"|methods?(?:\s+details|\s*(?:and|&)\s*(?:materials?|experimental\s+section))?"
+    r"|experiments?"
+    r"|experimental(?:\s+(?:section|procedures?|methods?|part|details))?(?:\s*/\s*methods?)?"
+    r"|star\W*methods"
+    r"|材料[与和]方法)\s*$",
     re.IGNORECASE,
 )
 EXTRA_TITLE_RE = re.compile(
@@ -178,20 +185,24 @@ def _section_lines(sec: etree._Element) -> list[str]:
 
 
 def _find_methods(body: etree._Element) -> tuple[list[etree._Element], str]:
-    by_type = [
+    """The methods sections, outermost first in reading order, and how they were recognised.
+
+    A section counts by its sec-type or by its heading, and the two are taken together. Taking
+    sec-type alone kept a "2.4 Sample pretreatment" subsection marked sec-type="methods" and
+    dropped "2.1 Materials and Reagents" beside it (PMC11125995).
+    """
+    order = {s: i for i, s in enumerate(body.iter("sec"))}
+    by_type = {
         s
-        for s in body.iter("sec")
+        for s in order
         if METHODS_SECTYPE_RE.search(kind := s.get("sec-type") or "")
         and not NOT_METHODS_SECTYPE_RE.search(kind)
-    ]
-    by_type = _drop_nested(by_type)
-    if by_type:
-        return by_type, "sec-type"
-    by_title = [s for s in body.iter("sec") if METHODS_TITLE_RE.match(_sec_title(s))]
-    by_title = _drop_nested(by_title)
-    if by_title:
-        return by_title, "title"
-    return [], "none"
+    }
+    by_title = {s for s in order if METHODS_TITLE_RE.match(_sec_title(s))}
+    chosen = sorted(_drop_nested(list(by_type | by_title)), key=order.__getitem__)
+    if not chosen:
+        return [], "none"
+    return chosen, "sec-type" if any(s in by_type for s in chosen) else "title"
 
 
 def _drop_nested(secs: list[etree._Element]) -> list[etree._Element]:

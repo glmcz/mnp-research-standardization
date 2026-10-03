@@ -412,3 +412,51 @@ def test_a_sign_is_closed_up_while_the_rest_of_the_text_stays_faithful():
         "<sec><title>Methods</title><p>Zeta of PS‐MPs in PBS was ‐31.63±0.45 mV.</p></sec>"
     )
     assert "Zeta of PS‐MPs in PBS was -31.63±0.45 mV." in a.full_text
+
+
+# Headings the Methods finder missed in 21 papers with rows, found 2026-10-03 when the origin
+# reader's own repair of the document still appended 826 lines to 25 papers.
+@pytest.mark.parametrize(
+    "title",
+    [
+        "Methods and Materials",  # PMC11520165, PMC12175420, PMC8915914 ...
+        "Methods and Experimental Section",  # PMC10373654
+        "Experiment",  # PMC11044580
+        "Experimental Section/Methods",  # PMC12922732, PMC9691371
+        "2. Experimental Section/Methods",  # PMC13030399
+        "Experimental details",  # PMC8694221
+        "Method details",  # PMC6993004, PMC13325323
+        "STAR★Methods",  # PMC12356328
+        "材料与方法",  # PMC12439659
+    ],
+)
+def test_a_methods_heading_in_any_form_the_corpus_uses_is_found(title):
+    a = _article(
+        "<sec><title>Introduction</title><p>Intro text.</p></sec>"
+        f"<sec><title>{title}</title><p>Zeta was measured in 1 mM KCl.</p></sec>"
+        "<sec><title>Results</title><p>The value was -30 mV.</p></sec>"
+    )
+    assert a.methods_source == "title"
+    assert "1 mM KCl" in a.methods_text
+
+
+@pytest.mark.parametrize(
+    "title", ["Method validation", "Results", "Statistical methods", "Experimental results"]
+)
+def test_a_heading_that_is_not_the_methods_is_not_taken(title):
+    a = _article(f"<sec><title>{title}</title><p>Text in 1 mM KCl.</p></sec>")
+    assert a.methods_source == "none"
+
+
+def test_a_methods_subsection_does_not_hide_the_rest_of_its_methods_section():
+    """PMC11125995: "2.4 Sample pretreatment" carries sec-type="methods", the finder took that
+    subsection alone, and "2.1 Materials and Reagents" beside it never reached the model."""
+    a = _article(
+        "<sec><title>2. Materials and Methods</title>"
+        "<sec><title>2.1. Materials and Reagents</title><p>PS beads from Sigma.</p></sec>"
+        '<sec sec-type="methods"><title>2.4. Sample pretreatment</title>'
+        "<p>Digested in KOH.</p></sec></sec>"
+        "<sec><title>3. Results</title><p>The value was -30 mV.</p></sec>"
+    )
+    assert "PS beads from Sigma" in a.methods_text
+    assert "Digested in KOH" in a.methods_text

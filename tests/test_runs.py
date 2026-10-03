@@ -86,3 +86,21 @@ def test_code_commit_reads_this_repository():
     commit, dirty = runs.code_commit()
     assert commit and len(commit) >= 7
     assert isinstance(dirty, bool)
+
+
+def test_an_untracked_file_does_not_make_the_code_dirty(tmp_path, monkeypatch):
+    """`code_dirty` says whether the code that ran differs from its commit. An untracked note
+    in docs/ changes no code, yet it marked every run dirty (register OD-06)."""
+    import subprocess
+
+    def git(*args):
+        subprocess.run(["git", *args], cwd=tmp_path, check=True, capture_output=True)
+
+    git("init", "-q")
+    git("-c", "user.email=t@t", "-c", "user.name=t", "commit", "-q", "--allow-empty", "-m", "c")
+    monkeypatch.setattr(config, "ROOT", tmp_path)
+    (tmp_path / "notes.md").write_text("an untracked note")
+    assert runs.code_commit()[1] is False
+    (tmp_path / "tracked.py").write_text("x = 1")
+    git("add", "tracked.py")
+    assert runs.code_commit()[1] is True, "a staged change to code is still dirty"

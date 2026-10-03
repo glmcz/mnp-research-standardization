@@ -54,7 +54,7 @@ def code_commit() -> tuple[str | None, bool]:
             check=True,
         ).stdout.strip()
         status = subprocess.run(
-            ["git", "status", "--porcelain"],
+            ["git", "status", "--porcelain", "--untracked-files=no"],
             cwd=config.ROOT,
             capture_output=True,
             text=True,

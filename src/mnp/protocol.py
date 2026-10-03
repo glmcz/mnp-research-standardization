@@ -661,13 +661,13 @@ STEPS: tuple[Step, ...] = (
             "harmonised zeta, the resampling headline with and without the paper), a README "
             "with the corpus-wide E2e table and E2b scan, and METHOD.md. It calls no model. Its "
             "reader section reads the recorded judgement runs at "
-            "data/interim/runs/demo-cell{d,b}-20260928 rather than asking anything itself, and "
+            "data/interim/runs/demo-cell{d,b}-20261003 rather than asking anything itself, and "
             "renders a missing run as 'not run' and a recorded usage-policy refusal as one. "
             "README.md and METHOD.md open with the scope block REVIEW.md and the card open with "
             "(mnp.report.scope), so it runs after report origin."
         ),
         inputs="d1_zeta_table.csv, d1_stats.json, sample_origin_stats.json when present, the "
-        "vendored corpus, data/interim/runs/demo-cell{d,b}-20260928",
+        "vendored corpus, data/interim/runs/demo-cell{d,b}-20261003",
         outputs="out/demo/README.md, out/demo/cases/*.md, out/demo/METHOD.md",
         kind=D,
         idempotent=True,

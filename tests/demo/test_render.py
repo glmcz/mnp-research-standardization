@@ -128,7 +128,7 @@ def test_missing_run_directory_renders_not_run():
 
 
 def test_usage_policy_error_renders_as_refused(tmp_path, monkeypatch):
-    directory = tmp_path / "demo-celld-20260928"
+    directory = tmp_path / render.CELL_D_RUN
     directory.mkdir()
     (directory / "manifest.json").write_text("{}")
     (directory / "errors.jsonl").write_text(
@@ -146,7 +146,7 @@ def test_a_refusal_recorded_as_the_cells_answer_renders_refused_and_counts_wrong
 ):
     """Martin, 2026-09-28: a refusal is the cell's answer -- shown as refused, in the
     denominator, scored wrong. The runner now writes it to answers.jsonl, not errors.jsonl."""
-    directory = tmp_path / "demo-celld-20260928"
+    directory = tmp_path / render.CELL_D_RUN
     directory.mkdir()
     (directory / "manifest.json").write_text("{}")
     (directory / "answers.jsonl").write_text(
@@ -167,7 +167,7 @@ def test_a_refusal_recorded_as_the_cells_answer_renders_refused_and_counts_wrong
 
 
 def test_a_reader_failure_with_no_policy_wording_is_not_answered(tmp_path, monkeypatch):
-    directory = tmp_path / "demo-celld-20260928"
+    directory = tmp_path / render.CELL_D_RUN
     directory.mkdir()
     (directory / "manifest.json").write_text("{}")
     (directory / "errors.jsonl").write_text(

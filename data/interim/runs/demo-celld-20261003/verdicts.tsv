@@ -1,0 +1,4 @@
+cell	true_verdict	n	correct	recall
+D	comparable	2	2	1.000
+D	not_comparable	12	12	1.000
+D	balanced_accuracy	14	-	1.000

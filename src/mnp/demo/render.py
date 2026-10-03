@@ -4,9 +4,9 @@ modules, plus the recorded reader runs: ``out/demo/README.md``, ``out/demo/cases
 every paper it spans, in `Case.pmcids` order.
 
 Nothing here calls a model. The reader's answers are **read**, never regenerated, from
-``data/interim/runs/demo-cell{d,b}-20260928`` (see ``mnp.eval.grid`` for what wrote them); a
-missing run directory renders as "not run", and a recorded reader failure whose error names the
-usage-policy filter renders as a refusal rather than as a missing answer.
+``data/interim/runs/demo-cell{d,b}-20261003`` (``tool/run_demo_reader.py`` asks them through
+``mnp.eval.grid``); a missing run directory renders as "not run", and a recorded reader failure
+whose error names the usage-policy filter renders as a refusal rather than as a missing answer.
 
 Deterministic: every collection is sorted before it is printed, every float is formatted to a
 fixed number of digits, and nothing here reads a clock. Rendering the same inputs twice produces
@@ -38,8 +38,8 @@ from mnp.eval.query_sets import AnswerKey, Question
 from mnp.extract.zeta import ZERO_IONIC_STRENGTH
 from mnp.report import scope
 
-CELL_D_RUN = "demo-celld-20260928"
-CELL_B_RUN = "demo-cellb-20260928"
+CELL_D_RUN = "demo-celld-20261003"
+CELL_B_RUN = "demo-cellb-20261003"
 CELLS: tuple[str, ...] = ("D", "B")
 RUN_IDS: dict[str, str] = {"D": CELL_D_RUN, "B": CELL_B_RUN}
 

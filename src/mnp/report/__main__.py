@@ -162,7 +162,7 @@ def run_demo(args: argparse.Namespace) -> list[Path]:
 
     Reads `out/tables/d1_zeta_table.csv` the same way every other runner does, so a replay that
     rebuilds it also moves the demo's numbers. It calls no model: the reader's answers come from
-    `data/interim/runs/demo-cell{d,b}-20260928`, read and never regenerated.
+    `data/interim/runs/demo-cell{d,b}-20261003`, read and never regenerated.
     """
     from mnp.demo import render
 

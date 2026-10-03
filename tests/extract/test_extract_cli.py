@@ -197,6 +197,20 @@ def test_ingest_replaces_an_earlier_record_for_the_same_pmcid(workspace, tmp_pat
     assert "coverage" in printed and "unmatched" in printed
 
 
+def test_a_dry_run_ingest_gives_the_same_feedback_and_records_nothing(workspace, tmp_path, capsys):
+    """A re-read control must see what a worker sees, and must not touch the dataset."""
+    _articles_parquet(workspace)
+    payload = tmp_path / "p.json"
+    payload.write_text(json.dumps({"measurements": [ROW]}))
+    assert cli.main(["ingest", "--pmcid", "PMC5090179", "--json", str(payload), "--no-brief",
+                     "--dry-run"]) == 0  # fmt: skip
+    printed = capsys.readouterr().out
+    assert "PMC5090179: rows=1" in printed and "coverage" in printed
+    assert "dry run" in printed
+    assert not (workspace / "interim" / "extractions.jsonl").exists()
+    assert not (workspace / "processed" / "zeta_table.parquet").exists()
+
+
 def test_ingest_reports_a_broken_payload_without_writing(workspace, tmp_path):
     _articles_parquet(workspace)
     payload = tmp_path / "bad.json"

@@ -226,12 +226,13 @@ def cmd_ingest(args: argparse.Namespace) -> int:
     rec = zeta.extract_from_payload(article, data, args.model)
     if brief is not None:
         rec.brief_path, rec.brief_sha256 = brief.path, brief.sha256
-    path = _jsonl_path()
-    with _locked(path):
-        done = _load_records(path)
-        done[rec.pmcid] = rec
-        _rewrite(path, done)
-        _write_table(done, quiet=True)
+    if not args.dry_run:
+        path = _jsonl_path()
+        with _locked(path):
+            done = _load_records(path)
+            done[rec.pmcid] = rec
+            _rewrite(path, done)
+            _write_table(done, quiet=True)
     flagged = sum(1 for f in rec.row_flags if f)
     print(
         f"{rec.pmcid}: rows={len(rec.measurements)} flagged={flagged} dropped={len(rec.dropped)} "
@@ -250,6 +251,9 @@ def cmd_ingest(args: argparse.Namespace) -> int:
         print("  unmatched printed values:")
         for u in rec.unmatched_candidates[:20]:
             print(f"    {u['value']} ({u['quantity']}) in {u['location']}: {u['context'][:70]!r}")
+    if args.dry_run:
+        print("  dry run: verified and reported, nothing recorded")
+        return 0
     if getattr(args, "run_id", None):
         runs.start(
             args.run_id,
@@ -706,6 +710,11 @@ def main(argv: list[str] | None = None) -> int:
     )
     ing.add_argument("--run-id", default=None, help="record this ingest in a run manifest")
     ing.add_argument("--worker", default=None, help="who produced it, for the run's assignments")
+    ing.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="verify and print the same feedback, record nothing: a re-read control's ingest",
+    )
     ing.set_defaults(fn=cmd_ingest)
     td = sub.add_parser("todo")
     td.add_argument("--limit", type=int, default=0)

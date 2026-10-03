@@ -21,7 +21,6 @@ from __future__ import annotations
 
 import json
 from collections import Counter
-from pathlib import Path
 
 from mnp import config
 from mnp.corpus import jats
@@ -90,14 +89,8 @@ def compare(x: dict[str, list[dict]], y: dict[str, list[dict]]) -> dict:
     valued = sum(1 for pmcid in papers for r in x[pmcid] if _key(r) is not None)
     per_condition = {}
     for c in CONDITIONS:
-        diffs = [
-            abs(_share(x[p], c) - _share(y[p], c))
-            for p in papers
-            if x[p] and y[p]
-        ]
-        any_same = sum(
-            1 for p in papers if any(r[c] for r in x[p]) == any(r[c] for r in y[p])
-        )
+        diffs = [abs(_share(x[p], c) - _share(y[p], c)) for p in papers if x[p] and y[p]]
+        any_same = sum(1 for p in papers if any(r[c] for r in x[p]) == any(r[c] for r in y[p]))
         per_condition[c] = {
             "row_pairs_agreeing": sum(1 for a, b in pairs if bool(a[c]) == bool(b[c])),
             "paper_mean_abs_share_difference": sum(diffs) / len(diffs) if diffs else None,
@@ -106,9 +99,7 @@ def compare(x: dict[str, list[dict]], y: dict[str, list[dict]]) -> dict:
     return {
         "papers": len(papers),
         "papers_same_row_count": sum(1 for p in papers if len(x[p]) == len(y[p])),
-        "papers_both_with_rows_or_both_without": sum(
-            1 for p in papers if bool(x[p]) == bool(y[p])
-        ),
+        "papers_both_with_rows_or_both_without": sum(1 for p in papers if bool(x[p]) == bool(y[p])),
         "rows": [sum(len(x[p]) for p in papers), sum(len(y[p]) for p in papers)],
         "valued_rows_in_first": valued,
         "row_pairs_matched_by_value": len(pairs),
@@ -144,9 +135,7 @@ def main() -> int:
     summary = {
         "papers": pmcids,
         "recorded_models": dict(Counter(recorded[p].model for p in pmcids)),
-        "recorded_briefs": dict(
-            Counter((recorded[p].brief_sha256 or "none")[:12] for p in pmcids)
-        ),
+        "recorded_briefs": dict(Counter((recorded[p].brief_sha256 or "none")[:12] for p in pmcids)),
         "rates": {"A": rates(a), "B": rates(b), "recorded": rates(r)},
         "A_vs_B": compare(a, b),
         "A_vs_recorded": compare(a, r),

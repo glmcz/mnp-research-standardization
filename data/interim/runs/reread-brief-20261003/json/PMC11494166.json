@@ -1,0 +1,142 @@
+{
+ "measurements": [
+  {
+   "particle_name": "waste PET shredding-emitted airborne particles",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "between approximately -2 and 2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "purified water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ZetaPALS (Brookhaven Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The average zeta potential measurements of the airborne particles collected on the PVC filters for NMAM 500 for all categories of plastic, as well as the control filter, were between approximately -2 and 2 mV, indicating that the particles are neutral. || The zeta potential of particles collected on the PVC filters with NMAM 0500 was measured using a ZetaPALS (Brookhaven Instruments Corporation, Holtsville, NY). The filters were suspended in a solution of purified water and sonicated for 30–60 s in order to release the airborne particles.",
+   "evidence_location": "Zeta potential section"
+  },
+  {
+   "particle_name": "new PET shredding-emitted airborne particles",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "between approximately -2 and 2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "purified water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ZetaPALS (Brookhaven Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The average zeta potential measurements of the airborne particles collected on the PVC filters for NMAM 500 for all categories of plastic, as well as the control filter, were between approximately -2 and 2 mV, indicating that the particles are neutral. || The zeta potential of particles collected on the PVC filters with NMAM 0500 was measured using a ZetaPALS (Brookhaven Instruments Corporation, Holtsville, NY). The filters were suspended in a solution of purified water and sonicated for 30–60 s in order to release the airborne particles.",
+   "evidence_location": "Zeta potential section"
+  },
+  {
+   "particle_name": "waste PP shredding-emitted airborne particles",
+   "material": "polypropylene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "between approximately -2 and 2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "purified water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ZetaPALS (Brookhaven Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The average zeta potential measurements of the airborne particles collected on the PVC filters for NMAM 500 for all categories of plastic, as well as the control filter, were between approximately -2 and 2 mV, indicating that the particles are neutral. || The zeta potential of particles collected on the PVC filters with NMAM 0500 was measured using a ZetaPALS (Brookhaven Instruments Corporation, Holtsville, NY). The filters were suspended in a solution of purified water and sonicated for 30–60 s in order to release the airborne particles.",
+   "evidence_location": "Zeta potential section"
+  },
+  {
+   "particle_name": "new PP shredding-emitted airborne particles",
+   "material": "polypropylene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "between approximately -2 and 2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "purified water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ZetaPALS (Brookhaven Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The average zeta potential measurements of the airborne particles collected on the PVC filters for NMAM 500 for all categories of plastic, as well as the control filter, were between approximately -2 and 2 mV, indicating that the particles are neutral. || The zeta potential of particles collected on the PVC filters with NMAM 0500 was measured using a ZetaPALS (Brookhaven Instruments Corporation, Holtsville, NY). The filters were suspended in a solution of purified water and sonicated for 30–60 s in order to release the airborne particles.",
+   "evidence_location": "Zeta potential section"
+  },
+  {
+   "particle_name": "waste HDPE shredding-emitted airborne particles",
+   "material": "high-density polyethylene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "between approximately -2 and 2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "purified water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ZetaPALS (Brookhaven Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The average zeta potential measurements of the airborne particles collected on the PVC filters for NMAM 500 for all categories of plastic, as well as the control filter, were between approximately -2 and 2 mV, indicating that the particles are neutral. || The zeta potential of particles collected on the PVC filters with NMAM 0500 was measured using a ZetaPALS (Brookhaven Instruments Corporation, Holtsville, NY). The filters were suspended in a solution of purified water and sonicated for 30–60 s in order to release the airborne particles.",
+   "evidence_location": "Zeta potential section"
+  },
+  {
+   "particle_name": "new HDPE shredding-emitted airborne particles",
+   "material": "high-density polyethylene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "between approximately -2 and 2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "purified water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ZetaPALS (Brookhaven Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The average zeta potential measurements of the airborne particles collected on the PVC filters for NMAM 500 for all categories of plastic, as well as the control filter, were between approximately -2 and 2 mV, indicating that the particles are neutral. || The zeta potential of particles collected on the PVC filters with NMAM 0500 was measured using a ZetaPALS (Brookhaven Instruments Corporation, Holtsville, NY). The filters were suspended in a solution of purified water and sonicated for 30–60 s in order to release the airborne particles.",
+   "evidence_location": "Zeta potential section"
+  }
+ ]
+}

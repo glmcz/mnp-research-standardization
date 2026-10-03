@@ -1,0 +1,73 @@
+{
+"measurements": [
+{
+"particle_name": "μP1",
+"material": "polystyrene",
+"functionalisation": "carboxyl",
+"supplier": "Bangs Laboratories, Inc.",
+"size_nominal_nm": "0.99 μm",
+"size_measured_nm": null,
+"quantity": "electrophoretic mobility",
+"value": "-2.0 ± 0.5",
+"unit": "μm cm V-1 s-1",
+"n": null,
+"conditions": {
+"medium_text": "10.0 mM Tris buffer solution (pH 8.1)",
+"medium_class": "buffer",
+"ionic_strength": null,
+"pH": "8.1",
+"temperature": null,
+"instrument": null
+},
+"medium_matches_exposure": true,
+"evidence_quote": "First, equal heights of 10.0 mM Tris buffer solution (pH 8.1) containing 1.0 μM BODIPY2– (electrophoretic mobility = -3.4 μm cm V-1 s-1)22 and 1.5 pM μP1 (electrophoretic mobility = -2.0 ± 0.5 μm cm V-1 s-1, see ESI† for electrophoretic mobility measurement details) were placed into the inlet and outlet reservoirs. || Polystyrene microbeads functionalized with surface carboxyl groups (diameter = 0.99 μm (μP1), 1.04 μm (μP2), and 0.20 μm (μP3)) were obtained from Bangs Laboratories, Inc. (Fishers, IN); FC04N, PC04N, and PC02N, respectively.",
+"evidence_location": "Results; Experimental section Chemicals"
+},
+{
+"particle_name": "μP2",
+"material": "polystyrene",
+"functionalisation": "carboxyl",
+"supplier": "Bangs Laboratories, Inc.",
+"size_nominal_nm": "1.04 μm",
+"size_measured_nm": null,
+"quantity": "electrophoretic mobility",
+"value": "-2.4 ± 0.5",
+"unit": "μm cm V-1 s-1",
+"n": null,
+"conditions": {
+"medium_text": "10.0 mM Tris buffer solution (pH 8.1)",
+"medium_class": "buffer",
+"ionic_strength": null,
+"pH": "8.1",
+"temperature": null,
+"instrument": null
+},
+"medium_matches_exposure": true,
+"evidence_quote": "First, different heights of 10.0 mM Tris buffer solution (pH 8.1) containing 150 fM μP2 (electrophoretic mobility = -2.4 ± 0.5 μm cm V-1 s-1) and 190 pM μP3 (electrophoretic mobility = -4 ± 1 μm cm V-1 s-1, see ESI† for electrophoretic mobility measurement details) were placed into the inlet and outlet reservoirs || Polystyrene microbeads functionalized with surface carboxyl groups (diameter = 0.99 μm (μP1), 1.04 μm (μP2), and 0.20 μm (μP3)) were obtained from Bangs Laboratories, Inc. (Fishers, IN); FC04N, PC04N, and PC02N, respectively.",
+"evidence_location": "Results; Experimental section Chemicals"
+},
+{
+"particle_name": "μP3",
+"material": "polystyrene",
+"functionalisation": "carboxyl",
+"supplier": "Bangs Laboratories, Inc.",
+"size_nominal_nm": "0.20 μm",
+"size_measured_nm": null,
+"quantity": "electrophoretic mobility",
+"value": "-4 ± 1",
+"unit": "μm cm V-1 s-1",
+"n": null,
+"conditions": {
+"medium_text": "10.0 mM Tris buffer solution (pH 8.1)",
+"medium_class": "buffer",
+"ionic_strength": null,
+"pH": "8.1",
+"temperature": null,
+"instrument": null
+},
+"medium_matches_exposure": true,
+"evidence_quote": "First, different heights of 10.0 mM Tris buffer solution (pH 8.1) containing 150 fM μP2 (electrophoretic mobility = -2.4 ± 0.5 μm cm V-1 s-1) and 190 pM μP3 (electrophoretic mobility = -4 ± 1 μm cm V-1 s-1, see ESI† for electrophoretic mobility measurement details) were placed into the inlet and outlet reservoirs || Polystyrene microbeads functionalized with surface carboxyl groups (diameter = 0.99 μm (μP1), 1.04 μm (μP2), and 0.20 μm (μP3)) were obtained from Bangs Laboratories, Inc. (Fishers, IN); FC04N, PC04N, and PC02N, respectively.",
+"evidence_location": "Results; Experimental section Chemicals"
+}
+]
+}

@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PET fluorescent microspheres",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": "Beijing Zhongke Keyou Nano Technology Co., Ltd. (Beijing, China)",
+   "size_nominal_nm": "1 µm",
+   "size_measured_nm": "1044.3 nm",
+   "quantity": "zeta potential",
+   "value": "-0.645 ± 0.01",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results, mechanism paragraph; Table S1",
+   "evidence_quote": "CS-NPs exhibited a strong positive charge (+ 40.1 ± 2.20 mV), while both I. sakaiensis (-10.1 ± 1.19 mV) and PET microspheres (-0.645 ± 0.01 mV) were negatively charged, providing a driving force for the electrostatic attraction (Zeng et al. 2026).",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PE MPs",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Sigma Aldrich",
+   "size_nominal_nm": "40–48 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZSP (Malvern)"
+   },
+   "evidence_quote": "Zeta potential (mV) of the MPs was measured using a dynamic light scattering (DLS) analyzer (Zetasizer Nano ZSP, Malvern, UK) to characterize their surface charge.",
+   "evidence_location": "Methods 3.2"
+  },
+  {
+   "particle_name": "PS MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Korea Institute of Analytical Science",
+   "size_nominal_nm": "38–48 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZSP (Malvern)"
+   },
+   "evidence_quote": "Zeta potential (mV) of the MPs was measured using a dynamic light scattering (DLS) analyzer (Zetasizer Nano ZSP, Malvern, UK) to characterize their surface charge.",
+   "evidence_location": "Methods 3.2"
+  }
+ ]
+}

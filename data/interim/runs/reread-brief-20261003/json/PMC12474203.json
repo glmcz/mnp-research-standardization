@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "quantity": "zeta potential",
+   "unit": "mV",
+   "n": null,
+   "functionalisation": null,
+   "supplier": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Discussion para 3",
+   "particle_name": "remaining nanoplastic particles in PP-bottle injection solution filtrate",
+   "material": "polypropylene",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "value": "-3.41",
+   "conditions": {
+    "medium_text": "filtrate after the injection solution was filtered through a GF-B membrane (Φ = 1 μm)",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "evidence_quote": "The zeta potential of the filtrate after the injection solution was filtered through a GF-B membrane (Φ = 1 μm) was -3.41 mV, which was the potential of the remaining nanoplastic particles (Table S1; Figure S5)."
+  },
+  {
+   "quantity": "zeta potential",
+   "unit": "mV",
+   "n": null,
+   "functionalisation": null,
+   "supplier": "Hubei Xinyuhong Biotechnology Co., Ltd.",
+   "medium_matches_exposure": null,
+   "evidence_location": "Discussion para 3",
+   "particle_name": "spherical PP particles (500 nm)",
+   "material": "polypropylene",
+   "size_nominal_nm": "500 nm",
+   "size_measured_nm": null,
+   "value": "-3.15",
+   "conditions": {
+    "medium_text": "the injection solution dispersed with the 500 nm PP particles after filtration through an Al2O3 membrane with a pore size of 20 nm",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "evidence_quote": "The spherical PP particles used in this study had a surface area of 0.283 μm2 and a zeta potential of -3.15 mV (the injection solution dispersed with the 500 nm PP particles after filtration through an Al2O3 membrane with a pore size of 20 nm)."
+  }
+ ]
+}

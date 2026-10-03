@@ -1,0 +1,211 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PVC < 1 μm",
+   "material": "PVC",
+   "functionalisation": null,
+   "supplier": "MOMENTUM consortium",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-5.5 ± 0.8",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "1-propanol",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "PVC < 1 μm-5.5 ± 0.8 || The zeta-potential of 100 μg/mL suspensions in 1-propanol (PP/Talc, PVC and PA) was determined by using a Zetasizer nano ZS (Malvern Panalytical), after equilibration in the instrument for 120 s.",
+   "evidence_location": "Table 1; Methods, Zeta-potential"
+  },
+  {
+   "particle_name": "PVC 1–5 μm",
+   "material": "PVC",
+   "functionalisation": null,
+   "supplier": "MOMENTUM consortium",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-13.6 ± 0.2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "1-propanol",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "PVC 1–5 μm-13.6 ± 0.2 || The zeta-potential of 100 μg/mL suspensions in 1-propanol (PP/Talc, PVC and PA) was determined by using a Zetasizer nano ZS (Malvern Panalytical), after equilibration in the instrument for 120 s.",
+   "evidence_location": "Table 1; Methods, Zeta-potential"
+  },
+  {
+   "particle_name": "PVC 5–10 μm",
+   "material": "PVC",
+   "functionalisation": null,
+   "supplier": "MOMENTUM consortium",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-17.3 ± 1.23",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "1-propanol",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "PVC 5–10 μm-17.3 ± 1.23 || The zeta-potential of 100 μg/mL suspensions in 1-propanol (PP/Talc, PVC and PA) was determined by using a Zetasizer nano ZS (Malvern Panalytical), after equilibration in the instrument for 120 s.",
+   "evidence_location": "Table 1; Methods, Zeta-potential"
+  },
+  {
+   "particle_name": "PP/Talc < 1 μm",
+   "material": "polypropylene with talc filler",
+   "functionalisation": null,
+   "supplier": "MOMENTUM consortium",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-11.9 ± 0.7",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "1-propanol",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "PP/Talc < 1 μm-11.9 ± 0.7 || The zeta-potential of 100 μg/mL suspensions in 1-propanol (PP/Talc, PVC and PA) was determined by using a Zetasizer nano ZS (Malvern Panalytical), after equilibration in the instrument for 120 s.",
+   "evidence_location": "Table 1; Methods, Zeta-potential"
+  },
+  {
+   "particle_name": "PP/Talc 1–5 μm",
+   "material": "polypropylene with talc filler",
+   "functionalisation": null,
+   "supplier": "MOMENTUM consortium",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-8.8 ± 0.8",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "1-propanol",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "PP/Talc 1–5 μm-8.8 ± 0.8 || The zeta-potential of 100 μg/mL suspensions in 1-propanol (PP/Talc, PVC and PA) was determined by using a Zetasizer nano ZS (Malvern Panalytical), after equilibration in the instrument for 120 s.",
+   "evidence_location": "Table 1; Methods, Zeta-potential"
+  },
+  {
+   "particle_name": "PP/Talc 5–10 μm",
+   "material": "polypropylene with talc filler",
+   "functionalisation": null,
+   "supplier": "MOMENTUM consortium",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-8.3 ± 1.6",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "1-propanol",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "PP/Talc 5–10 μm-8.3 ± 1.6 || The zeta-potential of 100 μg/mL suspensions in 1-propanol (PP/Talc, PVC and PA) was determined by using a Zetasizer nano ZS (Malvern Panalytical), after equilibration in the instrument for 120 s.",
+   "evidence_location": "Table 1; Methods, Zeta-potential"
+  },
+  {
+   "particle_name": "PA < 1 μm",
+   "material": "polyamide 6.6",
+   "functionalisation": null,
+   "supplier": "MOMENTUM consortium",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-9.5 ± 4.2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "1-propanol",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "PA < 1 μm-9.5 ± 4.2 || The zeta-potential of 100 μg/mL suspensions in 1-propanol (PP/Talc, PVC and PA) was determined by using a Zetasizer nano ZS (Malvern Panalytical), after equilibration in the instrument for 120 s.",
+   "evidence_location": "Table 1; Methods, Zeta-potential"
+  },
+  {
+   "particle_name": "PA 1–5 μm",
+   "material": "polyamide 6.6",
+   "functionalisation": null,
+   "supplier": "MOMENTUM consortium",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-8.1 ± 0.6",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "1-propanol",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "PA 1–5 μm-8.1 ± 0.6 || The zeta-potential of 100 μg/mL suspensions in 1-propanol (PP/Talc, PVC and PA) was determined by using a Zetasizer nano ZS (Malvern Panalytical), after equilibration in the instrument for 120 s.",
+   "evidence_location": "Table 1; Methods, Zeta-potential"
+  },
+  {
+   "particle_name": "PA 5–10 μm",
+   "material": "polyamide 6.6",
+   "functionalisation": null,
+   "supplier": "MOMENTUM consortium",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-9.3 ± 0.8",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "1-propanol",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "PA 5–10 μm-9.3 ± 0.8 || The zeta-potential of 100 μg/mL suspensions in 1-propanol (PP/Talc, PVC and PA) was determined by using a Zetasizer nano ZS (Malvern Panalytical), after equilibration in the instrument for 120 s.",
+   "evidence_location": "Table 1; Methods, Zeta-potential"
+  }
+ ]
+}

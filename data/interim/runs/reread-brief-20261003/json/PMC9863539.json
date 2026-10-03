@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "pristine PS (P-PS)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "China Hengfa Plastic Technology Co. Ltd.",
+   "size_nominal_nm": "75–150 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Figure 4 shows the variation trend of MPs’ surface potential with pH. || The zeta potential can determine the trend of the surface potential of MPs with pH. || Deionized water was used in all experiments, and the purity of the reagents not mentioned was in analytical purity.",
+   "evidence_location": "3.1.3; Fig 4; Methods 2.1, 2.3"
+  },
+  {
+   "particle_name": "aged PS (A-PS)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "China Hengfa Plastic Technology Co. Ltd.",
+   "size_nominal_nm": "75–150 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Figure 4 shows the variation trend of MPs’ surface potential with pH. || The zeta potential can determine the trend of the surface potential of MPs with pH. || Deionized water was used in all experiments, and the purity of the reagents not mentioned was in analytical purity.",
+   "evidence_location": "3.1.3; Fig 4; Methods 2.1, 2.3"
+  },
+  {
+   "particle_name": "pristine PBAT (P-PBAT)",
+   "material": "PBAT",
+   "functionalisation": null,
+   "supplier": "China Hengfa Plastic Technology Co. Ltd.",
+   "size_nominal_nm": "75–150 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Figure 4 shows the variation trend of MPs’ surface potential with pH. || The zeta potential can determine the trend of the surface potential of MPs with pH. || Deionized water was used in all experiments, and the purity of the reagents not mentioned was in analytical purity.",
+   "evidence_location": "3.1.3; Fig 4; Methods 2.1, 2.3"
+  },
+  {
+   "particle_name": "aged PBAT (A-PBAT)",
+   "material": "PBAT",
+   "functionalisation": null,
+   "supplier": "China Hengfa Plastic Technology Co. Ltd.",
+   "size_nominal_nm": "75–150 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Figure 4 shows the variation trend of MPs’ surface potential with pH. || The zeta potential can determine the trend of the surface potential of MPs with pH. || Deionized water was used in all experiments, and the purity of the reagents not mentioned was in analytical purity.",
+   "evidence_location": "3.1.3; Fig 4; Methods 2.1, 2.3"
+  }
+ ]
+}

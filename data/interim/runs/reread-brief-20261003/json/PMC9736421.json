@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "Tween 80 NCs (oregano oil in PCL)",
+   "material": "poly-ϵ-caprolactone (PCL)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "222 ± 2 nm",
+   "quantity": "zeta potential",
+   "value": "-24.6 ± 0.5",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "20 μL dispersed in 2 mL of deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Nano ZS Zetasizer ZEN3600"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Z-Potential (mV)\t-24.6 ± 0.5\t-36.3 ± 0.6 || The mean diameter size, zeta potential (Z-Pot) and polydispersity index (PI) were measured by dynamic light scattering (DLS) using a Nano ZS Zetasizer ZEN3600 device (Malvern Instruments Ltd., Malvern, Worcestershire, UK). || To measure the Z-Pot, the samples must first be diluted (20 μL dispersed in 2 mL of deionized water).",
+   "evidence_location": "Table 1; Methods 2.2.2"
+  },
+  {
+   "particle_name": "Glycerin NCs (oregano oil in PCL)",
+   "material": "poly-ϵ-caprolactone (PCL)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "235 ± 3 nm",
+   "quantity": "zeta potential",
+   "value": "-36.3 ± 0.6",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "20 μL dispersed in 2 mL of deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Nano ZS Zetasizer ZEN3600"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Z-Potential (mV)\t-24.6 ± 0.5\t-36.3 ± 0.6 || The mean diameter size, zeta potential (Z-Pot) and polydispersity index (PI) were measured by dynamic light scattering (DLS) using a Nano ZS Zetasizer ZEN3600 device (Malvern Instruments Ltd., Malvern, Worcestershire, UK). || To measure the Z-Pot, the samples must first be diluted (20 μL dispersed in 2 mL of deionized water).",
+   "evidence_location": "Table 1; Methods 2.2.2"
+  }
+ ]
+}

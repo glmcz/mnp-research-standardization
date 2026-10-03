@@ -1,0 +1,22 @@
+{"measurements":[
+{"particle_name":"PS","material":"polystyrene","functionalisation":null,"supplier":"Spherotech Inc.","size_nominal_nm":"∼70 nm","size_measured_nm":"73","quantity":"zeta potential","value":"-32","unit":"mV","n":null,
+"conditions":{"medium_text":"deionised water","medium_class":"DI_water","ionic_strength":null,"pH":"7","temperature":null,"instrument":"Malvern zeta potential instrument"},
+"medium_matches_exposure":null,
+"evidence_quote":"PS\t73\t-32 || The zeta potential values and dynamic light scattering (DLS) diameter of PS at pH 7, PS at pH 2, PDA at pH 2, and PDA–PS complex at pH 2 are presented in Table 3. || All the experiments were conducted using deionised water unless explicitly stated. || The Malvern zeta potential instrument was utilised to examine the surface charges of PS nanoplastics and PDA at various pH values.",
+"evidence_location":"Table 3"},
+{"particle_name":"PS at pH 2","material":"polystyrene","functionalisation":null,"supplier":"Spherotech Inc.","size_nominal_nm":"∼70 nm","size_measured_nm":"184","quantity":"zeta potential","value":"-19","unit":"mV","n":null,
+"conditions":{"medium_text":"deionised water","medium_class":"DI_water","ionic_strength":null,"pH":"2","temperature":null,"instrument":"Malvern zeta potential instrument"},
+"medium_matches_exposure":null,
+"evidence_quote":"PS at pH 2\t184\t-19 || The zeta potential values and dynamic light scattering (DLS) diameter of PS at pH 7, PS at pH 2, PDA at pH 2, and PDA–PS complex at pH 2 are presented in Table 3. || All the experiments were conducted using deionised water unless explicitly stated. || The Malvern zeta potential instrument was utilised to examine the surface charges of PS nanoplastics and PDA at various pH values.",
+"evidence_location":"Table 3"},
+{"particle_name":"PDA–PS complex at pH 2","material":"polystyrene with adsorbed polydopamine (flocs)","functionalisation":null,"supplier":"Spherotech Inc.","size_nominal_nm":"∼70 nm","size_measured_nm":"1309","quantity":"zeta potential","value":"+4","unit":"mV","n":null,
+"conditions":{"medium_text":"deionised water","medium_class":"DI_water","ionic_strength":null,"pH":"2","temperature":null,"instrument":"Malvern zeta potential instrument"},
+"medium_matches_exposure":null,
+"evidence_quote":"PDA–PS at pH 2\t1309\t+4 || The zeta potential values and dynamic light scattering (DLS) diameter of PS at pH 7, PS at pH 2, PDA at pH 2, and PDA–PS complex at pH 2 are presented in Table 3. || All the experiments were conducted using deionised water unless explicitly stated. || The Malvern zeta potential instrument was utilised to examine the surface charges of PS nanoplastics and PDA at various pH values.",
+"evidence_location":"Table 3"},
+{"particle_name":"PS (20 mg L-1), zeta potential vs pH","material":"polystyrene","functionalisation":null,"supplier":"Spherotech Inc.","size_nominal_nm":"∼70 nm","size_measured_nm":null,"quantity":"zeta potential","value":null,"unit":null,"n":null,
+"conditions":{"medium_text":"deionised water","medium_class":"DI_water","ionic_strength":null,"pH":"ranging from 2 to 9","temperature":null,"instrument":"Malvern zeta potential instrument"},
+"medium_matches_exposure":null,
+"evidence_quote":"Fig. 4a and b show the zeta potential vs. pH for PS (20 mg L-1) and PDA (0.6 mg/6 mL) samples, respectively. || From zeta potential studies of PS and PDA at pH values ranging from 2 to 9, it is suggested that PDA can interact with and assist in the charge neutralisation of PS at acidic pH conditions (pH 2 and 3). || All the experiments were conducted using deionised water unless explicitly stated. || The Malvern zeta potential instrument was utilised to examine the surface charges of PS nanoplastics and PDA at various pH values.",
+"evidence_location":"Surface charge analysis; Fig. 4a"}
+]}

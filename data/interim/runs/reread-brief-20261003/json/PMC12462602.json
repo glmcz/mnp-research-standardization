@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "amino-modified PS microplastics",
+   "material": "polystyrene",
+   "functionalisation": "amino",
+   "supplier": "Merck",
+   "size_nominal_nm": "2 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "triplicate runs",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Ultra"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential measurements for microplastics and LiquidBots in deionized water were taken with a Malvern Zetasizer Ultra, with triplicate runs to assess error. || A magnetic setup was used for navigation and adsorption experiments with amino‐modified PS microplastics (Merck, 2 µm) under a 3 mT magnetic field at 1 Hz.",
+   "evidence_location": "Methods, Characterization of LiquidBots; LiquidBots Capture of Microplastics"
+  },
+  {
+   "particle_name": "PEG 4000",
+   "material": "poly(ethylene glycol), Mw 4000",
+   "functionalisation": null,
+   "supplier": "Alfa Aesar",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "triplicate runs",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Ultra"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "First, the Zeta potential of PEG 4000 was tested, revealing that PEG 4000 carries a positive charge in water, whereas LiquidBots carry a negative charge (Figure S6, Supporting Information). || Zeta potential measurements for microplastics and LiquidBots in deionized water were taken with a Malvern Zetasizer Ultra, with triplicate runs to assess error.",
+   "evidence_location": "Results; Figure S6 (supplement); Methods"
+  }
+ ]
+}

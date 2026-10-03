@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PET-MPs",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": "Tesulang Chemical Material Co. Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results, MP characterization (values in Figure S9)",
+   "evidence_quote": "To evaluate the physicochemical behavior of PET-MPs, DLS and ζ-potential measurements were performed in culture media and normal saline. || PET-MPs showed an increased hydrodynamic diameter and a slight reduction in ζ-potential in complete medium compared with basal medium, suggesting potential surface interactions, while remaining relatively stable (Figure S9B,C).",
+   "conditions": {
+    "medium_text": "basal medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "PET-MPs",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": "Tesulang Chemical Material Co. Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results, MP characterization (values in Figure S9)",
+   "evidence_quote": "To evaluate the physicochemical behavior of PET-MPs, DLS and ζ-potential measurements were performed in culture media and normal saline. || PET-MPs showed an increased hydrodynamic diameter and a slight reduction in ζ-potential in complete medium compared with basal medium, suggesting potential surface interactions, while remaining relatively stable (Figure S9B,C).",
+   "conditions": {
+    "medium_text": "complete medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "PET-MPs",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": "Tesulang Chemical Material Co. Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results, MP characterization (values in Figure S9)",
+   "evidence_quote": "To evaluate the physicochemical behavior of PET-MPs, DLS and ζ-potential measurements were performed in culture media and normal saline. || In normal saline, PET-MPs exhibited comparable size and ζ-potential, indicating similar dispersion properties under in vivo conditions.",
+   "conditions": {
+    "medium_text": "normal saline",
+    "medium_class": "salt_solution",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

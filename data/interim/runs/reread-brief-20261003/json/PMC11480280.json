@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "0.2 μm amine-modified PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": "amine",
+   "supplier": "Invitrogen F8762",
+   "size_nominal_nm": "0.2 μm",
+   "size_measured_nm": "282 nm",
+   "quantity": "zeta potential",
+   "value": "+ 11.68",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Pro, Malvern"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The 0.2 μm PS-MPs had an average zeta potential of + 11.68 mV, and the 1.0 μm PS-MPs had a zeta potential of + 40.95 mV (Fig. 1G and H). || The size distribution and zeta potential of each microplastic sample were analyzed using dynamic light scattering (DLS; Zetasizer Pro, Malvern, UK).",
+   "evidence_location": "Results, Context 2"
+  },
+  {
+   "particle_name": "1.0 μm amine-modified PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": "amine",
+   "supplier": "Sigma-Aldrich L2778",
+   "size_nominal_nm": "1.0 μm",
+   "size_measured_nm": "1.6 μm",
+   "quantity": "zeta potential",
+   "value": "+ 40.95",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Pro, Malvern"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The 0.2 μm PS-MPs had an average zeta potential of + 11.68 mV, and the 1.0 μm PS-MPs had a zeta potential of + 40.95 mV (Fig. 1G and H). || The size distribution and zeta potential of each microplastic sample were analyzed using dynamic light scattering (DLS; Zetasizer Pro, Malvern, UK).",
+   "evidence_location": "Results, Context 2"
+  }
+ ]
+}

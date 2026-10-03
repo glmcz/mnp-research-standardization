@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-S",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "This was supported by Spearman correlation analysis (Fig. 4F), which revealed that the biofilm biomass on four MPs during the initial plastisphere development (24 h) positively correlated with hydrophobicity and zeta potential of the MPs.",
+   "evidence_location": "Results, plastisphere section; details in SI Text S1-S3"
+  },
+  {
+   "particle_name": "PS-B",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "This was supported by Spearman correlation analysis (Fig. 4F), which revealed that the biofilm biomass on four MPs during the initial plastisphere development (24 h) positively correlated with hydrophobicity and zeta potential of the MPs.",
+   "evidence_location": "Results, plastisphere section; details in SI Text S1-S3"
+  },
+  {
+   "particle_name": "PVC-S",
+   "material": "polyvinyl chloride",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "This was supported by Spearman correlation analysis (Fig. 4F), which revealed that the biofilm biomass on four MPs during the initial plastisphere development (24 h) positively correlated with hydrophobicity and zeta potential of the MPs.",
+   "evidence_location": "Results, plastisphere section; details in SI Text S1-S3"
+  },
+  {
+   "particle_name": "PVC-B",
+   "material": "polyvinyl chloride",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "This was supported by Spearman correlation analysis (Fig. 4F), which revealed that the biofilm biomass on four MPs during the initial plastisphere development (24 h) positively correlated with hydrophobicity and zeta potential of the MPs.",
+   "evidence_location": "Results, plastisphere section; details in SI Text S1-S3"
+  }
+ ]
+}

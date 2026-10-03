@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "mixed MNPs (PVC, PS, PMMA, TPU), with and without Fe3+",
+   "material": "mixture of PVC, polystyrene, PMMA and thermoplastic polyurethane",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results; Supplementary Fig. 3",
+   "evidence_quote": "Zeta potential measurements (Supplementary Fig. 3) indicate effective interaction between Fe3+ ions and negatively charged plastics, further confirming successful surface induction.",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

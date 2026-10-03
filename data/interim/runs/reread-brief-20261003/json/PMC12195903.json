@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PE-NPs (sonochemically produced)",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Micro Powders Inc.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "45 ± 8 nm (TEM); approximately 70 nm (DLS)",
+   "quantity": "zeta potential",
+   "value": "approximately -25",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "(F) Zeta potential distribution with peak at approximately -25 mV. || All experiments were conducted using deionized water to maintain consistency and prevent interference from impurities.",
+   "evidence_location": "Figure 2 caption; Methods 2.2"
+  }
+ ]
+}

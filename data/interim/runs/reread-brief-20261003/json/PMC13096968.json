@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "Fluoresbrite Yellow Green (YG) polystyrene nanoplastics",
+   "material": "polystyrene",
+   "functionalisation": "nonfunctionalized",
+   "supplier": "Polysciences, Inc.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "41.7 ± 0.363 nm",
+   "quantity": "zeta potential",
+   "value": "-11.5 ± 1.48",
+   "unit": "mV",
+   "n": "N = 6 measurements",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "room temperature",
+    "instrument": "ZetaPlus (Brookhaven Instruments)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "The zeta potentials of these nanoplastics were -11.5 ± 1.48 mV (N = 6 measurements) (see more detailed properties of YG polystyrene nanoplastics in Section ). || The electrical charge of the surfaces of nanoplastic particles in a suspension, which means the zeta potential, was measured via a zeta potential analyzer, ZetaPlus (Brookhaven Instruments), located in the Materials, Design and Manufacturing Facility of HKUST. || Prior to the measurement, nanoplastics were dissolved in deionized water and diluted to 10 μg/mL, followed by vortexing for 30 s to make nanoparticles spread evenly in a suspension and to minimize the aggregation and flocculation of the particles. || Measurements were taken at room temperature, and 10 runs per measurement were conducted.",
+   "evidence_location": "Characterization of Nanoplastics; Methods, Zeta Potential Measurements"
+  }
+ ]
+}

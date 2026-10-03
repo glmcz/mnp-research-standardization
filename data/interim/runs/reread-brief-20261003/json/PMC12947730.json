@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "polystyrene MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Polysciences; Thermo Fisher Scientific",
+   "size_nominal_nm": "1.0 μm",
+   "size_measured_nm": "approximately 937.0 to 1,025.4 nm",
+   "quantity": "zeta potential",
+   "value": "-39.92",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "aqueous suspension",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ELS-Z1000 (Otsuka Electronics)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "A zeta potential of -39.92 mV indicated electrostatic stabilization in aqueous suspension (Figure C). || The hydrodynamic diameter and ζ-potential of MPs were measured using a particle size and ζ-potential analyzer (ELS-Z1000, Otsuka Electronics, Hirakata, Osaka, Japan).",
+   "evidence_location": "Results, characterization; Methods"
+  }
+ ]
+}

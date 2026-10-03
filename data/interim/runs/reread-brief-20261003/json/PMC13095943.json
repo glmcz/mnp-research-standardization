@@ -1,0 +1,142 @@
+{
+ "measurements": [
+  {
+   "particle_name": "aged PET fibres",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "25–500 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer (Malvern Nano-SZ)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Both aged and pristine MNPs had negative zeta potential with aged MNPs consistently showing more negative charge after ageing (Figure S3). || The aged MPs were characterised using FTIR (Thermo Fisher, USA), and their zeta potential was obtained using Zetasizer (Malvern Nano-SZ) to assess their oxidation state and surface charge.",
+   "evidence_location": "Results, Context 2 para 1; Methods, Microplastics preparation"
+  },
+  {
+   "particle_name": "pristine PET fibres",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "25–500 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Both aged and pristine MNPs had negative zeta potential with aged MNPs consistently showing more negative charge after ageing (Figure S3).",
+   "evidence_location": "Results, Context 2 para 1; Methods, Microplastics preparation"
+  },
+  {
+   "particle_name": "aged PE fragments",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "25–500 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer (Malvern Nano-SZ)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Both aged and pristine MNPs had negative zeta potential with aged MNPs consistently showing more negative charge after ageing (Figure S3). || The aged MPs were characterised using FTIR (Thermo Fisher, USA), and their zeta potential was obtained using Zetasizer (Malvern Nano-SZ) to assess their oxidation state and surface charge.",
+   "evidence_location": "Results, Context 2 para 1; Methods, Microplastics preparation"
+  },
+  {
+   "particle_name": "pristine PE fragments",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "25–500 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Both aged and pristine MNPs had negative zeta potential with aged MNPs consistently showing more negative charge after ageing (Figure S3).",
+   "evidence_location": "Results, Context 2 para 1; Methods, Microplastics preparation"
+  },
+  {
+   "particle_name": "aged PS NPs (polychromatic red)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Polyscience, USA",
+   "size_nominal_nm": "∼400 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer (Malvern Nano-SZ)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Both aged and pristine MNPs had negative zeta potential with aged MNPs consistently showing more negative charge after ageing (Figure S3). || The aged MPs were characterised using FTIR (Thermo Fisher, USA), and their zeta potential was obtained using Zetasizer (Malvern Nano-SZ) to assess their oxidation state and surface charge.",
+   "evidence_location": "Results, Context 2 para 1; Methods, Microplastics preparation"
+  },
+  {
+   "particle_name": "pristine PS NPs (polychromatic red)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Polyscience, USA",
+   "size_nominal_nm": "∼400 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Both aged and pristine MNPs had negative zeta potential with aged MNPs consistently showing more negative charge after ageing (Figure S3).",
+   "evidence_location": "Results, Context 2 para 1; Methods, Microplastics preparation"
+  }
+ ]
+}

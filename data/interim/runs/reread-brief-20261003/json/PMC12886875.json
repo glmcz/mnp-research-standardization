@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-NPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "NANOCS (New York, NY, USA)",
+   "size_nominal_nm": "20 ± 5 nm",
+   "size_measured_nm": "62.4 ± 3.1 nm (hydrodynamic)",
+   "quantity": "zeta potential",
+   "value": "-40.02 ± 2.41",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results text; Methods; Table 1",
+   "evidence_quote": "Surface charge measurements conducted using Dynamic Light Scattering (DLS) revealed that all nanoparticles exhibited strongly negative zeta potentials: -40.02 ± 2.41 mV for PS-NPs, -34.98 ± 1.98 mV for HDPE-NPs, and -32.23 ± 3.92 mV for Ag-NPs/PS-NPs mixture. || Zeta potential and polydispersity index measurements were carried out at 25 °C in a DTS 1067 capillary cell using a Zetasizer NanoZS instrument (Malvern, UK). Before measurement, the working solution was diluted at a ratio of 1:8 with deionized water. || Table 1. Characteristics of nanoparticles (measured in deionized water)18–20.",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer NanoZS (Malvern, UK)"
+   }
+  },
+  {
+   "particle_name": "HDPE-NPs isolated from perforated HDPE film",
+   "material": "high-density polyethylene",
+   "functionalisation": null,
+   "supplier": "PLASTEXIM (Tychy, Poland) film",
+   "size_nominal_nm": null,
+   "size_measured_nm": "217.0 ± 24.1 nm (hydrodynamic)",
+   "quantity": "zeta potential",
+   "value": "-34.98 ± 1.98",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results text (differs from Table 1)",
+   "evidence_quote": "Surface charge measurements conducted using Dynamic Light Scattering (DLS) revealed that all nanoparticles exhibited strongly negative zeta potentials: -40.02 ± 2.41 mV for PS-NPs, -34.98 ± 1.98 mV for HDPE-NPs, and -32.23 ± 3.92 mV for Ag-NPs/PS-NPs mixture. || Zeta potential and polydispersity index measurements were carried out at 25 °C in a DTS 1067 capillary cell using a Zetasizer NanoZS instrument (Malvern, UK). Before measurement, the working solution was diluted at a ratio of 1:8 with deionized water. || Table 1. Characteristics of nanoparticles (measured in deionized water)18–20.",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer NanoZS (Malvern, UK)"
+   }
+  },
+  {
+   "particle_name": "HDPE-NPs isolated from perforated HDPE film",
+   "material": "high-density polyethylene",
+   "functionalisation": null,
+   "supplier": "PLASTEXIM (Tychy, Poland) film",
+   "size_nominal_nm": null,
+   "size_measured_nm": "217.0 ± 24.1 nm (hydrodynamic)",
+   "quantity": "zeta potential",
+   "value": "-33.92 ± 1.02",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Table 1 (differs from Results text)",
+   "evidence_quote": "Zeta potential [mV]\t-33.6 ± 3.5\t-40.02 ± 2.41\t-31.23 ± 1.09\t-33.92 ± 1.02 || Zeta potential and polydispersity index measurements were carried out at 25 °C in a DTS 1067 capillary cell using a Zetasizer NanoZS instrument (Malvern, UK). Before measurement, the working solution was diluted at a ratio of 1:8 with deionized water. || Table 1. Characteristics of nanoparticles (measured in deionized water)18–20.",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer NanoZS (Malvern, UK)"
+   }
+  }
+ ]
+}

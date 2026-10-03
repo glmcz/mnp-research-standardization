@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS NPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Microparticles GmbH (Berlin, Germany)",
+   "size_nominal_nm": "150 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "H2O suspension",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Panalytical zeta potential instrument"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The interaction between the photocatalyst and PS NPs was supported by FE-SEM images shown in Figure f and by measuring the zeta potential of both particles in the H2O suspension at neutral pH. || As shown in Figure a, both the individual PS NPs and the photocatalysts exhibit high zeta potential values, indicating good particle dispersion. || Adsorption of the photocatalyst on PS NPs during the reaction was confirmed by a Malvern Panalytical zeta potential instrument and FE-SEM imaging of a micro drop of the suspension, using a scanning electron microscope (TESCAN MIRA3, Czech Republic).",
+   "evidence_location": "Results, mechanism discussion; Fig. 11a; Methods"
+  },
+  {
+   "particle_name": "PS NPs + 3 wt % Pd/TiO2 photocatalyst",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Microparticles GmbH (Berlin, Germany)",
+   "size_nominal_nm": "150 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "H2O suspension",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Panalytical zeta potential instrument"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The interaction between the photocatalyst and PS NPs was supported by FE-SEM images shown in Figure f and by measuring the zeta potential of both particles in the H2O suspension at neutral pH. || In contrast, the combination of PS NPs and the photocatalyst shows a zeta potential value close to zero, which suggests a significant neutralization by association between them, which is confirmed by FE-SEM images (Figures f and b). || Adsorption of the photocatalyst on PS NPs during the reaction was confirmed by a Malvern Panalytical zeta potential instrument and FE-SEM imaging of a micro drop of the suspension, using a scanning electron microscope (TESCAN MIRA3, Czech Republic).",
+   "evidence_location": "Results, mechanism discussion; Fig. 11a; Methods"
+  }
+ ]
+}

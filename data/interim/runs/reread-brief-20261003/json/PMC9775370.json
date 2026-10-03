@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "Fluoresbrite Carboxy YG polystyrene microspheres (1 µm)",
+   "material": "polystyrene",
+   "functionalisation": "carboxy",
+   "supplier": "Polysciences, Warrington, PA, USA",
+   "size_nominal_nm": "1 μm",
+   "size_measured_nm": "1003 ± 24",
+   "quantity": "zeta potential",
+   "value": "38 ± 3",
+   "unit": "mV",
+   "n": "three independent tests",
+   "conditions": {
+    "medium_text": "E3 medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": "0.29 g/L NaCl, 13 mg/L KCl, 44 mg/L CaCl2, 81 mg/L MgSO4, 0.48 g/L HEPES",
+    "pH": "7.0",
+    "temperature": null,
+    "instrument": "Zetasizer Ver. 7.12 (Malvern Instruments)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Polystyrene microspheres\t1003 ± 24\t38 ± 3\t0.05 ± 0.016 || DLS analysis further revealed that MPs in E3 medium were highly stable with a zeta potential of 38 ± 3 mV and exhibited a very low aggregation rate, as demonstrated by the low polydispersity index of 0.05 ± 0.016 (Table 1). || Prior to experiments, polystyrene MPs were washed in E3 medium three times, and then dynamic light scattering (Zetasizer Ver. 7.12, Malvern Instruments, Malvern, UK) was used to analyze the hydrodynamic meter, polydispersity index (PDI), and zeta potential of polystyrene MPs at the concentration of 1 × 108 particles/mL diluted in E3 medium. || E3 medium (0.29 g/L NaCl, 13 mg/L KCl, 44 mg/L CaCl2, 81 mg/L MgSO4, 0.48 g/L HEPES, pH 7.0)",
+   "evidence_location": "Table 1; 3.1; Methods 2.1-2.2"
+  }
+ ]
+}

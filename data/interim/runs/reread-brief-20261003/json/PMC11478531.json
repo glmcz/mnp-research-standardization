@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PET model MPs, pH 7.0",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": "virgin PET pellets / water bottle plastic, ground and sieved (200 µm)",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-34.5",
+   "unit": "mV",
+   "n": "5",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": "7.0",
+    "temperature": "25 °C",
+    "instrument": "Zetasizer NanoZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The charge density significantly drops with the pH decrease (the zeta potential of PET particles varies from -34.5 to -9.5, at pH 7.0 and 3.0, respectively) due to the protonation of carboxylic groups. || A Zetasizer NanoZS from Malvern Instruments was used to measure the zeta potential of the cationic cellulose polymer in solution and PET MPs in two different pHs (pH 7.0 and 3.0). || The zeta potential was measured at 25 °C with an equilibration time of 60 s.",
+   "evidence_location": "Results, flocculation para"
+  },
+  {
+   "particle_name": "PET model MPs, pH 3.0",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-9.5",
+   "unit": "mV",
+   "n": "5",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": "3.0",
+    "temperature": "25 °C",
+    "instrument": "Zetasizer NanoZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The charge density significantly drops with the pH decrease (the zeta potential of PET particles varies from -34.5 to -9.5, at pH 7.0 and 3.0, respectively) due to the protonation of carboxylic groups. || A Zetasizer NanoZS from Malvern Instruments was used to measure the zeta potential of the cationic cellulose polymer in solution and PET MPs in two different pHs (pH 7.0 and 3.0). || The zeta potential was measured at 25 °C with an equilibration time of 60 s.",
+   "evidence_location": "Results, flocculation para"
+  },
+  {
+   "particle_name": "PE model MPs",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "ca. -12",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "This explains the low zeta potential observed for “model” MP suspensions at neutral to alkaline pH, ca. -12 mV, as the presence of carboxylic groups is quite low and was not observed in NMR experiments (below the detection/quantification limit of NMR).",
+   "evidence_location": "Results, NMR para"
+  },
+  {
+   "particle_name": "PET model MPs from pellets",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "ca. -45",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The NMR results are well aligned with the zeta potential values of PET MP pellets, which presented a value of ca. -45 mV at neutral pH.",
+   "evidence_location": "Results, NMR para"
+  }
+ ]
+}

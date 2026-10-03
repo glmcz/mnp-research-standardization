@@ -1,0 +1,50 @@
+{
+  "measurements": [
+    {
+      "particle_name": "fluorescently labeled spherical PS-NPs",
+      "material": "polystyrene",
+      "functionalisation": "unfunctionalized",
+      "supplier": "Kisker Biotech",
+      "size_nominal_nm": "180 nm",
+      "size_measured_nm": "183 nm",
+      "quantity": "zeta potential",
+      "value": "-44 ± 1",
+      "unit": "mV",
+      "n": "triplicate",
+      "conditions": {
+        "medium_text": "Milli-Q water (100 μg·mL-1 dispersion)",
+        "medium_class": "DI_water",
+        "ionic_strength": null,
+        "pH": null,
+        "temperature": null,
+        "instrument": "Zetasizer Nano ZS (Malvern Panalytical GmbH, Kassel, Germany)"
+      },
+      "medium_matches_exposure": false,
+      "evidence_quote": "The zeta potential of the particles in water is negative (-44 ± 1 mV, Figure D), consistent with the supplier information that the nanoplastics are unfunctionalized polystyrene particles dispersed in water with a low concentration of sodium azide and no intentionally added surfactant. || (D) Representative results from triplicate zeta potential measurements (100 μg·mL-1 dispersion in Milli-Q water). || Hydrodynamic diameter and zeta potential of the fluorescently labeled spherical PS particles were measured with a Zetasizer Nano ZS (Malvern Panalytical GmbH, Kassel, Germany).",
+      "evidence_location": "Results, Particle Characterization; Figure 1D; Methods"
+    },
+    {
+      "particle_name": "fluorescently labeled spherical PS-NPs",
+      "material": "polystyrene",
+      "functionalisation": "unfunctionalized",
+      "supplier": "Kisker Biotech",
+      "size_nominal_nm": "180 nm",
+      "size_measured_nm": "183 nm",
+      "quantity": "zeta potential",
+      "value": "-11 ± 2",
+      "unit": "mV",
+      "n": null,
+      "conditions": {
+        "medium_text": "complete cell culture medium",
+        "medium_class": "culture_medium",
+        "ionic_strength": null,
+        "pH": null,
+        "temperature": null,
+        "instrument": "Zetasizer Nano ZS (Malvern Panalytical GmbH, Kassel, Germany)"
+      },
+      "medium_matches_exposure": true,
+      "evidence_quote": "When the particles are transferred into complete cell culture medium, the zeta potential shifts to -11 ± 2 mV, which is consistent with partial screening of surface charges and the formation of a protein-rich corona that masks the particle surface. || Hydrodynamic diameter and zeta potential of the fluorescently labeled spherical PS particles were measured with a Zetasizer Nano ZS (Malvern Panalytical GmbH, Kassel, Germany).",
+      "evidence_location": "Results, Particle Characterization; Methods"
+    }
+  ]
+}

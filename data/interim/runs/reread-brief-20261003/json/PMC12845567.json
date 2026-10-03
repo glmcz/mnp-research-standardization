@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-MPs (80 nm SMPs and 20 μm LMPs; sentence does not say which size the value belongs to)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Baseline ChromTech (Tianjin, China)",
+   "size_nominal_nm": "80 nm; 20 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "approximately -45.2",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results 3.1; Methods 2.1",
+   "evidence_quote": "Zeta potential was approximately -45.2 mV in ultrapure water, with SMPs exhibiting higher particle counts than LMPs (Figure 1C). || The surface charge characteristics of these microplastics were evaluated through zeta potential measurements performed on a Zetasizer Nano ZS90 instrument (Malvern Panalytical, Malvern, UK).",
+   "conditions": {
+    "medium_text": "ultrapure water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern Panalytical)"
+   }
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+{"measurements":[
+{"particle_name":"PET-M/NP","material":"polyethylene terephthalate","functionalisation":null,"supplier":null,"size_nominal_nm":null,"size_measured_nm":null,"quantity":"zeta potential","value":"-22.6 ± 0.9","unit":"mV","n":null,
+"conditions":{"medium_text":"Milli-Q water","medium_class":"DI_water","ionic_strength":null,"pH":null,"temperature":null,"instrument":"Malvern Nano ZS"},
+"medium_matches_exposure":null,
+"evidence_quote":"The zeta potential measured for the PET-M/NP dispersion was -22.6 ± 0.9 mV. || All experiments were performed in Milli-Q water. || Zeta potential measurements were performed using a Malvern Nano ZS instrument (Worcestershire, UK) with a light scattering angle of 173° as previously described [29].",
+"evidence_location":"Results para 2; Methods 2.1, 2.3"}
+]}

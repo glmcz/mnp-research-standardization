@@ -1,0 +1,188 @@
+{
+ "measurements": [
+  {
+   "particle_name": "NP1 PEF nanoparticles",
+   "material": "poly(ethylene furanoate)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "680–430",
+   "quantity": "zeta potential",
+   "value": "-39",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "NP1\tDispersion\tPEF\tAcetone/H2O\t—\t680–430\t-39\t25 µg/mL || Hydrodynamic diameter (Dh; 0.3 nm-100 µm) and ζ‐potential were measured by Dynamic Light Scattering (DLS) and Electrophoretic Light Scattering (ELS), respectively, using a Litesizer 500 (Anton Paar, Germany) equipped with a wavelength of 658 nm, 40 mW single‐frequency laser diode.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "NP2 PEF nanoparticles",
+   "material": "poly(ethylene furanoate)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "92",
+   "quantity": "zeta potential",
+   "value": "-40",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "NP2\tCIJ\tPEF\tHFIP/ H2O\t—\t92\t-40\t10 µg/mL || Hydrodynamic diameter (Dh; 0.3 nm-100 µm) and ζ‐potential were measured by Dynamic Light Scattering (DLS) and Electrophoretic Light Scattering (ELS), respectively, using a Litesizer 500 (Anton Paar, Germany) equipped with a wavelength of 658 nm, 40 mW single‐frequency laser diode.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "NP3 PEF nanoparticles",
+   "material": "poly(ethylene furanoate)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "215",
+   "quantity": "zeta potential",
+   "value": "-50",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "NP3\tCIJ\tPEF\tHFIP/ H2O\t—\t215\t-50\t20 µg/mL || Hydrodynamic diameter (Dh; 0.3 nm-100 µm) and ζ‐potential were measured by Dynamic Light Scattering (DLS) and Electrophoretic Light Scattering (ELS), respectively, using a Litesizer 500 (Anton Paar, Germany) equipped with a wavelength of 658 nm, 40 mW single‐frequency laser diode.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "NP4 PEF nanoparticles",
+   "material": "poly(ethylene furanoate)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "173",
+   "quantity": "zeta potential",
+   "value": "-15",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "NP4\tPrecipitation\tPEF\tDMSO/ H2O\t—\t173\t-15\t3.30 mg/mL a || Hydrodynamic diameter (Dh; 0.3 nm-100 µm) and ζ‐potential were measured by Dynamic Light Scattering (DLS) and Electrophoretic Light Scattering (ELS), respectively, using a Litesizer 500 (Anton Paar, Germany) equipped with a wavelength of 658 nm, 40 mW single‐frequency laser diode.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "NP5 PEF nanoparticles",
+   "material": "poly(ethylene furanoate)",
+   "functionalisation": "Alexa 647 label",
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "123",
+   "quantity": "zeta potential",
+   "value": "-13",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "NP5\tPrecipitation\tPEF\tDMSO/ H2O\tAlexa 647\t123\t-13\t5.88 mg/mL a || Hydrodynamic diameter (Dh; 0.3 nm-100 µm) and ζ‐potential were measured by Dynamic Light Scattering (DLS) and Electrophoretic Light Scattering (ELS), respectively, using a Litesizer 500 (Anton Paar, Germany) equipped with a wavelength of 658 nm, 40 mW single‐frequency laser diode.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "NP6 PEF nanoparticles",
+   "material": "poly(ethylene furanoate)",
+   "functionalisation": "Alexa 647 label",
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "209",
+   "quantity": "zeta potential",
+   "value": "-12",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "NP6\tPrecipitation\tPEF\tDMSO/ H2O\tAlexa 647\t209\t-12\t4.70 mg/mL a || Hydrodynamic diameter (Dh; 0.3 nm-100 µm) and ζ‐potential were measured by Dynamic Light Scattering (DLS) and Electrophoretic Light Scattering (ELS), respectively, using a Litesizer 500 (Anton Paar, Germany) equipped with a wavelength of 658 nm, 40 mW single‐frequency laser diode.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "NP7 PET nanoparticles",
+   "material": "poly(ethylene terephthalate)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "145",
+   "quantity": "zeta potential",
+   "value": "-35",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "NP7\tDispersion\tPET\tAcetone/ H2O\t—\t145\t-35\t0.44 mg/mL || Hydrodynamic diameter (Dh; 0.3 nm-100 µm) and ζ‐potential were measured by Dynamic Light Scattering (DLS) and Electrophoretic Light Scattering (ELS), respectively, using a Litesizer 500 (Anton Paar, Germany) equipped with a wavelength of 658 nm, 40 mW single‐frequency laser diode.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "NP8 PET nanoparticles",
+   "material": "poly(ethylene terephthalate)",
+   "functionalisation": "Alexa 633 label",
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "160",
+   "quantity": "zeta potential",
+   "value": "-5",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "NP8\tPrecipitation\tPET\tDMSO/ H2O\tAlexa 633\t160\t-5\t5.0 mg/mL a || Hydrodynamic diameter (Dh; 0.3 nm-100 µm) and ζ‐potential were measured by Dynamic Light Scattering (DLS) and Electrophoretic Light Scattering (ELS), respectively, using a Litesizer 500 (Anton Paar, Germany) equipped with a wavelength of 658 nm, 40 mW single‐frequency laser diode.",
+   "evidence_location": "Table 1"
+  }
+ ]
+}

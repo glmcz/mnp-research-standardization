@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "non-functionalized PS NPs",
+   "material": "polystyrene",
+   "functionalisation": "unfunctionalized",
+   "supplier": "Bangs Laboratories Inc. (Fishers, IN, USA)",
+   "size_nominal_nm": "20 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-51 ± 5",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "MilliQ water (mQW)",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern, Malvern, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PS NPs showed a negative surface charge in mQW (-51 ± 5 mV) (Table 1) and similar values were also measured in those suspended in ChE reaction buffer either alone (-49.1 ± 1.78 mV) and with BPA at T0 (-50.8 ± 1.72 mV) and after 15 min of incubation T15 (-47.3 ± 1.57 mV). || The measurements were carried out using 50 µg/mL of PS NP and 0.69 mM of BPA using a Zetasizer Nano ZS90 (Malvern, Malvern, UK) equipped with the Zetasizer Nano Series software (Version 7.02).",
+   "evidence_location": "Results; Table 1"
+  },
+  {
+   "particle_name": "non-functionalized PS NPs",
+   "material": "polystyrene",
+   "functionalisation": "unfunctionalized",
+   "supplier": "Bangs Laboratories Inc. (Fishers, IN, USA)",
+   "size_nominal_nm": "20 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-49.1 ± 1.78",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "ChE reaction buffer (0.1 M Na2PO4, pH 7.2)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": "7.2",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern, Malvern, UK)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "PS NPs showed a negative surface charge in mQW (-51 ± 5 mV) (Table 1) and similar values were also measured in those suspended in ChE reaction buffer either alone (-49.1 ± 1.78 mV) and with BPA at T0 (-50.8 ± 1.72 mV) and after 15 min of incubation T15 (-47.3 ± 1.57 mV). || Here, the ζ-potential (mV) of PS NPs aliquot alone and combined with BPA in mQW and in the ChE reaction buffer (0.1 M Na2PO4, pH 7.2, Ellman et al. [28]) used for in vitro ChE analysis was measured to infer potential interaction between particles and BPA in the exposure media. || The measurements were carried out using 50 µg/mL of PS NP and 0.69 mM of BPA using a Zetasizer Nano ZS90 (Malvern, Malvern, UK) equipped with the Zetasizer Nano Series software (Version 7.02).",
+   "evidence_location": "Results; Table 1"
+  },
+  {
+   "particle_name": "non-functionalized PS NPs",
+   "material": "polystyrene",
+   "functionalisation": "unfunctionalized",
+   "supplier": "Bangs Laboratories Inc. (Fishers, IN, USA)",
+   "size_nominal_nm": "20 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-50.8 ± 1.72",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "ChE reaction buffer with 0.69 mM BPA, T0",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": "7.2",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern, Malvern, UK)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "PS NPs showed a negative surface charge in mQW (-51 ± 5 mV) (Table 1) and similar values were also measured in those suspended in ChE reaction buffer either alone (-49.1 ± 1.78 mV) and with BPA at T0 (-50.8 ± 1.72 mV) and after 15 min of incubation T15 (-47.3 ± 1.57 mV). || Here, the ζ-potential (mV) of PS NPs aliquot alone and combined with BPA in mQW and in the ChE reaction buffer (0.1 M Na2PO4, pH 7.2, Ellman et al. [28]) used for in vitro ChE analysis was measured to infer potential interaction between particles and BPA in the exposure media. || The measurements were carried out using 50 µg/mL of PS NP and 0.69 mM of BPA using a Zetasizer Nano ZS90 (Malvern, Malvern, UK) equipped with the Zetasizer Nano Series software (Version 7.02).",
+   "evidence_location": "Results; Table 1"
+  },
+  {
+   "particle_name": "non-functionalized PS NPs",
+   "material": "polystyrene",
+   "functionalisation": "unfunctionalized",
+   "supplier": "Bangs Laboratories Inc. (Fishers, IN, USA)",
+   "size_nominal_nm": "20 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-47.3 ± 1.57",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "ChE reaction buffer with 0.69 mM BPA, T15 (15 min incubation)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": "7.2",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern, Malvern, UK)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "PS NPs showed a negative surface charge in mQW (-51 ± 5 mV) (Table 1) and similar values were also measured in those suspended in ChE reaction buffer either alone (-49.1 ± 1.78 mV) and with BPA at T0 (-50.8 ± 1.72 mV) and after 15 min of incubation T15 (-47.3 ± 1.57 mV). || Here, the ζ-potential (mV) of PS NPs aliquot alone and combined with BPA in mQW and in the ChE reaction buffer (0.1 M Na2PO4, pH 7.2, Ellman et al. [28]) used for in vitro ChE analysis was measured to infer potential interaction between particles and BPA in the exposure media. || The measurements were carried out using 50 µg/mL of PS NP and 0.69 mM of BPA using a Zetasizer Nano ZS90 (Malvern, Malvern, UK) equipped with the Zetasizer Nano Series software (Version 7.02).",
+   "evidence_location": "Results; Table 1"
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+{"measurements":[
+{"particle_name":"PEVF (cleaned, 10x concentrated HDPE breakdown nanoplastics)","material":"polyethylene (HDPE)","functionalisation":"none (breakdown, oxidised)","supplier":null,"size_nominal_nm":null,"size_measured_nm":"103 nm","quantity":"zeta potential","value":"-10.9","unit":"mV","n":"3",
+"conditions":{"medium_text":"tap water","medium_class":"other","ionic_strength":null,"pH":null,"temperature":"25 °C","instrument":"Zetasizer Nano ZS, Malvern Instruments"},
+"medium_matches_exposure":null,
+"evidence_quote":"The concentration and cleaning of the PEVF fraction allowed for determining the apparent zeta potential for the particles in PEVF which is -10.9 mV with a standard deviation of 6.4 (Fig. S2). || Zeta potential measurements were performed in tap water at 25 °C using a Zetasizer Nano ZS instrument (Malvern Instruments, Worcestershire, UK). Measurements were repeated three times and averaged for three consecutive analyses of the same sample.",
+"evidence_location":"Results, Characterization, para 4; Methods, Characterization"}
+]}

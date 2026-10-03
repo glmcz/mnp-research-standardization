@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PSNPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "34.82 ± 6.35 nm",
+   "quantity": "zeta potential",
+   "value": "-11.87 ± 1.41",
+   "unit": "mV",
+   "n": "3",
+   "medium_matches_exposure": true,
+   "evidence_location": "3.1; Methods 2.2",
+   "evidence_quote": "The hydrodynamic diameter was 623.53 ± 141.18 nm (Figure S3), and the zeta potential was -11.87 ± 1.41 mV (Figure S4). || The hydrodynamic diameter and surface charge of 10 mg/L AgNPs, TiO2NPs, and PSNPs in BG11 medium were determined using a Zetasizer (Nano-ZS90, Malvern Panalytical, Malvern, UK). || The experiments were conducted at room temperature and the initial pH of the BG11 medium; the pH was not controlled after the addition of PECs (n = 3).",
+   "conditions": {
+    "medium_text": "BG11 medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "room temperature",
+    "instrument": "Zetasizer Nano-ZS90 (Malvern Panalytical)"
+   }
+  }
+ ]
+}

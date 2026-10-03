@@ -1,0 +1,12 @@
+{"measurements": [
+{"particle_name":"PET microplastics","material":"polyethylene terephthalate","functionalisation":null,"supplier":"Zhangmutou Suyuan Plastic Material Co., Ltd (Dongguan, China)","size_nominal_nm":null,"size_measured_nm":"approximately 6.32 μm","quantity":"zeta potential","value":"-28.8 ± 0.2","unit":"mV","n":null,
+"conditions":{"medium_text":null,"medium_class":"unreported","ionic_strength":null,"pH":null,"temperature":null,"instrument":null},
+"medium_matches_exposure":null,
+"evidence_quote":"The microplastics had a particle size of approximately 6.32 μm with a zeta potential of -28.8 ± 0.2 mV, and the nanoplastics were approximately 790 nm with a zeta potential of -18.5 ± 0.1 mV.",
+"evidence_location":"Results, Context 1"},
+{"particle_name":"PET nanoplastics","material":"polyethylene terephthalate","functionalisation":null,"supplier":"Zhangmutou Suyuan Plastic Material Co., Ltd (Dongguan, China)","size_nominal_nm":null,"size_measured_nm":"approximately 790 nm","quantity":"zeta potential","value":"-18.5 ± 0.1","unit":"mV","n":null,
+"conditions":{"medium_text":"sample solution diluted with deionized water","medium_class":"DI_water","ionic_strength":null,"pH":null,"temperature":null,"instrument":"Malvern Zetasizer (Nano-ZS90, Malvern, UK)"},
+"medium_matches_exposure":null,
+"evidence_quote":"The microplastics had a particle size of approximately 6.32 μm with a zeta potential of -28.8 ± 0.2 mV, and the nanoplastics were approximately 790 nm with a zeta potential of -18.5 ± 0.1 mV. || After the sample solution was diluted with deionized water, the average diameter was determined by a laser particle size analyzer (Mastersizer 2000, Malvern, UK) for microplastics. For nanoplastics, the particle size and zeta potential were measured by a Malvern Zetasizer (Nano-ZS90, Malvern, UK).",
+"evidence_location":"Results, Context 1; Methods"}
+]}

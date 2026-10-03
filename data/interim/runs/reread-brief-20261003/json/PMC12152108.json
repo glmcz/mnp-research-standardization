@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "in-house fabricated weathered NPs",
+   "material": "mixed plastic waste (PE, PP, PET, FEP, PS) or PS, UV/O3 weathered",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "120–350 nm (hydrodynamic)",
+   "quantity": "zeta potential",
+   "value": "+10–13 (±8)",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Wyatt Technology Mobius 305"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential (±1 standard deviation)+10–13 (±8)mV || 8. Dynamic light scattering (DLS) and zeta-sizer instrument (Wyatt Technology Corporation, model: Mobius 305)",
+   "evidence_location": "Table 1; Equipment list"
+  }
+ ]
+}

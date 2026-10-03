@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "1.0 μm PS MPs alone, pH 5, 5 mM NaCl",
+   "material": "polystyrene",
+   "functionalisation": "green fluorescent",
+   "supplier": "Tianjin Baseline Chromtech Research Centre",
+   "size_nominal_nm": "1.0 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "5 mM NaCl background solution",
+    "medium_class": "salt_solution",
+    "ionic_strength": "5 mM NaCl",
+    "pH": "5",
+    "temperature": null,
+    "instrument": "zeta potential analyzer 90 Plus (Brookhaven)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "This is because the lower zeta potentials of quartz sand and MP under acidic conditions lead to a weaker electrostatic repulsion between them (Table S1). || To explore the effect of pH on the migration of Cr(VI) and MPs in quartz sand media, the migration of single and dual systems at pH 5 and 7 were considered in a 5 mM NaCl background solution, respectively. || The mean hydrodynamic diameter and zeta potential of the plastic particles required for the experiments were obtained by dynamic light scattering (DLS) and electrophoretic mobility using a zeta potential analyzer (90 Plus, Brookhaven, GA, USA).",
+   "evidence_location": "Results 3 (values in Table S1, not shown)"
+  },
+  {
+   "particle_name": "1.0 μm PS MPs alone, pH 7, 5 mM NaCl",
+   "material": "polystyrene",
+   "functionalisation": "green fluorescent",
+   "supplier": "Tianjin Baseline Chromtech Research Centre",
+   "size_nominal_nm": "1.0 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "5 mM NaCl background solution",
+    "medium_class": "salt_solution",
+    "ionic_strength": "5 mM NaCl",
+    "pH": "7",
+    "temperature": null,
+    "instrument": "zeta potential analyzer 90 Plus (Brookhaven)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "This is because the lower zeta potentials of quartz sand and MP under acidic conditions lead to a weaker electrostatic repulsion between them (Table S1). || To explore the effect of pH on the migration of Cr(VI) and MPs in quartz sand media, the migration of single and dual systems at pH 5 and 7 were considered in a 5 mM NaCl background solution, respectively. || The mean hydrodynamic diameter and zeta potential of the plastic particles required for the experiments were obtained by dynamic light scattering (DLS) and electrophoretic mobility using a zeta potential analyzer (90 Plus, Brookhaven, GA, USA).",
+   "evidence_location": "Results 3 (values in Table S1, not shown)"
+  },
+  {
+   "particle_name": "1.0 μm PS MPs alone, IS 25 mM NaCl",
+   "material": "polystyrene",
+   "functionalisation": "green fluorescent",
+   "supplier": "Tianjin Baseline Chromtech Research Centre",
+   "size_nominal_nm": "1.0 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "NaCl as an electrolyte in suspension",
+    "medium_class": "salt_solution",
+    "ionic_strength": "IS = 25 mM",
+    "pH": null,
+    "temperature": null,
+    "instrument": "zeta potential analyzer 90 Plus (Brookhaven)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Additionally, the zeta potential of both microplastics and quartz sand decreased with increasing ionic strength IS (Table S1). || The effect of IS on the migration of MPs and Cr(VI) alone in a saturated quartz sand column was explored using NaCl as an electrolyte in suspension. || with the increase in IS, the breakthrough curve of MPs at IS = 25 mM is slightly lower than the breakthrough curve of MPs at IS = 5 mM (Figure S12a) || The mean hydrodynamic diameter and zeta potential of the plastic particles required for the experiments were obtained by dynamic light scattering (DLS) and electrophoretic mobility using a zeta potential analyzer (90 Plus, Brookhaven, GA, USA).",
+   "evidence_location": "Results 3 (values in Table S1, not shown)"
+  },
+  {
+   "particle_name": "1.0 μm PS MPs in presence of Cr(VI)",
+   "material": "polystyrene",
+   "functionalisation": "green fluorescent",
+   "supplier": "Tianjin Baseline Chromtech Research Centre",
+   "size_nominal_nm": "1.0 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "zeta potential analyzer 90 Plus (Brookhaven)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "From the perspective of MPs, the presence of Cr(VI) reduces the negative charge carried by the MPs (Table S1), which subsequently weakens the electrostatic repulsive forces between the MPs and the quartz surface. || The mean hydrodynamic diameter and zeta potential of the plastic particles required for the experiments were obtained by dynamic light scattering (DLS) and electrophoretic mobility using a zeta potential analyzer (90 Plus, Brookhaven, GA, USA).",
+   "evidence_location": "Results 3 (values in Table S1, not shown)"
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS NPs (TRITC fluorescent, Fluoro-Max R300)",
+   "material": "polystyrene",
+   "functionalisation": "TRITC fluorescent dye",
+   "supplier": "Thermo Scientific Chemicals",
+   "size_nominal_nm": "300 nm",
+   "size_measured_nm": "287.24 ± 1.82 nm (DLS Z-average); 297.04 ± 18.03 nm (SEM)",
+   "quantity": "zeta potential",
+   "value": "-0.82 ± 0.94",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Nano ZS (Malvern instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Dynamic light scattering (DLS) (Nano ZS, Malvern instruments) results show a Z-average size of 287.24 ± 1.82 nm, a polydispersity index (PDI) of 0.18 ± 0.04, and a Zeta potential of -0.82 ± 0.94 mV, respectively (mean ± SD).",
+   "evidence_location": "Methods 2.1"
+  }
+ ]
+}

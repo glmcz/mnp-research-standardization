@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "unlabeled nPE",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Sumitomo Seika Chemicals (PE source particles)",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "milliQ containing 0.05% tween",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-S (Malvern Panalytical) or ELSZneoSE (Otsuka Electronics)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "(F) Zeta potential of unlabeled polyethylene nanoplastics (nPE), green fluorescent labeled nPE (1 mg mL-1) in milliQ containing 0.05% tween are shown. || Images of the particles were captured using a JSM-F100 scanning electron microscope (SEM) (JSM-F100, JEOL Ltd., Tokyo, Japan) or S-4800 SEM (HITACHI, Tokyo, Japan), while the particle size distribution was measured using Zetasizer Nano-S (Malvern Panalytical, Worcestershire, UK) or ELSZneoSE (Otsuka Electronics, Osaka, Japan).",
+   "evidence_location": "Fig. 1F caption"
+  },
+  {
+   "particle_name": "Green nPE",
+   "material": "polyethylene",
+   "functionalisation": "green Qdot-labeled",
+   "supplier": "Sumitomo Seika Chemicals (PE source particles)",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "milliQ containing 0.05% tween",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-S (Malvern Panalytical) or ELSZneoSE (Otsuka Electronics)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "(F) Zeta potential of unlabeled polyethylene nanoplastics (nPE), green fluorescent labeled nPE (1 mg mL-1) in milliQ containing 0.05% tween are shown. || Images of the particles were captured using a JSM-F100 scanning electron microscope (SEM) (JSM-F100, JEOL Ltd., Tokyo, Japan) or S-4800 SEM (HITACHI, Tokyo, Japan), while the particle size distribution was measured using Zetasizer Nano-S (Malvern Panalytical, Worcestershire, UK) or ELSZneoSE (Otsuka Electronics, Osaka, Japan).",
+   "evidence_location": "Fig. 1F caption"
+  },
+  {
+   "particle_name": "Red d-nPE",
+   "material": "polyethylene",
+   "functionalisation": "red Qdot-labeled, degraded",
+   "supplier": "Sumitomo Seika Chemicals (PE source particles)",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "milliQ containing 0.05% tween",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-S (Malvern Panalytical) or ELSZneoSE (Otsuka Electronics)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "(E) Zeta potential of Red d-nPE (1 mg mL-1) in milliQ containing 0.05% tween. || Images of the particles were captured using a JSM-F100 scanning electron microscope (SEM) (JSM-F100, JEOL Ltd., Tokyo, Japan) or S-4800 SEM (HITACHI, Tokyo, Japan), while the particle size distribution was measured using Zetasizer Nano-S (Malvern Panalytical, Worcestershire, UK) or ELSZneoSE (Otsuka Electronics, Osaka, Japan).",
+   "evidence_location": "Fig. 6E caption"
+  }
+ ]
+}

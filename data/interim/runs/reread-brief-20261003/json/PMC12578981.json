@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "Rhodamine-labelled PLA-NPs",
+   "material": "polylactic acid",
+   "functionalisation": null,
+   "supplier": "Resomer R 202, Evonik (PLA); NPs produced in-house",
+   "size_nominal_nm": null,
+   "size_measured_nm": "275 ± 75 nm",
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "three times",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25˚C",
+    "instrument": "Nano ZS Malvern Zeta Sizer (model 1000HSa, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "To evaluate the stability of the PLA-NPs suspensions, NP size, distributions, and Zeta potential were determined using the dynamic light scattering (DLS) or the electrophoretic light scattering method (ELS) techniques with a Nano ZS Malvern Zeta Sizer (model 1000HSa, UK) at 25˚C.",
+   "evidence_location": "Methods, PLA-NPs characterization"
+  }
+ ]
+}

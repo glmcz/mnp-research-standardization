@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-MPs (normal and fluorescent)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Baseline ChromTech Research Center (Tianjin, China)",
+   "size_nominal_nm": "1 μm",
+   "size_measured_nm": "1.15 ± 0.037 μm and 1.02 ± 0.041 μm",
+   "quantity": "zeta potential",
+   "value": "-47.9 mV to -25.2 mv",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "nano laser particle sizer (Malvern, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potential values ranged from -47.9 mV to -25.2 mv (zeta potential absolute value ≥ 25 mV), indicating that the PS-MPs were stable and had larger zeta potentials in the medium, suggesting that they tend to aggregate in the medium (Table S2). || The particle size and zeta potential were determined using a nano laser particle sizer (Malvern, UK).",
+   "evidence_location": "Results, Bioaccumulation and characterization of PS-MPs; Methods"
+  }
+ ]
+}

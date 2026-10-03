@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS NPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "HugeBio, Shanghai",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle dispersity and zeta potential were measured using a Litesizer 500 (Anton Paar).",
+   "evidence_location": "Methods, Apparatus"
+  },
+  {
+   "particle_name": "PLA NPs",
+   "material": "polylactic acid",
+   "functionalisation": null,
+   "supplier": "HugeBio, Shanghai",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle dispersity and zeta potential were measured using a Litesizer 500 (Anton Paar).",
+   "evidence_location": "Methods, Apparatus"
+  },
+  {
+   "particle_name": "PS-NH2 NPs",
+   "material": "polystyrene",
+   "functionalisation": "amine (positively charged)",
+   "supplier": "HugeBio, Shanghai",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle dispersity and zeta potential were measured using a Litesizer 500 (Anton Paar).",
+   "evidence_location": "Methods, Apparatus"
+  },
+  {
+   "particle_name": "PS-SO3H NPs",
+   "material": "polystyrene",
+   "functionalisation": "sulfonate (negatively charged)",
+   "supplier": "HugeBio, Shanghai",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle dispersity and zeta potential were measured using a Litesizer 500 (Anton Paar).",
+   "evidence_location": "Methods, Apparatus"
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-NPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Beijing Zhongkeleiming Science and Technology Co., Ltd.",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": "48.21 ± 0.026 nm (TEM/SEM)",
+   "quantity": "zeta potential",
+   "value": "-15.9 ± 6.63",
+   "unit": "MV",
+   "n": null,
+   "conditions": {
+    "medium_text": "ultrapure water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Furthermore, the zeta-potential (-15.9 ± 6.63 MV) indicated that the PS-NPs were slightly negatively charged to facilitate their suspension in ultrapure water (Supplementary Fig. 1 C). || Hydrodynamic diameters and zeta potentials were measured in ultrapure water using a Zetasizer Nano ZS instrument (Malvern Instruments, Malvern, UK).",
+   "evidence_location": "Results, Characterization of PS-NPs"
+  }
+ ]
+}

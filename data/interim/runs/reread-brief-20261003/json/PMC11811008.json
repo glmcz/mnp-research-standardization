@@ -1,0 +1,7 @@
+{"measurements": [
+{"particle_name":"PS microspheres","material":"polystyrene","functionalisation":null,"supplier":"Tianjin Besler Chromatography Technology Research Centre (Tianjin, China)","size_nominal_nm":"100 nm","size_measured_nm":null,"quantity":"zeta potential","value":null,"unit":"mV","n":null,
+"conditions":{"medium_text":null,"medium_class":"unreported","ionic_strength":null,"pH":null,"temperature":null,"instrument":"Malvern Zetasizer Nano ZSE"},
+"medium_matches_exposure":null,
+"evidence_quote":"Zeta potential measurements indicated that the PS particles had a high zeta potential, suggesting good stability (Supplementary Table 1)22. || The PS surface zeta potential was detected using a Malvern Zetasizer Nano ZSE.",
+"evidence_location":"Results, PS characterisation; Methods, Characterisation of MPs"}
+]}

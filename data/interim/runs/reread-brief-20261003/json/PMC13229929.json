@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "Pd-NPs",
+   "material": "polyacrylonitrile core with polystyrene shell, Pd-labelled",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "210 ± 19 nm",
+   "quantity": "zeta potential",
+   "value": "-52.83 ± 2.23",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Methods, para 1",
+   "evidence_quote": "The initial hydrodynamic diameter and zeta-potential of the Pd-NPs were 210 ± 19 nm and -52.83 ± 2.23 mV, respectively, as determined by dynamic light scattering and electrophoretic mobility measurements using the Smoluchowski model (Zetasizer Nano, Malvern Panalytical).",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano, Malvern Panalytical"
+   }
+  },
+  {
+   "particle_name": "Pd-NPs",
+   "material": "polyacrylonitrile core with polystyrene shell, Pd-labelled",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "234 ± 7 nm",
+   "quantity": "zeta potential",
+   "value": "-40.75 ± 0.49",
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Methods, para 2",
+   "evidence_quote": "In artificial freshwater, the Pd-NPs hydrodynamic diameter was 234 ± 7 nm, and the zeta-potential was -40.75 ± 0.49. || The artificial soft fresh water with an ionic strength of 11.4 mmol L-1 was prepared according to US EPA guidelines",
+   "conditions": {
+    "medium_text": "artificial soft freshwater",
+    "medium_class": "environmental_water",
+    "ionic_strength": "11.4 mmol L-1",
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

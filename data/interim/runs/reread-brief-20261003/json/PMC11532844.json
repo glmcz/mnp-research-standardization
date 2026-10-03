@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PE-MPs in DW",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Cospheric (CPMS-0.96 1–4 μm)",
+   "size_nominal_nm": "1–4 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-50,1",
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "DW",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": "6,5",
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Nano ZS90 (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "DW\t6,5\t-50,1\t0,01 || suspensions (0.05 mg/mL) were prepared in different media: mQ water, NH3 15 % (v/v) aqueous solution and HNO3 (0,026 M) aqueous solution. || the concentration of PE MPs was set at 0,05 mg/mL and temperature at 25 °C. || using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK)",
+   "evidence_location": "Table 1B"
+  },
+  {
+   "particle_name": "PE-MPs in HNO3",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Cospheric (CPMS-0.96 1–4 μm)",
+   "size_nominal_nm": "1–4 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "12",
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "HNO3 aqueous solution (0,026 M)",
+    "medium_class": "other",
+    "ionic_strength": "HNO3 (0,026 M) aqueous solution",
+    "pH": "1,8",
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Nano ZS90 (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "HNO3\t1,8\t12\t10,9 || suspensions (0.05 mg/mL) were prepared in different media: mQ water, NH3 15 % (v/v) aqueous solution and HNO3 (0,026 M) aqueous solution. || the concentration of PE MPs was set at 0,05 mg/mL and temperature at 25 °C. || using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK)",
+   "evidence_location": "Table 1B"
+  },
+  {
+   "particle_name": "PE-MPs in NH3",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Cospheric (CPMS-0.96 1–4 μm)",
+   "size_nominal_nm": "1–4 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-54,3",
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "NH3 15 % (v/v) aqueous solution",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": "12,5",
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Nano ZS90 (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "NH3\t12,5\t-54,3\t1,5 || suspensions (0.05 mg/mL) were prepared in different media: mQ water, NH3 15 % (v/v) aqueous solution and HNO3 (0,026 M) aqueous solution. || the concentration of PE MPs was set at 0,05 mg/mL and temperature at 25 °C. || using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK)",
+   "evidence_location": "Table 1B"
+  }
+ ]
+}

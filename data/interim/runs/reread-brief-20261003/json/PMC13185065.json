@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "fluorescently labeled (Cy5) polystyrene MPs",
+   "material": "polystyrene",
+   "functionalisation": "Cy5 dye label (covalent)",
+   "supplier": "Zhichuan Technology Co., Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "2.02 ± 0.13 μm",
+   "quantity": "zeta potential",
+   "value": "-20",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "water",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer (Nano series, Malvern Instruments, U.K.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potentials of MPs were approximately -20 mV in water, PFA solution, and PSF solution. In the SPP medium, it increased to -10 mV. || The ζ-potential and hydrodynamic diameter of the MPs were measured using a Zetasizer (Nano series, Malvern Instruments, U.K.). || Additionally, the stability of the Cy5 dye label was evaluated by incubating the MPs in sterile proteose peptone-based (SPP) medium (2% (w/v) proteose peptone, 0.1% (w/v) yeast extract, 0.2% (w/v) glucose, 0.003% (w/v) ferric citrate, and 1% (v/v) penicillin-streptomycin), PFA solution, and phagolysosomal simulant fluid (PSF) (see Table S1 for composition), respectively, during the typical exposure period.",
+   "evidence_location": "Results, Characterization of Fluorescently Labeled MPs; Methods, Characterization of MPs"
+  },
+  {
+   "particle_name": "fluorescently labeled (Cy5) polystyrene MPs",
+   "material": "polystyrene",
+   "functionalisation": "Cy5 dye label (covalent)",
+   "supplier": "Zhichuan Technology Co., Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "2.02 ± 0.13 μm",
+   "quantity": "zeta potential",
+   "value": "-20",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "PFA solution",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer (Nano series, Malvern Instruments, U.K.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potentials of MPs were approximately -20 mV in water, PFA solution, and PSF solution. In the SPP medium, it increased to -10 mV. || The ζ-potential and hydrodynamic diameter of the MPs were measured using a Zetasizer (Nano series, Malvern Instruments, U.K.). || Additionally, the stability of the Cy5 dye label was evaluated by incubating the MPs in sterile proteose peptone-based (SPP) medium (2% (w/v) proteose peptone, 0.1% (w/v) yeast extract, 0.2% (w/v) glucose, 0.003% (w/v) ferric citrate, and 1% (v/v) penicillin-streptomycin), PFA solution, and phagolysosomal simulant fluid (PSF) (see Table S1 for composition), respectively, during the typical exposure period.",
+   "evidence_location": "Results, Characterization of Fluorescently Labeled MPs; Methods, Characterization of MPs"
+  },
+  {
+   "particle_name": "fluorescently labeled (Cy5) polystyrene MPs",
+   "material": "polystyrene",
+   "functionalisation": "Cy5 dye label (covalent)",
+   "supplier": "Zhichuan Technology Co., Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "2.02 ± 0.13 μm",
+   "quantity": "zeta potential",
+   "value": "-20",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "PSF solution (phagolysosomal simulant fluid)",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer (Nano series, Malvern Instruments, U.K.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potentials of MPs were approximately -20 mV in water, PFA solution, and PSF solution. In the SPP medium, it increased to -10 mV. || The ζ-potential and hydrodynamic diameter of the MPs were measured using a Zetasizer (Nano series, Malvern Instruments, U.K.). || Additionally, the stability of the Cy5 dye label was evaluated by incubating the MPs in sterile proteose peptone-based (SPP) medium (2% (w/v) proteose peptone, 0.1% (w/v) yeast extract, 0.2% (w/v) glucose, 0.003% (w/v) ferric citrate, and 1% (v/v) penicillin-streptomycin), PFA solution, and phagolysosomal simulant fluid (PSF) (see Table S1 for composition), respectively, during the typical exposure period.",
+   "evidence_location": "Results, Characterization of Fluorescently Labeled MPs; Methods, Characterization of MPs"
+  },
+  {
+   "particle_name": "fluorescently labeled (Cy5) polystyrene MPs",
+   "material": "polystyrene",
+   "functionalisation": "Cy5 dye label (covalent)",
+   "supplier": "Zhichuan Technology Co., Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "2.02 ± 0.13 μm",
+   "quantity": "zeta potential",
+   "value": "-10",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "SPP medium (sterile proteose peptone-based medium)",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer (Nano series, Malvern Instruments, U.K.)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "The zeta potentials of MPs were approximately -20 mV in water, PFA solution, and PSF solution. In the SPP medium, it increased to -10 mV. || The ζ-potential and hydrodynamic diameter of the MPs were measured using a Zetasizer (Nano series, Malvern Instruments, U.K.). || Additionally, the stability of the Cy5 dye label was evaluated by incubating the MPs in sterile proteose peptone-based (SPP) medium (2% (w/v) proteose peptone, 0.1% (w/v) yeast extract, 0.2% (w/v) glucose, 0.003% (w/v) ferric citrate, and 1% (v/v) penicillin-streptomycin), PFA solution, and phagolysosomal simulant fluid (PSF) (see Table S1 for composition), respectively, during the typical exposure period.",
+   "evidence_location": "Results, Characterization of Fluorescently Labeled MPs; Methods, Characterization of MPs"
+  }
+ ]
+}

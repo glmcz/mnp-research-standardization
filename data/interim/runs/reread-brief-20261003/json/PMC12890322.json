@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS",
+   "material": "polystyrene",
+   "functionalisation": "non-functionalized",
+   "supplier": "Spherotech Inc., Lake Forest, IL, USA",
+   "size_nominal_nm": "1060 nm",
+   "size_measured_nm": "1112.0 ± 27.6 nm",
+   "quantity": "zeta potential",
+   "value": "-30.2 ±0.7",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results 'Physicochemical characterization'; Methods",
+   "evidence_quote": "Zeta potential analysis revealed surface charges of -30.2 ±0.7 mV for PS, -25.1 ± 0.4 mV for PS-NH2, and -49.7 ± 0.2 mV for PS-COOH (Fig. 1b), indicating differences in surface electrostatic properties depending on functionalization. || All samples were loaded into flow cells (Otsuka Electronics, Osaka, Japan), and their surface charge and hydrodynamic diameter were determined using a zeta potential and particle size analyzer (ELS-Z2, Otsuka Electronics, Osaka, Japan) based on laser Doppler velocimetry.",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ELS-Z2 (Otsuka Electronics, Osaka, Japan)"
+   }
+  },
+  {
+   "particle_name": "PS-NH2",
+   "material": "polystyrene",
+   "functionalisation": "amine",
+   "supplier": "Spherotech Inc., Lake Forest, IL, USA",
+   "size_nominal_nm": "1020 nm",
+   "size_measured_nm": "1315.3 ± 58.3 nm",
+   "quantity": "zeta potential",
+   "value": "-25.1 ± 0.4",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results 'Physicochemical characterization'; Methods",
+   "evidence_quote": "Zeta potential analysis revealed surface charges of -30.2 ±0.7 mV for PS, -25.1 ± 0.4 mV for PS-NH2, and -49.7 ± 0.2 mV for PS-COOH (Fig. 1b), indicating differences in surface electrostatic properties depending on functionalization. || All samples were loaded into flow cells (Otsuka Electronics, Osaka, Japan), and their surface charge and hydrodynamic diameter were determined using a zeta potential and particle size analyzer (ELS-Z2, Otsuka Electronics, Osaka, Japan) based on laser Doppler velocimetry.",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ELS-Z2 (Otsuka Electronics, Osaka, Japan)"
+   }
+  },
+  {
+   "particle_name": "PS-COOH",
+   "material": "polystyrene",
+   "functionalisation": "carboxyl",
+   "supplier": "Spherotech Inc., Lake Forest, IL, USA",
+   "size_nominal_nm": "1040 nm",
+   "size_measured_nm": "1167.1 ± 41.7 nm",
+   "quantity": "zeta potential",
+   "value": "-49.7 ± 0.2",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results 'Physicochemical characterization'; Methods",
+   "evidence_quote": "Zeta potential analysis revealed surface charges of -30.2 ±0.7 mV for PS, -25.1 ± 0.4 mV for PS-NH2, and -49.7 ± 0.2 mV for PS-COOH (Fig. 1b), indicating differences in surface electrostatic properties depending on functionalization. || All samples were loaded into flow cells (Otsuka Electronics, Osaka, Japan), and their surface charge and hydrodynamic diameter were determined using a zeta potential and particle size analyzer (ELS-Z2, Otsuka Electronics, Osaka, Japan) based on laser Doppler velocimetry.",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ELS-Z2 (Otsuka Electronics, Osaka, Japan)"
+   }
+  }
+ ]
+}

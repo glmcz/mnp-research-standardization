@@ -1,0 +1,50 @@
+{
+"measurements": [
+{
+"particle_name": "161 nm PS particles",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "161 ± 15",
+"quantity": "zeta potential",
+"value": "-45.1 ± 2.3",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "diluted suspensions in MilliQ water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": "RT",
+"instrument": "90Plus Particle Size Analyzer (Brookhaven Instruments) with PALS"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "161 nm PS particles\t161 ± 15\t192 ± 4\t-45.1 ± 2.3 || Hydrodynamic diameters and zeta potentials of the particles were measured using a 90Plus Particle Size Analyzer (Brookhaven Instruments Corporation, Holtsville, NY, USA) with phase-amplitude light scattering (PALS) for zeta-potential determination (Brookhaven Instruments, Holtsville, NY, USA) at an angle of 90° with a 40 mW diode laser, λ = 640 nm. The analysis was carried out in diluted suspensions in MilliQ water at RT.",
+"evidence_location": "Table 1; Methods 2.4"
+},
+{
+"particle_name": "33 nm PS particles",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "33 ± 6",
+"quantity": "zeta potential",
+"value": "-16.9 ± 1.8",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "diluted suspensions in MilliQ water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": "RT",
+"instrument": "90Plus Particle Size Analyzer (Brookhaven Instruments) with PALS"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "33 nm PS particles\t33 ± 6\t40 ± 1\t-16.9 ± 1.8 || Hydrodynamic diameters and zeta potentials of the particles were measured using a 90Plus Particle Size Analyzer (Brookhaven Instruments Corporation, Holtsville, NY, USA) with phase-amplitude light scattering (PALS) for zeta-potential determination (Brookhaven Instruments, Holtsville, NY, USA) at an angle of 90° with a 40 mW diode laser, λ = 640 nm. The analysis was carried out in diluted suspensions in MilliQ water at RT.",
+"evidence_location": "Table 1; Methods 2.4"
+}
+]
+}

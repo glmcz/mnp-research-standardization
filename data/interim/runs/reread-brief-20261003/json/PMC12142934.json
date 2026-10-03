@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-NPs (fluorescent and non-fluorescent)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Bangs Laboratories",
+   "size_nominal_nm": "50 ± 5 nm",
+   "size_measured_nm": "approximately 45–68 nm (Dh)",
+   "quantity": "zeta potential",
+   "value": "near -30",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "Milli-Q water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern, UK)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Both the florescent and non-florescent PS-NPs were spherical monodisperse nanoparticles, which were colloidally stable in both the Milli-Q water and DMEN/F12 medium (Fig. S1). || They had hydrodynamic diameters (Dh) of approximately 45–68 nm and negative ζ potential values near -30 mV. || The PS-NPs were prepared in the DMEM/F12 cell culture medium (C11330500BT, Gibco, USA) for intervening the MN9D cells and Milli-Q water for mice gavage. || The hydrodynamic diameters (Dh) and zeta (ζ) potentials of PS-NPs in these two suspensions were characterized using the Zetasizer Nano ZS90 (Malvern, UK) (Fig. S1), as described in Text S1.1.",
+   "evidence_location": "Results para 1; Methods, Preparation and characterization of PS-NPs"
+  },
+  {
+   "particle_name": "PS-NPs (fluorescent and non-fluorescent)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Bangs Laboratories",
+   "size_nominal_nm": "50 ± 5 nm",
+   "size_measured_nm": "approximately 45–68 nm (Dh)",
+   "quantity": "zeta potential",
+   "value": "near -30",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "DMEM/F12 cell culture medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern, UK)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Both the florescent and non-florescent PS-NPs were spherical monodisperse nanoparticles, which were colloidally stable in both the Milli-Q water and DMEN/F12 medium (Fig. S1). || They had hydrodynamic diameters (Dh) of approximately 45–68 nm and negative ζ potential values near -30 mV. || The PS-NPs were prepared in the DMEM/F12 cell culture medium (C11330500BT, Gibco, USA) for intervening the MN9D cells and Milli-Q water for mice gavage. || The hydrodynamic diameters (Dh) and zeta (ζ) potentials of PS-NPs in these two suspensions were characterized using the Zetasizer Nano ZS90 (Malvern, UK) (Fig. S1), as described in Text S1.1.",
+   "evidence_location": "Results para 1; Methods, Preparation and characterization of PS-NPs"
+  }
+ ]
+}

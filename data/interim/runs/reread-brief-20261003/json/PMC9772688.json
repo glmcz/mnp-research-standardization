@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS MPs (0.1 µm)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Tianjin Baseline Chromtech Research Centre, China",
+   "size_nominal_nm": "0.1 µm",
+   "size_measured_nm": "182.46 (± 74.34)",
+   "quantity": "zeta potential",
+   "value": "-13.33 (± 0.61)",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "ultrapure water (1 mg/L)",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano instrument (1000S, Malvern Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "They were stable in ultrapure water (1 mg/L) according to their average hydrodynamic diameter of 182.46 (± 74.34) and zeta potential of -13.33 (± 0.61) mV. || The hydrodynamic diameters and zeta potentials of the PS MPs and/or Cu(OH)2 nanowires were determined with a Zetasizer Nano instrument (1000S, Malvern Instruments, Ltd., UK).",
+   "evidence_location": "3.1; Methods 2.1"
+  }
+ ]
+}

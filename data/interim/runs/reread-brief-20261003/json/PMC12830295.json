@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Base Line Chrom Tech Research Centre (Tianjin, China)",
+   "size_nominal_nm": "80 nm",
+   "size_measured_nm": "110.3 ± 2.5 nm",
+   "quantity": "zeta potential",
+   "value": "-18.0 ± 0.26",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The Mix also showed significant increases in both hydrodynamic diameter (from 110.3 ± 2.5 nm to 118.7 ± 2.1 nm; P < 0.05) and zeta potential (from -18.0 ± 0.26 mV to -15.3 ± 1.45 mV; P < 0.05) relative to PS (Supplementary Fig. S1c).",
+   "evidence_location": "Results, Context 1"
+  },
+  {
+   "particle_name": "PS + 6PPD (Mix)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Base Line Chrom Tech Research Centre (Tianjin, China)",
+   "size_nominal_nm": "80 nm",
+   "size_measured_nm": "118.7 ± 2.1 nm",
+   "quantity": "zeta potential",
+   "value": "-15.3 ± 1.45",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "6PPD water solution",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The Mix also showed significant increases in both hydrodynamic diameter (from 110.3 ± 2.5 nm to 118.7 ± 2.1 nm; P < 0.05) and zeta potential (from -18.0 ± 0.26 mV to -15.3 ± 1.45 mV; P < 0.05) relative to PS (Supplementary Fig. S1c).",
+   "evidence_location": "Results, Context 1"
+  }
+ ]
+}

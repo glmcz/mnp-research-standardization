@@ -1,0 +1,73 @@
+{
+  "measurements": [
+    {
+      "particle_name": "fluorescent nPS",
+      "material": "polystyrene",
+      "functionalisation": null,
+      "supplier": "Bangs Laboratories, Inc.",
+      "size_nominal_nm": "51 nm",
+      "size_measured_nm": "60.39 nm",
+      "quantity": "zeta potential",
+      "value": "-42.1",
+      "unit": "mV",
+      "n": null,
+      "conditions": {
+        "medium_text": "distilled water (DW)",
+        "medium_class": "DI_water",
+        "ionic_strength": null,
+        "pH": null,
+        "temperature": null,
+        "instrument": "Zetasizer Nano ZS, Malvern Instruments, UK"
+      },
+      "medium_matches_exposure": false,
+      "evidence_quote": "ζ-Potentials of nPS in each medium were -42.1, -17.4, and -14.1 mV in DW, MHW, and TAP, respectively. || Average diameters of nPS particles were 60.39, 57.45, and 57.29 nm in distilled water (DW), moderately hard water (MHW), and tris-acetate-phosphate medium (TAP), respectively. || ζ-potentials and hydrodynamic diameter of nPS were measured via the dynamic light-scattering technique (Zetasizer Nano ZS, Malvern Instruments, UK) in distilled water (DW), moderately hard water (MHW; combinations of magnesium sulfate, sodium bicarbonate, potassium chloride, and hydrated calcium sulfate)59, and tris-acetate-phosphate medium (TAP; combinations of TAP salts, phosphate solution, and Hunter’s trace elements: zinc, boron, manganese, cobalt, copper, molybdenum, and iron)60.",
+      "evidence_location": "Results, para 3; Methods, nPS"
+    },
+    {
+      "particle_name": "fluorescent nPS",
+      "material": "polystyrene",
+      "functionalisation": null,
+      "supplier": "Bangs Laboratories, Inc.",
+      "size_nominal_nm": "51 nm",
+      "size_measured_nm": "57.45 nm",
+      "quantity": "zeta potential",
+      "value": "-17.4",
+      "unit": "mV",
+      "n": null,
+      "conditions": {
+        "medium_text": "moderately hard water (MHW; combinations of magnesium sulfate, sodium bicarbonate, potassium chloride, and hydrated calcium sulfate)",
+        "medium_class": "salt_solution",
+        "ionic_strength": null,
+        "pH": null,
+        "temperature": null,
+        "instrument": "Zetasizer Nano ZS, Malvern Instruments, UK"
+      },
+      "medium_matches_exposure": true,
+      "evidence_quote": "ζ-Potentials of nPS in each medium were -42.1, -17.4, and -14.1 mV in DW, MHW, and TAP, respectively. || Average diameters of nPS particles were 60.39, 57.45, and 57.29 nm in distilled water (DW), moderately hard water (MHW), and tris-acetate-phosphate medium (TAP), respectively. || ζ-potentials and hydrodynamic diameter of nPS were measured via the dynamic light-scattering technique (Zetasizer Nano ZS, Malvern Instruments, UK) in distilled water (DW), moderately hard water (MHW; combinations of magnesium sulfate, sodium bicarbonate, potassium chloride, and hydrated calcium sulfate)59, and tris-acetate-phosphate medium (TAP; combinations of TAP salts, phosphate solution, and Hunter’s trace elements: zinc, boron, manganese, cobalt, copper, molybdenum, and iron)60.",
+      "evidence_location": "Results, para 3; Methods, nPS"
+    },
+    {
+      "particle_name": "fluorescent nPS",
+      "material": "polystyrene",
+      "functionalisation": null,
+      "supplier": "Bangs Laboratories, Inc.",
+      "size_nominal_nm": "51 nm",
+      "size_measured_nm": "57.29 nm",
+      "quantity": "zeta potential",
+      "value": "-14.1",
+      "unit": "mV",
+      "n": null,
+      "conditions": {
+        "medium_text": "tris-acetate-phosphate medium (TAP; combinations of TAP salts, phosphate solution, and Hunter’s trace elements)",
+        "medium_class": "culture_medium",
+        "ionic_strength": null,
+        "pH": null,
+        "temperature": null,
+        "instrument": "Zetasizer Nano ZS, Malvern Instruments, UK"
+      },
+      "medium_matches_exposure": true,
+      "evidence_quote": "ζ-Potentials of nPS in each medium were -42.1, -17.4, and -14.1 mV in DW, MHW, and TAP, respectively. || Average diameters of nPS particles were 60.39, 57.45, and 57.29 nm in distilled water (DW), moderately hard water (MHW), and tris-acetate-phosphate medium (TAP), respectively. || ζ-potentials and hydrodynamic diameter of nPS were measured via the dynamic light-scattering technique (Zetasizer Nano ZS, Malvern Instruments, UK) in distilled water (DW), moderately hard water (MHW; combinations of magnesium sulfate, sodium bicarbonate, potassium chloride, and hydrated calcium sulfate)59, and tris-acetate-phosphate medium (TAP; combinations of TAP salts, phosphate solution, and Hunter’s trace elements: zinc, boron, manganese, cobalt, copper, molybdenum, and iron)60.",
+      "evidence_location": "Results, para 3; Methods, nPS"
+    }
+  ]
+}

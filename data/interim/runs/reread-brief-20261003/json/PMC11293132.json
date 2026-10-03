@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-NPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Beijing Zhongkeleiming DaoJin Technology Co., Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "about 25 nm",
+   "quantity": "zeta potential",
+   "value": "-30",
+   "unit": "millivolts",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 ℃",
+    "instrument": "ZetaPLUS (Brookhaven)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "During this study, the size and zeta potential of the PS-NPs were meticulously measured, revealing that these NPs consistently maintained a spherical shape with an average diameter of about 25 nm and exhibited a zeta potential of -30 millivolts, as depicted in Fig. S1. || For the determination of the PS-NPs zeta potential and size distribution, a Zeta potential and particle size analyzer (ZetaPLUS) was utilized, with the analysis conducted in Brookhaven, New York City, NY, USA, under controlled conditions at 25 ℃.",
+   "evidence_location": "Results; Methods Analysis of PS-NPs properties"
+  }
+ ]
+}

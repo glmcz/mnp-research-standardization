@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-NP",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": "Polysciences",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": "2132 ± 90.86 nm",
+   "quantity": "zeta potential",
+   "value": "-7.49 ± 1.12",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "tertiary distilled water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ELSZ-2000ZS, Otsuka Electronics"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "was -7.49 ± 1.12 mV [54] || Additionally, particle size (ELS-Z2, Otsuka Electronics, Tokyo, Japan) and zeta potential (ELSZ-2000ZS, Otsuka Electronics) analyses were conducted to estimate the changes in the surface charge and particle size. || Tertiary distilled water was added to these solutions",
+   "evidence_location": "Results, para 3; Methods 2.2"
+  },
+  {
+   "particle_name": "PS-NP + Phe",
+   "material": "polystyrene",
+   "functionalisation": "plain, phenanthrene-sorbed",
+   "supplier": "Polysciences",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": "1614 ± 85.56 nm",
+   "quantity": "zeta potential",
+   "value": "-12.34 ± 1.95",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "tertiary distilled water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ELSZ-2000ZS, Otsuka Electronics"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "The zeta potential for PS-NP + Phe was -12.34 ± 1.95 mV, || Additionally, particle size (ELS-Z2, Otsuka Electronics, Tokyo, Japan) and zeta potential (ELSZ-2000ZS, Otsuka Electronics) analyses were conducted to estimate the changes in the surface charge and particle size. || Tertiary distilled water was added to these solutions",
+   "evidence_location": "Results, para 3; Methods 2.2"
+  },
+  {
+   "particle_name": "PS-NP + Mu",
+   "material": "polystyrene",
+   "functionalisation": "plain, mucin-bound",
+   "supplier": "Polysciences",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-3.37 ± 0.58",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "tertiary distilled water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ELSZ-2000ZS, Otsuka Electronics"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "The zeta potentials for PS-NP + Mu and PS-NP + Phe + Mu were -3.37 ± 0.58 and -5.13 ± 0.07 mV, respectively || Additionally, particle size (ELS-Z2, Otsuka Electronics, Tokyo, Japan) and zeta potential (ELSZ-2000ZS, Otsuka Electronics) analyses were conducted to estimate the changes in the surface charge and particle size. || Tertiary distilled water was added to these solutions",
+   "evidence_location": "Results, para 3; Methods 2.2"
+  },
+  {
+   "particle_name": "PS-NP + Phe + Mu",
+   "material": "polystyrene",
+   "functionalisation": "plain, phenanthrene-sorbed, mucin-bound",
+   "supplier": "Polysciences",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": "7277 ± 277.3 nm",
+   "quantity": "zeta potential",
+   "value": "-5.13 ± 0.07",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "tertiary distilled water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ELSZ-2000ZS, Otsuka Electronics"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "The zeta potentials for PS-NP + Mu and PS-NP + Phe + Mu were -3.37 ± 0.58 and -5.13 ± 0.07 mV, respectively || Additionally, particle size (ELS-Z2, Otsuka Electronics, Tokyo, Japan) and zeta potential (ELSZ-2000ZS, Otsuka Electronics) analyses were conducted to estimate the changes in the surface charge and particle size. || Tertiary distilled water was added to these solutions",
+   "evidence_location": "Results, para 3; Methods 2.2"
+  }
+ ]
+}

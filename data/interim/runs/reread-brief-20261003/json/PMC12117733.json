@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-Eu stock suspension",
+   "material": "polystyrene (europium doped)",
+   "functionalisation": "carboxylate",
+   "supplier": "Thermo Scientific",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-43.1 ± 1.2",
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": "7.4",
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Nano ZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "and a negative Z potential of -43.1 ± 1.2 mV, as result of their carboxylated surface (Fig. 1.D) || Z potentials on NPs were measured using a Zetasizer, Nano ZS electrophoretic light scattering analyser (Malvern Instruments, Malvern, UK) equipped with a light source wavelength of 632.8 nm and a fixed scattering angle of 173◦. The samples were measured in triplicate at 25 °C. || All measurement were performed at pH 7.4 and with similar conductivity: 1.3 ± 0.2 mS/cm.",
+   "evidence_location": "Results para 1, 3; Methods ELS"
+  },
+  {
+   "particle_name": "PS-Eu after 48 h in complete culture medium (CCM), protein corona",
+   "material": "polystyrene (europium doped)",
+   "functionalisation": "carboxylate",
+   "supplier": "Thermo Scientific",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-20.2 ± 0.3",
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": "7.4",
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Nano ZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "causing an increase of the Z potential to -20.2 ± 0.3 mV (Fig. 1.D) || PS-Eu particles incubated with CCM and M were purified by centrifugation and resuspended in water before been measured. || Z potentials on NPs were measured using a Zetasizer, Nano ZS electrophoretic light scattering analyser (Malvern Instruments, Malvern, UK) equipped with a light source wavelength of 632.8 nm and a fixed scattering angle of 173◦. The samples were measured in triplicate at 25 °C. || All measurement were performed at pH 7.4 and with similar conductivity: 1.3 ± 0.2 mS/cm.",
+   "evidence_location": "Results para 1, 3; Methods ELS"
+  },
+  {
+   "particle_name": "PS-Eu after 48 h in FBS-free medium (M)",
+   "material": "polystyrene (europium doped)",
+   "functionalisation": "carboxylate",
+   "supplier": "Thermo Scientific",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-45.3 ± 0.6",
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": "7.4",
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Nano ZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "These particles maintained a strongly negative Z potential of -45.3 ± 0.6 mV even after being washed from the medium || PS-Eu particles incubated with CCM and M were purified by centrifugation and resuspended in water before been measured. || Z potentials on NPs were measured using a Zetasizer, Nano ZS electrophoretic light scattering analyser (Malvern Instruments, Malvern, UK) equipped with a light source wavelength of 632.8 nm and a fixed scattering angle of 173◦. The samples were measured in triplicate at 25 °C. || All measurement were performed at pH 7.4 and with similar conductivity: 1.3 ± 0.2 mS/cm.",
+   "evidence_location": "Results para 1, 3; Methods ELS"
+  }
+ ]
+}

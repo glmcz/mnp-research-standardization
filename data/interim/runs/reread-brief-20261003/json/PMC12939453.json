@@ -1,0 +1,119 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PLA-Ori",
+   "material": "polylactic acid",
+   "functionalisation": null,
+   "supplier": "Dongguan Zhangmukou Plastic Co., Ltd.",
+   "size_nominal_nm": "100 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "1 mM KCl",
+    "medium_class": "salt_solution",
+    "ionic_strength": "1 mM KCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Surface charge analysis via zeta potential (Figure 4) supported the chemical changes, showing increased negative surface potential with aging. Measurements were performed on particle suspensions in 1 mM KCl (pH adjusted with HCl/NaOH, 2 min equilibration) at a concentration of 0.1 mg/mL, following established protocols for colloidal systems [18]. || Surface charge (zeta potential) was measured with a Litesizer 500 (Anton Paar, Graz, Austria) on fine particulate fractions suspended in 1 mM KCl [18].",
+   "evidence_location": "Results 3.1; Methods 2.2; Figure 4"
+  },
+  {
+   "particle_name": "aPLA-60 h",
+   "material": "polylactic acid",
+   "functionalisation": "K2S2O8-aged",
+   "supplier": "Dongguan Zhangmukou Plastic Co., Ltd.",
+   "size_nominal_nm": "100 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "1 mM KCl",
+    "medium_class": "salt_solution",
+    "ionic_strength": "1 mM KCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Surface charge analysis via zeta potential (Figure 4) supported the chemical changes, showing increased negative surface potential with aging. Measurements were performed on particle suspensions in 1 mM KCl (pH adjusted with HCl/NaOH, 2 min equilibration) at a concentration of 0.1 mg/mL, following established protocols for colloidal systems [18]. || Surface charge (zeta potential) was measured with a Litesizer 500 (Anton Paar, Graz, Austria) on fine particulate fractions suspended in 1 mM KCl [18].",
+   "evidence_location": "Results 3.1; Methods 2.2; Figure 4"
+  },
+  {
+   "particle_name": "aPLA-120 h",
+   "material": "polylactic acid",
+   "functionalisation": "K2S2O8-aged",
+   "supplier": "Dongguan Zhangmukou Plastic Co., Ltd.",
+   "size_nominal_nm": "100 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "1 mM KCl",
+    "medium_class": "salt_solution",
+    "ionic_strength": "1 mM KCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Surface charge analysis via zeta potential (Figure 4) supported the chemical changes, showing increased negative surface potential with aging. Measurements were performed on particle suspensions in 1 mM KCl (pH adjusted with HCl/NaOH, 2 min equilibration) at a concentration of 0.1 mg/mL, following established protocols for colloidal systems [18]. || Surface charge (zeta potential) was measured with a Litesizer 500 (Anton Paar, Graz, Austria) on fine particulate fractions suspended in 1 mM KCl [18].",
+   "evidence_location": "Results 3.1; Methods 2.2; Figure 4"
+  },
+  {
+   "particle_name": "aPLA-180 h",
+   "material": "polylactic acid",
+   "functionalisation": "K2S2O8-aged",
+   "supplier": "Dongguan Zhangmukou Plastic Co., Ltd.",
+   "size_nominal_nm": "100 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "1 mM KCl",
+    "medium_class": "salt_solution",
+    "ionic_strength": "1 mM KCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Surface charge analysis via zeta potential (Figure 4) supported the chemical changes, showing increased negative surface potential with aging. Measurements were performed on particle suspensions in 1 mM KCl (pH adjusted with HCl/NaOH, 2 min equilibration) at a concentration of 0.1 mg/mL, following established protocols for colloidal systems [18]. || Surface charge (zeta potential) was measured with a Litesizer 500 (Anton Paar, Graz, Austria) on fine particulate fractions suspended in 1 mM KCl [18].",
+   "evidence_location": "Results 3.1; Methods 2.2; Figure 4"
+  },
+  {
+   "particle_name": "aPLA-240 h",
+   "material": "polylactic acid",
+   "functionalisation": "K2S2O8-aged",
+   "supplier": "Dongguan Zhangmukou Plastic Co., Ltd.",
+   "size_nominal_nm": "100 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "1 mM KCl",
+    "medium_class": "salt_solution",
+    "ionic_strength": "1 mM KCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Surface charge analysis via zeta potential (Figure 4) supported the chemical changes, showing increased negative surface potential with aging. Measurements were performed on particle suspensions in 1 mM KCl (pH adjusted with HCl/NaOH, 2 min equilibration) at a concentration of 0.1 mg/mL, following established protocols for colloidal systems [18]. || Surface charge (zeta potential) was measured with a Litesizer 500 (Anton Paar, Graz, Austria) on fine particulate fractions suspended in 1 mM KCl [18].",
+   "evidence_location": "Results 3.1; Methods 2.2; Figure 4"
+  }
+ ]
+}

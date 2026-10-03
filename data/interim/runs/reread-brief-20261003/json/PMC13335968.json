@@ -1,0 +1,7 @@
+{"measurements":[
+{"particle_name":"NPs (polystyrene, 100 nm)","material":"polystyrene","functionalisation":null,"supplier":"Tesulang Chemical Materials Co., Ltd. (Dongguan, China)","size_nominal_nm":"100 nm","size_measured_nm":null,"quantity":"zeta potential","value":null,"unit":null,"n":null,
+"conditions":{"medium_text":null,"medium_class":"unreported","ionic_strength":null,"pH":null,"temperature":null,"instrument":null},
+"medium_matches_exposure":null,
+"evidence_quote":"Interestingly, both Inosine and B.p supernatant reduced the zeta potential of NPs (Figure 7E).",
+"evidence_location":"Results, para 3; Figure 7E"}
+]}

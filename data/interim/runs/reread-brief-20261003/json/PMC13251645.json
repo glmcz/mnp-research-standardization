@@ -1,0 +1,119 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PP_Pristine",
+   "material": "polypropylene",
+   "functionalisation": null,
+   "supplier": "Goonvean Fibers Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "30.69 ± 9.90 µm",
+   "quantity": "zeta potential",
+   "value": "-24.0 ± 4.24",
+   "unit": "mV",
+   "n": "3",
+   "medium_matches_exposure": null,
+   "evidence_location": "Table 1",
+   "evidence_quote": "PP_Pristine\t30.69 ± 9.90\t77.40\t-24.0 ± 4.24 || For Zeta (ζ) potential analysis, homogeneous dispersions of pristine and MW-treated PP-MPs were achieved using a non-ionic surfactant, 0.1% Triton X-100 (v/v), as the solvent || ζ-potential values were then measured using the Zetasizer Nano ZS instrument (Malvern Panalytical Ltd., Malvern, UK) with folded capillary cells (DTS1070). || The ζ-potential measurement was performed in triplicate",
+   "conditions": {
+    "medium_text": "0.1% Triton X-100 (v/v)",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern Panalytical Ltd.)"
+   }
+  },
+  {
+   "particle_name": "PP_Cycle 1",
+   "material": "polypropylene",
+   "functionalisation": null,
+   "supplier": "Goonvean Fibers Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "30.19 ± 10.05 µm",
+   "quantity": "zeta potential",
+   "value": "-26.7 ± 2.00",
+   "unit": "mV",
+   "n": "3",
+   "medium_matches_exposure": null,
+   "evidence_location": "Table 1",
+   "evidence_quote": "PP_Cycle 1\t30.19 ± 10.05\t79.40\t-26.7 ± 2.00 || For Zeta (ζ) potential analysis, homogeneous dispersions of pristine and MW-treated PP-MPs were achieved using a non-ionic surfactant, 0.1% Triton X-100 (v/v), as the solvent || ζ-potential values were then measured using the Zetasizer Nano ZS instrument (Malvern Panalytical Ltd., Malvern, UK) with folded capillary cells (DTS1070). || The ζ-potential measurement was performed in triplicate",
+   "conditions": {
+    "medium_text": "0.1% Triton X-100 (v/v)",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern Panalytical Ltd.)"
+   }
+  },
+  {
+   "particle_name": "PP_Cycle 5",
+   "material": "polypropylene",
+   "functionalisation": null,
+   "supplier": "Goonvean Fibers Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "30.17 ± 10.01 µm",
+   "quantity": "zeta potential",
+   "value": "-26.6 ± 3.28",
+   "unit": "mV",
+   "n": "3",
+   "medium_matches_exposure": null,
+   "evidence_location": "Table 1",
+   "evidence_quote": "PP_Cycle 5\t30.17 ± 10.01\t78.90\t-26.6 ± 3.28 || For Zeta (ζ) potential analysis, homogeneous dispersions of pristine and MW-treated PP-MPs were achieved using a non-ionic surfactant, 0.1% Triton X-100 (v/v), as the solvent || ζ-potential values were then measured using the Zetasizer Nano ZS instrument (Malvern Panalytical Ltd., Malvern, UK) with folded capillary cells (DTS1070). || The ζ-potential measurement was performed in triplicate",
+   "conditions": {
+    "medium_text": "0.1% Triton X-100 (v/v)",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern Panalytical Ltd.)"
+   }
+  },
+  {
+   "particle_name": "PP_Cycle 10",
+   "material": "polypropylene",
+   "functionalisation": null,
+   "supplier": "Goonvean Fibers Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "29.48 ± 10.31 µm",
+   "quantity": "zeta potential",
+   "value": "-26.4 ± 1.53",
+   "unit": "mV",
+   "n": "3",
+   "medium_matches_exposure": null,
+   "evidence_location": "Table 1",
+   "evidence_quote": "PP_Cycle 10\t29.48 ± 10.31\t79.68\t-26.4 ± 1.53 || For Zeta (ζ) potential analysis, homogeneous dispersions of pristine and MW-treated PP-MPs were achieved using a non-ionic surfactant, 0.1% Triton X-100 (v/v), as the solvent || ζ-potential values were then measured using the Zetasizer Nano ZS instrument (Malvern Panalytical Ltd., Malvern, UK) with folded capillary cells (DTS1070). || The ζ-potential measurement was performed in triplicate",
+   "conditions": {
+    "medium_text": "0.1% Triton X-100 (v/v)",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern Panalytical Ltd.)"
+   }
+  },
+  {
+   "particle_name": "PP_30min",
+   "material": "polypropylene",
+   "functionalisation": null,
+   "supplier": "Goonvean Fibers Ltd.",
+   "size_nominal_nm": null,
+   "size_measured_nm": "37.14 ± 11.94 µm",
+   "quantity": "zeta potential",
+   "value": "-33.9 ± 2.71",
+   "unit": "mV",
+   "n": "3",
+   "medium_matches_exposure": null,
+   "evidence_location": "Table 1",
+   "evidence_quote": "PP_30min\t37.14 ± 11.94*\t79.44\t-33.9 ± 2.71* || For Zeta (ζ) potential analysis, homogeneous dispersions of pristine and MW-treated PP-MPs were achieved using a non-ionic surfactant, 0.1% Triton X-100 (v/v), as the solvent || ζ-potential values were then measured using the Zetasizer Nano ZS instrument (Malvern Panalytical Ltd., Malvern, UK) with folded capillary cells (DTS1070). || The ζ-potential measurement was performed in triplicate",
+   "conditions": {
+    "medium_text": "0.1% Triton X-100 (v/v)",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern Panalytical Ltd.)"
+   }
+  }
+ ]
+}

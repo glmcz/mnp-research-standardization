@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PET-NPLs",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "420 nm (DLS, in cell culture media)",
+   "quantity": "zeta potential",
+   "value": "-15.2",
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "cell culture media",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Nano ZS ZEN3600"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "with DLS giving average size values of 420 nm for PET-NPLs suspended in cell culture media (with a PDI value of 0.73 and a zeta potential of -15.2 mV) || The hydrodynamic size and Z-potential of the PET-NPLs were measured in triplicate using a Malvern Zetasizer Nano ZS ZEN3600 (Malvern Instruments, Malvern, UK), employing dynamic light scattering (DLS) for size analysis and electrophoretic light scattering (ELS) for surface charge determination. || PET-NPL dispersions were prepared at a final concentration of 100 μg/mL, either in distilled water or Dulbecco’s modified Eagle’s medium (DMEM, Biowest, Nuaillé, France), for these measurements.",
+   "evidence_location": "Results, PET-NPLs Characterization; Methods, Particle Characterization"
+  },
+  {
+   "particle_name": "PET-NPLs",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "distilled water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Nano ZS ZEN3600"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "The size distribution, Z-potential, and shape of the obtained PET-NPLs were characterized using a Zetasizer to measure the hydrodynamic size and Z-potential || The hydrodynamic size and Z-potential of the PET-NPLs were measured in triplicate using a Malvern Zetasizer Nano ZS ZEN3600 (Malvern Instruments, Malvern, UK), employing dynamic light scattering (DLS) for size analysis and electrophoretic light scattering (ELS) for surface charge determination. || PET-NPL dispersions were prepared at a final concentration of 100 μg/mL, either in distilled water or Dulbecco’s modified Eagle’s medium (DMEM, Biowest, Nuaillé, France), for these measurements.",
+   "evidence_location": "Results, PET-NPLs Characterization; Methods, Particle Characterization"
+  }
+ ]
+}

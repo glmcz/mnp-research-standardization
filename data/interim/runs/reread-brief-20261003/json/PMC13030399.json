@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS microspheres",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern MS3000+ (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential analysis (Figure S2) indicates that PS particles carry a negative surface charge, while CSAC@MIL-100(Fe)0.6 exhibits a positively charged surface within this pH window. || The hydrodynamic diameter and zeta potential of PS microspheres were measured using dynamic light scattering (DLS) (Model: Malvern MS3000+, Manufacturer: Malvern Panalytical, UK).",
+   "evidence_location": "Results 3.x adsorption pH; Methods 2.1.2; Figure S2"
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PE",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "CD Bioparticles",
+   "size_nominal_nm": "1–4 μm",
+   "size_measured_nm": "2517 ± 12.662 nm",
+   "quantity": "zeta potential",
+   "value": "-53.118 ± 2.918",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Characterization of PE and OPE; Fig. 1C",
+   "evidence_quote": "Furthermore, the zeta potential became more negative after oxidation, shifting from -53.118 ± 2.918 mV for PE to -63.693 ± 1.803 mV for OPE, reflecting an increase in surface charge density. || C DLS and zeta potential analysis of PE and OPE particles in aqueous dispersion. || the pH of PE and OPE suspensions was measured under the same experimental conditions used for zeta potential analysis. || PE and OPE showed similar mean pH values of 7.3 and 7.6, respectively (Fig. 1D) || The sizes of the PE and OPE particles were measured using a Zetasizer Nano ZSP (Malvern Panalytical, United Kingdom), and their surface charges were also determined with the same device.",
+   "conditions": {
+    "medium_text": "aqueous dispersion",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": "7.3",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZSP (Malvern Panalytical)"
+   }
+  },
+  {
+   "particle_name": "OPE",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "CD Bioparticles",
+   "size_nominal_nm": "1–4 μm",
+   "size_measured_nm": "2472 ± 153 nm",
+   "quantity": "zeta potential",
+   "value": "-63.693 ± 1.803",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Characterization of PE and OPE; Fig. 1C",
+   "evidence_quote": "Furthermore, the zeta potential became more negative after oxidation, shifting from -53.118 ± 2.918 mV for PE to -63.693 ± 1.803 mV for OPE, reflecting an increase in surface charge density. || C DLS and zeta potential analysis of PE and OPE particles in aqueous dispersion. || the pH of PE and OPE suspensions was measured under the same experimental conditions used for zeta potential analysis. || PE and OPE showed similar mean pH values of 7.3 and 7.6, respectively (Fig. 1D) || The sizes of the PE and OPE particles were measured using a Zetasizer Nano ZSP (Malvern Panalytical, United Kingdom), and their surface charges were also determined with the same device.",
+   "conditions": {
+    "medium_text": "aqueous dispersion",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": "7.6",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZSP (Malvern Panalytical)"
+   }
+  }
+ ]
+}

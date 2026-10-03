@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-MP (fluorescent)",
+   "material": "polystyrene",
+   "functionalisation": "carboxylic acid",
+   "supplier": "Invitrogen by Thermo Fisher",
+   "size_nominal_nm": "1.0 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-100.0",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Both mimics displayed negative Zeta-potential as measured by DLS (ca. -100.0 mV and -95.8 mV) for MPs and NPs, respectively (Figure S11 and Table S4).",
+   "evidence_location": "Results, Context 1"
+  },
+  {
+   "particle_name": "PS-NP",
+   "material": "polystyrene",
+   "functionalisation": "carboxylic acid",
+   "supplier": "Lab 201 California",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-95.8",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Both mimics displayed negative Zeta-potential as measured by DLS (ca. -100.0 mV and -95.8 mV) for MPs and NPs, respectively (Figure S11 and Table S4).",
+   "evidence_location": "Results, Context 1"
+  }
+ ]
+}

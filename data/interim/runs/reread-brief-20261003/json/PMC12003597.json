@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "artificially aged PE",
+   "material": "low-density polyethylene",
+   "functionalisation": null,
+   "supplier": "Alfa Aesar",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-42",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": "1 mM phosphate buffer (pH 7)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": "7",
+    "temperature": null,
+    "instrument": "Zetasizer ZS (Malvern Panalytical)"
+   },
+   "evidence_quote": "Furthermore, the zeta potential results align with the Hy-index results, where the artificially aged PE exhibits a less negative zeta potential (-42 mV) compared to PET (-62 mV). || The PE particles were similarly suspended in a 1 mM phosphate buffer (pH 7) as described above and measured using the Zetasizer ZS instrument (Malvern Panalytical, Malvern, UK).",
+   "evidence_location": "Results, Hy-index paragraph; Methods"
+  },
+  {
+   "particle_name": "artificially aged PET",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": "Goodfellow",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-62",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": "1 mM phosphate buffer (pH 7)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": "7",
+    "temperature": null,
+    "instrument": "Zetasizer ZS (Malvern Panalytical)"
+   },
+   "evidence_quote": "Furthermore, the zeta potential results align with the Hy-index results, where the artificially aged PE exhibits a less negative zeta potential (-42 mV) compared to PET (-62 mV). || The zeta potential measurements were subsequently performed on 20 ml of filtrate using a Zetasizer ZS instrument (Malvern Panalytical, Malvern UK) in 1 mM phosphate buffer (pH 7) using a clear disposable zeta cell.",
+   "evidence_location": "Results, Hy-index paragraph; Methods"
+  },
+  {
+   "particle_name": "artificially aged PE, after 33 months dry storage",
+   "material": "low-density polyethylene",
+   "functionalisation": null,
+   "supplier": "Alfa Aesar",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": "1 mM phosphate buffer (pH 7)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": "7",
+    "temperature": null,
+    "instrument": "Zetasizer ZS (Malvern Panalytical)"
+   },
+   "evidence_quote": "The result is shown in Fig. 1 where the zeta potential of PET and PE suspensions was measured with three to six replicates at the time of preparation and after storage at room temperature as dry powders for 33 months. || The PE particles were similarly suspended in a 1 mM phosphate buffer (pH 7) as described above and measured using the Zetasizer ZS instrument (Malvern Panalytical, Malvern, UK).",
+   "evidence_location": "Fig. 1; Results"
+  },
+  {
+   "particle_name": "artificially aged PET, after 33 months dry storage",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": "Goodfellow",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": "1 mM phosphate buffer (pH 7)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": "7",
+    "temperature": null,
+    "instrument": "Zetasizer ZS (Malvern Panalytical)"
+   },
+   "evidence_quote": "The result is shown in Fig. 1 where the zeta potential of PET and PE suspensions was measured with three to six replicates at the time of preparation and after storage at room temperature as dry powders for 33 months. || The zeta potential measurements were subsequently performed on 20 ml of filtrate using a Zetasizer ZS instrument (Malvern Panalytical, Malvern UK) in 1 mM phosphate buffer (pH 7) using a clear disposable zeta cell.",
+   "evidence_location": "Fig. 1; Results"
+  }
+ ]
+}

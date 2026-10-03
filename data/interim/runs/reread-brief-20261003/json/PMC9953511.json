@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-50",
+   "material": "polystyrene",
+   "functionalisation": "pristine",
+   "supplier": "Spherotech (Chicago, IL, USA)",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": "77.48 nm",
+   "quantity": "zeta potential",
+   "value": "-44.90",
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "Milli-Q distilled water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Z-Sizer (Malvern Ultra-red, Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Remarkably, there was a clear shift in the Z-potential from -44.90 to -13.70 for PS-50 and from -50.40 to -11.30 when suspended in the culture media. || The dispersions of the PSNPLs were made at 100 μg/mL in both Milli-Q distilled water and in airway epithelial cell growth media without serum for the physicochemical characterization studies [2]. || In addition, the hydrodynamic behavior, zeta potential (as surface charge), and polydispersity index (PDI) were measured utilizing dynamic light scattering (DLS) and laser Doppler velocimetry (LDV) methodologies at the Catalan Institute of Nanoscience and Nanotechnology on a Z-Sizer (Malvern Ultra-red from Malvern Panalytical, Cambridge, UK), respectively.",
+   "evidence_location": "3.1; Methods 2.1"
+  },
+  {
+   "particle_name": "PS-50",
+   "material": "polystyrene",
+   "functionalisation": "pristine",
+   "supplier": "Spherotech (Chicago, IL, USA)",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": "77.48 nm",
+   "quantity": "zeta potential",
+   "value": "-13.70",
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "airway epithelial cell growth media without serum",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Z-Sizer (Malvern Ultra-red, Malvern Panalytical)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Remarkably, there was a clear shift in the Z-potential from -44.90 to -13.70 for PS-50 and from -50.40 to -11.30 when suspended in the culture media. || The dispersions of the PSNPLs were made at 100 μg/mL in both Milli-Q distilled water and in airway epithelial cell growth media without serum for the physicochemical characterization studies [2]. || In addition, the hydrodynamic behavior, zeta potential (as surface charge), and polydispersity index (PDI) were measured utilizing dynamic light scattering (DLS) and laser Doppler velocimetry (LDV) methodologies at the Catalan Institute of Nanoscience and Nanotechnology on a Z-Sizer (Malvern Ultra-red from Malvern Panalytical, Cambridge, UK), respectively.",
+   "evidence_location": "3.1; Methods 2.1"
+  },
+  {
+   "particle_name": "PS-500",
+   "material": "polystyrene",
+   "functionalisation": "pristine",
+   "supplier": "Spherotech (Chicago, IL, USA)",
+   "size_nominal_nm": "500 nm",
+   "size_measured_nm": "446.28 nm",
+   "quantity": "zeta potential",
+   "value": "-50.40",
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "Milli-Q distilled water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Z-Sizer (Malvern Ultra-red, Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Remarkably, there was a clear shift in the Z-potential from -44.90 to -13.70 for PS-50 and from -50.40 to -11.30 when suspended in the culture media. || The dispersions of the PSNPLs were made at 100 μg/mL in both Milli-Q distilled water and in airway epithelial cell growth media without serum for the physicochemical characterization studies [2]. || In addition, the hydrodynamic behavior, zeta potential (as surface charge), and polydispersity index (PDI) were measured utilizing dynamic light scattering (DLS) and laser Doppler velocimetry (LDV) methodologies at the Catalan Institute of Nanoscience and Nanotechnology on a Z-Sizer (Malvern Ultra-red from Malvern Panalytical, Cambridge, UK), respectively.",
+   "evidence_location": "3.1; Methods 2.1"
+  },
+  {
+   "particle_name": "PS-500",
+   "material": "polystyrene",
+   "functionalisation": "pristine",
+   "supplier": "Spherotech (Chicago, IL, USA)",
+   "size_nominal_nm": "500 nm",
+   "size_measured_nm": "446.28 nm",
+   "quantity": "zeta potential",
+   "value": "-11.30",
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "airway epithelial cell growth media without serum",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Z-Sizer (Malvern Ultra-red, Malvern Panalytical)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Remarkably, there was a clear shift in the Z-potential from -44.90 to -13.70 for PS-50 and from -50.40 to -11.30 when suspended in the culture media. || The dispersions of the PSNPLs were made at 100 μg/mL in both Milli-Q distilled water and in airway epithelial cell growth media without serum for the physicochemical characterization studies [2]. || In addition, the hydrodynamic behavior, zeta potential (as surface charge), and polydispersity index (PDI) were measured utilizing dynamic light scattering (DLS) and laser Doppler velocimetry (LDV) methodologies at the Catalan Institute of Nanoscience and Nanotechnology on a Z-Sizer (Malvern Ultra-red from Malvern Panalytical, Cambridge, UK), respectively.",
+   "evidence_location": "3.1; Methods 2.1"
+  }
+ ]
+}

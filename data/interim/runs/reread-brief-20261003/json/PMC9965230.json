@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS25C (25 nm carboxyl-modified red fluorescent PS)",
+   "material": "polystyrene",
+   "functionalisation": "carboxylate",
+   "supplier": "Thermo, Inc. (Waltham, MA, USA)",
+   "size_nominal_nm": "25 nm",
+   "size_measured_nm": "33.02 ± 0.01 nm",
+   "quantity": "zeta potential",
+   "value": "-66.8 ± 1.76",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "sterile deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS (Malvern Instruments)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "The water suspension of PS25C was analyzed by dynamic light scattering (DLS) and electrophoretic light scattering (ELS), which revealed a monomodal particle dispersion with an average hydrodynamic diameter of 33.02 ± 0.01 nm, polydispersity index of 0.151 ± 0.013, zeta (ζ)-potential of -66.8 ± 1.76 mV and conductivity (σ) of 0.0414 ± 0.0004 mS/cm. || MNPs from Thermo were diluted in sterile deionized water to the desired starting MNP concentration and vortexed for 20 s. || Water suspensions of PS25C used for gavage were analyzed by dynamic light scattering (DLS) for the determination of hydrodynamic diameter (dH) and polydispersity index (PdI), and by electrophoretic light scattering (ELS) to determine zeta potential (ζ) and conductivity (σ) using a Zetasizer Nano-ZS (Malvern Instruments, Ltd.) as previously described [29].",
+   "evidence_location": "3.1; Methods 2.3"
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS microplastics",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Aladdin (Shanghai)",
+   "size_nominal_nm": null,
+   "size_measured_nm": "504.50 ± 3.10 nm",
+   "quantity": "zeta potential",
+   "value": "-38.80 ± 0.36",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results, charge-regulated assembly; Figure 2C",
+   "evidence_quote": "Zeta potential measurements show that PS exhibits a surface potential of -38.80 ± 0.36 mV, whereas the CTAC‐stabilized Au@AgNCs display a positive potential of +16.40 ± 0.80 mV (Figure 2C).",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

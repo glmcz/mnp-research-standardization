@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PNs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Tianjin BaseLine ChromTech Research Center",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Nano ZS90 Zetasizer"
+   },
+   "evidence_quote": "Figure 2. A) Zeta potential changes and B) DLS distribution of PNs in the absence or presence of HSA at different PFAS concentrations. PNs and HSA concentrations were kept at 1 μg mL-1 (0.374 pM) and 1 μm, respectively. || The as‐prepared samples were vortexed and placed in square polystyrene cuvettes and capillary cells, respectively, and then subjected to zeta potential and size distribution measurements with a Malvern Nano ZS90 Zetasizer (Malvern, UK) with a He/Ne laser (633 nm).",
+   "evidence_location": "Figure 2A caption"
+  },
+  {
+   "particle_name": "PNs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Tianjin BaseLine ChromTech Research Center",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": "4.0",
+    "temperature": null,
+    "instrument": "Malvern Nano ZS90 Zetasizer"
+   },
+   "evidence_quote": "C) Hydrodynamic diameter and zeta potential changes of PNs due to the adsorption of HSA and PFAS interaction at pH 4.0. || The as‐prepared samples were vortexed and placed in square polystyrene cuvettes and capillary cells, respectively, and then subjected to zeta potential and size distribution measurements with a Malvern Nano ZS90 Zetasizer (Malvern, UK) with a He/Ne laser (633 nm).",
+   "evidence_location": "Figure 5C caption"
+  }
+ ]
+}

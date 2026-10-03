@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-NPs 80 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Tianjin Baseline Chromtech Research Centre",
+   "size_nominal_nm": "80 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-43.4",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Similarly, potential measurements confirmed that the PS-NPs used in our research were negatively charged on surface (-43.4 mV) (Fig. 1C), reflecting the low aggregation behavior of plastic nanoparticles. || The PS-nanoparticles were analyzed to confirm the morphology, size, and chemical composition by scanning electron microscope (SU8020, Hitachi, Japan), Zetasizer (Nano ZS90, Malvern, UK), and Fourier transform infrared spectroscopy (FTIR, Nicolet IS10, USA) respectively.",
+   "evidence_location": "Results; Methods Materials"
+  }
+ ]
+}

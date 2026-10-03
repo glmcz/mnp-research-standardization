@@ -1,0 +1,12 @@
+{"measurements":[
+{"particle_name":"PE microplastics","material":"polyethylene","functionalisation":null,"supplier":"Sigma-Aldrich (Merck, Boston, MA, USA)","size_nominal_nm":null,"size_measured_nm":null,"quantity":"zeta potential","value":null,"unit":null,"n":null,
+"conditions":{"medium_text":null,"medium_class":"unreported","ionic_strength":null,"pH":null,"temperature":null,"instrument":null},
+"medium_matches_exposure":null,
+"evidence_quote":"The physicochemical characteristics of PE and PLA microplastics, including particle size information, surface morphology, specific surface area, zeta potential, and aging status, are summarized in Table S1.",
+"evidence_location":"Methods 4.1; Table S1 (supplement)"},
+{"particle_name":"PLA microplastics","material":"polylactic acid","functionalisation":null,"supplier":"Sigma-Aldrich (Merck, Boston, MA, USA)","size_nominal_nm":null,"size_measured_nm":null,"quantity":"zeta potential","value":null,"unit":null,"n":null,
+"conditions":{"medium_text":null,"medium_class":"unreported","ionic_strength":null,"pH":null,"temperature":null,"instrument":null},
+"medium_matches_exposure":null,
+"evidence_quote":"The physicochemical characteristics of PE and PLA microplastics, including particle size information, surface morphology, specific surface area, zeta potential, and aging status, are summarized in Table S1.",
+"evidence_location":"Methods 4.1; Table S1 (supplement)"}
+]}

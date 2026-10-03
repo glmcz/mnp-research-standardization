@@ -1,0 +1,50 @@
+{
+"measurements": [
+{
+"particle_name": "PS-COOH",
+"material": "polystyrene",
+"functionalisation": "carboxyl",
+"supplier": "Bangs Laboratories, Inc.",
+"size_nominal_nm": "60 nm",
+"size_measured_nm": "1822 ± 373.6",
+"quantity": "zeta potential",
+"value": "-26.9 ± 1.9",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "artificial seawater (ASW)",
+"medium_class": "salt_solution",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": null
+},
+"medium_matches_exposure": true,
+"evidence_quote": "\tASW\t1822 ± 373.6\t0.228\t-26.9 ± 1.9 || Carboxylated nanopolystyrene (PS-COOH), nominal size 60 nm, kindly provided by Ilaria Corsi’s lab (Univ. Siena, It), were from the same batch previously characterized in MQ water by DLS analysis [27]. In addition, in the present study, particle behavior was evaluated in suspensions of both ASW and Mytilus hemolymph serum (HS).",
+"evidence_location": "Table 1; Methods 2.1"
+},
+{
+"particle_name": "PS-COOH",
+"material": "polystyrene",
+"functionalisation": "carboxyl",
+"supplier": "Bangs Laboratories, Inc.",
+"size_nominal_nm": "60 nm",
+"size_measured_nm": "189.1 ± 48.6",
+"quantity": "zeta potential",
+"value": "-11.6 ± 1.5",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "Mytilus hemolymph serum (HS)",
+"medium_class": "biofluid",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": null
+},
+"medium_matches_exposure": true,
+"evidence_quote": "\tHS\t189.1 ± 48.6\t0.288\t-11.6 ± 1.5 || Carboxylated nanopolystyrene (PS-COOH), nominal size 60 nm, kindly provided by Ilaria Corsi’s lab (Univ. Siena, It), were from the same batch previously characterized in MQ water by DLS analysis [27]. In addition, in the present study, particle behavior was evaluated in suspensions of both ASW and Mytilus hemolymph serum (HS).",
+"evidence_location": "Table 1; Methods 2.1"
+}
+]
+}

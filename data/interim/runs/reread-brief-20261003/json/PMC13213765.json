@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS NP100",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Shanghai Huge Biotechnology Co., Ltd., China",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "nanoparticle size and zeta-potential analyzer (Litesizer 500)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle size and zeta-potential of both pristine and aged PS NPs in various solutions were measured using the nanoparticle size and zeta-potential analyzer (Litesizer 500).",
+   "evidence_location": "Methods, Preparation and characterization of pristine and aged PS NPs"
+  },
+  {
+   "particle_name": "PS NP800",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Shanghai Huge Biotechnology Co., Ltd., China",
+   "size_nominal_nm": "800 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "nanoparticle size and zeta-potential analyzer (Litesizer 500)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle size and zeta-potential of both pristine and aged PS NPs in various solutions were measured using the nanoparticle size and zeta-potential analyzer (Litesizer 500).",
+   "evidence_location": "Methods, Preparation and characterization of pristine and aged PS NPs"
+  },
+  {
+   "particle_name": "PS NP-8 (UV-aged 8 h PS NP100)",
+   "material": "polystyrene",
+   "functionalisation": "UV-aged 8 h",
+   "supplier": "Shanghai Huge Biotechnology Co., Ltd., China",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "nanoparticle size and zeta-potential analyzer (Litesizer 500)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle size and zeta-potential of both pristine and aged PS NPs in various solutions were measured using the nanoparticle size and zeta-potential analyzer (Litesizer 500).",
+   "evidence_location": "Methods, Preparation and characterization of pristine and aged PS NPs"
+  },
+  {
+   "particle_name": "PS NP-24 (UV-aged 24 h PS NP100)",
+   "material": "polystyrene",
+   "functionalisation": "UV-aged 24 h",
+   "supplier": "Shanghai Huge Biotechnology Co., Ltd., China",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "nanoparticle size and zeta-potential analyzer (Litesizer 500)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle size and zeta-potential of both pristine and aged PS NPs in various solutions were measured using the nanoparticle size and zeta-potential analyzer (Litesizer 500).",
+   "evidence_location": "Methods, Preparation and characterization of pristine and aged PS NPs"
+  }
+ ]
+}

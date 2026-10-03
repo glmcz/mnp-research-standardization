@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-MPs 1 µm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich (St. Louis, MO, USA)",
+   "size_nominal_nm": "1.0 μm",
+   "size_measured_nm": "1098.4 ± 40.1 nm",
+   "quantity": "zeta potential",
+   "value": "-35.3 ± 0.57",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Methods 2.7",
+   "evidence_quote": "The physicochemical properties of the commercially available 1 µm polystyrene microplastics were characterized following a 1:2 dilution in phosphate-buffered saline (PBS). The hydrodynamic diameter and zeta potential were measured using a NanoLink SZ902 Nanoparticle Size and Zeta Potential Analyzer (Linkoptik Instruments Co., Ltd., Shanghai, China), based on dynamic light scattering (DLS) and electrophoretic light scattering (ELS), respectively. Measurements were performed at room temperature according to the manufacturer’s instructions. The mean hydrodynamic diameter was 1098.4 ± 40.1 nm, and the zeta potential was -35.3 ± 0.57 mV. Measurements were performed at 25.0 °C using a U-shaped capillary cell",
+   "conditions": {
+    "medium_text": "phosphate-buffered saline (PBS), 1:2 dilution",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25.0 °C",
+    "instrument": "NanoLink SZ902 Nanoparticle Size and Zeta Potential Analyzer (Linkoptik)"
+   }
+  }
+ ]
+}

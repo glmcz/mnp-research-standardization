@@ -1,0 +1,211 @@
+{
+"measurements": [
+{
+"particle_name": "PS50",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere (Pasadena, California, USA)",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "50.7 nm",
+"quantity": "zeta potential",
+"value": null,
+"unit": null,
+"n": null,
+"conditions": {
+"medium_text": "double distilled water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Zetasizer Nano ZS"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "The characteristics of PS50, PS500 and a mixture of PS50 and PS500 in double distilled water, as well as simulated gastric and intestinal fluids were measured by Zetasizer Nano ZS. This included hydrodynamic size, polymer dispersity index (PDI), and zeta potential. || Each PS particle type was suspended in distilled water, simulated gastric or intestinal fluids at a concentration of 0.25 mg/mL. || The unmodified PS particles, including NF, RF and GF particles were purchased from Magsphere (Pasadena, California, USA).",
+"evidence_location": "Results (characterization); Methods Particle characterization"
+},
+{
+"particle_name": "PS50",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere (Pasadena, California, USA)",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "50.7 nm",
+"quantity": "zeta potential",
+"value": null,
+"unit": null,
+"n": null,
+"conditions": {
+"medium_text": "simulated gastric fluid",
+"medium_class": "other",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Zetasizer Nano ZS"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "The characteristics of PS50, PS500 and a mixture of PS50 and PS500 in double distilled water, as well as simulated gastric and intestinal fluids were measured by Zetasizer Nano ZS. This included hydrodynamic size, polymer dispersity index (PDI), and zeta potential. || Each PS particle type was suspended in distilled water, simulated gastric or intestinal fluids at a concentration of 0.25 mg/mL. || The unmodified PS particles, including NF, RF and GF particles were purchased from Magsphere (Pasadena, California, USA).",
+"evidence_location": "Results (characterization); Methods Particle characterization"
+},
+{
+"particle_name": "PS50",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere (Pasadena, California, USA)",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "50.7 nm",
+"quantity": "zeta potential",
+"value": null,
+"unit": null,
+"n": null,
+"conditions": {
+"medium_text": "simulated intestinal fluid",
+"medium_class": "other",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Zetasizer Nano ZS"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "The characteristics of PS50, PS500 and a mixture of PS50 and PS500 in double distilled water, as well as simulated gastric and intestinal fluids were measured by Zetasizer Nano ZS. This included hydrodynamic size, polymer dispersity index (PDI), and zeta potential. || Each PS particle type was suspended in distilled water, simulated gastric or intestinal fluids at a concentration of 0.25 mg/mL. || The unmodified PS particles, including NF, RF and GF particles were purchased from Magsphere (Pasadena, California, USA).",
+"evidence_location": "Results (characterization); Methods Particle characterization"
+},
+{
+"particle_name": "PS500",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere (Pasadena, California, USA)",
+"size_nominal_nm": "500 nm",
+"size_measured_nm": "503.6 nm",
+"quantity": "zeta potential",
+"value": null,
+"unit": null,
+"n": null,
+"conditions": {
+"medium_text": "double distilled water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Zetasizer Nano ZS"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "The characteristics of PS50, PS500 and a mixture of PS50 and PS500 in double distilled water, as well as simulated gastric and intestinal fluids were measured by Zetasizer Nano ZS. This included hydrodynamic size, polymer dispersity index (PDI), and zeta potential. || Each PS particle type was suspended in distilled water, simulated gastric or intestinal fluids at a concentration of 0.25 mg/mL. || The unmodified PS particles, including NF, RF and GF particles were purchased from Magsphere (Pasadena, California, USA).",
+"evidence_location": "Results (characterization); Methods Particle characterization"
+},
+{
+"particle_name": "PS500",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere (Pasadena, California, USA)",
+"size_nominal_nm": "500 nm",
+"size_measured_nm": "503.6 nm",
+"quantity": "zeta potential",
+"value": null,
+"unit": null,
+"n": null,
+"conditions": {
+"medium_text": "simulated gastric fluid",
+"medium_class": "other",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Zetasizer Nano ZS"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "The characteristics of PS50, PS500 and a mixture of PS50 and PS500 in double distilled water, as well as simulated gastric and intestinal fluids were measured by Zetasizer Nano ZS. This included hydrodynamic size, polymer dispersity index (PDI), and zeta potential. || Each PS particle type was suspended in distilled water, simulated gastric or intestinal fluids at a concentration of 0.25 mg/mL. || The unmodified PS particles, including NF, RF and GF particles were purchased from Magsphere (Pasadena, California, USA).",
+"evidence_location": "Results (characterization); Methods Particle characterization"
+},
+{
+"particle_name": "PS500",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere (Pasadena, California, USA)",
+"size_nominal_nm": "500 nm",
+"size_measured_nm": "503.6 nm",
+"quantity": "zeta potential",
+"value": null,
+"unit": null,
+"n": null,
+"conditions": {
+"medium_text": "simulated intestinal fluid",
+"medium_class": "other",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Zetasizer Nano ZS"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "The characteristics of PS50, PS500 and a mixture of PS50 and PS500 in double distilled water, as well as simulated gastric and intestinal fluids were measured by Zetasizer Nano ZS. This included hydrodynamic size, polymer dispersity index (PDI), and zeta potential. || Each PS particle type was suspended in distilled water, simulated gastric or intestinal fluids at a concentration of 0.25 mg/mL. || The unmodified PS particles, including NF, RF and GF particles were purchased from Magsphere (Pasadena, California, USA).",
+"evidence_location": "Results (characterization); Methods Particle characterization"
+},
+{
+"particle_name": "mixture of PS50 and PS500",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere (Pasadena, California, USA)",
+"size_nominal_nm": null,
+"size_measured_nm": null,
+"quantity": "zeta potential",
+"value": null,
+"unit": null,
+"n": null,
+"conditions": {
+"medium_text": "double distilled water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Zetasizer Nano ZS"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "The characteristics of PS50, PS500 and a mixture of PS50 and PS500 in double distilled water, as well as simulated gastric and intestinal fluids were measured by Zetasizer Nano ZS. This included hydrodynamic size, polymer dispersity index (PDI), and zeta potential. || Each PS particle type was suspended in distilled water, simulated gastric or intestinal fluids at a concentration of 0.25 mg/mL. || The unmodified PS particles, including NF, RF and GF particles were purchased from Magsphere (Pasadena, California, USA).",
+"evidence_location": "Results (characterization); Methods Particle characterization"
+},
+{
+"particle_name": "mixture of PS50 and PS500",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere (Pasadena, California, USA)",
+"size_nominal_nm": null,
+"size_measured_nm": null,
+"quantity": "zeta potential",
+"value": null,
+"unit": null,
+"n": null,
+"conditions": {
+"medium_text": "simulated gastric fluid",
+"medium_class": "other",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Zetasizer Nano ZS"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "The characteristics of PS50, PS500 and a mixture of PS50 and PS500 in double distilled water, as well as simulated gastric and intestinal fluids were measured by Zetasizer Nano ZS. This included hydrodynamic size, polymer dispersity index (PDI), and zeta potential. || Each PS particle type was suspended in distilled water, simulated gastric or intestinal fluids at a concentration of 0.25 mg/mL. || The unmodified PS particles, including NF, RF and GF particles were purchased from Magsphere (Pasadena, California, USA).",
+"evidence_location": "Results (characterization); Methods Particle characterization"
+},
+{
+"particle_name": "mixture of PS50 and PS500",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere (Pasadena, California, USA)",
+"size_nominal_nm": null,
+"size_measured_nm": null,
+"quantity": "zeta potential",
+"value": null,
+"unit": null,
+"n": null,
+"conditions": {
+"medium_text": "simulated intestinal fluid",
+"medium_class": "other",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Zetasizer Nano ZS"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "The characteristics of PS50, PS500 and a mixture of PS50 and PS500 in double distilled water, as well as simulated gastric and intestinal fluids were measured by Zetasizer Nano ZS. This included hydrodynamic size, polymer dispersity index (PDI), and zeta potential. || Each PS particle type was suspended in distilled water, simulated gastric or intestinal fluids at a concentration of 0.25 mg/mL. || The unmodified PS particles, including NF, RF and GF particles were purchased from Magsphere (Pasadena, California, USA).",
+"evidence_location": "Results (characterization); Methods Particle characterization"
+}
+]
+}

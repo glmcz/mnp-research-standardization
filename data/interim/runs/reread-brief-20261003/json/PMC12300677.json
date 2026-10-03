@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "polystyrene carboxylated latex",
+   "material": "polystyrene",
+   "functionalisation": "carboxylated",
+   "supplier": "EOC, Oudenaarde, Belgium",
+   "size_nominal_nm": null,
+   "size_measured_nm": "158.5 ± 5.2",
+   "quantity": "zeta potential",
+   "value": "-41.8 ± 3.2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "10 mM KCl background electrolyte",
+    "medium_class": "salt_solution",
+    "ionic_strength": "10 mM KCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer 2C (Malvern Instruments, England, UK)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Latex\t158.5 ± 5.2\t-41.8 ± 3.2 || Particle size and zeta potential measurements were performed at neutral pH and 10 mM KCl background electrolyte. || Zeta potential measurements were based on electrophoretic mobility and were performed utilizing a Zetasizer 2C (Malvern Instruments, England, UK).",
+   "evidence_location": "Table 2; Methods 2.2"
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+  "measurements": [
+    {
+      "particle_name": "PS-NH2",
+      "material": "polystyrene",
+      "functionalisation": "amino-modified",
+      "supplier": "Zhongkeleiming Daojin Technology Co., (Beijing, China)",
+      "size_nominal_nm": "50 nm",
+      "size_measured_nm": null,
+      "quantity": "zeta potential",
+      "value": "34.2 ± 5.52",
+      "unit": "mV",
+      "n": null,
+      "conditions": {
+        "medium_text": null,
+        "medium_class": "unreported",
+        "ionic_strength": null,
+        "pH": null,
+        "temperature": null,
+        "instrument": "Zetasizer Nano ZS90 (Malvern Panalytical, UK)"
+      },
+      "medium_matches_exposure": null,
+      "evidence_quote": "The zeta potentials for amino-modified (PS-NH2), carboxyl-modified (PS-COOH), and unmodified (PS-Bare) particles were measured at 34.2 ± 5.52 mV, -20.6 ± 3.69 mV, and -0.663 ± 4.94 mV, respectively. || Zeta potential was measured using a Zetasizer Nano ZS90 (Malvern Panalytical, UK).",
+      "evidence_location": "Results, Particle Characterization; Methods, Nanoparticle Characterization"
+    },
+    {
+      "particle_name": "PS-COOH",
+      "material": "polystyrene",
+      "functionalisation": "carboxyl-modified",
+      "supplier": "Zhongkeleiming Daojin Technology Co., (Beijing, China)",
+      "size_nominal_nm": "50 nm",
+      "size_measured_nm": null,
+      "quantity": "zeta potential",
+      "value": "-20.6 ± 3.69",
+      "unit": "mV",
+      "n": null,
+      "conditions": {
+        "medium_text": null,
+        "medium_class": "unreported",
+        "ionic_strength": null,
+        "pH": null,
+        "temperature": null,
+        "instrument": "Zetasizer Nano ZS90 (Malvern Panalytical, UK)"
+      },
+      "medium_matches_exposure": null,
+      "evidence_quote": "The zeta potentials for amino-modified (PS-NH2), carboxyl-modified (PS-COOH), and unmodified (PS-Bare) particles were measured at 34.2 ± 5.52 mV, -20.6 ± 3.69 mV, and -0.663 ± 4.94 mV, respectively. || Zeta potential was measured using a Zetasizer Nano ZS90 (Malvern Panalytical, UK).",
+      "evidence_location": "Results, Particle Characterization; Methods, Nanoparticle Characterization"
+    },
+    {
+      "particle_name": "PS-Bare",
+      "material": "polystyrene",
+      "functionalisation": "unmodified",
+      "supplier": "Zhongkeleiming Daojin Technology Co., (Beijing, China)",
+      "size_nominal_nm": "50 nm",
+      "size_measured_nm": null,
+      "quantity": "zeta potential",
+      "value": "-0.663 ± 4.94",
+      "unit": "mV",
+      "n": null,
+      "conditions": {
+        "medium_text": null,
+        "medium_class": "unreported",
+        "ionic_strength": null,
+        "pH": null,
+        "temperature": null,
+        "instrument": "Zetasizer Nano ZS90 (Malvern Panalytical, UK)"
+      },
+      "medium_matches_exposure": null,
+      "evidence_quote": "The zeta potentials for amino-modified (PS-NH2), carboxyl-modified (PS-COOH), and unmodified (PS-Bare) particles were measured at 34.2 ± 5.52 mV, -20.6 ± 3.69 mV, and -0.663 ± 4.94 mV, respectively. || Zeta potential was measured using a Zetasizer Nano ZS90 (Malvern Panalytical, UK).",
+      "evidence_location": "Results, Particle Characterization; Methods, Nanoparticle Characterization"
+    }
+  ]
+}

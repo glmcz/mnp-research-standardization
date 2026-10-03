@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-Pd-NP",
+   "material": "polystyrene (Pd-doped)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "quantity": "zeta potential",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Methods, Model nanoplastics synthesis and characterization",
+   "size_measured_nm": "231.6 ± 60.09 nm",
+   "value": "-39.7 ± 5.28",
+   "evidence_quote": "Initial particle size and surface charge were measured on a Malvern Zetasizer at 25 °C, where the hydrodynamic was 231.6 ± 60.09 nm and the zeta potential was -39.7 ± 5.28 mV in deionized water.",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer"
+   }
+  },
+  {
+   "particle_name": "PS-Pd-NP",
+   "material": "polystyrene (Pd-doped)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "quantity": "zeta potential",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Methods, Model nanoplastics synthesis and characterization",
+   "size_measured_nm": "497 ± 135 nm",
+   "value": "-25.3 ± 3.5",
+   "evidence_quote": "To study particle agglomeration in the plant growth media, we incubated PS-Pd-NP in glass beakers filled with either growth media or deionized water (serving as a control) for one week. || After one week, the PS-Pd-NP behavior at both low and high PS-Pd-NP concentrations behaved similarly in the growth media where the mean particle size increased on average to 497 ± 135 nm and the zeta potential decreased to -25.3 ± 3.5 mV.",
+   "conditions": {
+    "medium_text": "growth media",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "dynamic light scattering (DLS)"
+   }
+  },
+  {
+   "particle_name": "PS-Pd-NP",
+   "material": "polystyrene (Pd-doped)",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "quantity": "zeta potential",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Methods, Model nanoplastics synthesis and characterization",
+   "size_measured_nm": "233.3 ± 69.1 nm",
+   "value": "-35.0 ± 6.7",
+   "evidence_quote": "To study particle agglomeration in the plant growth media, we incubated PS-Pd-NP in glass beakers filled with either growth media or deionized water (serving as a control) for one week. || In comparison, the size and zeta potential in deionized water remained stable (233.3 ± 69.1 nm and -35.0 ± 6.7 mV).",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "dynamic light scattering (DLS)"
+   }
+  }
+ ]
+}

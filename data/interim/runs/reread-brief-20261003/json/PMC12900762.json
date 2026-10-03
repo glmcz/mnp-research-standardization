@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "170 nm PLA-NPs",
+   "material": "polylactic acid",
+   "functionalisation": "Nile Red fluorescently labeled",
+   "supplier": "PLA from Shanghai Macklin Biochemical Technology Co., Ltd.; NPs prepared in-house",
+   "size_nominal_nm": null,
+   "size_measured_nm": "170 nm",
+   "quantity": "zeta potential",
+   "value": "-32.8333 ± 0.3786",
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Characterization of PLA-NPs; Methods",
+   "evidence_quote": "Zeta potential analysis results indicate that the surface charge of 170 nm NPs is -32.8333 ± 0.3786, while that of 330 nm NPs is -24.8 ± 1.0583, both carrying negative charges(Supplementary Figure S1c). || The Zetasizer Nano ZS90 laser particle sizer (LPSA) was provided by Malvern Panalytical (Malvern, UK). || The physicochemical properties of fluorescently labeled PLA-NPs were characterized using SEM, LPSA, FTIR, FL, and LSCM.",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern Panalytical)"
+   }
+  },
+  {
+   "particle_name": "330 nm PLA-NPs",
+   "material": "polylactic acid",
+   "functionalisation": "Nile Red fluorescently labeled",
+   "supplier": "PLA from Shanghai Macklin Biochemical Technology Co., Ltd.; NPs prepared in-house",
+   "size_nominal_nm": null,
+   "size_measured_nm": "330 nm",
+   "quantity": "zeta potential",
+   "value": "-24.8 ± 1.0583",
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Characterization of PLA-NPs; Methods",
+   "evidence_quote": "Zeta potential analysis results indicate that the surface charge of 170 nm NPs is -32.8333 ± 0.3786, while that of 330 nm NPs is -24.8 ± 1.0583, both carrying negative charges(Supplementary Figure S1c). || The Zetasizer Nano ZS90 laser particle sizer (LPSA) was provided by Malvern Panalytical (Malvern, UK). || The physicochemical properties of fluorescently labeled PLA-NPs were characterized using SEM, LPSA, FTIR, FL, and LSCM.",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern Panalytical)"
+   }
+  }
+ ]
+}

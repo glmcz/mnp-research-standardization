@@ -1,0 +1,119 @@
+{
+ "measurements": [
+  {
+   "particle_name": "Unmodified PS microparticle",
+   "material": "polystyrene",
+   "functionalisation": "Sulfate",
+   "supplier": "Magsphere Inc.",
+   "size_nominal_nm": "5.1 ± 0.16 µm (vendor-given)",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-53.23 ± 0.08",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "DI water (Milli-Q), 50 mg/L or 25 mg/L PS",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500, Anton Paar"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Unmodified\t5.1 ± 0.16\t5.1 ± 0.10\t2.8 ± 0.39\t1.00\tSulfate\tAnionic\t-53.23 ± 0.08 || Table 2. Characteristics of the different PS microparticles. || The particle size distributions and zeta potentials of the feed samples (i.e., either 50 mg/L or 25 mg/L of PS in DI water (Milli-Q DI Water Purification System (Merck-Millipore, Burlington, MA, USA)) were measured using the particle size analyzer (Litesizer 500, Anton Paar, Graz, Austria).",
+   "evidence_location": "Table 2; Methods 3.1"
+  },
+  {
+   "particle_name": "Carboxylated PS microparticle",
+   "material": "polystyrene",
+   "functionalisation": "Carboxyl",
+   "supplier": "Magsphere Inc.",
+   "size_nominal_nm": "5.2 ± 0.18 µm (vendor-given)",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-16.28 ± 0.45",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "DI water (Milli-Q), 50 mg/L or 25 mg/L PS",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500, Anton Paar"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Carboxylated\t5.2 ± 0.18\t5.1 ± 0.06\t2.2 ± 0.31\t1.00\tCarboxyl\tAnionic\t-16.28 ± 0.45 || Table 2. Characteristics of the different PS microparticles. || The particle size distributions and zeta potentials of the feed samples (i.e., either 50 mg/L or 25 mg/L of PS in DI water (Milli-Q DI Water Purification System (Merck-Millipore, Burlington, MA, USA)) were measured using the particle size analyzer (Litesizer 500, Anton Paar, Graz, Austria).",
+   "evidence_location": "Table 2; Methods 3.1"
+  },
+  {
+   "particle_name": "Aminated PS microparticle",
+   "material": "polystyrene",
+   "functionalisation": "Amino",
+   "supplier": "Magsphere Inc.",
+   "size_nominal_nm": "5.3 ± 0.16 µm (vendor-given)",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "15.62 ± 4.65",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "DI water (Milli-Q), 50 mg/L or 25 mg/L PS",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500, Anton Paar"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Aminated\t5.3 ± 0.16\t5.3 ± 0.09\t2.4 ± 0.23\t1.00\tAmino\tCationic\t15.62 ± 4.65 || Table 2. Characteristics of the different PS microparticles. || The particle size distributions and zeta potentials of the feed samples (i.e., either 50 mg/L or 25 mg/L of PS in DI water (Milli-Q DI Water Purification System (Merck-Millipore, Burlington, MA, USA)) were measured using the particle size analyzer (Litesizer 500, Anton Paar, Graz, Austria).",
+   "evidence_location": "Table 2; Methods 3.1"
+  },
+  {
+   "particle_name": "Pear-shaped PS microparticle",
+   "material": "polystyrene",
+   "functionalisation": "Sulfate",
+   "supplier": "Magsphere Inc.",
+   "size_nominal_nm": "3.8 by 5.1 µm (vendor-given)",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-41.41 ± 0.42",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "DI water (Milli-Q), 50 mg/L or 25 mg/L PS",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500, Anton Paar"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Pear-shaped\t3.8 by 5.1\t3.9 by 5.4\t1.4 ± 0.38\t0.82\tSulfate\tAnionic\t-41.41 ± 0.42 || Table 2. Characteristics of the different PS microparticles. || The particle size distributions and zeta potentials of the feed samples (i.e., either 50 mg/L or 25 mg/L of PS in DI water (Milli-Q DI Water Purification System (Merck-Millipore, Burlington, MA, USA)) were measured using the particle size analyzer (Litesizer 500, Anton Paar, Graz, Austria).",
+   "evidence_location": "Table 2; Methods 3.1"
+  },
+  {
+   "particle_name": "Peanut-shaped PS microparticle",
+   "material": "polystyrene",
+   "functionalisation": "Sulfate",
+   "supplier": "Magsphere Inc.",
+   "size_nominal_nm": "3.4 by 5.1 µm (vendor-given)",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-44.75 ± 0.23",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "DI water (Milli-Q), 50 mg/L or 25 mg/L PS",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500, Anton Paar"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Peanut-shaped=\t3.4 by 5.1\t3.0 by 5.1\t1.1 ± 0.18\t0.52\tSulfate\tAnionic\t-44.75 ± 0.23 || Table 2. Characteristics of the different PS microparticles. || The particle size distributions and zeta potentials of the feed samples (i.e., either 50 mg/L or 25 mg/L of PS in DI water (Milli-Q DI Water Purification System (Merck-Millipore, Burlington, MA, USA)) were measured using the particle size analyzer (Litesizer 500, Anton Paar, Graz, Austria).",
+   "evidence_location": "Table 2; Methods 3.1"
+  }
+ ]
+}

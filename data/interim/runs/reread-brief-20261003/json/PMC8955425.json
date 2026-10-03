@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PSNPLs",
+   "material": "polystyrene",
+   "functionalisation": "pristine",
+   "supplier": "Spherotech",
+   "size_nominal_nm": null,
+   "size_measured_nm": "45.91 nm (TEM median)",
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "3",
+   "conditions": {
+    "medium_text": "distilled water, 100 μg/mL",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Nano ZS zen3600"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Z-potential measurements indicate high stability of the dispersions. || To that purpose, the obtained dispersions were diluted to a final concentration of 100 μg/mL in distilled water. The hydrodynamic size and the Z-potential values for PSNPLs and y-PSNPLs dispersions were determined in a Malvern Zetasizer Nano ZS zen3600 device (Malvern, UK). All the parameters for each sample were measured in triplicates. || Figure 1. PS nanomaterials characterization. (A) Representative TEM images of PSNPLs and y-PSNPL. (B) PSNPLs and y-PSNPLs characterization by TEM (median size calculated measuring 100 randomly selected PSNPLs) and Zetasizer Nano ZS (mean ± SD). 100 μg/mL dilutions in distilled water of each material were used for the visualization and characterization.",
+   "evidence_location": "Results 3.1; Methods 2.1; Figure 1 caption"
+  },
+  {
+   "particle_name": "y-PSNPLs",
+   "material": "polystyrene",
+   "functionalisation": "yellow fluorophore-conjugated",
+   "supplier": "Spherotech",
+   "size_nominal_nm": null,
+   "size_measured_nm": "42.42 nm (TEM median)",
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "3",
+   "conditions": {
+    "medium_text": "distilled water, 100 μg/mL",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Nano ZS zen3600"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Z-potential measurements indicate high stability of the dispersions. || To that purpose, the obtained dispersions were diluted to a final concentration of 100 μg/mL in distilled water. The hydrodynamic size and the Z-potential values for PSNPLs and y-PSNPLs dispersions were determined in a Malvern Zetasizer Nano ZS zen3600 device (Malvern, UK). All the parameters for each sample were measured in triplicates. || Figure 1. PS nanomaterials characterization. (A) Representative TEM images of PSNPLs and y-PSNPL. (B) PSNPLs and y-PSNPLs characterization by TEM (median size calculated measuring 100 randomly selected PSNPLs) and Zetasizer Nano ZS (mean ± SD). 100 μg/mL dilutions in distilled water of each material were used for the visualization and characterization.",
+   "evidence_location": "Results 3.1; Methods 2.1; Figure 1 caption"
+  }
+ ]
+}

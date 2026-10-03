@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS MP",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "three times",
+   "conditions": {
+    "medium_text": "10 mM KNO3",
+    "medium_class": "salt_solution",
+    "ionic_strength": "10 mM KNO3",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Additionally, the zeta potentials of PS MP, PS-DPA MP, and PS-UCNP MP are comparable, all carrying a similar negative surface charge (Table S3), therefore indicating a similar uptake behavior regardless of the dopant. || Zeta potential measurements of MP samples were carried out in 10 mM KNO3 (βMP = 0.5 mg·mL-1). || Colloidal stability and surface potential of particle solutions were analyzed using the Zetasizer Nano ZS (Malvern Panalytical) to measure dynamic light scattering (DLS) and zeta potential. All samples were measured three times.",
+   "evidence_location": "Results; Table S3 (supplement); Methods, General Material Characterization"
+  },
+  {
+   "particle_name": "PS-DPA MP",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "three times",
+   "conditions": {
+    "medium_text": "10 mM KNO3",
+    "medium_class": "salt_solution",
+    "ionic_strength": "10 mM KNO3",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Additionally, the zeta potentials of PS MP, PS-DPA MP, and PS-UCNP MP are comparable, all carrying a similar negative surface charge (Table S3), therefore indicating a similar uptake behavior regardless of the dopant. || Zeta potential measurements of MP samples were carried out in 10 mM KNO3 (βMP = 0.5 mg·mL-1). || Colloidal stability and surface potential of particle solutions were analyzed using the Zetasizer Nano ZS (Malvern Panalytical) to measure dynamic light scattering (DLS) and zeta potential. All samples were measured three times.",
+   "evidence_location": "Results; Table S3 (supplement); Methods, General Material Characterization"
+  },
+  {
+   "particle_name": "PS-UCNP MP",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "three times",
+   "conditions": {
+    "medium_text": "10 mM KNO3",
+    "medium_class": "salt_solution",
+    "ionic_strength": "10 mM KNO3",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Additionally, the zeta potentials of PS MP, PS-DPA MP, and PS-UCNP MP are comparable, all carrying a similar negative surface charge (Table S3), therefore indicating a similar uptake behavior regardless of the dopant. || Zeta potential measurements of MP samples were carried out in 10 mM KNO3 (βMP = 0.5 mg·mL-1). || Colloidal stability and surface potential of particle solutions were analyzed using the Zetasizer Nano ZS (Malvern Panalytical) to measure dynamic light scattering (DLS) and zeta potential. All samples were measured three times.",
+   "evidence_location": "Results; Table S3 (supplement); Methods, General Material Characterization"
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "material": "polystyrene",
+   "supplier": null,
+   "size_nominal_nm": "200 nm",
+   "quantity": "zeta potential",
+   "unit": "mV",
+   "n": "at least three",
+   "medium_matches_exposure": null,
+   "evidence_location": "3.4; Fig 4; Methods 2.5",
+   "particle_name": "amino-PS NPs, pristine (control)",
+   "functionalisation": "amino (-NH2)",
+   "size_measured_nm": null,
+   "value": "47.9 ± 1.0",
+   "conditions": {
+    "medium_text": "aqueous solution",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer Nano ZS90"
+   },
+   "evidence_quote": "According to Figure 4, PS NPs are all positively charged in the aqueous solution regardless of whether or not they interact with HRP. || The Zeta potential of the pristine NPs in the control group was 47.9 ± 1.0 mV, and the absolute value decreased significantly after contact with HRP. || Determine Zeta potential, hydrodynamic diameter, and polydispersity index of PS NPs and the PC with a disposable sizing cuvette on a laser particle size and a Zeta potential analyzer (Malvern, Worcestershire, U.K., Zetasizer Nano ZS90) at 25 °C."
+  },
+  {
+   "material": "polystyrene",
+   "supplier": null,
+   "size_nominal_nm": "200 nm",
+   "quantity": "zeta potential",
+   "unit": "mV",
+   "n": "at least three",
+   "medium_matches_exposure": null,
+   "evidence_location": "3.4; Fig 4; Methods 2.5",
+   "particle_name": "amino-PS NPs with HRP protein corona, 30 min incubation",
+   "functionalisation": "amino (-NH2), HRP corona",
+   "size_measured_nm": null,
+   "value": "25.2 ± 0.3",
+   "conditions": {
+    "medium_text": "aqueous solution",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer Nano ZS90"
+   },
+   "evidence_quote": "According to Figure 4, PS NPs are all positively charged in the aqueous solution regardless of whether or not they interact with HRP. || At 30 min, Zeta potential reached a minimum value of 25.2 ± 0.3 mV, and the solution system was in the most unstable state. || Determine Zeta potential, hydrodynamic diameter, and polydispersity index of PS NPs and the PC with a disposable sizing cuvette on a laser particle size and a Zeta potential analyzer (Malvern, Worcestershire, U.K., Zetasizer Nano ZS90) at 25 °C."
+  },
+  {
+   "material": "polystyrene",
+   "supplier": null,
+   "size_nominal_nm": "200 nm",
+   "quantity": "zeta potential",
+   "unit": "mV",
+   "n": "at least three",
+   "medium_matches_exposure": null,
+   "evidence_location": "3.4; Fig 4; Methods 2.5",
+   "particle_name": "amino-PS NPs with HRP protein corona, 10, 60 and 240 min incubation",
+   "functionalisation": "amino (-NH2), HRP corona",
+   "size_measured_nm": null,
+   "value": null,
+   "conditions": {
+    "medium_text": "aqueous solution",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer Nano ZS90"
+   },
+   "evidence_quote": "Figure 4. Zeta potential changes of PS NPs and the PC over time. Dates are means ± SE (n = 3). Different letters indicate a significant difference at p < 0.05. || According to Figure 4, PS NPs are all positively charged in the aqueous solution regardless of whether or not they interact with HRP. || Determine Zeta potential, hydrodynamic diameter, and polydispersity index of PS NPs and the PC with a disposable sizing cuvette on a laser particle size and a Zeta potential analyzer (Malvern, Worcestershire, U.K., Zetasizer Nano ZS90) at 25 °C."
+  }
+ ]
+}

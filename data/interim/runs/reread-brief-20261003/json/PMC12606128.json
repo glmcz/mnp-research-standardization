@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS size standards (0.1, 1, 5 μm), before UV sterilisation",
+   "material": "polystyrene",
+   "functionalisation": "none (no chemical surface modification)",
+   "supplier": "MERCK (cat. no. 43302, 89904, 79633)",
+   "size_nominal_nm": "0.101 ± 0.007 μm; 0.95 ± 0.03 μm; 5.07 ± 0.09 μm (manufacturer)",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Nano ZS, A. P. Instruments"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Dynamic light scattering (DLS) measurements (Malvern Zetasizer Nano ZS, A. P. Instruments) of average diameter, polydispersity index, and ζ-potential, taken before and after UV irradiation, indicated no effect of the sterilization procedure on these parameters.",
+   "evidence_location": "Methods, Microplastics"
+  },
+  {
+   "particle_name": "PS size standards (0.1, 1, 5 μm), after UV sterilisation",
+   "material": "polystyrene",
+   "functionalisation": "none (no chemical surface modification)",
+   "supplier": "MERCK (cat. no. 43302, 89904, 79633)",
+   "size_nominal_nm": "0.101 ± 0.007 μm; 0.95 ± 0.03 μm; 5.07 ± 0.09 μm (manufacturer)",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Nano ZS, A. P. Instruments"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Dynamic light scattering (DLS) measurements (Malvern Zetasizer Nano ZS, A. P. Instruments) of average diameter, polydispersity index, and ζ-potential, taken before and after UV irradiation, indicated no effect of the sterilization procedure on these parameters.",
+   "evidence_location": "Methods, Microplastics"
+  }
+ ]
+}

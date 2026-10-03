@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-MPs 5 μm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Shuangfu Plasticising Trading Co (GuangZhou, China)",
+   "size_nominal_nm": "5 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "sterile water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "zeta potential and particle size analyzer (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The values of both PS-MPs (Figure 1G) and SeNPs (Figure 1H) are quite high. || The mixture of PS-MPs and sterile water and the mixture of SeNPs and sterile water were diluted to 50 mg/L and sonicated, followed by transfer to a zeta flow cell and a quartz cuvette cell (Malvern Panalytical, Malvern, UK) for characterization. || The liquid-phase surface charge of PS-MPs and SeNPs was measured using zeta potential and a particle size analyzer (Malvern Panalytical, Malvern, UK).",
+   "evidence_location": "Section 4.1 / Figure 1G"
+  }
+ ]
+}

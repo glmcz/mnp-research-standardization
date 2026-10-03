@@ -1,0 +1,12 @@
+{"measurements": [
+{"particle_name":"5 µm PS‐MPs","material":"polystyrene","functionalisation":null,"supplier":"Baseline Chromatography Technology Development Center, China","size_nominal_nm":"5 µm","size_measured_nm":"5125.33±242.17 nm","quantity":"zeta potential","value":"-31.63±0.45","unit":"mV","n":null,
+"conditions":{"medium_text":"PBS","medium_class":"buffer","ionic_strength":null,"pH":"7.4","temperature":"25 °C","instrument":"Nano ZSP Expert Colloid & Protein (Malvern, UK)"},
+"medium_matches_exposure":true,
+"evidence_quote":"The zeta potential and hydrodynamic size of PS‐MPs in PBS were -31.63±0.45 mV (Figure 1B) and 5125.33±242.17 nm (Figure S1A,B, Supporting Information), respectively. || The hydrodynamic size and zeta potential of PS‐MPs were measured using Nano ZSP Expert Colloid & Protein (Malvern, UK) at 25 °C, with a concentration of 50 µg mL-1 and PH7.4.",
+"evidence_location":"Characterization of PS‐MPs; Methods, Chemicals"},
+{"particle_name":"5 µm PS‐MPs","material":"polystyrene","functionalisation":null,"supplier":"Baseline Chromatography Technology Development Center, China","size_nominal_nm":"5 µm","size_measured_nm":null,"quantity":"zeta potential","value":"-30.63±1.38","unit":"mV","n":null,
+"conditions":{"medium_text":"bronchoalveolar lavage fluid (BALF)","medium_class":"biofluid","ionic_strength":null,"pH":null,"temperature":null,"instrument":"Nano ZSP Expert Colloid & Protein (Malvern, UK)"},
+"medium_matches_exposure":null,
+"evidence_quote":"In addition, the zeta potential of PS‐MPs in bronchoalveolar lavage fluid (BALF) was -30.63±1.38 mV (Figure 1B). || The hydrodynamic size and zeta potential of PS‐MPs were measured using Nano ZSP Expert Colloid & Protein (Malvern, UK) at 25 °C, with a concentration of 50 µg mL-1 and PH7.4.",
+"evidence_location":"Characterization of PS‐MPs; Methods, Chemicals"}
+]}

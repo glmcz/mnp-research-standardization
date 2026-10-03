@@ -1,0 +1,142 @@
+{
+ "measurements": [
+  {
+   "particle_name": "NH2-PS 1 µm",
+   "material": "polystyrene",
+   "functionalisation": "amine",
+   "supplier": "Corpuscular, Inc., USA",
+   "size_nominal_nm": "1 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-12.42 ± 0.65",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "lake water",
+    "medium_class": "environmental_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "90 Plus Particle Size Analyzer (Brookhaven Instruments Corp.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Lake water\t1 µm\tNH2-PS\t-12.42 ± 0.65 || Table 1. Zeta Potential of differently functionalized and sized MPs dispersed in lake water medium. || To elucidate the charge on the MPs (1 and 12 µm), Zeta potential was evaluated at 0th h for all three differently functionalized MPs dispersed in lake water (90 Plus Particle Size Analyzer; software: Particle Size Analyzer, Brookhaven Instruments Corp., USA).",
+   "evidence_location": "Table 1; Methods"
+  },
+  {
+   "particle_name": "COOH-PS 1 µm",
+   "material": "polystyrene",
+   "functionalisation": "carboxyl",
+   "supplier": "Corpuscular, Inc., USA",
+   "size_nominal_nm": "1 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-17.49 ± 2.04",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "lake water",
+    "medium_class": "environmental_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "90 Plus Particle Size Analyzer (Brookhaven Instruments Corp.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "\t\tCOOH-PS\t-17.49 ± 2.04 || Table 1. Zeta Potential of differently functionalized and sized MPs dispersed in lake water medium. || To elucidate the charge on the MPs (1 and 12 µm), Zeta potential was evaluated at 0th h for all three differently functionalized MPs dispersed in lake water (90 Plus Particle Size Analyzer; software: Particle Size Analyzer, Brookhaven Instruments Corp., USA).",
+   "evidence_location": "Table 1; Methods"
+  },
+  {
+   "particle_name": "Plain-PS 1 µm",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": "Corpuscular, Inc., USA",
+   "size_nominal_nm": "1 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-3.81 ± 1.1",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "lake water",
+    "medium_class": "environmental_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "90 Plus Particle Size Analyzer (Brookhaven Instruments Corp.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "\t\tPlain-PS\t-3.81 ± 1.1 || Table 1. Zeta Potential of differently functionalized and sized MPs dispersed in lake water medium. || To elucidate the charge on the MPs (1 and 12 µm), Zeta potential was evaluated at 0th h for all three differently functionalized MPs dispersed in lake water (90 Plus Particle Size Analyzer; software: Particle Size Analyzer, Brookhaven Instruments Corp., USA).",
+   "evidence_location": "Table 1; Methods"
+  },
+  {
+   "particle_name": "NH2-PS 12 µm",
+   "material": "polystyrene",
+   "functionalisation": "amine",
+   "supplier": "Corpuscular, Inc., USA",
+   "size_nominal_nm": "12 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-5.98 ± 0.27",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "lake water",
+    "medium_class": "environmental_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "90 Plus Particle Size Analyzer (Brookhaven Instruments Corp.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "\t12 µm\tNH2-PS\t-5.98 ± 0.27 || Table 1. Zeta Potential of differently functionalized and sized MPs dispersed in lake water medium. || To elucidate the charge on the MPs (1 and 12 µm), Zeta potential was evaluated at 0th h for all three differently functionalized MPs dispersed in lake water (90 Plus Particle Size Analyzer; software: Particle Size Analyzer, Brookhaven Instruments Corp., USA).",
+   "evidence_location": "Table 1; Methods"
+  },
+  {
+   "particle_name": "COOH-PS 12 µm",
+   "material": "polystyrene",
+   "functionalisation": "carboxyl",
+   "supplier": "Corpuscular, Inc., USA",
+   "size_nominal_nm": "12 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-6.92 ± 0.27",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "lake water",
+    "medium_class": "environmental_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "90 Plus Particle Size Analyzer (Brookhaven Instruments Corp.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "\t\tCOOH-PS\t-6.92 ± 0.27 || Table 1. Zeta Potential of differently functionalized and sized MPs dispersed in lake water medium. || To elucidate the charge on the MPs (1 and 12 µm), Zeta potential was evaluated at 0th h for all three differently functionalized MPs dispersed in lake water (90 Plus Particle Size Analyzer; software: Particle Size Analyzer, Brookhaven Instruments Corp., USA).",
+   "evidence_location": "Table 1; Methods"
+  },
+  {
+   "particle_name": "Plain-PS 12 µm",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": "Corpuscular, Inc., USA",
+   "size_nominal_nm": "12 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-0.78 ± 0.04",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "lake water",
+    "medium_class": "environmental_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "90 Plus Particle Size Analyzer (Brookhaven Instruments Corp.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "\t\tPlain-PS\t-0.78 ± 0.04 || Table 1. Zeta Potential of differently functionalized and sized MPs dispersed in lake water medium. || To elucidate the charge on the MPs (1 and 12 µm), Zeta potential was evaluated at 0th h for all three differently functionalized MPs dispersed in lake water (90 Plus Particle Size Analyzer; software: Particle Size Analyzer, Brookhaven Instruments Corp., USA).",
+   "evidence_location": "Table 1; Methods"
+  }
+ ]
+}

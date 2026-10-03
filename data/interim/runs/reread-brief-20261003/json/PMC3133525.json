@@ -1,0 +1,27 @@
+{
+  "measurements": [
+    {
+      "particle_name": "N20",
+      "material": "polystyrene",
+      "functionalisation": "carboxyl-modified",
+      "supplier": "Invitrogen (F-8787)",
+      "size_nominal_nm": "20 nm",
+      "size_measured_nm": "45.2 ± 0.01 nm (Z average)",
+      "quantity": "zeta potential",
+      "value": "-15.1 ± 0.8",
+      "unit": "mV",
+      "n": "three repeats per sample",
+      "conditions": {
+        "medium_text": "Krebs–Henseleit solution",
+        "medium_class": "buffer",
+        "ionic_strength": "(in mM): NaCl, 116.4; KCl, 4.7; CaCl2, 1.8; MgCl2, 1.2; NaH2PO4, 0.78; NaHCO3, 25.0; and 10 glucose",
+        "pH": "7.4 ± 0.1 when bubbled with 95% O2 and 5% CO2",
+        "temperature": "37°C",
+        "instrument": "Zetasizer Nano ZS (Malvern Instruments, Worcestershire, UK)"
+      },
+      "medium_matches_exposure": true,
+      "evidence_quote": "Our own measurements have shown that N20 had a Z average (nm) of 45.2 ± 0.01, a zeta potential of -15.1 ± 0.8 mV, and a polydispersity index of 0.22 ± 0.002 in Krebs–Henseleit solution. || The size and zeta potential for N20 was determined using a Zetasizer Nano ZS (Malvern Instruments, Worcestershire, UK). || Zeta potential and size was measured at 37°C, three repeats per sample. || Polystyrene nanoparticles were diluted in Krebs–Henseleit solution containing (in mM): NaCl, 116.4; KCl, 4.7; CaCl2, 1.8; MgCl2, 1.2; NaH2PO4, 0.78; NaHCO3, 25.0; and 10 glucose (pH was 7.4 ± 0.1 when bubbled with 95% O2 and 5% CO2). || Polystyrene latex beads were purchased from Invitrogen (carboxyl-modified 20 nm, F-8787; Carlsbad, CA) and corelabeled with fluorophore according to the manufacturer’s specifications.",
+      "evidence_location": "Results, Nanoparticle characterization; Methods, Size and zeta potential determination"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PLA oligomer MPs",
+   "material": "polylactic acid",
+   "functionalisation": null,
+   "supplier": "Shanghai Sur-Release Biotech Inc. (Shanghai, China)",
+   "size_nominal_nm": "1 to 5 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results; Figure S1B",
+   "evidence_quote": "DLS analysis showed that PLA oligomer and polymer MPs had comparable size distributions, low PDI values, and negative zeta potentials, indicating stable dispersion in double-distilled water (Figure S1B). || The particle size distribution and zeta potential of these suspensions were determined by dynamic light scattering (DLS) and Zetasizer nano ZS (Malvern Panalytical GmbH, Kassel, Germany).",
+   "conditions": {
+    "medium_text": "double-distilled water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano ZS (Malvern Panalytical GmbH, Kassel, Germany)"
+   }
+  },
+  {
+   "particle_name": "PLA polymer MPs",
+   "material": "polylactic acid",
+   "functionalisation": null,
+   "supplier": "Shanghai Sur-Release Biotech Inc. (Shanghai, China)",
+   "size_nominal_nm": "1 to 5 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results; Figure S1B",
+   "evidence_quote": "DLS analysis showed that PLA oligomer and polymer MPs had comparable size distributions, low PDI values, and negative zeta potentials, indicating stable dispersion in double-distilled water (Figure S1B). || The particle size distribution and zeta potential of these suspensions were determined by dynamic light scattering (DLS) and Zetasizer nano ZS (Malvern Panalytical GmbH, Kassel, Germany).",
+   "conditions": {
+    "medium_text": "double-distilled water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano ZS (Malvern Panalytical GmbH, Kassel, Germany)"
+   }
+  }
+ ]
+}

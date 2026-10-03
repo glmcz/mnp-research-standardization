@@ -1,0 +1,142 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS NPs 50 nm, 0 h",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Polysciences",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Results; Table S2 (supplement)",
+   "evidence_quote": "Regarding the polydispersity index (PDI) and zeta potential, no statistically significant differences were observed after 24 h || 500 μg/mL in complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin.",
+   "conditions": {
+    "medium_text": "complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "PS NPs 50 nm, 24 h",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Polysciences",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Results; Table S2 (supplement)",
+   "evidence_quote": "Regarding the polydispersity index (PDI) and zeta potential, no statistically significant differences were observed after 24 h || 500 μg/mL in complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin.",
+   "conditions": {
+    "medium_text": "complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "PS NPs 100 nm, 0 h",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Polysciences",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Results; Table S2 (supplement)",
+   "evidence_quote": "Regarding the polydispersity index (PDI) and zeta potential, no statistically significant differences were observed after 24 h || 500 μg/mL in complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin.",
+   "conditions": {
+    "medium_text": "complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "PS NPs 100 nm, 24 h",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Polysciences",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Results; Table S2 (supplement)",
+   "evidence_quote": "Regarding the polydispersity index (PDI) and zeta potential, no statistically significant differences were observed after 24 h || 500 μg/mL in complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin.",
+   "conditions": {
+    "medium_text": "complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "PS NPs 200 nm, 0 h",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Polysciences",
+   "size_nominal_nm": "200 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Results; Table S2 (supplement)",
+   "evidence_quote": "Regarding the polydispersity index (PDI) and zeta potential, no statistically significant differences were observed after 24 h || 500 μg/mL in complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin.",
+   "conditions": {
+    "medium_text": "complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "PS NPs 200 nm, 24 h",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Polysciences",
+   "size_nominal_nm": "200 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Results; Table S2 (supplement)",
+   "evidence_quote": "Regarding the polydispersity index (PDI) and zeta potential, no statistically significant differences were observed after 24 h || 500 μg/mL in complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin.",
+   "conditions": {
+    "medium_text": "complete culture medium containing 90% DMEM, 10% FBS, and 1% penicillin/streptomycin",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

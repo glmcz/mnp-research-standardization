@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-NPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Zhichuan Technology Co., Ltd. (Changzhou, China)",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": "48.02 ± 3.69 nm",
+   "quantity": "zeta potential",
+   "value": "-52.53 ± 3.07",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "culture medium (DMEM, high glucose, Gibco, USA)",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer ZEN3600 (Malvern, Worcestershire, U.K.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potential value was -52.53 ± 3.07 mV and -42.61 ± 3.07 mV in culture medium and ddH2O, respectively (Figure S1C and E). || In addition, ZEN3600 was utilized to evaluate the stability of PS-NPs, and the results showed that the hydrodynamic diameter in the culture medium (DMEM, high glucose, Gibco, USA) was 48.02 ± 3.69 nm (Figure S1B), and that in the ddH2O was 50.07 ± 1.10 nm (Figure S1D). || The hydrodynamic diameter and zeta potential were measured by using a dynamic light scattering (DLS) was employed on a Zetasizer ZEN3600 (Malvern, Worcestershire, U.K.).",
+   "evidence_location": "Results, Characterization of PS-NPs; Methods"
+  },
+  {
+   "particle_name": "PS-NPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Zhichuan Technology Co., Ltd. (Changzhou, China)",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": "50.07 ± 1.10 nm",
+   "quantity": "zeta potential",
+   "value": "-42.61 ± 3.07",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "ddH2O",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer ZEN3600 (Malvern, Worcestershire, U.K.)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potential value was -52.53 ± 3.07 mV and -42.61 ± 3.07 mV in culture medium and ddH2O, respectively (Figure S1C and E). || In addition, ZEN3600 was utilized to evaluate the stability of PS-NPs, and the results showed that the hydrodynamic diameter in the culture medium (DMEM, high glucose, Gibco, USA) was 48.02 ± 3.69 nm (Figure S1B), and that in the ddH2O was 50.07 ± 1.10 nm (Figure S1D). || The hydrodynamic diameter and zeta potential were measured by using a dynamic light scattering (DLS) was employed on a Zetasizer ZEN3600 (Malvern, Worcestershire, U.K.).",
+   "evidence_location": "Results, Characterization of PS-NPs; Methods"
+  }
+ ]
+}

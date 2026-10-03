@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "80 nm PS-COOH",
+   "material": "polystyrene",
+   "functionalisation": "carboxyl",
+   "supplier": "Da’e Scientific Co., Ltd. (Tianjin, China)",
+   "size_nominal_nm": "80 nm",
+   "size_measured_nm": "83 ± 0.62 nm",
+   "quantity": "zeta potential",
+   "value": "-14.36 ± 0.55",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "deionised water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": "7.0",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "The zeta potentials of PS-COOH and PS-NH2 in deionised water (pH value of 7.0) were -14.36 ± 0.55 and + 8.71 ± 1.08 mV, respectively. || DLS was used to quantify the hydrodynamic particle size and surface charge of nanoplastics using Zetasizer Nano ZS (Malvern)19.",
+   "evidence_location": "Results para 3; Methods, Nanoplastics and bacteria materials"
+  },
+  {
+   "particle_name": "80 nm PS-NH2",
+   "material": "polystyrene",
+   "functionalisation": "amine",
+   "supplier": "Da’e Scientific Co., Ltd. (Tianjin, China)",
+   "size_nominal_nm": "80 nm",
+   "size_measured_nm": "85 ± 1.05 nm",
+   "quantity": "zeta potential",
+   "value": "+ 8.71 ± 1.08",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "deionised water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": "7.0",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "The zeta potentials of PS-COOH and PS-NH2 in deionised water (pH value of 7.0) were -14.36 ± 0.55 and + 8.71 ± 1.08 mV, respectively. || DLS was used to quantify the hydrodynamic particle size and surface charge of nanoplastics using Zetasizer Nano ZS (Malvern)19.",
+   "evidence_location": "Results para 3; Methods, Nanoplastics and bacteria materials"
+  }
+ ]
+}

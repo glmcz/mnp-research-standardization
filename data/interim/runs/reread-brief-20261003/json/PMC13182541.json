@@ -1,0 +1,211 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich, Inc., USA",
+   "size_nominal_nm": "10 µm",
+   "size_measured_nm": "10.6 ± 0.2 µm (D50)",
+   "quantity": "zeta potential",
+   "value": "-57.36 ± 0.54",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "0.1 mM NaCl, no HA",
+    "medium_class": "salt_solution",
+    "ionic_strength": "0.1 mM (NaCl as background electrolyte)",
+    "pH": "6.0",
+    "temperature": null,
+    "instrument": "zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "0\t0.1\t0\t6.0\t-57.36 ± 0.54\t-26.38 ± 0.63\t346 || HA a (mg L -1)\tIS b (mM)\tω c\tpH\tPS-MPs d\tQuartz sand e\t(×10 4 kT) || And the zeta potentials of PS-MPs in solutions varying in HA concentration, IS, and pH were measured using zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China) (see SI).",
+   "evidence_location": "Table 1; Methods, Preparation of PS-MPs suspension"
+  },
+  {
+   "particle_name": "PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich, Inc., USA",
+   "size_nominal_nm": "10 µm",
+   "size_measured_nm": "10.6 ± 0.2 µm (D50)",
+   "quantity": "zeta potential",
+   "value": "-59.45 ± 0.69",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "1 mg L-1 HA, 0.1 mM NaCl",
+    "medium_class": "other",
+    "ionic_strength": "0.1 mM (NaCl as background electrolyte)",
+    "pH": "6.0",
+    "temperature": null,
+    "instrument": "zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "1\t0.1\t0\t6.0\t-59.45 ± 0.69\t-29.15 ± 1.35\t418 || HA a (mg L -1)\tIS b (mM)\tω c\tpH\tPS-MPs d\tQuartz sand e\t(×10 4 kT) || And the zeta potentials of PS-MPs in solutions varying in HA concentration, IS, and pH were measured using zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China) (see SI).",
+   "evidence_location": "Table 1; Methods, Preparation of PS-MPs suspension"
+  },
+  {
+   "particle_name": "PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich, Inc., USA",
+   "size_nominal_nm": "10 µm",
+   "size_measured_nm": "10.6 ± 0.2 µm (D50)",
+   "quantity": "zeta potential",
+   "value": "-61.79 ± 0.31",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "5 mg L-1 HA, 0.1 mM NaCl",
+    "medium_class": "other",
+    "ionic_strength": "0.1 mM (NaCl as background electrolyte)",
+    "pH": "6.0",
+    "temperature": null,
+    "instrument": "zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "5\t0.1\t0\t6.0\t-61.79 ± 0.31\t-29.87 ± 0.36\t455 || HA a (mg L -1)\tIS b (mM)\tω c\tpH\tPS-MPs d\tQuartz sand e\t(×10 4 kT) || And the zeta potentials of PS-MPs in solutions varying in HA concentration, IS, and pH were measured using zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China) (see SI).",
+   "evidence_location": "Table 1; Methods, Preparation of PS-MPs suspension"
+  },
+  {
+   "particle_name": "PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich, Inc., USA",
+   "size_nominal_nm": "10 µm",
+   "size_measured_nm": "10.6 ± 0.2 µm (D50)",
+   "quantity": "zeta potential",
+   "value": "-61.84 ± 1.40",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "10 mg L-1 HA, 0.1 mM NaCl",
+    "medium_class": "other",
+    "ionic_strength": "0.1 mM (NaCl as background electrolyte)",
+    "pH": "6.0",
+    "temperature": null,
+    "instrument": "zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "10\t0.1\t0\t6.0\t-61.84 ± 1.40\t-30.85 ± 1.62\t492 || HA a (mg L -1)\tIS b (mM)\tω c\tpH\tPS-MPs d\tQuartz sand e\t(×10 4 kT) || And the zeta potentials of PS-MPs in solutions varying in HA concentration, IS, and pH were measured using zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China) (see SI).",
+   "evidence_location": "Table 1; Methods, Preparation of PS-MPs suspension"
+  },
+  {
+   "particle_name": "PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich, Inc., USA",
+   "size_nominal_nm": "10 µm",
+   "size_measured_nm": "10.6 ± 0.2 µm (D50)",
+   "quantity": "zeta potential",
+   "value": "-61.43 ± 1.00",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "10 mg L-1 HA, 1 mM NaCl",
+    "medium_class": "other",
+    "ionic_strength": "1 mM (NaCl as background electrolyte)",
+    "pH": "6.0",
+    "temperature": null,
+    "instrument": "zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "10\t1\t0\t6.0\t-61.43 ± 1.00\t-28.82 ± 0.57\t28.5 || HA a (mg L -1)\tIS b (mM)\tω c\tpH\tPS-MPs d\tQuartz sand e\t(×10 4 kT) || And the zeta potentials of PS-MPs in solutions varying in HA concentration, IS, and pH were measured using zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China) (see SI).",
+   "evidence_location": "Table 1; Methods, Preparation of PS-MPs suspension"
+  },
+  {
+   "particle_name": "PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich, Inc., USA",
+   "size_nominal_nm": "10 µm",
+   "size_measured_nm": "10.6 ± 0.2 µm (D50)",
+   "quantity": "zeta potential",
+   "value": "-50.82 ± 3.45",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "10 mg L-1 HA, 10 mM NaCl",
+    "medium_class": "other",
+    "ionic_strength": "10 mM (NaCl as background electrolyte)",
+    "pH": "6.0",
+    "temperature": null,
+    "instrument": "zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "10\t10\t0\t6.0\t-50.82 ± 3.45\t-28.06 ± 2.01\t11.1 || HA a (mg L -1)\tIS b (mM)\tω c\tpH\tPS-MPs d\tQuartz sand e\t(×10 4 kT) || And the zeta potentials of PS-MPs in solutions varying in HA concentration, IS, and pH were measured using zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China) (see SI).",
+   "evidence_location": "Table 1; Methods, Preparation of PS-MPs suspension"
+  },
+  {
+   "particle_name": "PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich, Inc., USA",
+   "size_nominal_nm": "10 µm",
+   "size_measured_nm": "10.6 ± 0.2 µm (D50)",
+   "quantity": "zeta potential",
+   "value": "-31.09 ± 2.75",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "10 mg L-1 HA, 100 mM NaCl",
+    "medium_class": "other",
+    "ionic_strength": "100 mM (NaCl as background electrolyte)",
+    "pH": "6.0",
+    "temperature": null,
+    "instrument": "zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "10\t100\t0\t6.0\t-31.09 ± 2.75\t-22.64 ± 1.14\t0.624 || HA a (mg L -1)\tIS b (mM)\tω c\tpH\tPS-MPs d\tQuartz sand e\t(×10 4 kT) || And the zeta potentials of PS-MPs in solutions varying in HA concentration, IS, and pH were measured using zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China) (see SI).",
+   "evidence_location": "Table 1; Methods, Preparation of PS-MPs suspension"
+  },
+  {
+   "particle_name": "PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich, Inc., USA",
+   "size_nominal_nm": "10 µm",
+   "size_measured_nm": "10.6 ± 0.2 µm (D50)",
+   "quantity": "zeta potential",
+   "value": "-65.03 ± 1.13",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "10 mg L-1 HA, 0.1 mM NaCl",
+    "medium_class": "other",
+    "ionic_strength": "0.1 mM (NaCl as background electrolyte)",
+    "pH": "8.0",
+    "temperature": null,
+    "instrument": "zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "10\t0.1\t0.15\t8.0\t-65.03 ± 1.13\t-29.82 ± 0.25\t46.8 || HA a (mg L -1)\tIS b (mM)\tω c\tpH\tPS-MPs d\tQuartz sand e\t(×10 4 kT) || And the zeta potentials of PS-MPs in solutions varying in HA concentration, IS, and pH were measured using zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China) (see SI).",
+   "evidence_location": "Table 1; Methods, Preparation of PS-MPs suspension"
+  },
+  {
+   "particle_name": "PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich, Inc., USA",
+   "size_nominal_nm": "10 µm",
+   "size_measured_nm": "10.6 ± 0.2 µm (D50)",
+   "quantity": "zeta potential",
+   "value": "-66.21 ± 5.52",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "10 mg L-1 HA, 0.1 mM NaCl",
+    "medium_class": "other",
+    "ionic_strength": "0.1 mM (NaCl as background electrolyte)",
+    "pH": "10.0",
+    "temperature": null,
+    "instrument": "zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "10\t0.1\t0.15\t10.0\t-66.21 ± 5.52\t-33.61 ± 0.41\t58.6 || HA a (mg L -1)\tIS b (mM)\tω c\tpH\tPS-MPs d\tQuartz sand e\t(×10 4 kT) || And the zeta potentials of PS-MPs in solutions varying in HA concentration, IS, and pH were measured using zeta potential analyzer (Zhongcheng Digital Technology model JS94G, China) (see SI).",
+   "evidence_location": "Table 1; Methods, Preparation of PS-MPs suspension"
+  }
+ ]
+}

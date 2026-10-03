@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "FluoSpheres Polystyrene Microspheres, 1.0 μm red fluorescent",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Thermo Fisher Scientific",
+   "size_nominal_nm": "1.0 μm",
+   "size_measured_nm": "1271 nm",
+   "quantity": "zeta potential",
+   "value": "-19.2",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "DMEM",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ZetaSizer Nano-ZS (Malvern Instruments, Malvern, UK)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Particle size in DMEM, in which they were applied to the cells, was 1271 nm, PDI was 0.453, and zeta potential was -19.2 mV. || Hydrodynamic size and zeta potential were determined by Photon Correlation Spectroscopy and Laser Doppler Velocimetry using a ZetaSizer Nano-ZS (Malvern Instruments, Malvern, UK) as reported previously [50].",
+   "evidence_location": "Methods 4.3.1"
+  }
+ ]
+}

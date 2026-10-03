@@ -1,0 +1,211 @@
+{
+"measurements": [
+{
+"particle_name": "PS",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere or Phosphorex",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "50.1 ± 1.0",
+"quantity": "zeta potential",
+"value": "-8.0 ± 2.0",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "DI water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "Zeta potential measurements were conducted to verify the surface charge of polystyrene nanoparticles (50 nm) functionalized with neutral (PS), anionic (PS-COOH) and cationic (PS-NH2) groups in water, PBS, and cell culture medium (Table 1). || PS\t-8.0 ± 2.0\t-16.7 ± 11.0\t-13.9 ± 0.6\t50.1 ± 1.0\t49.4 ± 3.6\t88.9 ± 1.8 || The surface charge and hydrodynamic diameter of polystyrene nanoparticles was analyzed using a Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system.",
+"evidence_location": "Table 1; Methods"
+},
+{
+"particle_name": "PS",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere or Phosphorex",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "49.4 ± 3.6",
+"quantity": "zeta potential",
+"value": "-16.7 ± 11.0",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "PBS",
+"medium_class": "buffer",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "Zeta potential measurements were conducted to verify the surface charge of polystyrene nanoparticles (50 nm) functionalized with neutral (PS), anionic (PS-COOH) and cationic (PS-NH2) groups in water, PBS, and cell culture medium (Table 1). || PS\t-8.0 ± 2.0\t-16.7 ± 11.0\t-13.9 ± 0.6\t50.1 ± 1.0\t49.4 ± 3.6\t88.9 ± 1.8 || The surface charge and hydrodynamic diameter of polystyrene nanoparticles was analyzed using a Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system.",
+"evidence_location": "Table 1; Methods"
+},
+{
+"particle_name": "PS",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": "Magsphere or Phosphorex",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "88.9 ± 1.8",
+"quantity": "zeta potential",
+"value": "-13.9 ± 0.6",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "cell culture medium",
+"medium_class": "culture_medium",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "Zeta potential measurements were conducted to verify the surface charge of polystyrene nanoparticles (50 nm) functionalized with neutral (PS), anionic (PS-COOH) and cationic (PS-NH2) groups in water, PBS, and cell culture medium (Table 1). || PS\t-8.0 ± 2.0\t-16.7 ± 11.0\t-13.9 ± 0.6\t50.1 ± 1.0\t49.4 ± 3.6\t88.9 ± 1.8 || The surface charge and hydrodynamic diameter of polystyrene nanoparticles was analyzed using a Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system.",
+"evidence_location": "Table 1; Methods"
+},
+{
+"particle_name": "PS-COOH",
+"material": "polystyrene",
+"functionalisation": "carboxyl",
+"supplier": "Magsphere or Phosphorex",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "60.3 ± 5.0",
+"quantity": "zeta potential",
+"value": "-21.3 ± 2.2",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "DI water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "Zeta potential measurements were conducted to verify the surface charge of polystyrene nanoparticles (50 nm) functionalized with neutral (PS), anionic (PS-COOH) and cationic (PS-NH2) groups in water, PBS, and cell culture medium (Table 1). || PS-COOH\t-21.3 ± 2.2\t-17.1 ± 7.7\t-8.2 ± 2.6\t60.3 ± 5.0\t53.3 ± 14.5\t53.5 ± 14.3 || The surface charge and hydrodynamic diameter of polystyrene nanoparticles was analyzed using a Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system.",
+"evidence_location": "Table 1; Methods"
+},
+{
+"particle_name": "PS-COOH",
+"material": "polystyrene",
+"functionalisation": "carboxyl",
+"supplier": "Magsphere or Phosphorex",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "53.3 ± 14.5",
+"quantity": "zeta potential",
+"value": "-17.1 ± 7.7",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "PBS",
+"medium_class": "buffer",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "Zeta potential measurements were conducted to verify the surface charge of polystyrene nanoparticles (50 nm) functionalized with neutral (PS), anionic (PS-COOH) and cationic (PS-NH2) groups in water, PBS, and cell culture medium (Table 1). || PS-COOH\t-21.3 ± 2.2\t-17.1 ± 7.7\t-8.2 ± 2.6\t60.3 ± 5.0\t53.3 ± 14.5\t53.5 ± 14.3 || The surface charge and hydrodynamic diameter of polystyrene nanoparticles was analyzed using a Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system.",
+"evidence_location": "Table 1; Methods"
+},
+{
+"particle_name": "PS-COOH",
+"material": "polystyrene",
+"functionalisation": "carboxyl",
+"supplier": "Magsphere or Phosphorex",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "53.5 ± 14.3",
+"quantity": "zeta potential",
+"value": "-8.2 ± 2.6",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "cell culture medium",
+"medium_class": "culture_medium",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "Zeta potential measurements were conducted to verify the surface charge of polystyrene nanoparticles (50 nm) functionalized with neutral (PS), anionic (PS-COOH) and cationic (PS-NH2) groups in water, PBS, and cell culture medium (Table 1). || PS-COOH\t-21.3 ± 2.2\t-17.1 ± 7.7\t-8.2 ± 2.6\t60.3 ± 5.0\t53.3 ± 14.5\t53.5 ± 14.3 || The surface charge and hydrodynamic diameter of polystyrene nanoparticles was analyzed using a Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system.",
+"evidence_location": "Table 1; Methods"
+},
+{
+"particle_name": "PS-NH2",
+"material": "polystyrene",
+"functionalisation": "amine",
+"supplier": "Magsphere or Phosphorex",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "74.8 ± 16.2",
+"quantity": "zeta potential",
+"value": "+20.4 ± 1.3",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "DI water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "Zeta potential measurements were conducted to verify the surface charge of polystyrene nanoparticles (50 nm) functionalized with neutral (PS), anionic (PS-COOH) and cationic (PS-NH2) groups in water, PBS, and cell culture medium (Table 1). || PS-NH2\t+20.4 ± 1.3\t+13.7 ± 3.3\t-13.9 ± 0.3\t74.8 ± 16.2\t54.0 ± 12.4 a\t369.1 ± 29.3 || The surface charge and hydrodynamic diameter of polystyrene nanoparticles was analyzed using a Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system.",
+"evidence_location": "Table 1; Methods"
+},
+{
+"particle_name": "PS-NH2",
+"material": "polystyrene",
+"functionalisation": "amine",
+"supplier": "Magsphere or Phosphorex",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "54.0 ± 12.4",
+"quantity": "zeta potential",
+"value": "+13.7 ± 3.3",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "PBS",
+"medium_class": "buffer",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "Zeta potential measurements were conducted to verify the surface charge of polystyrene nanoparticles (50 nm) functionalized with neutral (PS), anionic (PS-COOH) and cationic (PS-NH2) groups in water, PBS, and cell culture medium (Table 1). || PS-NH2\t+20.4 ± 1.3\t+13.7 ± 3.3\t-13.9 ± 0.3\t74.8 ± 16.2\t54.0 ± 12.4 a\t369.1 ± 29.3 || The surface charge and hydrodynamic diameter of polystyrene nanoparticles was analyzed using a Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system.",
+"evidence_location": "Table 1; Methods"
+},
+{
+"particle_name": "PS-NH2",
+"material": "polystyrene",
+"functionalisation": "amine",
+"supplier": "Magsphere or Phosphorex",
+"size_nominal_nm": "50 nm",
+"size_measured_nm": "369.1 ± 29.3",
+"quantity": "zeta potential",
+"value": "-13.9 ± 0.3",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "cell culture medium",
+"medium_class": "culture_medium",
+"ionic_strength": null,
+"pH": null,
+"temperature": null,
+"instrument": "Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "Zeta potential measurements were conducted to verify the surface charge of polystyrene nanoparticles (50 nm) functionalized with neutral (PS), anionic (PS-COOH) and cationic (PS-NH2) groups in water, PBS, and cell culture medium (Table 1). || PS-NH2\t+20.4 ± 1.3\t+13.7 ± 3.3\t-13.9 ± 0.3\t74.8 ± 16.2\t54.0 ± 12.4 a\t369.1 ± 29.3 || The surface charge and hydrodynamic diameter of polystyrene nanoparticles was analyzed using a Brookhaven Instruments ZetaPALS system and a Beckman Coulter DelsaMax Pro system.",
+"evidence_location": "Table 1; Methods"
+}
+]
+}

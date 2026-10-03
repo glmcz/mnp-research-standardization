@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS microspheres 100 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Taoyu International Trading Co., Ltd. (China)",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "aqueous solution",
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Likewise, both emulsified oil and polystyrene (PS) microplastics presented negative surface charges in aqueous solution (Fig. 4a).",
+   "evidence_location": "Results, Fig. 4a"
+  },
+  {
+   "particle_name": "PS microspheres 200 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Taoyu International Trading Co., Ltd. (China)",
+   "size_nominal_nm": "200 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "aqueous solution",
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Likewise, both emulsified oil and polystyrene (PS) microplastics presented negative surface charges in aqueous solution (Fig. 4a).",
+   "evidence_location": "Results, Fig. 4a"
+  },
+  {
+   "particle_name": "PS microspheres 500 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Taoyu International Trading Co., Ltd. (China)",
+   "size_nominal_nm": "500 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "aqueous solution",
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Likewise, both emulsified oil and polystyrene (PS) microplastics presented negative surface charges in aqueous solution (Fig. 4a).",
+   "evidence_location": "Results, Fig. 4a"
+  }
+ ]
+}

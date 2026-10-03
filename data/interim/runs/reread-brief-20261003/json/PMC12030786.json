@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "aged microplastics (AMP)",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Bianquimica",
+   "size_nominal_nm": "0.5 mm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-32",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano Series ZS (Malvern)"
+   },
+   "evidence_quote": "The zeta potential measurements (Figure 3) further confirmed these changes, showing more negative values in AMPs (-32 mV) compared to PMPs (-26 mV), reinforcing the higher capacity of AMPs to interact with polar molecules [18,20]. || while the physicochemical characterization included zeta potential (ZP) measurements (Zetasizer Nano Series ZS, Marvel, Worcestershire, UK)",
+   "evidence_location": "Results, characterization; Fig. 3"
+  },
+  {
+   "particle_name": "pristine microplastics (PMP)",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Bianquimica",
+   "size_nominal_nm": "0.5 mm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-26",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano Series ZS (Malvern)"
+   },
+   "evidence_quote": "The zeta potential measurements (Figure 3) further confirmed these changes, showing more negative values in AMPs (-32 mV) compared to PMPs (-26 mV), reinforcing the higher capacity of AMPs to interact with polar molecules [18,20]. || while the physicochemical characterization included zeta potential (ZP) measurements (Zetasizer Nano Series ZS, Marvel, Worcestershire, UK)",
+   "evidence_location": "Results, characterization; Fig. 3"
+  }
+ ]
+}

@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS NPs, 1000 µg mL-1",
+   "material": "polystyrene",
+   "functionalisation": "sulphate end groups",
+   "supplier": "Sigma-Aldrich",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "86.61 ± 6.41 nm",
+   "quantity": "zeta potential",
+   "value": "approximately -40",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results (Context 2); Methods",
+   "evidence_quote": "The zeta potential was measured in phosphate-buffered saline (PBS) to maintain ionic strength sufficient for assessing the charge. || The zeta potential at the lowest concentration, 1 µg mL-1, was approximately zero, whereas at 1000 µg mL-1, the zeta potential was approximately -40 mV. || Size and zeta potential of PS NPs and FPS NPs were obtained using the Malvern Zetasizer ProBlue (Malvern Panalytical, Westborough, MA).",
+   "conditions": {
+    "medium_text": "phosphate-buffered saline (PBS)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer ProBlue"
+   }
+  },
+  {
+   "particle_name": "PS NPs, 1 µg mL-1",
+   "material": "polystyrene",
+   "functionalisation": "sulphate end groups",
+   "supplier": "Sigma-Aldrich",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "86.61 ± 6.41 nm",
+   "quantity": "zeta potential",
+   "value": "approximately 0",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results (Context 2); Methods",
+   "evidence_quote": "The zeta potential at the lowest concentration, 1 µg mL-1, was approximately zero, whereas at 1000 µg mL-1, the zeta potential was approximately -40 mV. || The zeta potential of unfunctionalised PS approached 0 mV at low concentrations of PS. || The zeta potential was measured in phosphate-buffered saline (PBS) to maintain ionic strength sufficient for assessing the charge. || Size and zeta potential of PS NPs and FPS NPs were obtained using the Malvern Zetasizer ProBlue (Malvern Panalytical, Westborough, MA).",
+   "conditions": {
+    "medium_text": "phosphate-buffered saline (PBS)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer ProBlue"
+   }
+  },
+  {
+   "particle_name": "PS NPs in DI H2O, concentration series",
+   "material": "polystyrene",
+   "functionalisation": "sulphate end groups",
+   "supplier": "Sigma-Aldrich",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "86.61 ± 6.41 nm",
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Methods",
+   "evidence_quote": "Size and zeta potential of PS NPs and FPS NPs were obtained using the Malvern Zetasizer ProBlue (Malvern Panalytical, Westborough, MA). Samples were prepared at the following concentrations: 1000 µg mL-1, 500 µg mL-1, 100 µg mL-1, 20 mg mL-1, 10 µg mL-1, 1 µg mL-1, in both DI H2O and 1× PBS.",
+   "conditions": {
+    "medium_text": "DI H2O",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer ProBlue"
+   }
+  },
+  {
+   "particle_name": "FPS NPs (amine-modified fluorescent PS)",
+   "material": "polystyrene",
+   "functionalisation": "amine-modified, fluorescent orange",
+   "supplier": "Sigma-Aldrich",
+   "size_nominal_nm": null,
+   "size_measured_nm": "63.34 ± 13.81 nm",
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Discussion; Methods",
+   "evidence_quote": "The negative charge of the PS NPs was confirmed by zeta potential; however, the FPS NPs exhibited a positive zeta potential likely due to the amine modification, used to facilitate fluorescent conjugation (Fig. S1). || Size and zeta potential of PS NPs and FPS NPs were obtained using the Malvern Zetasizer ProBlue (Malvern Panalytical, Westborough, MA).",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer ProBlue"
+   }
+  }
+ ]
+}

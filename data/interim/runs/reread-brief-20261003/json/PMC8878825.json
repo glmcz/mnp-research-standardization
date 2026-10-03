@@ -1,0 +1,7 @@
+{"measurements":[
+{"particle_name":"PSMPs","material":"polystyrene","functionalisation":"fluorescent","supplier":"Tianjin Beisiline Chromtech Research Center","size_nominal_nm":"1.0 μm","size_measured_nm":"1.45 μm","quantity":"zeta potential","value":null,"unit":null,"n":null,
+"conditions":{"medium_text":"aqueous solution","medium_class":"other","ionic_strength":null,"pH":"3–12","temperature":null,"instrument":"Zetasizer Nano ZS, Malvern Panalytical"},
+"medium_matches_exposure":null,
+"evidence_quote":"The Zeta potential of the PSMPs was almost negative at the aforementioned pH range due to the presence of sulfate in the PSMPs [48,49]. || A Zetasizer Nano ZS system (Malvern Panalytical Co., Ltd., Malvern, UK) was used to measure the mean hydrodynamic diameters and Zeta potentials of ZIF-67 and PSMP particles at a 3–12 pH range. || Figure 2. Hydrodynamic diameter distribution (a) and Zeta potential (b) of PSMPs and ZIF-67 in aqueous solution.",
+"evidence_location":"Results 3.1 para 2; Methods 2.2; Figure 2 caption"}
+]}

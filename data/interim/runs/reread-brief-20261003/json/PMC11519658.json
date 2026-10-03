@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PET",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "1090 nm",
+   "quantity": "zeta potential",
+   "value": "-34.30",
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "1 mM KCl",
+    "medium_class": "salt_solution",
+    "ionic_strength": "1 mM KCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PET\t-\t-34.30\t1090\t0.26 || size distribution and polydispersity index (PDI) (1 mg particles in 1 mM KCl).",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "PE",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "0.2–9.9 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-34.72",
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "1 mM KCl",
+    "medium_class": "salt_solution",
+    "ionic_strength": "1 mM KCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PE\t0.2–9.9\t-34.72\tn.d.\tn.d. || size distribution and polydispersity index (PDI) (1 mg particles in 1 mM KCl).",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "PS 1 µm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "1 µm",
+   "size_measured_nm": "1158 nm",
+   "quantity": "zeta potential",
+   "value": "-71.75",
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "1 mM KCl",
+    "medium_class": "salt_solution",
+    "ionic_strength": "1 mM KCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "1.11\t-71.75\t1158\t0.05 || size distribution and polydispersity index (PDI) (1 mg particles in 1 mM KCl).",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "PS 0.25 µm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": "0.25 µm",
+   "size_measured_nm": "258.3 nm",
+   "quantity": "zeta potential",
+   "value": "-64.51",
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "1 mM KCl",
+    "medium_class": "salt_solution",
+    "ionic_strength": "1 mM KCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "0.252\t-64.51\t258.3\t0.01 || size distribution and polydispersity index (PDI) (1 mg particles in 1 mM KCl).",
+   "evidence_location": "Table 1"
+  }
+ ]
+}

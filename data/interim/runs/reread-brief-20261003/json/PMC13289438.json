@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-NPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Zhichuan Technology",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "118.47 ± 0.43 nm",
+   "quantity": "zeta potential",
+   "value": "-16.06 ± 1.25",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "PS-NPs characterization and localization",
+   "evidence_quote": "Zeta potential of PS-NPs was -16.06 ± 1.25 mV in water, indicating a negative surface charge (Fig. 1D).",
+   "conditions": {
+    "medium_text": "water",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

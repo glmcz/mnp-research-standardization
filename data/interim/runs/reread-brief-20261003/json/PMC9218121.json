@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "carboxylated polystyrene nanoparticles (nanoplastics)",
+   "material": "polystyrene",
+   "functionalisation": "carboxyl",
+   "supplier": "Degradex (Phosphorex, US)",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-60",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "water",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": "3",
+    "temperature": null,
+    "instrument": "Malvern Panalytical Zetasizer Ultra"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "At pH 3, their Zeta potential is -60 mV. || Zeta potential measurements were performed in water at pH 7 and 3 using a Malvern Panalytical Zetasizer Ultra instrument. || As representatives for nanoplastic debris, carboxylated polystyrene nanoparticles with a diameter of 50 nm were used.",
+   "evidence_location": "Results, Nanoplastics capture para"
+  },
+  {
+   "particle_name": "carboxylated polystyrene nanoparticles (nanoplastics)",
+   "material": "polystyrene",
+   "functionalisation": "carboxyl",
+   "supplier": "Degradex (Phosphorex, US)",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "water",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": "7",
+    "temperature": null,
+    "instrument": "Malvern Panalytical Zetasizer Ultra"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "b Zeta potential of the MXene-derived γ-Fe2O3/Pt/TiO2 microrobots (thermal annealing condition: 0 min at 550 °C) and nanoplastics in water at various pH. || Zeta potential measurements were performed in water at pH 7 and 3 using a Malvern Panalytical Zetasizer Ultra instrument. || As representatives for nanoplastic debris, carboxylated polystyrene nanoparticles with a diameter of 50 nm were used.",
+   "evidence_location": "Fig. 6b caption"
+  }
+ ]
+}

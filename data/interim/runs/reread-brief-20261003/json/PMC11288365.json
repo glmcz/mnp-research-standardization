@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS50",
+   "material": "polystyrene",
+   "functionalisation": "carboxyl",
+   "supplier": "Zhongke Leiming Company",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": "(83.10 ± 3.01) nm",
+   "quantity": "zeta potential",
+   "value": "-17.90 ± 0.42",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "SZ-100, HORIBA"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potential of the three PS MPs/NPs was (-17.90 ± 0.42) mV, (-16.70 ± 1.41) mV and (-17.75 ± 0.92) mV, respectively. || The dispersion properties of the three sizes of PS MPs/NPs were analyzed by assessing the zeta-potential and hydrodynamic diameter using a dynamic light scattering (DLS) instrument (SZ-100, HORIBA, Japan).",
+   "evidence_location": "Results Characterization; Methods"
+  },
+  {
+   "particle_name": "PS100",
+   "material": "polystyrene",
+   "functionalisation": "carboxyl",
+   "supplier": "Zhongke Leiming Company",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "(132.08 ± 6.22) nm",
+   "quantity": "zeta potential",
+   "value": "-16.70 ± 1.41",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "SZ-100, HORIBA"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potential of the three PS MPs/NPs was (-17.90 ± 0.42) mV, (-16.70 ± 1.41) mV and (-17.75 ± 0.92) mV, respectively. || The dispersion properties of the three sizes of PS MPs/NPs were analyzed by assessing the zeta-potential and hydrodynamic diameter using a dynamic light scattering (DLS) instrument (SZ-100, HORIBA, Japan).",
+   "evidence_location": "Results Characterization; Methods"
+  },
+  {
+   "particle_name": "PS500",
+   "material": "polystyrene",
+   "functionalisation": "carboxyl",
+   "supplier": "Zhongke Leiming Company",
+   "size_nominal_nm": "500 nm",
+   "size_measured_nm": "(490.13 ± 11.89) nm",
+   "quantity": "zeta potential",
+   "value": "-17.75 ± 0.92",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "SZ-100, HORIBA"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potential of the three PS MPs/NPs was (-17.90 ± 0.42) mV, (-16.70 ± 1.41) mV and (-17.75 ± 0.92) mV, respectively. || The dispersion properties of the three sizes of PS MPs/NPs were analyzed by assessing the zeta-potential and hydrodynamic diameter using a dynamic light scattering (DLS) instrument (SZ-100, HORIBA, Japan).",
+   "evidence_location": "Results Characterization; Methods"
+  }
+ ]
+}

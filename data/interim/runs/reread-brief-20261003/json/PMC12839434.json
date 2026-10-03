@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "40 nm carboxylate PS",
+   "material": "polystyrene",
+   "functionalisation": "carboxylate",
+   "supplier": "Thermofisher Scientific",
+   "size_nominal_nm": "40 nm",
+   "size_measured_nm": "41 nm",
+   "quantity": "zeta potential",
+   "value": "-40",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Methods 2.1",
+   "evidence_quote": "Mean hydrodynamic diameters and zeta potentials were estimated to be, respectively, 41 nm and -40 mV for 40 nm nanoparticles and 204 nm and -43 mV for 200 nm nanoparticles. Zeta potential of the PS nanoparticles was measured in ASTM hard water at pH ~8.0.",
+   "conditions": {
+    "medium_text": "ASTM hard water",
+    "medium_class": "salt_solution",
+    "ionic_strength": null,
+    "pH": "~8.0",
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "200 nm carboxylate PS",
+   "material": "polystyrene",
+   "functionalisation": "carboxylate",
+   "supplier": "Thermofisher Scientific",
+   "size_nominal_nm": "200 nm",
+   "size_measured_nm": "204 nm",
+   "quantity": "zeta potential",
+   "value": "-43",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Methods 2.1",
+   "evidence_quote": "Mean hydrodynamic diameters and zeta potentials were estimated to be, respectively, 41 nm and -40 mV for 40 nm nanoparticles and 204 nm and -43 mV for 200 nm nanoparticles. Zeta potential of the PS nanoparticles was measured in ASTM hard water at pH ~8.0.",
+   "conditions": {
+    "medium_text": "ASTM hard water",
+    "medium_class": "salt_solution",
+    "ionic_strength": null,
+    "pH": "~8.0",
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

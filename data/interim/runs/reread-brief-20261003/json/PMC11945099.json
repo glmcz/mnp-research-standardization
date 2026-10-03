@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "original-80 μm PS MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Baitai Biotechnology Co., Ltd.",
+   "size_nominal_nm": "80 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern)"
+   },
+   "evidence_quote": "Figure 2. Zeta (a,b) and XRD (c,d) of aging before and after PS MPs with different particle sizes. || The dispersion stability of the MPs particles at different pH values was evaluated by Zeta potential analyzer (Zetasizer Nano ZS90; Malvern, UK).",
+   "evidence_location": "Figure 2a,b caption; Methods 2.3"
+  },
+  {
+   "particle_name": "aged-80 μm PS MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Baitai Biotechnology Co., Ltd.",
+   "size_nominal_nm": "80 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern)"
+   },
+   "evidence_quote": "Figure 2. Zeta (a,b) and XRD (c,d) of aging before and after PS MPs with different particle sizes. || The dispersion stability of the MPs particles at different pH values was evaluated by Zeta potential analyzer (Zetasizer Nano ZS90; Malvern, UK).",
+   "evidence_location": "Figure 2a,b caption; Methods 2.3"
+  },
+  {
+   "particle_name": "original-400 μm PS MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Baitai Biotechnology Co., Ltd.",
+   "size_nominal_nm": "400 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern)"
+   },
+   "evidence_quote": "Figure 2. Zeta (a,b) and XRD (c,d) of aging before and after PS MPs with different particle sizes. || The dispersion stability of the MPs particles at different pH values was evaluated by Zeta potential analyzer (Zetasizer Nano ZS90; Malvern, UK).",
+   "evidence_location": "Figure 2a,b caption; Methods 2.3"
+  },
+  {
+   "particle_name": "aged-400 μm PS MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Baitai Biotechnology Co., Ltd.",
+   "size_nominal_nm": "400 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90 (Malvern)"
+   },
+   "evidence_quote": "Figure 2. Zeta (a,b) and XRD (c,d) of aging before and after PS MPs with different particle sizes. || The dispersion stability of the MPs particles at different pH values was evaluated by Zeta potential analyzer (Zetasizer Nano ZS90; Malvern, UK).",
+   "evidence_location": "Figure 2a,b caption; Methods 2.3"
+  }
+ ]
+}

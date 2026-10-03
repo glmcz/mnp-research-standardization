@@ -1,0 +1,12 @@
+{"measurements":[
+{"particle_name":"NPs (polyacrylonitrile core, polystyrene shell, Pd-doped)","material":"polyacrylonitrile core / polystyrene shell","functionalisation":null,"supplier":null,"size_nominal_nm":null,"size_measured_nm":"210 ± 19 nm","quantity":"zeta potential","value":"-52.83 ± 2.23","unit":"mV","n":null,
+"conditions":{"medium_text":null,"medium_class":"unreported","ionic_strength":null,"pH":null,"temperature":null,"instrument":null},
+"medium_matches_exposure":null,
+"evidence_quote":"The initial hydrodynamic diameter and zeta-potential of the NPs were 210 ± 19 nm and -52.83 ± 2.23 mV, respectively.",
+"evidence_location":"Methods, Model contaminants"},
+{"particle_name":"NPs (polyacrylonitrile core, polystyrene shell, Pd-doped), after freezing","material":"polyacrylonitrile core / polystyrene shell","functionalisation":null,"supplier":null,"size_nominal_nm":null,"size_measured_nm":null,"quantity":"zeta potential","value":null,"unit":null,"n":null,
+"conditions":{"medium_text":null,"medium_class":"unreported","ionic_strength":null,"pH":null,"temperature":null,"instrument":"Malvern Zeta-sizer"},
+"medium_matches_exposure":null,
+"evidence_quote":"Following freezing, the aggregation state of the colloids (nanosoot and NPs) was assessed by measuring the size by DLS and zeta-potential by electrophoretic measurement using the Smoluchowski model (Malvern Zeta-sizer).",
+"evidence_location":"Methods, Assessment of the aggregation state of colloids"}
+]}

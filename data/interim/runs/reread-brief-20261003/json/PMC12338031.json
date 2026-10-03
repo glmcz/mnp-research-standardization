@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PLGA–COOH microparticles",
+   "material": "PLGA (50:50 lactide:glycolide, 5 kDa)",
+   "functionalisation": "carboxylic acid end group",
+   "supplier": "Nanosoft Polymers (Winston-Salem, NC)",
+   "size_nominal_nm": null,
+   "size_measured_nm": "3.23 ± 0.72 μm",
+   "quantity": "zeta potential",
+   "value": "between -30 and -45",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "de-ionized water (1 mg mL-1)",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano317, Malvern, UK"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Our analysis of the microparticle zeta potential revealed all microparticles to be negatively charged (between -30 and -45 mV). || The microparticle size distribution and zeta potential are reported in Fig. 5A and B, respectively. || Microparticle samples were suspended in de-ionized water (1 mg mL-1) and the zeta potential was analyzed (Zetasizer nano317, Malvern, UK).",
+   "evidence_location": "Results, Fig. 5B; Methods, Microparticle zeta potential quantification"
+  },
+  {
+   "particle_name": "PLGA–NH2 microparticles",
+   "material": "PLGA (50:50 lactide:glycolide, 5 kDa)",
+   "functionalisation": "amine end group",
+   "supplier": "Nanosoft Polymers (Winston-Salem, NC)",
+   "size_nominal_nm": null,
+   "size_measured_nm": "3.40 ± 0.90 μm",
+   "quantity": "zeta potential",
+   "value": "between -30 and -45",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "de-ionized water (1 mg mL-1)",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano317, Malvern, UK"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Our analysis of the microparticle zeta potential revealed all microparticles to be negatively charged (between -30 and -45 mV). || The microparticle size distribution and zeta potential are reported in Fig. 5A and B, respectively. || Microparticle samples were suspended in de-ionized water (1 mg mL-1) and the zeta potential was analyzed (Zetasizer nano317, Malvern, UK).",
+   "evidence_location": "Results, Fig. 5B; Methods, Microparticle zeta potential quantification"
+  },
+  {
+   "particle_name": "PLGA–OH microparticles",
+   "material": "PLGA (50:50 lactide:glycolide, 5 kDa)",
+   "functionalisation": "hydroxyl end group",
+   "supplier": "Nanosoft Polymers (Winston-Salem, NC)",
+   "size_nominal_nm": null,
+   "size_measured_nm": "3.77 ± 0.85 μm",
+   "quantity": "zeta potential",
+   "value": "between -30 and -45",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "de-ionized water (1 mg mL-1)",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer nano317, Malvern, UK"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Our analysis of the microparticle zeta potential revealed all microparticles to be negatively charged (between -30 and -45 mV). || The microparticle size distribution and zeta potential are reported in Fig. 5A and B, respectively. || Microparticle samples were suspended in de-ionized water (1 mg mL-1) and the zeta potential was analyzed (Zetasizer nano317, Malvern, UK).",
+   "evidence_location": "Results, Fig. 5B; Methods, Microparticle zeta potential quantification"
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PLA-MPs (non-FITC-labeled)",
+   "material": "polylactic acid",
+   "functionalisation": null,
+   "supplier": "Shanghai Sur-Release Biotech Inc (Shanghai, China)",
+   "size_nominal_nm": "20–50 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-24.8 ± 2.1",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer Nano S90 (Malvern, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The results showed that the zeta potential of the PLA-MPs was -24.8 ± 2.1 mV (Fig. 1A and Figure S1). || The size distributions and zeta potential of non-FITC-labeled PLA-MPs were measured by a Malvern Zetasizer Nano S90 (Malvern, UK) at 25 °C.",
+   "evidence_location": "Results para 1; Methods, Materials and reagents"
+  }
+ ]
+}

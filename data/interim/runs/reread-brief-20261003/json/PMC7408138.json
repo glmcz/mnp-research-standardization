@@ -1,0 +1,211 @@
+{
+"measurements": [
+{
+"particle_name": "PS nanoparticles 3a",
+"material": "polystyrene",
+"functionalisation": "oligoglycidol surfmer",
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "247",
+"quantity": "zeta potential",
+"value": "-37.7",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": null,
+"medium_class": "unreported",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Zetasizer Nano Series from Malvern Instruments"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "3a\t2a (6)\t1:1984\t247\t0.015\t235\t0.029\t-37.7 || Zeta potential were performed at 25 °C using a Zetasizer Nano Series from Malvern Instruments using a zeta potential cell (Malvern Instruments, Malvern, UK).",
+"evidence_location": "Table 3; Methods 2.4.4"
+},
+{
+"particle_name": "PS nanoparticles 3b",
+"material": "polystyrene",
+"functionalisation": "oligoglycidol surfmer",
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "173",
+"quantity": "zeta potential",
+"value": "-46.9",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": null,
+"medium_class": "unreported",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Zetasizer Nano Series from Malvern Instruments"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "3b\t2a (6)\t1:545\t173\t0.004\t160\t0.027\t-46.9 || Zeta potential were performed at 25 °C using a Zetasizer Nano Series from Malvern Instruments using a zeta potential cell (Malvern Instruments, Malvern, UK).",
+"evidence_location": "Table 3; Methods 2.4.4"
+},
+{
+"particle_name": "PS nanoparticles 3c",
+"material": "polystyrene",
+"functionalisation": "oligoglycidol surfmer",
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "163",
+"quantity": "zeta potential",
+"value": "-44.6",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": null,
+"medium_class": "unreported",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Zetasizer Nano Series from Malvern Instruments"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "3c\t2a (6)\t1:283\t163\t0.009\t151\t0.031\t-44.6 || Zeta potential were performed at 25 °C using a Zetasizer Nano Series from Malvern Instruments using a zeta potential cell (Malvern Instruments, Malvern, UK).",
+"evidence_location": "Table 3; Methods 2.4.4"
+},
+{
+"particle_name": "PS nanoparticles 3d",
+"material": "polystyrene",
+"functionalisation": "oligoglycidol surfmer",
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "137",
+"quantity": "zeta potential",
+"value": "-45.9",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": null,
+"medium_class": "unreported",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Zetasizer Nano Series from Malvern Instruments"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "3d\t2a (6)\t1:137\t137\t0.010\t126\t0.033\t-45.9 || Zeta potential were performed at 25 °C using a Zetasizer Nano Series from Malvern Instruments using a zeta potential cell (Malvern Instruments, Malvern, UK).",
+"evidence_location": "Table 3; Methods 2.4.4"
+},
+{
+"particle_name": "PS nanoparticles 4a",
+"material": "polystyrene",
+"functionalisation": "oligoglycidol surfmer",
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "387",
+"quantity": "zeta potential",
+"value": "-42.3",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": null,
+"medium_class": "unreported",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Zetasizer Nano Series from Malvern Instruments"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "4a\t2b (10)\t1:840\t387\t0.012\t369\t0.024\t-42.3 || Zeta potential were performed at 25 °C using a Zetasizer Nano Series from Malvern Instruments using a zeta potential cell (Malvern Instruments, Malvern, UK).",
+"evidence_location": "Table 3; Methods 2.4.4"
+},
+{
+"particle_name": "PS nanoparticles 4b",
+"material": "polystyrene",
+"functionalisation": "oligoglycidol surfmer",
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "273",
+"quantity": "zeta potential",
+"value": "-46.5",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": null,
+"medium_class": "unreported",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Zetasizer Nano Series from Malvern Instruments"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "4b\t2b (10)\t1:500\t273\t0.014\t261\t0.021\t-46.5 || Zeta potential were performed at 25 °C using a Zetasizer Nano Series from Malvern Instruments using a zeta potential cell (Malvern Instruments, Malvern, UK).",
+"evidence_location": "Table 3; Methods 2.4.4"
+},
+{
+"particle_name": "PS nanoparticles 4c",
+"material": "polystyrene",
+"functionalisation": "oligoglycidol surfmer",
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "206",
+"quantity": "zeta potential",
+"value": "-44.3",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": null,
+"medium_class": "unreported",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Zetasizer Nano Series from Malvern Instruments"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "4c\t2b (10)\t1:250\t206\t0.018\t199\t0.033\t-44.3 || Zeta potential were performed at 25 °C using a Zetasizer Nano Series from Malvern Instruments using a zeta potential cell (Malvern Instruments, Malvern, UK).",
+"evidence_location": "Table 3; Methods 2.4.4"
+},
+{
+"particle_name": "PS nanoparticles 5",
+"material": "polystyrene",
+"functionalisation": "oligoglycidol surfmer",
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "405",
+"quantity": "zeta potential",
+"value": "-45.5",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": null,
+"medium_class": "unreported",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Zetasizer Nano Series from Malvern Instruments"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "5\t2c (20)\t1:500\t405\t0.037\t389\t0.041\t-45.5 || Zeta potential were performed at 25 °C using a Zetasizer Nano Series from Malvern Instruments using a zeta potential cell (Malvern Instruments, Malvern, UK).",
+"evidence_location": "Table 3; Methods 2.4.4"
+},
+{
+"particle_name": "PS nanoparticles 6",
+"material": "polystyrene",
+"functionalisation": null,
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "365",
+"quantity": "zeta potential",
+"value": "-46.3",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": null,
+"medium_class": "unreported",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Zetasizer Nano Series from Malvern Instruments"
+},
+"medium_matches_exposure": null,
+"evidence_quote": "6\t-\t-\t365\t0.18\t352\t0.22\t-46.3 || Zeta potential were performed at 25 °C using a Zetasizer Nano Series from Malvern Instruments using a zeta potential cell (Malvern Instruments, Malvern, UK).",
+"evidence_location": "Table 3; Methods 2.4.4"
+}
+]
+}

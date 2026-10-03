@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "nylon-11 NPs",
+   "material": "nylon-11",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "114 ± 2",
+   "quantity": "zeta potential",
+   "value": "40 ± 1.5",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": "deionized (DI) water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern Instruments)"
+   },
+   "evidence_quote": "The zeta potential of the NPs suspended in deionized (DI) water at 40 ± 1.5 mV for nylon NPs and -66 ± 2.2 mV for PS NPs supports the observed colloidal stability of the nanoplastics. || The NPs were characterized with the Zetasizer Nano ZS (Malvern Instruments, Malvern, UK) equipped with a He-Ne laser (633 nm).",
+   "evidence_location": "Results 3.1; Table 1"
+  },
+  {
+   "particle_name": "PS NPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Spherotech, Inc.",
+   "size_nominal_nm": "0.05–0.1 µm",
+   "size_measured_nm": "85 ± 1",
+   "quantity": "zeta potential",
+   "value": "-66 ± 2.2",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": "deionized (DI) water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS (Malvern Instruments)"
+   },
+   "evidence_quote": "The zeta potential of the NPs suspended in deionized (DI) water at 40 ± 1.5 mV for nylon NPs and -66 ± 2.2 mV for PS NPs supports the observed colloidal stability of the nanoplastics. || The NPs were characterized with the Zetasizer Nano ZS (Malvern Instruments, Malvern, UK) equipped with a He-Ne laser (633 nm).",
+   "evidence_location": "Results 3.1; Table 1"
+  }
+ ]
+}

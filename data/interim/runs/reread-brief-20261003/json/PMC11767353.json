@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "LDPE nanoplastic fragments after 21 days degradation (detached, no surfactant)",
+   "material": "low-density polyethylene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich Co. LLC (film material)",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-20",
+   "unit": "mv",
+   "n": null,
+   "conditions": {
+    "medium_text": "pure water suspension",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "20 °C",
+    "instrument": "ELSZ-2000ZS dynamic light scattering (DLS) analyzer (Otsuka Electronics, Osaka, Japan)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "After 30 days of degradation, the zeta potential value was approximately -10 mv, which was 10 mv higher than the -20 mv value after 21 days. || The hydrodynamic size and zeta potential values were determined under pure water suspension at 20 °C using an ELSZ-2000ZS dynamic light scattering (DLS) analyzer (Otsuka Electronics, Osaka, Japan).",
+   "evidence_location": "Results (LDPE, Figure 7a); Methods 3.4"
+  },
+  {
+   "particle_name": "LDPE nanoplastic fragments after 30 days degradation (detached, no surfactant)",
+   "material": "low-density polyethylene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich Co. LLC (film material)",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-10",
+   "unit": "mv",
+   "n": null,
+   "conditions": {
+    "medium_text": "pure water suspension",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "20 °C",
+    "instrument": "ELSZ-2000ZS dynamic light scattering (DLS) analyzer (Otsuka Electronics, Osaka, Japan)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "After 30 days of degradation, the zeta potential value was approximately -10 mv, which was 10 mv higher than the -20 mv value after 21 days. || The hydrodynamic size and zeta potential values were determined under pure water suspension at 20 °C using an ELSZ-2000ZS dynamic light scattering (DLS) analyzer (Otsuka Electronics, Osaka, Japan).",
+   "evidence_location": "Results (LDPE, Figure 7a); Methods 3.4"
+  }
+ ]
+}

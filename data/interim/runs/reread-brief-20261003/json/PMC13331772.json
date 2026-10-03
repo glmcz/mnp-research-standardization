@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PSPS (pristine spherical polystyrene)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "4",
+   "medium_matches_exposure": true,
+   "evidence_location": "Results para 1; Fig. 1L, Table S1",
+   "evidence_quote": "The zeta potential of all test nanoplastics was negative in PBS (Fig. 1L and Table S1). || The zeta potential and hydrodynamic diameter (Dh) were determined using a Zetasizer Nano ZS-90 (Malvern Panalytical, Malvern, UK) in phosphate-buffered saline (PBS) after the dispersion process. || (L) Zeta potential of test nanoplastics in PBS. Data are presented as mean ± SD (n = 300 per group for G and n = 4 per group for H–L).",
+   "conditions": {
+    "medium_text": "phosphate-buffered saline (PBS)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS-90 (Malvern Panalytical)"
+   }
+  },
+  {
+   "particle_name": "USPS (UV-irradiated spherical polystyrene)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "4",
+   "medium_matches_exposure": true,
+   "evidence_location": "Results para 1; Fig. 1L, Table S1",
+   "evidence_quote": "The zeta potential of all test nanoplastics was negative in PBS (Fig. 1L and Table S1). || The zeta potential and hydrodynamic diameter (Dh) were determined using a Zetasizer Nano ZS-90 (Malvern Panalytical, Malvern, UK) in phosphate-buffered saline (PBS) after the dispersion process. || (L) Zeta potential of test nanoplastics in PBS. Data are presented as mean ± SD (n = 300 per group for G and n = 4 per group for H–L).",
+   "conditions": {
+    "medium_text": "phosphate-buffered saline (PBS)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS-90 (Malvern Panalytical)"
+   }
+  },
+  {
+   "particle_name": "PFPS (pristine fragmented polystyrene)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "4",
+   "medium_matches_exposure": true,
+   "evidence_location": "Results para 1; Fig. 1L, Table S1",
+   "evidence_quote": "The zeta potential of all test nanoplastics was negative in PBS (Fig. 1L and Table S1). || The zeta potential and hydrodynamic diameter (Dh) were determined using a Zetasizer Nano ZS-90 (Malvern Panalytical, Malvern, UK) in phosphate-buffered saline (PBS) after the dispersion process. || (L) Zeta potential of test nanoplastics in PBS. Data are presented as mean ± SD (n = 300 per group for G and n = 4 per group for H–L).",
+   "conditions": {
+    "medium_text": "phosphate-buffered saline (PBS)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS-90 (Malvern Panalytical)"
+   }
+  },
+  {
+   "particle_name": "UFPS (UV-irradiated fragmented polystyrene)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "4",
+   "medium_matches_exposure": true,
+   "evidence_location": "Results para 1; Fig. 1L, Table S1",
+   "evidence_quote": "The zeta potential of all test nanoplastics was negative in PBS (Fig. 1L and Table S1). || The zeta potential and hydrodynamic diameter (Dh) were determined using a Zetasizer Nano ZS-90 (Malvern Panalytical, Malvern, UK) in phosphate-buffered saline (PBS) after the dispersion process. || (L) Zeta potential of test nanoplastics in PBS. Data are presented as mean ± SD (n = 300 per group for G and n = 4 per group for H–L).",
+   "conditions": {
+    "medium_text": "phosphate-buffered saline (PBS)",
+    "medium_class": "buffer",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS-90 (Malvern Panalytical)"
+   }
+  }
+ ]
+}

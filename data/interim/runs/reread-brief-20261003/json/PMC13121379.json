@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PMMA-NPs 80 nm",
+   "material": "polymethyl methacrylate",
+   "functionalisation": null,
+   "supplier": "Beijing Zhongke Keyou Technology Co., Ltd. (Beijing, China)",
+   "size_nominal_nm": "80 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-11.26",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "BHI medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZSE, Malvern, United Kingdom"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential measurements in BHI medium revealed surface charge values of -11.26 and -27.47 mV for 80 nm and 20 μm particles, respectively. || The zeta potential was measured using a zeta potential analyzer (Zetasizer Nano ZSE, Malvern, United Kingdom).",
+   "evidence_location": "Results, Characterization of PMMA-MPs; Methods, PMMA-MPs characterization"
+  },
+  {
+   "particle_name": "PMMA-MPs 20 μm",
+   "material": "polymethyl methacrylate",
+   "functionalisation": null,
+   "supplier": "Beijing Zhongke Keyou Technology Co., Ltd. (Beijing, China)",
+   "size_nominal_nm": "20 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-27.47",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "BHI medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZSE, Malvern, United Kingdom"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential measurements in BHI medium revealed surface charge values of -11.26 and -27.47 mV for 80 nm and 20 μm particles, respectively. || The zeta potential was measured using a zeta potential analyzer (Zetasizer Nano ZSE, Malvern, United Kingdom).",
+   "evidence_location": "Results, Characterization of PMMA-MPs; Methods, PMMA-MPs characterization"
+  }
+ ]
+}

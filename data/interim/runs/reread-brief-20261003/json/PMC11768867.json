@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS powder",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Pak-Petrochemical Industries, Lahore, Pakistan",
+   "size_nominal_nm": null,
+   "size_measured_nm": "5–7 µm (mean size, Mastersizer 2000)",
+   "quantity": "zeta potential",
+   "value": "-35",
+   "unit": "mv",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zeta-Plus analyzer (Zetasizer Nano ZS90, Malvern Instruments, Worcestershire, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PS\tPowder\tWhite\t5–7\t0.95\t-35 || The surface potential of all microplastic materials, expressed as the zeta potential, was measured by using a Zeta-Plus analyzer (Zetasizer Nano ZS90, Malvern Instruments, Worcestershire, UK).",
+   "evidence_location": "Table 1; Methods 2.1"
+  },
+  {
+   "particle_name": "PS bead",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Pak-Petrochemical Industries, Lahore, Pakistan",
+   "size_nominal_nm": null,
+   "size_measured_nm": "5–10 µm (mean size, Mastersizer 2000)",
+   "quantity": "zeta potential",
+   "value": "-40",
+   "unit": "mv",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zeta-Plus analyzer (Zetasizer Nano ZS90, Malvern Instruments, Worcestershire, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PS\tBead\tWhite\t5–10\t1.05\t-40 || The surface potential of all microplastic materials, expressed as the zeta potential, was measured by using a Zeta-Plus analyzer (Zetasizer Nano ZS90, Malvern Instruments, Worcestershire, UK).",
+   "evidence_location": "Table 1; Methods 2.1"
+  },
+  {
+   "particle_name": "PS fiber",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "15–25 µm (mean size, Mastersizer 2000)",
+   "quantity": "zeta potential",
+   "value": "-37",
+   "unit": "mv",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zeta-Plus analyzer (Zetasizer Nano ZS90, Malvern Instruments, Worcestershire, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PS\tFiber\tWhite\t15–25\t1.17\t-37 || The surface potential of all microplastic materials, expressed as the zeta potential, was measured by using a Zeta-Plus analyzer (Zetasizer Nano ZS90, Malvern Instruments, Worcestershire, UK).",
+   "evidence_location": "Table 1; Methods 2.1"
+  }
+ ]
+}

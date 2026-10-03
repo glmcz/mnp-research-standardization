@@ -1,0 +1,188 @@
+{
+ "measurements": [
+  {
+   "particle_name": "MPs1 µm Virgin",
+   "material": "polystyrene",
+   "functionalisation": "virgin",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "1 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-16.0 ± 0.29",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "Water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "MPs1 µm\tVirgin\t-\tWater\t1,058 ± 100.5\t0.504 ± 0.43\t-16.0 ± 0.29 || In particular, the ζ-potential, which correlates to the MPs surface charge, as well as the hydrodynamic radius of MPs were measured by DLS analysis using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK) equipped with 633 nm He–Ne laser. || Briefly, before each measurement, the suspensions of MPs samples (0.1 mg/mL in deionized water) were sonicated (40 kHz) for 5 min, and the analyses were performed at the fixed temperature of 25 °C using a Peltier thermostatic system, with an equilibrating time set to 120 s.",
+   "evidence_location": "Table 1; Methods, Dynamic light scattering"
+  },
+  {
+   "particle_name": "MPs1 µm Oxidized",
+   "material": "polystyrene",
+   "functionalisation": "UVB/H2O2 oxidized",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "1 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-52.9 ± 1.02",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "Water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "\tOxidized\t-\tWater\t855.6 ± 149.6\t0.406 ± 0.40\t-52.9 ± 1.02 || In particular, the ζ-potential, which correlates to the MPs surface charge, as well as the hydrodynamic radius of MPs were measured by DLS analysis using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK) equipped with 633 nm He–Ne laser. || Briefly, before each measurement, the suspensions of MPs samples (0.1 mg/mL in deionized water) were sonicated (40 kHz) for 5 min, and the analyses were performed at the fixed temperature of 25 °C using a Peltier thermostatic system, with an equilibrating time set to 120 s.",
+   "evidence_location": "Table 1; Methods, Dynamic light scattering"
+  },
+  {
+   "particle_name": "MPs1 µm Oxidized +BaP",
+   "material": "polystyrene",
+   "functionalisation": "UVB/H2O2 oxidized",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "1 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-42.3 ± 0.54",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "Water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "\t\t+\tWater\t654.5 ± 14.2\t0.038 ± 0.01\t-42.3 ± 0.54 || In particular, the ζ-potential, which correlates to the MPs surface charge, as well as the hydrodynamic radius of MPs were measured by DLS analysis using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK) equipped with 633 nm He–Ne laser. || Briefly, before each measurement, the suspensions of MPs samples (0.1 mg/mL in deionized water) were sonicated (40 kHz) for 5 min, and the analyses were performed at the fixed temperature of 25 °C using a Peltier thermostatic system, with an equilibrating time set to 120 s.",
+   "evidence_location": "Table 1; Methods, Dynamic light scattering"
+  },
+  {
+   "particle_name": "MPs1 µm Oxidized +BaP",
+   "material": "polystyrene",
+   "functionalisation": "UVB/H2O2 oxidized",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "1 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-24.4 ± 0.94",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "Cell medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "\t\t+\tCell medium\t1,319 ± 70.3\t0.227 ± 0.17\t-24.4 ± 0.94 || In particular, the ζ-potential, which correlates to the MPs surface charge, as well as the hydrodynamic radius of MPs were measured by DLS analysis using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK) equipped with 633 nm He–Ne laser. || Briefly, before each measurement, the suspensions of MPs samples (0.1 mg/mL in deionized water) were sonicated (40 kHz) for 5 min, and the analyses were performed at the fixed temperature of 25 °C using a Peltier thermostatic system, with an equilibrating time set to 120 s.",
+   "evidence_location": "Table 1; Methods, Dynamic light scattering"
+  },
+  {
+   "particle_name": "MPs5 µm Virgin",
+   "material": "polystyrene",
+   "functionalisation": "virgin",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "5 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-40.0 ± 1.27",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "Water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "MPs5 µm\tVirgin\t-\tWater\t2,980 ± 723.8\t0.283 ± 0.08\t-40.0 ± 1.27 || In particular, the ζ-potential, which correlates to the MPs surface charge, as well as the hydrodynamic radius of MPs were measured by DLS analysis using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK) equipped with 633 nm He–Ne laser. || Briefly, before each measurement, the suspensions of MPs samples (0.1 mg/mL in deionized water) were sonicated (40 kHz) for 5 min, and the analyses were performed at the fixed temperature of 25 °C using a Peltier thermostatic system, with an equilibrating time set to 120 s.",
+   "evidence_location": "Table 1; Methods, Dynamic light scattering"
+  },
+  {
+   "particle_name": "MPs5 µm Oxidized",
+   "material": "polystyrene",
+   "functionalisation": "UVB/H2O2 oxidized",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "5 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-40.2 ± 0.70",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "Water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "\tOxidized\t-\tWater\t1,604 ± 64.1\t0.330 ± 0.05\t-40.2 ± 0.70 || In particular, the ζ-potential, which correlates to the MPs surface charge, as well as the hydrodynamic radius of MPs were measured by DLS analysis using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK) equipped with 633 nm He–Ne laser. || Briefly, before each measurement, the suspensions of MPs samples (0.1 mg/mL in deionized water) were sonicated (40 kHz) for 5 min, and the analyses were performed at the fixed temperature of 25 °C using a Peltier thermostatic system, with an equilibrating time set to 120 s.",
+   "evidence_location": "Table 1; Methods, Dynamic light scattering"
+  },
+  {
+   "particle_name": "MPs5 µm Oxidized +BaP",
+   "material": "polystyrene",
+   "functionalisation": "UVB/H2O2 oxidized",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "5 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-49.8 ± 3.01",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "Water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "\t\t+\tWater\t2,770 ± 147.4\t0.393 ± 0.05\t-49.8 ± 3.01 || In particular, the ζ-potential, which correlates to the MPs surface charge, as well as the hydrodynamic radius of MPs were measured by DLS analysis using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK) equipped with 633 nm He–Ne laser. || Briefly, before each measurement, the suspensions of MPs samples (0.1 mg/mL in deionized water) were sonicated (40 kHz) for 5 min, and the analyses were performed at the fixed temperature of 25 °C using a Peltier thermostatic system, with an equilibrating time set to 120 s.",
+   "evidence_location": "Table 1; Methods, Dynamic light scattering"
+  },
+  {
+   "particle_name": "MPs5 µm Oxidized +BaP",
+   "material": "polystyrene",
+   "functionalisation": "UVB/H2O2 oxidized",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "5 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-25.3 ± 4.26",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "Cell medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "\t\t+\tCell medium\t2,556 ± 246.4\t0.408 ± 0.08\t-25.3 ± 4.26 || In particular, the ζ-potential, which correlates to the MPs surface charge, as well as the hydrodynamic radius of MPs were measured by DLS analysis using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK) equipped with 633 nm He–Ne laser. || Briefly, before each measurement, the suspensions of MPs samples (0.1 mg/mL in deionized water) were sonicated (40 kHz) for 5 min, and the analyses were performed at the fixed temperature of 25 °C using a Peltier thermostatic system, with an equilibrating time set to 120 s.",
+   "evidence_location": "Table 1; Methods, Dynamic light scattering"
+  }
+ ]
+}

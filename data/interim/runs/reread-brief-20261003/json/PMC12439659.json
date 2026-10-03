@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PSNPs 70 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "synthesized in-house (emulsion polymerisation)",
+   "size_nominal_nm": "约为70 nm",
+   "size_measured_nm": "约为70 nm",
+   "quantity": "zeta potential",
+   "value": "约为-30",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "水中",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "激光粒度仪 (Malvern)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "动态光散射分析显示，PSNPs在水中的平均直径约为70 nm（图1B），平均zeta电位约为-30 mV（图1C） || 以激光粒度仪测定PSNPs的水合粒径及其在水中的zeta电位 || 激光粒度仪为英国Malvern公司产品",
+   "evidence_location": "Methods; Results para 1-2"
+  },
+  {
+   "particle_name": "PSNPs 300 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "synthesized in-house (emulsion polymerisation)",
+   "size_nominal_nm": "约为300 nm",
+   "size_measured_nm": "约为300 nm",
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "水中",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "激光粒度仪 (Malvern)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "合成的大粒径PSNPs在水中的平均粒径约为300 nm，zeta电位值与小粒径PSNPs接近（图2A～2C） || 以激光粒度仪测定PSNPs的水合粒径及其在水中的zeta电位 || 激光粒度仪为英国Malvern公司产品",
+   "evidence_location": "Methods; Results para 1-2"
+  }
+ ]
+}

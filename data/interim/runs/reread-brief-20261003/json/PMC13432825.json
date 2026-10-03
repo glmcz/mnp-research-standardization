@@ -1,0 +1,27 @@
+{
+  "measurements": [
+    {
+      "particle_name": "PP-MPs",
+      "material": "polypropylene",
+      "functionalisation": null,
+      "supplier": "Sigma-Aldrich 428,116",
+      "size_nominal_nm": "mesh #200 (74 µm)",
+      "size_measured_nm": "38.69 ± 20.52 µm",
+      "quantity": "zeta potential",
+      "value": "-72.43",
+      "unit": "mV",
+      "n": null,
+      "conditions": {
+        "medium_text": "hydroalcoholic medium",
+        "medium_class": "other",
+        "ionic_strength": null,
+        "pH": null,
+        "temperature": null,
+        "instrument": "Zetasizer Nano ZS90 (Malvern Panalytical, UK)"
+      },
+      "medium_matches_exposure": false,
+      "evidence_quote": "The PP-MPS exhibited a zeta potential of -72.43 mV in a hydroalcoholic medium, suggesting a strongly negative surface charge and high colloidal stability under the experimental conditions. || The zeta potential of PP-MPs was determined using a Zetasizer Nano ZS90 (Malvern Panalytical, UK) based on electrophoretic light scattering under controlled conditions.",
+      "evidence_location": "Results, Characterization of microplastics; Methods"
+    }
+  ]
+}

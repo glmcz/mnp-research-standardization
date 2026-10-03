@@ -1,0 +1,100 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-100",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": "Sigma Aldrich",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "119.90 nm (by number)",
+   "quantity": "zeta potential",
+   "value": "-31.00",
+   "sd": "0.99",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "0.155 M sodium chloride",
+    "medium_class": "salt_solution",
+    "ionic_strength": "0.155 M sodium chloride",
+    "pH": "7.4",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "PS-100\t119.90\t47.04\t197.40\t76.24\t0.257\t-31.00\t0.99 || Table 1. The parameters characterizing the polymers (0.155 M NaCl, pH = 7.4). || Parameters (size and zeta potential) characterizing the polymers were measured in 0.155 M sodium chloride at pH = 7.4 with the Zetasizer Nano ZS apparatus.",
+   "evidence_location": "Table 1; Results 3.1"
+  },
+  {
+   "particle_name": "PS-200",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": "Sigma Aldrich",
+   "size_nominal_nm": "200 nm",
+   "size_measured_nm": "185.70 nm (by number)",
+   "quantity": "zeta potential",
+   "value": "-46.10",
+   "sd": "2.11",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "0.155 M sodium chloride",
+    "medium_class": "salt_solution",
+    "ionic_strength": "0.155 M sodium chloride",
+    "pH": "7.4",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "PS-200\t185.70\t67.86\t249.40\t86.00\t0.205\t-46.10\t2.11 || Table 1. The parameters characterizing the polymers (0.155 M NaCl, pH = 7.4). || Parameters (size and zeta potential) characterizing the polymers were measured in 0.155 M sodium chloride at pH = 7.4 with the Zetasizer Nano ZS apparatus.",
+   "evidence_location": "Table 1; Results 3.1"
+  },
+  {
+   "particle_name": "PS-NH2-100",
+   "material": "polystyrene",
+   "functionalisation": "amine",
+   "supplier": "Polysciences",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "110.10 nm (by number)",
+   "quantity": "zeta potential",
+   "value": "-24.90",
+   "sd": "1.20",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "0.155 M sodium chloride",
+    "medium_class": "salt_solution",
+    "ionic_strength": "0.155 M sodium chloride",
+    "pH": "7.4",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "PS-NH2-100\t110.10\t34.01\t160.70\t58.50\t0.231\t-24.90\t1.20 || Table 1. The parameters characterizing the polymers (0.155 M NaCl, pH = 7.4). || Parameters (size and zeta potential) characterizing the polymers were measured in 0.155 M sodium chloride at pH = 7.4 with the Zetasizer Nano ZS apparatus.",
+   "evidence_location": "Table 1; Results 3.1"
+  },
+  {
+   "particle_name": "PS-NH2-200",
+   "material": "polystyrene",
+   "functionalisation": "amine",
+   "supplier": "Bang Laboratories",
+   "size_nominal_nm": "200 nm",
+   "size_measured_nm": "207.90 nm (by number)",
+   "quantity": "zeta potential",
+   "value": "-28.60",
+   "sd": "1.32",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "0.155 M sodium chloride",
+    "medium_class": "salt_solution",
+    "ionic_strength": "0.155 M sodium chloride",
+    "pH": "7.4",
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "PS-NH2-200\t207.90\t54.82\t238.40\t57.04\t0.055\t-28.60\t1.32 || Table 1. The parameters characterizing the polymers (0.155 M NaCl, pH = 7.4). || Parameters (size and zeta potential) characterizing the polymers were measured in 0.155 M sodium chloride at pH = 7.4 with the Zetasizer Nano ZS apparatus.",
+   "evidence_location": "Table 1; Results 3.1"
+  }
+ ]
+}

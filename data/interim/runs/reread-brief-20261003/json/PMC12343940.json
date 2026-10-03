@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "NP B (PMMA-MA)",
+   "material": "poly(methyl methacrylate)",
+   "functionalisation": "methacrylic acid-modified",
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "99 nm (DLS); 81 nm (TEM)",
+   "quantity": "zeta potential",
+   "value": "-29",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "B (PMMA-MA)\t694\t723\t99\t-29\t81\t1.1\t1.03\t1.15\t0.938",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "NP C (PS-PVP)",
+   "material": "polystyrene",
+   "functionalisation": "polyvinylpyrrolidone-modified",
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "200 nm (DLS); 99 nm (TEM)",
+   "quantity": "zeta potential",
+   "value": "-7",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "C (PS-PVP)\t703\t729\t200\t-7\t99\t1.5\t1.38\t1.53\t1.145",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "NP D (PS-MA)",
+   "material": "polystyrene",
+   "functionalisation": "maleic acid copolymer",
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "166 nm (DLS); 135 nm (TEM)",
+   "quantity": "zeta potential",
+   "value": "-28",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "D (PS-MA)\t703\t732\t166\t-28\t135\t2.3\t1.95\t2.21\t1.216",
+   "evidence_location": "Table 1"
+  }
+ ]
+}

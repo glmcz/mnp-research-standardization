@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PE-MP",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Dongguan Yujian Plastic Raw Materials Co., Ltd. (Dongguan, China)",
+   "size_nominal_nm": "20–200 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "+14.97",
+   "unit": "mV",
+   "n": "n = 3",
+   "conditions": {
+    "medium_text": "1 mM KCl electrolyte solution",
+    "medium_class": "salt_solution",
+    "ionic_strength": "1 mM KCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Additionally, the zeta potential of PE was measured to be +14.97 mV (Fig. 1e). || To assess surface charge and dispersion stability, MP particles were dispersed in a 1 mM KCl electrolyte solution, and their electrophoretic mobility was measured after concentration adjustment.",
+   "evidence_location": "Results, Context 1; Methods, MP detection"
+  }
+ ]
+}

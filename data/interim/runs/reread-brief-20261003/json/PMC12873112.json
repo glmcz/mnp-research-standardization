@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "Virgin PVC",
+   "material": "polyvinyl chloride",
+   "functionalisation": null,
+   "supplier": "Abadan Petrochemical Company (Iran)",
+   "size_nominal_nm": "< 425 μm",
+   "size_measured_nm": "405.9",
+   "quantity": "zeta potential",
+   "value": "-25.6",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Table 1",
+   "evidence_quote": "Virgin PVC\t-25.6\t405.9",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "Aged PVC (ozonated)",
+   "material": "polyvinyl chloride",
+   "functionalisation": null,
+   "supplier": "Abadan Petrochemical Company (Iran)",
+   "size_nominal_nm": "< 425 μm",
+   "size_measured_nm": "353.4",
+   "quantity": "zeta potential",
+   "value": "-31.6",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Table 1",
+   "evidence_quote": "Aged PVC\t-31.6\t353.4",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "Virgin PVC",
+   "material": "polyvinyl chloride",
+   "functionalisation": null,
+   "supplier": "Abadan Petrochemical Company (Iran)",
+   "size_nominal_nm": "< 425 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-12.3",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Abstract (differs from Table 1)",
+   "evidence_quote": "Mild structural degradation and a decrease in particle size were also observed, along with a marked shift in surface charge, as reflected by a decrease in zeta potential from -12.3 mV to -26.7 mV.",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "Aged PVC (ozonated)",
+   "material": "polyvinyl chloride",
+   "functionalisation": null,
+   "supplier": "Abadan Petrochemical Company (Iran)",
+   "size_nominal_nm": "< 425 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-26.7",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Abstract (differs from Table 1)",
+   "evidence_quote": "Mild structural degradation and a decrease in particle size were also observed, along with a marked shift in surface charge, as reflected by a decrease in zeta potential from -12.3 mV to -26.7 mV.",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

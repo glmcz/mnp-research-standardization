@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PE MPs",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Dongguan Ruixiang Plastic Co., Ltd.",
+   "size_nominal_nm": "0.02 to 4 mm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "SurPass (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "As shown in Figure S2, the zeta potentials of the MPs gradually decreased with increasing pH. || Due to the difficulty in achieving stable aqueous dispersions of the MPs samples, the zeta potential was directly measured on the solid surfaces using an electrokinetic analyzer (SurPass, Anton Paar, Graz, Austria).",
+   "evidence_location": "Results 3.1; Methods 2.2, Figure S2"
+  },
+  {
+   "particle_name": "PP MPs",
+   "material": "polypropylene",
+   "functionalisation": null,
+   "supplier": "Dongguan Ruixiang Plastic Co., Ltd.",
+   "size_nominal_nm": "0.02 to 4 mm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "SurPass (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "As shown in Figure S2, the zeta potentials of the MPs gradually decreased with increasing pH. || Due to the difficulty in achieving stable aqueous dispersions of the MPs samples, the zeta potential was directly measured on the solid surfaces using an electrokinetic analyzer (SurPass, Anton Paar, Graz, Austria).",
+   "evidence_location": "Results 3.1; Methods 2.2, Figure S2"
+  },
+  {
+   "particle_name": "PVC MPs",
+   "material": "polyvinyl chloride",
+   "functionalisation": null,
+   "supplier": "Dongguan Ruixiang Plastic Co., Ltd.",
+   "size_nominal_nm": "0.02 to 4 mm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "SurPass (Anton Paar)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "As shown in Figure S2, the zeta potentials of the MPs gradually decreased with increasing pH. || Due to the difficulty in achieving stable aqueous dispersions of the MPs samples, the zeta potential was directly measured on the solid surfaces using an electrokinetic analyzer (SurPass, Anton Paar, Graz, Austria).",
+   "evidence_location": "Results 3.1; Methods 2.2, Figure S2"
+  }
+ ]
+}

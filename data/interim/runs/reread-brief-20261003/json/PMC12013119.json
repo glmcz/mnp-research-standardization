@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "NP(0)",
+   "material": "polystyrene",
+   "functionalisation": "uncharged",
+   "supplier": "Sigma-Aldrich and Polysciences, Inc.",
+   "size_nominal_nm": "30–100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": "deionized (DI) water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer Nano ZSP"
+   },
+   "evidence_quote": "The stability of NPs was assessed by measuring the zeta potential of the particles suspended in deionized water at 25 °C. || For analysis NPs were suspended in deionized (DI) water at 25 °C in a Malvern Zetasizer Nano ZSP series.",
+   "evidence_location": "Characterization of PS-NPs; Fig. 1b"
+  },
+  {
+   "particle_name": "NP(+)",
+   "material": "polystyrene",
+   "functionalisation": "amine-modified",
+   "supplier": "Sigma-Aldrich and Polysciences, Inc.",
+   "size_nominal_nm": "30–100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": "deionized (DI) water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer Nano ZSP"
+   },
+   "evidence_quote": "The stability of NPs was assessed by measuring the zeta potential of the particles suspended in deionized water at 25 °C. || For analysis NPs were suspended in deionized (DI) water at 25 °C in a Malvern Zetasizer Nano ZSP series.",
+   "evidence_location": "Characterization of PS-NPs; Fig. 1b"
+  },
+  {
+   "particle_name": "NP(-)",
+   "material": "polystyrene",
+   "functionalisation": "carboxylate-modified",
+   "supplier": "Sigma-Aldrich and Polysciences, Inc.",
+   "size_nominal_nm": "30–100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "conditions": {
+    "medium_text": "deionized (DI) water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer Nano ZSP"
+   },
+   "evidence_quote": "The stability of NPs was assessed by measuring the zeta potential of the particles suspended in deionized water at 25 °C. || For analysis NPs were suspended in deionized (DI) water at 25 °C in a Malvern Zetasizer Nano ZSP series.",
+   "evidence_location": "Characterization of PS-NPs; Fig. 1b"
+  }
+ ]
+}

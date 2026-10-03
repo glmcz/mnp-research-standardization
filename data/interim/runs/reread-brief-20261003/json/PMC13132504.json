@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "carboxylated polystyrene nanoplastics PS-C-NPLs (30, 50 and 100 nm)",
+   "material": "polystyrene",
+   "functionalisation": "carboxylated",
+   "supplier": "Sigma-Aldrich; Polysciences Inc.",
+   "size_nominal_nm": "30, 50, and 100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-32.5 to -52.3",
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "Milli-Q water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer® Ultra (Malvern Panalytical, Cambridge, UK)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Surface charge analysis (Figure 1D) showed modest differences in Milli-Q water (-32.5 to -52.3 mV), but in EGM-2 all PS-C-NPLs displayed comparable ζ-potentials (-8.2 to -10.1 mV), consistent with previous observations (Santos et al., 2011; Paget et al., 2015; Banerjee et al., 2021). || For colloidal behaviour, PS-C-NPLs (100 μg/mL) were suspended in both Milli-Q water and EGM-2. || Particle size and Z-potential were measured using a Zetasizer® Ultra (Malvern Panalytical, Cambridge, UK) with appropriate cuvettes.",
+   "evidence_location": "Results, Physicochemical characterization of PS-C-NPLs; Methods, PS-C-NPLs characterization"
+  },
+  {
+   "particle_name": "carboxylated polystyrene nanoplastics PS-C-NPLs (30, 50 and 100 nm)",
+   "material": "polystyrene",
+   "functionalisation": "carboxylated",
+   "supplier": "Sigma-Aldrich; Polysciences Inc.",
+   "size_nominal_nm": "30, 50, and 100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-8.2 to -10.1",
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "EGM-2",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer® Ultra (Malvern Panalytical, Cambridge, UK)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "Surface charge analysis (Figure 1D) showed modest differences in Milli-Q water (-32.5 to -52.3 mV), but in EGM-2 all PS-C-NPLs displayed comparable ζ-potentials (-8.2 to -10.1 mV), consistent with previous observations (Santos et al., 2011; Paget et al., 2015; Banerjee et al., 2021). || For colloidal behaviour, PS-C-NPLs (100 μg/mL) were suspended in both Milli-Q water and EGM-2. || Particle size and Z-potential were measured using a Zetasizer® Ultra (Malvern Panalytical, Cambridge, UK) with appropriate cuvettes.",
+   "evidence_location": "Results, Physicochemical characterization of PS-C-NPLs; Methods, PS-C-NPLs characterization"
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+{"measurements":[
+{"particle_name":"PS-NPs","material":"polystyrene","functionalisation":null,"supplier":"Tianjin BaseLine Chrom Tech Research Center","size_nominal_nm":"60 nm","size_measured_nm":"65.29 nm","quantity":"zeta potential","value":"-19.4 ± 5.91","unit":"mV","n":null,
+"conditions":{"medium_text":"water","medium_class":"DI_water","ionic_strength":null,"pH":null,"temperature":null,"instrument":"Zetasizer Nano S90, Malvern, UK"},
+"medium_matches_exposure":null,
+"evidence_quote":"Their zeta potential in water was -19.4 ± 5.91 mV; particle size was 65.29 nm (Fig.S1). || Before use, PS-NPs were dispersed in distilled water, and their shape, size, and zeta potential were verified by scanning microscope (IT700HR, Japan) and zeta potentiostat (Zetasizer Nano S90, Malvern, UK).",
+"evidence_location":"Results para 1; Methods, Characterizations of PS-NPs"}
+]}

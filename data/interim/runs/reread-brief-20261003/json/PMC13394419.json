@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PEwhite-film with soil-metabolite eco-corona",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Shandong Minfeng Plastic Film Company (China)",
+   "size_nominal_nm": "250–600 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results; Figure S5",
+   "evidence_quote": "Third, the static contact angle decreased on PE microplastics (Figure S4), while the zeta potential of the microplastics’ surface increased after interacting with soil metabolites, particularly with PEpure‑granule (Figure S5). || Additionally, the zeta potential and static contact angle were measured by a particle size analyzer (Malvern Zetasizer Nano ZS90) and a drop shape analyzer (DSA100S, Krüss), respectively.",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Nano ZS90"
+   }
+  },
+  {
+   "particle_name": "PEpure-granule with soil-metabolite eco-corona",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": "Sigma-Aldrich (China)",
+   "size_nominal_nm": "250–600 μm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_location": "Results; Figure S5",
+   "evidence_quote": "Third, the static contact angle decreased on PE microplastics (Figure S4), while the zeta potential of the microplastics’ surface increased after interacting with soil metabolites, particularly with PEpure‑granule (Figure S5). || Additionally, the zeta potential and static contact angle were measured by a particle size analyzer (Malvern Zetasizer Nano ZS90) and a drop shape analyzer (DSA100S, Krüss), respectively.",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Nano ZS90"
+   }
+  }
+ ]
+}

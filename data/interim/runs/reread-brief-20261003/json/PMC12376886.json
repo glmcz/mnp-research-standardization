@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS NPs 50 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Dae Technology (China)",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "UPW media",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Nano ZSE (Malvern Panalytical, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Meanwhile, zeta potential assays of PS NPs indicate that particles with a particle size of 100 nm have more negative zeta potential values in the UPW media (Table S2), suggesting that 100 nm particles exhibit better stability. || The particles' hydrodynamic diameter and zeta potential were measured using DLS with a Malvern Zetasizer Nano ZSE (Malvern Panalytical, UK).",
+   "evidence_location": "Results and discussion; Table S2 (supplement); Methods"
+  },
+  {
+   "particle_name": "PS NPs 100 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Dae Technology (China)",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "UPW media",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer Nano ZSE (Malvern Panalytical, UK)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Meanwhile, zeta potential assays of PS NPs indicate that particles with a particle size of 100 nm have more negative zeta potential values in the UPW media (Table S2), suggesting that 100 nm particles exhibit better stability. || The particles' hydrodynamic diameter and zeta potential were measured using DLS with a Malvern Zetasizer Nano ZSE (Malvern Panalytical, UK).",
+   "evidence_location": "Results and discussion; Table S2 (supplement); Methods"
+  }
+ ]
+}

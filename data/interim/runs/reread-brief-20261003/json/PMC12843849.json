@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-Fluoro-Max Blue in H2O",
+   "material": "polystyrene",
+   "functionalisation": "internally dyed, fluorescent",
+   "supplier": "Thermo Fisher Scientific",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": "50.83 ± 0.99",
+   "quantity": "zeta potential",
+   "value": "-14.3 ± 0.46",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": false,
+   "evidence_location": "Table 1; Methods 2.2",
+   "evidence_quote": "PS-Fluoro-Max Blue in H2O\t50.83 ± 0.99\t47.95 ± 0.48\t0.106 ± 0.040\t-14.3 ± 0.46 || PS-NPs at a concentration of 1 μg/mL in either HPLC water or DMEM supplemented with 10% heat-inactivated FBS were characterized by Dynamic Light Scattering (DLS) using the Zetasizer Nano-ZS Zen 3600 (Malvern Instruments, Westborough, MA, USA).",
+   "conditions": {
+    "medium_text": "HPLC water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS Zen 3600 (Malvern Instruments)"
+   }
+  },
+  {
+   "particle_name": "PS-Fluoro-Max Blue in DMEM + FBS",
+   "material": "polystyrene",
+   "functionalisation": "internally dyed, fluorescent",
+   "supplier": "Thermo Fisher Scientific",
+   "size_nominal_nm": "50 nm",
+   "size_measured_nm": "33.10 ± 1.75",
+   "quantity": "zeta potential",
+   "value": "-6.05 ± 2.39",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Table 1; Methods 2.2",
+   "evidence_quote": "PS-Fluoro-Max Blue inDMEM + FBS\t33.10 ± 1.75\t16.80 ± 0.29\t0.380 ± 0.006\t-6.05 ± 2.39 || PS-NPs at a concentration of 1 μg/mL in either HPLC water or DMEM supplemented with 10% heat-inactivated FBS were characterized by Dynamic Light Scattering (DLS) using the Zetasizer Nano-ZS Zen 3600 (Malvern Instruments, Westborough, MA, USA).",
+   "conditions": {
+    "medium_text": "DMEM supplemented with 10% heat-inactivated FBS",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano-ZS Zen 3600 (Malvern Instruments)"
+   }
+  }
+ ]
+}

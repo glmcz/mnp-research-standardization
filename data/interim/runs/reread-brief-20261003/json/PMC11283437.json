@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS 1 µm virgin",
+   "material": "polystyrene",
+   "functionalisation": "virgin",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "1 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "deionised water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer Nano ZS90"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Ζ-potential (surface charge) measurements on microplastic samples were performed using Dynamic Light Scattering (DLS) analyses, with a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK), working with He–Ne laser (emission λ = 633 nm). || Measurements were performed at a fixed temperature (T = 25 °C) using a Peltier thermostatic system, with an equilibrating time set to 120 s. || MPs were dispersed in deionised water to reach a final concentration of 0.1 mg mL-1. || Measurements were performed in triplicate, and each measurement consisted of 20 runs. || Fig. 3. Z-potential measurement in investigated samples",
+   "evidence_location": "Methods ζ-potential; Fig. 3"
+  },
+  {
+   "particle_name": "PS 1 µm oxidised",
+   "material": "polystyrene",
+   "functionalisation": "UVB/H2O2 oxidised",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "1 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "deionised water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer Nano ZS90"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Ζ-potential (surface charge) measurements on microplastic samples were performed using Dynamic Light Scattering (DLS) analyses, with a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK), working with He–Ne laser (emission λ = 633 nm). || Measurements were performed at a fixed temperature (T = 25 °C) using a Peltier thermostatic system, with an equilibrating time set to 120 s. || MPs were dispersed in deionised water to reach a final concentration of 0.1 mg mL-1. || Measurements were performed in triplicate, and each measurement consisted of 20 runs. || Fig. 3. Z-potential measurement in investigated samples",
+   "evidence_location": "Methods ζ-potential; Fig. 3"
+  },
+  {
+   "particle_name": "PS 5 µm virgin",
+   "material": "polystyrene",
+   "functionalisation": "virgin",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "5 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "deionised water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer Nano ZS90"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Ζ-potential (surface charge) measurements on microplastic samples were performed using Dynamic Light Scattering (DLS) analyses, with a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK), working with He–Ne laser (emission λ = 633 nm). || Measurements were performed at a fixed temperature (T = 25 °C) using a Peltier thermostatic system, with an equilibrating time set to 120 s. || MPs were dispersed in deionised water to reach a final concentration of 0.1 mg mL-1. || Measurements were performed in triplicate, and each measurement consisted of 20 runs. || Fig. 3. Z-potential measurement in investigated samples",
+   "evidence_location": "Methods ζ-potential; Fig. 3"
+  },
+  {
+   "particle_name": "PS 5 µm oxidised",
+   "material": "polystyrene",
+   "functionalisation": "UVB/H2O2 oxidised",
+   "supplier": "Cospheric",
+   "size_nominal_nm": "5 µm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "deionised water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Malvern Zetasizer Nano ZS90"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "Ζ-potential (surface charge) measurements on microplastic samples were performed using Dynamic Light Scattering (DLS) analyses, with a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical, Malvern, UK), working with He–Ne laser (emission λ = 633 nm). || Measurements were performed at a fixed temperature (T = 25 °C) using a Peltier thermostatic system, with an equilibrating time set to 120 s. || MPs were dispersed in deionised water to reach a final concentration of 0.1 mg mL-1. || Measurements were performed in triplicate, and each measurement consisted of 20 runs. || Fig. 3. Z-potential measurement in investigated samples",
+   "evidence_location": "Methods ζ-potential; Fig. 3"
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+{"measurements": [
+{"particle_name":"PS","material":"polystyrene","functionalisation":null,"supplier":"Pishgaman Plastic Company, Iran (granules)","size_nominal_nm":"smaller than 425 μm","size_measured_nm":"328.40 µm","quantity":"zeta potential","value":"-18.93","unit":"mV","n":null,
+"conditions":{"medium_text":null,"medium_class":"unreported","ionic_strength":null,"pH":null,"temperature":null,"instrument":"ZETA-check"},
+"medium_matches_exposure":null,
+"evidence_quote":"From the information provided in Table 2, it is evident that the ZP values for C. vulgaris, PS, and the formed flocs were -15.47 mV, -18.93 mV, and -15.17 mV, respectively, indicating a stable dispersion among the particles. || Additionally, ZP (ZETA-check model), and DLS analyses were conducted to determine net charge of the particles and particle size, respectively.",
+"evidence_location":"Characterization; Table 2"}
+]}

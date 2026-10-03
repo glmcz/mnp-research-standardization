@@ -1,0 +1,119 @@
+{
+ "measurements": [
+  {
+   "particle_name": "non-functionalized PS NPs (20 nm)",
+   "material": "polystyrene",
+   "functionalisation": "non-functionalized",
+   "supplier": "Bangs Laboratories Inc.",
+   "size_nominal_nm": "20 nm",
+   "size_measured_nm": "22.8 ± 0.3",
+   "quantity": "zeta potential",
+   "value": "-51 ± 5",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "MilliQ water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "mQW\t22.8 ± 0.3\t0.35 ± 0.04\t-51 ± 5 || Table 1. ζ-average, polydispersity index (PDI) and ζ-potential measured by Dynamic Light Scattering (DLS) of non-functionalized PS NPs (50 µg/mL) in mQW, FSW and FSW with BPA (10 µM), at time 0 (0 h) and after 24 h of incubation (24 h). Values are shown as mean ± standard deviation. || PS NPs stock and working suspensions in mQW and FSW (0.45 µm, temperature 18 ± 1 °C; dissolved O2 7 mg/L; pH 8.1) were measured by DLS for ζ-average, polydispersity index (PDI) and ζ-potential (50 µg/mL) using a Zetasizer Nano ZS90 (Malvern, Malvern, UK) equipped with the Zetasizer Nano Series software (Ver. 7.02).",
+   "evidence_location": "Table 1; Methods 2.2"
+  },
+  {
+   "particle_name": "non-functionalized PS NPs (20 nm)",
+   "material": "polystyrene",
+   "functionalisation": "non-functionalized",
+   "supplier": "Bangs Laboratories Inc.",
+   "size_nominal_nm": "20 nm",
+   "size_measured_nm": "1589 ± 139",
+   "quantity": "zeta potential",
+   "value": "-34 ± 4",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "filtered sea water (FSW), time 0",
+    "medium_class": "environmental_water",
+    "ionic_strength": null,
+    "pH": "8.1",
+    "temperature": "18 ± 1 °C",
+    "instrument": "Zetasizer Nano ZS90"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "FSW 0 h\t1589 ± 139\t0.35 ± 0.04\t-34 ± 4 || Table 1. ζ-average, polydispersity index (PDI) and ζ-potential measured by Dynamic Light Scattering (DLS) of non-functionalized PS NPs (50 µg/mL) in mQW, FSW and FSW with BPA (10 µM), at time 0 (0 h) and after 24 h of incubation (24 h). Values are shown as mean ± standard deviation. || PS NPs stock and working suspensions in mQW and FSW (0.45 µm, temperature 18 ± 1 °C; dissolved O2 7 mg/L; pH 8.1) were measured by DLS for ζ-average, polydispersity index (PDI) and ζ-potential (50 µg/mL) using a Zetasizer Nano ZS90 (Malvern, Malvern, UK) equipped with the Zetasizer Nano Series software (Ver. 7.02).",
+   "evidence_location": "Table 1; Methods 2.2"
+  },
+  {
+   "particle_name": "non-functionalized PS NPs (20 nm)",
+   "material": "polystyrene",
+   "functionalisation": "non-functionalized",
+   "supplier": "Bangs Laboratories Inc.",
+   "size_nominal_nm": "20 nm",
+   "size_measured_nm": "2583 ± 198",
+   "quantity": "zeta potential",
+   "value": "-32 ± 4",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "FSW + BPA (10 µM), time 0",
+    "medium_class": "environmental_water",
+    "ionic_strength": null,
+    "pH": "8.1",
+    "temperature": "18 ± 1 °C",
+    "instrument": "Zetasizer Nano ZS90"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "FSW + BPA (10 µM) 0 h\t2583 ± 198\t0.46 ± 0.1\t-32 ± 4 || Table 1. ζ-average, polydispersity index (PDI) and ζ-potential measured by Dynamic Light Scattering (DLS) of non-functionalized PS NPs (50 µg/mL) in mQW, FSW and FSW with BPA (10 µM), at time 0 (0 h) and after 24 h of incubation (24 h). Values are shown as mean ± standard deviation. || PS NPs stock and working suspensions in mQW and FSW (0.45 µm, temperature 18 ± 1 °C; dissolved O2 7 mg/L; pH 8.1) were measured by DLS for ζ-average, polydispersity index (PDI) and ζ-potential (50 µg/mL) using a Zetasizer Nano ZS90 (Malvern, Malvern, UK) equipped with the Zetasizer Nano Series software (Ver. 7.02).",
+   "evidence_location": "Table 1; Methods 2.2"
+  },
+  {
+   "particle_name": "non-functionalized PS NPs (20 nm)",
+   "material": "polystyrene",
+   "functionalisation": "non-functionalized",
+   "supplier": "Bangs Laboratories Inc.",
+   "size_nominal_nm": "20 nm",
+   "size_measured_nm": ">3000",
+   "quantity": "zeta potential",
+   "value": "-31 ± 9",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "FSW, 24 h incubation",
+    "medium_class": "environmental_water",
+    "ionic_strength": null,
+    "pH": "8.1",
+    "temperature": "18 ± 1 °C",
+    "instrument": "Zetasizer Nano ZS90"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "FSW 24 h\t>3000\t0.76 ± 0.3\t-31 ± 9 || Table 1. ζ-average, polydispersity index (PDI) and ζ-potential measured by Dynamic Light Scattering (DLS) of non-functionalized PS NPs (50 µg/mL) in mQW, FSW and FSW with BPA (10 µM), at time 0 (0 h) and after 24 h of incubation (24 h). Values are shown as mean ± standard deviation. || PS NPs stock and working suspensions in mQW and FSW (0.45 µm, temperature 18 ± 1 °C; dissolved O2 7 mg/L; pH 8.1) were measured by DLS for ζ-average, polydispersity index (PDI) and ζ-potential (50 µg/mL) using a Zetasizer Nano ZS90 (Malvern, Malvern, UK) equipped with the Zetasizer Nano Series software (Ver. 7.02).",
+   "evidence_location": "Table 1; Methods 2.2"
+  },
+  {
+   "particle_name": "non-functionalized PS NPs (20 nm)",
+   "material": "polystyrene",
+   "functionalisation": "non-functionalized",
+   "supplier": "Bangs Laboratories Inc.",
+   "size_nominal_nm": "20 nm",
+   "size_measured_nm": ">3000",
+   "quantity": "zeta potential",
+   "value": "-21 ± 14",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "FSW + BPA (10 µM), 24 h incubation",
+    "medium_class": "environmental_water",
+    "ionic_strength": null,
+    "pH": "8.1",
+    "temperature": "18 ± 1 °C",
+    "instrument": "Zetasizer Nano ZS90"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "FSW + BPA (10 µM) 24 h\t>3000\t0.53 ± 0.4\t-21 ± 14 || Table 1. ζ-average, polydispersity index (PDI) and ζ-potential measured by Dynamic Light Scattering (DLS) of non-functionalized PS NPs (50 µg/mL) in mQW, FSW and FSW with BPA (10 µM), at time 0 (0 h) and after 24 h of incubation (24 h). Values are shown as mean ± standard deviation. || PS NPs stock and working suspensions in mQW and FSW (0.45 µm, temperature 18 ± 1 °C; dissolved O2 7 mg/L; pH 8.1) were measured by DLS for ζ-average, polydispersity index (PDI) and ζ-potential (50 µg/mL) using a Zetasizer Nano ZS90 (Malvern, Malvern, UK) equipped with the Zetasizer Nano Series software (Ver. 7.02).",
+   "evidence_location": "Table 1; Methods 2.2"
+  }
+ ]
+}

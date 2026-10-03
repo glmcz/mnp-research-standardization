@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "Fluospheres (COOH)",
+   "material": "polystyrene",
+   "functionalisation": "carboxylate",
+   "supplier": "Molecular Probes, Inc.",
+   "size_nominal_nm": "109 nm",
+   "size_measured_nm": "111 ± 2 nm (DLS)",
+   "quantity": "zeta potential",
+   "value": "-52 ± 4",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential (DLS)\t-52 ± 4 mV\t-51 ± 8 mV\t-28 ± 4 mV || The carboxylate-modified PS NPs of RuixiBiotechCo. Ltd. were measured as a control with DLS together with the Fluospheres and the non-functionalized NPs. || They had a diameter of 110 nm as cross-checked by DLS (Zetasizer, Malvern Panalytical, Malvern/UK)",
+   "evidence_location": "Table 1; Methods 2.1"
+  },
+  {
+   "particle_name": "R-PGCX25 (COOH)",
+   "material": "polystyrene",
+   "functionalisation": "carboxylate",
+   "supplier": "RuixiBiotechCo. Ltd.",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "105 ± 2 nm (DLS)",
+   "quantity": "zeta potential",
+   "value": "-51 ± 8",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential (DLS)\t-52 ± 4 mV\t-51 ± 8 mV\t-28 ± 4 mV || The carboxylate-modified PS NPs of RuixiBiotechCo. Ltd. were measured as a control with DLS together with the Fluospheres and the non-functionalized NPs. || They had a diameter of 110 nm as cross-checked by DLS (Zetasizer, Malvern Panalytical, Malvern/UK)",
+   "evidence_location": "Table 1; Methods 2.1"
+  },
+  {
+   "particle_name": "R-PGX25 (Plain)",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": "RuixiBiotechCo. Ltd.",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "124 ± 2 nm (DLS)",
+   "quantity": "zeta potential",
+   "value": "-28 ± 4",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer (Malvern Panalytical)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential (DLS)\t-52 ± 4 mV\t-51 ± 8 mV\t-28 ± 4 mV || The carboxylate-modified PS NPs of RuixiBiotechCo. Ltd. were measured as a control with DLS together with the Fluospheres and the non-functionalized NPs. || They had a diameter of 110 nm as cross-checked by DLS (Zetasizer, Malvern Panalytical, Malvern/UK)",
+   "evidence_location": "Table 1; Methods 2.1"
+  }
+ ]
+}

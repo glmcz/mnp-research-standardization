@@ -1,0 +1,96 @@
+{
+"measurements": [
+{
+"particle_name": "PVC NPs, as synthesized",
+"material": "poly(vinyl chloride)",
+"functionalisation": null,
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "120 ± 18",
+"quantity": "zeta potential",
+"value": "-39.3",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Malvern Zeta Size instrument"
+},
+"medium_matches_exposure": false,
+"evidence_quote": "PVC\t120 ± 18\t-39.3\t125 ± 18\t-26.4 || Table 1. Size and surface charges of the PMMA and PVCs NPs from DLS measurements in water before and after washing. || Dynamic light scattering (DLS) and zeta potentials were measured using a Malvern Zeta Size instrument. Measurements were carried out at 25 °C, with refractive index of polymers set at 1.489.",
+"evidence_location": "Table 1; Methods Instrumentation"
+},
+{
+"particle_name": "PVC NPs, washed and centrifuged (10,000 rpm)",
+"material": "poly(vinyl chloride)",
+"functionalisation": null,
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "125 ± 18",
+"quantity": "zeta potential",
+"value": "-26.4",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Malvern Zeta Size instrument"
+},
+"medium_matches_exposure": false,
+"evidence_quote": "PVC\t120 ± 18\t-39.3\t125 ± 18\t-26.4 || Table 1. Size and surface charges of the PMMA and PVCs NPs from DLS measurements in water before and after washing. || Dynamic light scattering (DLS) and zeta potentials were measured using a Malvern Zeta Size instrument. Measurements were carried out at 25 °C, with refractive index of polymers set at 1.489.",
+"evidence_location": "Table 1; Methods Instrumentation"
+},
+{
+"particle_name": "PMMA NPs, as synthesized",
+"material": "poly(methyl methacrylate)",
+"functionalisation": null,
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "140 ± 16",
+"quantity": "zeta potential",
+"value": "-26.8",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Malvern Zeta Size instrument"
+},
+"medium_matches_exposure": false,
+"evidence_quote": "PMMA\t140 ± 16\t-26.8\t140 ± 16\t-24.6 || Table 1. Size and surface charges of the PMMA and PVCs NPs from DLS measurements in water before and after washing. || Dynamic light scattering (DLS) and zeta potentials were measured using a Malvern Zeta Size instrument. Measurements were carried out at 25 °C, with refractive index of polymers set at 1.489.",
+"evidence_location": "Table 1; Methods Instrumentation"
+},
+{
+"particle_name": "PMMA NPs, washed and centrifuged (10,000 rpm)",
+"material": "poly(methyl methacrylate)",
+"functionalisation": null,
+"supplier": null,
+"size_nominal_nm": null,
+"size_measured_nm": "140 ± 16",
+"quantity": "zeta potential",
+"value": "-24.6",
+"unit": "mV",
+"n": null,
+"conditions": {
+"medium_text": "water",
+"medium_class": "DI_water",
+"ionic_strength": null,
+"pH": null,
+"temperature": "25 °C",
+"instrument": "Malvern Zeta Size instrument"
+},
+"medium_matches_exposure": false,
+"evidence_quote": "PMMA\t140 ± 16\t-26.8\t140 ± 16\t-24.6 || Table 1. Size and surface charges of the PMMA and PVCs NPs from DLS measurements in water before and after washing. || Dynamic light scattering (DLS) and zeta potentials were measured using a Malvern Zeta Size instrument. Measurements were carried out at 25 °C, with refractive index of polymers set at 1.489.",
+"evidence_location": "Table 1; Methods Instrumentation"
+}
+]
+}

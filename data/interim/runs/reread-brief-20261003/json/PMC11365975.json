@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "SDS-PIB 80 mg",
+   "material": "polyisobutylene",
+   "functionalisation": null,
+   "supplier": "Santa Cruz Biotechnology (bulk PIB)",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "50.1",
+   "unit": "mV",
+   "n": "3",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer (version 7.13)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "SDS exhibited a zeta potential of -46.3 mV, the PIB-MPs exhibited 50.1, 35.6, and 58.1 mV for SDS-PIB 80 mg, SDS-PIB 500 mg, and SDS-PIB 2000 mg, respectively. || The zeta potential and hydrodynamic size of the PIB-MPs were measured using the Malvern Zetasizer (version 7.13). || Number of replicates (N) = 3.",
+   "evidence_location": "Results, Synthesis and characterization"
+  },
+  {
+   "particle_name": "SDS-PIB 500 mg",
+   "material": "polyisobutylene",
+   "functionalisation": null,
+   "supplier": "Santa Cruz Biotechnology (bulk PIB)",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "35.6",
+   "unit": "mV",
+   "n": "3",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer (version 7.13)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "SDS exhibited a zeta potential of -46.3 mV, the PIB-MPs exhibited 50.1, 35.6, and 58.1 mV for SDS-PIB 80 mg, SDS-PIB 500 mg, and SDS-PIB 2000 mg, respectively. || The zeta potential and hydrodynamic size of the PIB-MPs were measured using the Malvern Zetasizer (version 7.13). || Number of replicates (N) = 3.",
+   "evidence_location": "Results, Synthesis and characterization"
+  },
+  {
+   "particle_name": "SDS-PIB 2000 mg",
+   "material": "polyisobutylene",
+   "functionalisation": null,
+   "supplier": "Santa Cruz Biotechnology (bulk PIB)",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "58.1",
+   "unit": "mV",
+   "n": "3",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Zetasizer (version 7.13)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "SDS exhibited a zeta potential of -46.3 mV, the PIB-MPs exhibited 50.1, 35.6, and 58.1 mV for SDS-PIB 80 mg, SDS-PIB 500 mg, and SDS-PIB 2000 mg, respectively. || The zeta potential and hydrodynamic size of the PIB-MPs were measured using the Malvern Zetasizer (version 7.13). || Number of replicates (N) = 3.",
+   "evidence_location": "Results, Synthesis and characterization"
+  }
+ ]
+}

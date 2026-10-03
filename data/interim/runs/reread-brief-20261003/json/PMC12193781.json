@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PSNPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Nanocs",
+   "size_nominal_nm": "20 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-40.02",
+   "unit": "mV",
+   "n": "triplicate",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "Zetasizer Nano ZS system (Malvern Instruments)"
+   },
+   "medium_matches_exposure": false,
+   "evidence_quote": "The Zeta potential of AgNPs was -32.5 mV, as previously reported [51], while the Zeta potential of PSNPs was -40.02 mV. || The zeta potential of nanoparticles was determined by dynamic light scattering using the Zetasizer Nano ZS system (Malvern Instruments, Malvern, UK) at 25 °C in a DTS 1067 capillary cell. Working solutions of nanoparticles were diluted with deionized water. Each sample was measured in triplicate with 20 sub-runs to ensure reproducibility.",
+   "evidence_location": "Results 3.1; Methods 2.1"
+  }
+ ]
+}

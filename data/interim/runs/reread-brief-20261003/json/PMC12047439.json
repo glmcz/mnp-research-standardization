@@ -1,0 +1,12 @@
+{"measurements":[
+{"particle_name":"PACE60 nanoparticles","material":"poly(amine-co-ester)","functionalisation":null,"supplier":null,"size_nominal_nm":null,"size_measured_nm":null,"quantity":"zeta potential","value":null,"unit":null,"n":"triplicate",
+"conditions":{"medium_text":"water","medium_class":"DI_water","ionic_strength":null,"pH":null,"temperature":null,"instrument":"Malvern Instruments Zetasizer Nano-ZS"},
+"medium_matches_exposure":false,
+"evidence_quote":"In both experiments, nanoparticle zeta potential (as measured in water) was reduced by either the introduction of murine plasma (presumably forming an anionic protein corona around the nanoparticles) or by altering the cargo encapsulated within the nanoparticles (incorporation of an increased molar quantity of double-stranded DNA, thereby increasing the negatively charged phosphate backbone content by 227% as compared to the ssDNA-encapsulated formulation). || Nanoparticle size and zeta potential were measured in triplicate via DLS using a Malvern Instruments Zetasizer Nano-ZS.",
+"evidence_location":"Results para 6; Methods"},
+{"particle_name":"PACE60 nanoparticles","material":"poly(amine-co-ester)","functionalisation":null,"supplier":null,"size_nominal_nm":null,"size_measured_nm":null,"quantity":"zeta potential","value":null,"unit":null,"n":"triplicate",
+"conditions":{"medium_text":"DPBS","medium_class":"buffer","ionic_strength":null,"pH":null,"temperature":null,"instrument":"Malvern Instruments Zetasizer Nano-ZS"},
+"medium_matches_exposure":true,
+"evidence_quote":"However, it should be noted that the zeta potential of PACE60 nanoparticles in the adsorption suspension medium (DPBS) was near neutral even in the absence of these modulations (fig. S5, C and D)—presumably due to the high ionic strength of DPBS as compared to water, allowing more robust screening of charges at the nanoparticle’s surface by negative counterions. || Nanoparticle size and zeta potential were measured in triplicate via DLS using a Malvern Instruments Zetasizer Nano-ZS.",
+"evidence_location":"Results para 7; Methods"}
+]}

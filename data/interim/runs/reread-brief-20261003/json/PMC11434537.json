@@ -1,0 +1,50 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PET NPs",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": "Goodfellow (amorphous PET)",
+   "size_nominal_nm": null,
+   "size_measured_nm": "67 ± 3 nm",
+   "quantity": "zeta potential",
+   "value": "-20 ± 5",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "water",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "ZetaPALS, Brookhaven"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential measurements demonstrated that PET NPs exhibit a negative charge (-20 ± 5 mV), whereas fSPIONs displayed a positive charge (+20 ± 5 mV). || DLS (ZetaPALS, Brookhaven, NY, USA) was used to determine the size of the fSPIONs, PET NPs, and PET–fSPIONs in water. || Samples were allowed to equilibrate in the sample compartment at 25 °C for at least 2 min and measured in acrylic cuvettes (10 × 10 × 45 mm, Sarstedt, Germany) at 25 °C.",
+   "evidence_location": "Section 2.1"
+  },
+  {
+   "particle_name": "PET–fSPIONs (PET NPs with functionalized SPIONs attached)",
+   "material": "polyethylene terephthalate",
+   "functionalisation": "fSPIONs (PAC12NC18-functionalized gamma-Fe2O3) attached",
+   "supplier": "Goodfellow (amorphous PET)",
+   "size_nominal_nm": null,
+   "size_measured_nm": "245 ± 20 nm",
+   "quantity": "zeta potential",
+   "value": "+15 ± 4",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "water",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25 °C",
+    "instrument": "ZetaPALS, Brookhaven"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "The combination of PET NPs with fSPIONs in PET–fSPIONs yielded a composite with a surface charge of +15 ± 4 mV, nearly as positive as that of pure fSPIONs. || DLS (ZetaPALS, Brookhaven, NY, USA) was used to determine the size of the fSPIONs, PET NPs, and PET–fSPIONs in water. || Samples were allowed to equilibrate in the sample compartment at 25 °C for at least 2 min and measured in acrylic cuvettes (10 × 10 × 45 mm, Sarstedt, Germany) at 25 °C.",
+   "evidence_location": "Section 2.1"
+  }
+ ]
+}

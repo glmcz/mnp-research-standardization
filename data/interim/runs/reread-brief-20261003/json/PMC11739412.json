@@ -1,0 +1,7 @@
+{"measurements": [
+{"particle_name":"PS-MPs","material":"polystyrene","functionalisation":null,"supplier":"Department of Environmental Sciences at GC University Faisalabad","size_nominal_nm":"5–6 μm","size_measured_nm":null,"quantity":"zeta potential","value":"-35","unit":"mv","n":null,
+"conditions":{"medium_text":null,"medium_class":"unreported","ionic_strength":null,"pH":null,"temperature":null,"instrument":null},
+"medium_matches_exposure":null,
+"evidence_quote":"The key characteristics were: pH: (5.22), size: (5–6 μm), specific surface area: (1.63 m2 g-1), zeta potential: (-35 mv), density: (1.25 g cm-3), crystallinity: (39%), O: C ratio: (0.12), and melting point: (158 °C).",
+"evidence_location":"Methods, Polystyrene microplastics"}
+]}

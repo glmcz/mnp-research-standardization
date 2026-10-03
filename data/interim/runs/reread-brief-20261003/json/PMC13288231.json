@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": "Huge Biotechnology",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "103.2 ± 2.87 nm",
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Physicochemical Characterization; Fig. 1e",
+   "evidence_quote": "Zeta potential measurements demonstrated negative surface charges for all NPs in E3 medium with no significant differences between groups (Figure e). || The hydrodynamic size and zeta potential were characterized in zebrafish larva maintenance medium (E3) using a Zetasizer Nano instrument (ZS 90, Malvern Instruments Ltd., UK).",
+   "conditions": {
+    "medium_text": "zebrafish larva maintenance medium (E3)",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS 90 (Malvern Instruments Ltd.)"
+   }
+  },
+  {
+   "particle_name": "PS-COOH",
+   "material": "polystyrene",
+   "functionalisation": "carboxyl",
+   "supplier": "Huge Biotechnology",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "85.07 ± 0.82 nm",
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Physicochemical Characterization; Fig. 1e",
+   "evidence_quote": "Zeta potential measurements demonstrated negative surface charges for all NPs in E3 medium with no significant differences between groups (Figure e). || The hydrodynamic size and zeta potential were characterized in zebrafish larva maintenance medium (E3) using a Zetasizer Nano instrument (ZS 90, Malvern Instruments Ltd., UK).",
+   "conditions": {
+    "medium_text": "zebrafish larva maintenance medium (E3)",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS 90 (Malvern Instruments Ltd.)"
+   }
+  },
+  {
+   "particle_name": "PMMA",
+   "material": "poly(methyl methacrylate)",
+   "functionalisation": "plain",
+   "supplier": "Huge Biotechnology",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "84.27 ± 1.31 nm",
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Physicochemical Characterization; Fig. 1e",
+   "evidence_quote": "Zeta potential measurements demonstrated negative surface charges for all NPs in E3 medium with no significant differences between groups (Figure e). || The hydrodynamic size and zeta potential were characterized in zebrafish larva maintenance medium (E3) using a Zetasizer Nano instrument (ZS 90, Malvern Instruments Ltd., UK).",
+   "conditions": {
+    "medium_text": "zebrafish larva maintenance medium (E3)",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS 90 (Malvern Instruments Ltd.)"
+   }
+  },
+  {
+   "particle_name": "PMMA-COOH",
+   "material": "poly(methyl methacrylate)",
+   "functionalisation": "carboxyl",
+   "supplier": "Huge Biotechnology",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": "84.68 ± 0.89 nm",
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": true,
+   "evidence_location": "Physicochemical Characterization; Fig. 1e",
+   "evidence_quote": "Zeta potential measurements demonstrated negative surface charges for all NPs in E3 medium with no significant differences between groups (Figure e). || The hydrodynamic size and zeta potential were characterized in zebrafish larva maintenance medium (E3) using a Zetasizer Nano instrument (ZS 90, Malvern Instruments Ltd., UK).",
+   "conditions": {
+    "medium_text": "zebrafish larva maintenance medium (E3)",
+    "medium_class": "culture_medium",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS 90 (Malvern Instruments Ltd.)"
+   }
+  }
+ ]
+}

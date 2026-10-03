@@ -212,8 +212,8 @@ _SALTS = {
 
 # Papers that print a buffer recipe usually spell the salts out: the PBS tablet in
 # PMC4958399 reads "0.0027 M potassium chloride, 0.137 M sodium chloride". Matching only
-# the abbreviations made that composition unreadable to the pipeline while a human
-# annotator computed 139.7 mM from it by hand.
+# the abbreviations made that composition unreadable to the pipeline while the gold
+# annotator (Claude) computed 139.7 mM from it.
 _SALT_WORDS = {
     "sodium chloride": 1.0, "potassium chloride": 1.0, "lithium chloride": 1.0,
     "caesium chloride": 1.0, "cesium chloride": 1.0, "ammonium chloride": 1.0,

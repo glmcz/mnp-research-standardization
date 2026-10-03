@@ -1,4 +1,4 @@
-"""Precision/recall of the extraction against the hand-annotated gold set.
+"""Precision/recall of the extraction against the gold set Claude annotated.
 
 Row level: predictions and gold rows are matched on (pmcid, particle name,
 medium class); numeric fields then score TP/FP/FN under per-field tolerances.

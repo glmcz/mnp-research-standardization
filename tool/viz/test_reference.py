@@ -85,7 +85,8 @@ def test_the_origin_section_is_built_where_the_ref_has_the_origin_table(tmp_path
         pytest.skip("HEAD has no origin table")
     stats = json.loads(text)
     origin = _build("HEAD", tmp_path / "data.json")["origin"]
-    h = stats["hand_corrected"]
+    # A HEAD committed before the rename still names this block `hand_corrected`.
+    h = stats.get("after_second_reading") or stats["hand_corrected"]
     assert (origin["rows"], origin["papers"]) == (stats["rows"], stats["papers"])
     assert [c["key"] for c in origin["classes"]] == [
         "commercial", "lab_fabricated", "environmental", "unclear"

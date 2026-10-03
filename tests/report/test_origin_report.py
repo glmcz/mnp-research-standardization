@@ -1,5 +1,6 @@
 """Sample origin, per row: the reader's per-particle answers matched back to the zeta rows,
-counted, checked against the suppliers the table already names, and sampled for hand checking."""
+counted, checked against the suppliers the table already names, and sampled for a second
+reading (done on 2026-09-29 by a Claude agent; the recorded verdicts keep their `hand_*` names)."""
 
 import json
 
@@ -189,6 +190,8 @@ def test_agreement_is_counted_per_stratum_and_on_the_synthetic_split():
     assert got["random"] == {"n": 2, "agree": 1, "share": 0.5, "agree_synthetic_split": 2}
     assert got["environmental"]["agree"] == 0
     assert [d["pmcid"] for d in got["disagreements"]] == ["B", "C"]
+    assert got["disagreements"][0]["checked_origin"] == "lab_fabricated"
+    assert all("hand_origin" not in d for d in got["disagreements"])
 
 
 def test_agreement_ignores_the_hand_files_own_stratum_column():
@@ -259,8 +262,9 @@ def test_the_row_table_carries_the_hand_verdict_beside_the_readers():
     assert out.loc["PMCB-r1", "origin"] == "environmental", "the reader's answer is kept"
     assert out.loc["PMCB-r1", "final_origin"] == "lab_fabricated"
     assert pd.isna(out.loc["PMCB-r1", "final_environment"])
-    assert out.loc["PMCB-r1", "hand_checked"] and out.loc["PMCB-r2", "hand_checked"]
-    assert not out.loc["PMCA-r1", "hand_checked"]
+    assert out.loc["PMCB-r1", "agent_checked"] and out.loc["PMCB-r2", "agent_checked"]
+    assert not out.loc["PMCA-r1", "agent_checked"]
+    assert "hand_checked" not in report.ROW_COLUMNS
     assert out.loc["PMCA-r1", "final_origin"] == "commercial"
     fixed = report.apply_hand(_rows(), hand)
     assert out["final_origin"].tolist() == fixed["origin"].tolist()

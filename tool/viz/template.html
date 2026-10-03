@@ -413,7 +413,7 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
       </div>
     </div>
     <div class="read">
-      <div><h3>How to read this</h3><p>A reader classified each particle from the lines that say where it came from, citing them, and a person re-read every environmental one and samples of the rest (<span data-k="o_hand"></span>). The paper bars can add up to more than 100 %, because one paper can measure particles of several origins.</p></div>
+      <div><h3>How to read this</h3><p>A reader classified each particle from the lines that say where it came from, citing them, and a Claude agent gave every environmental one and samples of the rest a second reading with the paper's full text (<span data-k="o_second"></span>); no person has checked them. The paper bars can add up to more than 100 %, because one paper can measure particles of several origins.</p></div>
       <div><h3>What it means</h3><p>The literature measures factory-made particles, mostly in laboratory liquids: <span data-k="o_syn"></span> of <span data-k="o_rows"></span> rows. Only <span data-k="o_env"></span> come from a real environment, <span data-k="o_ww"></span> of them wastewater effluent, and <span data-k="o_air"></span> from air or dust. How real plastic behaves in air, water or soil is not what these numbers describe.</p></div>
     </div>
     <p class="hb-note" id="origin-unchecked" hidden>REVIEW.md at this commit has no claim C11 yet, so the numbers in this section are not cross-checked against it.</p>
@@ -715,12 +715,12 @@ const O = DATA.origin;
 function originKeys(o) {
   const cls = Object.fromEntries(o.classes.map(c => [c.key, c]));
   const where = Object.fromEntries(o.environments.map(e => [e.key, e]));
-  const h = o.hand;
+  const h = o.second_reading;
   return {
     o_rows: fmt(o.rows), o_papers: fmt(o.papers),
     o_syn: fmt(o.synthetic_rows), o_syn_pct: pct(o.synthetic_rows / o.rows),
     o_env: fmt(cls.environmental.rows), o_ww: fmt(where.wastewater.rows), o_air: fmt(where.air_dust.rows),
-    o_hand: h.environmental.agree + ' of ' + h.environmental.n + ' environmental, ' + h.unclear.agree + ' of ' + h.unclear.n +
+    o_second: h.environmental.agree + ' of ' + h.environmental.n + ' environmental, ' + h.unclear.agree + ' of ' + h.unclear.n +
       ' unclear and ' + h.random.agree + ' of ' + h.random.n + ' others agree; ' + h.random.split + ' of ' + h.random.n +
       ' on synthetic against environmental',
   };
@@ -990,7 +990,7 @@ mount(document.getElementById('c-hist'), (el, w) => {
     bindTip(row, () => ({ h: ENV[e.key], rows: [{ v: fmt(e.rows), l: ' rows from ' + fmt(e.papers) + ' papers', c: COLOR.s1 }] }));
   }
   hbAxis(envEl, envTicks);
-  H('p', 'hb-note', 'Rows after the hand check. Zero means no particle collected there was measured.', envEl);
+  H('p', 'hb-note', 'Rows after the second reading by a Claude agent. Zero means no particle collected there was measured.', envEl);
 
   const COND = { medium: 'Medium', ionic_strength: 'Ionic strength', pH: 'pH', temperature: 'Temperature', instrument: 'Instrument' };
   const condEl = document.getElementById('c-origin-cond');

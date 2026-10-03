@@ -91,7 +91,7 @@ def gather(table: pd.DataFrame, stats: dict, origin: dict | None) -> dict:
 
 
 def _origin_facts(origin: dict) -> dict:
-    h = origin["hand_corrected"]
+    h = origin["after_second_reading"]
     where = h["environment"]
     return {
         "rows": origin["rows"],
@@ -173,7 +173,11 @@ def _origin_sentence(o: dict) -> str:
         text += "No row measures a particle collected from a real environment. "
     if empty:
         text += f"From {_either(empty)}: 0 rows. "
-    return text + "Hand-checked (`sample_origin_stats.json`, REVIEW.md C11)."
+    return text + (
+        "Agent-checked: a Claude agent gave every environmental particle and samples of the rest "
+        "a second reading with the paper's full text; no person has checked these counts "
+        "(`sample_origin_stats.json`, REVIEW.md C11)."
+    )
 
 
 def markdown(pairs: list[tuple[str, str]] | list[list[str]]) -> list[str]:

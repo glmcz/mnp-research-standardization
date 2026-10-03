@@ -7,10 +7,13 @@ checked deterministically rather than trusted: every citation must address a lin
 (and one the reader was shown), and every row whose `supplier` is filled but whose particle is
 not called commercial is listed for a human to look at.
 
-`report origin` runs `build`: it reads the recorded answers and hand verdicts and asks nothing,
-so the rebuild is deterministic though the reading was judgement. REVIEW.md (C11) and the
-dataset card read the stats it writes. It also counts the papers whose methods the parser lost
-(`extract.origin.methods_lost`), because the origin reading is where that defect was found.
+`report origin` runs `build`: it reads the recorded answers and the recorded verdicts of the
+second reading, and asks nothing, so the rebuild is deterministic though both readings were
+judgement. The second reading (2026-09-29) was done by a Claude agent with each paper's full
+text, not by a person; its files under data/interim/origin/ keep their `hand_check` names, which
+are history. REVIEW.md (C11) and the dataset card read the stats it writes. It also counts the
+papers whose methods the parser lost (`extract.origin.methods_lost`), because the origin reading
+is where that defect was found.
 
 python -m mnp.report.origin build [--run RUN_ID]
 python -m mnp.report.origin sample [--run RUN_ID]
@@ -44,8 +47,9 @@ SAMPLE_N = 40
 #: and so is `other`: both environmental rows filed there were measured in their own sample liquid.
 LAB_LIQUIDS = frozenset({"DI_water", "salt_solution", "buffer", "culture_medium", "biofluid"})
 
-#: Found by hand while checking origin, 2026-09-29: D1 rows that are not the authors' own
-#: measurement of a plastic particle. Row ids, so a re-extraction that drops one fails the build.
+#: Found by a Claude agent during the second reading of origin, 2026-09-29: D1 rows that are not
+#: the authors' own measurement of a plastic particle. Row ids, so a re-extraction that drops one
+#: fails the build.
 NOT_OWN_MEASUREMENT = {
     "PMC11644763-r1": "a polyester fabric, not a particle",
     "PMC12462602-r2": "PEG 4000, a water-soluble polymer the authors use in place of polystyrene",
@@ -57,9 +61,10 @@ NOT_OWN_MEASUREMENT = {
     "or measured",
 }
 
-#: Read by hand, 2026-09-29, for every environmental paper whose text prints a conductivity: why
-#: none of it gives that paper's environmental rows an ionic strength. Martin's rule allows an
-#: ionic strength estimated from a printed conductivity only when it is marked as estimated.
+#: Read by a Claude agent, 2026-09-29, for every environmental paper whose text prints a
+#: conductivity: why none of it gives that paper's environmental rows an ionic strength. Martin's
+#: rule allows an ionic strength estimated from a printed conductivity only when it is marked as
+#: estimated.
 CONDUCTIVITY_NOT_THE_ROWS = {
     "PMC11211448": (
         "The sentence about the liquid of its environmental row, the industrial wastewater as "
@@ -72,11 +77,11 @@ CONDUCTIVITY_NOT_THE_ROWS = {
     ),
 }
 
-#: The words the hand checker used for a zeta potential of the collected sample, not the plastic.
+#: The words the second reading used for a zeta potential of the collected sample, not the plastic.
 WHOLE_SAMPLE_NOTE = "as a whole"
 
-#: sample_origin.csv, in order. The reader's `origin` and the hand-checked `final_origin` sit
-#: side by side, so the confirmed counts can be recounted from this one file.
+#: sample_origin.csv, in order. The reader's `origin` and the agent-checked `final_origin` sit
+#: side by side, so the counts after the second reading can be recounted from this one file.
 ROW_COLUMNS = (
     "pmcid",
     "row_id",
@@ -91,7 +96,7 @@ ROW_COLUMNS = (
     "origin_citations",
     "origin_reason",
     "matched_by",
-    "hand_checked",
+    "agent_checked",
     "final_origin",
     "final_environment",
 )
@@ -449,7 +454,7 @@ def _reporting_by_origin(rows: pd.DataFrame, labels: list[str]) -> dict[str, dic
     return out
 
 
-# -- hand checking -------------------------------------------------------------------------------
+# -- the second reading --------------------------------------------------------------------------
 
 
 def hand_check_sample(classes: pd.DataFrame, seed: int = SEED, n: int = SAMPLE_N) -> pd.DataFrame:
@@ -472,7 +477,10 @@ def hand_check_sample(classes: pd.DataFrame, seed: int = SEED, n: int = SAMPLE_N
 
 
 def apply_hand(rows: pd.DataFrame, hand: pd.DataFrame) -> pd.DataFrame:
-    """Rows with the hand-checked origin and environment wherever a person read the paper."""
+    """Rows with the second reading's origin and environment wherever it read the particle.
+
+    `hand` is the recorded file of the second reading by a Claude agent; its `hand_origin` and
+    `hand_environment` fields keep the names they were recorded under."""
     verdict = {(r["pmcid"], r["particle_name"]): r for r in hand.to_dict(orient="records")}
     fixed = rows.copy()
     for i, row in rows.iterrows():
@@ -484,16 +492,16 @@ def apply_hand(rows: pd.DataFrame, hand: pd.DataFrame) -> pd.DataFrame:
 
 
 def with_final(rows: pd.DataFrame, hand: pd.DataFrame | None) -> pd.DataFrame:
-    """The rows with the hand verdict beside the reader's answer: `final_origin` is the hand
-    verdict where a person read the particle and the reader's answer everywhere else."""
+    """The rows with the second reading beside the reader's answer: `final_origin` is the second
+    reading's verdict where `agent_checked` is true and the reader's answer everywhere else."""
     out = rows.copy()
     if hand is None or hand.empty:
-        out["hand_checked"] = False
+        out["agent_checked"] = False
         out["final_origin"], out["final_environment"] = rows["origin"], rows["environment"]
         return out
     read = {(p, n) for p, n in zip(hand["pmcid"], hand["particle_name"], strict=True)}
     fixed = apply_hand(rows, hand)
-    out["hand_checked"] = [
+    out["agent_checked"] = [
         (p, _text(n)) in read for p, n in zip(rows["pmcid"], rows["particle_name"], strict=True)
     ]
     out["final_origin"], out["final_environment"] = fixed["origin"], fixed["environment"]
@@ -501,7 +509,7 @@ def with_final(rows: pd.DataFrame, hand: pd.DataFrame | None) -> pd.DataFrame:
 
 
 def whole_sample_papers(hand: pd.DataFrame) -> list[str]:
-    """Environmental papers whose zeta potential the hand checker found to be of the collected
+    """Environmental papers whose zeta potential the second reading found to be of the collected
     sample as a whole rather than of isolated plastic."""
     env = hand[hand["hand_origin"] == "environmental"]
     return sorted(set(env.loc[env["note"].fillna("").str.contains(WHOLE_SAMPLE_NOTE), "pmcid"]))
@@ -570,8 +578,12 @@ def agreement(sample: pd.DataFrame, hand: pd.DataFrame) -> dict[str, Any]:
     out["not_checked"] = int(len(sample) - len(merged))
     out["disagreements"] = [
         {
-            k: r.get(k)
-            for k in ("pmcid", "particle_name", "stratum", "origin", "hand_origin", "note")
+            "pmcid": r["pmcid"],
+            "particle_name": r["particle_name"],
+            "stratum": r["stratum"],
+            "origin": r["origin"],
+            "checked_origin": r["hand_origin"],
+            "note": r.get("note"),
         }
         for r in merged[~merged["agree"]].to_dict(orient="records")
     ]
@@ -583,6 +595,8 @@ def agreement(sample: pd.DataFrame, hand: pd.DataFrame) -> dict[str, Any]:
 
 def _paths(run_id: str, tables: Path | None = None) -> dict[str, Path]:
     base, tables = origin.answers_dir(), tables or config.OUT_TABLES
+    # The recorded second reading is named `hand_check-*`; the names are history, and the
+    # reading was a Claude agent's, not a person's.
     return {
         "rows": tables / "sample_origin.csv",
         "stats": tables / "sample_origin_stats.json",
@@ -621,7 +635,8 @@ def reader_spend(directory: Path) -> dict[str, Any]:
 
 def build(run_id: str, tables: Path | None = None) -> dict[str, Any]:
     """Rebuild `sample_origin.csv` and `sample_origin_stats.json` in `tables` (default
-    out/tables) from the D1 table beside them, the recorded answers and the hand verdicts."""
+    out/tables) from the D1 table beside them, the recorded answers and the recorded second
+    reading."""
     paths = _paths(run_id, tables)
     table = pd.read_csv(paths["rows"].parent / "d1_zeta_table.csv")
     answers = origin.load_answers(origin.answers_dir(), run_id)
@@ -649,10 +664,11 @@ def build(run_id: str, tables: Path | None = None) -> dict[str, Any]:
     }
     hand = None
     if paths["hand"].is_file() and paths["sample"].is_file():
+        # The second reading, by a Claude agent with the full text; no person has checked it.
         hand = _read_jsonl(paths["hand"])
-        result["hand_check"] = agreement(_read_jsonl(paths["sample"]), hand)
-        # Every environmental particle was read by hand, so this is the confirmed picture;
-        # outside the sample the reader's answer stands.
+        result["second_reading"] = agreement(_read_jsonl(paths["sample"]), hand)
+        # The second reading took every environmental particle, so these are the counts it
+        # confirms; outside its sample the reader's answer stands.
         fixed = apply_hand(rows, hand)
         confirmed = stats(fixed, classes)
         env = confirmed["environmental_rows"]
@@ -662,9 +678,9 @@ def build(run_id: str, tables: Path | None = None) -> dict[str, Any]:
             {p: conductivity_sentences(docs[p]) for p in env_papers},
             quotable={p for p in env_papers if licence.read(p).code in licence.QUOTE_ALLOWED},
         )
-        result["hand_corrected"] = {
+        result["after_second_reading"] = {
             k: confirmed[k] for k in ("origin", "synthetic", "environment", "environmental_rows")
-        } | {"particles_with_a_hand_verdict": int(len(hand))}
+        } | {"particles_with_a_second_reading": int(len(hand))}
     result["not_own_measurement"] = not_own_rows(table)
     result["lost_methods"] = lost_methods(table, lost)
 
@@ -675,8 +691,8 @@ def build(run_id: str, tables: Path | None = None) -> dict[str, Any]:
 
 
 def _origin_sentences(doc: lines.LinedDoc, cited: origin.Citations, cap: int = 12):
-    """Sentences outside the cited lines that name particles next to an origin cue: what a hand
-    checker needs to catch an origin the reader missed or an "unclear" the paper does answer."""
+    """Sentences outside the cited lines that name particles next to an origin cue: what a second
+    reader needs to catch an origin the reader missed or an "unclear" the paper does answer."""
     skip = set(cited.line_ids)
     found = []
     for line in doc.lines:
@@ -694,7 +710,7 @@ def _origin_sentences(doc: lines.LinedDoc, cited: origin.Citations, cap: int = 1
 
 
 def write_sample(run_id: str) -> Path:
-    """The hand-check sample, and a packet of every cited line in full to read it from."""
+    """The sample for a second reading, and a packet of every cited line in full to read it from."""
     table = origin.load_table()
     answers = origin.load_answers(origin.answers_dir(), run_id)
     sample = hand_check_sample(classifications(answers))

@@ -64,7 +64,7 @@ def run_gate(args: argparse.Namespace) -> list[Path]:
 
 
 def run_d1_gold(args: argparse.Namespace) -> list[Path]:
-    """The same statistic on the hand-annotated stratified sample of 50 papers."""
+    """The same statistic on the stratified sample of 50 papers that Claude annotated."""
     from mnp.report import d1
 
     _, tables, figures, _ = _out(args)
@@ -85,7 +85,8 @@ def run_d1_gold(args: argparse.Namespace) -> list[Path]:
         hit_counts={"hits_oa": sampled},
         prefix="d1_gold",
         denominator_note=(
-            f"the {sampled} papers of the stratified random sample, annotated by hand"
+            f"the {sampled} papers of the stratified random sample, annotated by Claude and not "
+            "yet audited by a person"
         ),
     )
 
@@ -172,9 +173,9 @@ def run_demo(args: argparse.Namespace) -> list[Path]:
 def run_origin(args: argparse.Namespace) -> list[Path]:
     """Where every measured particle came from, rebuilt from recorded judgement. Asks nothing.
 
-    The reader's answers and the hand verdicts under data/interim/origin are read, never
-    regenerated; they are matched to the D1 table in the requested output root, so a replay
-    rebuilds them against the table it rebuilt.
+    The reader's answers and the recorded second reading (a Claude agent's) under
+    data/interim/origin are read, never regenerated; they are matched to the D1 table in the
+    requested output root, so a replay rebuilds them against the table it rebuilt.
     """
     from mnp.extract import origin as reader
     from mnp.report import origin

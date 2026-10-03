@@ -72,9 +72,9 @@ def test_the_block_states_what_the_dataset_is(text: str, committed):
     assert "not in the environment it came from" in text
 
 
-def test_the_block_states_the_hand_corrected_origin(text: str, committed):
+def test_the_block_states_the_origin_after_the_second_reading(text: str, committed):
     _, _, origin = committed
-    h, n = origin["hand_corrected"], origin["rows"]
+    h, n = origin["after_second_reading"], origin["rows"]
     syn, env, where = h["synthetic"]["rows"], h["environmental_rows"], h["environment"]
     share = f"{100 * syn / n:.1f} % of rows ({_n(syn)} / {_n(n)})"
     assert f"{share} measure a synthetic particle" in text
@@ -130,7 +130,7 @@ def test_the_block_is_five_to_eight_lines(committed):
 def test_the_block_moves_with_the_stats(committed):
     table, stats, origin = committed
     moved = copy.deepcopy(origin)
-    h = moved["hand_corrected"]
+    h = moved["after_second_reading"]
     h["environment"]["rows"]["seawater"] = 2
     h["environment"]["papers"]["seawater"] = 1
     h["environmental_rows"]["rows"] += 2

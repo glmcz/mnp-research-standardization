@@ -362,9 +362,10 @@ def section_1(f: Facts) -> list[str]:
             [
                 f"| `out/tables/{ORIGIN_ROWS}` | one line per row, in the table's order: where its "
                 "particle came from, as the reader classified it with the lines it cited, and "
-                "`final_origin`, the person's verdict wherever one was given | recount C11 (§6) |",
+                "`final_origin`, the verdict of a second reading by a Claude agent wherever there "
+                "was one (`agent_checked`) | recount C11 (§6) |",
                 "| `out/tables/sample_origin_stats.json` | the origin counts before and after the "
-                "hand check, the agreement, the environmental rows' conditions, the parser "
+                "second reading, the agreement, the environmental rows' conditions, the parser "
                 "defect and the rows that are not an own measurement | the numbers of C11, the "
                 "environmental rows (§6) and §8 |",
             ]
@@ -1990,9 +1991,9 @@ def section_6(f: Facts) -> list[str]:
 
 
 def _origin_claim(o: dict) -> list[str]:
-    h, n = o["hand_corrected"], o["rows"]
+    h, n = o["after_second_reading"], o["rows"]
     rows, where, env = h["origin"]["rows"], h["environment"], h["environmental_rows"]
-    hc, reader = o["hand_check"], o["reader"]
+    hc, reader = o["second_reading"], o["reader"]
     elsewhere = [
         f"{where['rows'][e]} {ENV_LABEL[e]}"
         for e in ENVIRONMENTS
@@ -2000,7 +2001,7 @@ def _origin_claim(o: dict) -> list[str]:
     ]
     empty = [ENV_LABEL[e] for e in ENVIRONMENTS if e != "air_dust" and not where["rows"][e]]
     unclear_missed = [d for d in hc["disagreements"] if d["stratum"] == "unclear"]
-    stated = sum(d["hand_origin"] != "unclear" for d in unclear_missed)
+    stated = sum(d["checked_origin"] != "unclear" for d in unclear_missed)
     whole = env.get("whole_sample_papers") or []
     rnd = hc["random"]
     fo = _letter(ROW_COLUMNS.index("final_origin"))
@@ -2028,18 +2029,21 @@ def _origin_claim(o: dict) -> list[str]:
         "environment and isolated. The liquid is not the origin: a bought bead dispersed in "
         "lake water is commercial. `report origin` matches each answer to the rows by "
         f"`particle_name` ({_int(o['matching']['rows_exact'])} of {_int(n)} exactly) and takes "
-        "the person's verdict wherever the paper was read by hand "
-        f"({_int(h['particles_with_a_hand_verdict'])} particles).",
+        "the verdict of a second reading wherever there was one: a Claude agent read the "
+        "particle again with the paper's full text "
+        f"({_int(h['particles_with_a_second_reading'])} particles).",
         f"`out/tables/{ORIGIN_ROWS}`, one line per row in the table's order. `final_origin` "
-        "(column " + fo + ") is the person's verdict where `hand_checked` is true and the "
-        "reader's `origin` everywhere else, and `final_environment` likewise: "
+        "(column " + fo + ") is the second reading's verdict where `agent_checked` is true and "
+        "the reader's `origin` everywhere else, and `final_environment` likewise: "
         f'`=COUNTIF({fo}:{fo},"commercial")` and so on over `=COUNTA(A:A)-1`; pandas '
         '`o = pd.read_csv("out/tables/sample_origin.csv"); o.final_origin.value_counts()`, and '
         '`o[o.final_origin == "environmental"].groupby("final_environment").pmcid'
         '.agg(["size", "nunique"])`. `origin_citations` gives the lines the reader cited '
-        f"(`PMCID:Lnn`); the verdicts and their notes are "
-        f"`data/interim/origin/hand_check-{o['run_id']}.jsonl`.",
-        "outside the hand check the reader's answer stands. The check read every "
+        f"(`PMCID:Lnn`); the second reading's verdicts and notes are "
+        f"`data/interim/origin/hand_check-{o['run_id']}.jsonl` (the file name is older than "
+        "this wording; the reading in it is Claude's).",
+        "the second reading is Claude's judgement, not a person's: no row has been audited by "
+        f"a person yet (§7, `{AUDIT}`). Outside it the reader's answer stands. It covered every "
         f"environmental particle ({hc['environmental']['agree']} / {hc['environmental']['n']} "
         f"agree), {hc['unclear']['n']} of the unclear ones ({hc['unclear']['agree']} / "
         f"{hc['unclear']['n']}; "
@@ -2065,7 +2069,7 @@ def _origin_claim(o: dict) -> list[str]:
 
 
 def _environmental_conditions(o: dict) -> list[str]:
-    env = o["hand_corrected"]["environmental_rows"]
+    env = o["after_second_reading"]["environmental_rows"]
     k, reported = env["rows"], env["reported"]
     medium = env["medium_class"]
     whole = env.get("whole_sample_papers") or []
@@ -2079,8 +2083,8 @@ def _environmental_conditions(o: dict) -> list[str]:
     lines = [
         "### The environmental rows' conditions",
         "",
-        f"The {k} rows a person confirmed as environmental (C11), from {env['papers']} papers, "
-        "against the five conditions:",
+        f"The {k} rows a Claude agent's second reading confirmed as environmental (C11), from "
+        f"{env['papers']} papers, against the five conditions:",
         "",
         "| condition | rows reporting it |",
         "|---|---|",
@@ -2134,7 +2138,7 @@ def _environmental_conditions(o: dict) -> list[str]:
 
 
 def _origin_not_proved(o: dict) -> str:
-    h = o["hand_corrected"]
+    h = o["after_second_reading"]
     where = h["environment"]["rows"]
     ambient = ("air_dust", "freshwater", "seawater", "soil", "sediment", "biota")
     syn = h["synthetic"]
@@ -2443,7 +2447,7 @@ def _origin_open(o: dict) -> list[str]:
             by_why.setdefault(r["why"], []).append(f"`{r['row_id']}`")
         out.append(
             f"**{len(own)} rows are not the authors' own measurement of a plastic particle**, "
-            "found while checking origin by hand: "
+            "found by a Claude agent's second reading of origin: "
             + "; ".join(f"{', '.join(ids)} ({why})" for why, ids in by_why.items())
             + ". They are rows of the table and counted everywhere, C11 included. Open: drop "
             "them or flag them (`sample_origin_stats.json` → `not_own_measurement`)."

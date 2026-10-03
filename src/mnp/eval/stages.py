@@ -34,14 +34,16 @@ STAGES: tuple[Stage, ...] = (
     Stage(
         name="parse",
         what="JATS to methods text, tables and keyword windows",
-        ground_truth="tests/eval/fixtures/parse_spans.json — sentences a human located by hand",
+        ground_truth="tests/eval/fixtures/parse_spans.json — sentences located in a fixture "
+        "article when it was written; who located them is not recorded",
         metric="span recall",
         threshold=1.0,
     ),
     Stage(
         name="scan",
         what="find every printed zeta/mobility value in an article",
-        ground_truth="values in gold_50.csv, which were read from the papers by hand",
+        ground_truth="values in gold_50.csv, which Claude read from the papers; not yet "
+        "audited by a person",
         metric="recall of gold values",
         threshold=None,
     ),
@@ -111,7 +113,7 @@ def coerce_cases() -> list[dict]:
 
 
 def measure_parse() -> Result:
-    """Every sentence a human located in a fixture article must survive parsing."""
+    """Every sentence located in a fixture article must survive parsing."""
     from mnp.corpus import jats
 
     cases = _load("parse_spans.json")
@@ -136,7 +138,7 @@ def measure_parse() -> Result:
 
 
 def measure_scan() -> Result:
-    """Of the values a human read out of the gold papers, how many does the scanner find?
+    """Of the values Claude read out of the gold papers, how many does the scanner find?
 
     Precision is not reported and never will be: the scanner finds printed values of any
     material, so a paper reporting a metal oxide alongside its plastic scores badly while
@@ -173,7 +175,7 @@ def measure_scan() -> Result:
 
 
 def measure_read() -> Result:
-    """The one stage that is judgement: scored against the hand-annotated set, as always."""
+    """The one stage that is judgement: scored against the gold set Claude annotated."""
     import pandas as pd
 
     gold_path = config.ANNOTATION / "gold_50.csv"

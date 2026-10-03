@@ -61,6 +61,9 @@ WORKED_ROWS = {
 }
 
 ORIGIN_STATS = "out/tables/sample_origin_stats.json"
+# Refs committed before the rename call the second reading `hand_check` and the counts after it
+# `hand_corrected`, though the reading was a Claude agent's. These are the keys this script reads.
+OLD_ORIGIN_KEYS = {"hand_check": "second_reading", "hand_corrected": "after_second_reading"}
 ORIGINS = ("commercial", "lab_fabricated", "environmental", "unclear")
 ENVIRONMENTS = ("freshwater", "seawater", "wastewater", "soil", "sediment", "air_dust", "biota",
                 "other")  # fmt: skip
@@ -544,12 +547,20 @@ def gold_section(ref: str) -> dict:
     return {"rows": facts["rows"], "papers": facts["papers"], "human": facts["human_rows"]}
 
 
-def origin_section(ref: str) -> dict | None:
-    """The hand-corrected origin counts, or None at a ref that predates `report origin`."""
+def origin_stats(ref: str) -> dict | None:
+    """`sample_origin_stats.json` at the ref under today's names, or None before `report origin`."""
     if not exists(ref, ORIGIN_STATS):
         return None
     stats = json.loads(show(ref, ORIGIN_STATS))
-    h, hc = stats["hand_corrected"], stats["hand_check"]
+    return {OLD_ORIGIN_KEYS.get(k, k): v for k, v in stats.items()}
+
+
+def origin_section(ref: str) -> dict | None:
+    """The origin counts after the second reading, or None at a ref that predates them."""
+    stats = origin_stats(ref)
+    if stats is None:
+        return None
+    h, hc = stats["after_second_reading"], stats["second_reading"]
     env = h["environmental_rows"]
     return {
         "rows": stats["rows"],
@@ -569,7 +580,7 @@ def origin_section(ref: str) -> dict | None:
         "env_conditions": [{"key": k, "n": env["reported"][k]["n"]} for k in ORIGIN_CONDITIONS],
         "env_complete": env["conditions_complete"]["n"],
         "env_conductivity": env["conductivity_printed"],
-        "hand": {
+        "second_reading": {
             s: {"n": hc[s]["n"], "agree": hc[s]["agree"], "split": hc[s]["agree_synthetic_split"]}
             for s in ("environmental", "unclear", "random")
         },
@@ -579,13 +590,10 @@ def origin_section(ref: str) -> dict | None:
 def scope_section(ref: str, table: pd.DataFrame) -> dict | None:
     """The block every generated document opens with, rendered from this ref's tables by the
     same function; None at a ref that predates `report origin`, so the page hides the box."""
-    if not exists(ref, ORIGIN_STATS):
+    origin = origin_stats(ref)
+    if origin is None:
         return None
-    facts = scope.gather(
-        table,
-        json.loads(show(ref, "out/tables/d1_stats.json")),
-        json.loads(show(ref, ORIGIN_STATS)),
-    )
+    facts = scope.gather(table, json.loads(show(ref, "out/tables/d1_stats.json")), origin)
     return {
         "title": scope.TITLE,
         "items": [list(item) for item in scope.items(facts)],
@@ -831,20 +839,20 @@ def review_checks(ref: str, data: dict) -> list[dict]:
         where["air_dust"]["rows"],
         int(one(r"Air or dust: (\d+) rows")[0]),
     )
-    hand = o["hand"]
+    second = o["second_reading"]
     agree, k = one(r"every environmental particle \((\d+) / (\d+) agree\)")
-    check("origin hand check environmental", (hand["environmental"]["agree"],
-          hand["environmental"]["n"]), (int(agree), int(k)))  # fmt: skip
+    check("origin second reading environmental", (second["environmental"]["agree"],
+          second["environmental"]["n"]), (int(agree), int(k)))  # fmt: skip
     _, agree, k = one(r"(\d+) of the unclear ones \((\d+) / (\d+);")
-    check("origin hand check unclear", (hand["unclear"]["agree"], hand["unclear"]["n"]),
-          (int(agree), int(k)))  # fmt: skip
+    check("origin second reading unclear", (second["unclear"]["agree"],
+          second["unclear"]["n"]), (int(agree), int(k)))  # fmt: skip
     agree, k, split, k2 = one(
         r"a seeded \d+ of the rest \((\d+) / (\d+), [\d.]+ %, on the four classes; "
         r"(\d+) / (\d+) on synthetic against environmental\)"
     )
-    r = hand["random"]
-    check("origin hand check random", (r["agree"], r["n"]), (int(agree), int(k)))
-    check("origin hand check synthetic split", (r["split"], r["n"]), (int(split), int(k2)))
+    r = second["random"]
+    check("origin second reading random", (r["agree"], r["n"]), (int(agree), int(k)))
+    check("origin second reading synthetic split", (r["split"], r["n"]), (int(split), int(k2)))
     part = text.split("### The environmental rows' conditions", 1)[-1].split("\n### ", 1)[0]
     table = dict(
         (label, (int(a), int(b)))

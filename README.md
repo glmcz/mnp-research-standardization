@@ -147,16 +147,18 @@ was not.
 Artefacts: `out/tables/d1_stats.md`, `d1_stats.json`, `d1_zeta_table.csv`, `d1_oa_bias.csv`,
 `out/figures/d1_missing_conditions.png` (`python -m mnp.report d1`).
 
-**Which number to quote.** Either. The hand-annotated sample below was read against explicit
-rules and its interval covers the corpus value on every condition; the corpus figure adds
-precision. The one exception is temperature — see the precision/recall section.
+**Which number to quote.** Either. The sample below, annotated by Claude and not yet audited by
+a person, was read against explicit rules and its interval covers the corpus value on every
+condition; the corpus figure adds precision. The one exception is temperature — see the
+precision/recall section.
 
-## D1 result on the hand-annotated sample (2026-09-12)
+## D1 result on the gold sample, annotated by Claude (2026-09-12)
 
 50 papers drawn at random, stratified by year band, from the 859 open-access hits; every one
-annotated from its own text (not from any model's output). 24 of the 50 report a zeta
-potential or electrophoretic mobility of a synthetic-polymer particle; the rest measure
-something else (metal oxides, carbon dots, clay, chitosan, protein) or nothing.
+annotated by Claude from its own text (not from any model's extraction output), and not yet
+audited by a person. 24 of the 50 report a zeta potential or electrophoretic mobility of a
+synthetic-polymer particle; the rest measure something else (metal oxides, carbon dots, clay,
+chitosan, protein) or nothing.
 
 | Missing condition | k / 24 | fraction | 95% Wilson |
 |---|---|---|---|

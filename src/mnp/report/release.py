@@ -545,8 +545,8 @@ def _kappa_section(f: dict) -> list[str]:
     lines = [
         "## The κ audit has not been done",
         "",
-        "Extraction accuracy for this dataset is scored against a gold set of hand-checked "
-        "rows in `data/interim/annotation/gold_50.csv`. **That gold set was annotated by "
+        "Extraction accuracy for this dataset is scored against a gold set of rows read from "
+        "the papers, `data/interim/annotation/gold_50.csv`. **That gold set was annotated by "
         "Claude and has not been audited by a human.**",
         "",
     ]
@@ -710,7 +710,7 @@ def _limits_section(f: dict) -> list[str]:
 
 def _origin_limits(o: dict) -> list[str]:
     """Where the particles came from, and the parser defect found while asking."""
-    h, n = o["hand_corrected"], o["rows"]
+    h, n = o["after_second_reading"], o["rows"]
     where, env = h["environment"]["rows"], h["environmental_rows"]
     places = ", ".join(f"{e.replace('_', ' ')} {k}" for e, k in where.items() if k and e != "null")
     lines = [
@@ -720,8 +720,9 @@ def _origin_limits(o: dict) -> list[str]:
         f"paper{'s' if env['papers'] != 1 else ''}, measure a particle collected from a real "
         f"environment ({places}); from air or dust: {where['air_dust']}. The values describe "
         "manufactured particles in laboratory liquids, not how micro- and nanoplastics behave "
-        "in the environment. A reader classified every row and a person checked every "
-        "environmental one and a sample of the rest (`out/tables/sample_origin_stats.json`, "
+        "in the environment. A reader classified every row, and a Claude agent gave every "
+        "environmental one and a sample of the rest a second reading with the paper's full "
+        "text; no person has checked them (`out/tables/sample_origin_stats.json`, "
         "`out/review/REVIEW.md` C11).",
         "",
     ]

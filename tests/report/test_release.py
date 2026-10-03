@@ -434,7 +434,7 @@ def _origin() -> dict:
     return {
         "rows": 6,
         "papers": 3,
-        "hand_corrected": {
+        "after_second_reading": {
             "origin": {"rows": {"commercial": 3, "lab_fabricated": 1, "environmental": 1,
                                 "unclear": 1, "unanswered": 0}},
             "synthetic": {"rows": 4},
@@ -699,7 +699,7 @@ def test_the_shipped_card_states_the_committed_origin(tmp_path, committed):
     permissive = {p: Licence("CC-BY", "url", "") for p in table["pmcid"].unique()}
     written = release.build(table, stats, tmp_path / "release", licences=permissive, origin=origin)
     card = _card(written)
-    h, n = origin["hand_corrected"], origin["rows"]
+    h, n = origin["after_second_reading"], origin["rows"]
     k = h["synthetic"]["rows"]
     assert f"{k} / {n} — {100 * k / n:.1f} %" in card
     lm = origin["lost_methods"]

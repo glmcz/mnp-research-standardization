@@ -452,9 +452,9 @@ STEPS: tuple[Step, ...] = (
     Step(
         command="report d1-gold",
         purpose=(
-            "Computes the same statistic on the 50 hand-annotated papers, as an estimate produced "
-            "by a different method. Quoting either is defensible; quoting both is the point, "
-            "because they agree. It is untouched by re-extraction of the corpus."
+            "Computes the same statistic on the 50 papers Claude annotated for the gold set, as "
+            "an estimate produced by a different method. Quoting either is defensible; quoting "
+            "both is the point, because they agree. It is untouched by re-extraction of the corpus."
         ),
         inputs="gold_50.csv",
         outputs="out/tables/d1_gold_*.{csv,md,json}",
@@ -612,14 +612,15 @@ STEPS: tuple[Step, ...] = (
             "nothing itself. The reader's answers in data/interim/origin/answers.jsonl, one "
             "call per paper through the grid's isolated reader with a cited line for every "
             "particle, are matched back to the rows by particle name; every citation is "
-            "resolved against that paper's lines; and the hand verdicts replace the reader's "
-            "answer wherever a person read the paper (every environmental particle, the unclear "
-            "ones up to a cap, and a seeded sample of the rest). The reading was judgement and "
-            "is never re-run here, so this step is deterministic. It also names the papers whose "
-            "methods the parser took from a supplementary-materials section and compares their "
-            "condition reporting with the rest, and it refuses to build when an environmental "
-            "paper prints a conductivity nobody has read against its rows, or when a row listed "
-            "as not the authors' own measurement has left the table."
+            "resolved against that paper's lines; and the verdicts of a second reading, by a "
+            "Claude agent with the paper's full text, replace the reader's answer wherever it "
+            "read the particle (every environmental particle, the unclear ones up to a cap, and "
+            "a seeded sample of the rest). No person has checked either reading. Both readings "
+            "were judgement and are never re-run here, so this step is deterministic. It also "
+            "names the papers whose methods the parser took from a supplementary-materials "
+            "section and compares their condition reporting with the rest, and it refuses to "
+            "build when an environmental paper prints a conductivity nobody has read against its "
+            "rows, or when a row listed as not the authors' own measurement has left the table."
         ),
         inputs="out/tables/d1_zeta_table.csv, data/interim/origin/{answers.jsonl,"
         "hand_check-*.jsonl,hand_check_sample-*.jsonl}, the run manifest, the vendored corpus",
@@ -628,9 +629,10 @@ STEPS: tuple[Step, ...] = (
         idempotent=True,
         network=False,
         invalidated_by="a change to the D1 table (answers are matched to rows by particle name), "
-        "a new reader run, a new hand verdict, or a parser change",
-        ground_truth="the hand-check file: every environmental particle, the unclear ones up to "
-        "a cap, a seeded sample of the rest",
+        "a new reader run, a new second reading, or a parser change",
+        ground_truth="the second reading by a Claude agent, recorded in the hand_check file "
+        "(the name is history): every environmental particle, the unclear ones up to a cap, a "
+        "seeded sample of the rest; not checked by a person",
         phase="Deliverables",
     ),
     Step(
@@ -838,13 +840,13 @@ STEPS: tuple[Step, ...] = (
         command="eval all",
         purpose=(
             "Measures each pipeline stage separately against its own ground truth: parse against "
-            "hand-located sentences, the scanner against the values a human read out of the gold "
-            "papers, the model's reading against the gold set, coercion against a case table "
-            "covering every ratified rule, the verifier against fabrications that reached "
-            "production, and the aggregate against the committed tables. Before this existed, a "
-            "parser or coercion defect could only appear as a worse end-to-end score with nothing "
-            "to say which stage caused it. A stage with no ground truth reports not measured — "
-            "never 0.00 and never 1.00, because both are claims nobody checked."
+            "sentences located in a fixture article, the scanner against the values Claude read "
+            "out of the gold papers, the model's reading against the gold set, coercion against "
+            "a case table covering every ratified rule, the verifier against fabrications that "
+            "reached production, and the aggregate against the committed tables. Before this "
+            "existed, a parser or coercion defect could only appear as a worse end-to-end score "
+            "with nothing to say which stage caused it. A stage with no ground truth reports not "
+            "measured — never 0.00 and never 1.00, because both are claims nobody checked."
         ),
         inputs="fixtures in tests/eval/, gold_50.csv, the parsed corpus",
         outputs="out/tables/eval_stages.md, eval_stages.csv",

@@ -32,11 +32,12 @@ Between 862 and 858 sit three records dropped by `epmc.records_to_frame` (no PMC
 duplicate) and one fetch that failed with HTTP 404 (PMC9027246). Of the 858 XMLs, 848 reached
 the extraction as a record; 11 carry no retrievable text (`out/review/REVIEW.md` §2).
 
-What the 491 hold, after the hand check (`out/tables/sample_origin_stats.json` →
-`hand_corrected`): 1 784 of 1 890 rows (94.4 %) measure a synthetic particle, bought (1 290) or
+What the 491 hold, after the second reading of origin by a Claude agent with each paper's full
+text, which no person has checked (`out/tables/sample_origin_stats.json` →
+`after_second_reading`): 1 784 of 1 890 rows (94.4 %) measure a synthetic particle, bought (1 290) or
 made in a lab (494). 19 rows (1.0 %), from 4 of 491 papers (0.8 %), measure particles collected
 from a real environment: 18 from wastewater effluent in 3 papers, and 1 classed `other` in 1
-paper, the borderline filtrate of a PP-bottle injection solution (`hand_check.disagreements`,
+paper, the borderline filtrate of a PP-bottle injection solution (`second_reading.disagreements`,
 PMC12474203). From air or dust, freshwater, seawater, soil or sediment: 0 rows.
 
 ## What the corpus leaves out, and why each gap may raise the synthetic share
@@ -120,7 +121,7 @@ property of the field or of this corpus.
    the reader already asks (bought, made in a lab, collected, unclear) of each abstract, and do
    the same for a seeded sample of OpenAlex works not in the corpus. An abstract describes a
    paper, not rows, so compare with the paper share: 4 of 491 papers with an environmental row
-   (0.8 %, `sample_origin_stats.json` → `hand_corrected.origin.papers_any`), not the 1.0 % row
+   (0.8 %, `sample_origin_stats.json` → `after_second_reading.origin.papers_any`), not the 1.0 % row
    share. Classify a sample of our own 491 from their abstracts too, to measure how often an
    abstract leaves the origin unsaid; without that the comparison has no baseline.
 3. **The polystyrene term, locally.** Count the papers among the 491 whose full text matches

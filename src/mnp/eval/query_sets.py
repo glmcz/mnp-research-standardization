@@ -516,11 +516,12 @@ def _papers_by_report_state(field: AbsenceField) -> tuple[list[str], list[tuple[
 
 
 def _gold_cross_check(pmcid: str, field: AbsenceField, reported: bool) -> str:
-    """Does the hand-annotated gold set agree that this paper did or did not report it?
+    """Does the gold set, which Claude annotated, agree that this paper did or did not report it?
 
     The key for kind B is the extraction's own `*_reported` boolean, so it inherits whatever the
-    extraction got wrong. For the 50 papers that also carry a hand annotation the claim can be
-    checked against a second reader, and this column says which questions those are.
+    extraction got wrong. For the 50 papers that also carry a gold annotation the claim can be
+    checked against a second reader (Claude, not a person), and this column says which
+    questions those are.
     """
     rows = [row for row in gold_rows() if _str(row["pmcid"]) == pmcid]
     if not rows:
@@ -549,10 +550,10 @@ def _split_sample(
     wanted: int,
     rng: random.Random,
 ) -> list[str]:
-    """Half the absences from papers a human also annotated, half from the wider corpus.
+    """Half the absences from papers the gold set also annotated, half from the wider corpus.
 
     The key for kind B is the extraction's own `*_reported` boolean, so it inherits the
-    extraction's mistakes. Drawing every question from the 50 hand-annotated papers would make
+    extraction's mistakes. Drawing every question from the 50 gold papers would make
     the key checkable and the sample unrepresentative; drawing none from them would make the
     headline metric rest on an unverified label. Half of each, and `gold_cross_check` on every
     row says which half a question came from.

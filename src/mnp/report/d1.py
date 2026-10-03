@@ -40,7 +40,7 @@ def _band(year) -> str:
 
 
 def prepare_gold(gold: pd.DataFrame) -> pd.DataFrame:
-    """Hand-annotated gold rows → the columns paper_stats expects.
+    """Gold rows, annotated by Claude from the papers → the columns paper_stats expects.
 
     Gold rows are annotated from the article itself, so every one of them is evidence
     by definition; `evidence_verified` exists only to filter LLM output.

@@ -302,7 +302,7 @@ def test_review_is_a_runner_after_release():
 
 
 def test_c11_states_where_the_particles_came_from(guide: str, origin: dict):
-    h, n = origin["hand_corrected"], origin["rows"]
+    h, n = origin["after_second_reading"], origin["rows"]
     c11 = _part(guide, "#### C11. The particles measured are almost all synthetic", "\n#### ",
                 "\n### ")  # fmt: skip
     assert _kn(h["synthetic"]["rows"], n) in c11
@@ -313,7 +313,7 @@ def test_c11_states_where_the_particles_came_from(guide: str, origin: dict):
     ww = f"{where['rows']['wastewater']} of them wastewater effluent, from "
     assert ww + f"{where['papers']['wastewater']} papers" in c11
     assert f"Air or dust: {where['rows']['air_dust']} rows" in c11
-    hc = origin["hand_check"]
+    hc = origin["second_reading"]
     for stratum in ("environmental", "unclear", "random"):
         assert f"{hc[stratum]['agree']} / {hc[stratum]['n']}" in c11, stratum
     assert f"{hc['random']['agree_synthetic_split']} / {hc['random']['n']} on synthetic" in c11
@@ -321,7 +321,7 @@ def test_c11_states_where_the_particles_came_from(guide: str, origin: dict):
 
 
 def test_the_environmental_rows_ionic_strength_is_stated_as_not_estimable(guide: str, origin):
-    env = origin["hand_corrected"]["environmental_rows"]
+    env = origin["after_second_reading"]["environmental_rows"]
     sub = _part(guide, "### The environmental rows' conditions", "\n### ", "\n## ")
     n_is = env["reported"]["ionic_strength"]["n"]
     assert f"| ionic strength | **{n_is} / {env['rows']}** |" in sub
@@ -343,7 +343,9 @@ def test_the_environmental_rows_ionic_strength_is_stated_as_not_estimable(guide:
 def test_the_guide_does_not_claim_how_environmental_plastics_behave(guide: str, origin):
     part = _part(guide, "### What the dataset does NOT prove", "\n## ")
     assert "How environmental micro- and nanoplastics behave" in part
-    assert f"air or dust {origin['hand_corrected']['environment']['rows']['air_dust']}" in part
+    assert (
+        f"air or dust {origin['after_second_reading']['environment']['rows']['air_dust']}" in part
+    )
 
 
 def test_section_8_carries_the_parser_defect_as_open_with_its_bias(guide: str, origin):

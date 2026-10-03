@@ -255,3 +255,5 @@
 {"worker": "b20", "pmcids": ["PMC9953511"], "claimed_at": "2026-10-03T10:59:36+00:00"}
 {"worker": "b18", "pmcids": ["PMC9218121"], "claimed_at": "2026-10-03T10:59:50+00:00"}
 {"worker": "b20", "pmcids": ["PMC9965230"], "claimed_at": "2026-10-03T10:59:51+00:00"}
+{"worker": "b17", "pmcids": ["PMC8225560"], "claimed_at": "2026-10-03T11:10:36+00:00"}
+{"worker": "b08", "pmcids": ["PMC12462602"], "claimed_at": "2026-10-03T11:10:54+00:00"}

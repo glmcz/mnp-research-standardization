@@ -1,0 +1,142 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PE 0 h",
+   "material": "low density-polyethylene",
+   "functionalisation": null,
+   "supplier": "LyondellBasell, Rotterdam, NL",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "KCl solution, concentration of 10–3 mol/L",
+    "medium_class": "salt_solution",
+    "ionic_strength": "KCl solution, concentration of 10–3 mol/L",
+    "pH": null,
+    "temperature": null,
+    "instrument": "SurPASS 3 (Anton Paar, Graz, Austria)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "All measured samples for both PE and PET showed strongly negative zeta potential values because of large hydrophobic surface area without water adsorption (Fig 6). || The pH-dependence of zeta potential or the powder was determined in the presence of KCl solution, concentration of 10–3 mol/L, as function of the pH value. || The SurPASS 3 (Anton Paar, Graz, Austria) was used to measure both streaming potential and streaming current [21].",
+   "evidence_location": "Results and Methods, Streaming zeta potential"
+  },
+  {
+   "particle_name": "PE 400 h",
+   "material": "low density-polyethylene",
+   "functionalisation": null,
+   "supplier": "LyondellBasell, Rotterdam, NL",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "KCl solution, concentration of 10–3 mol/L",
+    "medium_class": "salt_solution",
+    "ionic_strength": "KCl solution, concentration of 10–3 mol/L",
+    "pH": null,
+    "temperature": null,
+    "instrument": "SurPASS 3 (Anton Paar, Graz, Austria)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "All measured samples for both PE and PET showed strongly negative zeta potential values because of large hydrophobic surface area without water adsorption (Fig 6). || The pH-dependence of zeta potential or the powder was determined in the presence of KCl solution, concentration of 10–3 mol/L, as function of the pH value. || The SurPASS 3 (Anton Paar, Graz, Austria) was used to measure both streaming potential and streaming current [21].",
+   "evidence_location": "Results and Methods, Streaming zeta potential"
+  },
+  {
+   "particle_name": "PE 2000 h",
+   "material": "low density-polyethylene",
+   "functionalisation": null,
+   "supplier": "LyondellBasell, Rotterdam, NL",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "KCl solution, concentration of 10–3 mol/L",
+    "medium_class": "salt_solution",
+    "ionic_strength": "KCl solution, concentration of 10–3 mol/L",
+    "pH": null,
+    "temperature": null,
+    "instrument": "SurPASS 3 (Anton Paar, Graz, Austria)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "All measured samples for both PE and PET showed strongly negative zeta potential values because of large hydrophobic surface area without water adsorption (Fig 6). || The pH-dependence of zeta potential or the powder was determined in the presence of KCl solution, concentration of 10–3 mol/L, as function of the pH value. || The SurPASS 3 (Anton Paar, Graz, Austria) was used to measure both streaming potential and streaming current [21].",
+   "evidence_location": "Results and Methods, Streaming zeta potential"
+  },
+  {
+   "particle_name": "PET 0 h",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": "Veolia Umweltservice, Hamburg, Germany",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "KCl solution, concentration of 10–3 mol/L",
+    "medium_class": "salt_solution",
+    "ionic_strength": "KCl solution, concentration of 10–3 mol/L",
+    "pH": null,
+    "temperature": null,
+    "instrument": "SurPASS 3 (Anton Paar, Graz, Austria)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "All measured samples for both PE and PET showed strongly negative zeta potential values because of large hydrophobic surface area without water adsorption (Fig 6). || The pH-dependence of zeta potential or the powder was determined in the presence of KCl solution, concentration of 10–3 mol/L, as function of the pH value. || The SurPASS 3 (Anton Paar, Graz, Austria) was used to measure both streaming potential and streaming current [21].",
+   "evidence_location": "Results and Methods, Streaming zeta potential"
+  },
+  {
+   "particle_name": "PET 400 h",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": "Veolia Umweltservice, Hamburg, Germany",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "KCl solution, concentration of 10–3 mol/L",
+    "medium_class": "salt_solution",
+    "ionic_strength": "KCl solution, concentration of 10–3 mol/L",
+    "pH": null,
+    "temperature": null,
+    "instrument": "SurPASS 3 (Anton Paar, Graz, Austria)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "All measured samples for both PE and PET showed strongly negative zeta potential values because of large hydrophobic surface area without water adsorption (Fig 6). || The pH-dependence of zeta potential or the powder was determined in the presence of KCl solution, concentration of 10–3 mol/L, as function of the pH value. || The SurPASS 3 (Anton Paar, Graz, Austria) was used to measure both streaming potential and streaming current [21].",
+   "evidence_location": "Results and Methods, Streaming zeta potential"
+  },
+  {
+   "particle_name": "PET 2000 h",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": "Veolia Umweltservice, Hamburg, Germany",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "conditions": {
+    "medium_text": "KCl solution, concentration of 10–3 mol/L",
+    "medium_class": "salt_solution",
+    "ionic_strength": "KCl solution, concentration of 10–3 mol/L",
+    "pH": null,
+    "temperature": null,
+    "instrument": "SurPASS 3 (Anton Paar, Graz, Austria)"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "All measured samples for both PE and PET showed strongly negative zeta potential values because of large hydrophobic surface area without water adsorption (Fig 6). || The pH-dependence of zeta potential or the powder was determined in the presence of KCl solution, concentration of 10–3 mol/L, as function of the pH value. || The SurPASS 3 (Anton Paar, Graz, Austria) was used to measure both streaming potential and streaming current [21].",
+   "evidence_location": "Results and Methods, Streaming zeta potential"
+  }
+ ]
+}

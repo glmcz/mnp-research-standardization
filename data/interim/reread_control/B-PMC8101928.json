@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS-MPs",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Life Technologies",
+   "size_nominal_nm": "2μm",
+   "size_measured_nm": "1.878±0.677μm",
+   "quantity": "zeta potential",
+   "value": "-76±1.2",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "The zeta potential of the PS-MPs was -76±1.2 mV. || The average hydrodynamic size, polydispersity index (PDI) and zeta potential of the PS-MPs were determined by dynamic laser scattering (DLS) (Zetasizer Nano ZS90). || Briefly, we used PS-MPs stock solution (4% wt/vol) to prepare a final concentration of 75-μg/mL PS-MPs solution in ultrapure water.",
+   "evidence_location": "PS-MP Characterization; Methods, Physicochemical Characterization",
+   "conditions": {
+    "medium_text": "ultrapure water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Zetasizer Nano ZS90"
+   }
+  }
+ ]
+}

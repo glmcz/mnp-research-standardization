@@ -1,0 +1,3 @@
+{"measurements":[{"particle_name":"PS-NPs","material":"polystyrene","functionalisation":null,"supplier":"Tianjin BaseLine ChromTech Research Centre","size_nominal_nm":"80 nm","size_measured_nm":"80.8 nm","quantity":"zeta potential","value":"-25.55","unit":"mV","n":null,
+"conditions":{"medium_text":"pure water","medium_class":"DI_water","ionic_strength":null,"pH":null,"temperature":null,"instrument":"Malvern nanoparticle potential analyzer"},
+"medium_matches_exposure":null,"evidence_quote":"The Zeta potential of PS-NPs dissolved in pure water was -25.55 mV, indicating that the PS-NPs used in this study exhibit good stability and dispersibility (Figure 1B).","evidence_location":"3.1"}]}

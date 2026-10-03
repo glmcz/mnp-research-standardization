@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "HugeBio",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle dispersity and zeta potential were measured using a Litesizer 500 (Anton Paar). || The tested particles included PLA and PS, positively charged PS-NH2, and negatively charged PS-SO3H nanoparticles (HugeBio, Shanghai).",
+   "evidence_location": "Methods, Apparatus; In vivo animal models",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   }
+  },
+  {
+   "particle_name": "PLA",
+   "material": "polylactic acid",
+   "functionalisation": null,
+   "supplier": "HugeBio",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle dispersity and zeta potential were measured using a Litesizer 500 (Anton Paar). || The tested particles included PLA and PS, positively charged PS-NH2, and negatively charged PS-SO3H nanoparticles (HugeBio, Shanghai).",
+   "evidence_location": "Methods, Apparatus; In vivo animal models",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   }
+  },
+  {
+   "particle_name": "PS-NH2",
+   "material": "polystyrene",
+   "functionalisation": "amine",
+   "supplier": "HugeBio",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle dispersity and zeta potential were measured using a Litesizer 500 (Anton Paar). || The tested particles included PLA and PS, positively charged PS-NH2, and negatively charged PS-SO3H nanoparticles (HugeBio, Shanghai).",
+   "evidence_location": "Methods, Apparatus; In vivo animal models",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   }
+  },
+  {
+   "particle_name": "PS-SO3H",
+   "material": "polystyrene",
+   "functionalisation": "sulfonate",
+   "supplier": "HugeBio",
+   "size_nominal_nm": null,
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "Particle dispersity and zeta potential were measured using a Litesizer 500 (Anton Paar). || The tested particles included PLA and PS, positively charged PS-NH2, and negatively charged PS-SO3H nanoparticles (HugeBio, Shanghai).",
+   "evidence_location": "Methods, Apparatus; In vivo animal models",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Litesizer 500 (Anton Paar)"
+   }
+  }
+ ]
+}

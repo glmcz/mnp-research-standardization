@@ -1,0 +1,96 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS NPs",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": "Polysciences",
+   "size_nominal_nm": "100.0 (±15) nm",
+   "size_measured_nm": "85.32 ± 0.32 nm",
+   "quantity": "zeta potential",
+   "value": "-10.60 ± 0.26",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "CV growth medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": "∼0.15 M (estimated)",
+    "pH": "7.65",
+    "temperature": "25 ± 1 °C",
+    "instrument": "Zetasizer Nano ZS (Malvern Instruments Ltd., Malvern, UK)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "PS in CV growth medium\t85.32 ± 0.32 a\t0.05 ± 0.01 a\t-10.60 ± 0.26 a, pH 7.65 || Inversely, at a slightly basic pH, the higher ionic strength estimated for CV growth media (∼0.15 M), can compress the electrical double layer around the particles, reducing the range of electrostatic repulsion, thus permitting these to approximate enough to agglomerate, as it seemed to occur (Figure 4). || DLS measurements were conducted using a Zetasizer Nano ZS (Malvern Instruments Ltd., Malvern, UK) at 25 ± 1 °C for a backscattering angle of 173°.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "PS NPs",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": "Polysciences",
+   "size_nominal_nm": "100.0 (±15) nm",
+   "size_measured_nm": "87.86 ± 0.09 nm",
+   "quantity": "zeta potential",
+   "value": "-11.93 ± 1.09",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "HP growth medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": "∼0.03 M (estimated)",
+    "pH": "7.36",
+    "temperature": "25 ± 1 °C",
+    "instrument": "Zetasizer Nano ZS (Malvern Instruments Ltd., Malvern, UK)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "PS in HP growth medium\t87.86 ± 0.09 a\t0.10 ± 0.01 a\t-11.93 ± 1.09 a, pH 7.36 || However, the (estimated) ionic strength of HP growth media at neutral pH is relatively low (∼0.03 M). || DLS measurements were conducted using a Zetasizer Nano ZS (Malvern Instruments Ltd., Malvern, UK) at 25 ± 1 °C for a backscattering angle of 173°.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "PE NPs",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "207.50 ± 1.18 nm",
+   "quantity": "zeta potential",
+   "value": "-15.57 ± 0.29",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "CV growth medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": "∼0.15 M (estimated)",
+    "pH": "7.68",
+    "temperature": "25 ± 1 °C",
+    "instrument": "Zetasizer Nano ZS (Malvern Instruments Ltd., Malvern, UK)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "PE in CV growth medium\t207.50 ± 1.18 b\t0.13 ± 0.01 b\t-15.57 ± 0.29 b, pH 7.68 || Inversely, at a slightly basic pH, the higher ionic strength estimated for CV growth media (∼0.15 M), can compress the electrical double layer around the particles, reducing the range of electrostatic repulsion, thus permitting these to approximate enough to agglomerate, as it seemed to occur (Figure 4). || DLS measurements were conducted using a Zetasizer Nano ZS (Malvern Instruments Ltd., Malvern, UK) at 25 ± 1 °C for a backscattering angle of 173°.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "PE NPs",
+   "material": "polyethylene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "205.30 ± 1.45 nm",
+   "quantity": "zeta potential",
+   "value": "-24.60 ± 0.95",
+   "unit": "mV",
+   "n": null,
+   "conditions": {
+    "medium_text": "HP growth medium",
+    "medium_class": "culture_medium",
+    "ionic_strength": "∼0.03 M (estimated)",
+    "pH": "7.17",
+    "temperature": "25 ± 1 °C",
+    "instrument": "Zetasizer Nano ZS (Malvern Instruments Ltd., Malvern, UK)"
+   },
+   "medium_matches_exposure": true,
+   "evidence_quote": "PE in HP growth medium\t205.30 ± 1.45 b\t0.13 ± 0.00 b\t-24.60 ± 0.95 c, pH 7.17 || However, the (estimated) ionic strength of HP growth media at neutral pH is relatively low (∼0.03 M). || DLS measurements were conducted using a Zetasizer Nano ZS (Malvern Instruments Ltd., Malvern, UK) at 25 ± 1 °C for a backscattering angle of 173°.",
+   "evidence_location": "Table 1"
+  }
+ ]
+}

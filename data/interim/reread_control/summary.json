@@ -1,0 +1,258 @@
+{
+  "papers": [
+    "PMC10260929",
+    "PMC10313666",
+    "PMC10766629",
+    "PMC11099890",
+    "PMC11174764",
+    "PMC11274933",
+    "PMC11326042",
+    "PMC11434537",
+    "PMC11581304",
+    "PMC11695633",
+    "PMC11726606",
+    "PMC11899741",
+    "PMC12223315",
+    "PMC12280233",
+    "PMC12737304",
+    "PMC12764304",
+    "PMC12846171",
+    "PMC13010290",
+    "PMC13168333",
+    "PMC13252641",
+    "PMC13335968",
+    "PMC13376387",
+    "PMC2883929",
+    "PMC8101928",
+    "PMC8169765",
+    "PMC8694221",
+    "PMC9032828",
+    "PMC9419163",
+    "PMC9473236",
+    "PMC9772688"
+  ],
+  "recorded_models": {
+    "claude-code:sonnet": 29,
+    "claude-code:opus": 1
+  },
+  "recorded_briefs": {
+    "b1baf33eff79": 5,
+    "none": 24,
+    "0266af56db28": 1
+  },
+  "rates": {
+    "A": {
+      "medium_reported": {
+        "per_row": 0.8092105263157895,
+        "per_paper": 0.5785547785547785
+      },
+      "ionic_strength_reported": {
+        "per_row": 0.16447368421052633,
+        "per_paper": 0.10128205128205128
+      },
+      "pH_reported": {
+        "per_row": 0.47368421052631576,
+        "per_paper": 0.20163170163170163
+      },
+      "temperature_reported": {
+        "per_row": 0.2631578947368421,
+        "per_paper": 0.22435897435897434
+      },
+      "instrument_reported": {
+        "per_row": 0.7302631578947368,
+        "per_paper": 0.7278554778554779
+      },
+      "conditions_complete": {
+        "per_row": 0.05263157894736842,
+        "per_paper": 0.0641025641025641
+      },
+      "rows": 152,
+      "papers_with_rows": 26
+    },
+    "B": {
+      "medium_reported": {
+        "per_row": 0.6857142857142857,
+        "per_paper": 0.5435897435897435
+      },
+      "ionic_strength_reported": {
+        "per_row": 0.17857142857142858,
+        "per_paper": 0.10128205128205128
+      },
+      "pH_reported": {
+        "per_row": 0.5142857142857142,
+        "per_paper": 0.20512820512820512
+      },
+      "temperature_reported": {
+        "per_row": 0.17857142857142858,
+        "per_paper": 0.22435897435897434
+      },
+      "instrument_reported": {
+        "per_row": 0.7,
+        "per_paper": 0.7307692307692307
+      },
+      "conditions_complete": {
+        "per_row": 0.05714285714285714,
+        "per_paper": 0.0641025641025641
+      },
+      "rows": 140,
+      "papers_with_rows": 26
+    },
+    "recorded": {
+      "medium_reported": {
+        "per_row": 0.8545454545454545,
+        "per_paper": 0.5888888888888889
+      },
+      "ionic_strength_reported": {
+        "per_row": 0.16363636363636364,
+        "per_paper": 0.08777777777777777
+      },
+      "pH_reported": {
+        "per_row": 0.4666666666666667,
+        "per_paper": 0.18232323232323233
+      },
+      "temperature_reported": {
+        "per_row": 0.3696969696969697,
+        "per_paper": 0.22777777777777777
+      },
+      "instrument_reported": {
+        "per_row": 0.9090909090909091,
+        "per_paper": 0.7
+      },
+      "conditions_complete": {
+        "per_row": 0.06060606060606061,
+        "per_paper": 0.05555555555555555
+      },
+      "rows": 165,
+      "papers_with_rows": 30
+    }
+  },
+  "A_vs_B": {
+    "papers": 30,
+    "papers_same_row_count": 21,
+    "papers_both_with_rows_or_both_without": 28,
+    "rows": [
+      152,
+      140
+    ],
+    "valued_rows_in_first": 140,
+    "row_pairs_matched_by_value": 124,
+    "per_condition": {
+      "medium_reported": {
+        "row_pairs_agreeing": 114,
+        "paper_mean_abs_share_difference": 0.03636363636363636,
+        "papers_agreeing_on_any_row": 29
+      },
+      "ionic_strength_reported": {
+        "row_pairs_agreeing": 124,
+        "paper_mean_abs_share_difference": 0.0,
+        "papers_agreeing_on_any_row": 30
+      },
+      "pH_reported": {
+        "row_pairs_agreeing": 124,
+        "paper_mean_abs_share_difference": 0.0036363636363636377,
+        "papers_agreeing_on_any_row": 30
+      },
+      "temperature_reported": {
+        "row_pairs_agreeing": 124,
+        "paper_mean_abs_share_difference": 0.0,
+        "papers_agreeing_on_any_row": 30
+      },
+      "instrument_reported": {
+        "row_pairs_agreeing": 124,
+        "paper_mean_abs_share_difference": 0.010303030303030303,
+        "papers_agreeing_on_any_row": 29
+      },
+      "conditions_complete": {
+        "row_pairs_agreeing": 124,
+        "paper_mean_abs_share_difference": 0.0,
+        "papers_agreeing_on_any_row": 30
+      }
+    }
+  },
+  "A_vs_recorded": {
+    "papers": 30,
+    "papers_same_row_count": 17,
+    "papers_both_with_rows_or_both_without": 26,
+    "rows": [
+      152,
+      165
+    ],
+    "valued_rows_in_first": 140,
+    "row_pairs_matched_by_value": 137,
+    "per_condition": {
+      "medium_reported": {
+        "row_pairs_agreeing": 126,
+        "paper_mean_abs_share_difference": 0.10093240093240093,
+        "papers_agreeing_on_any_row": 28
+      },
+      "ionic_strength_reported": {
+        "row_pairs_agreeing": 137,
+        "paper_mean_abs_share_difference": 0.0,
+        "papers_agreeing_on_any_row": 30
+      },
+      "pH_reported": {
+        "row_pairs_agreeing": 134,
+        "paper_mean_abs_share_difference": 0.008741258741258742,
+        "papers_agreeing_on_any_row": 29
+      },
+      "temperature_reported": {
+        "row_pairs_agreeing": 117,
+        "paper_mean_abs_share_difference": 0.038461538461538464,
+        "papers_agreeing_on_any_row": 29
+      },
+      "instrument_reported": {
+        "row_pairs_agreeing": 107,
+        "paper_mean_abs_share_difference": 0.07983682983682984,
+        "papers_agreeing_on_any_row": 29
+      },
+      "conditions_complete": {
+        "row_pairs_agreeing": 137,
+        "paper_mean_abs_share_difference": 0.0,
+        "papers_agreeing_on_any_row": 30
+      }
+    }
+  },
+  "B_vs_recorded": {
+    "papers": 30,
+    "papers_same_row_count": 18,
+    "papers_both_with_rows_or_both_without": 26,
+    "rows": [
+      140,
+      165
+    ],
+    "valued_rows_in_first": 125,
+    "row_pairs_matched_by_value": 125,
+    "per_condition": {
+      "medium_reported": {
+        "row_pairs_agreeing": 104,
+        "paper_mean_abs_share_difference": 0.1358974358974359,
+        "papers_agreeing_on_any_row": 27
+      },
+      "ionic_strength_reported": {
+        "row_pairs_agreeing": 125,
+        "paper_mean_abs_share_difference": 0.0,
+        "papers_agreeing_on_any_row": 30
+      },
+      "pH_reported": {
+        "row_pairs_agreeing": 122,
+        "paper_mean_abs_share_difference": 0.005244755244755244,
+        "papers_agreeing_on_any_row": 29
+      },
+      "temperature_reported": {
+        "row_pairs_agreeing": 105,
+        "paper_mean_abs_share_difference": 0.038461538461538464,
+        "papers_agreeing_on_any_row": 29
+      },
+      "instrument_reported": {
+        "row_pairs_agreeing": 95,
+        "paper_mean_abs_share_difference": 0.07692307692307693,
+        "papers_agreeing_on_any_row": 28
+      },
+      "conditions_complete": {
+        "row_pairs_agreeing": 125,
+        "paper_mean_abs_share_difference": 0.0,
+        "papers_agreeing_on_any_row": 30
+      }
+    }
+  }
+}

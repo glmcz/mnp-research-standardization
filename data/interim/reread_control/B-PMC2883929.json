@@ -1,0 +1,27 @@
+{
+ "measurements": [
+  {
+   "particle_name": "FluoSphere® NPs yellow-green",
+   "material": "polystyrene",
+   "functionalisation": "biotin-labeled, fluorescein-loaded",
+   "supplier": null,
+   "size_nominal_nm": "210 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": "-9.9 ± 1.65",
+   "unit": "mV",
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "FluoSphere® NPs yellow-green\t210 nm (-9.9 mV ± 1.65) ( 33)",
+   "evidence_location": "Table I",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

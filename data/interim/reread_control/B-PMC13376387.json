@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS microspheres 100 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Taoyu International Trading Co., Ltd.",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential of petroleum ether-in-water emulsion, polystyrene (PS) microspheres of different sizes, and the co-contaminant systems consisted of 100 nm PS and oil (100 nm PS-oil) || Likewise, both emulsified oil and polystyrene (PS) microplastics presented negative surface charges in aqueous solution (Fig. 4a).",
+   "evidence_location": "Fig. 4a caption; Results",
+   "conditions": {
+    "medium_text": "aqueous solution",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "PS microspheres 200 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Taoyu International Trading Co., Ltd.",
+   "size_nominal_nm": "200 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential of petroleum ether-in-water emulsion, polystyrene (PS) microspheres of different sizes, and the co-contaminant systems consisted of 100 nm PS and oil (100 nm PS-oil) || Likewise, both emulsified oil and polystyrene (PS) microplastics presented negative surface charges in aqueous solution (Fig. 4a).",
+   "evidence_location": "Fig. 4a caption; Results",
+   "conditions": {
+    "medium_text": "aqueous solution",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "PS microspheres 500 nm",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Taoyu International Trading Co., Ltd.",
+   "size_nominal_nm": "500 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "Zeta potential of petroleum ether-in-water emulsion, polystyrene (PS) microspheres of different sizes, and the co-contaminant systems consisted of 100 nm PS and oil (100 nm PS-oil) || Likewise, both emulsified oil and polystyrene (PS) microplastics presented negative surface charges in aqueous solution (Fig. 4a).",
+   "evidence_location": "Fig. 4a caption; Results",
+   "conditions": {
+    "medium_text": "aqueous solution",
+    "medium_class": "other",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PS",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Pishgaman Plastic Company",
+   "size_nominal_nm": null,
+   "size_measured_nm": "328.40 µm",
+   "quantity": "zeta potential",
+   "value": "-18.93",
+   "unit": "mV",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ZETA-check model"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PS\t-18.93\t328.40 || Additionally, ZP (ZETA-check model), and DLS analyses were conducted to determine net charge of the particles and particle size, respectively.",
+   "evidence_location": "Table 2"
+  },
+  {
+   "particle_name": "PS floc",
+   "material": "polystyrene",
+   "functionalisation": "flocculated with C. vulgaris",
+   "supplier": "Pishgaman Plastic Company",
+   "size_nominal_nm": null,
+   "size_measured_nm": "377.34 µm",
+   "quantity": "zeta potential",
+   "value": "-15.17",
+   "unit": "mV",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "ZETA-check model"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PS floc\t-15.17\t377.34 || Additionally, ZP (ZETA-check model), and DLS analyses were conducted to determine net charge of the particles and particle size, respectively.",
+   "evidence_location": "Table 2"
+  }
+ ]
+}

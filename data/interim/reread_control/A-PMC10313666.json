@@ -1,0 +1,136 @@
+{
+ "measurements": [
+  {
+   "particle_name": "PET",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "334 nm (Z-average)",
+   "quantity": "zeta potential",
+   "value": "-24.7 ± 0.28",
+   "unit": "mV",
+   "conditions": {
+    "medium_text": "water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Panalytic Zetasizer Nano ZS"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PET in water\t334 ± 3\t0.234 ± 0.016\t-24.7 ± 0.28 || Particle size distribution and zeta-potential were measured using dynamic light scattering (DLS) on a Malvern Panalytic Zetasizer Nano ZS (Westborough, MA). || The plastic particle samples were diluted to 0.05 mg/mL in water and saltwater (3.5% NaCl) and vortexed before reading.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "PS",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "263 nm (Z-average)",
+   "quantity": "zeta potential",
+   "value": "-29.4 ± 1.37",
+   "unit": "mV",
+   "conditions": {
+    "medium_text": "water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Panalytic Zetasizer Nano ZS"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PS in water\t263 ± 1\t0.199 ± 0.015\t-29.4 ± 1.37 || Particle size distribution and zeta-potential were measured using dynamic light scattering (DLS) on a Malvern Panalytic Zetasizer Nano ZS (Westborough, MA). || The plastic particle samples were diluted to 0.05 mg/mL in water and saltwater (3.5% NaCl) and vortexed before reading.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "PLA",
+   "material": "polylactic acid",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "775 nm (Z-average)",
+   "quantity": "zeta potential",
+   "value": "-19.3 ± 1.23",
+   "unit": "mV",
+   "conditions": {
+    "medium_text": "water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Panalytic Zetasizer Nano ZS"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PLA in water\t775 ± 16\t0.464 ± 0.034\t-19.3 ± 1.23 || Particle size distribution and zeta-potential were measured using dynamic light scattering (DLS) on a Malvern Panalytic Zetasizer Nano ZS (Westborough, MA). || The plastic particle samples were diluted to 0.05 mg/mL in water and saltwater (3.5% NaCl) and vortexed before reading.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "PET",
+   "material": "polyethylene terephthalate",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "3870 nm (Z-average)",
+   "quantity": "zeta potential",
+   "value": "-10.9 ± 3.04",
+   "unit": "mV",
+   "conditions": {
+    "medium_text": "saltwater (3.5% NaCl)",
+    "medium_class": "salt_solution",
+    "ionic_strength": "3.5% NaCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Panalytic Zetasizer Nano ZS"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PET in saltwater\t3870 ± 476\t0.923 ± 0.077\t-10.9 ± 3.04 || Particle size distribution and zeta-potential were measured using dynamic light scattering (DLS) on a Malvern Panalytic Zetasizer Nano ZS (Westborough, MA). || The plastic particle samples were diluted to 0.05 mg/mL in water and saltwater (3.5% NaCl) and vortexed before reading.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "PS",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "3087 nm (Z-average)",
+   "quantity": "zeta potential",
+   "value": "-15.8 ± 1.67",
+   "unit": "mV",
+   "conditions": {
+    "medium_text": "saltwater (3.5% NaCl)",
+    "medium_class": "salt_solution",
+    "ionic_strength": "3.5% NaCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Panalytic Zetasizer Nano ZS"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PS in saltwater\t3087 ± 254\t0.351 ± 0.061\t-15.8 ± 1.67 || Particle size distribution and zeta-potential were measured using dynamic light scattering (DLS) on a Malvern Panalytic Zetasizer Nano ZS (Westborough, MA). || The plastic particle samples were diluted to 0.05 mg/mL in water and saltwater (3.5% NaCl) and vortexed before reading.",
+   "evidence_location": "Table 1"
+  },
+  {
+   "particle_name": "PLA",
+   "material": "polylactic acid",
+   "functionalisation": null,
+   "supplier": null,
+   "size_nominal_nm": null,
+   "size_measured_nm": "5769 nm (Z-average)",
+   "quantity": "zeta potential",
+   "value": "7.01 ± 1.40",
+   "unit": "mV",
+   "conditions": {
+    "medium_text": "saltwater (3.5% NaCl)",
+    "medium_class": "salt_solution",
+    "ionic_strength": "3.5% NaCl",
+    "pH": null,
+    "temperature": null,
+    "instrument": "Malvern Panalytic Zetasizer Nano ZS"
+   },
+   "medium_matches_exposure": null,
+   "evidence_quote": "PLA in saltwater\t5769 ± 443\t0.335 ± 0.027\t7.01 ± 1.40 || Particle size distribution and zeta-potential were measured using dynamic light scattering (DLS) on a Malvern Panalytic Zetasizer Nano ZS (Westborough, MA). || The plastic particle samples were diluted to 0.05 mg/mL in water and saltwater (3.5% NaCl) and vortexed before reading.",
+   "evidence_location": "Table 1"
+  }
+ ]
+}

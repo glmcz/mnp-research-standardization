@@ -1,0 +1,73 @@
+{
+ "measurements": [
+  {
+   "particle_name": "[14C]PS NPs 25 nm",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": null,
+   "size_nominal_nm": "25 nm",
+   "size_measured_nm": "33 ± 11 nm",
+   "quantity": "zeta potential",
+   "value": "-35 ± 9",
+   "unit": "mV",
+   "n": "3",
+   "medium_matches_exposure": null,
+   "evidence_quote": "Electrophoretic light scattering (Zetasizer Nano ZS, 25°C, disposable folded capillary cell, 173° backscatter, Smoluchowski model) in deionized water yielded ζ‐potentials of -35 ± 9 mV (25 nm), -30 ± 6 mV (250 nm), and -40 ± 6 mV (1000 nm).",
+   "evidence_location": "Nanoparticle Characterization",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25°C",
+    "instrument": "Zetasizer Nano ZS"
+   }
+  },
+  {
+   "particle_name": "[14C]PS NPs 250 nm",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": null,
+   "size_nominal_nm": "250 nm",
+   "size_measured_nm": "246 ± 81 nm",
+   "quantity": "zeta potential",
+   "value": "-30 ± 6",
+   "unit": "mV",
+   "n": "3",
+   "medium_matches_exposure": null,
+   "evidence_quote": "Electrophoretic light scattering (Zetasizer Nano ZS, 25°C, disposable folded capillary cell, 173° backscatter, Smoluchowski model) in deionized water yielded ζ‐potentials of -35 ± 9 mV (25 nm), -30 ± 6 mV (250 nm), and -40 ± 6 mV (1000 nm).",
+   "evidence_location": "Nanoparticle Characterization",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25°C",
+    "instrument": "Zetasizer Nano ZS"
+   }
+  },
+  {
+   "particle_name": "[14C]PS NPs 1000 nm",
+   "material": "polystyrene",
+   "functionalisation": "plain",
+   "supplier": null,
+   "size_nominal_nm": "1000 nm",
+   "size_measured_nm": "1052 ± 189 nm",
+   "quantity": "zeta potential",
+   "value": "-40 ± 6",
+   "unit": "mV",
+   "n": "3",
+   "medium_matches_exposure": null,
+   "evidence_quote": "Electrophoretic light scattering (Zetasizer Nano ZS, 25°C, disposable folded capillary cell, 173° backscatter, Smoluchowski model) in deionized water yielded ζ‐potentials of -35 ± 9 mV (25 nm), -30 ± 6 mV (250 nm), and -40 ± 6 mV (1000 nm).",
+   "evidence_location": "Nanoparticle Characterization",
+   "conditions": {
+    "medium_text": "deionized water",
+    "medium_class": "DI_water",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": "25°C",
+    "instrument": "Zetasizer Nano ZS"
+   }
+  }
+ ]
+}

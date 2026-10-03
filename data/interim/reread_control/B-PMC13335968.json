@@ -1,0 +1,142 @@
+{
+ "measurements": [
+  {
+   "particle_name": "NPs (37°C)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Tesulang Chemical Materials Co., Ltd.",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "(E) Changes in the Zeta potential of NPs across groups. || Interestingly, both Inosine and B.p supernatant reduced the zeta potential of NPs (Figure 7E).",
+   "evidence_location": "Figure 7E caption; Results",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "Inosine + NPs (4°C)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Tesulang Chemical Materials Co., Ltd.",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "(E) Changes in the Zeta potential of NPs across groups. || Interestingly, both Inosine and B.p supernatant reduced the zeta potential of NPs (Figure 7E).",
+   "evidence_location": "Figure 7E caption; Results",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "Inosine + NPs (25°C)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Tesulang Chemical Materials Co., Ltd.",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "(E) Changes in the Zeta potential of NPs across groups. || Interestingly, both Inosine and B.p supernatant reduced the zeta potential of NPs (Figure 7E).",
+   "evidence_location": "Figure 7E caption; Results",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "Inosine + NPs (37°C)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Tesulang Chemical Materials Co., Ltd.",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "(E) Changes in the Zeta potential of NPs across groups. || Interestingly, both Inosine and B.p supernatant reduced the zeta potential of NPs (Figure 7E).",
+   "evidence_location": "Figure 7E caption; Results",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "Ctrl super + NPs (37°C)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Tesulang Chemical Materials Co., Ltd.",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "(E) Changes in the Zeta potential of NPs across groups. || Interestingly, both Inosine and B.p supernatant reduced the zeta potential of NPs (Figure 7E).",
+   "evidence_location": "Figure 7E caption; Results",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  },
+  {
+   "particle_name": "B.p super + NPs (37°C)",
+   "material": "polystyrene",
+   "functionalisation": null,
+   "supplier": "Tesulang Chemical Materials Co., Ltd.",
+   "size_nominal_nm": "100 nm",
+   "size_measured_nm": null,
+   "quantity": "zeta potential",
+   "value": null,
+   "unit": null,
+   "n": null,
+   "medium_matches_exposure": null,
+   "evidence_quote": "(E) Changes in the Zeta potential of NPs across groups. || Interestingly, both Inosine and B.p supernatant reduced the zeta potential of NPs (Figure 7E).",
+   "evidence_location": "Figure 7E caption; Results",
+   "conditions": {
+    "medium_text": null,
+    "medium_class": "unreported",
+    "ionic_strength": null,
+    "pH": null,
+    "temperature": null,
+    "instrument": null
+   }
+  }
+ ]
+}

@@ -293,6 +293,26 @@ def _salt_terms(s: str) -> list[tuple[float, float]]:
 # abbreviation, and a medium or quote that says "is" anywhere then kept its buffer
 # concentration as an ionic strength (PMC8169765, PMC7378059).
 IONIC_PHRASE = re.compile(r"(?i:ionic\s*strength|salinity)|\bIS\b")
+# Every concentration a text prints, in any unit, a decimal comma read as a point. For checking
+# that a stored ionic strength is printed: "∼0.15 M" is 150 mM, and looking only for "150"
+# flagged values the paper states, which pushed workers to delete them (PMC11726606).
+_NUM_ANY = r"\d+(?:[.,]\d+)?"
+_CONCENTRATIONS = (
+    (re.compile(rf"(?<![\d.,])({_NUM_ANY})\s*(?:[µμu]M\b|[µμu]mol\s*/?\s*L)"), 0.001),
+    (re.compile(rf"(?<![\d.,])({_NUM_ANY})\s*(?:mM\b|mmol\s*/?\s*L)", re.IGNORECASE), 1.0),
+    (re.compile(rf"(?<![\d.,])({_NUM_ANY})\s*(?:M\b|mol\s*/?\s*L)"), 1000.0),
+)
+
+
+def concentrations_mM(text: str) -> list[float]:
+    """Every concentration printed in `text`, converted to mM."""
+    return [
+        float(m.group(1).replace(",", ".")) * scale
+        for regex, scale in _CONCENTRATIONS
+        for m in regex.finditer(text)
+    ]
+
+
 # A buffer named beside a concentration. Its ionic strength depends on a speciation at the
 # measured pH that papers rarely print, so the number is the buffer's, not the solution's.
 BUFFER_RE = re.compile(

@@ -1170,3 +1170,40 @@ def test_an_ionic_strength_that_is_not_a_buffer_concentration_stays(mM, medium, 
     c, flags = zeta.row_conditions(_reported_is(mM, medium), [], quote)
     assert c.ionic_strength_mM == mM
     assert zeta.BUFFER_IONIC_STRENGTH not in flags
+
+
+# -- an ionic strength printed in another unit is still printed -----------------------------
+
+
+def _is_row(mM, quote):
+    return models.SurfaceMeasurement(
+        quantity=models.Quantity.zeta_potential,
+        value=-20.0,
+        unit=models.Unit.mV,
+        conditions=models.MeasurementConditions(
+            ionic_strength_mM=mM, ionic_strength_source=models.ValueSource.reported
+        ),
+        evidence=models.Evidence(quote=quote),
+    )
+
+
+@pytest.mark.parametrize(
+    ("mM", "quote"),
+    [
+        # PMC11726606: the verifier looked for "150" and pushed a worker to delete the value
+        (150.0, "zeta was -20 mV; ionic strength estimated for CV growth media (∼0.15 M)"),
+        # PMC11532844: molar with a decimal comma
+        (26.0, "zeta was -20 mV in HNO3 (0,026 M aqueous solution)"),
+        (0.5, "zeta was -20 mV at an ionic strength of 500 µM"),
+    ],
+)
+def test_an_ionic_strength_printed_in_another_unit_is_found(mM, quote):
+    flags = zeta.verify_row(_is_row(mM, quote), quote)
+    assert "ionic_strength_not_in_text" not in flags
+    assert "ionic_strength_not_in_evidence" not in flags
+
+
+def test_a_number_without_a_concentration_unit_is_not_an_ionic_strength():
+    quote = "zeta was -20 mV after 0.15 mg of particles were added"
+    flags = zeta.verify_row(_is_row(150.0, quote), quote)
+    assert "ionic_strength_not_in_text" in flags

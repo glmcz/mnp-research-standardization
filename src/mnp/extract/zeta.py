@@ -418,6 +418,13 @@ def _number_in(value: float, text: str) -> bool:
     return False
 
 
+def _ionic_number_in(mM: float, text: str) -> bool:
+    """Is this ionic strength printed in text, in mM or in any other concentration unit?"""
+    if _number_in(mM, text):
+        return True
+    return any(abs(v - mM) <= 1e-6 * max(1.0, mM) for v in coerce.concentrations_mM(text))
+
+
 def _cited_runs(doc: lines.LinedDoc, ev: models.Evidence) -> list[str]:
     """The lines this row cites, folded, one string per run of *consecutive* lines.
 
@@ -499,7 +506,7 @@ def verify_row(
     if c.temperature_C is not None and not _number_in(c.temperature_C, text):
         flags.append("temperature_not_in_text")
     if c.ionic_strength_mM is not None:
-        ok = _number_in(c.ionic_strength_mM, text)
+        ok = _ionic_number_in(c.ionic_strength_mM, text)
         if not ok and c.medium_text:
             ok = _norm(c.medium_text) in text
         if not ok and c.ionic_strength_source is models.ValueSource.inferred_from_named_salt:
@@ -557,7 +564,7 @@ def _scope_flags(c, quote: str) -> list[str]:
 
 def _ionic_in(c, quote: str) -> bool:
     """Is the ionic strength supported by this quote — as a number, a medium, or a salt?"""
-    if _number_in(c.ionic_strength_mM, quote):
+    if _ionic_number_in(c.ionic_strength_mM, quote):
         return True
     if c.medium_text and _norm(c.medium_text) in quote:
         return True

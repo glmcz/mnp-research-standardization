@@ -1,0 +1,15 @@
+{
+  "run_id": "cellb-sweep-20261003",
+  "started_at": "2026-10-03T12:57:14+00:00",
+  "ended_at": null,
+  "code_commit": "0c38c57bb55d74dc5d911f3ea32f7acce45ca8cf",
+  "code_dirty": true,
+  "corpus_manifest_sha256": "3ea035fde33a175b0932143af00a60e68dc063172a4b7bb45c1a675ba0b1be25",
+  "env_keys_present": [],
+  "counts": {},
+  "cell": "B",
+  "pilot": false,
+  "model": "claude-sonnet-5",
+  "reader": "claude -p, tools off, no setting sources (2.1.92 (Claude Code))",
+  "system_prompt_sha256": "bf23c3a4a2f5a98ffdd57a2db72c6d9278d36055a1d639f0e5b32e3fec23fcde"
+}

@@ -476,7 +476,7 @@ CASES: tuple[Case, ...] = (
         pmcid="PMC13298883",
         mode="comparable on all five conditions, yet 34 mV apart within one lab",
         why=(
-            "Two papers from one laboratory (Bioelectrochemistry, University of Bialystok; "
+            "Two papers from one laboratory (Bioelectrochemistry, University of Białystok; "
             "every author of the 2026 paper also signs the 2023 one) measure nominally 100 nm "
             "plain polystyrene under the same printed conditions -- 0.3 mM NaCl, pH 7.4, 25 C, "
             "Zetasizer Nano-ZS -- and report -48.7 +/- 1.4 mV (Sigma-Aldrich 43302, "

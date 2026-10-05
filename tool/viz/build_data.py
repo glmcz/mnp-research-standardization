@@ -472,10 +472,22 @@ def load_scored(text: str) -> list[scoring.Scored]:
         return review._load_scored(path)
 
 
+def grid_runs(ref: str) -> dict[str, str]:
+    """{cell: run_id} as the ref's REVIEW.md names them in C9. review.RUN_IDS is today's code; a
+    ref from before the 2026-10-03 re-ask names runs today's ids did not yet exist at."""
+    m = re.search(
+        r"the committed runs `data/interim/runs/([\w-]+)` and `data/interim/runs/([\w-]+)`",
+        show(ref, "out/review/REVIEW.md"),
+    )
+    if m is None:
+        raise SystemExit(f"REVIEW.md at {ref} names no grid runs in C9")
+    return {"D": m.group(1), "B": m.group(2)}
+
+
 def grid_section(ref: str) -> dict:
-    """review.grid_run, on the snapshot's copy of each run directory."""
+    """review.grid_run, on the snapshot's copy of each run directory REVIEW.md reports."""
     out = {}
-    for cell, run in review.RUN_IDS.items():
+    for cell, run in grid_runs(ref).items():
         base = f"data/interim/runs/{run}"
         scored = load_scored(show(ref, f"{base}/scored.jsonl"))
         kinds: defaultdict[str, list[int]] = defaultdict(lambda: [0, 0])
@@ -865,12 +877,21 @@ def review_checks(ref: str, data: dict) -> list[dict]:
     bd, bb = one(r"balanced accuracy D (\d\.\d+) vs B (\d\.\d+)")
     check("balanced accuracy D", g["D"]["recall"]["balanced_accuracy"]["recall"], float(bd))
     check("balanced accuracy B", g["B"]["recall"]["balanced_accuracy"]["recall"], float(bb))
-    said_not, said_cond = one(
-        r"Cell B's kind E verdicts: `not_comparable` (\d+), `conditionally_comparable` (\d+)"
-    )
+    # The guide lists only the verdicts cell B gave, in any number: over the final grid it said
+    # `not_comparable` to every pair, so a pattern pinned to two entries stopped matching. Every
+    # verdict in either the guide or the run is checked, so one the guide leaves out still fails.
+    (listed,) = one(r"Cell B's kind E verdicts: ((?:`\w+` \d+(?:, )?)+)")
+    printed = {v: int(c) for v, c in re.findall(r"`(\w+)` (\d+)", listed)}
     said = g["B"]["kind_e_said"]
-    check("cell B said not_comparable", said.get("not_comparable", 0), int(said_not))
-    check("cell B said conditionally", said.get("conditionally_comparable", 0), int(said_cond))
+    label = {"conditionally_comparable": "conditionally"}
+    first = ("not_comparable", "conditionally_comparable")
+    for verdict in [*first, *sorted((set(printed) | set(said)) - set(first))]:
+        if verdict in printed or said.get(verdict):
+            check(
+                f"cell B said {label.get(verdict, verdict)}",
+                said.get(verdict, 0),
+                printed.get(verdict, 0),
+            )
 
     gr, gp = one(r"The gold set it is scored against \((\d+) rows, (\d+) papers")
     check("gold set rows", data["gold"]["rows"], int(gr))

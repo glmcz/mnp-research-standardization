@@ -75,6 +75,7 @@ Status:
 | EX-11 | Keep each worker's raw JSON in the run directory | Agent | built (from `reread-brief-20261003`) | — |
 | EX-12 | Fix the guards that pushed correct values toward absence | Agent (reported by workers) | built | `bfc90ac`, `2683d24` |
 | EX-13 | A worker never deletes a printed value to clear a flag | Agent | built (worker brief) | — |
+| EX-14 | A concentration in another unit is an ionic strength only as one | Agent (own regression) | built | `4be9242` |
 | RC-01 | Five conditions; fully conditioned = all five on one row | Not recorded | built | `1cfc5a5`, `35d340e` |
 | RC-02 | A printed composition counts, flagged derived (Q1) | Martin | built | `1cfc5a5` |
 | RC-03 | An incubation temperature is not the measurement temperature (Q2) | Martin | built | `1cfc5a5` |
@@ -91,6 +92,7 @@ Status:
 | CM-04 | Missing functionalisation ≠ bare; "unaged" ≠ bare; spellings only | Agent; Martin for "unaged" | built | `0858865`, `4003a11` |
 | CM-05 | A third verdict: conditionally comparable | Agent | built | `0858865` |
 | CM-06 | Kind E set = full census of positives + five seeded strata | Agent | built | `0858865`, `4003a11` |
+| CM-07 | The same-particle census: "not different, just unreported" | Agent → Martin (talk thesis) | built | `5234509` |
 | HM-01 | A missing input gives an interval or nothing, never a default | Agent → Martin | built | `220223d` |
 | HM-02 | Which conversion model counts as named | Agent (in review) | built | `220223d`, `f78a4f5` |
 | HM-03 | Conversion-model denominator = papers reporting a zeta | Agent | built | `9ce15fa`, `220223d` |
@@ -112,6 +114,7 @@ Status:
 | GR-12 | Run cell B in full, all 400 questions | Martin | built | `e1b4624` |
 | GR-13 | Kind E set redrawn after R2b; new set accepted | Martin | built | `d538ce5` |
 | GR-14 | Never cut cell C | Agent (acceptance not recorded) | decided-not-built | — |
+| GR-15 | Ask the whole grid again over the final table | Martin | built | `d48aebb`, `76a3809` |
 | DM-01 | Thirteen real cases, re-sampled four ways, plus METHOD.md | Agent → Martin | built | `220223d`, `d35f82d` |
 | DM-02 | Each case pins a paper and a check that proves its mode | Agent | built | `220223d` |
 | DM-03 | Demo answers are read from committed runs, never regenerated | Agent | built | `d35f82d` |
@@ -125,10 +128,12 @@ Status:
 | LR-02 | CC BY 4.0; quotes only from CC BY and CC0 sources | Martin | built | `61aa0a7` |
 | LR-03 | Licence read from each article's JATS; unclear means withheld | Agent | built | `61aa0a7` |
 | LR-04 | The dataset's author is Martin Durak | Martin | built | `b408c51` |
+| LR-05 | Words a CC BY row ships are not leaked from a withheld row | Agent | built | `7b6ae4d` |
 | OS-01 | Confirm the particles' origin before documenting it | Martin | built | `d4be112`, `0dfc047` |
 | OS-02 | Environmental rows: missing ionic strength highlighted; no estimate possible | Martin | built | `0dfc047` |
 | OS-03 | Stay with the 491 papers; state the scope first | Martin | built | `0f3d549` |
 | OS-04 | Airborne charge: an open direction, not an extension | Martin | open | `7a0b858` |
+| OS-05 | Origin asked again over the final rows, under a 5 M cap | Martin | built | `fea646c`, `9f75608`, `35dd8c4` |
 | PR-01 | Deterministic work first; tokens only where a model must read | Agent | built | `7f7ba5b` |
 | PR-02 | `report reproduce`: offline, network refused, diff against HEAD | Agent | built | `11c0d7d` |
 | PR-03 | The protocol document is generated from a tested registry | Agent | built | `20e7d4c` |
@@ -498,6 +503,21 @@ brief.**
 - From b07 on, every worker brief says so, and asks the worker to report the flag and the
   printed text instead. EX-12 is why.
 
+**EX-14 · A concentration in another unit counts as an ionic strength only when the text makes it
+one. This corrects the main session's own regression.**
+- What happened: `bfc90ac` (EX-12) taught the verifier to find an ionic strength printed in any
+  unit, and with that it accepted *any* concentration. "FSW + BPA (10 µM)", a co-exposure, made
+  0.01 mM look supported again. The adversarial verify fixture failed after the rebuild
+  (eval stages, verify 6/7). The old check had caught this case only because the units
+  differed.
+- Fix: a concentration in another unit counts only when it is bound to a salt or comes within 60
+  characters after "ionic strength". "∼0.15 M" after "ionic strength" and "0,026 M NaCl" count;
+  "BPA (10 µM)" and an acid's molar concentration (PMC11532844, HNO₃) do not. Both negative
+  cases were red first; removing either branch of the rule fails a test. `reverify` moved one
+  record, and verify is 7/7 again.
+- Lesson, recorded in memory: a fix that widens a guard needs the guard's adversarial cases in
+  the same red-test run. They were in `eval all`, which nobody ran until the rebuild.
+
 ## The five conditions and what counts as reported
 
 **RC-01 · A zeta value is interpreted against five conditions: medium, ionic strength, pH,
@@ -776,6 +796,27 @@ difference on a condition.**
 - Verified: `test_the_query_set_on_disk_is_what_the_generator_produces` and
   `test_the_query_set_ground_truth_is_reproducible_from_the_rows`.
 
+**CM-07 · The same-particle census: of all pairs that measure the same particle, how many are
+lost only to an unreported condition.**
+- Question: is the field's comparability gap a matter of different experiments, or of missing
+  numbers?
+- Choice: take every pair of rows with the same quantity, material key and surface key, and sort
+  it with `comparable()` into exactly one category: comparable; conditionally comparable; **lost
+  only to absence** (every blocker is `unreported`); a stated difference (any `mismatch`);
+  undecidable. Also count, per field, how often it is missing, and how often it is the *only*
+  missing field.
+- Result on the final table (`comparability.same_particle_census`, REVIEW C12 and its
+  worksheet): 166 965 same-particle pairs. 2 comparable, 3 conditionally comparable, **29 075
+  lost only to absence** (27 657 across papers), 137 718 a stated difference, 167 undecidable.
+  Ionic strength is missing in 28 984 of the 29 075.
+- Why it matters: it is the talk's thesis ("Not different, just unreported") as a count, not a
+  counterfactual. The typed "81 624 if defaults are allowed", which no committed code produced,
+  is removed from METHOD and REVIEW (OD-24's class of defect).
+- Decided by: the agent found it in a deterministic check while looking for a provable talk
+  angle; Martin adopted it as the talk's thesis (title, 2026-10-05).
+- Built: `5234509`. Verified: tests red before the code; swapping the all/any rule in either
+  direction fails them.
+
 ## Harmonisation
 
 **HM-01 · A correction with a missing input gives an interval, or no value at all. Never a
@@ -1035,6 +1076,19 @@ cut.**
 - Status: not run. Its corrected cost is about 3.8 M tokens (`HANDOFF_2026-09-28.md` §5).
   See OD-15.
 
+**GR-15 · The whole grid is asked again over the final table.**
+- Martin, 2026-10-01: "ask everything again". Cells D and B over the regenerated question sets
+  (354 questions each), and the demo's 37 questions per cell through `tool/run_demo_reader.py`
+  (the 2026-09-28 script was lost with a scratchpad).
+- Results: kind E, comparable pairs found: D 2/2, B 0/2; balanced accuracy 1.00 vs 0.33 (B's
+  98 % is the base rate). Kind C: 9/10 vs 0/10. Input tokens: 0.62 M vs 5.04 M. D-008 is refused
+  by the usage-policy filter in both cells (GR-09).
+- Honest framing: in cell D the *code* decides comparability and the reader transcribes it (as
+  the prompt audit noted in `cells.py`). The result says that retrieval over text cannot reach
+  the verdict, not that the model judges well.
+- Superseded on the way: `celld-sweep-20261003` (complete) and `cellb-sweep-20261003` (200/355)
+  answered over pre-CP-08 documents; each carries a `SUPERSEDED.md`.
+
 ## The demo
 
 **DM-01 · The demo: thirteen real papers, one per failure mode, each re-sampled four ways, plus
@@ -1208,6 +1262,15 @@ the quote is withheld.**
 - Built: `release.AUTHOR`, `out/release/LICENSE` and the card.
 - Verified: `tests/report/test_release.py::test_the_licence_names_its_author`.
 
+**LR-05 · Words a CC BY row ships are not a leak from a withheld row.**
+- What: PMC11532844 (CC BY-NC-ND, quote withheld) and PMC12198284 (CC BY, shipped) print the
+  same method sentence ("using a Zetasizer Instrument, Nano ZS90 Series (Malvern Panalytical,
+  Malvern, UK)"). The leak test failed on it after the rebuild.
+- Choice: identical words that a CC BY or CC0 row ships in its own quote are licensed by that
+  row's source, so the test excludes them. LR-02 is unchanged. Planting a genuinely withheld
+  passage in the card still fails the test.
+- Built: `7b6ae4d`.
+
 ## Sample origin and scope
 
 **OS-01 · Where the measured particles came from was confirmed before it was documented.**
@@ -1269,6 +1332,20 @@ as an extension of this dataset.**
 - Why it is not an extension: a zeta potential exists only in a liquid. An airborne charge is a
   different measurand, and the sizer's charger sets it (corpus-scope notes, "Open direction").
 - Status: open. The cheapest test is recorded in the notes.
+
+**OS-05 · Origin is asked again over the final rows, under a 5 M cap.**
+- Why: the re-read changed particle names, so the old answers no longer matched the rows, and
+  every origin number in the scope block, C11, the card and the page would have described an
+  older dataset.
+- Decided by: Martin, 2026-10-05, after the agent stopped at his 4 M cumulative cap and
+  reported: "Yes, new cap 5 M". The cap stays cumulative.
+- Run `origin-20261005`: 467 papers, 387 asked and 80 reused (identical prompt), 0 refused, 1.89 M
+  input tokens (4.74 M over every origin run). The second reading (claude-opus-5-5, 96 particles)
+  agrees: environmental 11/16, unclear 29/40, random 40/40. Seabed nets ground in the lab are
+  `lab_fabricated` by definition.
+- Result: 95.4 % of rows measure a synthetic particle. 12 rows in 3 papers measure collected
+  ones (11 wastewater), and in all three the zeta potential is of the collected sample **as a
+  whole**, not of isolated plastic. 0 from air, freshwater, seawater, soil or sediment.
 
 ## Process
 
@@ -1536,6 +1613,8 @@ change. A recommendation marked *(register)* is this file's own, not the record'
 - Recommendation: fix it.
 - What changes: future manifests stop reporting `code_dirty: true` because of Martin's research
   documents. The existing manifests keep it.
+- **Resolved 2026-10-03 (`12fae45`)**, test-first. The final grid, demo and origin runs record
+  `code_dirty: false`.
 
 **OD-07 · Row citations are scored with a bias.**
 - What: a `row:X` citation expands to every evidence line of the row, while the key lists only
@@ -1722,4 +1801,12 @@ self-contradiction, not a stated ionic strength.
   redone, and the limit refuses a new run.
 - Options: raise the limit for one more run (its estimate goes in the manifest), or make the
   limit per run.
+- **Resolved 2026-10-05 (OS-05):** cap raised to 5 M, cumulative.
+
+**OD-30 · The read stage's matcher depends on reader labels.**
+- What: against the gold set, row value precision fell from 0.81 to 0.74 after the re-read.
+  Matched by value alone, nothing moved: 84 of 85 gold values, before and after, precision 1.00.
+  The matcher pairs rows by `medium_class` and particle name, and the re-read relabelled both.
+- Options: add a value-level metric beside the row-level one, or match on value first.
+- Note: the gold set is itself Claude-annotated (OD-03/OD-04), so neither figure is accuracy.
 

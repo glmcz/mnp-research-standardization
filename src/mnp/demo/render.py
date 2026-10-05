@@ -173,7 +173,7 @@ def _case_06_convergence_note(table: pd.DataFrame, pmcid: str) -> str | None:
     other_spread = max(other_vals) - min(other_vals)
     culture_spread = max(culture_vals) - min(culture_vals)
     per_particle = "; ".join(
-        f"{material}, {func or 'unmodified'}: {other_means[(material, func)]:.1f} -> "
+        f"{material}, {func or 'surface not stated'}: {other_means[(material, func)]:.1f} -> "
         f"{culture_means[(material, func)]:.1f} mV"
         for material, func in shared
     )

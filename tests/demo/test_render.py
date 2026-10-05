@@ -11,6 +11,7 @@ one.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 import pandas as pd
@@ -309,13 +310,35 @@ def test_readme_e2e_table_has_naive_and_cluster_columns(built: Path):
         assert f"{e.paper_half_width * 100:.1f} pp" in text
 
 
+def _recorded_qids(cell: str, flagged) -> list[str]:
+    """The qids the run's own `scored.jsonl` marks, as `grid.score_run` wrote it when the run
+    was scored: the record the README has to agree with, not a rescoring of it."""
+    path = render.load_run(cell).directory / "scored.jsonl"
+    records = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+    return sorted(r["qid"] for r in records if flagged(r))
+
+
+def _listed(section: str) -> list[str]:
+    """The qids a README section lists, each of which must link to its own case page."""
+    links = re.findall(r"^- \[`([^`]+)`\]\(cases/(\d\d)-([^)]+)\.md\)", section, re.MULTILINE)
+    assert len(links) == sum(line.startswith("- ") for line in section.splitlines())
+    slugs = {case.nn: case.slug for case in cases_mod.CASES}
+    for qid, nn, slug in links:
+        assert qid[1:3] == nn and slugs[nn] == slug, qid
+    return [qid for qid, _, _ in links]
+
+
 def test_readme_lists_cell_b_fabrications_and_cell_d_wrong_answers_by_qid(built: Path):
     text = (built / "README.md").read_text(encoding="utf-8")
-    assert "### Cell B fabrications" in text
-    assert "### Cell D wrong answers" in text
-    assert "[`X03-B`](cases/03-conductivity-not-ionic-strength.md)" in text
-    assert "[`X07-B`](cases/07-incubation-not-measurement-temperature.md)" in text
-    assert "[`X01-E`](cases/01-fully-conditioned.md)" in text
+    fabrications = text.split("### Cell B fabrications\n", 1)[1].split("\n### ", 1)[0]
+    wrong = text.split("### Cell D wrong answers\n", 1)[1]
+    for section, cell, flagged in (
+        (fabrications, "B", lambda r: r["fabricated"] is True),
+        (wrong, "D", lambda r: r["correct"] is False),
+    ):
+        expected = _recorded_qids(cell, flagged)
+        assert _listed(section) == expected, cell
+        assert ("(none recorded in this run)" in section) == (not expected), cell
 
 
 # -- case 06: convergence is checked against the paper's own rows, not assumed ----------------
@@ -325,6 +348,9 @@ def test_case_06_page_shows_computed_convergence_spreads(built: Path):
     text = (built / "cases" / "06-biological-medium.md").read_text(encoding="utf-8")
     table = resample.load_table()
     rows = table[(table["pmcid"] == "PMC8719689") & (table["quantity"] == "zeta_potential")]
+    # A particle is its (material, functionalisation). Rows that print no functionalisation are
+    # one particle of this paper, as the page groups them; a plain groupby would drop them.
+    rows = rows.fillna({"material": "", "functionalisation": ""})
     culture = rows[rows["medium_class"] == "culture_medium"]
     other = rows[rows["medium_class"] != "culture_medium"]
     culture_means = culture.groupby(["material", "functionalisation"])["value"].mean()
@@ -335,6 +361,17 @@ def test_case_06_page_shows_computed_convergence_spreads(built: Path):
     assert f"{other_spread:.1f} mV" in text
     assert f"{culture_spread:.1f} mV" in text
     assert other_spread > culture_spread  # the claim the case's `why` makes: it narrows
+
+
+def test_an_unstated_surface_is_never_called_unmodified(built: Path):
+    """PMC8719689's rows print no functionalisation after the re-read. Labelling them
+    "unmodified" stated a surface the paper never states: absence imputed on the page."""
+    text = (built / "cases" / "06-biological-medium.md").read_text(encoding="utf-8")
+    table = resample.load_table()
+    rows = table[(table["pmcid"] == "PMC8719689") & table["functionalisation"].isna()]
+    assert len(rows), "the case needs rows with no functionalisation to test this"
+    assert ", unmodified:" not in text
+    assert ", surface not stated:" in text
 
 
 def test_a_score_line_never_shows_the_answer_key():

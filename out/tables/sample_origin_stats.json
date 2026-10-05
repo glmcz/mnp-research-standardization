@@ -1,131 +1,131 @@
 {
-  "papers": 491,
-  "rows": 1890,
-  "particles_classified": 1255,
+  "papers": 467,
+  "rows": 1903,
+  "particles_classified": 1315,
   "answers": {
-    "papers_answered": 491,
+    "papers_answered": 467,
     "refused": 0,
     "unparsed": 0,
     "missing": 0,
     "particles_with_problems": 0
   },
   "matching": {
-    "rows_exact": 1890,
+    "rows_exact": 1903,
     "rows_folded": 0,
     "rows_unmatched": 0,
     "names_not_in_rows": []
   },
   "origin": {
     "rows": {
-      "commercial": 1276,
-      "lab_fabricated": 483,
-      "environmental": 20,
-      "unclear": 111,
+      "commercial": 1305,
+      "lab_fabricated": 475,
+      "environmental": 16,
+      "unclear": 107,
       "unanswered": 0
     },
     "row_share": {
-      "commercial": 0.6751,
-      "lab_fabricated": 0.2556,
-      "environmental": 0.0106,
-      "unclear": 0.0587,
+      "commercial": 0.6858,
+      "lab_fabricated": 0.2496,
+      "environmental": 0.0084,
+      "unclear": 0.0562,
       "unanswered": 0.0
     },
     "papers_any": {
-      "commercial": 349,
-      "lab_fabricated": 152,
-      "environmental": 5,
-      "unclear": 30,
+      "commercial": 334,
+      "lab_fabricated": 143,
+      "environmental": 3,
+      "unclear": 25,
       "unanswered": 0
     },
     "papers_only": {
-      "commercial": 312,
-      "lab_fabricated": 113,
+      "commercial": 301,
+      "lab_fabricated": 109,
       "environmental": 2,
-      "unclear": 22,
+      "unclear": 20,
       "unanswered": 0
     }
   },
   "synthetic": {
-    "rows": 1759,
-    "row_share": 0.9307,
-    "papers_any": 467,
-    "papers_only": 456,
+    "rows": 1780,
+    "row_share": 0.9354,
+    "papers_any": 445,
+    "papers_only": 439,
     "medium": {
-      "lab_liquid": 1253,
-      "environmental_water": 31,
-      "other": 174,
-      "unreported": 301
+      "lab_liquid": 1138,
+      "environmental_water": 28,
+      "other": 240,
+      "unreported": 374
     }
   },
   "environment": {
     "rows": {
       "freshwater": 0,
-      "seawater": 1,
-      "wastewater": 18,
+      "seawater": 5,
+      "wastewater": 11,
       "soil": 0,
       "sediment": 0,
       "air_dust": 0,
       "biota": 0,
-      "other": 1,
+      "other": 0,
       "null": 0
     },
     "papers": {
       "freshwater": 0,
       "seawater": 1,
-      "wastewater": 3,
+      "wastewater": 2,
       "soil": 0,
       "sediment": 0,
       "air_dust": 0,
       "biota": 0,
-      "other": 1
+      "other": 0
     }
   },
   "aged_in_lab": {
-    "rows_true": 172,
-    "rows_false": 1702,
-    "rows_null": 16,
-    "share_true_of_answered_rows": 0.091,
+    "rows_true": 208,
+    "rows_false": 1673,
+    "rows_null": 22,
+    "share_true_of_answered_rows": 0.1093,
     "rows_true_by_origin": {
-      "commercial": 77,
-      "lab_fabricated": 57,
+      "commercial": 97,
+      "lab_fabricated": 66,
       "environmental": 0,
-      "unclear": 38
+      "unclear": 45
     },
-    "papers_true": 58
+    "papers_true": 64
   },
   "supplier_vs_origin": {
-    "rows_naming_a_supplier": 1249,
+    "rows_naming_a_supplier": 1466,
     "of_which": {
-      "commercial": 1071,
-      "lab_fabricated": 156,
+      "commercial": 1261,
+      "lab_fabricated": 149,
       "environmental": 0,
-      "unclear": 22,
+      "unclear": 56,
       "unanswered": 0
     }
   },
   "environmental_rows": {
-    "rows": 20,
-    "papers": 5,
+    "rows": 16,
+    "papers": 3,
     "reported": {
       "medium": {
-        "n": 19,
-        "share": 0.95
+        "n": 16,
+        "share": 1.0
       },
       "ionic_strength": {
         "n": 0,
         "share": 0.0
       },
       "pH": {
-        "n": 6,
-        "share": 0.3
+        "n": 0,
+        "share": 0.0
       },
       "temperature": {
-        "n": 17,
-        "share": 0.85
+        "n": 15,
+        "share": 0.9375
       },
       "instrument": {
-        "n": 17,
-        "share": 0.85
+        "n": 15,
+        "share": 0.9375
       }
     },
     "conditions_complete": {
@@ -136,16 +136,14 @@
     "conductivity_printed": 0,
     "conductivity_printed_without_ionic_strength": 0,
     "medium_class": {
-      "DI_water": 1,
-      "environmental_water": 17,
-      "other": 1,
-      "unreported": 1
+      "DI_water": 5,
+      "other": 11
     },
-    "own_environmental_water": 17,
-    "own_sample_liquid": 18,
-    "lab_liquid": 1,
-    "medium_unreported": 1,
-    "medium_other": 1,
+    "own_environmental_water": 0,
+    "own_sample_liquid": 11,
+    "lab_liquid": 5,
+    "medium_unreported": 0,
+    "medium_other": 11,
     "list": [
       {
         "row_id": "PMC11211448-r7",
@@ -157,161 +155,98 @@
         "conductivity_printed": false
       },
       {
-        "row_id": "PMC11478531-r1",
-        "particle_name": "Mixed microplastics across all studied effluents (aggregate range)",
-        "environment": "wastewater",
-        "medium_text": "WWTP effluent (textile and municipal, combined)",
-        "medium_class": "environmental_water",
-        "ionic_strength_reported": false,
-        "conductivity_printed": false
-      },
-      {
-        "row_id": "PMC11478531-r2",
-        "particle_name": "Mixed microplastics in Textile 1 effluent, before treatment",
-        "environment": "wastewater",
-        "medium_text": "textile industry 1 in-house WWTP effluent, before treatment",
-        "medium_class": "environmental_water",
-        "ionic_strength_reported": false,
-        "conductivity_printed": false
-      },
-      {
-        "row_id": "PMC11478531-r3",
-        "particle_name": "Mixed microplastics in Textile 1 effluent, after treatment",
-        "environment": "wastewater",
-        "medium_text": "textile industry 1 in-house WWTP effluent, after treatment",
-        "medium_class": "environmental_water",
-        "ionic_strength_reported": false,
-        "conductivity_printed": false
-      },
-      {
-        "row_id": "PMC11478531-r4",
-        "particle_name": "Mixed microplastics in Textile 2 effluent, before treatment",
-        "environment": "wastewater",
-        "medium_text": "textile industry 2 in-house WWTP effluent, before treatment",
-        "medium_class": "environmental_water",
-        "ionic_strength_reported": false,
-        "conductivity_printed": false
-      },
-      {
-        "row_id": "PMC11478531-r5",
-        "particle_name": "Mixed microplastics in Textile 2 effluent, after treatment",
-        "environment": "wastewater",
-        "medium_text": "textile industry 2 in-house WWTP effluent, after treatment",
-        "medium_class": "environmental_water",
-        "ionic_strength_reported": false,
-        "conductivity_printed": false
-      },
-      {
-        "row_id": "PMC11478531-r6",
-        "particle_name": "Mixed microplastics in Municipal WWTP effluent, before treatment",
-        "environment": "wastewater",
-        "medium_text": "municipal WWTP effluent, before treatment",
-        "medium_class": "environmental_water",
-        "ionic_strength_reported": false,
-        "conductivity_printed": false
-      },
-      {
-        "row_id": "PMC11478531-r7",
-        "particle_name": "Mixed microplastics in Municipal WWTP effluent, after treatment",
-        "environment": "wastewater",
-        "medium_text": "municipal WWTP effluent, after treatment",
-        "medium_class": "environmental_water",
-        "ionic_strength_reported": false,
-        "conductivity_printed": false
-      },
-      {
         "row_id": "PMC9318256-r1",
-        "particle_name": "Microplastics in resin industry effluent, before in-house WWTP",
+        "particle_name": "Resin industry effluent particles, before in-house WWTP",
         "environment": "wastewater",
-        "medium_text": "effluent samples",
-        "medium_class": "environmental_water",
+        "medium_text": "resin industry effluent sample, before in-house WWTP treatment",
+        "medium_class": "other",
         "ionic_strength_reported": false,
         "conductivity_printed": false
       },
       {
         "row_id": "PMC9318256-r2",
-        "particle_name": "Microplastics in resin industry effluent, after in-house WWTP",
+        "particle_name": "Resin industry effluent particles, after in-house WWTP",
         "environment": "wastewater",
-        "medium_text": "effluent samples",
-        "medium_class": "environmental_water",
+        "medium_text": "resin industry effluent sample, after in-house WWTP treatment",
+        "medium_class": "other",
         "ionic_strength_reported": false,
         "conductivity_printed": false
       },
       {
         "row_id": "PMC9318256-r3",
-        "particle_name": "Microplastics in paint industry effluent, before in-house WWTP",
+        "particle_name": "Paint industry effluent particles, before in-house WWTP",
         "environment": "wastewater",
-        "medium_text": "effluent samples",
-        "medium_class": "environmental_water",
+        "medium_text": "paint industry effluent sample, before in-house WWTP treatment",
+        "medium_class": "other",
         "ionic_strength_reported": false,
         "conductivity_printed": false
       },
       {
         "row_id": "PMC9318256-r4",
-        "particle_name": "Microplastics in paint industry effluent, after in-house WWTP",
+        "particle_name": "Paint industry effluent particles, after in-house WWTP",
         "environment": "wastewater",
-        "medium_text": "effluent samples",
-        "medium_class": "environmental_water",
+        "medium_text": "paint industry effluent sample, after in-house WWTP treatment",
+        "medium_class": "other",
         "ionic_strength_reported": false,
         "conductivity_printed": false
       },
       {
         "row_id": "PMC9318256-r5",
-        "particle_name": "Microplastics in pharmaceutical industry effluent, before in-house WWTP",
+        "particle_name": "Pharmaceutical industry effluent particles, before in-house WWTP",
         "environment": "wastewater",
-        "medium_text": "effluent samples",
-        "medium_class": "environmental_water",
+        "medium_text": "pharmaceutical industry effluent sample, before in-house WWTP treatment",
+        "medium_class": "other",
         "ionic_strength_reported": false,
         "conductivity_printed": false
       },
       {
         "row_id": "PMC9318256-r6",
-        "particle_name": "Microplastics in pharmaceutical industry effluent, after in-house WWTP",
+        "particle_name": "Pharmaceutical industry effluent particles, after in-house WWTP",
         "environment": "wastewater",
-        "medium_text": "effluent samples",
-        "medium_class": "environmental_water",
+        "medium_text": "pharmaceutical industry effluent sample, after in-house WWTP treatment",
+        "medium_class": "other",
         "ionic_strength_reported": false,
         "conductivity_printed": false
       },
       {
         "row_id": "PMC9318256-r7",
-        "particle_name": "Microplastics in pvc industry effluent, before in-house WWTP",
+        "particle_name": "PVC industry effluent particles, before in-house WWTP",
         "environment": "wastewater",
-        "medium_text": "effluent samples",
-        "medium_class": "environmental_water",
+        "medium_text": "pvc industry effluent sample, before in-house WWTP treatment",
+        "medium_class": "other",
         "ionic_strength_reported": false,
         "conductivity_printed": false
       },
       {
         "row_id": "PMC9318256-r8",
-        "particle_name": "Microplastics in pvc industry effluent, after in-house WWTP",
+        "particle_name": "PVC industry effluent particles, after in-house WWTP",
         "environment": "wastewater",
-        "medium_text": "effluent samples",
-        "medium_class": "environmental_water",
+        "medium_text": "pvc industry effluent sample, after in-house WWTP treatment",
+        "medium_class": "other",
         "ionic_strength_reported": false,
         "conductivity_printed": false
       },
       {
         "row_id": "PMC9318256-r9",
-        "particle_name": "Microplastics in textile industry effluent, before in-house WWTP",
+        "particle_name": "Textile industry effluent particles, before in-house WWTP",
         "environment": "wastewater",
-        "medium_text": "effluent samples",
-        "medium_class": "environmental_water",
+        "medium_text": "textile industry effluent sample, before in-house WWTP treatment",
+        "medium_class": "other",
         "ionic_strength_reported": false,
         "conductivity_printed": false
       },
       {
         "row_id": "PMC9318256-r10",
-        "particle_name": "Microplastics in textile industry effluent, after in-house WWTP",
+        "particle_name": "Textile industry effluent particles, after in-house WWTP",
         "environment": "wastewater",
-        "medium_text": "effluent samples",
-        "medium_class": "environmental_water",
+        "medium_text": "textile industry effluent sample, after in-house WWTP treatment",
+        "medium_class": "other",
         "ionic_strength_reported": false,
         "conductivity_printed": false
       },
       {
         "row_id": "PMC9643204-r1",
-        "particle_name": "aged polypropylene mussel-net microplastics (all colours: WN, GN, YN, BN, PN)",
+        "particle_name": "BN (black net) MPs",
         "environment": "seawater",
         "medium_text": "distilled water",
         "medium_class": "DI_water",
@@ -319,11 +254,38 @@
         "conductivity_printed": false
       },
       {
-        "row_id": "PMC9645706-r4",
-        "particle_name": "naturally fragmented plastic particles (environmental, unspecified polymer)",
-        "environment": "other",
-        "medium_text": "",
-        "medium_class": "unreported",
+        "row_id": "PMC9643204-r2",
+        "particle_name": "YN (yellow net) MPs",
+        "environment": "seawater",
+        "medium_text": "distilled water",
+        "medium_class": "DI_water",
+        "ionic_strength_reported": false,
+        "conductivity_printed": false
+      },
+      {
+        "row_id": "PMC9643204-r3",
+        "particle_name": "GN (green net) MPs",
+        "environment": "seawater",
+        "medium_text": "distilled water",
+        "medium_class": "DI_water",
+        "ionic_strength_reported": false,
+        "conductivity_printed": false
+      },
+      {
+        "row_id": "PMC9643204-r4",
+        "particle_name": "PN (pink net) MPs",
+        "environment": "seawater",
+        "medium_text": "distilled water",
+        "medium_class": "DI_water",
+        "ionic_strength_reported": false,
+        "conductivity_printed": false
+      },
+      {
+        "row_id": "PMC9643204-r5",
+        "particle_name": "WN (white net) MPs",
+        "environment": "seawater",
+        "medium_text": "distilled water",
+        "medium_class": "DI_water",
         "ionic_strength_reported": false,
         "conductivity_printed": false
       }
@@ -331,43 +293,43 @@
   },
   "reporting_by_origin": {
     "commercial": {
-      "rows": 1276,
-      "medium": 0.8534,
-      "ionic_strength": 0.1591,
-      "pH": 0.261,
-      "temperature": 0.2516,
-      "instrument": 0.8997,
-      "complete": 0.0447
+      "rows": 1305,
+      "medium": 0.8061,
+      "ionic_strength": 0.1364,
+      "pH": 0.2314,
+      "temperature": 0.233,
+      "instrument": 0.8812,
+      "complete": 0.0322
     },
     "lab_fabricated": {
-      "rows": 483,
-      "medium": 0.764,
-      "ionic_strength": 0.0207,
-      "pH": 0.1035,
-      "temperature": 0.2629,
-      "instrument": 0.8778,
-      "complete": 0.0041
+      "rows": 475,
+      "medium": 0.7453,
+      "ionic_strength": 0.0316,
+      "pH": 0.0947,
+      "temperature": 0.2274,
+      "instrument": 0.8653,
+      "complete": 0.0042
     },
     "environmental": {
-      "rows": 20,
-      "medium": 0.95,
+      "rows": 16,
+      "medium": 1.0,
       "ionic_strength": 0.0,
-      "pH": 0.3,
-      "temperature": 0.85,
-      "instrument": 0.85,
+      "pH": 0.0,
+      "temperature": 0.9375,
+      "instrument": 0.9375,
       "complete": 0.0
     },
     "unclear": {
-      "rows": 111,
-      "medium": 0.8559,
-      "ionic_strength": 0.4144,
-      "pH": 0.1171,
-      "temperature": 0.1712,
-      "instrument": 0.8108,
-      "complete": 0.018
+      "rows": 107,
+      "medium": 0.729,
+      "ionic_strength": 0.4393,
+      "pH": 0.0467,
+      "temperature": 0.1028,
+      "instrument": 0.7757,
+      "complete": 0.0187
     }
   },
-  "run_id": "origin-20260929b",
+  "run_id": "origin-20261005",
   "reader": {
     "per_run": {
       "origin-pilot-20260929": {
@@ -393,39 +355,38 @@
         "input_tokens": 1791685,
         "output_tokens": 144983,
         "cost_usd": 14.7536
+      },
+      "origin-20261005": {
+        "calls": 387,
+        "input_tokens": 1894186,
+        "output_tokens": 198194,
+        "cost_usd": 16.7716
       }
     },
     "total": {
-      "calls": 589,
-      "input_tokens": 2845176,
-      "output_tokens": 257795,
-      "cost_usd": 24.06
+      "calls": 976,
+      "input_tokens": 4739362,
+      "output_tokens": 455989,
+      "cost_usd": 40.83
     },
-    "input_token_limit": 4000000,
+    "input_token_limit": 5000000,
     "model": "claude-sonnet-5"
   },
   "checks": {
-    "citations": 2450,
-    "resolve_to_a_line_of_that_paper": 2450,
-    "resolve_to_a_repaired_methods_line": 314,
+    "citations": 2704,
+    "resolve_to_a_line_of_that_paper": 2704,
+    "resolve_to_a_repaired_methods_line": 0,
     "unresolved": [],
     "resolve_but_were_not_shown": [],
     "particles_without_citations": 1,
     "answers_whose_prompt_no_longer_rebuilds": [],
     "supplier_named_but_not_commercial": [
       {
-        "row_id": "PMC10099137-r1",
-        "particle_name": "plastic bottles",
-        "supplier": "markets in Istanbul, Turkey",
+        "row_id": "PMC10103693-r2",
+        "particle_name": "mucus penetrating particles (MPP), PEG-coated polystyrene beads",
+        "supplier": "ThermoFisher Scientific",
         "origin": "lab_fabricated",
-        "reason": "Commercially bought plastic drinking water bottles were rendered/sieved in the lab to produce micro(nano)plastic particles."
-      },
-      {
-        "row_id": "PMC10099137-r2",
-        "particle_name": "surgical masks",
-        "supplier": "markets in Istanbul, Turkey",
-        "origin": "lab_fabricated",
-        "reason": "Commercially bought surgical masks were rendered/sieved in the lab to produce micro(nano)plastic particles."
+        "reason": "Purchased carboxylate polystyrene beads were coated in the lab with 5 kDa MeO-PEG-NH2 via a carboxyl-amine reaction to create MPPs."
       },
       {
         "row_id": "PMC10303405-r1",
@@ -433,6 +394,20 @@
         "supplier": "gifted from Dr. Xianzheng Yuan's lab (Shandong University)",
         "origin": "lab_fabricated",
         "reason": "PS-S NP was gifted from another research lab (made by Dr. Xianzheng Yuan's lab), which counts as lab-fabricated, with no ageing described."
+      },
+      {
+        "row_id": "PMC10340104-r2",
+        "particle_name": "in-house synthesized PS particle dispersion (S samples)",
+        "supplier": "in-house",
+        "origin": "lab_fabricated",
+        "reason": "Synthesized in the lab by emulsifier-free emulsion polymerization of styrene, with no ageing step applied to the base (non-autoclaved) S sample."
+      },
+      {
+        "row_id": "PMC10340104-r3",
+        "particle_name": "SHPA (in-house synthesized PS, high purity, autoclaved)",
+        "supplier": "in-house",
+        "origin": "lab_fabricated",
+        "reason": "Made by in-house emulsion polymerization and then subjected to autoclave sterilization, which constitutes a lab ageing/heat treatment step."
       },
       {
         "row_id": "PMC10465532-r1",
@@ -449,6 +424,20 @@
         "reason": "These are the same commercial face scrub MPs (FS1) but released/isolated using the previously reported extraction method for comparison, so they were also obtained by a lab extraction process from a product rather than bought as ready-made particles."
       },
       {
+        "row_id": "PMC10483464-r1",
+        "particle_name": "PLA nanoparticles",
+        "supplier": "in-house (PLA from Sigma-Aldrich)",
+        "origin": "lab_fabricated",
+        "reason": "PLA nanoparticles were prepared in the lab from dissolved PLA via a solvent emulsion evaporation method."
+      },
+      {
+        "row_id": "PMC10483464-r2",
+        "particle_name": "PLA-FNDs",
+        "supplier": "in-house (PLA from Sigma-Aldrich)",
+        "origin": "lab_fabricated",
+        "reason": "PLA-FNDs were prepared in the lab by mixing FNDs with PLA solution and using the same solvent emulsion evaporation method."
+      },
+      {
         "row_id": "PMC10499202-r1",
         "particle_name": "Silicone pacifier",
         "supplier": "ESSKA",
@@ -463,6 +452,20 @@
         "reason": "Pacifiers made of latex rubber were mechanically blended into nanoparticles in the lab using an immersion blender, with no boiling/ageing applied to this measured sample."
       },
       {
+        "row_id": "PMC10646276-r2",
+        "particle_name": "PE-SC",
+        "supplier": "synthesized according to literature",
+        "origin": "lab_fabricated",
+        "reason": "The stabilized PE single crystals were synthesized in the lab according to literature and used as received without ageing."
+      },
+      {
+        "row_id": "PMC10664492-r4",
+        "particle_name": "PE-NPs",
+        "supplier": "Professor Dayong Wang, Southeast University",
+        "origin": "lab_fabricated",
+        "reason": "PE-NPs were provided ready-made as particles by another research laboratory (Professor Dayong Wang), which counts as lab_fabricated per the rules, with no ageing described."
+      },
+      {
         "row_id": "PMC10692900-r1",
         "particle_name": "PE",
         "supplier": "Peshgaman Plastic Company, Iran",
@@ -474,7 +477,7 @@
         "particle_name": "Pd-doped nanoplastics",
         "supplier": "synthesized in-house",
         "origin": "lab_fabricated",
-        "reason": "Synthesized in-house via emulsion polymerization with a Pd-containing salt and subsequent polystyrene shell growth, with no ageing described."
+        "reason": "The nanoplastics were synthesized in-house via emulsion polymerization with a Pd-containing salt and subsequent polystyrene shell growth, with no mention of ageing."
       },
       {
         "row_id": "PMC10828415-r1",
@@ -499,150 +502,122 @@
       },
       {
         "row_id": "PMC10909871-r1",
-        "particle_name": "500 nm PS particles (as synthesized, pre-wash)",
-        "supplier": "custom-synthesized (Styrene, Fisher Scientific, UK)",
+        "particle_name": "PS 500 nm, initial (pre-wash)",
+        "supplier": "custom-synthesized",
         "origin": "lab_fabricated",
-        "reason": "Synthesized from styrene monomer in the lab; zeta potential measured before contaminant removal, with no ageing described."
+        "reason": "The 500 nm PS particle was custom-synthesized from styrene monomer in the lab, and its initial (pre-wash) zeta potential was recorded before any contaminant removal."
       },
       {
         "row_id": "PMC10909871-r2",
-        "particle_name": "1000 nm PS particles (as synthesized, pre-wash)",
-        "supplier": "custom-synthesized (Styrene, Fisher Scientific, UK)",
+        "particle_name": "PS 1000 nm, initial (pre-wash)",
+        "supplier": "custom-synthesized",
         "origin": "lab_fabricated",
-        "reason": "Synthesized from styrene monomer in the lab; zeta potential measured before contaminant removal, with no ageing described."
+        "reason": "The 1000 nm PS particle was custom-synthesized from styrene monomer in the lab, and its initial (pre-wash) zeta potential was recorded before any contaminant removal."
       },
       {
         "row_id": "PMC10909871-r3",
-        "particle_name": "500 nm PS particles (washed)",
-        "supplier": "custom-synthesized (Styrene, Fisher Scientific, UK)",
+        "particle_name": "PS 500 nm, washed",
+        "supplier": "custom-synthesized",
         "origin": "lab_fabricated",
-        "reason": "Same custom-synthesized particles after removal of contaminants such as surfactants, no ageing described."
+        "reason": "The 500 nm PS particle was custom-synthesized in the lab and washing to remove surfactant contaminants does not constitute ageing, with the post-wash zeta potential reported in L35."
       },
       {
         "row_id": "PMC10909871-r4",
-        "particle_name": "1000 nm PS particles (washed)",
-        "supplier": "custom-synthesized (Styrene, Fisher Scientific, UK)",
+        "particle_name": "PS 1000 nm, washed",
+        "supplier": "custom-synthesized",
         "origin": "lab_fabricated",
-        "reason": "Same custom-synthesized particles after removal of contaminants such as surfactants, no ageing described."
+        "reason": "The 1000 nm PS particle was custom-synthesized in the lab and washing to remove surfactant contaminants does not constitute ageing, with the post-wash zeta potential reported in L35."
       },
       {
         "row_id": "PMC10909871-r5",
-        "particle_name": "500 nm particles with adsorbed phenanthrene",
-        "supplier": "custom-synthesized (Styrene, Fisher Scientific, UK)",
+        "particle_name": "PS 500 nm with adsorbed phenanthrene",
+        "supplier": "custom-synthesized",
         "origin": "lab_fabricated",
-        "reason": "Custom-synthesized PS particles subsequently primed with phenanthrene in the lab; adsorption of phenanthrene is not counted as ageing."
+        "reason": "The custom-synthesized 500 nm PS particle was subsequently primed with phenanthrene in the lab, a sorption step not described as ageing/weathering, with zeta potential reported in L36."
       },
       {
         "row_id": "PMC10909871-r6",
-        "particle_name": "1000 nm particles with adsorbed phenanthrene",
-        "supplier": "custom-synthesized (Styrene, Fisher Scientific, UK)",
+        "particle_name": "PS 1000 nm with adsorbed phenanthrene",
+        "supplier": "custom-synthesized",
         "origin": "lab_fabricated",
-        "reason": "Custom-synthesized PS particles subsequently primed with phenanthrene in the lab; adsorption of phenanthrene is not counted as ageing."
+        "reason": "The custom-synthesized 1000 nm PS particle was subsequently primed with phenanthrene in the lab, a sorption step not described as ageing/weathering, with zeta potential reported in L36."
+      },
+      {
+        "row_id": "PMC10952355-r1",
+        "particle_name": "PDMAC30-PCL16-PDMAC30 nanoparticles",
+        "supplier": "synthesized in-house (reverse sequence PISA)",
+        "origin": "lab_fabricated",
+        "reason": "These nanoparticles were synthesized in the lab via RAFT-mediated reverse sequence PISA from a bifunctional PCL precursor, and no line describes ageing this particular PDMAC30-PCL16-PDMAC30 batch before its zeta-potential measurement."
       },
       {
         "row_id": "PMC10959865-r1",
         "particle_name": "PP microplastic fragments",
-        "supplier": "PropylTex® 50, Micro Powders Inc., New York, NY, USA",
+        "supplier": "PropylTex 50, Micro Powders Inc. (ground in-house)",
         "origin": "lab_fabricated",
-        "reason": "PP beads were purchased then frozen and ground into fragments in the lab, making the fragments lab-fabricated from commercial beads."
+        "reason": "PP beads were purchased and then ground/frozen in the lab to create fragments, so the particle origin is lab fabrication from commercial bulk beads."
       },
       {
-        "row_id": "PMC10974996-r1",
-        "particle_name": "50 mg L-1 amidine PS latex NPLs",
-        "supplier": "Institute of the Analytical Sciences (ISA, Lyon, France)",
+        "row_id": "PMC10959865-r3",
+        "particle_name": "PE microplastic fragments",
+        "supplier": "5 mm PE beads (ground in-house)",
         "origin": "lab_fabricated",
-        "reason": "Amidine PS latex NPLs were synthesized by ISA (Lyon, France), making them lab-fabricated particles."
-      },
-      {
-        "row_id": "PMC10974996-r10",
-        "particle_name": "amidine PS latex NPLs (injection solutions, 100 and 500 mg L-1)",
-        "supplier": "Institute of the Analytical Sciences (ISA, Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "Amidine PS latex NPLs were synthesized in-house by ISA, so they are lab-fabricated."
-      },
-      {
-        "row_id": "PMC10974996-r11",
-        "particle_name": "amidine PS latex NPLs in the effluent (peak zone)",
-        "supplier": "Institute of the Analytical Sciences (ISA, Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "The effluent amidine NPLs originate from the same ISA-synthesized particles injected into the columns."
-      },
-      {
-        "row_id": "PMC10974996-r3",
-        "particle_name": "100 mg L-1 amidine PS latex NPLs",
-        "supplier": "Institute of the Analytical Sciences (ISA, Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "Amidine PS latex NPLs were synthesized in-house by ISA, so they are lab-fabricated."
-      },
-      {
-        "row_id": "PMC10974996-r4",
-        "particle_name": "500 mg L-1 amidine PS latex NPLs",
-        "supplier": "Institute of the Analytical Sciences (ISA, Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "Amidine PS latex NPLs were synthesized in-house by ISA, so they are lab-fabricated."
-      },
-      {
-        "row_id": "PMC10974996-r6",
-        "particle_name": "amidine PS latex NPLs (injection solution)",
-        "supplier": "Institute of the Analytical Sciences (ISA, Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "Amidine PS latex NPLs used for injection were the same lab-synthesized particles from ISA."
-      },
-      {
-        "row_id": "PMC10974996-r7",
-        "particle_name": "amidine PS latex NPLs in the effluent (peak zone)",
-        "supplier": "Institute of the Analytical Sciences (ISA, Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "The effluent amidine NPLs originate from the same ISA-synthesized particles injected into the columns."
+        "reason": "PE beads were purchased and then frozen and ground in the lab to produce fragments, making the particle origin lab fabrication from commercial bulk beads."
       },
       {
         "row_id": "PMC11085467-r1",
         "particle_name": "PET-W",
-        "supplier": "milled in-house from domestic waste plastic (Water Bottle)",
+        "supplier": "collected from domestic garbage (milled)",
         "origin": "lab_fabricated",
-        "reason": "PET-W was produced from a water bottle collected from domestic garbage and milled/sonicated in the lab into MP/NP."
+        "reason": "Water bottle plastic was collected from domestic garbage and converted into MP/NP in the lab via ball milling and sonication."
       },
       {
         "row_id": "PMC11085467-r2",
         "particle_name": "PS-P",
-        "supplier": "milled in-house from domestic waste plastic (Styrofoam Plate)",
+        "supplier": "collected from domestic garbage (milled)",
         "origin": "lab_fabricated",
-        "reason": "PS-P was produced from a styrofoam plate collected from domestic garbage and milled/sonicated in the lab into MP/NP."
+        "reason": "Styrofoam plate plastic was collected from domestic garbage and processed into MP/NP via milling and sonication in the lab."
       },
       {
         "row_id": "PMC11085467-r3",
         "particle_name": "HDPE-M",
-        "supplier": "milled in-house from domestic waste plastic (Milk Gallon)",
+        "supplier": "collected from domestic garbage (milled)",
         "origin": "lab_fabricated",
-        "reason": "HDPE-M was produced from a milk gallon collected from domestic garbage and milled/sonicated in the lab into MP/NP."
+        "reason": "Milk gallon plastic was collected from domestic garbage and milled/sonicated in the lab to produce MP/NP."
       },
       {
         "row_id": "PMC11085467-r4",
         "particle_name": "PP-C",
-        "supplier": "milled in-house from domestic waste plastic (Centrifuge Tube)",
+        "supplier": "collected from domestic garbage (milled)",
         "origin": "lab_fabricated",
-        "reason": "PP-C was produced from a centrifuge tube collected from domestic garbage and milled/sonicated in the lab into MP/NP."
+        "reason": "Centrifuge tube plastic was collected from domestic garbage and converted into NP by milling, explicitly contrasted with commercial PP particles in L40."
       },
       {
         "row_id": "PMC11085467-r5",
         "particle_name": "PEMA-5",
-        "supplier": "milled in-house from domestic waste plastic (To Go Black Box)",
+        "supplier": "collected from domestic garbage (milled)",
         "origin": "lab_fabricated",
-        "reason": "PEMA-5 was produced from a to-go black box collected from domestic garbage and milled/sonicated in the lab into MP/NP."
+        "reason": "To-go black box plastic was collected from domestic garbage and processed into MP/NP via the lab milling and sonication procedure."
       },
       {
-        "row_id": "PMC11125995-r1",
-        "particle_name": "prepared polystyrene standard (400–2600 nm)",
-        "supplier": "synthesized in-house by polymerization",
+        "row_id": "PMC11085749-r7",
+        "particle_name": "PEI PM0.1 at 0.05 mg/mL",
+        "supplier": "produced by thermal decomposition of pristine PE pellets (INEXS)",
         "origin": "lab_fabricated",
-        "reason": "The polystyrene standards were synthesized in the lab via controlled polymerization reactions rather than purchased or collected from the environment."
+        "reason": "PEI MNPs were produced in the lab by thermal decomposition/incineration of pristine PE plastic pellets using the INEXS system, not aged after generation."
       },
       {
-        "row_id": "PMC11126148-r1",
-        "particle_name": "PMMA NPs",
-        "supplier": "synthesized in-house by mini-emulsion of methyl methacrylate (MMA)",
+        "row_id": "PMC11085749-r8",
+        "particle_name": "PEI PM0.1 at 0.25 mg/mL",
+        "supplier": "produced by thermal decomposition of pristine PE pellets (INEXS)",
         "origin": "lab_fabricated",
-        "reason": "PMMA NPs were synthesized in the lab via mini-emulsion polymerization of MMA with SDS as stabilizer, then purified by dialysis, with no ageing/weathering described."
+        "reason": "PEI MNPs were produced in the lab by thermal decomposition/incineration of pristine PE plastic pellets using the INEXS system, not aged after generation."
+      },
+      {
+        "row_id": "PMC11085749-r9",
+        "particle_name": "PEI PM0.1 at 1.0 mg/mL",
+        "supplier": "produced by thermal decomposition of pristine PE pellets (INEXS)",
+        "origin": "lab_fabricated",
+        "reason": "PEI MNPs were produced in the lab by thermal decomposition/incineration of pristine PE plastic pellets using the INEXS system, not aged after generation."
       },
       {
         "row_id": "PMC11166108-r3",
@@ -661,261 +636,478 @@
       {
         "row_id": "PMC11314056-r13",
         "particle_name": "Nylon from bulk polyamide powder",
-        "supplier": "Sigma Aldrich, Mississauga, ON, Canada",
+        "supplier": "lab-generated from Sigma Aldrich powder",
         "origin": "lab_fabricated",
-        "reason": "Nylon MPs were generated in the lab from purchased bulk nylon polyamide powder via sonication and filtration."
+        "reason": "Nylon MPs were generated in the lab via sonication and membrane filtration of purchased bulk polyamide powder."
       },
       {
         "row_id": "PMC11314056-r14",
         "particle_name": "Nylon from bulk polyamide powder",
-        "supplier": "Sigma Aldrich, Mississauga, ON, Canada",
+        "supplier": "lab-generated from Sigma Aldrich powder",
         "origin": "lab_fabricated",
-        "reason": "Nylon MPs were generated in the lab from purchased bulk nylon polyamide powder via sonication and filtration."
+        "reason": "Nylon MPs were generated in the lab via sonication and membrane filtration of purchased bulk polyamide powder."
       },
       {
-        "row_id": "PMC11326042-r1",
-        "particle_name": "[A-PS]+ NPLs (titration, before charge neutralization)",
-        "supplier": "Institute of the Analytical Sciences (ISA), National Centre for Scientific Research (Paris, France); University Claude Bernard (Lyon, France)",
+        "row_id": "PMC11314056-r15",
+        "particle_name": "Nylon from tea bags",
+        "supplier": "lab-generated from tea bags",
         "origin": "lab_fabricated",
-        "reason": "Amidine PS NPLs were synthesized and kindly provided by ISA/University Claude Bernard (another lab), making them lab_fabricated particles, with no ageing described."
+        "reason": "Nylon MPs were released and processed in the lab by microwaving and freeze-drying tea bags."
       },
       {
-        "row_id": "PMC11326042-r10",
-        "particle_name": "[A-PS]+ NPLs (1000 mg/L injection, 1.2 PV)",
-        "supplier": "Institute of the Analytical Sciences (ISA), National Centre for Scientific Research (Paris, France); University Claude Bernard (Lyon, France)",
+        "row_id": "PMC11314056-r16",
+        "particle_name": "Nylon from tea bags",
+        "supplier": "lab-generated from tea bags",
         "origin": "lab_fabricated",
-        "reason": "Amidine PS NPLs from ISA measured at 1.2 PV, no ageing described."
+        "reason": "Nylon MPs were released and processed in the lab by microwaving and freeze-drying tea bags."
       },
       {
-        "row_id": "PMC11326042-r16",
-        "particle_name": "[SDS-A-PS]- NPLs (100 mg/L injected suspension)",
-        "supplier": "SDS: AppliChem (Darmstadt, Germany); base particle: Institute of the Analytical Sciences (ISA), Paris & University Claude Bernard, Lyon",
+        "row_id": "PMC11314056-r17",
+        "particle_name": "Small PETE",
+        "supplier": "lab-generated",
         "origin": "lab_fabricated",
-        "reason": "SDS-coated amidine PS NPLs were prepared in the lab by mixing amidine PS NPLs with SDS solution, so lab_fabricated, no ageing described."
+        "reason": "PETE MPs were generated in the lab by cutting, freezing, and cryoblending disposable water bottles."
       },
       {
-        "row_id": "PMC11326042-r17",
-        "particle_name": "[SDS-A-PS]- NPLs (500 mg/L injected suspension)",
-        "supplier": "SDS: AppliChem (Darmstadt, Germany); base particle: Institute of the Analytical Sciences (ISA), Paris & University Claude Bernard, Lyon",
+        "row_id": "PMC11314056-r18",
+        "particle_name": "Small PETE",
+        "supplier": "lab-generated",
         "origin": "lab_fabricated",
-        "reason": "Lab-prepared SDS coating on amidine PS NPLs, no ageing described."
+        "reason": "PETE MPs were generated in the lab by cutting, freezing, and cryoblending disposable water bottles."
       },
       {
-        "row_id": "PMC11326042-r18",
-        "particle_name": "[SDS-A-PS]- NPLs (1000 mg/L injected suspension)",
-        "supplier": "SDS: AppliChem (Darmstadt, Germany); base particle: Institute of the Analytical Sciences (ISA), Paris & University Claude Bernard, Lyon",
+        "row_id": "PMC11314056-r19",
+        "particle_name": "Large PETE",
+        "supplier": "lab-generated",
         "origin": "lab_fabricated",
-        "reason": "Lab-prepared SDS coating on amidine PS NPLs, no ageing described."
+        "reason": "PETE MPs were generated in the lab by cutting, freezing, and cryoblending disposable water bottles."
       },
       {
-        "row_id": "PMC11326042-r19",
-        "particle_name": "[SDS-A-PS]- NPLs (100 mg/L injection, PV 0.92 peak point)",
-        "supplier": "SDS: AppliChem (Darmstadt, Germany); base particle: Institute of the Analytical Sciences (ISA), Paris & University Claude Bernard, Lyon",
+        "row_id": "PMC11314056-r20",
+        "particle_name": "Large PETE",
+        "supplier": "lab-generated",
         "origin": "lab_fabricated",
-        "reason": "SDS-coated amidine PS NPLs prepared in lab, measured at 0.92 PV peak, no ageing described."
+        "reason": "PETE MPs were generated in the lab by cutting, freezing, and cryoblending disposable water bottles."
       },
       {
-        "row_id": "PMC11326042-r2",
-        "particle_name": "[A-PS]+ NPLs (titration, after charge neutralization)",
-        "supplier": "Institute of the Analytical Sciences (ISA), National Centre for Scientific Research (Paris, France); University Claude Bernard (Lyon, France)",
+        "row_id": "PMC11314056-r21",
+        "particle_name": "PP",
+        "supplier": "lab-generated",
         "origin": "lab_fabricated",
-        "reason": "Same amidine PS NPLs provided by ISA/University Claude Bernard, so lab_fabricated with no ageing mentioned."
+        "reason": "PP MPs were generated in the lab by cutting, freezing, and cryoblending food storage containers."
       },
       {
-        "row_id": "PMC11326042-r20",
-        "particle_name": "[SDS-A-PS]- NPLs (500 mg/L injection, PV 0.92 peak point)",
-        "supplier": "SDS: AppliChem (Darmstadt, Germany); base particle: Institute of the Analytical Sciences (ISA), Paris & University Claude Bernard, Lyon",
+        "row_id": "PMC11314056-r22",
+        "particle_name": "PP",
+        "supplier": "lab-generated",
         "origin": "lab_fabricated",
-        "reason": "SDS-coated amidine PS NPLs prepared in lab, measured at 0.92 PV peak, no ageing described."
-      },
-      {
-        "row_id": "PMC11326042-r21",
-        "particle_name": "[SDS-A-PS]- NPLs (1000 mg/L injection, PV 0.92 peak point)",
-        "supplier": "SDS: AppliChem (Darmstadt, Germany); base particle: Institute of the Analytical Sciences (ISA), Paris & University Claude Bernard, Lyon",
-        "origin": "lab_fabricated",
-        "reason": "SDS-coated amidine PS NPLs prepared in lab, measured at 0.92 PV peak, no ageing described."
-      },
-      {
-        "row_id": "PMC11326042-r22",
-        "particle_name": "[A-PS]+ NPLs (150 mg/L and 200 mg/L intermediate injection concentrations)",
-        "supplier": "Institute of the Analytical Sciences (ISA), National Centre for Scientific Research (Paris, France); University Claude Bernard (Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "Amidine PS NPLs from ISA used at intermediate concentrations, no ageing described."
-      },
-      {
-        "row_id": "PMC11326042-r4",
-        "particle_name": "[A-PS]+ NPLs (500 mg/L injection, initial condition)",
-        "supplier": "Institute of the Analytical Sciences (ISA), National Centre for Scientific Research (Paris, France); University Claude Bernard (Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "Amidine PS NPLs from ISA lab (provided, not commercial), used at 500 mg/L injection, no ageing indicated."
-      },
-      {
-        "row_id": "PMC11326042-r5",
-        "particle_name": "[A-PS]+ NPLs (500 mg/L injection, peak point)",
-        "supplier": "Institute of the Analytical Sciences (ISA), National Centre for Scientific Research (Paris, France); University Claude Bernard (Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "Same lab-provided amidine PS NPLs measured at the transport peak, no ageing described."
-      },
-      {
-        "row_id": "PMC11326042-r6",
-        "particle_name": "[A-PS]+ NPLs (500 mg/L injection, decrease-in-concentration point)",
-        "supplier": "Institute of the Analytical Sciences (ISA), National Centre for Scientific Research (Paris, France); University Claude Bernard (Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "Amidine PS NPLs from ISA, measured after peak decrease, no ageing described."
-      },
-      {
-        "row_id": "PMC11326042-r7",
-        "particle_name": "[A-PS]+ NPLs (1000 mg/L injection, injection suspension)",
-        "supplier": "Institute of the Analytical Sciences (ISA), National Centre for Scientific Research (Paris, France); University Claude Bernard (Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "Lab-provided amidine PS NPLs used in 1000 mg/L injection suspension, no ageing described."
-      },
-      {
-        "row_id": "PMC11326042-r8",
-        "particle_name": "[A-PS]+ NPLs (1000 mg/L injection, 0.63 PV)",
-        "supplier": "Institute of the Analytical Sciences (ISA), National Centre for Scientific Research (Paris, France); University Claude Bernard (Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "Same amidine PS NPLs at 0.63 PV, origin from ISA, no ageing described."
-      },
-      {
-        "row_id": "PMC11326042-r9",
-        "particle_name": "[A-PS]+ NPLs (1000 mg/L injection, 0.9 PV)",
-        "supplier": "Institute of the Analytical Sciences (ISA), National Centre for Scientific Research (Paris, France); University Claude Bernard (Lyon, France)",
-        "origin": "lab_fabricated",
-        "reason": "Amidine PS NPLs from ISA measured at 0.9 PV, no ageing described."
+        "reason": "PP MPs were generated in the lab by cutting, freezing, and cryoblending food storage containers."
       },
       {
         "row_id": "PMC11365975-r1",
-        "particle_name": "PIB-MP (SDS-PIB 80 mg)",
-        "supplier": "PIB raw material: Santa Cruz Biotechnology (catalog no. sc-255434)",
+        "particle_name": "SDS-PIB 80 mg",
+        "supplier": "Santa Cruz Biotechnology (bulk PIB)",
         "origin": "lab_fabricated",
-        "reason": "Synthesized in the lab from solid PIB chunks via solvent evaporation with 80 mg PIB and SDS, with no ageing described."
+        "reason": "PIB-MPs were synthesized in the lab via solvent evaporation from bulk PIB and this concentration's zeta potential was recorded among the synthesized samples."
       },
       {
         "row_id": "PMC11365975-r2",
-        "particle_name": "PIB-MP (SDS-PIB 500 mg)",
-        "supplier": "PIB raw material: Santa Cruz Biotechnology (catalog no. sc-255434)",
+        "particle_name": "SDS-PIB 500 mg",
+        "supplier": "Santa Cruz Biotechnology (bulk PIB)",
         "origin": "lab_fabricated",
-        "reason": "Synthesized in the lab from solid PIB chunks via solvent evaporation with 500 mg PIB and SDS, with no ageing described."
+        "reason": "PIB-MPs were synthesized in the lab via solvent evaporation from bulk PIB and this concentration's zeta potential was recorded among the synthesized samples."
       },
       {
         "row_id": "PMC11365975-r3",
-        "particle_name": "PIB-MP (SDS-PIB 2000 mg)",
-        "supplier": "PIB raw material: Santa Cruz Biotechnology (catalog no. sc-255434)",
+        "particle_name": "SDS-PIB 2000 mg",
+        "supplier": "Santa Cruz Biotechnology (bulk PIB)",
         "origin": "lab_fabricated",
-        "reason": "Synthesized in the lab from solid PIB chunks via solvent evaporation with 2000 mg PIB and SDS, with no ageing described."
+        "reason": "PIB-MPs were synthesized in the lab via solvent evaporation from bulk PIB and this concentration's zeta potential was recorded among the synthesized samples."
       },
       {
         "row_id": "PMC11397364-r1",
-        "particle_name": "PS MNP 50 nm (plain surface)",
-        "supplier": "Micromod (Rostock, Germany)",
+        "particle_name": "PS 50 nm plain",
+        "supplier": "Micromod",
         "origin": "unclear",
-        "reason": "The lines give size and zeta potential in different media but do not state a supplier, fabrication method, or environmental collection for this particle."
+        "reason": "Only zeta-potential measurement lines name this particle; no line states its origin."
       },
       {
         "row_id": "PMC11397364-r2",
-        "particle_name": "PS MNP 50 nm (plain surface)",
-        "supplier": "Micromod (Rostock, Germany)",
+        "particle_name": "PS 50 nm plain",
+        "supplier": "Micromod",
         "origin": "unclear",
-        "reason": "The lines give size and zeta potential in different media but do not state a supplier, fabrication method, or environmental collection for this particle."
+        "reason": "Only zeta-potential measurement lines name this particle; no line states its origin."
       },
       {
         "row_id": "PMC11397364-r3",
-        "particle_name": "PS MNP 100 nm (plain surface)",
-        "supplier": "Micromod (Rostock, Germany)",
+        "particle_name": "PS 100 nm plain",
+        "supplier": "Micromod",
         "origin": "unclear",
-        "reason": "The lines give size and zeta potential in different media but do not state a supplier, fabrication method, or environmental collection for this particle."
+        "reason": "Only zeta-potential measurement lines name this particle; no line states its origin."
       },
       {
         "row_id": "PMC11397364-r4",
-        "particle_name": "PS MNP 100 nm (plain surface)",
-        "supplier": "Micromod (Rostock, Germany)",
+        "particle_name": "PS 100 nm plain",
+        "supplier": "Micromod",
         "origin": "unclear",
-        "reason": "The lines give size and zeta potential in different media but do not state a supplier, fabrication method, or environmental collection for this particle."
+        "reason": "Only zeta-potential measurement lines name this particle; no line states its origin."
       },
       {
         "row_id": "PMC11397364-r5",
-        "particle_name": "PS MNP 500 nm (plain surface)",
-        "supplier": "Micromod (Rostock, Germany)",
+        "particle_name": "PS 500 nm plain",
+        "supplier": "Micromod",
         "origin": "unclear",
-        "reason": "The lines give size and zeta potential in different media but do not state a supplier, fabrication method, or environmental collection for this particle."
+        "reason": "Only zeta-potential measurement lines name this particle; no line states its origin."
       },
       {
         "row_id": "PMC11397364-r6",
-        "particle_name": "PS MNP 500 nm (plain surface)",
-        "supplier": "Micromod (Rostock, Germany)",
+        "particle_name": "PS 500 nm plain",
+        "supplier": "Micromod",
         "origin": "unclear",
-        "reason": "The lines give size and zeta potential in different media but do not state a supplier, fabrication method, or environmental collection for this particle."
+        "reason": "Only zeta-potential measurement lines name this particle; no line states its origin."
       },
       {
         "row_id": "PMC11434537-r1",
         "particle_name": "PET NPs",
-        "supplier": "amorphous PET (Goodfellow, Friedberg, Germany), self-prepared as nanoparticles",
+        "supplier": "Goodfellow (amorphous PET)",
         "origin": "lab_fabricated",
-        "reason": "PET NPs were made in the lab by dissolving amorphous PET in hexafluoroisopropanol and precipitating nanoparticles before zeta potential was measured."
+        "reason": "PET NPs were prepared in the lab by dissolving amorphous PET pellets in hexafluoroisopropanol and precipitating in water, then their zeta potential was measured."
       },
       {
         "row_id": "PMC11434537-r2",
-        "particle_name": "PET–fSPIONs",
-        "supplier": "PET: amorphous PET (Goodfellow, Friedberg, Germany); SPIONs: COMAR Chemicals, South Africa; PAC12NC18: Sikemia, France",
+        "particle_name": "PET–fSPIONs (PET NPs with functionalized SPIONs attached)",
+        "supplier": "Goodfellow (amorphous PET)",
         "origin": "lab_fabricated",
-        "reason": "PET–fSPIONs were prepared in the lab by attaching lab-made PET NPs to functionalized SPIONs, and this composite's zeta potential was measured."
+        "reason": "PET–fSPIONs were made in the lab by combining lab-prepared PET NPs with lab-functionalized SPIONs, and this composite's zeta potential was measured."
       },
       {
-        "row_id": "PMC11478531-r10",
-        "particle_name": "PET MPs (used in flocculation tests)",
-        "supplier": "PET pellets/water bottle-derived “model” MPs, ground and sieved through 200 µm sieve",
+        "row_id": "PMC11478531-r1",
+        "particle_name": "PET model MPs, pH 7.0",
+        "supplier": "virgin PET pellets / water bottle plastic, ground and sieved (200 µm)",
         "origin": "lab_fabricated",
-        "reason": "The “model” PET MPs used in flocculation experiments were produced in the lab from ground PET pellets, with no ageing described."
+        "reason": "PET model MPs were produced in-house from PET pellets/water bottle by milling and sieving, and measured at pH 7.0 per L20."
       },
       {
-        "row_id": "PMC11478531-r11",
-        "particle_name": "PET MPs (used in flocculation tests)",
-        "supplier": "PET pellets/water bottle-derived “model” MPs, ground and sieved through 200 µm sieve",
-        "origin": "lab_fabricated",
-        "reason": "The “model” PET MPs used in flocculation experiments were produced in the lab from ground PET pellets, with no ageing described."
+        "row_id": "PMC11543686-r1",
+        "particle_name": "PS",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "No line states where plain PS particles were obtained, and no ageing step is described for this unaged form."
       },
       {
-        "row_id": "PMC11478531-r8",
-        "particle_name": "PE “model” MPs (ground PE pellets)",
-        "supplier": "PE pellets (virgin plastic), ground in a knife mill (Thomas Scientific) and passed through a 200 µm sieve",
-        "origin": "lab_fabricated",
-        "reason": "Made by grinding virgin PE pellets in a mill and sieving, with no ageing described."
+        "row_id": "PMC11543686-r10",
+        "particle_name": "PS(UV)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by UV-ageing a PS microsphere suspension whose original source is not stated in the lines."
       },
       {
-        "row_id": "PMC11478531-r9",
-        "particle_name": "PET “model” MP pellets",
-        "supplier": "PET pellets (virgin plastic), ground in a knife mill (Thomas Scientific) and passed through a 200 µm sieve",
-        "origin": "lab_fabricated",
-        "reason": "Produced by grinding virgin PET pellets in the lab; zeta potential of ca. -45 mV reported for these ground pellets with no ageing described."
+        "row_id": "PMC11543686-r11",
+        "particle_name": "PS(UV)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by UV-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r12",
+        "particle_name": "PS(UV)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by UV-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r13",
+        "particle_name": "PS(UV)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by UV-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r14",
+        "particle_name": "PS(UV)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by UV-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r15",
+        "particle_name": "PS(UV)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by UV-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r16",
+        "particle_name": "PS(O3)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by O3-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r17",
+        "particle_name": "PS(O3)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by O3-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r18",
+        "particle_name": "PS(O3)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by O3-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r19",
+        "particle_name": "PS(O3)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by O3-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r2",
+        "particle_name": "PS(UV)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by UV-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r20",
+        "particle_name": "PS(O3)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by O3-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r21",
+        "particle_name": "PS(O3)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by O3-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r22",
+        "particle_name": "Ps + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is unaged PS after Cu2+ adsorption; the underlying PS source is not described in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r23",
+        "particle_name": "PS(UV) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is UV-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r24",
+        "particle_name": "PS(O3) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is O3-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r25",
+        "particle_name": "Ps + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is unaged PS after Cu2+ adsorption; the underlying PS source is not described in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r26",
+        "particle_name": "Ps + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is unaged PS after Cu2+ adsorption; the underlying PS source is not described in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r27",
+        "particle_name": "Ps + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is unaged PS after Cu2+ adsorption; the underlying PS source is not described in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r28",
+        "particle_name": "Ps + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is unaged PS after Cu2+ adsorption; the underlying PS source is not described in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r29",
+        "particle_name": "Ps + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is unaged PS after Cu2+ adsorption; the underlying PS source is not described in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r3",
+        "particle_name": "PS(O3)",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "The particle is produced by O3-ageing a PS microsphere suspension whose original source is not stated in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r30",
+        "particle_name": "Ps + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is unaged PS after Cu2+ adsorption; the underlying PS source is not described in the lines."
+      },
+      {
+        "row_id": "PMC11543686-r31",
+        "particle_name": "PS(UV) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is UV-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r32",
+        "particle_name": "PS(UV) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is UV-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r33",
+        "particle_name": "PS(UV) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is UV-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r34",
+        "particle_name": "PS(UV) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is UV-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r35",
+        "particle_name": "PS(UV) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is UV-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r36",
+        "particle_name": "PS(UV) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is UV-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r37",
+        "particle_name": "PS(O3) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is O3-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r38",
+        "particle_name": "PS(O3) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is O3-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r39",
+        "particle_name": "PS(O3) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is O3-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r4",
+        "particle_name": "PS",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "No line states where plain PS particles were obtained, and no ageing step is described for this unaged form."
+      },
+      {
+        "row_id": "PMC11543686-r40",
+        "particle_name": "PS(O3) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is O3-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r41",
+        "particle_name": "PS(O3) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is O3-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r42",
+        "particle_name": "PS(O3) + Cu 2+",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "This is O3-aged PS after Cu2+ adsorption; ageing is described but the original PS source is not stated."
+      },
+      {
+        "row_id": "PMC11543686-r5",
+        "particle_name": "PS",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "No line states where plain PS particles were obtained, and no ageing step is described for this unaged form."
+      },
+      {
+        "row_id": "PMC11543686-r6",
+        "particle_name": "PS",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "No line states where plain PS particles were obtained, and no ageing step is described for this unaged form."
+      },
+      {
+        "row_id": "PMC11543686-r7",
+        "particle_name": "PS",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "No line states where plain PS particles were obtained, and no ageing step is described for this unaged form."
+      },
+      {
+        "row_id": "PMC11543686-r8",
+        "particle_name": "PS",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "No line states where plain PS particles were obtained, and no ageing step is described for this unaged form."
+      },
+      {
+        "row_id": "PMC11543686-r9",
+        "particle_name": "PS",
+        "supplier": "Tianjin Besler Chromatography Technology Development Center",
+        "origin": "unclear",
+        "reason": "No line states where plain PS particles were obtained, and no ageing step is described for this unaged form."
       },
       {
         "row_id": "PMC11644253-r1",
-        "particle_name": "1.0 μm green fluorescent polystyrene microspheres",
-        "supplier": "Tianjin Baseline Chromtech Research Centre, Tianjin, China",
+        "particle_name": "1.0 μm PS MPs alone, pH 5, 5 mM NaCl",
+        "supplier": "Tianjin Baseline Chromtech Research Centre",
         "origin": "unclear",
-        "reason": "The lines discuss zeta potential and behavior of MPs but never state a supplier, synthesis method, or environmental collection for these microspheres."
+        "reason": "The lines discuss pH effects on MP migration but do not state where the PS MPs themselves originated."
       },
       {
         "row_id": "PMC11644253-r2",
-        "particle_name": "1.0 μm green fluorescent polystyrene microspheres",
-        "supplier": "Tianjin Baseline Chromtech Research Centre, Tianjin, China",
+        "particle_name": "1.0 μm PS MPs alone, pH 7, 5 mM NaCl",
+        "supplier": "Tianjin Baseline Chromtech Research Centre",
         "origin": "unclear",
-        "reason": "The lines discuss zeta potential and behavior of MPs but never state a supplier, synthesis method, or environmental collection for these microspheres."
+        "reason": "The lines discuss pH effects on MP migration but do not state where the PS MPs themselves originated."
       },
       {
         "row_id": "PMC11644253-r3",
-        "particle_name": "1.0 μm green fluorescent polystyrene microspheres",
-        "supplier": "Tianjin Baseline Chromtech Research Centre, Tianjin, China",
+        "particle_name": "1.0 μm PS MPs alone, IS 25 mM NaCl",
+        "supplier": "Tianjin Baseline Chromtech Research Centre",
         "origin": "unclear",
-        "reason": "The lines discuss zeta potential and behavior of MPs but never state a supplier, synthesis method, or environmental collection for these microspheres."
+        "reason": "The lines discuss ionic strength effects on MP migration but do not state where the PS MPs themselves originated."
       },
       {
         "row_id": "PMC11644253-r4",
-        "particle_name": "1.0 μm green fluorescent polystyrene microspheres",
-        "supplier": "Tianjin Baseline Chromtech Research Centre, Tianjin, China",
+        "particle_name": "1.0 μm PS MPs in presence of Cr(VI)",
+        "supplier": "Tianjin Baseline Chromtech Research Centre",
         "origin": "unclear",
-        "reason": "The lines discuss zeta potential and behavior of MPs but never state a supplier, synthesis method, or environmental collection for these microspheres."
+        "reason": "The lines discuss co-transport of MPs and Cr(VI) but do not state where the PS MPs themselves originated."
       },
       {
         "row_id": "PMC11670363-r1",
@@ -933,926 +1125,899 @@
       },
       {
         "row_id": "PMC11695633-r1",
-        "particle_name": "PS (polystyrene microplastic particles, ground from granules, <425 μm)",
-        "supplier": "Pishgaman Plastic Company, Iran",
+        "particle_name": "PS",
+        "supplier": "Pishgaman Plastic Company, Iran (granules)",
         "origin": "lab_fabricated",
-        "reason": "PS granules from a supplier were crushed, sieved (<425 μm), cleaned, and dried in the lab to create the particles measured for zeta potential."
+        "reason": "PS granules were obtained from a plastics company and then crushed, sieved, washed, and dried in the lab to produce the particles used."
       },
       {
-        "row_id": "PMC11695633-r2",
-        "particle_name": "PS floc (PS particles flocculated with C. vulgaris biomass)",
-        "supplier": "Pishgaman Plastic Company, Iran",
+        "row_id": "PMC11722969-r1",
+        "particle_name": "PS-NPs (synthesized, rhodamine B fluorescent)",
+        "supplier": "synthesized in-house",
         "origin": "lab_fabricated",
-        "reason": "PS flocs were formed in the lab by combining lab-fabricated PS particles with dried C. vulgaris biomass cultivated in the lab."
+        "reason": "PS-NPs were synthesized in the laboratory via emulsion polymerization with rhodamine B dye, and zeta potential was measured on this synthesized suspension with no ageing described."
       },
       {
         "row_id": "PMC11739412-r1",
-        "particle_name": "PS-MPs (irregular powder, non-biodegradable polystyrene microplastics)",
-        "supplier": "Department of Environmental Sciences, GC University Faisalabad",
+        "particle_name": "PS-MPs",
+        "supplier": "Department of Environmental Sciences at GC University Faisalabad",
         "origin": "unclear",
-        "reason": "The particles were provided by a university department with characteristics listed, but no line states whether they were purchased, lab-fabricated, or environmentally collected, and no ageing is described."
+        "reason": "PS-MPs were provided by a university department with physicochemical characteristics given, but no statement of commercial purchase, lab fabrication, or environmental collection is provided."
       },
       {
-        "row_id": "PMC11883372-r1",
-        "particle_name": "PS-S (20–120 μm)",
-        "supplier": "Yangli Technology Co., Ltd. (Shanghai, China)",
+        "row_id": "PMC11767353-r1",
+        "particle_name": "LDPE nanoplastic fragments after 21 days degradation (detached, no surfactant)",
+        "supplier": "Sigma-Aldrich Co. LLC (film material)",
         "origin": "lab_fabricated",
-        "reason": "PS-S was obtained by freeze-milling and sieving of purchased PS granules, making it lab-fabricated from bulk polymer; no ageing of the MP itself is described (only sediment ageing with antibiotics)."
+        "reason": "LDPE pellets from Sigma-Aldrich were made into films, degraded with sulfate radicals in seawater, then fragmented by vortexing before DLS/zeta measurement."
       },
       {
-        "row_id": "PMC11883372-r2",
-        "particle_name": "PS-B (0.5–2.0 mm)",
-        "supplier": "Yangli Technology Co., Ltd. (Shanghai, China)",
+        "row_id": "PMC11767353-r2",
+        "particle_name": "LDPE nanoplastic fragments after 30 days degradation (detached, no surfactant)",
+        "supplier": "Sigma-Aldrich Co. LLC (film material)",
         "origin": "lab_fabricated",
-        "reason": "PS-B was obtained by freeze-milling and sieving of purchased PS granules, making it lab-fabricated from bulk polymer; no ageing of the MP itself is described."
+        "reason": "LDPE pellets from Sigma-Aldrich were made into films, degraded with sulfate radicals in seawater, then fragmented by vortexing before DLS/zeta measurement."
       },
       {
-        "row_id": "PMC11883372-r3",
-        "particle_name": "PVC-S (20–120 μm)",
-        "supplier": "Weihai Huana plastic Co., Ltd. (Shandong, China)",
+        "row_id": "PMC11851392-r1",
+        "particle_name": "BIO microplastics (Mater-Bi, PBAT-starch mulch film), unweathered",
+        "supplier": "Novamont (Agrobiofilm, Silvex)",
         "origin": "lab_fabricated",
-        "reason": "PVC-S was obtained by freeze-milling and sieving of purchased PVC pipes, making it lab-fabricated from bulk polymer; no ageing of the MP itself is described."
+        "reason": "The mulch film was supplied as plastic sheeting and then fragmented, blended, and sieved in the lab to produce microplastics, with this unweathered batch (not UV-exposed) used for the zeta potential measurement of -23.8 mV."
       },
       {
-        "row_id": "PMC11883372-r4",
-        "particle_name": "PVC-B (0.5–2.0 mm)",
-        "supplier": "Weihai Huana plastic Co., Ltd. (Shandong, China)",
+        "row_id": "PMC11966731-r2",
+        "particle_name": "BSμP hybrid",
+        "supplier": "BD Biosciences, India",
         "origin": "lab_fabricated",
-        "reason": "PVC-B was obtained by freeze-milling and sieving of purchased PVC pipes, making it lab-fabricated from bulk polymer; no ageing of the MP itself is described."
+        "reason": "Synthesized in the lab by mixing commercial μP with biosurfactant and UV-treating the mixture to form the hybrid, mimicking natural UV exposure."
       },
       {
-        "row_id": "PMC11944792-r1",
-        "particle_name": "Nylon-11 NPs",
-        "supplier": "fabricated in-house (nylon-11 from Sigma-Aldrich, Catalog Number 181153)",
+        "row_id": "PMC11990616-r1",
+        "particle_name": "PET50nm",
+        "supplier": "Goodfellow, Germany (amorphous PET precursor)",
         "origin": "lab_fabricated",
-        "reason": "Nylon-11 NPs were fabricated in-house from bulk nylon-11 pellets dissolved in HFIP and precipitated into water, not collected from an environment or purchased as finished particles."
+        "reason": "PET50nm was prepared in the lab by dissolving amorphous PET pellets and precipitating at 600 rpm to form 50 nm nanoparticles."
+      },
+      {
+        "row_id": "PMC11990616-r2",
+        "particle_name": "PET140nm",
+        "supplier": "Goodfellow, Germany (amorphous PET precursor)",
+        "origin": "lab_fabricated",
+        "reason": "PET140nm was prepared in the lab by dissolving amorphous PET pellets and precipitating at 100 rpm to form 140 nm nanoparticles."
       },
       {
         "row_id": "PMC12003597-r1",
-        "particle_name": "artificially aged PET",
-        "supplier": "Goodfellow (Cambridge, UK)",
-        "origin": "lab_fabricated",
-        "reason": "PET was cryogenically milled from Goodfellow PET powder and then chemically etched/aged in KOH to produce the aged PET particles used for zeta potential measurement."
-      },
-      {
-        "row_id": "PMC12003597-r2",
         "particle_name": "artificially aged PE",
         "supplier": "Alfa Aesar",
         "origin": "lab_fabricated",
-        "reason": "PE was cryogenically milled from Alfa Aesar LDPE flakes and then chemically aged with HNO3/H2O2 to produce the aged PE particles used for zeta potential measurement."
+        "reason": "PE was cryomilled from Alfa Aesar LDPE flakes/rod and then chemically aged with HNO3/H2O2 in the lab."
+      },
+      {
+        "row_id": "PMC12003597-r2",
+        "particle_name": "artificially aged PET",
+        "supplier": "Goodfellow",
+        "origin": "lab_fabricated",
+        "reason": "PET was cryomilled from Goodfellow PET powder and then chemically etched with KOH in the lab to produce aged PET."
+      },
+      {
+        "row_id": "PMC12003597-r3",
+        "particle_name": "artificially aged PE, after 33 months dry storage",
+        "supplier": "Alfa Aesar",
+        "origin": "lab_fabricated",
+        "reason": "Same lab-aged PE powder from Alfa Aesar LDPE, stored dry for 33 months before zeta potential was re-measured."
+      },
+      {
+        "row_id": "PMC12003597-r4",
+        "particle_name": "artificially aged PET, after 33 months dry storage",
+        "supplier": "Goodfellow",
+        "origin": "lab_fabricated",
+        "reason": "Same lab-aged PET powder from Goodfellow PET, stored dry for 33 months before zeta potential was re-measured."
+      },
+      {
+        "row_id": "PMC12081513-r1",
+        "particle_name": "PVC < 1 μm",
+        "supplier": "MOMENTUM consortium",
+        "origin": "lab_fabricated",
+        "reason": "Produced by centrifugal and ball-milling from bulk polymer as stated for MNPs including PVC, with zeta potential measured on this suspension."
+      },
+      {
+        "row_id": "PMC12081513-r2",
+        "particle_name": "PVC 1–5 μm",
+        "supplier": "MOMENTUM consortium",
+        "origin": "lab_fabricated",
+        "reason": "Produced by centrifugal and ball-milling from bulk polymer as stated for MNPs including PVC, with zeta potential measured on this suspension."
+      },
+      {
+        "row_id": "PMC12081513-r3",
+        "particle_name": "PVC 5–10 μm",
+        "supplier": "MOMENTUM consortium",
+        "origin": "lab_fabricated",
+        "reason": "Produced by centrifugal and ball-milling from bulk polymer as stated for MNPs including PVC, with zeta potential measured on this suspension."
+      },
+      {
+        "row_id": "PMC12081513-r4",
+        "particle_name": "PP/Talc < 1 μm",
+        "supplier": "MOMENTUM consortium",
+        "origin": "lab_fabricated",
+        "reason": "Produced by centrifugal and ball-milling with talc added as filler during production, zeta potential measured on this suspension."
+      },
+      {
+        "row_id": "PMC12081513-r5",
+        "particle_name": "PP/Talc 1–5 μm",
+        "supplier": "MOMENTUM consortium",
+        "origin": "lab_fabricated",
+        "reason": "Produced by centrifugal and ball-milling with talc added as filler during production, zeta potential measured on this suspension."
+      },
+      {
+        "row_id": "PMC12081513-r6",
+        "particle_name": "PP/Talc 5–10 μm",
+        "supplier": "MOMENTUM consortium",
+        "origin": "lab_fabricated",
+        "reason": "Produced by centrifugal and ball-milling with talc added as filler during production, zeta potential measured on this suspension."
+      },
+      {
+        "row_id": "PMC12081513-r7",
+        "particle_name": "PA < 1 μm",
+        "supplier": "MOMENTUM consortium",
+        "origin": "lab_fabricated",
+        "reason": "Produced by centrifugal and ball-milling from bulk polymer as stated for MNPs including PA, with zeta potential measured on this suspension."
+      },
+      {
+        "row_id": "PMC12081513-r8",
+        "particle_name": "PA 1–5 μm",
+        "supplier": "MOMENTUM consortium",
+        "origin": "lab_fabricated",
+        "reason": "Produced by centrifugal and ball-milling from bulk polymer as stated for MNPs including PA, with zeta potential measured on this suspension."
+      },
+      {
+        "row_id": "PMC12081513-r9",
+        "particle_name": "PA 5–10 μm",
+        "supplier": "MOMENTUM consortium",
+        "origin": "lab_fabricated",
+        "reason": "Produced by centrifugal and ball-milling from bulk polymer as stated for MNPs including PA, with zeta potential measured on this suspension."
+      },
+      {
+        "row_id": "PMC12157050-r3",
+        "particle_name": "PS@LUC-nano",
+        "supplier": "Yuan Biotech (Shanghai, China)",
+        "origin": "lab_fabricated",
+        "reason": "PS@LUC-nano was fabricated in the lab by coating LUC-nano onto purchased PS-NPs via a swelling/deswelling synthesis procedure."
+      },
+      {
+        "row_id": "PMC12157050-r4",
+        "particle_name": "PS@LUC-micro",
+        "supplier": "Yuan Biotech (Shanghai, China)",
+        "origin": "lab_fabricated",
+        "reason": "PS@LUC-micro was fabricated in the lab by coating LUC-nano onto purchased PS-MPs via a swelling/deswelling synthesis procedure."
       },
       {
         "row_id": "PMC12195903-r1",
-        "particle_name": "PE-NPs",
+        "particle_name": "PE-NPs (sonochemically produced)",
         "supplier": "Micro Powders Inc.",
         "origin": "lab_fabricated",
-        "reason": "Commercial PE microparticles were purchased and then processed in-lab via a sonochemical method to synthesize PE-NPs, with no described ageing/weathering step."
+        "reason": "Commercial raw PE powder was processed in the lab via probe-sonication/sonochemical synthesis into PE-NPs, making the resulting particles lab-fabricated with no described ageing/weathering."
       },
       {
         "row_id": "PMC12338031-r1",
-        "particle_name": "PLGA-COOH microparticle",
+        "particle_name": "PLGA–COOH microparticles",
         "supplier": "Nanosoft Polymers (Winston-Salem, NC)",
         "origin": "lab_fabricated",
-        "reason": "PLGA-COOH polymer was purchased but the microparticles themselves were formulated in the lab via double emulsion-evaporation before zeta potential was measured."
+        "reason": "PLGA–COOH polymer was purchased as raw polymer and formed into microparticles in the lab via double emulsion-evaporation before zeta potential measurement."
       },
       {
         "row_id": "PMC12338031-r2",
-        "particle_name": "PLGA-NH2 microparticle",
+        "particle_name": "PLGA–NH2 microparticles",
         "supplier": "Nanosoft Polymers (Winston-Salem, NC)",
         "origin": "lab_fabricated",
-        "reason": "PLGA-NH2 polymer was purchased but the microparticles themselves were formulated in the lab via double emulsion-evaporation before zeta potential was measured."
+        "reason": "PLGA–NH2 polymer was purchased as raw polymer and formed into microparticles in the lab via double emulsion-evaporation before zeta potential measurement."
       },
       {
         "row_id": "PMC12338031-r3",
-        "particle_name": "PLGA-OH microparticle",
+        "particle_name": "PLGA–OH microparticles",
         "supplier": "Nanosoft Polymers (Winston-Salem, NC)",
         "origin": "lab_fabricated",
-        "reason": "PLGA-OH polymer was purchased but the microparticles themselves were formulated in the lab via double emulsion-evaporation before zeta potential was measured."
+        "reason": "PLGA–OH polymer was purchased as raw polymer and formed into microparticles in the lab via double emulsion-evaporation before zeta potential measurement."
       },
       {
-        "row_id": "PMC12356328-r1",
-        "particle_name": "PET",
-        "supplier": "water bottles",
+        "row_id": "PMC12365251-r1",
+        "particle_name": "Pd-doped polystyrene NPs",
+        "supplier": "synthesized in-house",
         "origin": "lab_fabricated",
-        "reason": "PET was sourced from water bottles and cut/ground/sieved into MP fragments in the lab."
-      },
-      {
-        "row_id": "PMC12356328-r2",
-        "particle_name": "PP",
-        "supplier": "plastic welding rods",
-        "origin": "lab_fabricated",
-        "reason": "PP was sourced from plastic welding rods and cut/ground/sieved into MP fragments in the lab."
-      },
-      {
-        "row_id": "PMC12361227-r1",
-        "particle_name": "PEEK particles",
-        "supplier": "Invibio Ltd. (PEEK-OPTIMA™ LT1 rods and plates)",
-        "origin": "lab_fabricated",
-        "reason": "PEEK particles were generated by wear debris generation from PEEK-OPTIMA rods/plates using a pin-on-plate wear simulator, then gamma irradiated."
+        "reason": "The NPs were synthesized in-house via emulsion polymerization with a Pd-containing salt, with no mention of ageing."
       },
       {
         "row_id": "PMC12475273-r1",
-        "particle_name": "vPET (virgin polyethylene terephthalate MNPs)",
-        "supplier": "Joint Research Centre of the European Commission (EC JRC, Geel), manufactured from Goodfellow PET powder (Cambridge, UK, Lot No. 300830480)",
+        "particle_name": "weathered PET (wPET)",
+        "supplier": "Joint Research Centre of the European Commission (EC JRC, Geel)",
         "origin": "lab_fabricated",
-        "reason": "vPET was manufactured by the JRC from PET powder supplied by Goodfellow, making it a lab-fabricated particle with no ageing applied."
+        "reason": "The JRC manufactured PET MNPs from Goodfellow PET powder and then chemically weathered the vPET via alkaline hydrolysis to produce wPET, with carbonyl index confirming oxidation."
       },
       {
         "row_id": "PMC12475273-r2",
-        "particle_name": "wPET (weathered polyethylene terephthalate MNPs)",
-        "supplier": "Joint Research Centre of the European Commission (EC JRC, Geel), manufactured from Goodfellow PET powder (Cambridge, UK, Lot No. 300830480)",
+        "particle_name": "weathered PET (wPET)",
+        "supplier": "Joint Research Centre of the European Commission (EC JRC, Geel)",
         "origin": "lab_fabricated",
-        "reason": "wPET was made by the JRC from the same Goodfellow PET powder and then chemically weathered by alkaline hydrolysis in the lab."
+        "reason": "The JRC manufactured PET MNPs from Goodfellow PET powder and then chemically weathered the vPET via alkaline hydrolysis to produce wPET, with carbonyl index confirming oxidation."
       },
       {
         "row_id": "PMC12475273-r3",
-        "particle_name": "vPET (virgin polyethylene terephthalate MNPs)",
-        "supplier": "Joint Research Centre of the European Commission (EC JRC, Geel), manufactured from Goodfellow PET powder (Cambridge, UK, Lot No. 300830480)",
+        "particle_name": "virgin PET (vPET)",
+        "supplier": "Joint Research Centre of the European Commission (EC JRC, Geel)",
         "origin": "lab_fabricated",
-        "reason": "vPET was manufactured by the JRC from PET powder supplied by Goodfellow, making it a lab-fabricated particle with no ageing applied."
+        "reason": "vPET was manufactured by the JRC from Goodfellow PET powder with no ageing applied, serving as the unweathered precursor to wPET."
       },
       {
         "row_id": "PMC12475273-r4",
-        "particle_name": "wPET (weathered polyethylene terephthalate MNPs)",
-        "supplier": "Joint Research Centre of the European Commission (EC JRC, Geel), manufactured from Goodfellow PET powder (Cambridge, UK, Lot No. 300830480)",
+        "particle_name": "virgin PET (vPET)",
+        "supplier": "Joint Research Centre of the European Commission (EC JRC, Geel)",
         "origin": "lab_fabricated",
-        "reason": "wPET was made by the JRC from the same Goodfellow PET powder and then chemically weathered by alkaline hydrolysis in the lab."
+        "reason": "vPET was manufactured by the JRC from Goodfellow PET powder with no ageing applied, serving as the unweathered precursor to wPET."
+      },
+      {
+        "row_id": "PMC12475273-r5",
+        "particle_name": "weathered PET (wPET)",
+        "supplier": "Joint Research Centre of the European Commission (EC JRC, Geel)",
+        "origin": "lab_fabricated",
+        "reason": "The JRC manufactured PET MNPs from Goodfellow PET powder and then chemically weathered the vPET via alkaline hydrolysis to produce wPET, with carbonyl index confirming oxidation."
+      },
+      {
+        "row_id": "PMC12475273-r6",
+        "particle_name": "virgin PET (vPET)",
+        "supplier": "Joint Research Centre of the European Commission (EC JRC, Geel)",
+        "origin": "lab_fabricated",
+        "reason": "vPET was manufactured by the JRC from Goodfellow PET powder with no ageing applied, serving as the unweathered precursor to wPET."
+      },
+      {
+        "row_id": "PMC12578981-r1",
+        "particle_name": "Rhodamine-labelled PLA-NPs",
+        "supplier": "Resomer R 202, Evonik (PLA); NPs produced in-house",
+        "origin": "lab_fabricated",
+        "reason": "PLA-NPs were fabricated in the lab via microfluidics-assisted nanoprecipitation with Rhodamine B coprecipitated into the polymer phase, and no ageing step is described."
       },
       {
         "row_id": "PMC12637955-r1",
-        "particle_name": "LD-PE microplastic (0 h, non-degraded)",
-        "supplier": "LyondellBasell (Lupolen 1800 P-1)",
+        "particle_name": "PE 0 h",
+        "supplier": "LyondellBasell, Rotterdam, NL",
         "origin": "lab_fabricated",
-        "reason": "LD-PE pellets were cryomilled and sieved in the lab to produce MPs, with no UV exposure described for this sample."
+        "reason": "PE was made from bulk LD-PE polymer by cryomilling and sieving, with no ageing applied at 0 h."
       },
       {
         "row_id": "PMC12637955-r2",
-        "particle_name": "LD-PE microplastic (400 h UV-degraded)",
-        "supplier": "LyondellBasell (Lupolen 1800 P-1)",
+        "particle_name": "PE 400 h",
+        "supplier": "LyondellBasell, Rotterdam, NL",
         "origin": "lab_fabricated",
-        "reason": "LD-PE was cryomilled/sieved in the lab and then subjected to accelerated UV degradation in a Q-SUN chamber for a defined duration."
+        "reason": "PE was cryomilled from bulk polymer and then subjected to accelerated UV degradation for 400 h in the lab chamber."
       },
       {
         "row_id": "PMC12637955-r3",
-        "particle_name": "LD-PE microplastic (2000 h UV-degraded)",
-        "supplier": "LyondellBasell (Lupolen 1800 P-1)",
+        "particle_name": "PE 2000 h",
+        "supplier": "LyondellBasell, Rotterdam, NL",
         "origin": "lab_fabricated",
-        "reason": "LD-PE was cryomilled/sieved in the lab and UV-aged to 2000 h in the accelerated degradation chamber, causing fragmentation."
+        "reason": "PE was cryomilled from bulk polymer and then subjected to accelerated UV degradation for 2000 h in the lab chamber."
       },
       {
         "row_id": "PMC12637955-r4",
-        "particle_name": "PET microplastic (0 h, non-degraded)",
-        "supplier": "Veolia Umweltservice (CleanPET WF)",
+        "particle_name": "PET 0 h",
+        "supplier": "Veolia Umweltservice, Hamburg, Germany",
         "origin": "lab_fabricated",
-        "reason": "PET material was cryomilled and sieved in the lab to produce MPs, with no UV exposure described for this sample."
+        "reason": "PET was made from bulk CleanPET material by cryomilling and sieving, with no ageing applied at 0 h."
       },
       {
         "row_id": "PMC12637955-r5",
-        "particle_name": "PET microplastic (400 h UV-degraded)",
-        "supplier": "Veolia Umweltservice (CleanPET WF)",
+        "particle_name": "PET 400 h",
+        "supplier": "Veolia Umweltservice, Hamburg, Germany",
         "origin": "lab_fabricated",
-        "reason": "PET was cryomilled/sieved in the lab and then subjected to accelerated UV degradation in a Q-SUN chamber for a defined duration."
+        "reason": "PET was cryomilled from bulk polymer and then subjected to accelerated UV degradation for 400 h in the lab chamber."
       },
       {
         "row_id": "PMC12637955-r6",
-        "particle_name": "PET microplastic (2000 h UV-degraded)",
-        "supplier": "Veolia Umweltservice (CleanPET WF)",
+        "particle_name": "PET 2000 h",
+        "supplier": "Veolia Umweltservice, Hamburg, Germany",
         "origin": "lab_fabricated",
-        "reason": "PET was cryomilled/sieved in the lab and UV-aged to 2000 h in the accelerated degradation chamber."
+        "reason": "PET was cryomilled from bulk polymer and then subjected to accelerated UV degradation for 2000 h in the lab chamber."
       },
       {
-        "row_id": "PMC12737304-r1",
-        "particle_name": "PS-MPs",
-        "supplier": "Haojiajie Industrial Limited Company (Shenzhen, China) (source PS spoons, ground in-house)",
+        "row_id": "PMC12691734-r1",
+        "particle_name": "photopolymerizing resin particles (PRPs)",
+        "supplier": "Siraya Tech (Build resin)",
         "origin": "lab_fabricated",
-        "reason": "PS-MPs were made by cryogenically grinding purchased food-grade PS spoons into microplastic fragments in the lab."
+        "reason": "PRPs were produced in the lab by 3D-printing resin blocks and sanding them to generate resin particles, with no ageing step described."
       },
       {
         "row_id": "PMC12886875-r2",
-        "particle_name": "High-density polyethylene nanoparticles (HDPE-NPs)",
-        "supplier": "isolated from perforated film supplied by PLASTEXIM (Tychy, Poland)",
+        "particle_name": "HDPE-NPs isolated from perforated HDPE film",
+        "supplier": "PLASTEXIM (Tychy, Poland) film",
         "origin": "lab_fabricated",
-        "reason": "HDPE-NPs were extracted in the lab from commercial perforated polymeric film via thermal release and filtration, with no ageing described."
+        "reason": "HDPE-NPs were extracted in the lab from commercially supplied perforated HDPE film via thermal release and filtration, not collected from the environment or bought as particles."
       },
       {
         "row_id": "PMC12886875-r3",
-        "particle_name": "High-density polyethylene nanoparticles (HDPE-NPs)",
-        "supplier": "isolated from perforated film supplied by PLASTEXIM (Tychy, Poland)",
+        "particle_name": "HDPE-NPs isolated from perforated HDPE film",
+        "supplier": "PLASTEXIM (Tychy, Poland) film",
         "origin": "lab_fabricated",
-        "reason": "HDPE-NPs were extracted in the lab from commercial perforated polymeric film via thermal release and filtration, with no ageing described."
+        "reason": "HDPE-NPs were extracted in the lab from commercially supplied perforated HDPE film via thermal release and filtration, not collected from the environment or bought as particles."
       },
       {
         "row_id": "PMC12900762-r1",
-        "particle_name": "Polylactic acid nanoplastics (PLA-NPs), 170 nm (fluorescently labeled, Nile Red)",
-        "supplier": "raw PLA from Shanghai Macklin Biochemical Technology Co., Ltd.; nanoparticles synthesized in-house by nanoprecipitation",
+        "particle_name": "170 nm PLA-NPs",
+        "supplier": "PLA from Shanghai Macklin Biochemical Technology Co., Ltd.; NPs prepared in-house",
         "origin": "lab_fabricated",
-        "reason": "The 170 nm PLA-NPs were produced in the lab (with fluorescent Nile Red labeling and characterized by SEM/zeta potential) from bulk polylactic acid material purchased as raw polymer, not as ready-made particles, and no ageing treatment is described."
+        "reason": "PLA-NPs were synthesized in the lab from bulk PLA via nanoprecipitation/emulsion-solvent evaporation with fluorescent labeling, then characterized for zeta potential, with no ageing described."
       },
       {
         "row_id": "PMC12900762-r2",
-        "particle_name": "Polylactic acid nanoplastics (PLA-NPs), 330 nm (fluorescently labeled, Nile Red)",
-        "supplier": "raw PLA from Shanghai Macklin Biochemical Technology Co., Ltd.; nanoparticles synthesized in-house by nanoprecipitation",
+        "particle_name": "330 nm PLA-NPs",
+        "supplier": "PLA from Shanghai Macklin Biochemical Technology Co., Ltd.; NPs prepared in-house",
         "origin": "lab_fabricated",
-        "reason": "The 330 nm PLA-NPs were produced in the lab (with fluorescent Nile Red labeling and characterized by SEM/zeta potential) from bulk polylactic acid material purchased as raw polymer, not as ready-made particles, and no ageing treatment is described."
+        "reason": "PLA-NPs were synthesized in the lab from bulk PLA via nanoprecipitation/emulsion-solvent evaporation with fluorescent labeling, then characterized for zeta potential, with no ageing described."
+      },
+      {
+        "row_id": "PMC12969122-r1",
+        "particle_name": "MP (polystyrene microplastic, FACS beads)",
+        "supplier": "BD Life Sciences, USA",
+        "origin": "unclear",
+        "reason": "No line states where the MP particles were purchased, synthesized, or collected from an environment, so their origin cannot be determined from the given text."
       },
       {
         "row_id": "PMC13054805-r1",
-        "particle_name": "unlabeled polyethylene nanoplastics (nPE)",
-        "supplier": "Flo-thene UF20S, Sumitomo Seika Chemicals (Osaka, Japan)",
+        "particle_name": "unlabeled nPE",
+        "supplier": "Sumitomo Seika Chemicals (PE source particles)",
         "origin": "lab_fabricated",
-        "reason": "nPE was made in the lab by dissolving commercially purchased PE particles in xylene and reprecipitating them in DMSO, with zeta potential compared to Green nPE in the DLS experiment, and no ageing step is described for it."
+        "reason": "Unlabeled nPE was made in the lab by dissolving purchased bulk PE particles in xylene and reprecipitating them in DMSO, with no mention of any ageing step."
       },
       {
         "row_id": "PMC13054805-r2",
-        "particle_name": "green fluorescent labeled nPE (Green nPE)",
-        "supplier": "Flo-thene UF20S, Sumitomo Seika Chemicals (Osaka, Japan); Qdots from Sigma-Aldrich",
+        "particle_name": "Green nPE",
+        "supplier": "Sumitomo Seika Chemicals (PE source particles)",
         "origin": "lab_fabricated",
-        "reason": "Green nPE was made using the same lab dissolution/reprecipitation process with Qdots added for labeling, with its zeta potential compared to unlabeled nPE, and no ageing step is described."
+        "reason": "Green nPE was produced by the same dissolution/reprecipitation protocol using Qdots to label the PE, with no described ageing step."
       },
       {
         "row_id": "PMC13054805-r3",
-        "particle_name": "red fluorescent labeled degraded nPE (Red d-nPE)",
-        "supplier": "Flo-thene UF20S, Sumitomo Seika Chemicals (Osaka, Japan); Qdots from Sigma-Aldrich",
+        "particle_name": "Red d-nPE",
+        "supplier": "Sumitomo Seika Chemicals (PE source particles)",
         "origin": "lab_fabricated",
-        "reason": "Red d-nPE was made from the same lab-based PE dissolution/reprecipitation and Qdot-labeling process and is explicitly described as degraded, with its zeta potential measured in Fig. 6E after this lab degradation."
-      },
-      {
-        "row_id": "PMC13095943-r1",
-        "particle_name": "Aged MNPs (PE fragments, PET fibres, PS NP beads)",
-        "supplier": "PE fragments made in-house from an unused PE take-away container; PET fibres made in-house from fleece clothing; PS NPs (submicron ~400 nm, polychromatic red fluorescent) from Polyscience, USA",
-        "origin": "unclear",
-        "reason": "This composite group mixes commercial PS NP beads (L3) with lab-made PE fragments (L6) and PET fibres (L5), so no single origin applies, though all were subsequently aged in the lab ageing chamber (L7)."
-      },
-      {
-        "row_id": "PMC13095943-r2",
-        "particle_name": "Pristine (virgin) MNPs (PE fragments, PET fibres, PS NP beads)",
-        "supplier": "PE fragments made in-house from an unused PE take-away container; PET fibres made in-house from fleece clothing; PS NPs (submicron ~400 nm, polychromatic red fluorescent) from Polyscience, USA",
-        "origin": "unclear",
-        "reason": "The pristine group again combines commercially purchased PS NP beads (L3) with lab-fabricated PE fragments (L6) and PET fibres (L5), giving mixed origins, and these are described as non-aged compared to the aged set (L42)."
+        "reason": "Red d-nPE is the red fluorescent labeled degraded nPE prepared from the same lab-made PE particle protocol, with the 'degraded' designation indicating a lab ageing step before zeta potential measurement."
       },
       {
         "row_id": "PMC13241894-r1",
-        "particle_name": "small PS-MP fraction (S-PS), pristine",
-        "supplier": "BASF, Germany (PS resin grade 158 K, cryogenically milled)",
+        "particle_name": "small PS-MP fraction, pristine",
+        "supplier": "BASF PS resin 158 K, cryogenically milled in-house",
         "origin": "lab_fabricated",
-        "reason": "PS resin was cryogenically milled and size-fractionated to yield the small PS-MP fraction, and no ageing/weathering step was described for it."
+        "reason": "The small PS-MP fraction was generated by cryogenic milling and size-fractionation of PS resin, with no ageing described for this pristine particle."
       },
       {
         "row_id": "PMC13241894-r2",
-        "particle_name": "small PS-MP fraction (S-PS), BSA-adsorbed",
-        "supplier": "BASF, Germany (PS resin grade 158 K, cryogenically milled)",
+        "particle_name": "small PS-MP fraction, FITC-BSA adsorbed",
+        "supplier": "BASF PS resin 158 K, cryogenically milled in-house",
         "origin": "lab_fabricated",
-        "reason": "Same cryogenically milled small PS-MP fraction was incubated with FITC-BSA to adsorb protein prior to zeta-potential measurement, with no environmental weathering described."
+        "reason": "This is the same cryogenically milled and size-fractionated small PS-MP fraction, subsequently incubated with FITC-BSA to adsorb protein, with no weathering/ageing process described."
       },
       {
         "row_id": "PMC13241894-r3",
-        "particle_name": "small PS-MP fraction (S-PS)",
-        "supplier": "BASF, Germany (PS resin grade 158 K, cryogenically milled)",
+        "particle_name": "small PS-MP fraction in ALI culture medium",
+        "supplier": "BASF PS resin 158 K, cryogenically milled in-house",
         "origin": "lab_fabricated",
-        "reason": "The small PS-MP fraction was produced by cryogenic milling and sieving of PS resin, with no ageing described."
+        "reason": "The particle itself is the cryogenically milled small PS-MP fraction; ALI culture medium is only the dispersion medium for zeta-potential measurement, not an ageing treatment."
       },
       {
         "row_id": "PMC13241894-r4",
-        "particle_name": "small PS-MP fraction (S-PS)",
-        "supplier": "BASF, Germany (PS resin grade 158 K, cryogenically milled)",
+        "particle_name": "small PS-MP fraction in DPBS",
+        "supplier": "BASF PS resin 158 K, cryogenically milled in-house",
         "origin": "lab_fabricated",
-        "reason": "The small PS-MP fraction was produced by cryogenic milling and sieving of PS resin, with no ageing described."
+        "reason": "The particle is the lab-milled small PS-MP fraction; DPBS is merely the suspension medium used for zeta-potential analysis, not an environmental source or ageing step."
       },
       {
         "row_id": "PMC13241894-r5",
-        "particle_name": "small PS-MP fraction (S-PS)",
-        "supplier": "BASF, Germany (PS resin grade 158 K, cryogenically milled)",
+        "particle_name": "small PS-MP fraction in macrophage culture medium",
+        "supplier": "BASF PS resin 158 K, cryogenically milled in-house",
         "origin": "lab_fabricated",
-        "reason": "The small PS-MP fraction was produced by cryogenic milling and sieving of PS resin, with no ageing described."
+        "reason": "The particle is the cryogenically milled, size-fractionated small PS-MP fraction; macrophage culture medium is only the dispersion medium used for the zeta-potential measurement."
       },
       {
         "row_id": "PMC13338858-r3",
-        "particle_name": "PDA–PS complex",
-        "supplier": "Spherotech Inc. (PS component)",
+        "particle_name": "PDA–PS complex at pH 2",
+        "supplier": "Spherotech Inc.",
         "origin": "lab_fabricated",
-        "reason": "The complex forms from lab-synthesised PDA (from DA-HCl) mixed with commercial PS nanoplastics during flocculation experiments, making it lab-fabricated with no ageing described."
+        "reason": "The complex was formed in the lab by flocculating the purchased PS particles with laboratory-synthesised PDA spheres, so the particle as measured is lab-fabricated; no ageing step is described."
+      },
+      {
+        "row_id": "PMC13379464-r3",
+        "particle_name": "PLA-NPLs",
+        "supplier": "AIMPLAS",
+        "origin": "lab_fabricated",
+        "reason": "PLA-NPLs were produced by AIMPLAS following a protocol, described as resulting from in-house degradation of PLA pellets."
+      },
+      {
+        "row_id": "PMC13379464-r4",
+        "particle_name": "PLA-NPLs",
+        "supplier": "AIMPLAS",
+        "origin": "lab_fabricated",
+        "reason": "PLA-NPLs were produced by AIMPLAS following a protocol, described as resulting from in-house degradation of PLA pellets."
+      },
+      {
+        "row_id": "PMC13391378-r1",
+        "particle_name": "PE particles (dispersed in reaction mixture)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Commercial bulk PE (Sigma-Aldrich) was loaded into the autoclave and underwent oxidative reaction/dispersion into microdroplets in situ, and it was this in-reaction, oxidized dispersion whose turbidity and zeta potential (-28.3 mV) were measured."
       },
       {
         "row_id": "PMC13394419-r1",
-        "particle_name": "PEwhite-film microplastics (250-600 um), with and without soil-metabolite eco-corona",
+        "particle_name": "PEwhite-film with soil-metabolite eco-corona",
         "supplier": "Shandong Minfeng Plastic Film Company (China)",
         "origin": "lab_fabricated",
-        "reason": "White PE film was obtained from a company and then cryomilled/sieved to 250-600 um in the lab, and eco-corona was formed by incubating with soil metabolite solutions before zeta potential measurement."
+        "reason": "PEwhite-film was obtained as bulk film from a plastics company, milled into microplastics in the lab, then incubated with soil metabolite solutions to form an eco-corona before zeta potential measurement."
       },
       {
         "row_id": "PMC13394419-r2",
-        "particle_name": "PEpure-granule microplastics (250-600 um), with and without soil-metabolite eco-corona",
+        "particle_name": "PEpure-granule with soil-metabolite eco-corona",
         "supplier": "Sigma-Aldrich (China)",
         "origin": "lab_fabricated",
-        "reason": "Pure PE granules purchased from a supplier were milled and sieved to 250-600 um in the lab, and eco-corona was formed via lab incubation with soil metabolite solutions before zeta potential measurement."
+        "reason": "PEpure-granule was purchased as pure PE granules, milled into microplastics in the lab, then incubated with soil metabolite solutions to form an eco-corona before zeta potential measurement."
       },
       {
         "row_id": "PMC13432825-r1",
-        "particle_name": "PP-MPs (polypropylene microplastics)",
-        "supplier": "Sigma-Aldrich 428,116 (isotactic polypropylene pellets)",
+        "particle_name": "PP-MPs",
+        "supplier": "Sigma-Aldrich 428,116",
         "origin": "lab_fabricated",
-        "reason": "PP-MPs were made in the lab by grinding and sieving isotactic polypropylene pellets, then suspending and sonicating them, before zeta potential was measured."
-      },
-      {
-        "row_id": "PMC13520040-r1",
-        "particle_name": "Celecoxib-loaded Soluplus/zein composite nanoparticles, uncoated (0% chitosan)",
-        "supplier": "prepared in-house (Soluplus from BASF/Vita Distributor; zein from Sigma-Aldrich; chitosan from Tokyo Chemical Industry)",
-        "origin": "lab_fabricated",
-        "reason": "The Soluplus/zein nanoparticles were synthesized in the lab via antisolvent precipitation, with no coating or ageing described for the 0% chitosan sample."
-      },
-      {
-        "row_id": "PMC13520040-r10",
-        "particle_name": "Optimized chitosan-coated celecoxib-loaded Soluplus/zein composite nanoparticles, stored at 5 °C",
-        "supplier": "prepared in-house (Soluplus from BASF/Vita Distributor; zein from Sigma-Aldrich; chitosan from Tokyo Chemical Industry)",
-        "origin": "lab_fabricated",
-        "reason": "The optimized lab-fabricated nanoparticles were stored for up to 3 months at 5 °C as part of the stability (ageing) study."
-      },
-      {
-        "row_id": "PMC13520040-r2",
-        "particle_name": "Celecoxib-loaded Soluplus/zein composite nanoparticles coated with 0.1% w/v chitosan",
-        "supplier": "prepared in-house (Soluplus from BASF/Vita Distributor; zein from Sigma-Aldrich; chitosan from Tokyo Chemical Industry)",
-        "origin": "lab_fabricated",
-        "reason": "These particles derive from the lab-synthesized Soluplus/zein nanoparticles subsequently coated with chitosan; no ageing step is described for this sample."
-      },
-      {
-        "row_id": "PMC13520040-r3",
-        "particle_name": "Celecoxib-loaded Soluplus/zein composite nanoparticles coated with 0.17% w/v chitosan",
-        "supplier": "prepared in-house (Soluplus from BASF/Vita Distributor; zein from Sigma-Aldrich; chitosan from Tokyo Chemical Industry)",
-        "origin": "lab_fabricated",
-        "reason": "Same lab-fabricated antisolvent-precipitation nanoparticles, coated with a different chitosan concentration, with no ageing described."
-      },
-      {
-        "row_id": "PMC13520040-r4",
-        "particle_name": "Celecoxib-loaded Soluplus/zein composite nanoparticles coated with 0.25% w/v chitosan",
-        "supplier": "prepared in-house (Soluplus from BASF/Vita Distributor; zein from Sigma-Aldrich; chitosan from Tokyo Chemical Industry)",
-        "origin": "lab_fabricated",
-        "reason": "Same lab-fabricated antisolvent-precipitation nanoparticles, coated with a higher chitosan concentration, with no ageing described."
-      },
-      {
-        "row_id": "PMC13520040-r5",
-        "particle_name": "Uncoated celecoxib-loaded Soluplus/zein composite nanoparticles + mucin",
-        "supplier": "prepared in-house (Soluplus from BASF/Vita Distributor; zein from Sigma-Aldrich; chitosan from Tokyo Chemical Industry)",
-        "origin": "lab_fabricated",
-        "reason": "The uncoated lab-made nanoparticles were mixed with mucin as a control in a mucoadhesion assay, not an ageing procedure."
-      },
-      {
-        "row_id": "PMC13520040-r6",
-        "particle_name": "Chitosan-coated celecoxib-loaded Soluplus/zein composite nanoparticles + mucin, initial",
-        "supplier": "prepared in-house (Soluplus from BASF/Vita Distributor; zein from Sigma-Aldrich; chitosan from Tokyo Chemical Industry)",
-        "origin": "lab_fabricated",
-        "reason": "The chitosan-coated lab-made nanoparticles were mixed with mucin and measured at the initial time point, which is a mucoadhesion test rather than ageing."
-      },
-      {
-        "row_id": "PMC13520040-r7",
-        "particle_name": "Chitosan-coated celecoxib-loaded Soluplus/zein composite nanoparticles + mucin, after 2 h",
-        "supplier": "prepared in-house (Soluplus from BASF/Vita Distributor; zein from Sigma-Aldrich; chitosan from Tokyo Chemical Industry)",
-        "origin": "lab_fabricated",
-        "reason": "Same lab-fabricated coated nanoparticles measured after 2 h incubation with mucin in a mucoadhesion assay, not a weathering/ageing process."
-      },
-      {
-        "row_id": "PMC13520040-r8",
-        "particle_name": "Optimized chitosan-coated celecoxib-loaded Soluplus/zein composite nanoparticles, stored at 25 °C",
-        "supplier": "prepared in-house (Soluplus from BASF/Vita Distributor; zein from Sigma-Aldrich; chitosan from Tokyo Chemical Industry)",
-        "origin": "lab_fabricated",
-        "reason": "The optimized lab-fabricated nanoparticles were stored for up to 3 months at 25 °C/60% RH as part of a stability (ageing) study."
-      },
-      {
-        "row_id": "PMC13520040-r9",
-        "particle_name": "Optimized chitosan-coated celecoxib-loaded Soluplus/zein composite nanoparticles, stored at 40 °C",
-        "supplier": "prepared in-house (Soluplus from BASF/Vita Distributor; zein from Sigma-Aldrich; chitosan from Tokyo Chemical Industry)",
-        "origin": "lab_fabricated",
-        "reason": "The optimized lab-fabricated nanoparticles were stored for up to 3 months at 40 °C/75% RH as part of an accelerated stability (ageing) study."
-      },
-      {
-        "row_id": "PMC13520334-r17",
-        "particle_name": "PE350",
-        "supplier": "Bundesanstalt für Materialforschung und -prüfung (BAM, Berlin, Germany)",
-        "origin": "unclear",
-        "reason": "PE350 is characterized and used in mixtures but no line states it was purchased, made, or environmentally collected."
-      },
-      {
-        "row_id": "PMC13520334-r18",
-        "particle_name": "PE350",
-        "supplier": "Bundesanstalt für Materialforschung und -prüfung (BAM, Berlin, Germany)",
-        "origin": "unclear",
-        "reason": "PE350 is characterized and used in mixtures but no line states it was purchased, made, or environmentally collected."
-      },
-      {
-        "row_id": "PMC13520334-r21",
-        "particle_name": "PP180",
-        "supplier": "Bundesanstalt für Materialforschung und -prüfung (BAM, Berlin, Germany)",
-        "origin": "unclear",
-        "reason": "PP180 appears in characterization and mixture experiments but no line states its purchase, fabrication, or environmental origin."
-      },
-      {
-        "row_id": "PMC13520334-r22",
-        "particle_name": "PP180",
-        "supplier": "Bundesanstalt für Materialforschung und -prüfung (BAM, Berlin, Germany)",
-        "origin": "unclear",
-        "reason": "PP180 appears in characterization and mixture experiments but no line states its purchase, fabrication, or environmental origin."
-      },
-      {
-        "row_id": "PMC13520334-r23",
-        "particle_name": "PET80",
-        "supplier": "Instituto de Catálisis y Petroleoquímica (Madrid, Spain)",
-        "origin": "unclear",
-        "reason": "PET80 is characterized and used but no line specifies where it was obtained from."
-      },
-      {
-        "row_id": "PMC13520334-r24",
-        "particle_name": "PET80",
-        "supplier": "Instituto de Catálisis y Petroleoquímica (Madrid, Spain)",
-        "origin": "unclear",
-        "reason": "PET80 is characterized and used but no line specifies where it was obtained from."
-      },
-      {
-        "row_id": "PMC13520334-r25",
-        "particle_name": "MIX 50",
-        "supplier": "CD Bioparticles / BAM / Instituto de Catálisis y Petroleoquímica",
-        "origin": "lab_fabricated",
-        "reason": "MIX 50 was prepared in the lab by combining PS50, PE50, PP50 and PET80 at equal concentrations."
-      },
-      {
-        "row_id": "PMC13520334-r26",
-        "particle_name": "MIX 50",
-        "supplier": "CD Bioparticles / BAM / Instituto de Catálisis y Petroleoquímica",
-        "origin": "lab_fabricated",
-        "reason": "MIX 50 was prepared in the lab by combining PS50, PE50, PP50 and PET80 at equal concentrations."
-      },
-      {
-        "row_id": "PMC13520334-r27",
-        "particle_name": "MIX 150",
-        "supplier": "CD Bioparticles / BAM",
-        "origin": "lab_fabricated",
-        "reason": "MIX 150 was prepared in the lab by combining PS150 and PP180 at equal concentrations."
-      },
-      {
-        "row_id": "PMC13520334-r28",
-        "particle_name": "MIX 150",
-        "supplier": "CD Bioparticles / BAM",
-        "origin": "lab_fabricated",
-        "reason": "MIX 150 was prepared in the lab by combining PS150 and PP180 at equal concentrations."
-      },
-      {
-        "row_id": "PMC13520334-r29",
-        "particle_name": "MIX 350",
-        "supplier": "CD Bioparticles / BAM",
-        "origin": "lab_fabricated",
-        "reason": "MIX 350 was prepared in the lab by combining PS350 and PE350 at equal concentrations."
-      },
-      {
-        "row_id": "PMC13520334-r30",
-        "particle_name": "MIX 350",
-        "supplier": "CD Bioparticles / BAM",
-        "origin": "lab_fabricated",
-        "reason": "MIX 350 was prepared in the lab by combining PS350 and PE350 at equal concentrations."
-      },
-      {
-        "row_id": "PMC13520334-r5",
-        "particle_name": "PE350",
-        "supplier": "Bundesanstalt für Materialforschung und -prüfung (BAM, Berlin, Germany)",
-        "origin": "unclear",
-        "reason": "PE350 is characterized and used in mixtures but no line states it was purchased, made, or environmentally collected."
-      },
-      {
-        "row_id": "PMC13520334-r7",
-        "particle_name": "PP180",
-        "supplier": "Bundesanstalt für Materialforschung und -prüfung (BAM, Berlin, Germany)",
-        "origin": "unclear",
-        "reason": "PP180 appears in characterization and mixture experiments but no line states its purchase, fabrication, or environmental origin."
-      },
-      {
-        "row_id": "PMC13520334-r8",
-        "particle_name": "PET80",
-        "supplier": "Instituto de Catálisis y Petroleoquímica (Madrid, Spain)",
-        "origin": "unclear",
-        "reason": "PET80 is characterized and used but no line specifies where it was obtained from."
+        "reason": "PP-MPs were made in the lab by grinding and sieving isotactic polypropylene pellets, then suspended and sonicated, with no ageing/weathering step described before the zeta potential measurement."
       },
       {
         "row_id": "PMC3990004-r1",
         "particle_name": "PLG-PEMA nanoparticles",
-        "supplier": "fabricated on-site",
+        "supplier": "made in-house (PLG from Lactel Absorbable Polymers)",
         "origin": "lab_fabricated",
-        "reason": "PLG-PEMA particles were fabricated on-site by an emulsion-solvent evaporation process using purchased PLG polymer and PEMA surfactant."
-      },
-      {
-        "row_id": "PMC5937892-r1",
-        "particle_name": "PS-NPs",
-        "supplier": "PlasmaChem (Berlin, Germany)",
-        "origin": "lab_fabricated",
-        "reason": "PS-NPs were synthesized in-house via emulsion polymerization of styrene and divinylbenzene by PlasmaChem, not purchased as finished particles."
+        "reason": "PLG-PEMA nanoparticles were fabricated on-site by a single emulsion-solvent evaporation process using purchased PLG and PEMA polymers."
       },
       {
         "row_id": "PMC6993004-r1",
         "particle_name": "0.2 μm PS beads",
         "supplier": "Da'e Scientific Co., Ltd. (Tianjin, China)",
         "origin": "lab_fabricated",
-        "reason": "The 0.2 μm PS beads were custom-synthesized in the lab via dispersion polymerization and dye-swelling labeling before their zeta potential was measured."
+        "reason": "The 0.2 μm PS beads were custom-synthesized in the lab via dispersion polymerization and dye swelling before their zeta potential was measured."
       },
       {
         "row_id": "PMC6993004-r2",
         "particle_name": "2.0 μm PS beads",
         "supplier": "Da'e Scientific Co., Ltd. (Tianjin, China)",
         "origin": "lab_fabricated",
-        "reason": "The 2.0 μm PS beads were custom-synthesized in the lab via mini-emulsion polymerization and dye-swelling labeling before their zeta potential was measured."
+        "reason": "The 2.0 μm PS beads were custom-synthesized in the lab via mini-emulsion polymerization and dye swelling before their zeta potential was measured."
       },
       {
-        "row_id": "PMC7331029-r2",
-        "particle_name": "PLL-coated NP (intermediate deposition stage)",
-        "supplier": "ThermoFisher (Waltham, MA)",
+        "row_id": "PMC7373282-r1",
+        "particle_name": "PBAT nanoplastics (NPs)",
+        "supplier": "BioBag Americas (film source; NPs produced in-house)",
         "origin": "lab_fabricated",
-        "reason": "This particle is produced by layering PLL onto the commercial NP substrate in the lab via the LbL method, making it a lab-fabricated intermediate with no described ageing."
+        "reason": "NPs were prepared in the lab from PBAT BDM film via cryogenic fragmentation, blending, milling, sieving, and wet-grinding, with no ageing/weathering described."
       },
       {
-        "row_id": "PMC7331029-r3",
-        "particle_name": "PEM/FA-NP (final formulation)",
-        "supplier": "ThermoFisher (Waltham, MA)",
+        "row_id": "PMC7918465-r3",
+        "particle_name": "PS50-HA",
+        "supplier": "Polysciences",
         "origin": "lab_fabricated",
-        "reason": "The final formulation is produced by sequential layer-by-layer deposition of PEM and FA onto the NP core in the lab, with no ageing described."
-      },
-      {
-        "row_id": "PMC7331029-r4",
-        "particle_name": "PEM/FA-NP (final formulation)",
-        "supplier": "ThermoFisher (Waltham, MA)",
-        "origin": "lab_fabricated",
-        "reason": "The final formulation is produced by sequential layer-by-layer deposition of PEM and FA onto the NP core in the lab, with no ageing described."
-      },
-      {
-        "row_id": "PMC7822812-r1",
-        "particle_name": "PVC NPs (as synthesized)",
-        "supplier": "self-synthesized by nanoprecipitation; raw polymer from Sigma Aldrich",
-        "origin": "lab_fabricated",
-        "reason": "PVC NPs were synthesized in the lab via nanoprecipitation from bulk PVC polymer and measured as-synthesized with no ageing step described."
-      },
-      {
-        "row_id": "PMC7822812-r2",
-        "particle_name": "PVC NPs (washed and centrifuged, 10,000 rpm)",
-        "supplier": "self-synthesized by nanoprecipitation; raw polymer from Sigma Aldrich",
-        "origin": "lab_fabricated",
-        "reason": "These are the same lab-synthesized PVC NPs subsequently washed and centrifuged, a post-processing step not counted as ageing."
-      },
-      {
-        "row_id": "PMC7822812-r3",
-        "particle_name": "PMMA NPs (as synthesized)",
-        "supplier": "self-synthesized by nanoprecipitation; raw polymer from Sigma Aldrich",
-        "origin": "lab_fabricated",
-        "reason": "PMMA NPs were synthesized in the lab via nanoprecipitation from bulk PMMA polymer and measured as-synthesized with no ageing step described."
-      },
-      {
-        "row_id": "PMC7822812-r4",
-        "particle_name": "PMMA NPs (washed and centrifuged, 10,000 rpm)",
-        "supplier": "self-synthesized by nanoprecipitation; raw polymer from Sigma Aldrich",
-        "origin": "lab_fabricated",
-        "reason": "These are the same lab-synthesized PMMA NPs subsequently washed and centrifuged, a post-processing step not counted as ageing."
+        "reason": "PS50-HA is a heteroaggregate made in the lab by combining purchased PS50 beads with purchased humic acid under the 'Preparation of Heteroaggregates' protocol, not a collected or purchased particle itself, and no line describes further weathering before the zeta-potential measurement."
       },
       {
         "row_id": "PMC8424902-r1",
-        "particle_name": "PENPs (polyethylene nanoplastics, prepared from PE pellets)",
-        "supplier": "Polysciences, Inc., Warrington, PA (raw PE pellets)",
+        "particle_name": "PENPs",
+        "supplier": "prepared in-house from Polysciences polyethylene pellets",
         "origin": "lab_fabricated",
-        "reason": "PENPs were made in the lab by grinding, sieving, homogenizing, and sonicating commercially purchased PE pellets."
+        "reason": "PENPs were prepared in the lab by mechanically breaking down polyethylene pellets with a grinder, homogenizer and sonicator, and this base measurement was taken before the described 24 h instability period."
+      },
+      {
+        "row_id": "PMC8424902-r3",
+        "particle_name": "NPs-1",
+        "supplier": "isolated from face scrub",
+        "origin": "lab_fabricated",
+        "reason": "NPs-1 was isolated in the lab from a face scrub cosmetic product via dilution and sequential filtration, not from a real-world environment."
+      },
+      {
+        "row_id": "PMC8424902-r4",
+        "particle_name": "NPs-2",
+        "supplier": "isolated from face scrub",
+        "origin": "lab_fabricated",
+        "reason": "NPs-2 was likewise isolated in the lab from a face scrub cosmetic product via dilution and sequential filtration, not from a real-world environment."
       },
       {
         "row_id": "PMC8424902-r5",
-        "particle_name": "PENPs (polyethylene nanoplastics, prepared from PE pellets)",
-        "supplier": "Polysciences, Inc., Warrington, PA (raw PE pellets)",
+        "particle_name": "PENPs (after 24 h)",
+        "supplier": "prepared in-house from Polysciences polyethylene pellets",
         "origin": "lab_fabricated",
-        "reason": "PENPs were made in the lab by grinding, sieving, homogenizing, and sonicating commercially purchased PE pellets."
-      },
-      {
-        "row_id": "PMC8694221-r10",
-        "particle_name": "PE beads/chitosan (45–53 μm)",
-        "supplier": "Cospheric (USA)",
-        "origin": "lab_fabricated",
-        "reason": "Made by treating commercial PE beads with chitosan in the lab; no ageing described."
-      },
-      {
-        "row_id": "PMC8694221-r11",
-        "particle_name": "PE beads/chitosan–TA (106–125 μm)",
-        "supplier": "Cospheric (USA)",
-        "origin": "lab_fabricated",
-        "reason": "Produced by further TA treatment of PE beads/chitosan in the lab; no ageing described."
-      },
-      {
-        "row_id": "PMC8694221-r12",
-        "particle_name": "PE beads/chitosan–TA (45–53 μm)",
-        "supplier": "Cospheric (USA)",
-        "origin": "lab_fabricated",
-        "reason": "Produced by further TA treatment of PE beads/chitosan in the lab; no ageing described."
-      },
-      {
-        "row_id": "PMC8694221-r14",
-        "particle_name": "PS beads/chitosan (0.5 μm)",
-        "supplier": "Sigma Aldrich (USA)",
-        "origin": "lab_fabricated",
-        "reason": "Made by treating the commercial 0.5 μm PS beads with chitosan in the lab; no ageing described."
-      },
-      {
-        "row_id": "PMC8694221-r15",
-        "particle_name": "PS beads/chitosan–TA (0.5 μm)",
-        "supplier": "Sigma Aldrich (USA)",
-        "origin": "lab_fabricated",
-        "reason": "Produced by further TA treatment of the 0.5 μm PS beads/chitosan in the lab; no ageing described."
-      },
-      {
-        "row_id": "PMC8694221-r17",
-        "particle_name": "PS beads/chitosan (0.5 μm)",
-        "supplier": "Sigma Aldrich (USA)",
-        "origin": "lab_fabricated",
-        "reason": "Made by treating the commercial 0.5 μm PS beads with chitosan in the lab; no ageing described."
-      },
-      {
-        "row_id": "PMC8694221-r18",
-        "particle_name": "PS beads/chitosan–TA (0.5 μm)",
-        "supplier": "Sigma Aldrich (USA)",
-        "origin": "lab_fabricated",
-        "reason": "Produced by further TA treatment of the 0.5 μm PS beads/chitosan in the lab; no ageing described."
-      },
-      {
-        "row_id": "PMC8694221-r2",
-        "particle_name": "PS beads/chitosan (90 μm)",
-        "supplier": "Thermo Fisher Scientific (USA)",
-        "origin": "lab_fabricated",
-        "reason": "This particle was produced by treating the commercial PS beads with chitosan in the lab (layer-by-layer surface modification), so the measured particle itself was lab-made, with no ageing described."
-      },
-      {
-        "row_id": "PMC8694221-r3",
-        "particle_name": "PS beads/chitosan–TA (90 μm)",
-        "supplier": "Thermo Fisher Scientific (USA)",
-        "origin": "lab_fabricated",
-        "reason": "This particle resulted from further TA treatment of the chitosan-coated PS beads performed in the lab, with no ageing step mentioned."
-      },
-      {
-        "row_id": "PMC8694221-r5",
-        "particle_name": "PS beads/chitosan (90 μm)",
-        "supplier": "Thermo Fisher Scientific (USA)",
-        "origin": "lab_fabricated",
-        "reason": "This particle was produced by treating the commercial PS beads with chitosan in the lab (layer-by-layer surface modification), so the measured particle itself was lab-made, with no ageing described."
-      },
-      {
-        "row_id": "PMC8694221-r6",
-        "particle_name": "PS beads/chitosan–TA (90 μm)",
-        "supplier": "Thermo Fisher Scientific (USA)",
-        "origin": "lab_fabricated",
-        "reason": "This particle resulted from further TA treatment of the chitosan-coated PS beads performed in the lab, with no ageing step mentioned."
-      },
-      {
-        "row_id": "PMC8694221-r9",
-        "particle_name": "PE beads/chitosan (106–125 μm)",
-        "supplier": "Cospheric (USA)",
-        "origin": "lab_fabricated",
-        "reason": "Made by treating commercial PE beads with chitosan in the lab; no ageing described."
-      },
-      {
-        "row_id": "PMC8771955-r1",
-        "particle_name": "PPNPs",
-        "supplier": "in-house (NIPS method from Sigma-Aldrich PP pellets)",
-        "origin": "lab_fabricated",
-        "reason": "PPNPs were synthesized in the lab from PP pellets via the NIPS method using xylene and ethanol, with no ageing described."
-      },
-      {
-        "row_id": "PMC8771955-r2",
-        "particle_name": "PPNPs",
-        "supplier": "in-house (NIPS method from Sigma-Aldrich PP pellets)",
-        "origin": "lab_fabricated",
-        "reason": "PPNPs were synthesized in the lab from PP pellets via the NIPS method using xylene and ethanol, with no ageing described."
-      },
-      {
-        "row_id": "PMC8873248-r1",
-        "particle_name": "PEVF",
-        "supplier": "in-house (mechanically broken down from HDPE packaging material, Fill-Air Extreme, SealedAir Product Care)",
-        "origin": "lab_fabricated",
-        "reason": "PEVF is a size-fractionated concentrate derived from HDPE packaging mechanically broken down in tap water using a food blender, then filtered via VivaFlow, making it lab-fabricated rather than commercial or environmental."
+        "reason": "These are the same lab-made PENPs from polyethylene pellets, measured after being held 24 h in deionized water showing increased instability and a drastic drop in zeta potential, indicating lab ageing before this measurement."
       },
       {
         "row_id": "PMC9033670-r1",
-        "particle_name": "Polycarbonate nanoparticles (polluted/initial water)",
-        "supplier": "Sigma Aldrich",
+        "particle_name": "polycarbonate particles, initial (polluted) water",
+        "supplier": "Sigma Aldrich (polycarbonate sheet, ground in-house)",
         "origin": "lab_fabricated",
-        "reason": "Polycarbonate sheet purchased from Sigma Aldrich was cut and ground in the lab into micro/nano particles then dispersed in deionized water to make the polluted/initial water measured for zeta potential."
+        "reason": "Polycarbonate sheet was cut and ground in the lab into micro/nano particles and mixed in deionized water to create the polluted water used for zeta potential analysis."
       },
       {
         "row_id": "PMC9033670-r2",
-        "particle_name": "Polycarbonate nanoparticles (treated water)",
-        "supplier": "Sigma Aldrich",
+        "particle_name": "polycarbonate particles, treated water (after M-3DPWF filtration)",
+        "supplier": "Sigma Aldrich (polycarbonate sheet, ground in-house)",
         "origin": "lab_fabricated",
-        "reason": "The treated water contains the same lab-ground polycarbonate particles after passing through the M-3DPWF filter, so their origin remains lab fabrication rather than any new source."
+        "reason": "These are the same lab-ground polycarbonate particles from the synthetic polluted water, sampled after passing through the M-3DPWF filter."
       },
       {
-        "row_id": "PMC9370236-r5",
-        "particle_name": "PSHA",
-        "supplier": "Polybead® PS50, Polysciences (Warrington, PA, USA); Humic Acid Standard II, International Humic Substances Society (Cat#2S101H)",
+        "row_id": "PMC9087019-r1",
+        "particle_name": "PS nanoparticles 192 nm",
+        "supplier": "synthesised in-house",
         "origin": "lab_fabricated",
-        "reason": "PSHA was made in the lab by mixing commercial PS50 with a humic acid solution to form heteroaggregates."
+        "reason": "PS nanoparticles of this size were synthesized in the lab via emulsion polymerization from styrene, acrylic acid, and methyl methacrylate monomers."
       },
       {
-        "row_id": "PMC9370236-r6",
-        "particle_name": "PSHA",
-        "supplier": "Polybead® PS50, Polysciences (Warrington, PA, USA); Humic Acid Standard II, International Humic Substances Society (Cat#2S101H)",
+        "row_id": "PMC9087019-r2",
+        "particle_name": "PS nanoparticles 214 nm",
+        "supplier": "synthesised in-house",
         "origin": "lab_fabricated",
-        "reason": "PSHA was made in the lab by mixing commercial PS50 with a humic acid solution to form heteroaggregates."
+        "reason": "PS nanoparticles of this size were synthesized in the lab via emulsion polymerization from styrene, acrylic acid, and methyl methacrylate monomers."
+      },
+      {
+        "row_id": "PMC9087019-r3",
+        "particle_name": "PS nanoparticles 274 nm",
+        "supplier": "synthesised in-house",
+        "origin": "lab_fabricated",
+        "reason": "PS nanoparticles of this size were synthesized in the lab via emulsion polymerization from styrene, acrylic acid, and methyl methacrylate monomers."
+      },
+      {
+        "row_id": "PMC9087019-r4",
+        "particle_name": "PS nanoparticles 396 nm",
+        "supplier": "synthesised in-house",
+        "origin": "lab_fabricated",
+        "reason": "PS nanoparticles of this size were synthesized in the lab via emulsion polymerization from styrene, acrylic acid, and methyl methacrylate monomers."
+      },
+      {
+        "row_id": "PMC9370135-r1",
+        "particle_name": "Nylon-11 (Before Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Nylon-11 particles were fabricated in the lab by precipitation from a nylon-11/HFIP solution into water."
+      },
+      {
+        "row_id": "PMC9370135-r10",
+        "particle_name": "Nylon-6-ATRB (Post Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Same ATRB-tagged nylon-6 particles, measured post purification as reported in Table 1."
+      },
+      {
+        "row_id": "PMC9370135-r11",
+        "particle_name": "Nylon-6-NR (Before Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "NR-tagged nylon-6 particles were fabricated in the lab following a similar procedure with NR added during particle formation."
+      },
+      {
+        "row_id": "PMC9370135-r12",
+        "particle_name": "Nylon-6-NR (Post Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Same NR-tagged nylon-6 particles, measured post purification as reported in Table 1."
+      },
+      {
+        "row_id": "PMC9370135-r13",
+        "particle_name": "Nylon-6-TR (Before Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "unclear",
+        "reason": "The lines only name Nylon-6-TR in the zeta-potential table without describing how this tagged particle was made or obtained."
+      },
+      {
+        "row_id": "PMC9370135-r14",
+        "particle_name": "Nylon-6-TR (Post Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "unclear",
+        "reason": "The lines only name Nylon-6-TR in the zeta-potential table without describing how this tagged particle was made or obtained."
+      },
+      {
+        "row_id": "PMC9370135-r2",
+        "particle_name": "Nylon-11 (Post Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Same lab-precipitated nylon-11 particles, measured after purification attempts described in the methods."
+      },
+      {
+        "row_id": "PMC9370135-r21",
+        "particle_name": "Nylon-11 NP",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Nylon-11 NPs were fabricated in the lab via the precipitation method described in the methods and results."
+      },
+      {
+        "row_id": "PMC9370135-r22",
+        "particle_name": "Nylon-11 NP",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Nylon-11 NPs were fabricated in the lab via the precipitation method described in the methods and results."
+      },
+      {
+        "row_id": "PMC9370135-r23",
+        "particle_name": "Nylon-11 NP",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Nylon-11 NPs were fabricated in the lab via the precipitation method described in the methods and results."
+      },
+      {
+        "row_id": "PMC9370135-r24",
+        "particle_name": "Nylon-6 NP",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Nylon-6 NPs were fabricated in the lab via the sonication/precipitation method described in the methods."
+      },
+      {
+        "row_id": "PMC9370135-r25",
+        "particle_name": "Nylon-6 NP",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Nylon-6 NPs were fabricated in the lab via the sonication/precipitation method described in the methods."
+      },
+      {
+        "row_id": "PMC9370135-r26",
+        "particle_name": "Nylon-6 NP",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Nylon-6 NPs were fabricated in the lab via the sonication/precipitation method described in the methods."
+      },
+      {
+        "row_id": "PMC9370135-r3",
+        "particle_name": "Nylon-11-ATRB (Before Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "ATRB-tagged nylon-11 NPs are fluorophore-loaded versions of the lab-fabricated nylon-11 particles described in the fabrication and loading methods."
+      },
+      {
+        "row_id": "PMC9370135-r4",
+        "particle_name": "Nylon-11-ATRB (Post Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Same ATRB-tagged nylon-11 particles, measured post purification as reported in Table 1."
+      },
+      {
+        "row_id": "PMC9370135-r5",
+        "particle_name": "Nylon-11-NR (Before Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "NR-tagged nylon-11 NPs are fluorophore-loaded versions of the lab-fabricated nylon-11 particles described in the fabrication and loading methods."
+      },
+      {
+        "row_id": "PMC9370135-r6",
+        "particle_name": "Nylon-11-NR (Post Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Same NR-tagged nylon-11 particles, measured post purification as reported in Table 1."
+      },
+      {
+        "row_id": "PMC9370135-r7",
+        "particle_name": "Nylon-6 (Before Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Nylon-6 particles were fabricated in the lab by sonication/precipitation from a nylon-6/formic acid solution into a PVA solution."
+      },
+      {
+        "row_id": "PMC9370135-r8",
+        "particle_name": "Nylon-6 (Post Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "Same lab-fabricated nylon-6 particles, measured after the wash/purification steps described in the methods."
+      },
+      {
+        "row_id": "PMC9370135-r9",
+        "particle_name": "Nylon-6-ATRB (Before Purification)",
+        "supplier": "Sigma-Aldrich",
+        "origin": "lab_fabricated",
+        "reason": "ATRB-tagged nylon-6 particles were fabricated in the lab following a similar procedure with ATRB added during particle formation."
       },
       {
         "row_id": "PMC9645706-r1",
-        "particle_name": "positively charged PVDF microparticles (modified)",
+        "particle_name": "positively charged PVDF microparticles (PDADMAC-modified)",
         "supplier": "zhongliansuhua",
         "origin": "lab_fabricated",
-        "reason": "PVDF microparticles were purchased but then chemically modified in the lab via polyelectrolyte film coating before zeta potential measurement."
+        "reason": "Commercial PVDF microparticles were further modified via polyelectrolyte (PDADMAC) film coating in the lab, making them a lab-fabricated surface-modified particle rather than the as-bought commercial particle."
       }
     ]
   },
-  "hand_check": {
+  "second_reading": {
     "environmental": {
-      "n": 20,
-      "agree": 18,
-      "share": 0.9,
-      "agree_synthetic_split": 18
+      "n": 16,
+      "agree": 11,
+      "share": 0.6875,
+      "agree_synthetic_split": 11
     },
     "unclear": {
       "n": 40,
-      "agree": 30,
-      "share": 0.75,
-      "agree_synthetic_split": 30
+      "agree": 29,
+      "share": 0.725,
+      "agree_synthetic_split": 29
     },
     "random": {
       "n": 40,
-      "agree": 37,
-      "share": 0.925,
+      "agree": 40,
+      "share": 1.0,
       "agree_synthetic_split": 40
     },
-    "checked": 100,
+    "checked": 96,
     "not_checked": 0,
     "disagreements": [
       {
         "pmcid": "PMC9643204",
-        "particle_name": "aged polypropylene mussel-net microplastics (all colours: WN, GN, YN, BN, PN)",
+        "particle_name": "BN (black net) MPs",
         "stratum": "environmental",
         "origin": "environmental",
-        "hand_origin": "lab_fabricated",
-        "note": "disagree: the nets (bulk plastic) were collected from the seabed, the particles were made from them in the lab; by the stated rule that is lab_fabricated"
+        "checked_origin": "lab_fabricated",
+        "note": "disagree: the nets were collected from the seabed as bulk plastic, but the measured MPs were made in the lab by fragmenting the nets (Ultra-Turrax) and sieving"
       },
       {
-        "pmcid": "PMC9645706",
-        "particle_name": "naturally fragmented plastic particles (environmental, unspecified polymer)",
+        "pmcid": "PMC9643204",
+        "particle_name": "GN (green net) MPs",
         "stratum": "environmental",
         "origin": "environmental",
-        "hand_origin": "unclear",
-        "note": "disagree: a passing remark, no collection described; not a sample these authors measured (a D1 extraction false positive)"
+        "checked_origin": "lab_fabricated",
+        "note": "disagree: the nets were collected from the seabed as bulk plastic, but the measured MPs were made in the lab by fragmenting the nets (Ultra-Turrax) and sieving"
+      },
+      {
+        "pmcid": "PMC9643204",
+        "particle_name": "PN (pink net) MPs",
+        "stratum": "environmental",
+        "origin": "environmental",
+        "checked_origin": "lab_fabricated",
+        "note": "disagree: the nets were collected from the seabed as bulk plastic, but the measured MPs were made in the lab by fragmenting the nets (Ultra-Turrax) and sieving"
+      },
+      {
+        "pmcid": "PMC9643204",
+        "particle_name": "WN (white net) MPs",
+        "stratum": "environmental",
+        "origin": "environmental",
+        "checked_origin": "lab_fabricated",
+        "note": "disagree: the nets were collected from the seabed as bulk plastic, but the measured MPs were made in the lab by fragmenting the nets (Ultra-Turrax) and sieving"
+      },
+      {
+        "pmcid": "PMC9643204",
+        "particle_name": "YN (yellow net) MPs",
+        "stratum": "environmental",
+        "origin": "environmental",
+        "checked_origin": "lab_fabricated",
+        "note": "disagree: the nets were collected from the seabed as bulk plastic, but the measured MPs were made in the lab by fragmenting the nets (Ultra-Turrax) and sieving"
       },
       {
         "pmcid": "PMC10624164",
         "particle_name": "PAN-Pd@PS NPs",
         "stratum": "unclear",
         "origin": "unclear",
-        "hand_origin": "lab_fabricated",
-        "note": "disagree: the paper says the particles were synthesized (by the method of refs 23, 25)"
+        "checked_origin": "lab_fabricated",
+        "note": "disagree: the paper says the PAN-Pd@PS core-shell nanoplastics were synthesized, with the synthesis given in refs 23 and 25"
       },
       {
         "pmcid": "PMC11397364",
-        "particle_name": "PS MNP 100 nm (plain surface)",
+        "particle_name": "PS 500 nm plain",
         "stratum": "unclear",
         "origin": "unclear",
-        "hand_origin": "commercial",
-        "note": "disagree: supplier stated; the line was never selected because the cue list lacks 'commercialized' and the capitalised 'Micromod'"
+        "checked_origin": "commercial",
+        "note": "disagree: L5 states commercial plain-surface PS spheres from Micromod, sizes 50, 100 and 500 nm"
+      },
+      {
+        "pmcid": "PMC11543686",
+        "particle_name": "PS",
+        "stratum": "unclear",
+        "origin": "unclear",
+        "checked_origin": "commercial",
+        "note": "disagree: L3 names the supplier of the 80 nm PS microspheres (Tianjin Besler)"
+      },
+      {
+        "pmcid": "PMC11543686",
+        "particle_name": "PS(UV) + Cu 2+",
+        "stratum": "unclear",
+        "origin": "unclear",
+        "checked_origin": "commercial",
+        "note": "disagree: the same supplied PS microspheres (Tianjin Besler), UV-aged in the lab; lab ageing does not change origin"
+      },
+      {
+        "pmcid": "PMC11543686",
+        "particle_name": "Ps + Cu 2+",
+        "stratum": "unclear",
+        "origin": "unclear",
+        "checked_origin": "commercial",
+        "note": "disagree: L3 names the supplier of the 80 nm PS microspheres (Tianjin Besler)"
       },
       {
         "pmcid": "PMC11644253",
-        "particle_name": "1.0 μm green fluorescent polystyrene microspheres",
+        "particle_name": "1.0 μm PS MPs alone, pH 5, 5 mM NaCl",
         "stratum": "unclear",
         "origin": "unclear",
-        "hand_origin": "commercial",
-        "note": "disagree: supplier stated; not selected because the cue list only knew 'BaseLine'"
+        "checked_origin": "commercial",
+        "note": "disagree: L3 names the supplier of the 1.0 um PS microspheres (Tianjin Baseline Chromtech Research Centre)"
+      },
+      {
+        "pmcid": "PMC11840474",
+        "particle_name": "PS-acrylic_cationic",
+        "stratum": "unclear",
+        "origin": "unclear",
+        "checked_origin": "lab_fabricated",
+        "note": "disagree: L15 says copolymerization was used to generate PS-acrylic_cationic and that all PS materials were synthesized by emulsion polymerization"
       },
       {
         "pmcid": "PMC12474203",
-        "particle_name": "nanoplastic particles (filtrate of PP-bottle injection solution after GF-B membrane filtration)",
+        "particle_name": "remaining nanoplastic particles in PP-bottle injection solution filtrate",
         "stratum": "unclear",
         "origin": "unclear",
-        "hand_origin": "environmental",
-        "note": "disagree, borderline: real-world nanoplastics in the filtrate of commercial PP-bottle injection solutions; a medical product rather than an environment"
+        "checked_origin": "environmental",
+        "note": "disagree: the paper does say where these particles came from: nanoplastics present in a real PP-bottle injection product, not bought as particles nor made or released by the authors; zeta potential measured on the injection filtrate as a whole. Judgment call: no category fits a product sample exactly; lab_fabricated if release from a bottle counts regardless of who caused it"
       },
       {
         "pmcid": "PMC12969122",
-        "particle_name": "MP (Polystyrene microplastic)",
+        "particle_name": "MP (polystyrene microplastic, FACS beads)",
         "stratum": "unclear",
         "origin": "unclear",
-        "hand_origin": "commercial",
-        "note": "disagree: supplier stated in a line the reader was shown (reader error)"
+        "checked_origin": "commercial",
+        "note": "disagree: L3 says the MP were after-usage flow cytometry (FACS) microplastic beads from BD Life Sciences, i.e. supplier beads received ready-made"
       },
       {
-        "pmcid": "PMC13095943",
-        "particle_name": "Aged MNPs (PE fragments, PET fibres, PS NP beads)",
+        "pmcid": "PMC9370135",
+        "particle_name": "Nylon-6-TR (Before Purification)",
         "stratum": "unclear",
         "origin": "unclear",
-        "hand_origin": "lab_fabricated",
-        "note": "disagree: a mixture of in-house PE fragments and PET fibres with bought PS beads; synthetic either way, recorded as lab_fabricated"
+        "checked_origin": "lab_fabricated",
+        "note": "disagree: Nylon-6-TR is the Texas Red-tagged nylon-6 NP the authors fabricated by dissolving nylon-6 pellets and precipitating; Table 1 lists the fabricated nylon NP formulations"
       },
       {
-        "pmcid": "PMC13095943",
-        "particle_name": "Pristine (virgin) MNPs (PE fragments, PET fibres, PS NP beads)",
+        "pmcid": "PMC9370135",
+        "particle_name": "Nylon-6-TR (Post Purification)",
         "stratum": "unclear",
         "origin": "unclear",
-        "hand_origin": "lab_fabricated",
-        "note": "disagree: a mixture of in-house PE fragments and PET fibres with bought PS beads; synthetic either way, recorded as lab_fabricated"
-      },
-      {
-        "pmcid": "PMC13520334",
-        "particle_name": "PE350",
-        "stratum": "unclear",
-        "origin": "unclear",
-        "hand_origin": "lab_fabricated",
-        "note": "disagree: made by another research institute; not selected because 'produced at' / 'prepared at' are not cues"
-      },
-      {
-        "pmcid": "PMC13520334",
-        "particle_name": "PET80",
-        "stratum": "unclear",
-        "origin": "unclear",
-        "hand_origin": "lab_fabricated",
-        "note": "disagree: made by another research institute"
-      },
-      {
-        "pmcid": "PMC13520334",
-        "particle_name": "PP180",
-        "stratum": "unclear",
-        "origin": "unclear",
-        "hand_origin": "lab_fabricated",
-        "note": "disagree: made by another research institute"
-      },
-      {
-        "pmcid": "PMC11912305",
-        "particle_name": "PVC nanoplastics",
-        "stratum": "random",
-        "origin": "lab_fabricated",
-        "hand_origin": "commercial",
-        "note": "disagree: custom synthesis bought from a company is a purchase"
-      },
-      {
-        "pmcid": "PMC6993004",
-        "particle_name": "0.2 μm PS beads",
-        "stratum": "random",
-        "origin": "lab_fabricated",
-        "hand_origin": "commercial",
-        "note": "disagree: custom synthesis bought from a company is a purchase"
-      },
-      {
-        "pmcid": "PMC8424902",
-        "particle_name": "NPs-2 (nanoplastics isolated from face scrub FS-2)",
-        "stratum": "random",
-        "origin": "lab_fabricated",
-        "hand_origin": "commercial",
-        "note": "disagree: microbeads manufactured as particles and isolated from a bought cosmetic; the prompt's 'released from a product' rule is ambiguous here"
+        "checked_origin": "lab_fabricated",
+        "note": "disagree: Nylon-6-TR is the Texas Red-tagged nylon-6 NP the authors fabricated by dissolving nylon-6 pellets and precipitating; Table 1 lists the fabricated nylon NP formulations"
       }
     ]
   },
-  "hand_corrected": {
+  "after_second_reading": {
     "origin": {
       "rows": {
-        "commercial": 1290,
-        "lab_fabricated": 494,
-        "environmental": 19,
-        "unclear": 87,
+        "commercial": 1330,
+        "lab_fabricated": 485,
+        "environmental": 12,
+        "unclear": 76,
         "unanswered": 0
       },
       "row_share": {
-        "commercial": 0.6825,
-        "lab_fabricated": 0.2614,
-        "environmental": 0.0101,
-        "unclear": 0.046,
+        "commercial": 0.6989,
+        "lab_fabricated": 0.2549,
+        "environmental": 0.0063,
+        "unclear": 0.0399,
         "unanswered": 0.0
       },
       "papers_any": {
-        "commercial": 354,
-        "lab_fabricated": 155,
-        "environmental": 4,
-        "unclear": 24,
+        "commercial": 338,
+        "lab_fabricated": 145,
+        "environmental": 3,
+        "unclear": 20,
         "unanswered": 0
       },
       "papers_only": {
-        "commercial": 314,
-        "lab_fabricated": 114,
+        "commercial": 302,
+        "lab_fabricated": 111,
         "environmental": 1,
-        "unclear": 18,
+        "unclear": 15,
         "unanswered": 0
       }
     },
     "synthetic": {
-      "rows": 1784,
-      "row_share": 0.9439,
-      "papers_any": 472,
-      "papers_only": 463,
+      "rows": 1815,
+      "row_share": 0.9538,
+      "papers_any": 451,
+      "papers_only": 444,
       "medium": {
-        "lab_liquid": 1275,
-        "environmental_water": 31,
-        "other": 175,
-        "unreported": 303
+        "lab_liquid": 1166,
+        "environmental_water": 28,
+        "other": 243,
+        "unreported": 378
       }
     },
     "environment": {
       "rows": {
         "freshwater": 0,
         "seawater": 0,
-        "wastewater": 18,
+        "wastewater": 11,
         "soil": 0,
         "sediment": 0,
         "air_dust": 0,
@@ -1863,7 +2028,7 @@
       "papers": {
         "freshwater": 0,
         "seawater": 0,
-        "wastewater": 3,
+        "wastewater": 2,
         "soil": 0,
         "sediment": 0,
         "air_dust": 0,
@@ -1872,11 +2037,11 @@
       }
     },
     "environmental_rows": {
-      "rows": 19,
-      "papers": 4,
+      "rows": 12,
+      "papers": 3,
       "reported": {
         "medium": {
-          "n": 19,
+          "n": 12,
           "share": 1.0
         },
         "ionic_strength": {
@@ -1884,16 +2049,16 @@
           "share": 0.0
         },
         "pH": {
-          "n": 6,
-          "share": 0.3158
+          "n": 0,
+          "share": 0.0
         },
         "temperature": {
-          "n": 16,
-          "share": 0.8421
+          "n": 10,
+          "share": 0.8333
         },
         "instrument": {
-          "n": 16,
-          "share": 0.8421
+          "n": 10,
+          "share": 0.8333
         }
       },
       "conditions_complete": {
@@ -1904,14 +2069,13 @@
       "conductivity_printed": 0,
       "conductivity_printed_without_ionic_strength": 0,
       "medium_class": {
-        "environmental_water": 17,
-        "other": 2
+        "other": 12
       },
-      "own_environmental_water": 17,
-      "own_sample_liquid": 19,
+      "own_environmental_water": 0,
+      "own_sample_liquid": 12,
       "lab_liquid": 0,
       "medium_unreported": 0,
-      "medium_other": 2,
+      "medium_other": 12,
       "list": [
         {
           "row_id": "PMC11211448-r7",
@@ -1923,170 +2087,108 @@
           "conductivity_printed": false
         },
         {
-          "row_id": "PMC11478531-r1",
-          "particle_name": "Mixed microplastics across all studied effluents (aggregate range)",
-          "environment": "wastewater",
-          "medium_text": "WWTP effluent (textile and municipal, combined)",
-          "medium_class": "environmental_water",
-          "ionic_strength_reported": false,
-          "conductivity_printed": false
-        },
-        {
-          "row_id": "PMC11478531-r2",
-          "particle_name": "Mixed microplastics in Textile 1 effluent, before treatment",
-          "environment": "wastewater",
-          "medium_text": "textile industry 1 in-house WWTP effluent, before treatment",
-          "medium_class": "environmental_water",
-          "ionic_strength_reported": false,
-          "conductivity_printed": false
-        },
-        {
-          "row_id": "PMC11478531-r3",
-          "particle_name": "Mixed microplastics in Textile 1 effluent, after treatment",
-          "environment": "wastewater",
-          "medium_text": "textile industry 1 in-house WWTP effluent, after treatment",
-          "medium_class": "environmental_water",
-          "ionic_strength_reported": false,
-          "conductivity_printed": false
-        },
-        {
-          "row_id": "PMC11478531-r4",
-          "particle_name": "Mixed microplastics in Textile 2 effluent, before treatment",
-          "environment": "wastewater",
-          "medium_text": "textile industry 2 in-house WWTP effluent, before treatment",
-          "medium_class": "environmental_water",
-          "ionic_strength_reported": false,
-          "conductivity_printed": false
-        },
-        {
-          "row_id": "PMC11478531-r5",
-          "particle_name": "Mixed microplastics in Textile 2 effluent, after treatment",
-          "environment": "wastewater",
-          "medium_text": "textile industry 2 in-house WWTP effluent, after treatment",
-          "medium_class": "environmental_water",
-          "ionic_strength_reported": false,
-          "conductivity_printed": false
-        },
-        {
-          "row_id": "PMC11478531-r6",
-          "particle_name": "Mixed microplastics in Municipal WWTP effluent, before treatment",
-          "environment": "wastewater",
-          "medium_text": "municipal WWTP effluent, before treatment",
-          "medium_class": "environmental_water",
-          "ionic_strength_reported": false,
-          "conductivity_printed": false
-        },
-        {
-          "row_id": "PMC11478531-r7",
-          "particle_name": "Mixed microplastics in Municipal WWTP effluent, after treatment",
-          "environment": "wastewater",
-          "medium_text": "municipal WWTP effluent, after treatment",
-          "medium_class": "environmental_water",
-          "ionic_strength_reported": false,
-          "conductivity_printed": false
-        },
-        {
           "row_id": "PMC12474203-r1",
-          "particle_name": "nanoplastic particles (filtrate of PP-bottle injection solution after GF-B membrane filtration)",
+          "particle_name": "remaining nanoplastic particles in PP-bottle injection solution filtrate",
           "environment": "other",
-          "medium_text": "filtrate of the injection solution after filtration through a GF-B membrane (Φ = 1 μm)",
+          "medium_text": "filtrate after the injection solution was filtered through a GF-B membrane (Φ = 1 μm)",
           "medium_class": "other",
           "ionic_strength_reported": false,
           "conductivity_printed": false
         },
         {
           "row_id": "PMC9318256-r1",
-          "particle_name": "Microplastics in resin industry effluent, before in-house WWTP",
+          "particle_name": "Resin industry effluent particles, before in-house WWTP",
           "environment": "wastewater",
-          "medium_text": "effluent samples",
-          "medium_class": "environmental_water",
+          "medium_text": "resin industry effluent sample, before in-house WWTP treatment",
+          "medium_class": "other",
           "ionic_strength_reported": false,
           "conductivity_printed": false
         },
         {
           "row_id": "PMC9318256-r2",
-          "particle_name": "Microplastics in resin industry effluent, after in-house WWTP",
+          "particle_name": "Resin industry effluent particles, after in-house WWTP",
           "environment": "wastewater",
-          "medium_text": "effluent samples",
-          "medium_class": "environmental_water",
+          "medium_text": "resin industry effluent sample, after in-house WWTP treatment",
+          "medium_class": "other",
           "ionic_strength_reported": false,
           "conductivity_printed": false
         },
         {
           "row_id": "PMC9318256-r3",
-          "particle_name": "Microplastics in paint industry effluent, before in-house WWTP",
+          "particle_name": "Paint industry effluent particles, before in-house WWTP",
           "environment": "wastewater",
-          "medium_text": "effluent samples",
-          "medium_class": "environmental_water",
+          "medium_text": "paint industry effluent sample, before in-house WWTP treatment",
+          "medium_class": "other",
           "ionic_strength_reported": false,
           "conductivity_printed": false
         },
         {
           "row_id": "PMC9318256-r4",
-          "particle_name": "Microplastics in paint industry effluent, after in-house WWTP",
+          "particle_name": "Paint industry effluent particles, after in-house WWTP",
           "environment": "wastewater",
-          "medium_text": "effluent samples",
-          "medium_class": "environmental_water",
+          "medium_text": "paint industry effluent sample, after in-house WWTP treatment",
+          "medium_class": "other",
           "ionic_strength_reported": false,
           "conductivity_printed": false
         },
         {
           "row_id": "PMC9318256-r5",
-          "particle_name": "Microplastics in pharmaceutical industry effluent, before in-house WWTP",
+          "particle_name": "Pharmaceutical industry effluent particles, before in-house WWTP",
           "environment": "wastewater",
-          "medium_text": "effluent samples",
-          "medium_class": "environmental_water",
+          "medium_text": "pharmaceutical industry effluent sample, before in-house WWTP treatment",
+          "medium_class": "other",
           "ionic_strength_reported": false,
           "conductivity_printed": false
         },
         {
           "row_id": "PMC9318256-r6",
-          "particle_name": "Microplastics in pharmaceutical industry effluent, after in-house WWTP",
+          "particle_name": "Pharmaceutical industry effluent particles, after in-house WWTP",
           "environment": "wastewater",
-          "medium_text": "effluent samples",
-          "medium_class": "environmental_water",
+          "medium_text": "pharmaceutical industry effluent sample, after in-house WWTP treatment",
+          "medium_class": "other",
           "ionic_strength_reported": false,
           "conductivity_printed": false
         },
         {
           "row_id": "PMC9318256-r7",
-          "particle_name": "Microplastics in pvc industry effluent, before in-house WWTP",
+          "particle_name": "PVC industry effluent particles, before in-house WWTP",
           "environment": "wastewater",
-          "medium_text": "effluent samples",
-          "medium_class": "environmental_water",
+          "medium_text": "pvc industry effluent sample, before in-house WWTP treatment",
+          "medium_class": "other",
           "ionic_strength_reported": false,
           "conductivity_printed": false
         },
         {
           "row_id": "PMC9318256-r8",
-          "particle_name": "Microplastics in pvc industry effluent, after in-house WWTP",
+          "particle_name": "PVC industry effluent particles, after in-house WWTP",
           "environment": "wastewater",
-          "medium_text": "effluent samples",
-          "medium_class": "environmental_water",
+          "medium_text": "pvc industry effluent sample, after in-house WWTP treatment",
+          "medium_class": "other",
           "ionic_strength_reported": false,
           "conductivity_printed": false
         },
         {
           "row_id": "PMC9318256-r9",
-          "particle_name": "Microplastics in textile industry effluent, before in-house WWTP",
+          "particle_name": "Textile industry effluent particles, before in-house WWTP",
           "environment": "wastewater",
-          "medium_text": "effluent samples",
-          "medium_class": "environmental_water",
+          "medium_text": "textile industry effluent sample, before in-house WWTP treatment",
+          "medium_class": "other",
           "ionic_strength_reported": false,
           "conductivity_printed": false
         },
         {
           "row_id": "PMC9318256-r10",
-          "particle_name": "Microplastics in textile industry effluent, after in-house WWTP",
+          "particle_name": "Textile industry effluent particles, after in-house WWTP",
           "environment": "wastewater",
-          "medium_text": "effluent samples",
-          "medium_class": "environmental_water",
+          "medium_text": "textile industry effluent sample, after in-house WWTP treatment",
+          "medium_class": "other",
           "ionic_strength_reported": false,
           "conductivity_printed": false
         }
       ],
       "whole_sample_papers": [
-        "PMC11478531",
+        "PMC11211448",
+        "PMC12474203",
         "PMC9318256"
       ],
       "conductivity_in_text": [
@@ -2122,324 +2224,7 @@
         }
       ]
     },
-    "particles_with_a_hand_verdict": 102
+    "particles_with_a_second_reading": 96
   },
-  "not_own_measurement": [
-    {
-      "row_id": "PMC11644763-r1",
-      "pmcid": "PMC11644763",
-      "particle_name": "PES_N (untreated polyester fabric)",
-      "why": "a polyester fabric, not a particle"
-    },
-    {
-      "row_id": "PMC12462602-r2",
-      "pmcid": "PMC12462602",
-      "particle_name": "PEG 4000 (used as a microplastic degradation model, in place of polystyrene)",
-      "why": "PEG 4000, a water-soluble polymer the authors use in place of polystyrene"
-    },
-    {
-      "row_id": "PMC12878436-r4",
-      "pmcid": "PMC12878436",
-      "particle_name": "PS nanoplastics (cited: Arenas et al. 2022)",
-      "why": "a value cited from Arenas et al. 2022, not measured in this paper"
-    },
-    {
-      "row_id": "PMC12878436-r5",
-      "pmcid": "PMC12878436",
-      "particle_name": "PS nanoplastics (cited: Arenas et al. 2022)",
-      "why": "a value cited from Arenas et al. 2022, not measured in this paper"
-    },
-    {
-      "row_id": "PMC12878436-r6",
-      "pmcid": "PMC12878436",
-      "particle_name": "PS MPs (cited: Na et al. 2021)",
-      "why": "a value cited from Na et al. 2021, not measured in this paper"
-    },
-    {
-      "row_id": "PMC12878436-r7",
-      "pmcid": "PMC12878436",
-      "particle_name": "PS MPs (cited: Na et al. 2021)",
-      "why": "a value cited from Na et al. 2021, not measured in this paper"
-    },
-    {
-      "row_id": "PMC9645706-r4",
-      "pmcid": "PMC9645706",
-      "particle_name": "naturally fragmented plastic particles (environmental, unspecified polymer)",
-      "why": "a passing remark about naturally fragmented plastics; nothing was collected or measured"
-    }
-  ],
-  "lost_methods": {
-    "papers": 491,
-    "papers_affected": 208,
-    "affected": {
-      "papers": 208,
-      "rows": 769,
-      "any_row": {
-        "medium": {
-          "n": 148,
-          "share": 0.7115
-        },
-        "ionic_strength": {
-          "n": 18,
-          "share": 0.0865
-        },
-        "pH": {
-          "n": 41,
-          "share": 0.1971
-        },
-        "temperature": {
-          "n": 40,
-          "share": 0.1923
-        },
-        "instrument": {
-          "n": 168,
-          "share": 0.8077
-        },
-        "complete": {
-          "n": 6,
-          "share": 0.0288
-        }
-      }
-    },
-    "unaffected": {
-      "papers": 283,
-      "rows": 1121,
-      "any_row": {
-        "medium": {
-          "n": 216,
-          "share": 0.7633
-        },
-        "ionic_strength": {
-          "n": 33,
-          "share": 0.1166
-        },
-        "pH": {
-          "n": 58,
-          "share": 0.2049
-        },
-        "temperature": {
-          "n": 65,
-          "share": 0.2297
-        },
-        "instrument": {
-          "n": 233,
-          "share": 0.8233
-        },
-        "complete": {
-          "n": 6,
-          "share": 0.0212
-        }
-      }
-    },
-    "pmcids": [
-      "PMC10081693",
-      "PMC10099137",
-      "PMC10103693",
-      "PMC10213243",
-      "PMC10220640",
-      "PMC10295233",
-      "PMC10323628",
-      "PMC10340104",
-      "PMC10383551",
-      "PMC10423972",
-      "PMC10450312",
-      "PMC10483464",
-      "PMC10610651",
-      "PMC10646276",
-      "PMC10648906",
-      "PMC10664492",
-      "PMC10685678",
-      "PMC10702630",
-      "PMC10762848",
-      "PMC10834790",
-      "PMC10909871",
-      "PMC10909942",
-      "PMC10952355",
-      "PMC10959865",
-      "PMC10974996",
-      "PMC10978833",
-      "PMC11007712",
-      "PMC11010371",
-      "PMC11057139",
-      "PMC11085467",
-      "PMC11085749",
-      "PMC11117817",
-      "PMC11125576",
-      "PMC11126148",
-      "PMC11260858",
-      "PMC11298679",
-      "PMC11342339",
-      "PMC11369379",
-      "PMC11397364",
-      "PMC11403556",
-      "PMC11481666",
-      "PMC11489330",
-      "PMC11543686",
-      "PMC11614646",
-      "PMC11615417",
-      "PMC11670657",
-      "PMC11722969",
-      "PMC11780734",
-      "PMC11840474",
-      "PMC11846901",
-      "PMC11872506",
-      "PMC11894927",
-      "PMC11938024",
-      "PMC11966731",
-      "PMC11990616",
-      "PMC11990826",
-      "PMC12030773",
-      "PMC12035802",
-      "PMC12063461",
-      "PMC12090009",
-      "PMC12092862",
-      "PMC12109039",
-      "PMC12111990",
-      "PMC12115821",
-      "PMC12115889",
-      "PMC12157050",
-      "PMC12165037",
-      "PMC12218389",
-      "PMC12250219",
-      "PMC12261319",
-      "PMC12279941",
-      "PMC12281096",
-      "PMC12312160",
-      "PMC12319994",
-      "PMC12333422",
-      "PMC12346606",
-      "PMC12356328",
-      "PMC12371250",
-      "PMC12376499",
-      "PMC12376923",
-      "PMC12395032",
-      "PMC12406979",
-      "PMC12475273",
-      "PMC12526631",
-      "PMC12548188",
-      "PMC12590796",
-      "PMC12635965",
-      "PMC12641161",
-      "PMC12641657",
-      "PMC12645312",
-      "PMC12650146",
-      "PMC12656232",
-      "PMC12691734",
-      "PMC12697767",
-      "PMC12729904",
-      "PMC12765340",
-      "PMC12780347",
-      "PMC12783835",
-      "PMC12787226",
-      "PMC12797264",
-      "PMC12797957",
-      "PMC12835115",
-      "PMC12845872",
-      "PMC12864305",
-      "PMC12866875",
-      "PMC12878436",
-      "PMC12893296",
-      "PMC12924321",
-      "PMC12943577",
-      "PMC12945053",
-      "PMC12955872",
-      "PMC12961878",
-      "PMC12966456",
-      "PMC12969122",
-      "PMC12990424",
-      "PMC12996544",
-      "PMC13057466",
-      "PMC13059191",
-      "PMC13104249",
-      "PMC13139601",
-      "PMC13153429",
-      "PMC13159399",
-      "PMC13173803",
-      "PMC13181784",
-      "PMC13195470",
-      "PMC13206469",
-      "PMC13211033",
-      "PMC13211750",
-      "PMC13241894",
-      "PMC13256201",
-      "PMC13258071",
-      "PMC13271390",
-      "PMC13280856",
-      "PMC13288247",
-      "PMC13298883",
-      "PMC13328142",
-      "PMC13329907",
-      "PMC13335070",
-      "PMC13343657",
-      "PMC13364793",
-      "PMC13376373",
-      "PMC13379464",
-      "PMC13386366",
-      "PMC13386373",
-      "PMC13391378",
-      "PMC13403680",
-      "PMC13405344",
-      "PMC13405854",
-      "PMC13424375",
-      "PMC13440390",
-      "PMC13470545",
-      "PMC13484639",
-      "PMC13491635",
-      "PMC3990004",
-      "PMC4861966",
-      "PMC5608696",
-      "PMC5876397",
-      "PMC5937892",
-      "PMC6316338",
-      "PMC6631359",
-      "PMC6923483",
-      "PMC6926673",
-      "PMC7174705",
-      "PMC7248110",
-      "PMC7305267",
-      "PMC7487953",
-      "PMC7496070",
-      "PMC7673751",
-      "PMC7893703",
-      "PMC7918465",
-      "PMC7996764",
-      "PMC8168913",
-      "PMC8383278",
-      "PMC8402430",
-      "PMC8541305",
-      "PMC8549819",
-      "PMC8552707",
-      "PMC8599475",
-      "PMC8760192",
-      "PMC8851716",
-      "PMC8915849",
-      "PMC8915914",
-      "PMC8928475",
-      "PMC8953984",
-      "PMC8983699",
-      "PMC9033670",
-      "PMC9087019",
-      "PMC9142603",
-      "PMC9230722",
-      "PMC9313510",
-      "PMC9332795",
-      "PMC9370135",
-      "PMC9376074",
-      "PMC9417664",
-      "PMC9455956",
-      "PMC9472436",
-      "PMC9488007",
-      "PMC9535493",
-      "PMC9555296",
-      "PMC9643204",
-      "PMC9654599",
-      "PMC9691371",
-      "PMC9735686",
-      "PMC9775992",
-      "PMC9853403",
-      "PMC9894871",
-      "PMC9939864",
-      "PMC9974068"
-    ]
-  }
+  "not_own_measurement": []
 }

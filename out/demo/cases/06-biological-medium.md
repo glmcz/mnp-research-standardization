@@ -17,7 +17,7 @@ Seventy-two of this paper's ninety rows disperse particles in a culture medium, 
 
 - spread of particle-mean zeta outside culture medium (18 rows, 3 particles): 52.7 mV
 - spread of particle-mean zeta inside culture medium (72 rows, 3 particles): 21.9 mV
-- per particle, outside -> inside: polystyrene, unmodified: -26.5 -> -19.0 mV; polystyrene, amine: 24.0 -> 2.9 mV; polystyrene, carboxyl: -28.7 -> -17.3 mV
+- per particle, outside -> inside: polystyrene, surface not stated: -26.5 -> -19.0 mV; polystyrene, amine: 24.0 -> 2.9 mV; polystyrene, carboxyl: -28.7 -> -17.3 mV
 
 ## 2. Rows
 

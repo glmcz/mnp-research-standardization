@@ -433,10 +433,9 @@ def _temperature_in(celsius: float, text: str) -> bool:
 
 
 def _ionic_number_in(mM: float, text: str) -> bool:
-    """Is this ionic strength printed in text, in mM or in any other concentration unit?"""
-    if _number_in(mM, text):
-        return True
-    return any(abs(v - mM) <= 1e-6 * max(1.0, mM) for v in coerce.concentrations_mM(text))
+    """Is this ionic strength printed in text: as its mM number, or in another unit as a salt's
+    concentration or a stated ionic strength (`coerce.ionic_concentration_in`)?"""
+    return _number_in(mM, text) or coerce.ionic_concentration_in(text, mM)
 
 
 def _cited_runs(doc: lines.LinedDoc, ev: models.Evidence) -> list[str]:

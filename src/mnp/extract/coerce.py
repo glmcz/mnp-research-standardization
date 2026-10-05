@@ -338,6 +338,25 @@ def concentrations_mM(text: str) -> list[float]:
     ]
 
 
+_IONIC_REACH = 60  # characters before the concentration in which "ionic strength" may name it
+
+
+def ionic_concentration_in(text: str, mM: float) -> bool:
+    """Does `text` print this ionic strength in another unit, as one? "∼0.15 M" counts after
+    "ionic strength", "0,026 M NaCl" counts bound to its salt. "BPA (10 µM)", a co-exposure, does
+    not: accepting any concentration in any unit let exactly that through (bfc90ac)."""
+    text = _powers_of_ten(text)
+    for regex, scale in _CONCENTRATIONS:
+        for m in regex.finditer(text):
+            if abs(float(m.group(1).replace(",", ".")) * scale - mM) > 1e-6 * max(1.0, mM):
+                continue
+            if _bound_salt(text, m.start(), m.end()):
+                return True
+            if IONIC_PHRASE.search(text[max(0, m.start() - _IONIC_REACH) : m.end()]):
+                return True
+    return False
+
+
 # A buffer named beside a concentration. Its ionic strength depends on a speciation at the
 # measured pH that papers rarely print, so the number is the buffer's, not the solution's.
 BUFFER_RE = re.compile(

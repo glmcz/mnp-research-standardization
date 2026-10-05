@@ -1192,8 +1192,8 @@ def _is_row(mM, quote):
     [
         # PMC11726606: the verifier looked for "150" and pushed a worker to delete the value
         (150.0, "zeta was -20 mV; ionic strength estimated for CV growth media (∼0.15 M)"),
-        # PMC11532844: molar with a decimal comma
-        (26.0, "zeta was -20 mV in HNO3 (0,026 M aqueous solution)"),
+        # molar with a decimal comma, bound to its salt
+        (26.0, "zeta was -20 mV in 0,026 M NaCl"),
         (0.5, "zeta was -20 mV at an ionic strength of 500 µM"),
     ],
 )
@@ -1201,6 +1201,20 @@ def test_an_ionic_strength_printed_in_another_unit_is_found(mM, quote):
     flags = zeta.verify_row(_is_row(mM, quote), quote)
     assert "ionic_strength_not_in_text" not in flags
     assert "ionic_strength_not_in_evidence" not in flags
+
+
+@pytest.mark.parametrize(
+    ("mM", "quote"),
+    [
+        # verify_adversarial.json: a co-exposure, not an ionic strength (bfc90ac let it through)
+        (0.01, "Zeta potential in FSW + BPA (10 µM) was -18.0 mV."),
+        # PMC11532844: an acid's molar concentration is neither a salt nor a stated ionic strength
+        (26.0, "zeta was -18 mV in HNO3 (0,026 M aqueous solution)"),
+    ],
+)
+def test_a_concentration_in_another_unit_counts_only_as_a_salt_or_an_ionic_strength(mM, quote):
+    flags = zeta.verify_row(_is_row(mM, quote), quote)
+    assert "ionic_strength_not_in_evidence" in flags
 
 
 def test_a_number_without_a_concentration_unit_is_not_an_ionic_strength():

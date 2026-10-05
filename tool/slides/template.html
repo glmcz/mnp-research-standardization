@@ -1,0 +1,900 @@
+<title>Reading What Isn't There</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+/* Layout: one 16:9 stage per slide, letterboxed and sized in em of the stage on wide screens,
+   a scrolling column on phones. The one bold idea: absence is cobalt, everything reported is ink. */
+:root {
+  --paper: #f6f7f9;
+  --panel: #ffffff;
+  --ink: #10131a;
+  --ink-2: #464e5e;
+  --muted: #687082;
+  --rule: #d5dae2;
+  --faint: #e8ebf0;
+  --quiet: #b2b9c5;
+  --absent: #2b3edc;
+  --absent-soft: #a8b2f1;
+  --absent-wash: rgba(43, 62, 220, 0.10);
+  --shadow: rgba(16, 19, 26, 0.12);
+  --display: "STIX Two Text", "STIX Two", Cambria, "Times New Roman", serif;
+  --text: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0c0f15;
+    --panel: #151a23;
+    --ink: #eef1f6;
+    --ink-2: #b3bbcb;
+    --muted: #8a93a5;
+    --rule: #2a313d;
+    --faint: #1a1f2a;
+    --quiet: #4a5365;
+    --absent: #8d9cff;
+    --absent-soft: #3d4898;
+    --absent-wash: rgba(141, 156, 255, 0.16);
+    --shadow: rgba(0, 0, 0, 0.45);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0c0f15;
+  --panel: #151a23;
+  --ink: #eef1f6;
+  --ink-2: #b3bbcb;
+  --muted: #8a93a5;
+  --rule: #2a313d;
+  --faint: #1a1f2a;
+  --quiet: #4a5365;
+  --absent: #8d9cff;
+  --absent-soft: #3d4898;
+  --absent-wash: rgba(141, 156, 255, 0.16);
+  --shadow: rgba(0, 0, 0, 0.45);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--text);
+  padding-inline: 16px;
+  padding-block: 16px 72px;
+}
+:focus-visible { outline: 2px solid var(--absent); outline-offset: 3px; }
+p, ul, ol, dl, dd, h1, h2, h3 { margin: 0; }
+code { font-family: var(--mono); font-size: 0.9em; }
+
+/* ---- stacked: the default, and a phone's view ---- */
+.deck { display: grid; gap: 40px; max-width: 1080px; margin: 0 auto; }
+.slide { border-top: 1px solid var(--rule); padding-top: 22px; scroll-margin-top: 12px; }
+.frame {
+  position: relative;
+  display: grid;
+  gap: 1.4em;
+  font-size: clamp(15px, 0.5vw + 12px, 17px);
+  line-height: 1.4;
+  min-width: 0;
+}
+.fig { overflow-x: auto; min-width: 0; }
+.fig svg { min-width: 560px; }
+
+/* ---- the deck: one slide fills the viewport ---- */
+@media (min-width: 760px) and (min-height: 440px) {
+  html.js, html.js body { height: 100%; overflow: hidden; }
+  html.js body { padding: 0; }
+  .js .deck { position: fixed; inset: 0; display: block; max-width: none; }
+  .js .slide {
+    display: none;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    padding: 0;
+  }
+  .js .slide.is-active { display: flex; }
+  .js .frame {
+    width: min(100vw, 177.78vh);
+    height: min(56.25vw, 100vh);
+    font-size: min(1.25vw, 2.2222vh);
+    padding: 2.4em 3.6em 1.8em;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 1.3em;
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .js .fig svg { min-width: 0; }
+  .js .fig { overflow: visible; }
+  .js .body.fill { display: flex; flex-direction: column; gap: 1em; }
+  .js .body.fill > .fig { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; }
+  .js .body.fill > .fig > svg { flex: 1 1 0; min-height: 0; height: 100%; }
+  .js .body.fill > .fig > figcaption { flex: none; }
+}
+
+/* ---- type ---- */
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 1.1em;
+  font: 500 0.68em/1.3 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.eyebrow .idx { color: var(--ink); }
+h1, h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; }
+.msg { font-size: 1.32em; line-height: 1.32; color: var(--ink-2); margin-top: 0.42em; max-width: 41em; text-wrap: pretty; }
+.msg .n, .msg .q { color: var(--ink); font-weight: 600; }
+.lead-in { font-size: 1.05em; color: var(--ink-2); max-width: 40em; }
+.small { font-size: 0.86em; color: var(--ink-2); line-height: 1.45; }
+.src { font: 0.6em/1.45 var(--mono); color: var(--muted); letter-spacing: 0.01em; }
+.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.q { font-family: var(--mono); font-size: 0.88em; }
+.verbatim { font-family: var(--mono); font-size: 0.86em; white-space: pre-wrap; tab-size: 3; overflow-wrap: anywhere; }
+.verbatim .q { font-size: 1em; }
+.abs-t { color: var(--absent); }
+.label { font: 500 0.66em/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+.body { min-height: 0; min-width: 0; display: grid; gap: 1.2em; align-content: start; }
+.cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.6em; }
+@media (min-width: 760px) {
+  .cols { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.5fr); gap: 2.6em; }
+  .cols.even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .cols.wide-left { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+}
+
+/* ---- notes ---- */
+.notes { display: none; }
+.show-notes .notes {
+  display: block;
+  border-top: 2px solid var(--ink);
+  background: var(--panel);
+  padding: 0.9em 1.1em 1em;
+  font-size: 1.02em;
+  line-height: 1.45;
+}
+.notes .label { display: block; margin-bottom: 0.35em; }
+.notes p { max-width: 62em; }
+@media (min-width: 760px) and (min-height: 440px) {
+  .show-notes.js .notes {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 44%;
+    overflow: auto;
+    padding: 1em 3.6em 1.3em;
+    box-shadow: 0 -12px 32px var(--shadow);
+    z-index: 2;
+  }
+}
+
+/* ---- controls ---- */
+.controls {
+  position: fixed;
+  right: 12px;
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font: 12px/1 var(--mono);
+  color: var(--muted);
+  z-index: 5;
+}
+.controls button {
+  font: inherit;
+  color: var(--ink-2);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  min-width: 30px;
+  min-height: 28px;
+  padding: 0 8px;
+  cursor: pointer;
+}
+.controls button:hover { color: var(--ink); border-color: var(--ink-2); }
+.controls button[aria-pressed="true"] { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+.counter { min-width: 4.5em; text-align: center; font-variant-numeric: tabular-nums; }
+.controls .deck-only { display: none; }
+@media (min-width: 760px) and (min-height: 440px) {
+  .js .controls .deck-only { display: inline-flex; align-items: center; justify-content: center; }
+}
+
+/* ---- charts (inline SVG, user units; text sizes are in the chart's own scale) ---- */
+.chart { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--text); font-size: 17px; fill: var(--ink-2); font-variant-numeric: tabular-nums; }
+.chart .tick { font-size: 15px; fill: var(--muted); }
+.chart .tick-b { font-size: 15px; fill: var(--ink); font-weight: 600; }
+.chart .ax { stroke: var(--ink-2); stroke-width: 1.2; fill: none; }
+.chart .grid { stroke: var(--rule); stroke-width: 1; fill: none; }
+.chart .ax-t { font-size: 15px; fill: var(--muted); }
+.chart .iv { fill: var(--faint); stroke: var(--ink-2); stroke-width: 1.2; }
+.chart .pt { fill: var(--ink); }
+.chart .val { font-size: 21px; font-weight: 650; fill: var(--ink); }
+.chart .val-s { font-size: 16px; fill: var(--ink); }
+.chart .lim { font: 14px var(--mono); fill: var(--muted); }
+.chart .row-h { font-family: var(--display); font-size: 27px; font-weight: 600; fill: var(--ink); }
+.chart .row-s { font: 14px var(--mono); fill: var(--muted); }
+.chart .gap { stroke: var(--ink); stroke-width: 1.6; fill: none; }
+.chart .gap-t { font-size: 16px; font-weight: 650; fill: var(--ink); }
+.chart .seg-q { fill: var(--quiet); }
+.chart .seg-a { fill: var(--absent); }
+.chart .seg-i { fill: var(--ink); }
+.chart .seg-l { font-size: 16px; fill: var(--ink-2); }
+.chart .seg-n { font-size: 23px; font-weight: 650; fill: var(--ink); }
+.chart .abs { fill: var(--absent); }
+.chart .tick-a { stroke: var(--absent); stroke-width: 1.5; }
+.chart .lead { stroke: var(--ink-2); stroke-width: 1; }
+.chart .co { font-size: 15px; fill: var(--ink-2); }
+.chart .co-b { font-size: 20px; font-weight: 700; fill: var(--ink); }
+.chart .note { font-size: 13px; fill: var(--muted); }
+.chart .col-h { font: 13px var(--mono); fill: var(--muted); letter-spacing: 0.04em; }
+.chart .row-l { font-size: 17px; fill: var(--ink); }
+.chart .row-l.abs { fill: var(--absent); font-weight: 650; }
+.chart .bar-a { fill: var(--absent); }
+.chart .bar-s { fill: var(--absent-soft); }
+.chart .only { font: 17px var(--mono); fill: var(--ink); }
+.chart .val-in { font-size: 16px; fill: var(--ink); }
+.chart .val-in-a { font-size: 16px; font-weight: 650; fill: var(--paper); }
+.chart .rug { stroke: var(--ink-2); stroke-width: 1; }
+.chart .curve { fill: none; stroke: var(--ink-2); stroke-width: 2.2; }
+.chart .dot { fill: var(--ink); fill-opacity: 0.7; }
+.chart .band { fill: var(--absent-wash); stroke: var(--absent); stroke-width: 2; }
+.chart .band-t { font-size: 14px; fill: var(--absent); }
+.chart .band-n { font-size: 26px; font-weight: 700; fill: var(--absent); }
+.chart .lim-t { font-family: var(--display); font-style: italic; font-size: 15px; fill: var(--muted); }
+.chart .lab { font-size: 14px; fill: var(--ink-2); }
+.chart .lab-b { font-size: 15px; font-weight: 650; fill: var(--ink); }
+.chart .particle { fill: var(--faint); stroke: var(--ink-2); stroke-width: 1.5; }
+.chart .ion-n { font-size: 19px; fill: var(--muted); }
+.chart .ion-p { font-size: 19px; fill: var(--ink); }
+.chart .faint { fill-opacity: 0.5; }
+.chart .slip { stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 6 5; fill: none; }
+.chart .psi { fill: none; stroke: var(--ink); stroke-width: 2.4; }
+.chart .sym { font-family: var(--display); font-style: italic; font-size: 27px; fill: var(--ink); }
+.chart .box { fill: var(--panel); stroke: var(--ink-2); stroke-width: 1.2; }
+.chart .box-m { fill: var(--faint); stroke: var(--ink); stroke-width: 1.8; }
+.chart .box-a { fill: var(--absent-wash); stroke: var(--absent); stroke-width: 2; }
+.chart .box-t { font-size: 18px; font-weight: 650; fill: var(--ink); }
+.chart .box-t.abs { fill: var(--absent); }
+.chart .box-s { font-size: 15px; fill: var(--ink-2); }
+.chart .lane { font: 13px var(--mono); fill: var(--muted); letter-spacing: 0.08em; }
+.chart .arrow { stroke: var(--ink-2); stroke-width: 1.5; fill: none; marker-end: url(#ah); }
+.chart .arrowhead { fill: var(--ink-2); }
+.fig figcaption { margin-top: 0.6em; }
+
+/* ---- slide 1 ---- */
+.title-slide .frame { align-content: space-between; }
+.title-slide h1 { font-size: 4.3em; line-height: 0.98; margin-top: 0.3em; max-width: 12em; }
+.title-slide .sub { font-family: var(--display); font-size: 1.62em; line-height: 1.2; color: var(--ink); max-width: 30em; margin-top: 0.5em; text-wrap: balance; }
+.title-slide .sub2 { font-size: 1.22em; color: var(--ink-2); margin-top: 1.1em; max-width: 36em; }
+.title-slide .who { display: flex; flex-wrap: wrap; gap: 0.4em 2em; align-items: baseline; }
+.title-slide .who b { font-size: 1.25em; font-weight: 600; }
+.motif { width: 100%; height: auto; display: block; align-self: center; }
+.motif text { font-family: var(--mono); font-size: 15px; letter-spacing: 0.08em; }
+.motif .m-t { fill: var(--muted); }
+.motif .m-ta { fill: var(--absent); }
+.motif .m-solid { fill: none; stroke: var(--ink); stroke-width: 2.5; }
+.motif .m-gone { fill: none; stroke: var(--absent); stroke-width: 2.5; stroke-dasharray: 2 9; stroke-linecap: round; }
+.motif .m-base { stroke: var(--rule); stroke-width: 1; }
+
+/* ---- definition lists of printed conditions ---- */
+.printed { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.45em 1.1em; align-items: baseline; }
+.printed dt { font: 500 0.66em/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.printed dd { font-size: 1.02em; min-width: 0; }
+.printed.example { gap: 0.25em 1.1em; }
+.printed.example dd { font-size: 0.92em; }
+.pair { display: grid; gap: 0.5em; border-top: 1px solid var(--rule); padding-top: 0.8em; }
+.pair p { font-size: 0.9em; color: var(--ink-2); }
+.pair b { color: var(--ink); font-weight: 600; }
+.verdict { font-size: 1.02em; border-left: 3px solid var(--ink); padding-left: 0.8em; }
+
+/* ---- HTML bars ---- */
+.track { position: relative; height: 0.95em; background: var(--absent-wash); }
+.track .fill { position: absolute; inset: 0 auto 0 0; background: var(--ink); }
+.track.plain { background: var(--faint); }
+.conds { display: grid; gap: 1.25em; }
+.cond {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.3em 1.6em;
+  align-items: center;
+}
+@media (min-width: 760px) { .cond { grid-template-columns: 9.5em minmax(0, 1.25fr) minmax(0, 1fr) 4.4em; } }
+.cond .name { font-family: var(--display); font-size: 1.45em; font-weight: 600; }
+.cond .why { font-size: 1.02em; color: var(--ink-2); line-height: 1.3; }
+.cond .v { font-size: 1.2em; text-align: right; }
+.cond .track { height: 1.15em; }
+.cond.head { font: 500 0.62em/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.cond.head > span:last-child { text-align: right; }
+.cond.key .name { color: var(--absent); }
+.legend { display: flex; flex-wrap: wrap; gap: 0.4em 1.4em; font-size: 0.8em; color: var(--ink-2); align-items: center; }
+.legend i { display: inline-block; width: 1.6em; height: 0.75em; margin-right: 0.45em; vertical-align: -0.05em; }
+.legend .k-ink { background: var(--ink); }
+.legend .k-abs { background: var(--absent-wash); outline: 1px solid var(--absent-soft); }
+
+/* ---- slide 7 ---- */
+.defaults { display: grid; gap: 0.9em; align-content: start; }
+.default-big { font-family: var(--mono); font-size: 1.45em; color: var(--ink); border-left: 3px solid var(--absent); padding: 0.2em 0 0.2em 0.7em; }
+.rules { display: grid; gap: 1em; }
+.rule { display: grid; grid-template-columns: 2.6em minmax(0, 1fr); gap: 0.2em 0.8em; }
+.rule .rid { font: 600 1.05em/1.3 var(--mono); color: var(--absent); }
+.rules { gap: 1.4em; }
+.rule h3 { font-size: 1.22em; font-weight: 650; line-height: 1.3; }
+.rule p { grid-column: 2; font-size: 1em; color: var(--ink-2); line-height: 1.42; }
+
+/* ---- slide 10 ---- */
+.agree { display: grid; gap: 1.25em; align-content: start; }
+.agree-row { display: grid; grid-template-columns: 8.5em minmax(0, 1fr) 6.4em; gap: 0.9em; align-items: center; font-size: 1.3em; }
+.agree-row .track { height: 0.9em; }
+.agree-row .v { text-align: right; }
+.agree-row.weak span:first-child { font-weight: 650; }
+.stat { display: grid; gap: 0.3em; border-left: 3px solid var(--absent); padding-left: 0.9em; }
+.stat .big { font-family: var(--display); font-size: 3.4em; line-height: 1; font-weight: 600; }
+.stat .big .small { font-family: var(--text); font-size: 0.32em; font-weight: 400; }
+.stat .big .n { color: var(--absent); }
+
+/* ---- slides 11 and 12: real cases in rows ---- */
+.cases { display: grid; gap: 0; border-top: 1px solid var(--ink); }
+.case-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.25em 1.4em;
+  padding: 0.55em 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.98em;
+  line-height: 1.32;
+}
+@media (min-width: 760px) { .case-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1.2fr); } }
+.case-row.head { font: 500 0.66em/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 0.4em 0; }
+.case-row .what { font-weight: 650; color: var(--ink); }
+.case-row .ev { color: var(--ink); }
+.case-row .how { color: var(--ink-2); }
+.lesson { font-size: 1.02em; border-left: 3px solid var(--absent); padding-left: 0.8em; max-width: 52em; }
+
+/* ---- slide 13 ---- */
+.grid-cmp { display: grid; gap: 0.15em; }
+.cmp-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.4em 1.4em; align-items: center; padding: 0.55em 0; border-bottom: 1px solid var(--rule); }
+@media (min-width: 760px) { .cmp-row { grid-template-columns: 16.5em minmax(0, 1fr) minmax(0, 1fr); } }
+.cmp-row.head { font: 500 0.66em/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--ink); }
+.cmp-row .m { font-size: 0.98em; }
+.cell { display: grid; grid-template-columns: minmax(0, 1fr) 5.4em; gap: 0.7em; align-items: center; }
+.cell .v { text-align: right; font-size: 1.1em; font-weight: 600; }
+.honest { border: 1.5px solid var(--ink); padding: 0.7em 0.9em; font-size: 1.08em; max-width: 54em; }
+.track .fill.cost { background: var(--quiet); }
+.cmp-row .m { font-size: 1.08em; }
+
+/* ---- slide 14 ---- */
+.steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.9em; counter-reset: step; list-style: none; padding: 0; }
+@media (min-width: 760px) { .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.4em; } }
+.steps li { counter-increment: step; border-top: 2px solid var(--ink); padding-top: 0.6em; display: grid; gap: 0.35em; align-content: start; }
+.steps li::before { content: counter(step); font: 600 0.8em var(--mono); color: var(--muted); }
+.steps li.key { border-top-color: var(--absent); }
+.steps h3 { font-size: 1.3em; font-weight: 650; line-height: 1.25; }
+.steps p { font-size: 1.04em; color: var(--ink-2); line-height: 1.4; }
+.status { display: inline-flex; gap: 0.6em; align-items: baseline; font: 600 0.8em var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--absent); border: 1.5px solid var(--absent); padding: 0.25em 0.7em; justify-self: start; }
+
+/* ---- slide 15 ---- */
+.cancant { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.6em; }
+@media (min-width: 760px) { .cancant { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3em; } }
+.cancant h3 { font-family: var(--display); font-size: 1.9em; font-weight: 600; padding-bottom: 0.2em; border-bottom: 2px solid var(--ink); }
+.cancant .cant h3 { border-bottom-color: var(--absent); color: var(--absent); }
+.cancant ul { list-style: none; padding: 0; display: grid; gap: 0.75em; margin-top: 0.75em; }
+.cancant ul { gap: 1em; }
+.cancant li { font-size: 1.3em; line-height: 1.32; }
+.cancant li small { display: block; font-size: 0.78em; color: var(--ink-2); margin-top: 0.15em; }
+
+/* ---- slide 16 ---- */
+.standard { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2em; }
+@media (min-width: 760px) { .standard { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2em; } }
+.standard section { border-top: 2px solid var(--ink); padding-top: 0.55em; display: grid; gap: 0.4em; align-content: start; }
+.standard h3 { font-size: 1.3em; font-weight: 650; }
+.standard p, .standard li { font-size: 1.04em; color: var(--ink-2); line-height: 1.4; }
+.standard ul { padding-left: 1.1em; display: grid; gap: 0.15em; }
+.where { display: flex; flex-wrap: wrap; gap: 0.4em 2.2em; font-size: 1em; }
+.where b { font-weight: 650; }
+.scope { font-size: 0.95em; color: var(--ink-2); border-left: 3px solid var(--absent); padding-left: 0.8em; max-width: 60em; line-height: 1.42; }
+.scope b { color: var(--ink); }
+</style>
+
+<main class="deck" id="deck">
+
+<section class="slide title-slide" id="s1" aria-label="Slide 1: title">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">01</span><span>A conference talk on {{dataset}}</span></p>
+    <h1>Reading What Isn’t There</h1>
+    <p class="sub">AI Agents and the Unreported Conditions That Keep Nanoplastic Measurements Incomparable</p>
+    <p class="sub2">What Claude agents found reading {{records}} papers, and how we checked them</p>
+  </header>
+  <svg class="motif" viewBox="0 0 1200 170" role="img" aria-label="A potential falling off from a surface, drawn solid where it is reported and dotted where it is not">
+    <line x1="0" y1="150" x2="1200" y2="150" class="m-base"/>
+    <path d="M0,30 C120,30 190,100 330,126 S520,146 600,147" class="m-solid"/>
+    <path d="M600,147 C760,149 980,150 1200,150" class="m-gone"/>
+    <text x="0" y="16" class="m-t">REPORTED</text>
+    <text x="1200" y="130" class="m-ta" text-anchor="end">NOT REPORTED</text>
+  </svg>
+  <footer class="who">
+    <b>{{author}}</b>
+    <span class="small">Dataset: {{dataset}}, licensed {{licence}}</span>
+  </footer>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>This talk is about what papers leave out. Claude agents read the open-access full texts one query returned ({{papers_read}} fetched, {{records}} with an extraction record) and wrote down every zeta-potential measurement with the conditions it was measured under. Every value is quoted verbatim with the address of its line, and a condition the paper does not state is recorded as a value of its own. The dataset is public under {{licence}}, and everything I show is rebuilt from it.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s2" aria-label="Slide 2: the best case fails">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">02</span><span>Act I · the problem</span></p>
+    <h2>The best case fails.</h2>
+    <p class="msg">One lab, the same {{c14.size_nominal}} nm polystyrene, the same five conditions, two papers {{c14.years}} years apart: {{c14.a.value}} against {{c14.b.value}} mV.</p>
+  </header>
+  <div class="body cols">
+    <div class="defaults">
+      <dl class="printed">
+        <dt>Lab</dt><dd>{{c14.lab}}</dd>
+        <dt>Medium</dt><dd>{{c14.medium}}</dd>
+        <dt>pH</dt><dd>{{c14.pH}}</dd>
+        <dt>Temperature</dt><dd>{{c14.T}} °C</dd>
+        <dt>Instrument</dt><dd>{{c14.instrument}}</dd>
+      </dl>
+      <p class="verdict">Comparable on all five conditions: the dataset’s one comparable pair across two papers.</p>
+      <div class="pair">
+        <p><b>{{c14.a.year}}</b> · {{c14.a.value}} ± {{c14.a.sd}} mV · measured {{c14.a.size}} nm · supplier: {{c14.a.supplier}}</p>
+        <p><b>{{c14.b.year}}</b> · {{c14.b.value}} ± {{c14.b.sd}} mV · measured {{c14.b.size}} nm · supplier: {{c14.b.supplier}}</p>
+      </div>
+    </div>
+    <figure class="fig" style="margin:0">
+      {{svg:c14}}
+      <figcaption class="small">Bars: each value’s harmonised interval, with the conversion model left open between Hückel and Smoluchowski (case Z3). They do not overlap.</figcaption>
+    </figure>
+  </div>
+  <p class="src">out/tables/d1_zeta_table.csv · out/review/harmonised_all_rows.csv · src/mnp/demo/cases.py, case 14 · REVIEW.md C5</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>This is the best case the dataset has: the one pair of measurements from two papers that passes every rule of the comparability key. Same lab, same nominal particle, same salt, pH, temperature and instrument, and the values are {{c14.gap}} mV apart. Even with the conversion model left open, the two intervals sit {{c14.igap}} mV apart. What differs is what neither paper had to report: the measured sizes are {{c14.a.size}} and {{c14.b.size}} nm, and only one paper names its supplier.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s3" aria-label="Slide 3: zeta belongs to the particle in its liquid">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">03</span><span>Act I · the problem</span></p>
+    <h2>Zeta belongs to the particle in its liquid.</h2>
+    <p class="msg">One particle, three liquids: the zeta potential moves {{c02.spread}} mV, and none of the three rows states an ionic strength.</p>
+  </header>
+  <div class="body cols even">
+    <figure class="fig" style="margin:0">
+      {{svg:layer}}
+      <figcaption class="small">Zeta is the potential at the slipping plane. The ions of the liquid set how fast the potential falls off, over the Debye length.</figcaption>
+    </figure>
+    <figure class="fig" style="margin:0">
+      {{svg:c02}}
+      <figcaption class="small">Printed on all three rows: {{c02.size}} µm polystyrene from {{c02.supplier}}, pH {{c02.pH}}, {{c02.T}} °C, {{c02.instrument}}.</figcaption>
+    </figure>
+  </div>
+  <p class="src">out/tables/d1_zeta_table.csv, {{c02.pmcid}} · src/mnp/demo/cases.py, case 02</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>A zeta potential is not a property of the particle alone. Here one {{c02.size}} µm polystyrene particle is measured in water, in PBS and in a culture medium, at the same pH and temperature, and zeta moves by {{c02.spread}} mV. None of the three rows states an ionic strength, each for a different reason: a conductivity, a buffer named without its composition, a medium whose composition is not printed.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s4" aria-label="Slide 4: five conditions">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">04</span><span>Act I · the problem</span></p>
+    <h2>Five conditions.</h2>
+    <p class="msg">Each one changes the number a zeta measurement prints. All five stand on the same row for {{five.complete}} of {{rows}} rows.</p>
+  </header>
+  <div class="body">
+    <div class="conds">
+      <div class="cond head"><span>condition</span><span>why a zeta value means nothing without it</span><span>reported: a paper’s mean share of rows</span><span></span></div>
+      <div class="cond"><span class="name">Medium</span><span class="why">{{five.why.medium_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.medium_reported}}"></span></span><span class="v">{{five.medium_reported}}</span></div>
+      <div class="cond key"><span class="name">Ionic strength</span><span class="why">{{five.why.ionic_strength_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.ionic_strength_reported}}"></span></span><span class="v">{{five.ionic_strength_reported}}</span></div>
+      <div class="cond"><span class="name">pH</span><span class="why">{{five.why.pH_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.pH_reported}}"></span></span><span class="v">{{five.pH_reported}}</span></div>
+      <div class="cond"><span class="name">Temperature</span><span class="why">{{five.why.temperature_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.temperature_reported}}"></span></span><span class="v">{{five.temperature_reported}}</span></div>
+      <div class="cond"><span class="name">Instrument</span><span class="why">{{five.why.instrument_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.instrument_reported}}"></span></span><span class="v">{{five.instrument_reported}}</span></div>
+    </div>
+    <p class="legend"><span><i class="k-ink"></i>reported</span><span><i class="k-abs"></i>not reported</span><span>All five on one row, per paper: a mean of {{five.complete_paper}}.</span></p>
+  </div>
+  <p class="src">out/review/conditions_per_paper.csv (REVIEW.md §5.1) · reasons: out/demo/METHOD.md</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>These are the five conditions without which a zeta value cannot be interpreted. Each bar is per paper: the average share of a paper’s rows that report the condition, so a paper with many rows does not outvote one with few. Only {{five.complete}} of {{rows}} rows carry all five. And “reported” is generous here: a pH range, “room temperature” and an instrument family all count, so every figure is an upper bound.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s5" aria-label="Slide 5: not different, just unreported">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">05</span><span>Act I · the problem</span></p>
+    <h2>“Not different, just unreported.”</h2>
+    <p class="msg">{{sp.cat.lost_to_absence}} same-particle comparisons fail on a missing number, not on science.</p>
+  </header>
+  <div class="body">
+    <figure class="fig" style="margin:0">{{svg:census}}</figure>
+    <p class="lead-in">{{sp.pairs}} pairs of rows describe the same particle. Of the {{sp.cat.lost_to_absence}} that only an unreported condition keeps apart, {{sp.absence_cross}} cross a paper boundary.</p>
+    <p class="small">A count, not a counterfactual: reported, a missing condition could still differ, so these pairs would become decidable, not necessarily comparable.</p>
+  </div>
+  <p class="src">comparability.same_particle_census · out/review/same_particle_census.csv · REVIEW.md C12, §5.7</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Take every pair of rows that describe the same particle: the same quantity, material and surface. Most pairs differ in something a paper did state. But {{sp.cat.lost_to_absence}} pairs are kept apart only by something one or both papers did not state, and only {{sp.cat.comparable}} pairs are comparable. That is a count, not a counterfactual: reported, those conditions could still differ, so these pairs would become decidable, not necessarily comparable.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s6" aria-label="Slide 6: what costs the most">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">06</span><span>Act I · the problem</span></p>
+    <h2>What costs the most.</h2>
+    <p class="msg">Ionic strength is missing in {{sp.field.ionic_strength.pairs}} of the {{sp.cat.lost_to_absence}} pairs lost to absence ({{sp.top_pct}}). In {{sp.only_total}} pairs, one reported number would decide the pair.</p>
+  </header>
+  <div class="body fill">
+    <figure class="fig" style="margin:0">
+      {{svg:fields}}
+      <figcaption class="small">Right column: pairs where this field is the only one missing, so one reported number would decide the pair, though not necessarily make it comparable.</figcaption>
+    </figure>
+  </div>
+  <p class="src">comparability.same_particle_census · REVIEW.md §5.7</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Within the pairs lost to absence, ionic strength is missing in {{sp.field.ionic_strength.pairs}}. Most pairs miss several fields at once, which is why the left bars are all long. The right column is the cheap part: pairs where a single field is the only thing missing, mostly ionic strength and the measured size.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s7" aria-label="Slide 7: the AI problem">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">07</span><span>Act II · reading what isn’t there</span></p>
+    <h2>Silence is invisible to a reader.</h2>
+    <p class="msg">A model sees what is written. Asked for a condition the paper never gives, an extractor left to itself supplies a plausible default.</p>
+  </header>
+  <div class="body cols">
+    <div class="defaults">
+      <p class="label">The defaults within reach</p>
+      <p class="default-big">{{ai.defaults}}</p>
+      <p class="small">and a named buffer’s nominal composition, looked up rather than read.</p>
+      <p class="lead-in">The counter-measure: absence is recorded as a value and never imputed, and three rules, ratified during the project, clear what slipped through. The row stays; the value goes.</p>
+    </div>
+    <div class="rules">
+      <div class="rule"><span class="rid">R1</span><h3>A printed zero is not an ionic strength.</h3><p>“{{r1.example}}” becomes unreported: “no added electrolyte” does not mean the liquid holds no ions.</p></div>
+      <div class="rule"><span class="rid">R2</span><h3>A step temperature is not the measurement temperature.</h3><p>{{r2.pmcid}} labels its medium “{{r2.example}}”; {{r2.rows}} rows had taken that as the temperature of the measurement (R2b).</p></div>
+      <div class="rule"><span class="rid">R3</span><h3>A buffer’s concentration is not its ionic strength.</h3><p>“{{r3.example}}” was stored as a reported ionic strength, yet {{r3.ions}}.</p></div>
+    </div>
+  </div>
+  <p class="src">docs/DECISIONS.md RC-05, RC-06, RC-08, RC-09, RC-10 · REVIEW.md §8</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>A language model reads what is on the page. It has no signal for what is not there, and when a schema asks for a temperature it tends to supply a plausible one. So the dataset records absence explicitly and never imputes it, and three rules ratified during the project clear the defaults readers let in. Each example on the right is a real case from the corpus.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s8" aria-label="Slide 8: the architecture">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">08</span><span>Act II · reading what isn’t there</span></p>
+    <h2>A model reads; code decides.</h2>
+    <p class="msg">Every value links to the line it came from.</p>
+  </header>
+  <div class="body fill">
+    <figure class="fig" style="margin:0">{{svg:arch}}</figure>
+    <dl class="printed example">
+      <dt>Row</dt><dd>{{arch.row_id}}, the first row of case 14</dd>
+      <dt>Quote</dt><dd class="verbatim">{{arch.quote}}</dd>
+      <dt>From</dt><dd>{{arch.location}}</dd>
+      <dt>Line ids</dt><dd class="verbatim">{{arch.lines}}</dd>
+      <dt>Verified</dt><dd>quotes found verbatim in their paper: {{arch.verified}}</dd>
+    </dl>
+  </div>
+  <p class="src">out/tables/d1_zeta_table.csv · REVIEW.md §2 · docs/DECISIONS.md CP-03, CP-04, PR-02</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>The agents never write to the table directly. Each value arrives as a verbatim quote with the addresses of the lines it sits in, and code checks that the quote is in the paper. Everything after the reading is deterministic: the comparability verdicts, the census and the whole build, which <code>report reproduce</code> rebuilds byte for byte. The example is the first row of the pair on slide two.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s9" aria-label="Slide 9: absence has a size">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">09</span><span>Act II · reading what isn’t there</span></p>
+    <h2>Absence has a size.</h2>
+    <p class="msg">Without ionic strength, one printed zeta becomes an interval of ±{{h.hw_f}}. Without the conversion model as well, as in {{h.z4}} rows, ±{{h.hw_z4}}.</p>
+  </header>
+  <div class="body fill">
+    <figure class="fig" style="margin:0">
+      {{svg:henry}}
+      <figcaption class="small debye-note">Curve: f(κa) for a {{c14.size_nominal}} nm particle (radius {{h.radius}} nm), κ⁻¹ = {{h.debye_c}}/√I nm with I in mol/L, a 1:1 electrolyte at 25 °C. Dots: the {{h.points}} rows that report an ionic strength and a size, each at its own f. Ticks on the axis: {{h.rug}} rows with an ionic strength but no size. Band: {{h.band}} rows with no ionic strength, f anywhere from {{h.f_lo}} to {{h.f_hi}}.</figcaption>
+    </figure>
+  </div>
+  <p class="src">comparability.debye_length_nm, henry_f · harmonise case Z4 · out/review/harmonised_all_rows.csv · REVIEW.md §5.4, §5.5</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>This is why ionic strength costs the most. Henry’s function converts the measured mobility into zeta; it runs from {{h.f_lo}} to {{h.f_hi}} depending on the particle’s size against the Debye length, and the Debye length depends on ionic strength. Without ionic strength, f can sit anywhere in the band, which is ±{{h.hw_f}} on the printed value. When the conversion model is unknown too, as in {{h.z4}} rows, it is ±{{h.hw_z4}}.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s10" aria-label="Slide 10: how reliable is one reading">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">10</span><span>Act II · reading what isn’t there</span></p>
+    <h2>How reliable is one reading?</h2>
+    <p class="msg">Two blind readings agree on the condition flags. They disagree on which rows exist.</p>
+  </header>
+  <div class="body cols wide-left">
+    <div class="agree">
+      <p class="label">Flags agreeing, on the {{rr.matched}} rows both readings found</p>
+      <div class="agree-row weak"><span>medium</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.medium_reported}}"></span></span><span class="v">{{rr.agree.medium_reported}}</span></div>
+      <div class="agree-row"><span>ionic strength</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.ionic_strength_reported}}"></span></span><span class="v">{{rr.agree.ionic_strength_reported}}</span></div>
+      <div class="agree-row"><span>pH</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.pH_reported}}"></span></span><span class="v">{{rr.agree.pH_reported}}</span></div>
+      <div class="agree-row"><span>temperature</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.temperature_reported}}"></span></span><span class="v">{{rr.agree.temperature_reported}}</span></div>
+      <div class="agree-row"><span>instrument</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.instrument_reported}}"></span></span><span class="v">{{rr.agree.instrument_reported}}</span></div>
+      <div class="agree-row"><span>all five</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.conditions_complete}}"></span></span><span class="v">{{rr.agree.conditions_complete}}</span></div>
+    </div>
+    <div class="defaults">
+      <div class="stat"><span class="label">Same number of rows</span><span class="big">{{rr.same_count}} <span class="small">of {{rr.papers}} papers</span></span></div>
+      <p class="lead-in">Rows found: {{rr.rows_a}} in reading A, {{rr.rows_b}} in reading B.</p>
+      <p class="small">{{rr.papers}} papers, a seeded sample, each read twice by separate agents under the same brief and run through the dataset’s own pipeline without recording anything.</p>
+    </div>
+  </div>
+  <p class="src">data/interim/reread_control/summary.json · docs/DECISIONS.md EX-09</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>To measure reading noise, {{rr.papers}} papers were each read twice, blind, under the same brief. On rows both readings found, the condition flags agree almost perfectly; the medium is the weakest at {{rr.agree.medium_reported}}. The readings differ mainly on which rows exist, with the same row count in only {{rr.same_count}} of {{rr.papers}} papers. Against the older recorded extraction, the control also showed that in {{rr.cited}} papers the recorded rows were values cited from other studies.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s11" aria-label="Slide 11: what the agents got wrong">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">11</span><span>Act II · reading what isn’t there</span></p>
+    <h2>What the agents got wrong.</h2>
+    <p class="msg">Each was caught by a check against the data, never by trusting an agent’s report.</p>
+  </header>
+  <div class="body">
+    <div class="cases">
+      <div class="case-row head"><span>what the agent did</span><span>the evidence</span><span>how it was caught</span></div>
+      <div class="case-row"><span class="what">Recorded a value cited from another study as the paper’s own</span><span class="ev">{{g.cited.pmcid}}: “{{g.cited.quote}}”</span><span class="how">Two blind re-readings found no measurement of the paper’s own. The brief now excludes cited values.</span></div>
+      <div class="case-row"><span class="what">Wrote down an n the paper never states</span><span class="ev">{{g.n.pmcid}}</span><span class="how">The main session read every worker report and sent the paper back.</span></div>
+      <div class="case-row"><span class="what">Recorded DLVO model inputs as measurements</span><span class="ev">{{g.dlvo.pmcid}}</span><span class="how">Sent back. The first correction then dropped a measurement the paper says it made but never prints, which had to stay.</span></div>
+      <div class="case-row"><span class="what">Counted one reading twice, as zeta and as mobility</span><span class="ev">{{g.twice.pmcid}}</span><span class="how">Found in the re-read of {{g.reread}} papers under one brief; sent back.</span></div>
+      <div class="case-row"><span class="what">Took a storage temperature as the measurement one</span><span class="ev">{{r2.pmcid}}: “{{r2.example}}”, {{r2.rows}} rows</span><span class="how">Candidate rows read against their papers; rule R2b now clears it.</span></div>
+    </div>
+  </div>
+  <p class="src">docs/DECISIONS.md, agent actions; EX-09, EX-10, RC-09 · data/interim/extractions.jsonl</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>These are real errors the agents made, and each was caught by a check, not by trusting the agent’s own report. The pattern is that agents fill the structure they are given: a cited value becomes a measurement, a model input becomes a data point, a storage temperature becomes the measurement temperature. The made-up n was in {{g.n.pmcid}}, which is the newer paper of the pair on slide two.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s12" aria-label="Slide 12: our own checks pushed the data toward absence">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">12</span><span>Act II · reading what isn’t there</span></p>
+    <h2>The twist: our own checks pushed the data toward absence.</h2>
+    <p class="msg">A check that flags a correct value teaches the agent to delete it.</p>
+  </header>
+  <div class="body">
+    <div class="cases">
+      <div class="case-row head"><span>what the check missed</span><span>the text it failed on</span><span>what happened</span></div>
+      <div class="case-row"><span class="what">An ionic strength in molar</span><span class="ev"><span class="verbatim">“{{gd.molar}}”, “{{gd.comma}}”</span></span><span class="how">The check looked for “{{gd.looked1}}” and “{{gd.looked2}}”. Worker {{gd.worker}} deleted {{gd.harmed}}’s value to clear the flag.</span></div>
+      <div class="case-row"><span class="what">An exponent inside the unit</span><span class="ev"><span class="verbatim">“{{gd.mmol}}”</span></span><span class="how">A medium stating {{gd.mmol_text}} recorded no ionic strength.</span></div>
+      <div class="case-row"><span class="what">A power of ten</span><span class="ev"><span class="verbatim">“{{gd.pow}}”</span></span><span class="how">Read as {{gd.pow_read}}, and the rows dropped.</span></div>
+      <div class="case-row"><span class="what">A temperature in kelvin</span><span class="ev"><span class="verbatim">“{{gd.kelvin}}”</span></span><span class="how">Not found.</span></div>
+      <div class="case-row"><span class="what">The step guard read too far</span><span class="ev"><span class="verbatim">“{{gd.step}}”</span></span><span class="how">In the next sentence, it cleared a temperature the paper ties to the Zetasizer.</span></div>
+      <div class="case-row"><span class="what">Our own fix, widened too far</span><span class="ev"><span class="verbatim">“{{gd.bpa}}”</span></span><span class="how">Taught to accept any unit, the check let a co-exposure count as {{gd.bpa_mM}} of ionic strength. Now another unit counts only bound to a salt or within {{gd.window}} characters after “ionic strength”.</span></div>
+    </div>
+    <p class="lesson">The workers reported the first five, because the re-read brief asked for “{{gd.asked}}”; the adversarial verify fixture caught our own regression. Each fix began as a failing test, and a worker now never deletes a printed value to clear a flag.</p>
+  </div>
+  <p class="src">docs/DECISIONS.md EX-12, EX-13, EX-14</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>This was the most uncomfortable finding. The verifier flags any value it cannot find in the text, and the workers were told to act on flags. When a guard failed to recognise a correct value, written in molar, in kelvin or with an exponent, a worker deleted the value to clear the flag, and the data moved toward absence, the very quantity we measure. Then our own fix widened one guard too far and let a co-exposure concentration through as an ionic strength.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s13" aria-label="Slide 13: structure against retrieval">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">13</span><span>Act II · reading what isn’t there</span></p>
+    <h2>Structure vs retrieval, same model.</h2>
+    <p class="msg">Retrieval over text cannot reach the comparability verdict. In cell D the code decides it, and the model reads it back.</p>
+  </header>
+  <div class="body">
+    <div class="grid-cmp">
+      <div class="cmp-row head"><span>the same questions</span><span>cell D: the table</span><span>cell B: BM25 over the papers’ lines</span></div>
+      <div class="cmp-row"><span class="m">comparable pairs found (kind E)</span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.D.comparable}}"></span></span><span class="v">{{gr.D.comparable}}</span></span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.B.comparable}}"></span></span><span class="v">{{gr.B.comparable}}</span></span></div>
+      <div class="cmp-row"><span class="m">kind E, balanced accuracy</span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.D.bal}}"></span></span><span class="v">{{gr.D.bal}}</span></span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.B.bal}}"></span></span><span class="v">{{gr.B.bal}}</span></span></div>
+      <div class="cmp-row"><span class="m">a numeric filter across papers (kind C)</span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.D.C}}"></span></span><span class="v">{{gr.D.C}}</span></span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.B.C}}"></span></span><span class="v">{{gr.B.C}}</span></span></div>
+      <div class="cmp-row"><span class="m">input tokens, all questions</span><span class="cell"><span class="track plain"><span class="fill cost" style="width:{{w:gr.D.tokens}}"></span></span><span class="v">{{gr.D.tokens}}</span></span><span class="cell"><span class="track plain"><span class="fill cost" style="width:{{w:gr.B.tokens}}"></span></span><span class="v">{{gr.B.tokens}}</span></span></div>
+    </div>
+    <p class="honest">In cell D the code decides comparability and the model reads the verdict. The point is that retrieval over text cannot reach the verdict at all. B’s raw kind E accuracy, {{gr.B.E}}, is the base rate: it called every pair not comparable ({{gr.B.said_not}} answers).</p>
+    <p class="small">One reader, {{gr.model}}, asked the same {{gr.asked}} questions in each cell, once.</p>
+  </div>
+  <p class="src">data/interim/runs/{{gr.D.run}}, {{gr.B.run}} · docs/DECISIONS.md GR-15</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Same model, same questions, two ways of handing it the evidence. In cell D the reader gets the table, and for comparability the code’s verdict is in the prompt, so its perfect score is transcription, not judgement. Cell B retrieves lines from the papers and never finds a comparable pair; its raw accuracy is high only because it calls everything not comparable. Comparability lives in the join of two rows, and no passage of text contains it.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s14" aria-label="Slide 14: the human audit">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">14</span><span>Act II · reading what isn’t there</span></p>
+    <h2>The human audit.</h2>
+    <p class="msg">Not done yet. No person has checked a row against its paper.</p>
+  </header>
+  <div class="body">
+    <span class="status">Status: not done</span>
+    <ol class="steps">
+      <li><h3>Draw a sample from the final rows</h3><p>Aimed at the rows that say a condition is not reported, condition by condition.</p></li>
+      <li><h3>Open each paper at the cited lines</h3><p>Every row carries the addresses of its lines, so this is a lookup, not a search.</p></li>
+      <li class="key"><h3>Is it really not reported?</h3><p>For this measurement, by the dataset’s own rules: yes, no or unsure.</p></li>
+      <li class="key"><h3>The precision of “not reported”</h3><p>Per condition. The census rests on it: a false “not reported” moves a pair out of “lost only to absence”.</p></li>
+    </ol>
+    <p class="small">It is the one check no agent can do for us. Its result will be reported as measured, whatever it is.</p>
+  </div>
+  <p class="src">docs/DECISIONS.md OD-03 · REVIEW.md §7 · out/review/audit_sample.csv holds no verdict yet</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>No person has yet checked a row against its paper. The audit will draw a sample from the final rows, aimed at the claim the census rests on: that a condition is really not reported. Its result will say how far the absence counts can be trusted, and it goes into the dataset whatever it shows.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s15" aria-label="Slide 15: what AI can and cannot do">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">15</span><span>Act III · what AI can and can’t do</span></p>
+    <h2>Can, and can’t.</h2>
+    <p class="msg">Agents made the reading possible at scale. Code made it checkable.</p>
+  </header>
+  <div class="body cancant">
+    <div>
+      <h3>Can</h3>
+      <ul>
+        <li>Read the corpus at scale, every value quoted and addressed to its line.<small>Quotes found verbatim in their paper: {{arch.verified}}.</small></li>
+        <li>Measure the gap.<small>A missing condition is recorded as a value, row by row.</small></li>
+        <li>Rank what is missing.<small>And find the pairs one reported number would decide.</small></li>
+        <li>Rebuild everything deterministically.<small><code>report reproduce</code>, byte for byte.</small></li>
+      </ul>
+    </div>
+    <div class="cant">
+      <h3>Can’t</h3>
+      <ul>
+        <li>Fill in a missing condition.<small>A default is a guess, and the dataset refuses it.</small></li>
+        <li>Replace a human check.<small>The audit is still to come.</small></li>
+        <li>Decide comparability by itself.<small>Code does that; the model reads the verdict.</small></li>
+      </ul>
+    </div>
+  </div>
+  <p class="src">REVIEW.md C10 · docs/DECISIONS.md RC-05, GR-15, OD-03</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Agents made it possible to read the corpus at this scale with every value traceable to its line. They cannot supply a condition a paper did not report, and they should not decide comparability on their own. The verdicts come from code that anyone can rerun, and the one check that needs a person is still ahead of us.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s16" aria-label="Slide 16: a minimal reporting standard">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">16</span><span>Act III · what AI can and can’t do</span></p>
+    <h2>The call: a minimal reporting standard.</h2>
+    <p class="msg">Report the five conditions, identify the particle, and name the conversion model.</p>
+  </header>
+  <div class="body">
+    <div class="standard">
+      <section><h3>The five conditions</h3><ul><li>the medium</li><li>ionic strength as a number, not a buffer name</li><li>pH</li><li>the temperature of the measurement itself</li><li>the instrument</li></ul></section>
+      <section><h3>The particle</h3><p>Supplier, lot and surface chemistry. Case 14’s two lots of {{c14.size_nominal}} nm polystyrene pass all five conditions and still differ by {{c14.gap}} mV.</p></section>
+      <section><h3>The conversion model</h3><p>Smoluchowski, Hückel or Henry’s function. Without it and without κa, as in {{h.z4}} rows, a printed zeta is only known to ±{{h.hw_z4}}.</p></section>
+    </div>
+    <p class="where"><span><b>Dataset</b> {{dataset}}, {{licence}}, <code>out/release/</code></span><span><b>Code</b> this repository; <code>report reproduce</code> rebuilds it</span><span><b>Review guide</b> <code>out/review/REVIEW.md</code></span></p>
+    <p class="scope"><b>Scope.</b> {{sc.synthetic}} {{sc.corpus}} {{sc.use}}</p>
+  </div>
+  <p class="src">mnp.report.scope · out/release/LICENSE</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>The ask is small: report the five conditions, identify the particle, and name the conversion model. Case 14 shows that the five alone are not enough. Everything here is open: the dataset under {{licence}}, the code and the review guide. And the scope: these are synthetic particles measured in laboratory liquids, read from one open-access corpus.</p>
+  </aside>
+</div>
+</section>
+
+</main>
+
+<nav class="controls" aria-label="Slide controls">
+  <button type="button" id="prev" class="deck-only" aria-label="Previous slide">‹</button>
+  <span id="counter" class="counter deck-only" aria-live="polite"></span>
+  <button type="button" id="next" class="deck-only" aria-label="Next slide">›</button>
+  <button type="button" id="notes-btn" aria-pressed="false" title="Speaker notes (N)">Notes</button>
+</nav>
+
+<script type="application/json" id="deck-data">__DATA__</script>
+<script>
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  root.classList.add('js');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const counter = document.getElementById('counter');
+  const notesBtn = document.getElementById('notes-btn');
+  const deckMode = window.matchMedia('(min-width: 760px) and (min-height: 440px)');
+  const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let cur = 0;
+
+  const clamp = (i) => Math.max(0, Math.min(slides.length - 1, i));
+  function fromHash() {
+    const m = /^#s(\d+)$/.exec(window.location.hash);
+    return m ? clamp(Number(m[1]) - 1) : 0;
+  }
+  function setHash(h) {
+    if (window.location.hash === h) return;
+    try { window.history.replaceState(null, '', h); } catch (e) { window.location.hash = h; }
+  }
+  function show(i, scroll) {
+    cur = clamp(i);
+    slides.forEach((s, j) => s.classList.toggle('is-active', j === cur));
+    counter.textContent = (cur + 1) + ' / ' + slides.length;
+    setHash('#s' + (cur + 1));
+    if (scroll && !deckMode.matches) {
+      slides[cur].scrollIntoView({ block: 'start', behavior: calm.matches ? 'auto' : 'smooth' });
+    }
+  }
+  function toggleNotes() {
+    const on = root.classList.toggle('show-notes');
+    notesBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+  function fullscreen() {
+    try {
+      const p = document.fullscreenElement ? document.exitFullscreen() : root.requestFullscreen();
+      if (p && p.catch) p.catch(() => {});
+    } catch (e) { /* not available here */ }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    const k = e.key;
+    if (k === 'n' || k === 'N') { toggleNotes(); return; }
+    if (k === 'f' || k === 'F') { fullscreen(); return; }
+    if (!deckMode.matches) return;
+    if (k === 'ArrowRight' || k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)) {
+      e.preventDefault(); show(cur + 1);
+    } else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && e.shiftKey)) {
+      e.preventDefault(); show(cur - 1);
+    } else if (k === 'Home') {
+      e.preventDefault(); show(0);
+    } else if (k === 'End') {
+      e.preventDefault(); show(slides.length - 1);
+    }
+  });
+
+  document.getElementById('deck').addEventListener('click', (e) => {
+    if (!deckMode.matches) return;
+    if (e.target.closest('a, button, .notes')) return;
+    const sel = window.getSelection();
+    if (sel && String(sel).length) return;
+    show(e.clientX < window.innerWidth / 3 ? cur - 1 : cur + 1);
+  });
+  document.getElementById('prev').addEventListener('click', () => show(cur - 1));
+  document.getElementById('next').addEventListener('click', () => show(cur + 1));
+  notesBtn.addEventListener('click', toggleNotes);
+  window.addEventListener('hashchange', () => show(fromHash(), true));
+  deckMode.addEventListener('change', () => show(cur, true));
+
+  show(fromHash(), window.location.hash !== '');
+})();
+</script>

@@ -28,5 +28,8 @@ data/interim/rehydrated/
 tool/viz/data.json
 tool/viz/mnp-results.html
 
+# rebuilt by tool/slides/build_slides.py; publish, do not commit
+tool/slides/slides.html
+
 # hand-check packets quote article text; local only
 data/interim/origin/hand_check_packet-*.txt

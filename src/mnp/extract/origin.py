@@ -56,14 +56,16 @@ ENVIRONMENTS = (
     "other",
 )
 BUDGET_TOKENS = 3000
-#: Martin, 2026-09-29: stop and report before the reader spends more than this.
-INPUT_TOKEN_LIMIT = 4_000_000
+#: Cumulative input tokens over every origin run. Martin, 2026-09-29: stop and report before the
+#: reader spends more than 4 M. Martin, 2026-10-05: 5 M, for one more run over the re-read rows,
+#: whose particle names no longer match the earlier answers (estimate 2.0 M on top of 2.85 M).
+INPUT_TOKEN_LIMIT = 5_000_000
 #: origin-20260929 read the unrepaired line document and was stopped at 224 papers;
-#: origin-20260929b read it with the lost Methods appended. Neither read `build_lines` as
-#: `load_doc` now does, so the next run needs a new id: resuming this one skips every paper it
-#: answered, whatever its prompt is now.
-RUN_ID = "origin-20260929b"
-PREVIOUS_RUN_ID = "origin-20260929"
+#: origin-20260929b read it with the lost Methods appended. origin-20261005 reads `build_lines`
+#: over the final records (the 2026-10-03 re-read), reusing an earlier answer only where the
+#: prompt is byte for byte the same.
+RUN_ID = "origin-20261005"
+PREVIOUS_RUN_ID = "origin-20260929b"
 
 
 def answers_dir() -> Path:

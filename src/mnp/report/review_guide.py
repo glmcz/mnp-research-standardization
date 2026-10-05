@@ -31,7 +31,27 @@ PER_PAPER = "conditions_per_paper.csv"
 ICC = "icc_worksheet.csv"
 PAIRS = "comparability_worked_pairs.csv"
 AUDIT = "audit_sample.csv"
+SAME = "same_particle_census.csv"
 ORIGIN_ROWS = "sample_origin.csv"
+
+#: C12's pandas recipe for the same-particle pair count: an import, then an expression over `t`.
+SAME_PARTICLE_RECIPE = (
+    "from mnp.eval.comparability import functionalisation_key, material_key",
+    "t.assign(m=t.material.fillna('').map(material_key), "
+    "f=t.functionalisation.fillna('').map(functionalisation_key)).dropna(subset=['m'])"
+    ".groupby(['quantity', 'm', 'f'], dropna=False).size()"
+    ".pipe(lambda g: (g * (g - 1) // 2).sum())",
+)
+#: The `d1` column that holds each blocker field, for the worked example of §5.7.
+FIELD_COLUMN = {
+    "medium": "medium_text",
+    "ionic_strength": "ionic_strength_mM",
+    "pH": "pH",
+    "temperature": "temperature_C",
+    "instrument": "instrument",
+    "size_measured_nm": "size_measured_nm",
+    "functionalisation": "functionalisation",
+}
 
 #: Griffin and Jurinak (1973): I (mol/L) ≈ 0.013 × EC (mS/cm), which is I (mM) ≈ 0.013 × EC (µS/cm).
 GRIFFIN_JURINAK = 0.013
@@ -300,6 +320,32 @@ def _worksheet_docs(f: Facts) -> list[str]:
         ("instrument_ok", "your verdict on the instrument", "you fill it"),
         ("note", "anything else", "you fill it"),
     ]
+    rows_col = _col(SAME, "rows")
+    same = [
+        ("quantity", "the measured quantity", "—"),
+        (
+            "material",
+            "`material_key(material)`: a polymer code, or `literal:` and the normalised text",
+            "computed (§5.7)",
+        ),
+        (
+            "functionalisation",
+            "`functionalisation_key(functionalisation)`; blank when no row states a surface",
+            "computed (§5.7)",
+        ),
+        ("rows", "rows describing this particle", "—"),
+        ("papers", "papers those rows come from", "—"),
+        ("pairs", "every pair of those rows", f"`={rows_col}2*({rows_col}2-1)/2`"),
+        *(
+            (c, f"pairs of this particle that are {comp.SAME_PARTICLE_LABELS[c]}", "§5.7 rule")
+            for c in comp.SAME_PARTICLE_CATEGORIES
+        ),
+        (
+            "lost_to_absence_cross_paper",
+            "of `lost_to_absence`, the pairs whose two rows come from different papers",
+            "—",
+        ),
+    ]
     return [
         "### The worksheets, column by column",
         "",
@@ -323,6 +369,10 @@ def _worksheet_docs(f: Facts) -> list[str]:
         f"**`{AUDIT}`** — {_int(len(f.audit))} rows to check against the papers (§7).",
         "",
         *_sheet_table(audit_cols),
+        f"**`{SAME}`** — {_int(len(f.same_particle.particles))} lines, one per particle that at "
+        "least two rows describe (§5.7). The category columns sum to the numbers of C12.",
+        "",
+        *_sheet_table(same),
     ]
 
 
@@ -362,6 +412,8 @@ def section_1(f: Facts) -> list[str]:
         "by field | evaluate a pair by hand (§5.6) |",
         f"| `out/review/{AUDIT}` | {_int(len(f.audit))} rows drawn at random, with the lines "
         "they cite and empty columns for your verdicts | audit rows against the papers (§7) |",
+        f"| `out/review/{SAME}` | one line per particle that at least two rows describe: its "
+        "rows, papers and pairs, and the pairs in each category of §5.7 | recount C12 (§5.7) |",
         *(
             [
                 f"| `out/tables/{ORIGIN_ROWS}` | one line per row, in the table's order: where its "
@@ -392,7 +444,7 @@ def section_1(f: Facts) -> list[str]:
         f"{len(r.columns)} columns",
         "                                        │ report review reads both",
         "                                        ▼",
-        "                    out/review/REVIEW.md and five worksheets",
+        "                    out/review/REVIEW.md and six worksheets",
         "```",
         "",
         "The two tables hold the same rows in the same order; `row_id` joins them and every "
@@ -1736,18 +1788,114 @@ def section_5_6(f: Facts) -> list[str]:
         "|---|---|---|---|---|---|",
         *strata_rows,
         "",
-        "**The counterfactual**, quoted from `docs/FINDINGS_comparability.md` §4c (no committed "
-        "code recomputes it; see §8). Drop every `*_unreported` rule, i.e. let an unreported "
-        "condition take a default, and the comparable count rises from 16 to **81 624** pairs, "
-        "4.57 % of all pairs. Dropping every agreement, identity, measurand and physics rule "
-        "instead raises it only to 51. The count is driven by what papers do not say, not by "
-        "strict tolerances.",
+        "**What absence costs** is counted in §5.7, over the pairs that describe the same "
+        "particle, with no rule dropped and no default tried.",
         "",
         f"**The worked pairs** (`{PAIRS}`, one line per check):",
         "",
         *pairs,
         "",
     ]
+
+
+def _one_number_away(f: Facts) -> tuple[str, dict, dict, comp.Verdict] | None:
+    """The first pair, in the worksheet's particle order and then by row id, whose one blocker is
+    the field most often missing alone."""
+    if not f.same_particle.only_absent_field:
+        return None
+    field = f.same_particle.only_absent_field[0][0]
+    groups: dict[tuple, list[tuple[dict, comp.ZetaRow]]] = {}
+    for record in f.table.to_dict("records"):
+        row = comp.ZetaRow.from_mapping(record)
+        key = comp.same_particle_key(row)
+        if key is not None:
+            groups.setdefault(key, []).append((record, row))
+    for p in f.same_particle.particles:
+        group = sorted(groups[(p.quantity, p.material, p.functionalisation)],
+                       key=lambda item: item[1].row_id)  # fmt: skip
+        for i, (a, row_a) in enumerate(group):
+            for b, row_b in group[i + 1 :]:
+                verdict = comp.comparable(row_a, row_b)
+                blockers = [(x.kind, x.field) for x in verdict.blockers]
+                if blockers == [(comp.BlockerKind.unreported, field)]:
+                    return field, a, b, verdict
+    return None
+
+
+def section_5_7(f: Facts) -> list[str]:
+    sp = f.same_particle
+    absence = sp.count("lost_to_absence")
+    only = dict(sp.only_absent_field)
+    lines = [
+        "### 5.7 Not different, just unreported",
+        "",
+        "**What it computes.** Of the pairs of rows that describe the same particle, how many are "
+        "kept apart only by what a paper left out. §5.6 asks which pairs may be compared; this "
+        "asks what stops the rest, among pairs where the particle is not the reason. It counts "
+        "blocked pairs. It does not say what the missing conditions were, and it tries no "
+        "default.",
+        "",
+        "**Columns read**: those of §5.6, through `ZetaRow.from_mapping`. The particle is "
+        "(`quantity`, `material_key(material)`, `functionalisation_key(functionalisation)`): the "
+        "spellings `comparability` already merges, and nothing else. **Code.** "
+        f"`mnp.eval.comparability.same_particle_census`. **Worksheet.** `{SAME}`.",
+        "",
+        "**Grouping.** A row whose material is unreported describes no particle and is left out. "
+        "A surface unreported on both rows keys to no surface, so those rows group together; "
+        "`comparable` still raises `functionalisation_unreported` on each such pair, so the "
+        "unstated surface counts as one of the absences and none of them can be comparable. A "
+        "row that states its surface never pairs with one that does not.",
+        "",
+        "**Categories** (`comparability.same_particle_category`), the first that matches:",
+        "",
+        "```",
+        "verdict comparable                                  → comparable",
+        "verdict conditionally_comparable                    → conditionally comparable",
+        "not_comparable, every blocker kind unreported       → lost only to absence",
+        "not_comparable, at least one blocker kind mismatch  → a stated difference",
+        "anything else                                       → undecidable",
+        "```",
+        "",
+        "A pair with one unreported field and one stated difference is a stated difference: it "
+        "would stay blocked if both papers reported everything.",
+        "",
+        "| category | pairs |",
+        "|---|---|",
+        *(f"| {comp.SAME_PARTICLE_LABELS[c]} (`{c}`) | {_int(n)} |" for c, n in sp.categories),
+        f"| all same-particle pairs | {_int(sp.pairs)} |",
+        "",
+        f"Within lost only to absence ({_int(absence)} pairs; {_int(sp.absence_cross_paper)} "
+        f"across papers, {_int(sp.absence_same_paper)} inside one paper), per field: the pairs "
+        "where it is among the missing, and the pairs where it is the only one missing, where "
+        "one reported number would make the pair decidable, though not necessarily comparable:",
+        "",
+        "| missing field | pairs missing it | pairs missing only it |",
+        "|---|---|---|",
+        *(f"| `{fl}` | {_int(n)} | {_int(only.get(fl, 0))} |" for fl, n in sp.absent_fields),
+        "",
+    ]
+    example = _one_number_away(f)
+    if example:
+        field, a, b, verdict = example
+        column = FIELD_COLUMN.get(field, field)
+        surface = a["functionalisation"] if isinstance(a["functionalisation"], str) else None
+        shown = (_cell(a[column]), _cell(b[column]))
+        reads = (
+            "is blank on both rows"
+            if shown == ("—", "—")
+            else f"reads {shown[0]} on `{a['row_id']}` and {shown[1]} on `{b['row_id']}`"
+        )
+        lines += [
+            f"**Worked example.** Pair `{a['row_id']}` × `{b['row_id']}`, two "
+            f"`{a['quantity']}` rows of `{_cell(a['material'])}`"
+            + (f" / `{_cell(surface)}`" if surface else ", surface unstated")
+            + f", is the first pair in the worksheet's order whose only missing field is "
+            f"`{field}`. `comparable` lists one blocker, `{verdict.blockers[0].code}`: every "
+            f"other check of §5.6 passes. In `d1`, `{column}` {reads}. Had both rows stated it, "
+            "the pair would be decided, one way or the other.",
+            "",
+        ]
+    return lines
 
 
 def section_5(f: Facts) -> list[str]:
@@ -1763,6 +1911,7 @@ def section_5(f: Facts) -> list[str]:
         *section_5_4(f),
         *section_5_5(f),
         *section_5_6(f),
+        *section_5_7(f),
     ]
 
 
@@ -1784,6 +1933,46 @@ def _claim(title: str, number: str, computed: str, verify: str, caveats: str) ->
 def _acc(run: Any, kind: str) -> str:
     s = run.summaries.get(kind)
     return "—" if s is None else f"{round(s.accuracy * s.n)}/{s.n}"
+
+
+def _same_particle_claim(sp: comp.SameParticleCensus) -> list[str]:
+    absence = sp.count("lost_to_absence")
+    field, missing = sp.absent_fields[0]
+    surface = dict(sp.absent_fields).get("functionalisation", 0)
+    imports, expression = SAME_PARTICLE_RECIPE
+    rows_col = _col(SAME, "rows")
+    return _claim(
+        "C12. Not different, just unreported: same-particle pairs blocked only by absence",
+        f"{_int(sp.pairs)} pairs of rows describe the same particle; {_int(absence)} of them "
+        f"({_pct(absence, sp.pairs)}) are lost only to absence, "
+        f"{_int(sp.absence_cross_paper)} of those across papers and "
+        f"{_int(sp.absence_same_paper)} inside one paper. "
+        f"{_int(sp.count('stated_difference'))} differ in a stated condition, "
+        f"{_int(sp.count('undecidable'))} are undecidable, "
+        f"{_int(sp.count('conditionally_comparable'))} are conditionally comparable and "
+        f"{_int(sp.count('comparable'))} comparable. Of the pairs lost to absence, `{field}` is "
+        f"missing in {_int(missing)} of them ({_pct(missing, absence)}) and is the only missing "
+        f"field in {_int(dict(sp.only_absent_field).get(field, 0))}.",
+        "§5.7: `comparability.same_particle_census` groups the rows by (`quantity`, "
+        "`material_key`, `functionalisation_key`), leaving out rows whose material is "
+        "unreported, grades every pair inside a group with `comparable` (§5.6) and sorts it by "
+        "the five-line rule of §5.7. Lost only to absence needs every blocker unreported.",
+        f"`{SAME}`: `=SUM` each category column and `lost_to_absence_cross_paper`; on every line "
+        f"`pairs` is `={rows_col}2*({rows_col}2-1)/2` and equals the sum of its five category "
+        f"columns. The pair count in pandas: `{imports}`, then `{expression}`. The categories in "
+        "Python: `from mnp.eval.comparability import ZetaRow, same_particle_census; "
+        "same_particle_census([ZetaRow.from_mapping(r) for r in t.to_dict('records')])`. One "
+        "pair by hand: the worked example in §5.7.",
+        "a count of pairs blocked only by unreported conditions: not a claim about what those "
+        "conditions were, and not a claim about what a default would do. Reported, they could "
+        "still differ, so a pair lost to absence would become decidable, not necessarily "
+        "comparable. The particle is the printed description: a spelling the keys do not merge "
+        "keeps one particle apart, and different particles described alike are paired. "
+        f"{_int(surface)} of the pairs lost to absence leave the surface unstated on both rows: "
+        "grouped because nothing printed tells them apart, with the unstated surface counted as "
+        "one of their absences. The rules are this project's own (C5), and every verdict "
+        "inherits the extraction.",
+    )
 
 
 def section_6(f: Facts) -> list[str]:
@@ -1866,8 +2055,8 @@ def section_6(f: Facts) -> list[str]:
         "`from mnp.eval.comparability import ZetaRow, graded_census; "
         "graded_census([ZetaRow.from_mapping(r) for r in t.to_dict('records')])`.",
         "the rules and tolerances are this project's own, not a published standard; the κa "
-        "rule rests on the 1:1 Debye length; every verdict inherits the extraction; the "
-        "counterfactual of 81 624 is quoted, not recomputed.",
+        "rule rests on the 1:1 Debye length; every verdict inherits the extraction. What absence "
+        "alone blocks among pairs of one particle is C12: a count, not a counterfactual.",
     )
     lines += _claim(
         "C6. Reporting behaves like a property of the paper, not of the measurement",
@@ -1952,6 +2141,8 @@ def section_6(f: Facts) -> list[str]:
     o = f.extra.get("origin")
     if o:
         lines += _origin_claim(o)
+    lines += _same_particle_claim(f.same_particle)
+    if o:
         lines += _environmental_conditions(o)
     g = f.extra.get("gold") or {}
     annot = ", ".join(f"`{a}` {v}" for a, v in (g.get("annotators") or {}).items()) or "unknown"
@@ -2360,11 +2551,13 @@ def section_8(f: Facts) -> list[str]:
             "temperatures read from outside the row's quote (§4.4). Closed."
         )
     found.append(
-        "**The 81 624 counterfactual is quoted, never recomputed.** No committed code produces "
-        "it or the leave-one-rule-out table (`docs/FINDINGS_comparability.md` §4c, §4b), and "
-        "`src/mnp/demo/render.py` prints 81 624 as a literal. The all-pairs blocker frequencies "
-        "(§4a) could be recomputed with `comparability.blocker_distribution`, but no runner "
-        "does."
+        "**`docs/FINDINGS_comparability.md` §4c and §4b quote counterfactuals no committed code "
+        "produces**: the comparable count with every `*_unreported` rule dropped, and the "
+        "leave-one-rule-out table. This guide and the demo no longer print them. They print the "
+        "measured same-particle census instead (§5.7, C12), which counts pairs blocked only by "
+        "unreported conditions and tries no default. The all-pairs blocker frequencies (§4a) "
+        "could be recomputed with `comparability.blocker_distribution`, but no runner does. "
+        "Open: recompute §4b and §4c, or mark them superseded in the findings file."
     )
     if x.get("method_says_no_licence"):
         found.append(

@@ -554,6 +554,25 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
         <div><h3>What it means</h3><p><span data-k="comparable"></span> pairs are comparable (<span data-k="comparable_zeta"></span> of them zeta against zeta) and <span data-k="conditional"></span> are comparable along one axis, such as two ionic strengths in a titration (<span data-k="conditional_cross"></span> of those cross papers). Everything else is blocked.</p></div>
       </div>
     </div>
+    <div class="sub" id="absence" hidden>
+      <p class="sub-title">Not different, just unreported: the <span data-k="sp_pairs"></span> pairs of rows that describe the same particle</p>
+      <div class="panel">
+        <div class="legend" id="c-absence-legend"></div>
+        <div id="c-absence" class="hb"></div>
+      </div>
+      <div class="panel">
+        <p class="sub-title">Which conditions the <span data-k="sp_absence"></span> pairs lost only to absence are missing</p>
+        <div class="legend">
+          <span><i class="sw bg-absent"></i>pairs where the condition is not stated on one row or both</span>
+        </div>
+        <div id="c-absence-fields" class="hb"></div>
+      </div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>Same particle means the same measured quantity, the same polymer and the same surface groups, as printed. The top bar is every such pair, split by what the comparability check decides. Grey pairs are blocked only by conditions a paper did not report: nothing either row states differs. Below, each bar is the share of those grey pairs that miss one condition; a pair usually misses several. A surface left unstated on both rows counts as missing, never as the same.</p></div>
+        <div><h3>What it means</h3><p><span data-k="sp_absence"></span> pairs of the same particle (<span data-k="sp_absence_pct"></span>) are lost only to absence, <span data-k="sp_absence_cross"></span> of them across papers, against <span data-k="sp_comparable"></span> comparable. <span data-k="sp_top_pct"></span> of them miss the <span data-k="sp_top_field"></span>. This counts what blocks those pairs. It does not say what the missing conditions were, or what a default would make comparable.</p></div>
+      </div>
+      <p class="hb-note" id="absence-unchecked" hidden>REVIEW.md at this commit has no claim C12 yet, so the numbers in this block are not cross-checked against it.</p>
+    </div>
     <div class="sub">
       <p class="sub-title">What blocks a comparison</p>
       <div class="panel">
@@ -712,6 +731,25 @@ const d3Measured = d3L.find(x => x.alpha === null);
 const d3Default = d3L.find(x => x.alpha === 1.6);
 const d3Best = d3L.reduce((a, b) => (b.alpha !== null && b.range < a.range ? b : a), d3Default);
 const O = DATA.origin;
+const SP = DATA.same_particle;
+const FIELD_NAME = {
+  medium: ['medium', 'the liquid'], ionic_strength: ['ionic strength', 'salt concentration'], pH: ['pH', null],
+  temperature: ['temperature', null], functionalisation: ['surface groups', 'functionalisation'],
+  instrument: ['instrument', null], size_measured_nm: ['measured size', 'needed for κa'],
+  material: ['material', 'the polymer'], conversion_model: ['conversion regime', 'κa puts f in different places'],
+  quantity: ['measured quantity', 'zeta against mobility'],
+};
+function spKeys(sp) {
+  const by = Object.fromEntries(sp.categories.map(c => [c.key, c.pairs]));
+  const top = sp.fields[0];
+  return {
+    sp_pairs: fmt(sp.pairs), sp_absence: fmt(by.lost_to_absence),
+    sp_absence_pct: pct(by.lost_to_absence / sp.pairs), sp_absence_cross: fmt(sp.absence_cross),
+    sp_comparable: fmt(by.comparable),
+    sp_top_field: top ? (FIELD_NAME[top.field] || [top.field])[0] : '',
+    sp_top_pct: top ? pct(top.pairs / by.lost_to_absence) : '',
+  };
+}
 function originKeys(o) {
   const cls = Object.fromEntries(o.classes.map(c => [c.key, c]));
   const where = Object.fromEntries(o.environments.map(e => [e.key, e]));
@@ -758,6 +796,7 @@ const K = {
   ke_complete: fmt(Object.values(CM.strata.both_conditions_complete).reduce((a, b) => a + b, 0)),
   checks_n: fmt(DATA.checks.length), checks_ok: fmt(DATA.checks.filter(c => c.ok).length),
   ...(O ? originKeys(O) : {}),
+  ...(SP ? spKeys(SP) : {}),
 };
 document.querySelectorAll('[data-k]').forEach(e => {
   const v = K[e.dataset.k];
@@ -1375,16 +1414,61 @@ load('Z1');
   hbAxis(el, ticks);
 })();
 
+// ---------- 5a2. same particle: not different, just unreported ----------
+(function sameParticle() {
+  if (!SP) return;
+  document.getElementById('absence').hidden = false;
+  document.getElementById('absence-unchecked').hidden = SP.cross_checked;
+  const CAT = {
+    comparable: ['bg-s3', COLOR.s3], conditionally_comparable: ['bg-s2', COLOR.s2],
+    lost_to_absence: ['bg-absent', COLOR.absent], stated_difference: ['bg-s1', COLOR.s1],
+    undecidable: ['bg-ink2', COLOR.ink2],
+  };
+  const legend = document.getElementById('c-absence-legend');
+  for (const c of SP.categories) {
+    const item = H('span', null, null, legend);
+    H('i', 'sw ' + CAT[c.key][0], null, item);
+    item.append(c.label + ' ' + fmt(c.pairs));
+  }
+  const el = document.getElementById('c-absence');
+  const { row, track } = hbRow(el, 'pairs of one particle', fmt(SP.pairs) + ' pairs, ' + fmt(SP.particles) + ' particles');
+  track.classList.add('stacked');
+  const st = H('div', 'stack', null, track);
+  for (const c of SP.categories) {
+    if (!c.pairs) continue;
+    const d = H('div', CAT[c.key][0], null, st);
+    d.style.flex = c.pairs + ' 1 0';
+    d.style.minWidth = '3px';
+    const lab = H('span', null, fmt(c.pairs), d);
+    requestAnimationFrame(() => { if (d.clientWidth < fmt(c.pairs).length * 7 + 14) lab.remove(); });
+  }
+  bindTip(row, () => ({ h: fmt(SP.pairs) + ' pairs of rows that describe the same particle', rows: SP.categories.map(c => (
+    { v: fmt(c.pairs), l: ' ' + c.label + ' (' + pct(c.pairs / SP.pairs, 2) + ')', c: CAT[c.key][1] })) }));
+
+  const absence = SP.categories.find(c => c.key === 'lost_to_absence').pairs;
+  const fel = document.getElementById('c-absence-fields');
+  const ticks = [0, 25, 50, 75, 100].map(v => [v, v + NB + '%']);
+  SP.fields.forEach((f, i) => {
+    const label = (FIELD_NAME[f.field] || [f.field])[0];
+    const sub = fmt(f.pairs) + ' pairs; ' + (f.only ? 'the only one missing in ' + fmt(f.only) : 'never the only one missing');
+    const { row, track } = hbRow(fel, label, sub);
+    if (i === 0) row.classList.add('hl');
+    ticksInto(track, ticks.map(t => t[0]));
+    const share = f.pairs / absence;
+    bar(track, share * 100, 'bg-absent');
+    tipVal(track, share * 100, pct(share));
+    bindTip(row, () => ({ h: label + ', over the ' + fmt(absence) + ' pairs lost only to absence', rows: [
+      { v: fmt(f.pairs), l: ' pairs miss it (' + pct(share) + ')', c: COLOR.absent },
+      { v: fmt(f.only), l: ' pairs miss only it: one reported number from decided' },
+    ] }));
+  });
+  hbAxis(fel, ticks);
+})();
+
 // ---------- 5b. blockers ----------
 (function blockers() {
   const el = document.getElementById('c-blockers');
-  const NAME = {
-    medium: ['medium', 'the liquid'], ionic_strength: ['ionic strength', 'salt concentration'], pH: ['pH', null],
-    temperature: ['temperature', null], functionalisation: ['surface groups', 'functionalisation'],
-    instrument: ['instrument', null], size_measured_nm: ['measured size', 'needed for κa'],
-    material: ['material', 'the polymer'], conversion_model: ['conversion regime', 'κa puts f in different places'],
-    quantity: ['measured quantity', 'zeta against mobility'],
-  };
+  const NAME = FIELD_NAME;
   const top = CM.n_pairs;
   const ticks = [0, 80, 160, 240, 320].filter(v => v <= top).map(v => [v / top * 100, fmt(v)]);
   for (const f of CM.fields) {

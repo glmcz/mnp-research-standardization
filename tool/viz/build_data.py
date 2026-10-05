@@ -401,6 +401,27 @@ def comparability_section(kind_e: list[dict]) -> dict:
     }
 
 
+def same_particle_section(table: pd.DataFrame) -> dict:
+    """`comparability.same_particle_census` on the snapshot's table: REVIEW.md §5.7 and C12."""
+    rows = [comparability.ZetaRow.from_mapping(r) for r in table.to_dict(orient="records")]
+    census = comparability.same_particle_census(rows)
+    only = dict(census.only_absent_field)
+    return {
+        "pairs": census.pairs,
+        "particles": len(census.particles),
+        "categories": [
+            {"key": key, "label": comparability.SAME_PARTICLE_LABELS[key], "pairs": n}
+            for key, n in census.categories
+        ],
+        "absence_cross": census.absence_cross_paper,
+        "absence_same": census.absence_same_paper,
+        "fields": [
+            {"field": field, "pairs": n, "only": only.get(field, 0)}
+            for field, n in census.absent_fields
+        ],
+    }
+
+
 def d3_section(ref: str) -> dict:
     rows = read_csv(ref, "out/tables/d3_spread.csv")
     units: defaultdict[str, list[dict]] = defaultdict(list)
@@ -610,26 +631,84 @@ def n(s: str) -> float:
     return float(re.sub(r"\s", "", s))
 
 
+def _check(name: str, ours, theirs) -> dict:
+    ok = ours == theirs if not isinstance(ours, float) else abs(ours - theirs) < 1e-9
+    return {"name": name, "ours": ours, "review": theirs, "ok": ok}
+
+
+def _one(text: str, pattern: str, flags: int = 0) -> tuple[str, ...]:
+    m = re.search(pattern, text, flags)
+    if not m:
+        raise SystemExit(f"REVIEW.md no longer matches: {pattern}")
+    return m.groups()
+
+
+def _many(text: str, pattern: str, expected: int, flags: int = 0) -> list:
+    # A table REVIEW.md reshaped must fail here, not quietly drop its checks.
+    found = re.findall(pattern, text, flags)
+    if len(found) != expected:
+        raise SystemExit(f"REVIEW.md: {len(found)} matches, expected {expected}: {pattern}")
+    return found
+
+
+def same_particle_checks(text: str, sp: dict) -> list[dict]:
+    """C12's numbers and the two tables of REVIEW.md §5.7, against `same_particle_section`."""
+    by = {c["key"]: c["pairs"] for c in sp["categories"]}
+    total, absence, cross, same, stated, undecidable, conditional, comparable = _one(
+        text,
+        r"([\d ]+) pairs of rows describe the same particle; ([\d ]+) of them \([\d.]+ %\) are "
+        r"lost only to absence, ([\d ]+) of those across papers and ([\d ]+) inside one paper\. "
+        r"([\d ]+) differ in a stated condition, ([\d ]+) are undecidable, ([\d ]+) are "
+        r"conditionally comparable and ([\d ]+) comparable\.",
+    )
+    checks = [
+        _check("same particle: pairs", sp["pairs"], int(n(total))),
+        _check("same particle: lost only to absence", by["lost_to_absence"], int(n(absence))),
+        _check("same particle: absence across papers", sp["absence_cross"], int(n(cross))),
+        _check("same particle: absence inside one paper", sp["absence_same"], int(n(same))),
+        _check("same particle: a stated difference", by["stated_difference"], int(n(stated))),
+        _check("same particle: undecidable", by["undecidable"], int(n(undecidable))),
+        _check(
+            "same particle: conditionally comparable",
+            by["conditionally_comparable"],
+            int(n(conditional)),
+        ),
+        _check("same particle: comparable", by["comparable"], int(n(comparable))),
+    ]
+    field, missing = _one(text, r"Of the pairs lost to absence, `(\w+)` is missing in ([\d ]+) of")
+    top = sp["fields"][0]
+    checks.append(_check("same particle: most missing field", (top["field"], top["pairs"]),
+                         (field, int(n(missing)))))  # fmt: skip
+
+    part = re.split(r"\n#{2,3} ", text.split("\n### 5.7 ", 1)[-1], maxsplit=1)[0]
+    rows = _many(part, r"^\| [^|]+ \(`(\w+)`\) \| ([\d ]+) \|$", len(sp["categories"]), re.M)
+    for key, count in rows:
+        checks.append(_check(f"§5.7 category {key}", by.get(key), int(n(count))))
+    every = _one(part, r"^\| all same-particle pairs \| ([\d ]+) \|$", re.M)[0]
+    checks.append(_check("§5.7 all same-particle pairs", sp["pairs"], int(n(every))))
+    fields = _many(part, r"^\| `(\w+)` \| ([\d ]+) \| ([\d ]+) \|$", len(sp["fields"]), re.M)
+    checks.append(_check("§5.7 missing fields, ranked", [f["field"] for f in sp["fields"]],
+                         [f for f, _, _ in fields]))  # fmt: skip
+    ours = {f["field"]: f for f in sp["fields"]}
+    for field, pairs_missing, only in fields:
+        f = ours.get(field, {})
+        checks.append(_check(f"§5.7 missing {field}", (f.get("pairs"), f.get("only")),
+                             (int(n(pairs_missing)), int(n(only)))))  # fmt: skip
+    return checks
+
+
 def review_checks(ref: str, data: dict) -> list[dict]:
     text = show(ref, "out/review/REVIEW.md")
     checks: list[dict] = []
 
     def check(name: str, ours, theirs) -> None:
-        ok = ours == theirs if not isinstance(ours, float) else abs(ours - theirs) < 1e-9
-        checks.append({"name": name, "ours": ours, "review": theirs, "ok": ok})
+        checks.append(_check(name, ours, theirs))
 
     def one(pattern: str, flags: int = 0) -> tuple[str, ...]:
-        m = re.search(pattern, text, flags)
-        if not m:
-            raise SystemExit(f"REVIEW.md no longer matches: {pattern}")
-        return m.groups()
+        return _one(text, pattern, flags)
 
     def many(pattern: str, expected: int, flags: int = 0) -> list:
-        # A table REVIEW.md reshaped must fail here, not quietly drop its checks.
-        found = re.findall(pattern, text, flags)
-        if len(found) != expected:
-            raise SystemExit(f"REVIEW.md: {len(found)} matches, expected {expected}: {pattern}")
-        return found
+        return _many(text, pattern, expected, flags)
 
     f = {s["label"]: s["n"] for s in data["funnel"]}
     hits_all, hits_oa = one(r"reports ([\d ]+) hits in all, ([\d ]+) open access")
@@ -812,6 +891,10 @@ def review_checks(ref: str, data: dict) -> list[dict]:
         check("scope block, word for word", "\n".join(scope.markdown(sc["items"])),
               scope.extract(text))  # fmt: skip
 
+    sp = data.get("same_particle")
+    if sp and sp["cross_checked"]:
+        checks += same_particle_checks(text, sp)
+
     o = data.get("origin")
     if not (o and o["cross_checked"]):
         return checks
@@ -904,6 +987,11 @@ def build(ref: str) -> dict:
         # page shows the section and says it is not cross-checked, rather than failing.
         origin["cross_checked"] = "#### C11." in show(ref, "out/review/REVIEW.md")
         data["origin"] = origin
+        # The census is drawn at the refs that carry the origin table, as the scope box is, so
+        # 4a3087c, which predates both, still rebuilds its reference fixture exactly.
+        census = same_particle_section(table)
+        census["cross_checked"] = "#### C12." in show(ref, "out/review/REVIEW.md")
+        data["same_particle"] = census
     box = scope_section(ref, table)
     if box is not None:
         data["scope"] = box

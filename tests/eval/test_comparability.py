@@ -8,6 +8,7 @@ particles are the same.
 """
 
 import math
+from collections import Counter
 
 import pytest
 
@@ -515,3 +516,159 @@ _ROW_COLUMNS = {
     "temperature_qualifier": None,
     "instrument": "Zetasizer Nano ZS (Malvern Instruments, Malvern, UK)",
 }
+
+
+# --- the same-particle census: not different, just unreported ----------------------------
+
+
+def _census_rows() -> list[cmp.ZetaRow]:
+    """Seven particles of two rows each, one pair per particle, plus three rows that describe no
+    other row's particle. Every category is hit, and two traps sit beside it: an unreported
+    blocker next to a stated difference, and one next to an undecidable value."""
+    no_ionic = {"ionic_strength_mM": None, "ionic_strength_source": "unreported"}
+    return [
+        # comparable, across papers; the spellings differ but key to the same particle
+        _row("A-r1", "PMCA"),
+        _row("B-r1", "PMCB", material="PS", functionalisation="COOH"),
+        # conditionally comparable: a stated pH step inside one paper
+        _row("C-r1", "PMCC", material="polyethylene", pH=7.4),
+        _row("C-r2", "PMCC", material="polyethylene", pH=5.0),
+        # lost only to absence, across papers, and one number away: ionic strength alone
+        _row("D-r1", "PMCD", material="polypropylene"),
+        _row("E-r1", "PMCE", material="polypropylene", **no_ionic),
+        # lost only to absence, inside one paper, three fields missing
+        _row("F-r1", "PMCF", material="PET", pH=None, **no_ionic),
+        _row("F-r2", "PMCF", material="PET", temperature_C=None),
+        # a stated difference, though one blocker is unreported
+        _row("G-r1", "PMCG", material="PVC", instrument=None),
+        _row("H-r1", "PMCH", material="PVC", pH=4.0),
+        # undecidable: a pH range beside an unreported temperature
+        _row("I-r1", "PMCI", material="PMMA", pH=None, pH_text="from pH 2 to 7"),
+        _row("I-r2", "PMCI", material="PMMA", temperature_C=None),
+        # the surface unstated on both rows: grouped, and the silence is one of the absences
+        _row("J-r1", "PMCJ", functionalisation=None),
+        _row("K-r1", "PMCK", functionalisation=None),
+        # never half of a same-particle pair: no material, another surface, another quantity
+        _row("L-r1", "PMCL", material=None),
+        _row("M-r1", "PMCM", functionalisation="amine"),
+        _row("N-r1", "PMCN", quantity="electrophoretic_mobility"),
+    ]
+
+
+def test_every_same_particle_pair_lands_in_exactly_one_category():
+    census = cmp.same_particle_census(_census_rows())
+    assert dict(census.categories) == {
+        "comparable": 1,
+        "conditionally_comparable": 1,
+        "lost_to_absence": 3,
+        "stated_difference": 1,
+        "undecidable": 1,
+    }
+    assert [name for name, _ in census.categories] == list(cmp.SAME_PARTICLE_CATEGORIES)
+    assert census.pairs == 7
+
+
+def test_an_unreported_blocker_beside_a_stated_difference_is_a_stated_difference():
+    """The all/any guard. One unreported field does not make a pair "lost to absence" when the
+    two rows also state a condition that differs: that pair would stay blocked if both papers
+    reported everything."""
+    rows = {row.row_id: row for row in _census_rows()}
+    verdict = cmp.comparable(rows["G-r1"], rows["H-r1"])
+    assert {blocker.kind for blocker in verdict.blockers} == {
+        cmp.BlockerKind.unreported,
+        cmp.BlockerKind.mismatch,
+    }
+    assert cmp.same_particle_category(verdict) == "stated_difference"
+
+
+def test_an_unreported_blocker_beside_an_undecidable_one_is_not_absence():
+    rows = {row.row_id: row for row in _census_rows()}
+    verdict = cmp.comparable(rows["I-r1"], rows["I-r2"])
+    assert cmp.same_particle_category(verdict) == "undecidable"
+
+
+def test_only_unreported_blockers_are_absence():
+    rows = {row.row_id: row for row in _census_rows()}
+    verdict = cmp.comparable(rows["F-r1"], rows["F-r2"])
+    assert {blocker.kind for blocker in verdict.blockers} == {cmp.BlockerKind.unreported}
+    assert cmp.same_particle_category(verdict) == "lost_to_absence"
+
+
+def test_an_unstated_surface_on_both_rows_is_absence_never_sameness():
+    rows = {row.row_id: row for row in _census_rows()}
+    a, b = rows["J-r1"], rows["K-r1"]
+    assert cmp.same_particle_key(a) == cmp.same_particle_key(b)
+    assert cmp.same_particle_key(a)[2] is None
+    assert cmp.same_particle_category(cmp.comparable(a, b)) == "lost_to_absence"
+    census = cmp.same_particle_census([a, b])
+    assert dict(census.absent_fields) == {"functionalisation": 1}
+    assert census.count("comparable") == 0
+
+
+def test_rows_without_a_material_or_of_another_particle_are_never_paired():
+    rows = _census_rows()
+    strays = {"L-r1", "M-r1", "N-r1"}
+    assert cmp.same_particle_key(next(r for r in rows if r.row_id == "L-r1")) is None
+    without = cmp.same_particle_census([r for r in rows if r.row_id not in strays])
+    assert cmp.same_particle_census(rows) == without
+
+
+def test_missing_fields_are_counted_per_pair_and_ranked():
+    census = cmp.same_particle_census(_census_rows())
+    assert census.absent_fields == (
+        ("ionic_strength", 2),
+        ("functionalisation", 1),
+        ("pH", 1),
+        ("temperature", 1),
+    )
+
+
+def test_a_field_missing_alone_is_one_reported_number_from_decidable():
+    census = cmp.same_particle_census(_census_rows())
+    assert census.only_absent_field == (("functionalisation", 1), ("ionic_strength", 1))
+
+
+def test_absence_is_split_across_and_within_papers():
+    census = cmp.same_particle_census(_census_rows())
+    assert (census.absence_cross_paper, census.absence_same_paper) == (2, 1)
+    assert census.absence_cross_paper + census.absence_same_paper == census.count("lost_to_absence")
+
+
+def test_the_per_particle_tallies_add_up_to_the_census():
+    census = cmp.same_particle_census(_census_rows())
+    assert len(census.particles) == 7
+    for i, name in enumerate(cmp.SAME_PARTICLE_CATEGORIES):
+        assert sum(p.counts[i] for p in census.particles) == census.count(name), name
+    assert all(sum(p.counts) == p.pairs == p.rows * (p.rows - 1) // 2 for p in census.particles)
+    assert sum(p.absence_cross_paper for p in census.particles) == census.absence_cross_paper
+
+
+def test_the_census_does_not_depend_on_row_order():
+    rows = _census_rows()
+    assert cmp.same_particle_census(rows) == cmp.same_particle_census(rows[::-1])
+    keys = [(p.quantity, p.material, p.functionalisation or "") for p in
+            cmp.same_particle_census(rows).particles]  # fmt: skip
+    assert keys == sorted(keys)
+
+
+@pytest.fixture(scope="module")
+def published_census():
+    rows = cmp.load_rows()
+    return rows, cmp.same_particle_census(rows)
+
+
+def test_the_published_census_pairs_are_every_pair_within_a_particle(published_census):
+    rows, census = published_census
+    sizes = Counter(cmp.same_particle_key(row) for row in rows)
+    sizes.pop(None, None)
+    assert census.pairs == sum(n * (n - 1) // 2 for n in sizes.values())
+    assert sum(n for _, n in census.categories) == census.pairs
+
+
+def test_every_comparable_pair_in_the_corpus_is_a_same_particle_pair(published_census):
+    """Comparable and conditionally comparable both forbid an identity blocker, so the graded
+    census and the same-particle census must agree on those two counts."""
+    rows, census = published_census
+    graded = Counter(spec.verdict.verdict.value for spec in cmp.graded_census(rows))
+    assert census.count("comparable") == graded["comparable"]
+    assert census.count("conditionally_comparable") == graded["conditionally_comparable"]

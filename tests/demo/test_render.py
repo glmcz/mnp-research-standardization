@@ -207,7 +207,9 @@ def test_method_states_the_ratified_three_rules_not_the_verdict_vocabulary(built
     assert "2. **Absence is never imputed.**" in text
     assert "3. **Every figure here is an upper bound.**" in text
     assert "ratified 2026-09-13" in text
-    assert "**16**" in text and "**81,624**" in text
+    census = render.same_particle_census(resample.load_table())
+    assert f"**{census.count('lost_to_absence'):,}**" in text
+    assert "81,624" not in text
     assert "upper bound" in text
     # the verdict vocabulary (reported/derived/nominal/unreported) is separate content
     assert "## Verdict vocabulary" in text
@@ -412,7 +414,9 @@ def test_a_pair_case_page_shows_its_cross_paper_pair(pair_page: str):
 def test_readme_title_and_index_follow_the_case_count():
     table = resample.load_table()
     no_runs = {cell: None for cell in render.CELLS}
-    text = render.readme(table, cells.Corpus(table=table), no_runs, [], [])
+    text = render.readme(
+        table, cells.Corpus(table=table), no_runs, [], [], render.same_particle_census(table)
+    )
     assert f"{len(cases_mod.CASES)} real cases" in text.split("\n", 1)[0]
     assert "thirteen" not in text.lower()
     case = _pair_case()
@@ -421,3 +425,83 @@ def test_readme_title_and_index_follow_the_case_count():
     )
     for pmcid in case.pmcids:
         assert pmcid in row
+
+
+# -- not different, just unreported: the same-particle census ---------------------------------
+# Rendered without `build`, so neither needs the scope block's origin table.
+
+
+@pytest.fixture(scope="module")
+def census() -> comp.SameParticleCensus:
+    return comp.same_particle_census(comp.load_rows())
+
+
+@pytest.fixture(scope="module")
+def direct() -> dict[str, str]:
+    table = resample.load_table()
+    corpus = cells.Corpus(table=table)
+    sp = render.same_particle_census(table)
+    no_runs = {cell: None for cell in render.CELLS}
+    return {
+        "README.md": render.readme(table, corpus, no_runs, [], [], sp),
+        "METHOD.md": render.method(table, corpus, [], sp),
+    }
+
+
+def test_the_census_render_reads_is_the_modules_own(census):
+    assert render.same_particle_census(resample.load_table()) == census
+
+
+def test_readme_has_the_not_different_just_unreported_section(direct, census):
+    text = direct["README.md"]
+    part = text.split("\n## Not different, just unreported\n", 1)[1].split("\n## ", 1)[0]
+    for name, n in census.categories:
+        assert f"| {comp.SAME_PARTICLE_LABELS[name]} | {n:,} |" in part, name
+    assert f"| all same-particle pairs | {census.pairs:,} |" in part
+    only = dict(census.only_absent_field)
+    rows = [line for line in part.splitlines() if line.startswith("| `")]
+    assert rows == [f"| `{f}` | {n:,} | {only.get(f, 0):,} |" for f, n in census.absent_fields]
+    assert f"**{census.count('lost_to_absence'):,}**" in part
+    assert f"{census.absence_cross_paper:,} of them cross a paper" in part
+    assert f"{census.absence_same_paper:,} sit inside one" in part
+    assert "not a claim about what a default would" in part
+
+
+def test_readme_says_an_unstated_surface_is_counted_as_absence(direct, census):
+    part = direct["README.md"].split("## Not different, just unreported", 1)[1]
+    surface = dict(census.absent_fields).get("functionalisation", 0)
+    assert surface > 0
+    assert f"{surface:,} of the pairs lost to absence leave the surface unstated" in part
+
+
+def test_method_states_the_same_particle_rule(direct, census):
+    text = direct["METHOD.md"]
+    part = text.split("\n## The same-particle census\n", 1)[1].split("\n## ", 1)[0]
+    for phrase in (
+        "`material_key(material)`",
+        "`functionalisation_key(functionalisation)`",
+        "**every** blocker has kind `unreported`",
+        "at least one blocker has kind `mismatch`",
+        "`mnp.eval.comparability.same_particle_census`",
+    ):
+        assert phrase in part, phrase
+    for name in comp.SAME_PARTICLE_CATEGORIES:
+        assert f"**{comp.SAME_PARTICLE_LABELS[name]}**" in part, name
+
+
+def test_method_replaces_the_typed_counterfactual_with_the_census(direct, census):
+    text = direct["METHOD.md"]
+    rule = text.split("2. **Absence is never imputed.**", 1)[1].split("\n3. ", 1)[0]
+    assert f"**{census.count('lost_to_absence'):,}**" in rule
+    assert f"{census.pairs:,} pairs" in rule
+    assert "not a count of what any default would" in rule
+    assert "81,624" not in text and "81 624" not in text
+
+
+def test_no_counterfactual_literal_is_left_in_the_renderers():
+    """REVIEW.md said no committed code produces 81 624; the demo printed it anyway."""
+    from mnp.report import review_guide
+
+    for module in (render, review_guide):
+        source = Path(module.__file__).read_text(encoding="utf-8")
+        assert "81,624" not in source and "81 624" not in source, module.__name__

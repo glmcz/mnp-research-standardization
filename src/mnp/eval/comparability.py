@@ -741,6 +741,162 @@ def comparable_census(rows: Sequence[ZetaRow]) -> list[PairSpec]:
     ]
 
 
+# --- the same-particle census: not different, just unreported ------------------------------
+#
+# The graded census asks which pairs may be compared. This one asks the talk's question: of the
+# pairs that describe the same particle, how many are kept apart by nothing a paper stated, only
+# by what it left out? It is a count of blocked pairs. It says nothing about what the missing
+# conditions were, and nothing about what a default would do; no default exists here to try.
+
+#: Every same-particle pair lands in exactly one of these, decided in this order.
+SAME_PARTICLE_CATEGORIES: tuple[str, ...] = (
+    "comparable",
+    "conditionally_comparable",
+    "lost_to_absence",
+    "stated_difference",
+    "undecidable",
+)
+
+#: How a reader-facing document names each category.
+SAME_PARTICLE_LABELS: dict[str, str] = {
+    "comparable": "comparable",
+    "conditionally_comparable": "conditionally comparable",
+    "lost_to_absence": "lost only to absence",
+    "stated_difference": "a stated difference",
+    "undecidable": "undecidable",
+}
+
+
+def same_particle_key(row: ZetaRow) -> tuple[str, str, str | None] | None:
+    """(quantity, material key, functionalisation key), or None when the material is unreported.
+
+    A functionalisation key of None means *neither* row states a surface: the two are grouped
+    because nothing printed tells them apart, not because they are known to be one particle.
+    `comparable` still raises ``functionalisation_unreported`` on every such pair, so none of
+    them can be comparable, and the unstated surface is counted as one of the absences.
+    """
+    material = material_key(row.material)
+    if material is None:
+        return None
+    return (row.quantity.value, material, functionalisation_key(row.functionalisation))
+
+
+def same_particle_category(verdict: Verdict) -> str:
+    """Which of `SAME_PARTICLE_CATEGORIES` a verdict on a same-particle pair falls in.
+
+    Lost to absence needs **every** blocker unreported. One stated difference among them makes
+    the pair a stated difference: it would stay blocked even if both papers reported everything.
+    """
+    if verdict.verdict is Comparability.comparable:
+        return "comparable"
+    if verdict.verdict is Comparability.conditionally_comparable:
+        return "conditionally_comparable"
+    kinds = [blocker.kind for blocker in verdict.blockers]
+    if kinds and all(kind is BlockerKind.unreported for kind in kinds):
+        return "lost_to_absence"
+    if any(kind is BlockerKind.mismatch for kind in kinds):
+        return "stated_difference"
+    return "undecidable"
+
+
+@dataclass(frozen=True)
+class ParticleTally:
+    """One particle's pairs, by category. `counts` follows `SAME_PARTICLE_CATEGORIES`."""
+
+    quantity: str
+    material: str
+    functionalisation: str | None
+    rows: int
+    papers: int
+    counts: tuple[int, ...]
+    absence_cross_paper: int
+
+    @property
+    def pairs(self) -> int:
+        return self.rows * (self.rows - 1) // 2
+
+
+@dataclass(frozen=True)
+class SameParticleCensus:
+    particles: tuple[ParticleTally, ...]
+    #: (category, pairs) in `SAME_PARTICLE_CATEGORIES` order.
+    categories: tuple[tuple[str, int], ...]
+    #: Within lost to absence: (field, pairs where it is among the missing), most pairs first.
+    absent_fields: tuple[tuple[str, int], ...]
+    #: Within lost to absence: (field, pairs where it is the only one missing), most pairs first.
+    only_absent_field: tuple[tuple[str, int], ...]
+    absence_cross_paper: int
+    absence_same_paper: int
+
+    @property
+    def pairs(self) -> int:
+        return sum(n for _, n in self.categories)
+
+    def count(self, category: str) -> int:
+        return dict(self.categories)[category]
+
+
+def _ranked(counter: Counter[str]) -> tuple[tuple[str, int], ...]:
+    return tuple(sorted(counter.items(), key=lambda item: (-item[1], item[0])))
+
+
+def same_particle_census(rows: Sequence[ZetaRow]) -> SameParticleCensus:
+    """Every pair of rows with the same `same_particle_key`, graded by `comparable`.
+
+    A particle only one row describes has no pair and no tally.
+    """
+    by_particle: dict[tuple[str, str, str | None], list[ZetaRow]] = {}
+    for row in rows:
+        key = same_particle_key(row)
+        if key is not None:
+            by_particle.setdefault(key, []).append(row)
+
+    index = {name: i for i, name in enumerate(SAME_PARTICLE_CATEGORIES)}
+    particles: list[ParticleTally] = []
+    absent: Counter[str] = Counter()
+    only: Counter[str] = Counter()
+    for key in sorted(by_particle, key=lambda k: (k[0], k[1], k[2] is not None, k[2] or "")):
+        group = sorted(by_particle[key], key=lambda row: row.row_id)
+        if len(group) < 2:
+            continue
+        counts = [0] * len(SAME_PARTICLE_CATEGORIES)
+        cross = 0
+        for i, a in enumerate(group):
+            for b in group[i + 1 :]:
+                verdict = comparable(a, b)
+                category = same_particle_category(verdict)
+                counts[index[category]] += 1
+                if category != "lost_to_absence":
+                    continue
+                missing = {blocker.field for blocker in verdict.blockers}
+                absent.update(missing)
+                if len(missing) == 1:
+                    only.update(missing)
+                cross += a.pmcid != b.pmcid
+        particles.append(
+            ParticleTally(
+                quantity=key[0],
+                material=key[1],
+                functionalisation=key[2],
+                rows=len(group),
+                papers=len({row.pmcid for row in group}),
+                counts=tuple(counts),
+                absence_cross_paper=cross,
+            )
+        )
+
+    totals = [sum(p.counts[i] for p in particles) for i in range(len(SAME_PARTICLE_CATEGORIES))]
+    cross_total = sum(p.absence_cross_paper for p in particles)
+    return SameParticleCensus(
+        particles=tuple(particles),
+        categories=tuple(zip(SAME_PARTICLE_CATEGORIES, totals, strict=True)),
+        absent_fields=_ranked(absent),
+        only_absent_field=_ranked(only),
+        absence_cross_paper=cross_total,
+        absence_same_paper=totals[index["lost_to_absence"]] - cross_total,
+    )
+
+
 def _stratum_predicate(stratum: str):
     def same_paper(a: ZetaRow, b: ZetaRow) -> bool:
         return a.pmcid == b.pmcid

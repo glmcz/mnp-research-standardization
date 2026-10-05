@@ -1,5 +1,5 @@
 """`report review` writes out/review/: REVIEW.md, a guide for checking the dataset by hand, and
-five CSV worksheets a spreadsheet can recompute. These tests build into a scratch root seeded with
+six CSV worksheets a spreadsheet can recompute. These tests build into a scratch root seeded with
 copies of the committed table, stats and release, never into the real `out/`.
 
 What they pin is the promise the guide makes: every number in it comes out of the repo's own code
@@ -41,6 +41,7 @@ WORKSHEETS = (
     "harmonised_all_rows.csv",
     "comparability_worked_pairs.csv",
     "audit_sample.csv",
+    "same_particle_census.csv",
 )
 
 FLAGS = (
@@ -52,10 +53,11 @@ FLAGS = (
 )
 
 
-def _seed_root(root: Path) -> Path:
+def _seed_root(root: Path, origin: bool = True) -> Path:
     (root / "tables").mkdir(parents=True)
     (root / "release").mkdir(parents=True)
-    for name in ("d1_zeta_table.csv", "d1_stats.json", "sample_origin_stats.json"):
+    names = ("d1_zeta_table.csv", "d1_stats.json") + ("sample_origin_stats.json",) * origin
+    for name in names:
         shutil.copyfile(config.OUT_TABLES / name, root / "tables" / name)
     shutil.copyfile(
         config.OUT / "release" / "dataset.parquet", root / "release" / "dataset.parquet"
@@ -417,3 +419,102 @@ def test_section_8_points_to_the_corpus_notes(guide: str):
     s8 = _part(guide, "## 8. Open issues and decisions", "\n## ")
     line = next(t for t in s8.splitlines() if scope.NOTES in t)
     assert "Martin, 2026-09-30" in line
+
+
+# -- C12, not different, just unreported --------------------------------------------------------
+# Built without the origin table, so these hold whether or not `report origin` has run.
+
+
+@pytest.fixture(scope="module")
+def plain(tmp_path_factory) -> Path:
+    root = _seed_root(tmp_path_factory.mktemp("review-plain"), origin=False)
+    review.build(root)
+    return root / "review"
+
+
+@pytest.fixture(scope="module")
+def plain_guide(plain: Path) -> str:
+    return (plain / "REVIEW.md").read_text(encoding="utf-8")
+
+
+@pytest.fixture(scope="module")
+def census(table) -> comp.SameParticleCensus:
+    return comp.same_particle_census(
+        [comp.ZetaRow.from_mapping(r) for r in table.to_dict("records")]
+    )
+
+
+def _i(n: int) -> str:
+    return f"{n:,}".replace(",", " ")
+
+
+def test_the_same_particle_worksheet_adds_up_to_the_census(plain: Path, plain_guide: str, census):
+    name = "same_particle_census.csv"
+    sheet = _sheet(plain, name)
+    assert sheet.columns.tolist() == list(review.COLUMNS[name])
+    undocumented = [c for c in sheet.columns if f"`{c}`" not in plain_guide]
+    assert not undocumented, undocumented
+    assert len(sheet) == len(census.particles)
+    for category, n in census.categories:
+        assert sheet[category].sum() == n, category
+    assert (sheet["pairs"] == sheet["rows"] * (sheet["rows"] - 1) // 2).all()
+    assert (sheet[list(comp.SAME_PARTICLE_CATEGORIES)].sum(axis=1) == sheet["pairs"]).all()
+    assert sheet["lost_to_absence_cross_paper"].sum() == census.absence_cross_paper
+    assert sheet["functionalisation"].isna().sum() == sum(
+        p.functionalisation is None for p in census.particles
+    )
+
+
+def test_section_5_7_states_the_rule_and_the_census(plain_guide: str, census):
+    part = _part(plain_guide, "### 5.7 Not different, just unreported", "\n### ", "\n## ")
+    assert "every blocker kind unreported" in part
+    assert "at least one blocker kind mismatch" in part
+    for category, n in census.categories:
+        assert f"(`{category}`) | {_i(n)} |" in part, category
+    assert f"| all same-particle pairs | {_i(census.pairs)} |" in part
+    only = dict(census.only_absent_field)
+    rows = [line for line in part.splitlines() if line.startswith("| `")]
+    assert rows == [f"| `{f}` | {_i(n)} | {_i(only.get(f, 0))} |" for f, n in census.absent_fields]
+    assert "`same_particle_census.csv`" in part
+
+
+def test_section_5_7_works_one_pair_that_one_reported_number_would_decide(plain_guide, table):
+    part = _part(plain_guide, "### 5.7 Not different, just unreported", "\n### ", "\n## ")
+    a, b = re.search(r"Pair `(PMC\d+-r\d+)` × `(PMC\d+-r\d+)`", part).groups()
+    rows = {r["row_id"]: comp.ZetaRow.from_mapping(r) for r in table.to_dict("records")}
+    verdict = comp.comparable(rows[a], rows[b])
+    assert comp.same_particle_key(rows[a]) == comp.same_particle_key(rows[b])
+    assert [blocker.kind for blocker in verdict.blockers] == [comp.BlockerKind.unreported]
+    assert f"`{verdict.blockers[0].code}`" in part
+
+
+def test_c12_states_the_census(plain_guide: str, census):
+    c12 = _part(plain_guide, "#### C12. Not different, just unreported", "\n#### ", "\n### ")
+    absence = census.count("lost_to_absence")
+    assert (
+        f"{_i(census.pairs)} pairs of rows describe the same particle; {_i(absence)} of them" in c12
+    )
+    assert f"{_i(census.absence_cross_paper)} of those across papers and " in c12
+    assert f"{_i(census.absence_same_paper)} inside one paper" in c12
+    assert f"{_i(census.count('stated_difference'))} differ in a stated condition" in c12
+    assert f"{_i(census.count('undecidable'))} are undecidable" in c12
+    assert f"{_i(census.count('comparable'))} comparable." in c12
+    field, n = census.absent_fields[0]
+    assert f"`{field}` is missing in {_i(n)} of them" in c12
+    assert "not a claim about what a default would do" in c12
+    assert "`same_particle_census.csv`" in c12
+
+
+def test_the_pair_count_recipe_the_guide_prints_gives_the_census(plain_guide: str, table, census):
+    imports, expression = review_guide.SAME_PARTICLE_RECIPE
+    assert f"`{imports}`" in plain_guide and f"`{expression}`" in plain_guide
+    namespace = {"t": table.copy()}
+    exec(imports, namespace)
+    assert int(eval(expression, namespace)) == census.pairs
+
+
+def test_the_guide_no_longer_quotes_the_counterfactual(plain_guide: str):
+    assert "81 624" not in plain_guide and "81,624" not in plain_guide
+    s8 = _part(plain_guide, "## 8. Open issues and decisions", "\n## ")
+    item = next(line for line in s8.splitlines() if "§4c" in line)
+    assert "no committed code produces" in item and "C12" in item

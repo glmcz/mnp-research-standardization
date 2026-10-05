@@ -354,6 +354,11 @@ def corpus_wide_census(table: pd.DataFrame) -> list[comp.PairSpec]:
     return comp.graded_census(rows)
 
 
+def same_particle_census(table: pd.DataFrame) -> comp.SameParticleCensus:
+    rows = [comp.ZetaRow.from_mapping(r) for r in table.to_dict(orient="records")]
+    return comp.same_particle_census(rows)
+
+
 def _blocker_field_counter(fields_column: list[str]) -> Counter[str]:
     counter: Counter[str] = Counter()
     for value in fields_column:
@@ -926,12 +931,62 @@ def _reader_problem_lines(
     return sorted(lines)
 
 
+def _absence_block(census: comp.SameParticleCensus) -> str:
+    absence = census.count("lost_to_absence")
+    only = dict(census.only_absent_field)
+    surface = dict(census.absent_fields).get("functionalisation", 0)
+    lines = [
+        "Every pair of rows that describe the same particle: the same `quantity`, the same "
+        "`material_key` (a row whose material is unreported describes no particle) and the same "
+        f"`functionalisation_key`. That is {census.pairs:,} pairs among "
+        f"{sum(p.rows for p in census.particles):,} rows of {len(census.particles):,} particles. "
+        '`comparability.comparable` grades each one, and the rule in `METHOD.md` ("The '
+        'same-particle census") puts it in exactly one category:',
+        "",
+        _md_table(
+            ["category", "pairs"],
+            [[comp.SAME_PARTICLE_LABELS[name], f"{n:,}"] for name, n in census.categories]
+            + [["all same-particle pairs", f"{census.pairs:,}"]],
+        ),
+        "",
+        f"**{absence:,}** pairs of the same particle "
+        f"({_pct(absence / census.pairs)}) are blocked only by "
+        "conditions a paper did not report: no stated value differs and nothing is undecidable. "
+        f"{census.absence_cross_paper:,} of them cross a paper boundary; "
+        f"{census.absence_same_paper:,} sit inside one paper. **{census.count('comparable'):,}** "
+        "pairs are comparable. These are pairs of the same particle blocked only by unreported "
+        "conditions -- not a claim about what those conditions were, and not a claim about what "
+        "a default would make comparable. Reported, the conditions could still differ: the pair "
+        "would become decidable, not necessarily comparable.",
+        "",
+        "Which conditions are missing, ranked over those pairs. A pair usually misses several, "
+        "so the first column adds up to more than the pairs; the second counts the pairs where "
+        "the field is the only one missing, where one reported number would make the pair "
+        "decidable:",
+        "",
+        _md_table(
+            ["missing field", "pairs missing it", "pairs missing only it"],
+            [[f"`{f}`", f"{n:,}", f"{only.get(f, 0):,}"] for f, n in census.absent_fields],
+        ),
+    ]
+    if surface:
+        lines += [
+            "",
+            f"{surface:,} of the pairs lost to absence leave the surface unstated on both rows. "
+            "They are grouped as one particle only because nothing printed tells them apart; "
+            "the unstated surface is itself one of their absences, so none of them can be "
+            "comparable.",
+        ]
+    return "\n".join(lines)
+
+
 def readme(
     table: pd.DataFrame,
     corpus: cells.Corpus,
     runs_by_cell: dict[str, RunHandle | None],
     all_qas: list[tuple[Question, AnswerKey]],
     scope_lines: list[str],
+    same_particle: comp.SameParticleCensus,
 ) -> str:
     out = [f"# The demo: {len(cases_mod.CASES)} real cases, each re-sampled four ways\n"]
     out.append("\n".join(scope_lines) + "\n")
@@ -943,6 +998,9 @@ def readme(
     header = ["nn", "slug", "pmcid", "mode", "result"]
     body = [_case_index_row(case) for case in cases_mod.CASES]
     out.append(_md_table(header, body))
+
+    out.append("\n## Not different, just unreported\n")
+    out.append(_absence_block(same_particle))
 
     out.append("\n## Corpus-wide resampling (E2e, rebuilt)\n")
     out.append(_e2e_table(table))
@@ -1042,7 +1100,7 @@ def _verdict_vocabulary_block() -> str:
     )
 
 
-def _three_rules_block(n_comparable: int) -> str:
+def _three_rules_block(census: comp.SameParticleCensus) -> str:
     return "\n".join(
         [
             "Three rules, ratified before this demo and written down in "
@@ -1054,10 +1112,12 @@ def _three_rules_block(n_comparable: int) -> str:
             "never carried to another preparation, not even one in the same paper (ratified "
             "2026-09-13).",
             '2. **Absence is never imputed.** "DI water" is a reported medium; it does not '
-            "mean ionic strength zero. This is the one rule whose removal moves the numbers by "
-            f"orders of magnitude: the corpus-wide comparable-pair count goes from "
-            f"**{n_comparable}** to **81,624** when every `*_unreported` rule is dropped and "
-            "absence is allowed a default (`docs/FINDINGS_comparability.md` §4c).",
+            "mean ionic strength zero. What absence costs is measured, not imagined: of the "
+            f"{census.pairs:,} pairs of rows that describe the same particle, "
+            f"**{census.count('lost_to_absence'):,}** are blocked only by conditions one row or "
+            f"both did not report, and **{census.count('comparable'):,}** are comparable (the "
+            "same-particle census below; every category in `README.md`). These are pairs blocked "
+            "only by absence -- not a count of what any default would make comparable.",
             '3. **Every figure here is an upper bound.** "Reported" is softer than '
             '"reported as a number": a pH range counts, a nominal room temperature counts, an '
             "instrument family counts. True completeness is lower than every percentage this "
@@ -1262,9 +1322,43 @@ def _reader_grid_block(n_questions: int) -> str:
     )
 
 
-def method(table: pd.DataFrame, corpus: cells.Corpus, scope_lines: list[str]) -> str:
+def _same_particle_rule_block() -> str:
+    label = comp.SAME_PARTICLE_LABELS
+    return "\n".join(
+        [
+            "`mnp.eval.comparability.same_particle_census` takes every pair of rows that measure "
+            "the same particle -- the same `quantity`, the same `material_key(material)` (a row "
+            "whose material is unreported is left out) and the same "
+            "`functionalisation_key(functionalisation)` -- and grades it with `comparable(a, b)`. "
+            "Each pair falls in exactly one category, decided in this order:",
+            "",
+            f"- **{label['comparable']}** -- verdict `comparable`;",
+            f"- **{label['conditionally_comparable']}** -- verdict `conditionally_comparable`;",
+            f"- **{label['lost_to_absence']}** -- verdict `not_comparable` and **every** blocker "
+            "has kind `unreported`;",
+            f"- **{label['stated_difference']}** -- verdict `not_comparable` and at least one "
+            "blocker has kind `mismatch`;",
+            f"- **{label['undecidable']}** -- the rest: no mismatch, and at least one blocker "
+            "`undecidable`.",
+            "",
+            "Within lost only to absence it counts, per blocker field, the pairs where that field "
+            "is among the missing ones; per field, the pairs where it is the only one missing; "
+            "and the pairs that cross a paper boundary. A surface unreported on both rows keys to "
+            "no surface, so those rows group together, but `comparable` still raises "
+            "`functionalisation_unreported` on every such pair: an unstated surface is counted as "
+            "absence, never as sameness. The census counts what blocks a pair. It imputes nothing "
+            "and says nothing about what a default would do. The numbers are in `README.md`.",
+        ]
+    )
+
+
+def method(
+    table: pd.DataFrame,
+    corpus: cells.Corpus,
+    scope_lines: list[str],
+    same_particle: comp.SameParticleCensus,
+) -> str:
     census = corpus_wide_census(table)
-    n_comparable = sum(1 for s in census if s.verdict.verdict is comp.Comparability.comparable)
     scan = harmonise.scan(table)
     kind_e_sample = comp.read_query_set()
     n_questions = sum(len(questions_mod.questions_for(case, table)) for case in cases_mod.CASES)
@@ -1299,13 +1393,16 @@ def method(table: pd.DataFrame, corpus: cells.Corpus, scope_lines: list[str]) ->
     out.append(_verdict_vocabulary_block())
 
     out.append("\n## Three extra rules\n")
-    out.append(_three_rules_block(n_comparable))
+    out.append(_three_rules_block(same_particle))
 
     out.append("\n## Ionic-strength sources\n")
     out.append(_ionic_strength_sources_block(table, corpus))
 
     out.append("\n## Comparability\n")
     out.append(_comparability_block(table, census, kind_e_sample))
+
+    out.append("\n## The same-particle census\n")
+    out.append(_same_particle_rule_block())
 
     out.append("\n## Harmonisation\n")
     out.append(
@@ -1373,6 +1470,7 @@ def build(root: Path) -> list[Path]:
     cases_dir.mkdir(parents=True, exist_ok=True)
 
     census = corpus_wide_census(table)
+    same_particle = same_particle_census(table)
     kind_e_sample = comp.read_query_set()
     runs_by_cell = {cell: load_run(cell) for cell in CELLS}
     line_index = _line_index(corpus)
@@ -1389,11 +1487,13 @@ def build(root: Path) -> list[Path]:
 
     block = scope_block(table)
     readme_path = demo_dir / "README.md"
-    readme_path.write_text(readme(table, corpus, runs_by_cell, all_qas, block), encoding="utf-8")
+    readme_path.write_text(
+        readme(table, corpus, runs_by_cell, all_qas, block, same_particle), encoding="utf-8"
+    )
     written.append(readme_path)
 
     method_path = demo_dir / "METHOD.md"
-    method_path.write_text(method(table, corpus, block), encoding="utf-8")
+    method_path.write_text(method(table, corpus, block, same_particle), encoding="utf-8")
     written.append(method_path)
 
     return sorted(written)

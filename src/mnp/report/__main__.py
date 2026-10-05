@@ -245,7 +245,7 @@ def run_release(args: argparse.Namespace) -> list[Path]:
 
 
 def run_review(args: argparse.Namespace) -> list[Path]:
-    """A guide for checking the dataset by hand, and five worksheets to recompute it with.
+    """A guide for checking the dataset by hand, and six worksheets to recompute it with.
 
     Reads the table, stats and release out of the requested output root, like `release` does, so
     a replay reviews what it rebuilt. Calls no model and reaches no network.

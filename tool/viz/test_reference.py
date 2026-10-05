@@ -71,6 +71,7 @@ def _show(ref: str, path: str) -> str | None:
 def test_build_data_reproduces_the_reference(tmp_path: Path) -> None:
     got = _build(REF, tmp_path / "data.json")
     assert _show(REF, ORIGIN_STATS) is None and "origin" not in got and "scope" not in got
+    assert "same_particle" not in got
     want = json.loads((HERE / "reference_4a3087c.json").read_text(encoding="utf-8"))
     assert got.pop("ref") == REF
     assert want.pop("ref") == "HEAD"
@@ -131,3 +132,89 @@ def test_the_scope_box_is_hidden_unless_the_data_carries_it() -> None:
     # `hidden` only hides what no author rule displays; the box and the sections set display.
     assert "[hidden] { display: none !important; }" in template
     assert "DATA.scope" in template
+
+
+# -- the same-particle census: built from the ref's table, held against C12 ---------------------
+
+
+def _head_table():
+    import io
+
+    import pandas as pd
+
+    return pd.read_csv(io.StringIO(_show("HEAD", "out/tables/d1_zeta_table.csv")))
+
+
+@pytest.fixture(scope="module")
+def build_data():
+    sys.path.insert(0, str(HERE))
+    try:
+        import build_data
+    finally:
+        sys.path.remove(str(HERE))
+    return build_data
+
+
+@pytest.fixture(scope="module")
+def head_census():
+    from mnp.eval import comparability
+
+    table = _head_table()
+    rows = [comparability.ZetaRow.from_mapping(r) for r in table.to_dict(orient="records")]
+    return table, comparability.same_particle_census(rows)
+
+
+def test_the_census_on_the_page_is_the_modules_own(build_data, head_census) -> None:
+    table, census = head_census
+    sp = build_data.same_particle_section(table)
+    assert sp["pairs"] == census.pairs
+    assert [(c["key"], c["pairs"]) for c in sp["categories"]] == list(census.categories)
+    assert [(f["field"], f["pairs"]) for f in sp["fields"]] == list(census.absent_fields)
+    only = dict(census.only_absent_field)
+    assert all(f["only"] == only.get(f["field"], 0) for f in sp["fields"])
+    assert (sp["absence_cross"], sp["absence_same"]) == (
+        census.absence_cross_paper,
+        census.absence_same_paper,
+    )
+
+
+def _guide_text(table, census) -> str:
+    """What REVIEW.md prints for the census: §5.7 and C12, rendered by the guide's own code."""
+    from types import SimpleNamespace
+
+    from mnp.report import review_guide
+
+    facts = SimpleNamespace(table=table, same_particle=census)
+    return "\n".join(
+        [
+            "## 5. Every formula",
+            *review_guide.section_5_7(facts),
+            "## 6. What the dataset proves, and what it does not",
+            *review_guide._same_particle_claim(census),
+        ]
+    )
+
+
+def test_the_census_checks_read_what_the_guide_prints(build_data, head_census) -> None:
+    table, census = head_census
+    sp = build_data.same_particle_section(table)
+    text = _guide_text(table, census)
+    checks = build_data.same_particle_checks(text, sp)
+    # eight numbers of C12, its top field, the total row and the ranking, then one per table row
+    assert len(checks) == 11 + len(sp["categories"]) + len(sp["fields"])
+    assert all(c["ok"] for c in checks), [c for c in checks if not c["ok"]]
+
+    every = f"| all same-particle pairs | {census.pairs:,} |".replace(",", " ")
+    assert every in text
+    tampered = build_data.same_particle_checks(
+        text.replace(every, "| all same-particle pairs | 1 |"), sp
+    )
+    assert [c["name"] for c in tampered if not c["ok"]] == ["§5.7 all same-particle pairs"]
+
+
+def test_the_census_block_is_hidden_unless_the_data_carries_it() -> None:
+    template = (HERE / "template.html").read_text(encoding="utf-8")
+    block = next(line for line in template.splitlines() if 'id="absence"' in line)
+    assert " hidden" in block, block
+    assert "DATA.same_particle" in template
+    assert "if (!SP) return;" in template

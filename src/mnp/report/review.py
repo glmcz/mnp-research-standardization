@@ -1,6 +1,6 @@
 """`report review`: a guide for checking the dataset by hand, and the worksheets to do it with.
 
-Writes `out/review/REVIEW.md` and five CSV files a spreadsheet can recompute. Every number in the
+Writes `out/review/REVIEW.md` and six CSV files a spreadsheet can recompute. Every number in the
 guide is computed here at build time from the repo's own code and data, or quoted from a named
 file and section. Nothing is re-derived a second way: ICC comes from `mnp.demo.resample.anova`,
 the harmonised values from `mnp.demo.harmonise.harmonise`, the pair verdicts from
@@ -136,6 +136,16 @@ COLUMNS: dict[str, tuple[str, ...]] = {
         "evidence_quote",
         "evidence_line_text",
         *AUDIT_CHECK_COLUMNS,
+    ),
+    "same_particle_census.csv": (
+        "quantity",
+        "material",
+        "functionalisation",
+        "rows",
+        "papers",
+        "pairs",
+        *comp.SAME_PARTICLE_CATEGORIES,
+        "lost_to_absence_cross_paper",
     ),
 }
 
@@ -296,6 +306,24 @@ class Pair:
 
 def census(table: pd.DataFrame) -> list[comp.PairSpec]:
     return comp.graded_census([comp.ZetaRow.from_mapping(r) for r in table.to_dict("records")])
+
+
+def same_particle_sheet(found: comp.SameParticleCensus) -> pd.DataFrame:
+    """One line per particle with at least two rows; the category columns sum to the census."""
+    lines = [
+        {
+            "quantity": p.quantity,
+            "material": p.material,
+            "functionalisation": p.functionalisation,
+            "rows": p.rows,
+            "papers": p.papers,
+            "pairs": p.pairs,
+            **dict(zip(comp.SAME_PARTICLE_CATEGORIES, p.counts, strict=True)),
+            "lost_to_absence_cross_paper": p.absence_cross_paper,
+        }
+        for p in found.particles
+    ]
+    return pd.DataFrame(lines, columns=list(COLUMNS["same_particle_census.csv"]))
 
 
 def pick_pairs(
@@ -753,6 +781,7 @@ class Facts:
     harmonised: pd.DataFrame
     scan: harmonise.ScanResult
     graded: list[comp.PairSpec]
+    same_particle: comp.SameParticleCensus
     key: list[dict[str, str]]
     pairs: list[Pair]
     pair_sheet: pd.DataFrame
@@ -874,6 +903,9 @@ def gather(root: Path) -> Facts:
         harmonised=harmonised_rows(table),
         scan=harmonise.scan(table),
         graded=graded,
+        same_particle=comp.same_particle_census(
+            [comp.ZetaRow.from_mapping(r) for r in table.to_dict("records")]
+        ),
         key=key,
         pairs=pairs,
         pair_sheet=worked_pairs(pairs),
@@ -890,7 +922,7 @@ def _write_csv(frame: pd.DataFrame, path: Path) -> Path:
 
 
 def build(root: Path) -> list[Path]:
-    """Write `REVIEW.md` and the five worksheets under `root/review/`."""
+    """Write `REVIEW.md` and the six worksheets under `root/review/`."""
     from mnp.report import review_guide
 
     facts = gather(Path(root))
@@ -902,6 +934,7 @@ def build(root: Path) -> list[Path]:
         "harmonised_all_rows.csv": facts.harmonised,
         "comparability_worked_pairs.csv": facts.pair_sheet,
         "audit_sample.csv": facts.audit,
+        "same_particle_census.csv": same_particle_sheet(facts.same_particle),
     }
     written = [_write_csv(frame, out_dir / name) for name, frame in sheets.items()]
     guide = out_dir / "REVIEW.md"

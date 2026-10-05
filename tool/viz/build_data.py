@@ -52,13 +52,23 @@ assert tuple(METRICS) == resample.METRICS
 NAIVE_Z = 1.96
 
 # REVIEW.md §5.5 worked examples: the calculator's presets, one per case it can reproduce.
-WORKED_ROWS = {
-    "H": "PMC11099890-r1",
-    "Z1": "PMC12955872-r1",
-    "Z2": "PMC10213243-r1",
-    "Z3": "PMC10045319-r1",
-    "Z4": "PMC10340104-r3",
-}
+#: The harmonisation cases REVIEW.md works by hand, one row each. The rows are read from that
+#: REVIEW.md, never typed here: a re-extraction moves them (case Z1 went from PMC12955872-r1 to
+#: -r2 on 2026-10-03), and the page must load the example the guide works.
+WORKED_CASES = ("H", "Z1", "Z2", "Z3", "Z4")
+
+
+def worked_rows(review: str) -> dict[str, str]:
+    """{case: row_id} of REVIEW.md's worked harmonisation examples, one line each:
+    "**Z1**: ... `PMC…-rN` reports"."""
+    out = {}
+    for case in WORKED_CASES:
+        m = re.search(rf"^\*\*{case}\*\*: [^\n]*?`(PMC\d+-r\d+)` reports", review, re.MULTILINE)
+        if m is None:
+            raise SystemExit(f"REVIEW.md has no worked example for harmonisation case {case}")
+        out[case] = m.group(1)
+    return out
+
 
 ORIGIN_STATS = "out/tables/sample_origin_stats.json"
 # Refs committed before the rename call the second reading `hand_check` and the counts after it
@@ -303,7 +313,7 @@ def calculator_model(row: dict) -> str:
     return model or "none"
 
 
-def harmonise_section(harm: list[dict]) -> dict:
+def harmonise_section(harm: list[dict], review: str) -> dict:
     case_order = ["H", "Z1", "Z2", "Z3", "Z4", "M1", "M2", "M0", "U", "N"]
     cases = Counter(r["case"] for r in harm)
     results = Counter(r["result"] for r in harm)
@@ -323,7 +333,7 @@ def harmonise_section(harm: list[dict]) -> dict:
     zeta.sort(key=lambda z: (z[0], z[5]))
     by_id = {r["row_id"]: r for r in harm}
     examples = {}
-    for case, rid in WORKED_ROWS.items():
+    for case, rid in worked_rows(review).items():
         r = by_id[rid]
         assert r["case"] == case, (rid, r["case"])
         examples[case] = {
@@ -975,7 +985,7 @@ def build(ref: str) -> dict:
     data.update(funnel_and_census(ref, d1, table))
     data["five"] = five_parameters(d1, per_paper)
     data["clustering"] = clustering(table, per_paper)
-    data["harmonise"] = harmonise_section(harm)
+    data["harmonise"] = harmonise_section(harm, show(ref, "out/review/REVIEW.md"))
     data["comparability"] = comparability_section(kind_e)
     data["d3"] = d3_section(ref)
     data["grid"] = grid_section(ref)

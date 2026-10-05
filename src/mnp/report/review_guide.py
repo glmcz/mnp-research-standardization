@@ -2254,13 +2254,17 @@ def _origin_claim(o: dict) -> list[str]:
         "environmental). So `unclear` is an upper bound on what the papers leave unsaid, and the "
         "split between bought and lab-made is the least certain part. "
         + (
-            f"In {len(whole)} of the {where['papers']['wastewater']} wastewater papers the zeta "
-            "potential is of the collected effluent as a whole, not of isolated plastic, and "
+            f"In {len(whole)} of the {where['papers'].get('wastewater', 0)} wastewater papers the "
+            "zeta potential is of the collected effluent as a whole, not of isolated plastic. "
             if whole
             else ""
         )
-        + f"{len(o['not_own_measurement'])} rows are not the authors' own measurement of a "
-        "plastic particle (§8); all are left in the counts above.",
+        + (
+            f"{len(o['not_own_measurement'])} rows are not the authors' own measurement of a "
+            "plastic particle (§8); all are left in the counts above."
+            if o["not_own_measurement"]
+            else ""
+        ),
     )
 
 

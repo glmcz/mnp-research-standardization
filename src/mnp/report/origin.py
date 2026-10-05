@@ -45,19 +45,12 @@ SAMPLE_N = 40
 #: and so is `other`: both environmental rows filed there were measured in their own sample liquid.
 LAB_LIQUIDS = frozenset({"DI_water", "salt_solution", "buffer", "culture_medium", "biofluid"})
 
-#: Found by a Claude agent during the second reading of origin, 2026-09-29: D1 rows that are not
-#: the authors' own measurement of a plastic particle. Row ids, so a re-extraction that drops one
-#: fails the build.
-NOT_OWN_MEASUREMENT = {
-    "PMC11644763-r1": "a polyester fabric, not a particle",
-    "PMC12462602-r2": "PEG 4000, a water-soluble polymer the authors use in place of polystyrene",
-    "PMC12878436-r4": "a value cited from Arenas et al. 2022, not measured in this paper",
-    "PMC12878436-r5": "a value cited from Arenas et al. 2022, not measured in this paper",
-    "PMC12878436-r6": "a value cited from Na et al. 2021, not measured in this paper",
-    "PMC12878436-r7": "a value cited from Na et al. 2021, not measured in this paper",
-    "PMC9645706-r4": "a passing remark about naturally fragmented plastics; nothing was collected "
-    "or measured",
-}
+#: D1 rows that are not the authors' own measurement of a plastic particle, by row id, so a
+#: re-extraction that drops one fails the build. Empty since 2026-10-03: the seven rows the
+#: 2026-09-29 second reading found (a fabric, PEG 4000, four values cited from other papers, a
+#: passing remark) left the table when the papers were re-read under the current brief, PEG 4000
+#: on Martin's ruling of 2026-10-01 (docs/DECISIONS.md OD-01). A row found later goes here.
+NOT_OWN_MEASUREMENT: dict[str, str] = {}
 
 #: Read by a Claude agent, 2026-09-29, for every environmental paper whose text prints a
 #: conductivity: why none of it gives that paper's environmental rows an ionic strength. Martin's

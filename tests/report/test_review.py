@@ -350,16 +350,39 @@ def test_the_guide_does_not_claim_how_environmental_plastics_behave(guide: str, 
     )
 
 
-def test_section_8_carries_the_methods_defect_as_fixed_with_its_effect(guide: str, table, origin):
+def test_section_8_carries_the_methods_defect_as_fixed_with_its_effect(guide: str, table):
     s8 = _part(guide, "## 8. Open issues and decisions", "\n## ")
     item = next(line for line in s8.splitlines() if "`9b17a6c`" in line)
     assert item.endswith("Closed.") and "Open" not in item
     assert item.split(". ", 1)[1] == review_guide._methods_fix(review.methods_fix(table))
     assert not any("Open, a decision for Martin" in line and "Methods" in line
                    for line in s8.splitlines())  # fmt: skip
-    own = next(line for line in s8.splitlines() if "own measurement" in line)
-    for row in origin["not_own_measurement"]:
+
+
+def test_section_8_carries_the_rows_that_are_not_an_own_measurement(guide: str, origin):
+    """Open while rows are listed, naming each; closed, not dropped, once none is left, so the
+    decision stays on record where `docs/DECISIONS.md` OD-01 points (§8 item 19)."""
+    s8 = _part(guide, "## 8. Open issues and decisions", "\n## ")
+    (own,) = [line for line in s8.splitlines() if "own measurement" in line]
+    assert own.startswith("19. ")
+    listed = origin["not_own_measurement"]
+    for row in listed:
         assert f"`{row['row_id']}`" in own
+    assert own.endswith("Closed.") == (not listed)
+
+
+def test_the_own_measurement_item_names_every_row_while_open_and_closes_when_none_is_left():
+    rows = [
+        {"row_id": row_id, "pmcid": row_id.split("-")[0], "particle_name": "x", "why": why}
+        for row_id, why in (("PMCA-r1", "a fabric"), ("PMCA-r2", "a fabric"), ("PMCB-r4", "cited"))
+    ]
+    (item,) = review_guide._origin_open({"not_own_measurement": rows})
+    assert item.startswith("**3 rows are not the authors' own measurement")
+    assert "`PMCA-r1`, `PMCA-r2` (a fabric); `PMCB-r4` (cited)" in item
+    assert "Open:" in item and "Closed" not in item
+    (closed,) = review_guide._origin_open({"not_own_measurement": []})
+    assert "own measurement" in closed and "OD-01" in closed
+    assert closed.endswith("Closed.") and "Open" not in closed
 
 
 def test_the_methods_fix_reads_before_from_its_impact_file_and_now_from_the_table(table):

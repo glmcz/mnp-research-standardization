@@ -2647,10 +2647,20 @@ def _methods_fix(m: dict) -> str:
 
 
 def _origin_open(o: dict) -> list[str]:
-    """What checking the particles' origin found that is not about origin, and is still open."""
+    """What checking the particles' origin found that is not about origin: open while rows are
+    listed, closed once none is left. A stats file without the list says nothing either way."""
     out = []
-    own = o.get("not_own_measurement") or []
-    if own:
+    own = o.get("not_own_measurement")
+    if own == []:
+        out.append(
+            "**No row is listed as not the authors' own measurement of a plastic particle.** A "
+            "Claude agent's second reading of origin (2026-09-29) found seven: a fabric, PEG "
+            "4000, four values cited from other papers and a passing remark. Re-read under the "
+            "current brief, six left the table by the brief's own rules; PEG 4000 left on "
+            "Martin's ruling of 2026-10-01 (`docs/DECISIONS.md` OD-01). A row found later is "
+            "listed in `report.origin.NOT_OWN_MEASUREMENT` and reopens this item. Closed."
+        )
+    elif own:
         by_why: dict[str, list[str]] = {}
         for r in own:
             by_why.setdefault(r["why"], []).append(f"`{r['row_id']}`")

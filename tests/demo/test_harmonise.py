@@ -20,20 +20,37 @@ from mnp.ek.constants import permittivity, viscosity
 from mnp.eval.comparability import debye_length_nm, henry_f
 from mnp.schema.models import Quantity
 
+#: FINDINGS E2b's corrected denominator was published in this commit, measured on the table
+#: committed with it (1 890 rows from 491 papers).
+E2B_COMMIT = "9ce15fa"
+
 
 @pytest.fixture(scope="module")
 def table() -> pd.DataFrame:
     return pd.read_csv(config.OUT_TABLES / "d1_zeta_table.csv")
 
 
+@pytest.fixture(scope="module")
+def e2b_table(table_at) -> pd.DataFrame:
+    return pd.read_csv(table_at(E2B_COMMIT))
+
+
+def _papers(table: pd.DataFrame, quantity: str, *, valued: bool = False) -> int:
+    rows = table[table["quantity"] == quantity]
+    if valued:
+        rows = rows[rows["value"].notna()]
+    return rows["pmcid"].nunique()
+
+
 # --- the E2b census -------------------------------------------------------------------------
 
 
-def test_scan_reproduces_findings_e2b(table):
+def test_scan_reproduces_findings_e2b(e2b_table):
     """FINDINGS.md E2b, "Correction - the denominator was wrong": 485 papers report a zeta
-    value, 33 name a conversion model, 452 do not; 13 report a mobility, 6 name one.
+    value, 33 name a conversion model, 452 do not; 13 report a mobility, 6 name one. Run on the
+    table E2b was measured on, which a re-extraction cannot move.
     """
-    result = scan(table)
+    result = scan(e2b_table)
     assert result == ScanResult(
         zeta_papers=485, zeta_named=33, mobility_papers=13, mobility_named=6
     )
@@ -41,20 +58,20 @@ def test_scan_reproduces_findings_e2b(table):
     assert result.mobility_not_named == 7
 
 
-def test_denominator_counts_rows_with_a_null_value_too(table):
+def test_denominator_counts_rows_with_a_null_value_too(table, e2b_table):
     """The right denominator is "the paper printed a row of this quantity", not "the row
     survived extraction with a number". Papers with only null-valued rows of a quantity still
-    count: filtering them out would undercount 485 to 348 and 13 to 9, neither of which
-    reproduces FINDINGS.
+    count: on the E2b table, filtering them out would undercount 485 to 348 and 13 to 9, neither
+    of which reproduces FINDINGS. `scan` must use that denominator on today's table too.
     """
-    zeta_rows = table[table["quantity"] == "zeta_potential"]
-    mobility_rows = table[table["quantity"] == "electrophoretic_mobility"]
-    assert zeta_rows["pmcid"].nunique() == 485
-    assert mobility_rows["pmcid"].nunique() == 13
-    # the value-non-null counts are deliberately smaller - included so a future table change
-    # that breaks the reproduction is easy to diagnose against this test.
-    assert zeta_rows[zeta_rows["value"].notna()]["pmcid"].nunique() == 348
-    assert mobility_rows[mobility_rows["value"].notna()]["pmcid"].nunique() == 9
+    assert _papers(e2b_table, "zeta_potential") == 485
+    assert _papers(e2b_table, "electrophoretic_mobility") == 13
+    assert _papers(e2b_table, "zeta_potential", valued=True) == 348
+    assert _papers(e2b_table, "electrophoretic_mobility", valued=True) == 9
+    for frame in (e2b_table, table):
+        result = scan(frame)
+        assert result.zeta_papers == _papers(frame, "zeta_potential")
+        assert result.mobility_papers == _papers(frame, "electrophoretic_mobility")
 
 
 def test_models_named_is_cached():

@@ -24,12 +24,30 @@ PUBLISHED = {
 
 # FINDINGS was measured before the rules of 2026-09-28 and 29 (a printed 0 mM is not a reported
 # ionic strength; a step temperature, or one its source prints only for storage or incubation, is
-# not the measurement one). They moved these three on today's table. R2b took the only fully
-# conditioned row of PMC7584143 (a hydra-culture 20 °C), which is why per paper moves 0.2 pp.
+# not the measurement one). They moved these three on the table they were applied to. R2b took the
+# only fully conditioned row of PMC7584143 (a hydra-culture 20 °C), which is why per paper moves
+# 0.2 pp.
 MOVED_BY_RULES = {
     "ionic_strength_reported": (13.7, 8.6, 0.77, 595),
     "temperature_reported": (25.6, 20.3, 0.86, 549),
     "conditions_complete": (3.2, 2.1, 0.80, 579),
+}
+
+# Each claim is pinned on the table committed when it was made. The re-read of 2026-10-03 changed
+# far more than the rules did, so today's table can no longer stand in for any of these.
+E2E_COMMIT = "6e49bd6"  # FINDINGS E2e published, on the table every later commit started from
+R1_R2_COMMIT = "4a3087c"  # the 0 mM rule and the step-temperature rule applied to that table
+RULES_COMMIT = "d538ce5"  # R2b applied on top: the table MOVED_BY_RULES was measured on
+
+#: The columns the rules write: the two values they clear, their flags and what derives from them.
+RULE_COLUMNS = {
+    "ionic_strength_mM",
+    "ionic_strength_source",
+    "ionic_strength_reported",
+    "temperature_C",
+    "temperature_reported",
+    "conditions_complete",
+    "flags",
 }
 
 
@@ -59,6 +77,20 @@ def results(table: pd.DataFrame):
     return {est.metric: est for est in estimates(table)}
 
 
+@pytest.fixture(scope="module")
+def e2e_table(table_at) -> pd.DataFrame:
+    return pd.read_csv(table_at(E2E_COMMIT))
+
+
+@pytest.fixture(scope="module")
+def rules_table(table_at) -> pd.DataFrame:
+    return pd.read_csv(table_at(RULES_COMMIT))
+
+
+def _by_metric(table: pd.DataFrame) -> dict:
+    return {e.metric: e for e in estimates(table)}
+
+
 def _assert_matches(results, expected):
     for metric, (row_pct, paper_pct, icc, n_eff) in expected.items():
         est = results[metric]
@@ -68,12 +100,21 @@ def _assert_matches(results, expected):
         assert est.n_eff == pytest.approx(n_eff, abs=2), metric
 
 
-def test_reproduces_published_e2e_table_on_the_table_it_was_measured_on(table):
-    _assert_matches({e.metric: e for e in estimates(_before_the_rules(table))}, PUBLISHED)
+def test_reproduces_published_e2e_table_on_the_table_it_was_measured_on(e2e_table):
+    _assert_matches(_by_metric(e2e_table), PUBLISHED)
 
 
-def test_todays_table_moves_only_what_the_rules_touch(results):
-    _assert_matches(results, {**PUBLISHED, **MOVED_BY_RULES})
+def test_the_rules_move_only_what_they_touch(e2e_table, rules_table):
+    """The rules of 2026-09-28 and 29, applied to the E2e table, moved three metrics and nothing
+    else: the same rows in the same order, only the rule columns changed, and flipping back the
+    flags they wrote restores every metric row for row."""
+    assert rules_table["row_id"].tolist() == e2e_table["row_id"].tolist()
+    changed = {c for c in e2e_table.columns if not e2e_table[c].equals(rules_table[c])}
+    assert changed <= RULE_COLUMNS
+    undone = _before_the_rules(rules_table)
+    for metric in METRICS:
+        assert undone[metric].astype(bool).equals(e2e_table[metric].astype(bool)), metric
+    _assert_matches(_by_metric(rules_table), {**PUBLISHED, **MOVED_BY_RULES})
 
 
 def test_deff_is_internally_consistent(results):
@@ -128,22 +169,28 @@ def test_cluster_interval_wider_than_naive_for_every_metric(results):
         assert est.paper_half_width > est.naive_half_width, metric
 
 
-def test_temperature_half_width_near_published(table):
+def test_temperature_half_width_near_published(e2e_table):
     """FINDINGS: naive +-2.0 pp, cluster +-8.4 pp for temperature. This is the metric it names
     explicitly as the worst case for trusting the naive interval. Measured on the table FINDINGS
     read, i.e. before the rules.
     """
-    temp = {e.metric: e for e in estimates(_before_the_rules(table))}["temperature_reported"]
+    temp = _by_metric(e2e_table)["temperature_reported"]
     assert temp.naive_half_width * 100 == pytest.approx(2.0, abs=0.3)
     assert temp.row_half_width * 100 == pytest.approx(8.4, abs=1.5)
 
 
-def test_r2b_narrows_the_temperature_interval(results):
+def test_r2b_narrows_the_temperature_interval(table_at, rules_table):
     """R2b cleared 36 of PMC8719689's 90 temperatures, so its rows no longer all agree and the
-    largest cluster stops dominating: the cluster interval falls to about +-6.4 pp."""
-    temp = results["temperature_reported"]
+    largest cluster stops dominating: the cluster interval falls to about +-6.4 pp. Measured
+    between the table before R2b and the one it produced."""
+    before = _by_metric(pd.read_csv(table_at(R1_R2_COMMIT)))["temperature_reported"]
+    temp = _by_metric(rules_table)["temperature_reported"]
+    paper = rules_table[rules_table["pmcid"] == "PMC8719689"]
+    assert len(paper) == 90
+    assert int(_flagged(paper, "temperature_from_other_step").sum()) == 36
     assert temp.naive_half_width * 100 == pytest.approx(2.0, abs=0.3)
     assert temp.row_half_width * 100 == pytest.approx(6.4, abs=0.2)
+    assert before.row_half_width - temp.row_half_width > 0.02
 
 
 def test_leave_one_out_moves_per_row_more_than_per_paper(table):

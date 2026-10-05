@@ -10,8 +10,10 @@ particles are the same.
 import math
 from collections import Counter
 
+import pandas as pd
 import pytest
 
+from mnp import config
 from mnp.eval import comparability as cmp
 from mnp.eval.comparability import Comparability as C
 
@@ -407,10 +409,22 @@ def test_a_different_particle_is_never_conditionally_comparable():
 # --- the corpus and the query set ---------------------------------------------------------
 
 
-def test_rows_load_from_the_published_table():
-    rows = cmp.load_rows()
-    assert len(rows) == 1890
-    assert len({row.row_id for row in rows}) == 1890
+#: `docs/FINDINGS_comparability.md` was published in this commit, its census measured on the table
+#: committed with it (1 890 rows from 491 papers). The re-read of 2026-10-03 moved today's table.
+FINDINGS_COMMIT = "0858865"
+
+
+@pytest.fixture(scope="module")
+def findings_rows(table_at) -> list[cmp.ZetaRow]:
+    return cmp.load_rows(table_at(FINDINGS_COMMIT))
+
+
+def test_rows_load_from_the_published_table(findings_rows):
+    assert len(findings_rows) == 1890
+    assert len({row.row_id for row in findings_rows}) == 1890
+    frame = pd.read_csv(config.OUT_TABLES / "d1_zeta_table.csv")
+    assert [row.row_id for row in cmp.load_rows()] == frame["row_id"].tolist()
+    assert frame["row_id"].is_unique
 
 
 def test_every_fully_comparable_pair_has_both_rows_condition_complete():
@@ -424,23 +438,29 @@ def test_every_fully_comparable_pair_has_both_rows_condition_complete():
         assert {pair.a.row_id, pair.b.row_id} <= complete_ids
 
 
-def test_the_corpus_holds_sixteen_fully_comparable_pairs_and_none_of_them_cross_a_paper():
-    """The headline. Pinned, so relaxing a rule to make it look better shows up as a failure."""
-    census = cmp.comparable_census(cmp.load_rows())
+def test_the_corpus_holds_sixteen_fully_comparable_pairs_and_none_of_them_cross_a_paper(
+    findings_rows,
+):
+    """The headline, on the table it was measured on. Pinned, so relaxing a rule to make it look
+    better shows up as a failure. The next tier, 35 conditionally comparable pairs, with it."""
+    census = cmp.comparable_census(findings_rows)
     assert len(census) == 16
     assert all(pair.a.pmcid == pair.b.pmcid for pair in census)
     assert len({pair.a.pmcid for pair in census}) == 3
+    graded = Counter(spec.verdict.verdict for spec in cmp.graded_census(findings_rows))
+    assert graded[C.conditionally_comparable] == 35
 
 
-def test_only_six_of_the_comparable_pairs_are_pairs_of_zeta_potentials():
+def test_only_six_of_the_comparable_pairs_are_pairs_of_zeta_potentials(findings_rows):
     """The other ten compare the quantity that was actually measured, not the converted one."""
-    census = cmp.comparable_census(cmp.load_rows())
-    zeta = [
-        pair
-        for pair in census
-        if pair.a.quantity.value == pair.b.quantity.value == "zeta_potential"
-    ]
-    assert len(zeta) == 6
+    quantities = Counter(
+        (pair.a.quantity.value, pair.b.quantity.value)
+        for pair in cmp.comparable_census(findings_rows)
+    )
+    assert quantities == {
+        ("zeta_potential", "zeta_potential"): 6,
+        ("electrophoretic_mobility", "electrophoretic_mobility"): 10,
+    }
 
 
 def test_the_query_set_on_disk_is_what_the_generator_produces():

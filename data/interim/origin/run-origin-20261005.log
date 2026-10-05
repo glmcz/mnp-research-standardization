@@ -1,0 +1,11 @@
+467 papers, 1315 particles; 0 answered in this run, 80 reusable, 387 to ask; 72 papers capped; billed by every run so far 2,845,176, estimated for the rest 2,002,014 (limit 5,000,000)
+{
+  "asked": 467,
+  "already_answered": 0,
+  "reused": 80,
+  "answered_now": 387,
+  "refused": 0,
+  "reader_failures": 0,
+  "over_budget": 0,
+  "input_tokens_spent": 4739362
+}

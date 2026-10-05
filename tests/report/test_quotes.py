@@ -236,7 +236,16 @@ def test_no_withheld_quote_text_appears_in_any_release_file(shipped):
             texts += [str(v) for line in texts[0].splitlines() for v in json.loads(line).values()]
         haystacks[path.name] = "\n".join(texts)
     assert {"dataset.parquet", "dataset.jsonl", "DATASET_CARD.md", "LICENSE"} <= set(haystacks)
-    leaks = [(name, p[:60]) for name, text in haystacks.items() for p in parts if p in text]
+    # Two papers can print the same words: PMC11532844 (CC BY-NC-ND, withheld) and PMC12198284
+    # (CC BY, shipped) share "using a Zetasizer Instrument, Nano ZS90 Series (Malvern ...)". Words a
+    # CC BY or CC0 row ships in its own quote are licensed by that row's source, not leaked.
+    shipped = "\n".join(table.loc[~table["quote_withheld"], "evidence_quote"].dropna())
+    leaks = [
+        (name, p[:60])
+        for name, text in haystacks.items()
+        for p in parts
+        if p in text and p not in shipped
+    ]
     assert not leaks, f"{len(leaks)} withheld passages found in the release: {leaks[:5]}"
 
 

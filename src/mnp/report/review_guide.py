@@ -2046,7 +2046,8 @@ def section_6(f: Facts) -> list[str]:
         "(`docs/FINDINGS.md` §E2b).",
     )
     lines += _claim(
-        "C5. Almost no pair of measurements can be compared, and no zeta across papers",
+        "C5. Almost no pair of measurements can be compared"
+        + (f", and {len(cross)} across papers" if cross else ", and none across papers"),
         f"**{len(comparable)}** comparable pairs of {_int(math.comb(n, 2))}; {len(comp_zz)} are "
         f"zeta × zeta; {len(cross)} cross a paper boundary. {len(cond)} more are conditionally "
         "comparable.",

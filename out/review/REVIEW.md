@@ -933,10 +933,10 @@ Each claim: the sentence, the number, how it is computed, how to check it yourse
 
 #### C9. On the eval grid the structured cell beats the retrieval cell, and kind E shows why accuracy alone misleads
 
-- **Number.** accuracy per kind, cell D vs cell B: A 30/30 vs 22/30; B 30/30 vs 27/30; C 9/10 vs 1/10; D 9/10 vs 7/10; E 320/320 vs 268/320. Kind E recall per true verdict: comparable: D 16/16, B 0/16; conditionally_comparable: D 35/35, B 0/35; not_comparable: D 269/269, B 268/269; balanced accuracy D 1.000 vs B 0.332. Cell B's kind E verdicts: `not_comparable` 319, `conditionally_comparable` 1.
-- **Computed as.** the committed runs `data/interim/runs/celld-sweep-20260927` and `data/interim/runs/cellb-sweep-20260928` (400 and 400 answers of 400 and 400 asked; 1 and 1 recorded refusals), re-aggregated here with `scoring.aggregate` and `scoring.verdict_table` from their `scored.jsonl`. **Balanced accuracy** is the mean of the recall on each true verdict, so a cell that always answers the majority class cannot score well. The kinds: A a value with its condition (key from the gold set), B what a paper did not report (key: the `*_reported` flags), C a numeric filter across papers, D a mechanism, judged grounded against every passage stating it, E comparability (key: §5.6).
-- **Check it.** `data/interim/runs/cellb-sweep-20260928/verdicts.tsv` and `scores.tsv`, and the same for cell D.
-- **Caveats.** Cell B, given only BM25-retrieved lines and no table, answered `not_comparable` to 319 of 320 pairs; its kind E accuracy 268/320 sits next to the share of `not_comparable` in the key (269/320), which is why the recall table exists. What it does **not** mean: that the reader reasons better with the table. Cell D's kind E prompt contains the computed verdict and its blockers (`cells.build_d_comparability` prints `comparability_verdict=`), so its perfect kind E score measures reading the key back. One reader model (`claude-sonnet-5`) and one run per cell; cells C and E, the agentic ones, have not run; the kind A key comes from the model-annotated gold set.
+- **Number.** accuracy per kind, cell D vs cell B: A 28/30 vs 24/30; B 30/30 vs 28/30; C 9/10 vs 0/10; D 9/10 vs 9/10; E 274/274 vs 269/274. Kind E recall per true verdict: comparable: D 2/2, B 0/2; conditionally_comparable: D 3/3, B 0/3; not_comparable: D 269/269, B 269/269; balanced accuracy D 1.000 vs B 0.333. Cell B's kind E verdicts: `not_comparable` 274.
+- **Computed as.** the committed runs `data/interim/runs/celld-final-20261003` and `data/interim/runs/cellb-final-20261003` (354 and 354 answers of 354 and 354 asked; 1 and 1 recorded refusals), re-aggregated here with `scoring.aggregate` and `scoring.verdict_table` from their `scored.jsonl`. **Balanced accuracy** is the mean of the recall on each true verdict, so a cell that always answers the majority class cannot score well. The kinds: A a value with its condition (key from the gold set), B what a paper did not report (key: the `*_reported` flags), C a numeric filter across papers, D a mechanism, judged grounded against every passage stating it, E comparability (key: §5.6).
+- **Check it.** `data/interim/runs/cellb-final-20261003/verdicts.tsv` and `scores.tsv`, and the same for cell D.
+- **Caveats.** Cell B, given only BM25-retrieved lines and no table, answered `not_comparable` to 274 of 274 pairs; its kind E accuracy 269/274 sits next to the share of `not_comparable` in the key (269/274), which is why the recall table exists. What it does **not** mean: that the reader reasons better with the table. Cell D's kind E prompt contains the computed verdict and its blockers (`cells.build_d_comparability` prints `comparability_verdict=`), so its perfect kind E score measures reading the key back. One reader model (`claude-sonnet-5`) and one run per cell; cells C and E, the agentic ones, have not run; the kind A key comes from the model-annotated gold set.
 
 #### C10. Every quote exists in its paper
 
@@ -1027,13 +1027,13 @@ This audit is small and not blind: you see the extracted values while you judge.
 
 ### From `HANDOFF_2026-09-28.md` §4
 
-1. **Cell B, full run** (item 1, then 358/400). The committed run directory `cellb-sweep-20260928` now holds 400 answers of 400 asked, 1 of them a recorded refusal (commit `e1b4624`). Closed.
+1. **Cell B, full run** (item 1, then 358/400). The committed run directory `cellb-final-20261003` now holds 354 answers of 354 asked, 1 of them a recorded refusal (commit `e1b4624`). Closed.
 2. **The LICENSE author** (item 2). `release.AUTHOR` is set to Martin Durak. Closed.
 3. **`uv.lock`** (item 3). Still listed in `.gitignore`, so a fresh clone can resolve a newer pandas and change the `pandas_version` string inside `dataset.parquet`. Open.
 4. **The repository redistributes non-CC-BY text** (item 4): `xml.tar.gz` holds 244 full texts that are not CC BY or CC0 (the handoff's count), `d1_zeta_table.csv` and `extractions.jsonl` hold the 443 withheld-class quotes, and demo case 12 quotes an NC-ND paper. It matters only if the repository is or becomes public.
 5. **EHP "public domain unless otherwise noted"** (item 5): 4 papers withheld as uncertain; they could ship.
 6. **The row-citation bias** (item 6): a `row:X` citation expands to every evidence line of the row. Fix it before comparing cell D and cell B on citation precision.
-7. **`runs.code_commit` counts untracked files as dirty** (item 7). The grid runs of cell D and B read here record `code_dirty: true`.
+7. **`runs.code_commit` counts untracked files as dirty** (item 7). The grid runs read here record a clean tree.
 8. **Still open from before** (item 8): the κ audit, rotating the credential the handoff names, card 2, and vendoring `tiktoken`.
 
 ### Found while building this guide

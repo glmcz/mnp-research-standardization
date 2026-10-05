@@ -6,7 +6,7 @@
 
 ## 1. Why this case
 
-Two papers from one laboratory (Bioelectrochemistry, University of Bialystok; every author of the 2026 paper also signs the 2023 one) measure nominally 100 nm plain polystyrene under the same printed conditions -- 0.3 mM NaCl, pH 7.4, 25 C, Zetasizer Nano-ZS -- and report -48.7 +/- 1.4 mV (Sigma-Aldrich 43302, 119.5 nm measured) and -14.7 +/- 0.29 mV (supplier not stated, 158.1 nm measured). This is the only pair in the 1,908-row corpus that the comparability key passes across a paper boundary, and the 34 mV gap is not the conversion model's: neither paper names one, yet with f_m left open between Huckel and Smoluchowski on both rows the harmonised intervals still do not overlap. Five reported conditions make two rows comparable; they do not make two lots of "100 nm PS" the same particle.
+Two papers from one laboratory (Bioelectrochemistry, University of Białystok; every author of the 2026 paper also signs the 2023 one) measure nominally 100 nm plain polystyrene under the same printed conditions -- 0.3 mM NaCl, pH 7.4, 25 C, Zetasizer Nano-ZS -- and report -48.7 +/- 1.4 mV (Sigma-Aldrich 43302, 119.5 nm measured) and -14.7 +/- 0.29 mV (supplier not stated, 158.1 nm measured). This is the only pair in the 1,908-row corpus that the comparability key passes across a paper boundary, and the 34 mV gap is not the conversion model's: neither paper names one, yet with f_m left open between Huckel and Smoluchowski on both rows the harmonised intervals still do not overlap. Five reported conditions make two rows comparable; they do not make two lots of "100 nm PS" the same particle.
 
 - pmcid: PMC13298883
 - doi: 10.1021/acs.jpcb.5c08029

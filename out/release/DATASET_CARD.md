@@ -19,8 +19,8 @@ Two things a reader should take from this card before using the data: only a sma
 
 | file | what it is | sha256 |
 |---|---|---|
-| `dataset.parquet` | 1903 rows × 44 columns | `268b2853f00f40b7b73dba086e20398ea5ba8a4f49f5756ed0769f018d0802ff` |
-| `dataset.jsonl` | the same rows, one JSON object per line | `027acd243d241457e61c8da13788595870d8104bb6a2941eb7826e88bc294647` |
+| `dataset.parquet` | 1903 rows × 44 columns | `c488677e59dbab451ab496f8880461419c8edd0e9d2dc5c51e24f056f6f9811c` |
+| `dataset.jsonl` | the same rows, one JSON object per line | `b5ed8a6cdcbb7b2a6f82a8c525cdec033a97786ab78d65da8440cde2c928de0b` |
 | `schema.json` | JSON Schema 2020-12 for the record type, generated from the pydantic models in `mnp.schema.models`; the release's own evidence columns are `$defs/ReleasedEvidence` | `8976dc57ec31847920e727058140f0cb737356452ce4b5c8e28d449dd50edc4d` |
 | `LICENSE` | CC BY 4.0, and the attribution line | `e11af74d9ed4f47fc35f3f679bdf4c9e3cd01e2eb69de613847c44fc0adc3667` |
 | `DATASET_CARD.md` | this file | — |

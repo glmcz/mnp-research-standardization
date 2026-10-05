@@ -3,10 +3,10 @@
     "field": "paper:medium_reported",
     "passed": true,
     "threshold": 0.9,
-    "observed": 0.952,
-    "tp": 20,
-    "fp": 1,
-    "fn": 1
+    "observed": 1.0,
+    "tp": 21,
+    "fp": 0,
+    "fn": 0
   },
   {
     "field": "paper:instrument_reported",
@@ -19,11 +19,11 @@
   },
   {
     "field": "row:value",
-    "passed": true,
+    "passed": false,
     "threshold": 0.75,
-    "observed": 0.81,
-    "tp": 68,
-    "fp": 16,
-    "fn": 17
+    "observed": 0.738,
+    "tp": 62,
+    "fp": 22,
+    "fn": 23
   }
 ]

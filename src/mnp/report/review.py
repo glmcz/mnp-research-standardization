@@ -55,7 +55,7 @@ AUDIT_CHECK_COLUMNS = (
     "note",
 )
 
-RUN_IDS = {"D": "celld-sweep-20260927", "B": "cellb-sweep-20260928"}
+RUN_IDS = {"D": "celld-final-20261003", "B": "cellb-final-20261003"}
 
 EUROPEPMC_URL = "https://europepmc.org/article/PMC/{pmcid}"
 

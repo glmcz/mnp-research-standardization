@@ -541,3 +541,15 @@ def test_the_guide_no_longer_quotes_the_counterfactual(plain_guide: str):
     s8 = _part(plain_guide, "## 8. Open issues and decisions", "\n## ")
     item = next(line for line in s8.splitlines() if "§4c" in line)
     assert "no committed code produces" in item and "C12" in item
+
+
+def test_the_grid_runs_the_guide_reports_answered_todays_question_sets():
+    """RUN_IDS named the 2026-09-27/28 sweeps after the question sets were regenerated, so C9 and
+    the results page reported a grid over questions that no longer exist."""
+    from mnp.eval import grid
+    from mnp.report import review
+
+    current = {q.qid for q in grid.all_questions()}
+    for cell, run_id in review.RUN_IDS.items():
+        asked = (config.DATA_INTERIM / "runs" / run_id / "asked.txt").read_text().split()
+        assert set(asked) == current, (cell, run_id, len(set(asked) ^ current))

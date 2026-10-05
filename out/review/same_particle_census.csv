@@ -1,0 +1,136 @@
+quantity,material,functionalisation,rows,papers,pairs,comparable,conditionally_comparable,lost_to_absence,stated_difference,undecidable,lost_to_absence_cross_paper
+electrophoretic_mobility,PET,,2,2,1,0,0,1,0,0,1
+electrophoretic_mobility,PMMA,BARE,3,1,3,0,0,3,0,0,0
+electrophoretic_mobility,PS,,12,3,66,0,0,31,32,3,27
+electrophoretic_mobility,PS,BARE,9,4,36,0,0,10,26,0,0
+electrophoretic_mobility,PS,COOH,4,2,6,0,0,3,3,0,0
+electrophoretic_mobility,PS,NH2,14,1,91,0,0,34,57,0,0
+electrophoretic_mobility,PS,SO4,7,2,21,0,0,3,18,0,0
+zeta_potential,PA6,,12,2,66,0,0,28,38,0,0
+zeta_potential,PA66,,7,2,21,0,0,5,16,0,0
+zeta_potential,PBAT,,8,4,28,0,0,6,22,0,2
+zeta_potential,PBAT,literal:uv aged 30 days in river water,5,1,10,0,0,4,6,0,0
+zeta_potential,PC,,2,1,1,0,0,0,1,0,0
+zeta_potential,PCL,BARE,2,1,1,0,0,0,1,0,0
+zeta_potential,PE,,61,34,1830,0,0,522,1308,0,509
+zeta_potential,PE,BARE,7,2,21,0,0,0,18,3,0
+zeta_potential,PE,literal:chitosan and tannic acid coating,2,1,1,0,0,1,0,0,0
+zeta_potential,PE,literal:chitosan coating,2,1,1,0,0,1,0,0,0
+zeta_potential,PE,literal:unaged,2,1,1,0,0,1,0,0,0
+zeta_potential,PE,literal:uv aged 40 days 365 nm,2,1,1,0,0,1,0,0,0
+zeta_potential,PE,literal:uv weathered,6,1,15,0,0,3,12,0,0
+zeta_potential,PET,,65,33,2080,0,0,887,1189,4,864
+zeta_potential,PET,BARE,5,3,10,0,0,3,7,0,3
+zeta_potential,PLA,,22,13,231,0,0,75,156,0,63
+zeta_potential,PLA,literal:k2s2o8 aged,4,1,6,0,0,6,0,0,0
+zeta_potential,PLA,literal:nile red fluorescently labeled,2,1,1,0,0,1,0,0,0
+zeta_potential,PMMA,,15,8,105,0,0,10,95,0,5
+zeta_potential,PMMA,BARE,5,3,10,0,0,3,7,0,0
+zeta_potential,PMMA,COOH,10,6,45,0,0,19,26,0,15
+zeta_potential,PP,,35,20,595,0,0,131,464,0,100
+zeta_potential,PP,BARE,11,5,55,0,0,0,52,3,0
+zeta_potential,PS,,490,187,119805,0,0,21758,97971,76,21257
+zeta_potential,PS,AMIDINE,3,2,3,0,0,1,2,0,0
+zeta_potential,PS,BARE,129,49,8256,1,3,748,7492,12,695
+zeta_potential,PS,COOH,206,67,21115,0,0,2774,18320,21,2629
+zeta_potential,PS,NH2,145,44,10440,0,0,1298,9100,42,1214
+zeta_potential,PS,PEG,10,3,45,0,0,15,30,0,0
+zeta_potential,PS,SO4,15,6,105,0,0,15,90,0,0
+zeta_potential,PS,literal:acetyl,3,1,3,0,0,0,3,0,0
+zeta_potential,PS,literal:adsorbed bap and balf protein corona,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:adsorbed benzo a pyrene,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:adsorbed phenanthrene,2,1,1,0,0,1,0,0,0
+zeta_potential,PS,literal:aliphatic amine zwitterionic amine and carboxyl groups,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:amidine nh nh2,7,1,21,0,0,12,9,0,0
+zeta_potential,PS,literal:amine desferrioxamine dfo,4,1,6,0,0,6,0,0,0
+zeta_potential,PS,literal:amine dfo 89zr,4,1,6,0,0,6,0,0,0
+zeta_potential,PS,literal:amino nh2 hrp corona,2,1,1,0,0,1,0,0,0
+zeta_potential,PS,literal:amino red fluorescent,3,1,3,0,0,0,3,0,0
+zeta_potential,PS,literal:balf protein corona,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:carboxy red fluorescent,3,1,3,0,0,0,3,0,0
+zeta_potential,PS,literal:carboxylate modified fluorescent dye embedded,3,1,3,0,0,0,3,0,0
+zeta_potential,PS,literal:cd adsorbed,2,1,1,0,0,1,0,0,0
+zeta_potential,PS,literal:chitosan and tannic acid coating,4,1,6,0,0,6,0,0,0
+zeta_potential,PS,literal:chitosan coating,4,1,6,0,0,6,0,0,0
+zeta_potential,PS,literal:ctab adsorbed,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:cy5 dye label covalent,4,1,6,0,0,0,6,0,0
+zeta_potential,PS,literal:fluorescence labeled,4,1,6,0,0,6,0,0,0
+zeta_potential,PS,literal:fluorescent,7,4,21,0,0,9,12,0,6
+zeta_potential,PS,literal:green fluorescent,4,1,6,0,0,3,3,0,0
+zeta_potential,PS,literal:green fluorescently labeled,2,2,1,0,0,0,1,0,0
+zeta_potential,PS,literal:guanidinium,3,1,3,0,0,0,3,0,0
+zeta_potential,PS,literal:heteroaggregate of carboxylate ps50 with suwannee river humic acid,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:internally dyed fluorescent,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:nanopermethrin adsorbed on psnps,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:nayf4 yb3 er3 upconversion nanoparticles incorporated,2,1,1,0,0,1,0,0,0
+zeta_potential,PS,literal:non fluorescent,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:none no chemical surface modification,2,1,1,0,0,1,0,0,0
+zeta_potential,PS,literal:o3 aged,7,1,21,0,0,6,15,0,0
+zeta_potential,PS,literal:o3 aged cu 2,7,1,21,0,0,6,15,0,0
+zeta_potential,PS,literal:oligoglycidol surfmer,8,1,28,0,0,28,0,0,0
+zeta_potential,PS,literal:peg coating,2,1,1,0,0,1,0,0,0
+zeta_potential,PS,literal:peg5k,3,1,3,1,0,0,2,0,0
+zeta_potential,PS,literal:pegylated cyanine and palladium labelled from aminomethyl cross linked polystyrene,2,1,1,0,0,1,0,0,0
+zeta_potential,PS,literal:photoaged 2 d,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:photoaged 2 d nom adsorbed,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:photoaged 4 d,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:photoaged 4 d nom adsorbed,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:photoaged 8 d,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:photoaged 8 d nom adsorbed,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:pristine cu 2,7,1,21,0,0,6,15,0,0
+zeta_potential,PS,literal:pristine no groups,3,1,3,0,0,0,3,0,0
+zeta_potential,PS,literal:pristine red fluorescent,3,1,3,0,0,0,3,0,0
+zeta_potential,PS,literal:pristine washed,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:pristine washed nom adsorbed,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:rhodamine 6g labelled,3,1,3,0,0,3,0,0,0
+zeta_potential,PS,literal:sds adsorbed,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:sds coated amidine,7,1,21,0,0,21,0,0,0
+zeta_potential,PS,literal:sulfate end groups,3,1,3,0,0,3,0,0,0
+zeta_potential,PS,literal:sulfate hsa corona 0 80 mg m 2,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:sulfate so42,8,1,28,0,0,19,9,0,0
+zeta_potential,PS,literal:sulfonate,2,2,1,0,0,1,0,0,1
+zeta_potential,PS,literal:sulfonic acid,3,1,3,0,0,0,3,0,0
+zeta_potential,PS,literal:sulphate end groups,3,1,3,0,0,1,2,0,0
+zeta_potential,PS,literal:tx 100 adsorbed,2,1,1,0,0,0,1,0,0
+zeta_potential,PS,literal:uv aged,7,1,21,0,0,6,15,0,0
+zeta_potential,PS,literal:uv aged 30 days in river water,3,1,3,0,0,2,1,0,0
+zeta_potential,PS,literal:uv aged cu 2,7,1,21,0,0,6,15,0,0
+zeta_potential,PS,literal:uvb h2o2 oxidised,2,1,1,0,0,1,0,0,0
+zeta_potential,PS,literal:uvb h2o2 oxidized,6,1,15,0,0,7,8,0,0
+zeta_potential,PS,literal:virgin,4,2,6,0,0,2,4,0,0
+zeta_potential,PS,literal:zwitterionic,3,1,3,0,0,0,3,0,0
+zeta_potential,PTFE,,3,2,3,0,0,0,3,0,0
+zeta_potential,PVC,,22,10,231,0,0,169,62,0,146
+zeta_potential,PVC,literal:uv c aged,3,1,3,0,0,0,3,0,0
+zeta_potential,literal:high density polyethylene,,45,8,990,0,0,233,757,0,120
+zeta_potential,literal:high density polyethylene,literal:oxidized,4,1,6,0,0,2,4,0,0
+zeta_potential,literal:low density polyethylene,,9,4,36,0,0,5,31,0,0
+zeta_potential,literal:low molecular weight polyvinylchloride,,2,1,1,0,0,0,1,0,0
+zeta_potential,literal:mixture of polystyrene and polyethylene ps350 pe350,BARE,2,1,1,0,0,0,1,0,0
+zeta_potential,literal:mixture of polystyrene and polypropylene ps150 pp180,BARE,2,1,1,0,0,0,1,0,0
+zeta_potential,literal:mixture of polystyrene polyethylene polypropylene and polyethylene terephthalate ps50 pe50 pp50 pet80,BARE,2,1,1,0,0,0,1,0,0
+zeta_potential,literal:nylon,,4,1,6,0,0,2,4,0,0
+zeta_potential,literal:nylon 11,,10,2,45,0,0,15,30,0,0
+zeta_potential,literal:pef,,4,1,6,0,0,6,0,0,0
+zeta_potential,literal:pef,literal:alexa 647 label,2,1,1,0,0,1,0,0,0
+zeta_potential,literal:pla pbat predominantly pla,literal:uv photoaged 15 d,2,1,1,0,0,0,1,0,0
+zeta_potential,literal:poly amine co ester,,2,1,1,0,0,0,1,0,0
+zeta_potential,literal:poly caprolactone pcl,,2,1,1,0,0,1,0,0,0
+zeta_potential,literal:poly vinyl chloride,,7,5,21,0,0,1,20,0,0
+zeta_potential,literal:polyacrylonitrile core polystyrene shell,,2,1,1,0,0,1,0,0,0
+zeta_potential,literal:polyacrylonitrile core with polystyrene shell,,2,1,1,0,0,1,0,0,0
+zeta_potential,literal:polyacrylonitrile core with polystyrene shell pd labelled,,2,1,1,0,0,1,0,0,0
+zeta_potential,literal:polyethylene incinerated,,3,1,3,0,0,3,0,0,0
+zeta_potential,literal:polyisobutylene,,3,1,3,0,0,3,0,0,0
+zeta_potential,literal:polymethacrylate,COOH,3,1,3,0,0,0,3,0,0
+zeta_potential,literal:polymethacrylate,NH2,3,1,3,0,0,0,3,0,0
+zeta_potential,literal:polypropylene with talc filler,,3,1,3,0,0,3,0,0,0
+zeta_potential,literal:polystyrene and polyethylene mixture,,2,1,1,0,0,0,1,0,0
+zeta_potential,literal:polystyrene emulsion polymerised with acrylic acid and methyl methacrylate,,4,1,6,0,0,6,0,0,0
+zeta_potential,literal:polystyrene europium doped,COOH,3,1,3,0,0,3,0,0,0
+zeta_potential,literal:polystyrene lanthanide doped,,12,1,66,0,0,39,27,0,0
+zeta_potential,literal:polystyrene latex,,3,1,3,0,0,0,0,3,0
+zeta_potential,literal:polystyrene pd doped,,3,1,3,0,0,0,3,0,0
+zeta_potential,literal:soluplus zein composite nanoparticles,literal:chitosan coating 0 17 w v,7,1,21,0,0,0,21,0,0
+zeta_potential,literal:soluplus zein composite nanoparticles,literal:uncoated,2,1,1,0,0,0,1,0,0
+zeta_potential,literal:ultra high molecular weight polyethylene,,2,1,1,0,0,0,1,0,0

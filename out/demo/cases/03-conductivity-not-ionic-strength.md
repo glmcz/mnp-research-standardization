@@ -17,10 +17,10 @@ Two aqueous media here are named by their conductivity rather than by a stated i
 
 | row_id | particle | value | medium | ionic strength | pH | T | instrument |
 |---|---|---|---|---|---|---|---|
-| PMC12673110-r1 | ultra-high molecular weight polyethylene (PE) | -35.4 ± 0.12 mV | 230 µS/cm (tap water) | unreported | 8.6 | 25 °C | zeta potential analyzer (SurPASS3, Anton Paar) |
-| PMC12673110-r2 | ultra-high molecular weight polyethylene (PE) | -55.7 ± 0.37 mV | 4,000 µS/cm (NaCl solution) | unreported | 8.5 | 25 °C | zeta potential analyzer (SurPASS3, Anton Paar) |
-| PMC12673110-r3 | low molecular weight polyvinylchloride (PVC) | -9.42 ± 3.05 mV | 230 µS/cm (tap water) | unreported | 8.4 | 25 °C | zeta potential analyzer (SurPASS3, Anton Paar) |
-| PMC12673110-r4 | low molecular weight polyvinylchloride (PVC) | -5.45 ± 0.9 mV | 4,000 µS/cm (NaCl solution) | unreported | 7.1 | 25 °C | zeta potential analyzer (SurPASS3, Anton Paar) |
+| PMC12673110-r1 | ultra-high molecular weight polyethylene | -35.4 ± 0.12 mV | 230 µS/cm (tap water) | unreported | 8.6 | 25 °C | zeta potential analyzer (SurPASS3, Anton Paar) |
+| PMC12673110-r2 | ultra-high molecular weight polyethylene | -55.7 ± 0.37 mV | 4,000 µS/cm (NaCl solution) | unreported | 8.5 | 25 °C | zeta potential analyzer (SurPASS3, Anton Paar) |
+| PMC12673110-r3 | low molecular weight polyvinylchloride | -9.42 ± 3.05 mV | 230 µS/cm (tap water) | unreported | 8.4 | 25 °C | zeta potential analyzer (SurPASS3, Anton Paar) |
+| PMC12673110-r4 | low molecular weight polyvinylchloride | -5.45 ± 0.9 mV | 4,000 µS/cm (NaCl solution) | unreported | 7.1 | 25 °C | zeta potential analyzer (SurPASS3, Anton Paar) |
 
 **PMC12673110-r1** evidence:
 - PMC12673110:L12: “Solute transport experiment was conducted using a step input condition to investigate the transport of dissolved substances through a sand-filled Plexiglass column (height: 20 cm, diameter: 8 cm), with and without microplastics. The NaCl solution with concentration of 2 g/L and electrical conductivity (EC) of 4,000 µS/cm was introduced at the column inlet using a Mariotte bottle (to maintain a constant head), replacing the initial background (tap) water that had been flowing from another Mariotte bottle (with an identical head) into the soil column. Effluent samples were collected at regular intervals to monitor NaCl concentration over time using an EC probe (Senseca, G1409) and calculate the breakthrough curve (BTC). The zeta potential of microplastics and quartz sand samples under different salinity conditions were determined using a zeta potential analyzer (SurPASS3, Anton Paar).”
@@ -30,7 +30,6 @@ Two aqueous media here are named by their conductivity rather than by a stated i
 **PMC12673110-r2** evidence:
 - PMC12673110:L12: “Solute transport experiment was conducted using a step input condition to investigate the transport of dissolved substances through a sand-filled Plexiglass column (height: 20 cm, diameter: 8 cm), with and without microplastics. The NaCl solution with concentration of 2 g/L and electrical conductivity (EC) of 4,000 µS/cm was introduced at the column inlet using a Mariotte bottle (to maintain a constant head), replacing the initial background (tap) water that had been flowing from another Mariotte bottle (with an identical head) into the soil column. Effluent samples were collected at regular intervals to monitor NaCl concentration over time using an EC probe (Senseca, G1409) and calculate the breakthrough curve (BTC). The zeta potential of microplastics and quartz sand samples under different salinity conditions were determined using a zeta potential analyzer (SurPASS3, Anton Paar).”
 - PMC12673110:L29: “Table 2. Zeta potential of quartz sand samples and microplastics measured under two different EC conditions, i.e., 230 µS/cm (tap water) and 4,000 µS/cm (NaCl solution) at 25 ± 1 °C.”
-- PMC12673110:L37: “PE	230	8.6	-35.43 ± 0.12”
 - PMC12673110:L38: “	4000	8.5	-55.69 ± 0.37”
 
 **PMC12673110-r3** evidence:
@@ -41,7 +40,6 @@ Two aqueous media here are named by their conductivity rather than by a stated i
 **PMC12673110-r4** evidence:
 - PMC12673110:L12: “Solute transport experiment was conducted using a step input condition to investigate the transport of dissolved substances through a sand-filled Plexiglass column (height: 20 cm, diameter: 8 cm), with and without microplastics. The NaCl solution with concentration of 2 g/L and electrical conductivity (EC) of 4,000 µS/cm was introduced at the column inlet using a Mariotte bottle (to maintain a constant head), replacing the initial background (tap) water that had been flowing from another Mariotte bottle (with an identical head) into the soil column. Effluent samples were collected at regular intervals to monitor NaCl concentration over time using an EC probe (Senseca, G1409) and calculate the breakthrough curve (BTC). The zeta potential of microplastics and quartz sand samples under different salinity conditions were determined using a zeta potential analyzer (SurPASS3, Anton Paar).”
 - PMC12673110:L29: “Table 2. Zeta potential of quartz sand samples and microplastics measured under two different EC conditions, i.e., 230 µS/cm (tap water) and 4,000 µS/cm (NaCl solution) at 25 ± 1 °C.”
-- PMC12673110:L39: “PVC	230	8.4	-9.42 ± 3.05”
 - PMC12673110:L40: “	4000	7.1	-5.45 ± 0.90”
 
 
@@ -54,21 +52,21 @@ Two aqueous media here are named by their conductivity rather than by a stated i
 | PMC12673110-r1 | pH | reported | pH 8.6 stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L37 |
 | PMC12673110-r1 | temperature | reported | 25 °C stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L37 |
 | PMC12673110-r1 | instrument | reported | an instrument is named: "zeta potential analyzer (SurPASS3, Anton Paar)" | PMC12673110:L12, PMC12673110:L29, PMC12673110:L37 |
-| PMC12673110-r2 | medium | reported | a liquid is named: "4,000 µS/cm (NaCl solution)" | PMC12673110:L12, PMC12673110:L29, PMC12673110:L37, PMC12673110:L38 |
-| PMC12673110-r2 | ionic_strength | unreported | conductivity is printed instead of ionic strength ("4,000 µS/cm (NaCl solution)"); converting conductivity to ionic strength needs an assumed ionic composition, which is never assumed here | PMC12673110:L12, PMC12673110:L29, PMC12673110:L37, PMC12673110:L38 |
-| PMC12673110-r2 | pH | reported | pH 8.5 stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L37, PMC12673110:L38 |
-| PMC12673110-r2 | temperature | reported | 25 °C stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L37, PMC12673110:L38 |
-| PMC12673110-r2 | instrument | reported | an instrument is named: "zeta potential analyzer (SurPASS3, Anton Paar)" | PMC12673110:L12, PMC12673110:L29, PMC12673110:L37, PMC12673110:L38 |
+| PMC12673110-r2 | medium | reported | a liquid is named: "4,000 µS/cm (NaCl solution)" | PMC12673110:L12, PMC12673110:L29, PMC12673110:L38 |
+| PMC12673110-r2 | ionic_strength | unreported | conductivity is printed instead of ionic strength ("4,000 µS/cm (NaCl solution)"); converting conductivity to ionic strength needs an assumed ionic composition, which is never assumed here | PMC12673110:L12, PMC12673110:L29, PMC12673110:L38 |
+| PMC12673110-r2 | pH | reported | pH 8.5 stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L38 |
+| PMC12673110-r2 | temperature | reported | 25 °C stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L38 |
+| PMC12673110-r2 | instrument | reported | an instrument is named: "zeta potential analyzer (SurPASS3, Anton Paar)" | PMC12673110:L12, PMC12673110:L29, PMC12673110:L38 |
 | PMC12673110-r3 | medium | reported | a liquid is named: "230 µS/cm (tap water)" | PMC12673110:L12, PMC12673110:L29, PMC12673110:L39 |
 | PMC12673110-r3 | ionic_strength | unreported | conductivity is printed instead of ionic strength ("230 µS/cm (tap water)"); converting conductivity to ionic strength needs an assumed ionic composition, which is never assumed here | PMC12673110:L12, PMC12673110:L29, PMC12673110:L39 |
 | PMC12673110-r3 | pH | reported | pH 8.4 stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L39 |
 | PMC12673110-r3 | temperature | reported | 25 °C stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L39 |
 | PMC12673110-r3 | instrument | reported | an instrument is named: "zeta potential analyzer (SurPASS3, Anton Paar)" | PMC12673110:L12, PMC12673110:L29, PMC12673110:L39 |
-| PMC12673110-r4 | medium | reported | a liquid is named: "4,000 µS/cm (NaCl solution)" | PMC12673110:L12, PMC12673110:L29, PMC12673110:L39, PMC12673110:L40 |
-| PMC12673110-r4 | ionic_strength | unreported | conductivity is printed instead of ionic strength ("4,000 µS/cm (NaCl solution)"); converting conductivity to ionic strength needs an assumed ionic composition, which is never assumed here | PMC12673110:L12, PMC12673110:L29, PMC12673110:L39, PMC12673110:L40 |
-| PMC12673110-r4 | pH | reported | pH 7.1 stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L39, PMC12673110:L40 |
-| PMC12673110-r4 | temperature | reported | 25 °C stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L39, PMC12673110:L40 |
-| PMC12673110-r4 | instrument | reported | an instrument is named: "zeta potential analyzer (SurPASS3, Anton Paar)" | PMC12673110:L12, PMC12673110:L29, PMC12673110:L39, PMC12673110:L40 |
+| PMC12673110-r4 | medium | reported | a liquid is named: "4,000 µS/cm (NaCl solution)" | PMC12673110:L12, PMC12673110:L29, PMC12673110:L40 |
+| PMC12673110-r4 | ionic_strength | unreported | conductivity is printed instead of ionic strength ("4,000 µS/cm (NaCl solution)"); converting conductivity to ionic strength needs an assumed ionic composition, which is never assumed here | PMC12673110:L12, PMC12673110:L29, PMC12673110:L40 |
+| PMC12673110-r4 | pH | reported | pH 7.1 stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L40 |
+| PMC12673110-r4 | temperature | reported | 25 °C stated directly | PMC12673110:L12, PMC12673110:L29, PMC12673110:L40 |
+| PMC12673110-r4 | instrument | reported | an instrument is named: "zeta potential analyzer (SurPASS3, Anton Paar)" | PMC12673110:L12, PMC12673110:L29, PMC12673110:L40 |
 
 ## 4. Comparability
 
@@ -96,20 +94,20 @@ How many corpus rows (in any paper) this row is `comparable` or `conditionally_c
 
 ### Blocker fields: this paper versus the kind E query set
 
-The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair stratified sample**, not the full 1,785,105 possible pairs in the corpus. Share of pairs blocked on each field, side by side.
+The kind E query set (`queries/kind_e_comparability.csv`) is a **274-pair stratified sample**, not the full 1,809,753 possible pairs in the corpus. Share of pairs blocked on each field, side by side.
 
-| field | this paper (of 6 pairs) | kind E sample (of 320 pairs) |
+| field | this paper (of 6 pairs) | kind E sample (of 274 pairs) |
 |---|---|---|
-| conversion_model | 0.0% | 9.7% |
-| functionalisation | 100.0% | 76.2% |
-| instrument | 0.0% | 55.0% |
-| ionic_strength | 100.0% | 84.1% |
-| material | 66.7% | 23.1% |
-| medium | 66.7% | 90.9% |
-| pH | 50.0% | 76.2% |
-| quantity | 0.0% | 5.6% |
-| size_measured_nm | 100.0% | 36.2% |
-| temperature | 0.0% | 66.2% |
+| conversion_model | 0.0% | 3.3% |
+| functionalisation | 100.0% | 86.5% |
+| instrument | 0.0% | 54.7% |
+| ionic_strength | 100.0% | 94.5% |
+| material | 66.7% | 23.7% |
+| medium | 66.7% | 92.0% |
+| pH | 50.0% | 86.9% |
+| quantity | 0.0% | 5.1% |
+| size_measured_nm | 100.0% | 74.8% |
+| temperature | 0.0% | 78.8% |
 
 ## 5. Harmonised value
 
@@ -123,23 +121,23 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 ## 6. Resampling
 
 - rows in this paper: 4
-- weight per row (n / 1890): 0.00212
-- weight per paper (1 / 491): 0.00204
+- weight per row (n / 1903): 0.00210
+- weight per paper (1 / 467): 0.00214
 
 | metric | per-row (with paper) | per-row (without) | per-paper (with) | per-paper (without) |
 |---|---|---|---|---|
-| medium_reported | 83.2% | 83.1% | 72.1% | 72.1% |
-| ionic_strength_reported | 13.7% | 13.7% | 8.6% | 8.6% |
-| pH_reported | 21.3% | 21.1% | 16.8% | 16.6% |
-| temperature_reported | 25.6% | 25.5% | 20.3% | 20.1% |
-| instrument_reported | 88.8% | 88.8% | 81.0% | 81.0% |
-| conditions_complete | 3.2% | 3.2% | 2.1% | 2.1% |
+| medium_reported | 78.8% | 78.8% | 67.6% | 67.5% |
+| ionic_strength_reported | 12.6% | 12.6% | 7.2% | 7.2% |
+| pH_reported | 18.5% | 18.3% | 13.6% | 13.4% |
+| temperature_reported | 23.0% | 22.9% | 19.0% | 18.8% |
+| instrument_reported | 87.2% | 87.2% | 80.9% | 80.9% |
+| conditions_complete | 2.4% | 2.4% | 1.6% | 1.6% |
 
 ## 7. Reader
 
 ### X03-A
 
-In PMC12673110, what zeta potential was reported for ultra-high molecular weight polyethylene (PE) particles described as "PE" in 230 µS/cm (tap water), and at what ionic strength was that measurement made?
+In PMC12673110, what zeta potential was reported for ultra-high molecular weight polyethylene particles described as "PE microplastic" in 230 µS/cm (tap water), and at what ionic strength was that measurement made?
 
 **cell D**
 - answer: `{"value": -35.43, "unit": "mV", "ionic_strength_reported": false, "ionic_strength_mM": null, "citations": ["row:PMC12673110-r1"]}`
@@ -170,21 +168,17 @@ What ionic strength was used for the zeta-potential and electrophoretic-mobility
   - PMC12673110:L29	"Table 2. Zeta potential of quartz sand samples and microplastics measured under two different EC conditions, i.e., 230 µS/cm (tap water) and 4,000 µS/cm (NaCl solution) at 25 ± 1 °C."
   - PMC12673110:L38	"	4000	8.5	-55.69 ± 0.37"
   - PMC12673110:L12	"Solute transport experiment was conducted using a step input condition to investigate the transport of dissolved substances through a sand-filled Plexiglass column (height: 20 cm, diameter: 8 cm), with and without microplastics. The NaCl solution with concentration of 2 g/L and electrical conductivity (EC) of 4,000 µS/cm was introduced at the column inlet using a Mariotte bottle (to maintain a constant head), replacing the initial background (tap) water that had been flowing from another Mariotte bottle (with an identical head) into the soil column. Effluent samples were collected at regular intervals to monitor NaCl concentration over time using an EC probe (Senseca, G1409) and calculate the breakthrough curve (BTC). The zeta potential of microplastics and quartz sand samples under different salinity conditions were determined using a zeta potential analyzer (SurPASS3, Anton Paar)."
-  - PMC12673110:L37	"PE	230	8.6	-35.43 ± 0.12"
   - PMC12673110:L29	"Table 2. Zeta potential of quartz sand samples and microplastics measured under two different EC conditions, i.e., 230 µS/cm (tap water) and 4,000 µS/cm (NaCl solution) at 25 ± 1 °C."
   - PMC12673110:L39	"PVC	230	8.4	-9.42 ± 3.05"
   - PMC12673110:L12	"Solute transport experiment was conducted using a step input condition to investigate the transport of dissolved substances through a sand-filled Plexiglass column (height: 20 cm, diameter: 8 cm), with and without microplastics. The NaCl solution with concentration of 2 g/L and electrical conductivity (EC) of 4,000 µS/cm was introduced at the column inlet using a Mariotte bottle (to maintain a constant head), replacing the initial background (tap) water that had been flowing from another Mariotte bottle (with an identical head) into the soil column. Effluent samples were collected at regular intervals to monitor NaCl concentration over time using an EC probe (Senseca, G1409) and calculate the breakthrough curve (BTC). The zeta potential of microplastics and quartz sand samples under different salinity conditions were determined using a zeta potential analyzer (SurPASS3, Anton Paar)."
   - PMC12673110:L29	"Table 2. Zeta potential of quartz sand samples and microplastics measured under two different EC conditions, i.e., 230 µS/cm (tap water) and 4,000 µS/cm (NaCl solution) at 25 ± 1 °C."
   - PMC12673110:L40	"	4000	7.1	-5.45 ± 0.90"
-  - PMC12673110:L39	"PVC	230	8.4	-9.42 ± 3.05"
   - PMC12673110:L12	"Solute transport experiment was conducted using a step input condition to investigate the transport of dissolved substances through a sand-filled Plexiglass column (height: 20 cm, diameter: 8 cm), with and without microplastics. The NaCl solution with concentration of 2 g/L and electrical conductivity (EC) of 4,000 µS/cm was introduced at the column inlet using a Mariotte bottle (to maintain a constant head), replacing the initial background (tap) water that had been flowing from another Mariotte bottle (with an identical head) into the soil column. Effluent samples were collected at regular intervals to monitor NaCl concentration over time using an EC probe (Senseca, G1409) and calculate the breakthrough curve (BTC). The zeta potential of microplastics and quartz sand samples under different salinity conditions were determined using a zeta potential analyzer (SurPASS3, Anton Paar)."
 
 **cell B**
-- answer: `{"reported": true, "value": null, "citations": ["PMC12673110:L29", "PMC12673110:L63", "PMC12673110:L12", "PMC12673110:L15"]}`
-- score: correct=False, fabricated=True
+- answer: `{"reported": false, "value": null, "citations": ["PMC12673110:L29", "PMC12673110:L63"]}`
+- score: correct=True, fabricated=False
 - cited lines:
-  - PMC12673110:L12	"Solute transport experiment was conducted using a step input condition to investigate the transport of dissolved substances through a sand-filled Plexiglass column (height: 20 cm, diameter: 8 cm), with and without microplastics. The NaCl solution with concentration of 2 g/L and electrical conductivity (EC) of 4,000 µS/cm was introduced at the column inlet using a Mariotte bottle (to maintain a constant head), replacing the initial background (tap) water that had been flowing from another Mariotte bottle (with an identical head) into the soil column. Effluent samples were collected at regular intervals to monitor NaCl concentration over time using an EC probe (Senseca, G1409) and calculate the breakthrough curve (BTC). The zeta potential of microplastics and quartz sand samples under different salinity conditions were determined using a zeta potential analyzer (SurPASS3, Anton Paar)."
-  - PMC12673110:L15	"here c0 denotes the influent solute concentration (with an EC of 4,000 µS/cm), while ci represents the initial concentration within the soil column (measured at an EC of 230 µS/cm). Transport parameters (R and D) were estimated by fitting the ADE to the measured breakthrough curves. Parameter optimization was performed in Excel using the Solver add-in (GRG Nonlinear) by minimizing the sum of squared residuals between measured and calculated concentrations."
   - PMC12673110:L29	"Table 2. Zeta potential of quartz sand samples and microplastics measured under two different EC conditions, i.e., 230 µS/cm (tap water) and 4,000 µS/cm (NaCl solution) at 25 ± 1 °C."
   - PMC12673110:L63	"Electrostatic interactions between soil grains and microplastic particles likely contribute to the observed changes in saturated hydraulic conductivity. As shown in Table 2, both sand grains and MPs exhibit negative zeta potentials (at EC of 230 µS/cm), causing repulsive forces that influence particle mobility within the pore network. While PE with higher negative zeta potential (-35.43 mV) remains more dispersed and can block smaller pores more effectively (consistent with the larger hydraulic conductivity reductions observed), PVC having weaker zeta potential (-9.42 mV) tends to attach to sand grains thus promoting local pore obstruction. These electrostatic effects, together with particle size help to explain the consistent decline in hydraulic conductivity with increasing MP concentration."
 
@@ -202,12 +196,10 @@ May the zeta_potential reported in PMC12673110 (row PMC12673110-r1) be compared 
   - PMC12673110:L29	"Table 2. Zeta potential of quartz sand samples and microplastics measured under two different EC conditions, i.e., 230 µS/cm (tap water) and 4,000 µS/cm (NaCl solution) at 25 ± 1 °C."
   - PMC12673110:L38	"	4000	8.5	-55.69 ± 0.37"
   - PMC12673110:L12	"Solute transport experiment was conducted using a step input condition to investigate the transport of dissolved substances through a sand-filled Plexiglass column (height: 20 cm, diameter: 8 cm), with and without microplastics. The NaCl solution with concentration of 2 g/L and electrical conductivity (EC) of 4,000 µS/cm was introduced at the column inlet using a Mariotte bottle (to maintain a constant head), replacing the initial background (tap) water that had been flowing from another Mariotte bottle (with an identical head) into the soil column. Effluent samples were collected at regular intervals to monitor NaCl concentration over time using an EC probe (Senseca, G1409) and calculate the breakthrough curve (BTC). The zeta potential of microplastics and quartz sand samples under different salinity conditions were determined using a zeta potential analyzer (SurPASS3, Anton Paar)."
-  - PMC12673110:L37	"PE	230	8.6	-35.43 ± 0.12"
 
 **cell B**
-- answer: `{"verdict": "not_comparable", "blockers": ["ionic_strength", "material"], "citations": ["PMC12673110:L29", "PMC12673110:L30", "PMC12673110:L63"]}`
+- answer: `{"verdict": "not_comparable", "blockers": ["ionic_strength", "pH"], "citations": ["PMC12673110:L29", "PMC12673110:L30"]}`
 - score: correct=True, blocker_precision=0.50, blocker_recall=0.25, blockers_exact=0.00
 - cited lines:
   - PMC12673110:L29	"Table 2. Zeta potential of quartz sand samples and microplastics measured under two different EC conditions, i.e., 230 µS/cm (tap water) and 4,000 µS/cm (NaCl solution) at 25 ± 1 °C."
   - PMC12673110:L30	"	EC (µS/cm)	pH	Zeta potential (mV)"
-  - PMC12673110:L63	"Electrostatic interactions between soil grains and microplastic particles likely contribute to the observed changes in saturated hydraulic conductivity. As shown in Table 2, both sand grains and MPs exhibit negative zeta potentials (at EC of 230 µS/cm), causing repulsive forces that influence particle mobility within the pore network. While PE with higher negative zeta potential (-35.43 mV) remains more dispersed and can block smaller pores more effectively (consistent with the larger hydraulic conductivity reductions observed), PVC having weaker zeta potential (-9.42 mV) tends to attach to sand grains thus promoting local pore obstruction. These electrostatic effects, together with particle size help to explain the consistent decline in hydraulic conductivity with increasing MP concentration."

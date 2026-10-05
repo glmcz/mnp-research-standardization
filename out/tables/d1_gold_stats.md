@@ -4,7 +4,7 @@ Papers with at least one verified zeta/mobility row: **24** (rows: 127 verified 
 
 Of these, **7** report a zeta measurement without printing a single number in the main text (range, figure or SI only).
 
-Denominators: (1) papers with a verified measurement, with 95% Wilson intervals; (2) the 50 papers of the stratified random sample, annotated by hand — conservative, papers where nothing was extracted count as not missing; (3) all hits incl. paywalled — a lower bound.
+Denominators: (1) papers with a verified measurement, with 95% Wilson intervals; (2) the 50 papers of the stratified random sample, annotated by Claude and not yet audited by a person — conservative, papers where nothing was extracted count as not missing; (3) all hits incl. paywalled — a lower bound.
 
 | Missing | k / n | fraction | 95% CI | of OA records | of all hits (≥) |
 |---|---|---|---|---|---|

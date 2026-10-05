@@ -2,14 +2,14 @@
 
 **Scope: read this first.**
 
-- **What it is.** The surface charge of micro- and nanoplastic particles as measured in liquids in laboratory studies: 1 890 rows from 491 papers, 1 834 zeta potentials and 56 electrophoretic mobilities (`d1_zeta_table.csv`).
+- **What it is.** The surface charge of micro- and nanoplastic particles as measured in liquids in laboratory studies: 1 903 rows from 467 papers, 1 840 zeta potentials and 63 electrophoretic mobilities (`d1_zeta_table.csv`).
 - **Measured in a liquid.** A zeta potential exists only in a liquid, so every value describes the particle in the liquid it was measured in, not in the environment it came from.
-- **Where the particles came from.** 94.4 % of rows (1 784 / 1 890) measure a synthetic particle, bought or made in a lab. Only 19 rows, from 4 papers, measure particles collected from a real environment: 18 from wastewater effluent (3 papers) and 1 classed "other" (1 paper). From air or dust, freshwater, seawater, soil or sediment: 0 rows. Hand-checked (`sample_origin_stats.json`, REVIEW.md C11).
-- **The measurement liquids.** Rows per `medium_class`: DI water 567, culture medium 315, salt solution 281, buffer 150, environmental water 48, biofluid 28, other 183, unreported 318.
-- **The corpus.** The open-access subset of one database (Europe PMC) for one query: 1 115 hits, 862 of them open access, 858 full texts fetched, 491 papers with a measurement (`d1_stats.json`). What that leaves out: `docs/2026-09-30-corpus-scope-notes.md`.
+- **Where the particles came from.** 95.4 % of rows (1 815 / 1 903) measure a synthetic particle, bought or made in a lab. Only 12 rows, from 3 papers, measure particles collected from a real environment: 11 from wastewater effluent (2 papers) and 1 classed "other" (1 paper). From air or dust, freshwater, seawater, soil or sediment: 0 rows. Agent-checked: a Claude agent gave every environmental particle and samples of the rest a second reading with the paper's full text; no person has checked these counts (`sample_origin_stats.json`, REVIEW.md C11).
+- **The measurement liquids.** Rows per `medium_class`: DI water 474, culture medium 317, salt solution 232, buffer 167, environmental water 28, biofluid 20, other 262, unreported 403.
+- **The corpus.** The open-access subset of one database (Europe PMC) for one query: 1 115 hits, 862 of them open access, 858 full texts fetched, 467 papers with a measurement (`d1_stats.json`). What that leaves out: `docs/2026-09-30-corpus-scope-notes.md`.
 - **What it can be used for.** How laboratory measurements are reported and whether they can be compared. Not how plastics behave in air, water or soil.
 
-1890 surface-charge measurements extracted from 491 open-access papers, each with the conditions it was measured under — and, where those conditions were not reported, an explicit record that they were not.
+1903 surface-charge measurements extracted from 467 open-access papers, each with the conditions it was measured under — and, where those conditions were not reported, an explicit record that they were not.
 
 **Every number in this card was computed when the card was built**, from `out/tables/d1_zeta_table.csv` and `out/tables/d1_stats.json`, and the particles' origin from `out/tables/sample_origin_stats.json`. None is typed in. Rebuild the card and any number that has moved will move with it.
 
@@ -19,8 +19,8 @@ Two things a reader should take from this card before using the data: only a sma
 
 | file | what it is | sha256 |
 |---|---|---|
-| `dataset.parquet` | 1890 rows × 44 columns | `49a7dc46f7be6b59061b3bf92fe55cbe95f915e14a9e0c1283ab8cb6ee432666` |
-| `dataset.jsonl` | the same rows, one JSON object per line | `eb304784d874dd91c4c44a1f5fee54182e8cb8f5bc92cd9c5d135be5d95885ba` |
+| `dataset.parquet` | 1903 rows × 44 columns | `268b2853f00f40b7b73dba086e20398ea5ba8a4f49f5756ed0769f018d0802ff` |
+| `dataset.jsonl` | the same rows, one JSON object per line | `027acd243d241457e61c8da13788595870d8104bb6a2941eb7826e88bc294647` |
 | `schema.json` | JSON Schema 2020-12 for the record type, generated from the pydantic models in `mnp.schema.models`; the release's own evidence columns are `$defs/ReleasedEvidence` | `8976dc57ec31847920e727058140f0cb737356452ce4b5c8e28d449dd50edc4d` |
 | `LICENSE` | CC BY 4.0, and the attribution line | `e11af74d9ed4f47fc35f3f679bdf4c9e3cd01e2eb69de613847c44fc0adc3667` |
 | `DATASET_CARD.md` | this file | — |
@@ -31,20 +31,20 @@ The parquet and the JSONL carry identical content; the two formats exist so the 
 
 | | |
 |---|---|
-| rows (one surface measurement each) | 1890 |
-| papers | 491 |
-| distinct `material` values | 151 |
+| rows (one surface measurement each) | 1903 |
+| papers | 467 |
+| distinct `material` values | 95 |
 | columns | 44 |
-| rows carrying a printed number | 1384 |
-| rows reporting a measurement with no retrievable number | 506 |
-| **fully conditioned rows** (`conditions_complete`) | **61 / 1890 — 3.2 %** |
-| evidence quotes found verbatim in the source | 1890 / 1890 — 100.0 % |
+| rows carrying a printed number | 1289 |
+| rows reporting a measurement with no retrievable number | 614 |
+| **fully conditioned rows** (`conditions_complete`) | **46 / 1903 — 2.4 %** |
+| evidence quotes found verbatim in the source | 1903 / 1903 — 100.0 % |
 
 Source corpus: 858 XML files, vendored as one archive of 27747267 bytes (27.7 MB), sha256 `9791cc01550bbd840060e0265dc985644971b2d77a479a223a0fddccb989305b`.
 
-## 3.2 % of rows are fully conditioned
+## 2.4 % of rows are fully conditioned
 
-Fully conditioned rows: **61 / 1890 — 3.2 %**. Those are the rows carrying all five of the conditions needed to interpret the number — dispersion medium, ionic strength, pH, temperature and instrument. Every other row is missing at least one of them.
+Fully conditioned rows: **46 / 1903 — 2.4 %**. Those are the rows carrying all five of the conditions needed to interpret the number — dispersion medium, ionic strength, pH, temperature and instrument. Every other row is missing at least one of them.
 
 This is the dataset's finding, not a defect in it. A zeta potential without its ionic strength is not a property of the particle; it is a property of one unrecorded experiment. The dataset exists to make that countable.
 
@@ -52,11 +52,11 @@ Row-level reporting of each condition:
 
 | condition | rows reporting it | |
 |---|---|---|
-| Dispersion medium | 1572 / 1890 | 83.2 % |
-| Ionic strength | 259 / 1890 | 13.7 % |
-| pH | 402 / 1890 | 21.3 % |
-| Temperature | 484 / 1890 | 25.6 % |
-| Instrument | 1679 / 1890 | 88.8 % |
+| Dispersion medium | 1500 / 1903 | 78.8 % |
+| Ionic strength | 240 / 1903 | 12.6 % |
+| pH | 352 / 1903 | 18.5 % |
+| Temperature | 438 / 1903 | 23.0 % |
+| Instrument | 1659 / 1903 | 87.2 % |
 
 ## Absence is a value, not a gap
 
@@ -64,13 +64,13 @@ The five `*_reported` booleans are the reason this dataset exists. `ionic_streng
 
 Nothing is imputed. A condition that was not reported is never filled with a conventional default: **`not measured` is never written as 0.0 and never as 1.0**, because both are claims nobody checked. Where a paper reports a measurement but prints no number, `value` is null and `value_text` says so; where the ionic strength was inferred from a named salt rather than stated, `ionic_strength_source` records that it was inferred.
 
-Some readings are cleared rather than kept, by rules ratified on 2026-09-28 and 29. R1: an ionic strength of exactly 0 mM is not a reported one: "no added electrolyte" says nothing was added, not that the medium holds no ions, so the row reads `ionic_strength_reported = False` and carries `ionic_strength_zero_not_reported` (10 rows). R2: a temperature tied to an incubation or exposure step is not the measurement temperature, even when the paper gives no other, so it is removed and the row carries `temperature_step_not_measurement` (4 rows). R2b: nor is a temperature the row's own quote does not state when its source prints it only for storage, incubation, exposure or culture — a medium label such as "RPMI (stored at 37 ˚C for 24 h)", or, when the row prints it nowhere, a paper that gives it only for such a step; the row carries `temperature_from_other_step` (41 rows). The rows stay; the extraction record keeps the number the model read.
+Some readings are cleared rather than kept, by rules ratified on 2026-09-28 and 29. R1: an ionic strength of exactly 0 mM is not a reported one: "no added electrolyte" says nothing was added, not that the medium holds no ions, so the row reads `ionic_strength_reported = False` and carries `ionic_strength_zero_not_reported` (8 rows). R2: a temperature tied to an incubation or exposure step is not the measurement temperature, even when the paper gives no other, so it is removed and the row carries `temperature_step_not_measurement` (4 rows). R2b: nor is a temperature the row's own quote does not state when its source prints it only for storage, incubation, exposure or culture — a medium label such as "RPMI (stored at 37 ˚C for 24 h)", or, when the row prints it nowhere, a paper that gives it only for such a step; the row carries `temperature_from_other_step` (0 rows). The rows stay; the extraction record keeps the number the model read.
 
 This makes one query answerable that a text index cannot answer: *what ionic strength did this paper use?* when the true answer is that it never said. There is no passage to retrieve for that, so a retrieval system fabricates the nearest number. Here it is a boolean.
 
 ## Every quote is verbatim
 
-`evidence_verified` is true for every row here: **1890 / 1890 — 100.0 %**. Each row names the sentence or sentences the value was read from, and each was checked as a substring of the source article's text. A row whose quote could not be located was dropped and counted, never silently kept. Where the source's licence does not allow the quote to ship, the row carries its address and hash instead of its text — see *Licence* below.
+`evidence_verified` is true for every row here: **1903 / 1903 — 100.0 %**. Each row names the sentence or sentences the value was read from, and each was checked as a substring of the source article's text. A row whose quote could not be located was dropped and counted, never silently kept. Where the source's licence does not allow the quote to ship, the row carries its address and hash instead of its text — see *Licence* below.
 
 `evidence_quote` may join several passages with ` || `, because the value and its conditions are routinely sections apart — the number in Results or a table, the ionic strength in Methods. `evidence_location` names each.
 
@@ -78,7 +78,7 @@ This makes one query answerable that a text index cannot answer: *what ionic str
 
 ## Where each quote sits in the paper
 
-`evidence_line_ids` carries **1890 / 1890 — 100.0 %** of rows, 3899 citations in all. A citation is a 16-character prefix of the SHA-256 of a line's section path, its ordinal within that section, and its normalised text — deliberately not the line number, so that a later fix to the parser which shifts numbering does not invalidate a stored address.
+`evidence_line_ids` carries **1903 / 1903 — 100.0 %** of rows, 4221 citations in all. A citation is a 16-character prefix of the SHA-256 of a line's section path, its ordinal within that section, and its normalised text — deliberately not the line number, so that a later fix to the parser which shifts numbering does not invalidate a stored address.
 
 The ids are semicolon-joined, flat, in the order the passages appear in `evidence_quote`. The grouping back onto ` || ` passages is not stored because it is recoverable: the quote is here, and re-running the locator reproduces it — or, for a withheld quote, `evidence_quote_spans` carries it. An empty value means the row carries a flag saying why, and no row is silently left without one.
 
@@ -88,8 +88,8 @@ Counted over papers rather than rows, and taken from `out/tables/d1_stats.json`,
 
 | | |
 |---|---|
-| papers with at least one verified measurement | 491 |
-| **papers omitting at least one of the five conditions** | **478 / 491 — 97.4 %** |
+| papers with at least one verified measurement | 467 |
+| **papers omitting at least one of the five conditions** | **456 / 467 — 97.6 %** |
 | open-access records the query returned | 862 |
 | all hits, including paywalled | 1115 |
 
@@ -97,18 +97,18 @@ Per condition, over papers, with 95 % Wilson intervals:
 
 | missing condition | papers | | 95 % CI |
 |---|---|---|---|
-| Dispersion medium | 127 / 491 | 25.9 % | 22–30 % |
-| Ionic strength | 440 / 491 | 89.6 % | 87–92 % |
-| pH | 392 / 491 | 79.8 % | 76–83 % |
-| Temperature | 386 / 491 | 78.6 % | 75–82 % |
-| Instrument | 90 / 491 | 18.3 % | 15–22 % |
-| Any condition | 478 / 491 | 97.4 % | 96–98 % |
+| Dispersion medium | 138 / 467 | 29.6 % | 26–34 % |
+| Ionic strength | 429 / 467 | 91.9 % | 89–94 % |
+| pH | 390 / 467 | 83.5 % | 80–87 % |
+| Temperature | 373 / 467 | 79.9 % | 76–83 % |
+| Instrument | 82 / 467 | 17.6 % | 14–21 % |
+| Any condition | 456 / 467 | 97.6 % | 96–99 % |
 
 Of 858 fetched XMLs, 11 carry no retrievable text at all — conference-abstract volumes and PDF-only deposits. They were not read and found to report nothing, and are counted apart from papers that were.
 
 ## The κ audit has not been done
 
-Extraction accuracy for this dataset is scored against a gold set of hand-checked rows in `data/interim/annotation/gold_50.csv`. **That gold set was annotated by Claude and has not been audited by a human.**
+Extraction accuracy for this dataset is scored against a gold set of rows read from the papers, `data/interim/annotation/gold_50.csv`. **That gold set was annotated by Claude and has not been audited by a human.**
 
 Its 153 rows over 50 papers carry these annotators: `claude-opus-gold` 153. Rows re-judged independently by a human: **0**.
 
@@ -120,11 +120,11 @@ Consequence for anyone using this dataset: **every extraction quality score asso
 
 Every row carries `pmcid`, `doi`, `model` and `prompt_sha256` — the hash of the extraction prompt that produced it.
 
-**Only 2 distinct `prompt_sha256` values occur across all 1890 rows, so prompt provenance is currently coarse.** A row can be traced to one of a very small number of prompts, not to the exact brief revision it was read under. Do not treat `prompt_sha256` as a fine-grained experimental key.
+**Only 2 distinct `prompt_sha256` values occur across all 1903 rows, so prompt provenance is currently coarse.** A row can be traced to one of a very small number of prompts, not to the exact brief revision it was read under. Do not treat `prompt_sha256` as a fine-grained experimental key.
 
 The hashes present:
 
-- `3a50d97a5880d5acae5db0911acbca7376446e8050c08843e38c6c6f924efd1d`
+- `7b89a830e2b2f0ef3b98adf614521cb254771a04bac2b587580ced642cf8f393`
 - `b3790c68b0ed28cb2b3f8ef42d2738438aba1ff45efff89985f1bf003a78edf1`
 
 Models that produced these rows: `claude-code:opus`, `claude-code:sonnet`.
@@ -139,15 +139,15 @@ Per source licence, as each paper's own JATS states it (`source_licence`, read f
 
 | source licence | papers | rows | quotes shipped | quotes withheld |
 |---|---|---|---|---|
-| `CC-BY` | 353 | 1346 | 1346 | 0 |
+| `CC-BY` | 335 | 1369 | 1369 | 0 |
 | `CC0` | 2 | 91 | 91 | 0 |
-| `CC-BY-NC` | 29 | 113 | 0 | 113 |
-| `CC-BY-NC-ND` | 87 | 296 | 0 | 296 |
+| `CC-BY-NC` | 27 | 112 | 0 | 112 |
+| `CC-BY-NC-ND` | 84 | 285 | 0 | 285 |
 | `other-named` | 10 | 20 | 0 | 20 |
-| `none` | 10 | 24 | 0 | 24 |
-| **total** | 491 | 1890 | 1437 | 453 |
+| `none` | 9 | 26 | 0 | 26 |
+| **total** | 467 | 1903 | 1460 | 443 |
 
-Quotes withheld: **453 / 1890 — 24.0 %** of rows, from 136 papers. `other-named` is a statement that names no Creative Commons licence, or whose URL and wording disagree — a publisher's own terms, *public domain unless otherwise noted*, a time-limited access grant. `none` is an article with no licence statement at all. Both are withheld: an unclear grant is not a grant.
+Quotes withheld: **443 / 1903 — 23.3 %** of rows, from 130 papers. `other-named` is a statement that names no Creative Commons licence, or whose URL and wording disagree — a publisher's own terms, *public domain unless otherwise noted*, a time-limited access grant. `none` is an article with no licence statement at all. Both are withheld: an unclear grant is not a grant.
 
 **Restoring withheld quotes locally.** A withheld row keeps `evidence_quote_sha256`, the hash of the original quote, and `evidence_quote_spans`, its address in the source: a JSON array of `[line_id, start, end]` slices of the article's line-addressed text, joined by glue that holds only separators, whitespace and dashes — never a letter or a digit. With the source articles on your machine:
 
@@ -164,7 +164,7 @@ This is a licensing decision, not legal advice.
 
 ## Limits a citer needs to state
 
-1. **One database.** Every paper here came from Europe PMC: 491 papers with a verified measurement, drawn from 862 open-access records the query returned. OpenAlex indexes roughly three times as much of this literature. Adding it would change every denominator on this card, and would therefore be a different study rather than a larger version of this one. **Do not read these fractions as fractions of the literature.** They are fractions of one database's open-access subset.
+1. **One database.** Every paper here came from Europe PMC: 467 papers with a verified measurement, drawn from 862 open-access records the query returned. OpenAlex indexes roughly three times as much of this literature. Adding it would change every denominator on this card, and would therefore be a different study rather than a larger version of this one. **Do not read these fractions as fractions of the literature.** They are fractions of one database's open-access subset.
 
 2. **Open access only.** Full text was fetched only where Europe PMC serves it. The lower bound against all 1115 hits, paywalled included, is reported in `d1_stats.json` for that reason.
 
@@ -176,9 +176,7 @@ This is a licensing decision, not legal advice.
 
 6. **Absence is absence of reporting.** `pH_reported = False` means the paper did not state a pH. It does not mean the experiment had no pH.
 
-7. **The measured particles are synthetic.** 1784 / 1890 — 94.4 % of rows measure a particle bought ready-made or made in a lab. 19 rows, from 4 papers, measure a particle collected from a real environment (wastewater 18, other 1); from air or dust: 0. The values describe manufactured particles in laboratory liquids, not how micro- and nanoplastics behave in the environment. A reader classified every row and a person checked every environmental one and a sample of the rest (`out/tables/sample_origin_stats.json`, `out/review/REVIEW.md` C11).
-
-8. **The extraction did not read every paper's Methods.** In 208 of 491 papers the parser took a supplementary-materials section for the Methods, so the Methods reached the text the extraction read only where a zeta keyword window or a characterisation subsection covered them. Papers with at least one row reporting the condition, those papers against the rest: medium 71.2 % against 76.3 %; ionic strength 8.7 % against 11.7 %; temperature 19.2 % against 23.0 %. They report conditions less often, so the condition-reporting shares on this card may be biased downward. The parser is not fixed and those papers have not been re-extracted.
+7. **The measured particles are synthetic.** 1815 / 1903 — 95.4 % of rows measure a particle bought ready-made or made in a lab. 12 rows, from 3 papers, measure a particle collected from a real environment (wastewater 11, other 1); from air or dust: 0. The values describe manufactured particles in laboratory liquids, not how micro- and nanoplastics behave in the environment. A reader classified every row, and a Claude agent gave every environmental one and a sample of the rest a second reading with the paper's full text; no person has checked them (`out/tables/sample_origin_stats.json`, `out/review/REVIEW.md` C11).
 
 ## Columns
 

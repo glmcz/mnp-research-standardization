@@ -79,20 +79,20 @@ How many corpus rows (in any paper) this row is `comparable` or `conditionally_c
 
 ### Blocker fields: this paper versus the kind E query set
 
-The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair stratified sample**, not the full 1,785,105 possible pairs in the corpus. Share of pairs blocked on each field, side by side.
+The kind E query set (`queries/kind_e_comparability.csv`) is a **274-pair stratified sample**, not the full 1,809,753 possible pairs in the corpus. Share of pairs blocked on each field, side by side.
 
-| field | this paper (of 3 pairs) | kind E sample (of 320 pairs) |
+| field | this paper (of 3 pairs) | kind E sample (of 274 pairs) |
 |---|---|---|
-| conversion_model | 0.0% | 9.7% |
-| functionalisation | 0.0% | 76.2% |
-| instrument | 0.0% | 55.0% |
-| ionic_strength | 100.0% | 84.1% |
-| material | 0.0% | 23.1% |
-| medium | 100.0% | 90.9% |
-| pH | 0.0% | 76.2% |
-| quantity | 0.0% | 5.6% |
-| size_measured_nm | 0.0% | 36.2% |
-| temperature | 0.0% | 66.2% |
+| conversion_model | 0.0% | 3.3% |
+| functionalisation | 0.0% | 86.5% |
+| instrument | 0.0% | 54.7% |
+| ionic_strength | 100.0% | 94.5% |
+| material | 0.0% | 23.7% |
+| medium | 100.0% | 92.0% |
+| pH | 0.0% | 86.9% |
+| quantity | 0.0% | 5.1% |
+| size_measured_nm | 0.0% | 74.8% |
+| temperature | 0.0% | 78.8% |
 
 ## 5. Harmonised value
 
@@ -105,17 +105,17 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 ## 6. Resampling
 
 - rows in this paper: 3
-- weight per row (n / 1890): 0.00159
-- weight per paper (1 / 491): 0.00204
+- weight per row (n / 1903): 0.00158
+- weight per paper (1 / 467): 0.00214
 
 | metric | per-row (with paper) | per-row (without) | per-paper (with) | per-paper (without) |
 |---|---|---|---|---|
-| medium_reported | 83.2% | 83.1% | 72.1% | 72.1% |
-| ionic_strength_reported | 13.7% | 13.7% | 8.6% | 8.6% |
-| pH_reported | 21.3% | 21.1% | 16.8% | 16.6% |
-| temperature_reported | 25.6% | 25.5% | 20.3% | 20.1% |
-| instrument_reported | 88.8% | 88.8% | 81.0% | 81.0% |
-| conditions_complete | 3.2% | 3.2% | 2.1% | 2.1% |
+| medium_reported | 78.8% | 78.8% | 67.6% | 67.5% |
+| ionic_strength_reported | 12.6% | 12.6% | 7.2% | 7.2% |
+| pH_reported | 18.5% | 18.4% | 13.6% | 13.4% |
+| temperature_reported | 23.0% | 22.9% | 19.0% | 18.8% |
+| instrument_reported | 87.2% | 87.2% | 80.9% | 80.9% |
+| conditions_complete | 2.4% | 2.4% | 1.6% | 1.6% |
 
 ## 7. Reader
 
@@ -132,11 +132,10 @@ In PMC10141840, what zeta potential was reported for polystyrene, plain particle
   - PMC10141840:L5	"Microparticles of 1.14 µm size were measured for their ζ-potential (mV), size distribution and polydispersity index (PDI) by means of a Zetasizer Pro (Malvern Pananalytical) and data were analyzed using ZS Xplorer software. The cuvettes were ZETASIZER Nano Series Disposable folded capillary cells (DTS1070) at 25 °C. The particles were delivered in an aqueous solution and were measured at a concentration of 0.5 mg/mL diluted in deionized water (0.55 µS), PBS and fully supplemented RPMI-1640 Media including 10% FBS and 1% L-glutamine. Deionized water, PBS and fully supplemented RPMI-1640 Media was filtered with a MILLEX-GV 0.22 µm filter to avoid particulate matter from the matrix. The 10 and 0.293 µm particles had to be excluded because the Zetasizer has a measurement range of 10–0.3 µm. For assessment of stability, MNPs of 1.14 and 0.293 nm size were incubated in simulated gastric fluid. Simulated gastric fluids were prepared as described within the U.S. Pharmacopoeia (0.16 M aq. HCl, 2 g/L NaCl and 3.2 g/L pepsin). Samples were incubated at 37 °C for 24 h and the supernatants were measured for fluorescence at Ex/Em 530 nm/607 nm and Ex/Em 502 nm/528 nm, respectively, in a Tecan Infinite M200 Plate Reader."
 
 **cell B**
-- answer: `{"value": -67.81, "unit": "mV", "ionic_strength_reported": false, "ionic_strength_mM": null, "citations": ["PMC10141840:L19", "PMC10141840:L5"]}`
-- score: correct=True, fabricated=False, citation_precision=1.00, citation_recall=0.67, value_correct=1.00, condition_correct=1.00
+- answer: `{"value": -67.81, "unit": "mV", "ionic_strength_reported": false, "ionic_strength_mM": null, "citations": ["PMC10141840:L19"]}`
+- score: correct=True, fabricated=False, citation_precision=1.00, citation_recall=0.33, value_correct=1.00, condition_correct=1.00
 - cited lines:
   - PMC10141840:L19	"1.14 ± 0.03 µm	H2O (0.55 µS)	-67.81	1206	0.01031"
-  - PMC10141840:L5	"Microparticles of 1.14 µm size were measured for their ζ-potential (mV), size distribution and polydispersity index (PDI) by means of a Zetasizer Pro (Malvern Pananalytical) and data were analyzed using ZS Xplorer software. The cuvettes were ZETASIZER Nano Series Disposable folded capillary cells (DTS1070) at 25 °C. The particles were delivered in an aqueous solution and were measured at a concentration of 0.5 mg/mL diluted in deionized water (0.55 µS), PBS and fully supplemented RPMI-1640 Media including 10% FBS and 1% L-glutamine. Deionized water, PBS and fully supplemented RPMI-1640 Media was filtered with a MILLEX-GV 0.22 µm filter to avoid particulate matter from the matrix. The 10 and 0.293 µm particles had to be excluded because the Zetasizer has a measurement range of 10–0.3 µm. For assessment of stability, MNPs of 1.14 and 0.293 nm size were incubated in simulated gastric fluid. Simulated gastric fluids were prepared as described within the U.S. Pharmacopoeia (0.16 M aq. HCl, 2 g/L NaCl and 3.2 g/L pepsin). Samples were incubated at 37 °C for 24 h and the supernatants were measured for fluorescence at Ex/Em 530 nm/607 nm and Ex/Em 502 nm/528 nm, respectively, in a Tecan Infinite M200 Plate Reader."
 
 ### X02-B
 
@@ -178,11 +177,9 @@ May the zeta_potential reported in PMC10141840 (row PMC10141840-r1) be compared 
   - PMC10141840:L5	"Microparticles of 1.14 µm size were measured for their ζ-potential (mV), size distribution and polydispersity index (PDI) by means of a Zetasizer Pro (Malvern Pananalytical) and data were analyzed using ZS Xplorer software. The cuvettes were ZETASIZER Nano Series Disposable folded capillary cells (DTS1070) at 25 °C. The particles were delivered in an aqueous solution and were measured at a concentration of 0.5 mg/mL diluted in deionized water (0.55 µS), PBS and fully supplemented RPMI-1640 Media including 10% FBS and 1% L-glutamine. Deionized water, PBS and fully supplemented RPMI-1640 Media was filtered with a MILLEX-GV 0.22 µm filter to avoid particulate matter from the matrix. The 10 and 0.293 µm particles had to be excluded because the Zetasizer has a measurement range of 10–0.3 µm. For assessment of stability, MNPs of 1.14 and 0.293 nm size were incubated in simulated gastric fluid. Simulated gastric fluids were prepared as described within the U.S. Pharmacopoeia (0.16 M aq. HCl, 2 g/L NaCl and 3.2 g/L pepsin). Samples were incubated at 37 °C for 24 h and the supernatants were measured for fluorescence at Ex/Em 530 nm/607 nm and Ex/Em 502 nm/528 nm, respectively, in a Tecan Infinite M200 Plate Reader."
 
 **cell B**
-- answer: `{"verdict": "not_comparable", "blockers": ["medium", "ionic_strength"], "citations": ["PMC10141840:L18", "PMC10141840:L19", "PMC10141840:L21", "PMC10141840:L22", "PMC10141840:L5"]}`
+- answer: `{"verdict": "not_comparable", "blockers": ["medium", "ionic_strength"], "citations": ["PMC10141840:L19", "PMC10141840:L21", "PMC10141840:L5"]}`
 - score: correct=True, blocker_precision=1.00, blocker_recall=1.00, blockers_exact=1.00
 - cited lines:
-  - PMC10141840:L18	"Particles		ζ-Potential (mV)	Average Size (nm)	PDI"
   - PMC10141840:L19	"1.14 ± 0.03 µm	H2O (0.55 µS)	-67.81	1206	0.01031"
   - PMC10141840:L21	"	RPMI-1640 (fs)	-14.03	1419	0.05526"
-  - PMC10141840:L22	"fs = fully supplemented."
   - PMC10141840:L5	"Microparticles of 1.14 µm size were measured for their ζ-potential (mV), size distribution and polydispersity index (PDI) by means of a Zetasizer Pro (Malvern Pananalytical) and data were analyzed using ZS Xplorer software. The cuvettes were ZETASIZER Nano Series Disposable folded capillary cells (DTS1070) at 25 °C. The particles were delivered in an aqueous solution and were measured at a concentration of 0.5 mg/mL diluted in deionized water (0.55 µS), PBS and fully supplemented RPMI-1640 Media including 10% FBS and 1% L-glutamine. Deionized water, PBS and fully supplemented RPMI-1640 Media was filtered with a MILLEX-GV 0.22 µm filter to avoid particulate matter from the matrix. The 10 and 0.293 µm particles had to be excluded because the Zetasizer has a measurement range of 10–0.3 µm. For assessment of stability, MNPs of 1.14 and 0.293 nm size were incubated in simulated gastric fluid. Simulated gastric fluids were prepared as described within the U.S. Pharmacopoeia (0.16 M aq. HCl, 2 g/L NaCl and 3.2 g/L pepsin). Samples were incubated at 37 °C for 24 h and the supernatants were measured for fluorescence at Ex/Em 530 nm/607 nm and Ex/Em 502 nm/528 nm, respectively, in a Tecan Infinite M200 Plate Reader."

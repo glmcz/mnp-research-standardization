@@ -17,20 +17,20 @@ The Methods section states the salinity series as 5% to 30% weight-by-volume -- 
 
 | row_id | particle | value | medium | ionic strength | pH | T | instrument |
 |---|---|---|---|---|---|---|---|
-| PMC12598813-r1 | PBAT (poly(butylene adipate-co-terephthalate)), fresh (unaged) | 5.21 ± 1.23 mV | unreported | unreported | 7 | 25 °C | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r2 | PBAT (poly(butylene adipate-co-terephthalate)), UV-aged, 30 days in surface water | -50.3 ± 1.51 mV | unreported | unreported | 7 | 25 °C | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r3 | polystyrene, fresh (unaged) | 8.64 ± 2.32 mV | unreported | unreported | 7 | 25 °C | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r4 | polystyrene, UV-aged, 30 days in surface water | -48.5 ± 1.22 mV | unreported | unreported | 7 | 25 °C | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r5 | PBAT (poly(butylene adipate-co-terephthalate)), fresh (unaged) | 5.5 mV | 10 mM HEPES | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r6 | polystyrene, fresh (unaged) | 6.9 mV | 10 mM HEPES | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r7 | PBAT (poly(butylene adipate-co-terephthalate)), fresh (unaged) | -16.5 mV | 10 mM HEPES, 30 mg L-1 NaCl | 10.5 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r8 | polystyrene, fresh (unaged) | -19.4 mV | 10 mM HEPES, 30 mg L-1 NaCl | 10.5 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r9 | PBAT (poly(butylene adipate-co-terephthalate)), UV-aged, 30 days in surface water | -52 mV | 10 mM HEPES | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r10 | polystyrene, UV-aged, 30 days in surface water | -49 mV | 10 mM HEPES | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r11 | PBAT (poly(butylene adipate-co-terephthalate)), UV-aged, 30 days in surface water | -22.1 mV | 10 mM HEPES, 30 mg L-1 NaCl | 10.5 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r12 | polystyrene, UV-aged, 30 days in surface water | -17.6 mV | 10 mM HEPES, 30 mg L-1 NaCl | 10.5 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r13 | PBAT (poly(butylene adipate-co-terephthalate)), UV-aged, 30 days in surface water | -28.1 mV | 10 mM HEPES, 20 mg L-1 NaCl | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
-| PMC12598813-r14 | PBAT (poly(butylene adipate-co-terephthalate)), UV-aged, 30 days in surface water | -34.3 mV | 10 mM HEPES, 20 mg L-1 KCl | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r1 | PBAT | 5.21 ± 1.23 mV | unreported | unreported | 7 | 25 °C | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r2 | PBAT, UV-aged 30 days in river water | -50.3 ± 1.51 mV | unreported | unreported | 7 | 25 °C | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r3 | polystyrene | 8.64 ± 2.32 mV | unreported | unreported | 7 | 25 °C | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r4 | polystyrene, UV-aged 30 days in river water | -48.5 ± 1.22 mV | unreported | unreported | 7 | 25 °C | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r5 | PBAT | 5.5 mV | 10 mM HEPES with NaCl or KCl (0–30 mg L-1): 0 salt (start) | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r6 | polystyrene | 6.9 mV | 10 mM HEPES with NaCl or KCl (0–30 mg L-1): 0 salt (start) | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r7 | PBAT | -16.5 mV | 10 mM HEPES with NaCl or KCl (0–30 mg L-1): 30 mg L-1 NaCl | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r8 | polystyrene | -19.4 mV | 10 mM HEPES with NaCl or KCl (0–30 mg L-1): 30 mg L-1 NaCl | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r9 | PBAT, UV-aged 30 days in river water | -52 mV | 10 mM HEPES with NaCl or KCl (0–30 mg L-1): 0 salt (start) | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r10 | polystyrene, UV-aged 30 days in river water | -49 mV | 10 mM HEPES with NaCl or KCl (0–30 mg L-1): 0 salt (start) | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r11 | PBAT, UV-aged 30 days in river water | -22.1 mV | 10 mM HEPES with NaCl or KCl (0–30 mg L-1): same salt doses (end of 0–30 mg L-1 NaCl or KCl series) | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r12 | polystyrene, UV-aged 30 days in river water | -17.6 mV | 10 mM HEPES with NaCl or KCl (0–30 mg L-1): same salt doses (end of 0–30 mg L-1 NaCl or KCl series) | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r13 | PBAT, UV-aged 30 days in river water | -28.1 mV | 10 mM HEPES with NaCl 20 mg L-1 | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
+| PMC12598813-r14 | PBAT, UV-aged 30 days in river water | -34.3 mV | 10 mM HEPES with KCl 20 mg L-1 | 10 mM | unreported | unreported | Zeta sizer Nano ZS (ZEN3600UK) |
 
 **PMC12598813-r1** evidence:
 - PMC12598813:L7: “The MP's surface morphology was ascertained using an SEM (Nova Nano SEM 450, USA) coupled with energy‐dispersive X‐ray spectroscopy or EDX for elemental analysis. An 3D‐EEM analysis was conducted to confirm the alterations in the interactional behavior of MPs. The characterization of surface morphologies, functional groups, and crystal structures was accomplished through FTIR (Vertex 70, Bruker), XRD (D8 Advance, Bruker), and XPS (Escalab 250Xi, Thermo Fisher Scientific). Additionally, the wettability of polymer surfaces subjected to UV radiation at room temperature was measured using the OCA 15EC goniometer tilting unit TBU 100 (Data Physics Instruments GmbH, Filderstadt, Germany). Contact angle measurements were conducted using a Krüss Drop Shape Analyzer (DSA) (CAM, JY-82B, Germany), with triplicate measurements per sample. The mean contact angle and standard deviation (±SD) were calculated and reported to ensure precision and reproducibility. The Zeta sizer Nano ZS (ZEN3600UK) was employed to measure the surface potential, with triplicate measurements taken for each sample. Error margins (±SD) were reported to reflect the measurement variability. TC concentrations were analyzed using reversed‐phase HPLC with columns such as the Shim‐pack GIS C18 column (4.60 × 250.00 mm, 5.00 μm) and L1 column (3 μm, 150 × 4.6 mm)[ 45 ] with data recorded in triplicates and with error margins reported as ±SD.”
@@ -117,53 +117,53 @@ The Methods section states the salinity series as 5% to 30% weight-by-volume -- 
 | PMC12598813-r4 | pH | reported | pH 7 stated directly | PMC12598813:L7, PMC12598813:L15, PMC12598813:L25 |
 | PMC12598813-r4 | temperature | reported | 25 °C stated directly | PMC12598813:L7, PMC12598813:L15, PMC12598813:L25 |
 | PMC12598813-r4 | instrument | reported | an instrument is named: "Zeta sizer Nano ZS (ZEN3600UK)" | PMC12598813:L7, PMC12598813:L15, PMC12598813:L25 |
-| PMC12598813-r5 | medium | reported | a liquid is named: "10 mM HEPES" | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r5 | medium | reported | a liquid is named: "10 mM HEPES with NaCl or KCl (0–30 mg L-1): 0 salt (start)" | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r5 | ionic_strength | reported | 10 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r5 | pH | unreported | no pH number or range is printed | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r5 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r5 | instrument | reported | an instrument is named: "Zeta sizer Nano ZS (ZEN3600UK)" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r6 | medium | reported | a liquid is named: "10 mM HEPES" | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r6 | medium | reported | a liquid is named: "10 mM HEPES with NaCl or KCl (0–30 mg L-1): 0 salt (start)" | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r6 | ionic_strength | reported | 10 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r6 | pH | unreported | no pH number or range is printed | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r6 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r6 | instrument | reported | an instrument is named: "Zeta sizer Nano ZS (ZEN3600UK)" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r7 | medium | reported | a liquid is named: "10 mM HEPES, 30 mg L-1 NaCl" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r7 | ionic_strength | reported | 10.5 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r7 | medium | reported | a liquid is named: "10 mM HEPES with NaCl or KCl (0–30 mg L-1): 30 mg L-1 NaCl" | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r7 | ionic_strength | reported | 10 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r7 | pH | unreported | no pH number or range is printed | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r7 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r7 | instrument | reported | an instrument is named: "Zeta sizer Nano ZS (ZEN3600UK)" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r8 | medium | reported | a liquid is named: "10 mM HEPES, 30 mg L-1 NaCl" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r8 | ionic_strength | reported | 10.5 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r8 | medium | reported | a liquid is named: "10 mM HEPES with NaCl or KCl (0–30 mg L-1): 30 mg L-1 NaCl" | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r8 | ionic_strength | reported | 10 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r8 | pH | unreported | no pH number or range is printed | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r8 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r8 | instrument | reported | an instrument is named: "Zeta sizer Nano ZS (ZEN3600UK)" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r9 | medium | reported | a liquid is named: "10 mM HEPES" | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r9 | medium | reported | a liquid is named: "10 mM HEPES with NaCl or KCl (0–30 mg L-1): 0 salt (start)" | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r9 | ionic_strength | reported | 10 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r9 | pH | unreported | no pH number or range is printed | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r9 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r9 | instrument | reported | an instrument is named: "Zeta sizer Nano ZS (ZEN3600UK)" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r10 | medium | reported | a liquid is named: "10 mM HEPES" | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r10 | medium | reported | a liquid is named: "10 mM HEPES with NaCl or KCl (0–30 mg L-1): 0 salt (start)" | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r10 | ionic_strength | reported | 10 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r10 | pH | unreported | no pH number or range is printed | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r10 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r10 | instrument | reported | an instrument is named: "Zeta sizer Nano ZS (ZEN3600UK)" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r11 | medium | reported | a liquid is named: "10 mM HEPES, 30 mg L-1 NaCl" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r11 | ionic_strength | reported | 10.5 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r11 | medium | reported | a liquid is named: "10 mM HEPES with NaCl or KCl (0–30 mg L-1): same salt doses (end of 0–30 mg L-1 NaCl or KCl series)" | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r11 | ionic_strength | reported | 10 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r11 | pH | unreported | no pH number or range is printed | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r11 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r11 | instrument | reported | an instrument is named: "Zeta sizer Nano ZS (ZEN3600UK)" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r12 | medium | reported | a liquid is named: "10 mM HEPES, 30 mg L-1 NaCl" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r12 | ionic_strength | reported | 10.5 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r12 | medium | reported | a liquid is named: "10 mM HEPES with NaCl or KCl (0–30 mg L-1): same salt doses (end of 0–30 mg L-1 NaCl or KCl series)" | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r12 | ionic_strength | reported | 10 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r12 | pH | unreported | no pH number or range is printed | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r12 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r12 | instrument | reported | an instrument is named: "Zeta sizer Nano ZS (ZEN3600UK)" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r13 | medium | reported | a liquid is named: "10 mM HEPES, 20 mg L-1 NaCl" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r13 | ionic_strength | derived | 10 mM computed from the paper's printed salt composition, never a looked-up nominal value (flagged: ionic_strength_from_medium) | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r13 | medium | reported | a liquid is named: "10 mM HEPES with NaCl 20 mg L-1" | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r13 | ionic_strength | reported | 10 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r13 | pH | unreported | no pH number or range is printed | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r13 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r13 | instrument | reported | an instrument is named: "Zeta sizer Nano ZS (ZEN3600UK)" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r14 | medium | reported | a liquid is named: "10 mM HEPES, 20 mg L-1 KCl" | PMC12598813:L7, PMC12598813:L31 |
-| PMC12598813-r14 | ionic_strength | derived | 10 mM computed from the paper's printed salt composition, never a looked-up nominal value (flagged: ionic_strength_from_medium) | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r14 | medium | reported | a liquid is named: "10 mM HEPES with KCl 20 mg L-1" | PMC12598813:L7, PMC12598813:L31 |
+| PMC12598813-r14 | ionic_strength | reported | 10 mM stated directly | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r14 | pH | unreported | no pH number or range is printed | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r14 | temperature | unreported | no measurement temperature is printed; an incubation, exposure or storage temperature never counts as the measurement temperature, even when it is the only one the paper gives | PMC12598813:L7, PMC12598813:L31 |
 | PMC12598813-r14 | instrument | reported | an instrument is named: "Zeta sizer Nano ZS (ZEN3600UK)" | PMC12598813:L7, PMC12598813:L31 |
@@ -174,19 +174,19 @@ The Methods section states the salinity series as 5% to 30% weight-by-volume -- 
 
 | row_id_a | row_id_b | verdict | blockers |
 |---|---|---|---|
-| PMC12598813-r1 | PMC12598813-r10 | not_comparable | functionalisation_mismatch;ionic_strength_unreported;material_mismatch;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC12598813-r1 | PMC12598813-r11 | not_comparable | functionalisation_mismatch;ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC12598813-r1 | PMC12598813-r12 | not_comparable | functionalisation_mismatch;ionic_strength_unreported;material_mismatch;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC12598813-r1 | PMC12598813-r13 | not_comparable | functionalisation_mismatch;ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC12598813-r1 | PMC12598813-r14 | not_comparable | functionalisation_mismatch;ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC12598813-r1 | PMC12598813-r2 | not_comparable | functionalisation_mismatch;ionic_strength_unreported;medium_unreported;size_measured_unreported |
-| PMC12598813-r1 | PMC12598813-r3 | not_comparable | ionic_strength_unreported;material_mismatch;medium_unreported;size_measured_unreported |
-| PMC12598813-r1 | PMC12598813-r4 | not_comparable | functionalisation_mismatch;ionic_strength_unreported;material_mismatch;medium_unreported;size_measured_unreported |
-| PMC12598813-r1 | PMC12598813-r5 | not_comparable | ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC12598813-r1 | PMC12598813-r6 | not_comparable | ionic_strength_unreported;material_mismatch;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC12598813-r1 | PMC12598813-r7 | not_comparable | ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC12598813-r1 | PMC12598813-r8 | not_comparable | ionic_strength_unreported;material_mismatch;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
-| PMC12598813-r1 | PMC12598813-r9 | not_comparable | functionalisation_mismatch;ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC12598813-r1 | PMC12598813-r10 | not_comparable | functionalisation_unreported;ionic_strength_unreported;material_mismatch;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC12598813-r1 | PMC12598813-r11 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC12598813-r1 | PMC12598813-r12 | not_comparable | functionalisation_unreported;ionic_strength_unreported;material_mismatch;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC12598813-r1 | PMC12598813-r13 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC12598813-r1 | PMC12598813-r14 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC12598813-r1 | PMC12598813-r2 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_unreported;size_measured_unreported |
+| PMC12598813-r1 | PMC12598813-r3 | not_comparable | functionalisation_unreported;ionic_strength_unreported;material_mismatch;medium_unreported;size_measured_unreported |
+| PMC12598813-r1 | PMC12598813-r4 | not_comparable | functionalisation_unreported;ionic_strength_unreported;material_mismatch;medium_unreported;size_measured_unreported |
+| PMC12598813-r1 | PMC12598813-r5 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC12598813-r1 | PMC12598813-r6 | not_comparable | functionalisation_unreported;ionic_strength_unreported;material_mismatch;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC12598813-r1 | PMC12598813-r7 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC12598813-r1 | PMC12598813-r8 | not_comparable | functionalisation_unreported;ionic_strength_unreported;material_mismatch;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
+| PMC12598813-r1 | PMC12598813-r9 | not_comparable | functionalisation_unreported;ionic_strength_unreported;medium_unreported;pH_unreported;size_measured_unreported;temperature_unreported |
 | PMC12598813-r10 | PMC12598813-r11 | not_comparable | material_mismatch;medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
 | PMC12598813-r10 | PMC12598813-r12 | not_comparable | medium_text_mismatch;pH_unreported;size_measured_unreported;temperature_unreported |
 
@@ -213,20 +213,20 @@ How many corpus rows (in any paper) this row is `comparable` or `conditionally_c
 
 ### Blocker fields: this paper versus the kind E query set
 
-The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair stratified sample**, not the full 1,785,105 possible pairs in the corpus. Share of pairs blocked on each field, side by side.
+The kind E query set (`queries/kind_e_comparability.csv`) is a **274-pair stratified sample**, not the full 1,809,753 possible pairs in the corpus. Share of pairs blocked on each field, side by side.
 
-| field | this paper (of 91 pairs) | kind E sample (of 320 pairs) |
+| field | this paper (of 91 pairs) | kind E sample (of 274 pairs) |
 |---|---|---|
-| conversion_model | 0.0% | 9.7% |
-| functionalisation | 52.7% | 76.2% |
-| instrument | 0.0% | 55.0% |
-| ionic_strength | 50.5% | 84.1% |
-| material | 52.7% | 23.1% |
-| medium | 86.8% | 90.9% |
-| pH | 93.4% | 76.2% |
-| quantity | 0.0% | 5.6% |
-| size_measured_nm | 100.0% | 36.2% |
-| temperature | 93.4% | 66.2% |
+| conversion_model | 0.0% | 3.3% |
+| functionalisation | 69.2% | 86.5% |
+| instrument | 0.0% | 54.7% |
+| ionic_strength | 50.5% | 94.5% |
+| material | 52.7% | 23.7% |
+| medium | 91.2% | 92.0% |
+| pH | 93.4% | 86.9% |
+| quantity | 0.0% | 5.1% |
+| size_measured_nm | 100.0% | 74.8% |
+| temperature | 93.4% | 78.8% |
 
 ## 5. Harmonised value
 
@@ -250,23 +250,23 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 ## 6. Resampling
 
 - rows in this paper: 14
-- weight per row (n / 1890): 0.00741
-- weight per paper (1 / 491): 0.00204
+- weight per row (n / 1903): 0.00736
+- weight per paper (1 / 467): 0.00214
 
 | metric | per-row (with paper) | per-row (without) | per-paper (with) | per-paper (without) |
 |---|---|---|---|---|
-| medium_reported | 83.2% | 83.3% | 72.1% | 72.1% |
-| ionic_strength_reported | 13.7% | 13.3% | 8.6% | 8.5% |
-| pH_reported | 21.3% | 21.2% | 16.8% | 16.8% |
-| temperature_reported | 25.6% | 25.6% | 20.3% | 20.2% |
-| instrument_reported | 88.8% | 88.8% | 81.0% | 81.0% |
-| conditions_complete | 3.2% | 3.3% | 2.1% | 2.1% |
+| medium_reported | 78.8% | 78.9% | 67.6% | 67.6% |
+| ionic_strength_reported | 12.6% | 12.2% | 7.2% | 7.0% |
+| pH_reported | 18.5% | 18.4% | 13.6% | 13.5% |
+| temperature_reported | 23.0% | 23.0% | 19.0% | 19.0% |
+| instrument_reported | 87.2% | 87.1% | 80.9% | 80.9% |
+| conditions_complete | 2.4% | 2.4% | 1.6% | 1.6% |
 
 ## 7. Reader
 
 ### X13-A
 
-In PMC12598813, what zeta potential was reported for PBAT (poly(butylene adipate-co-terephthalate)), fresh (unaged) particles described as "fresh PBAT" in 10 mM HEPES, and at what ionic strength was that measurement made?
+In PMC12598813, what zeta potential was reported for PBAT particles described as "fresh PBAT MPs" in 10 mM HEPES with NaCl or KCl (0–30 mg L-1): 0 salt (start), and at what ionic strength was that measurement made?
 
 **cell D**
 - answer: `{"value": 5.5, "unit": "mV", "ionic_strength_reported": true, "ionic_strength_mM": 10.0, "citations": ["row:PMC12598813-r5"]}`
@@ -296,8 +296,8 @@ May the zeta_potential reported in PMC12598813 (row PMC12598813-r1) be compared 
   - PMC12598813:L7	"The MP's surface morphology was ascertained using an SEM (Nova Nano SEM 450, USA) coupled with energy‐dispersive X‐ray spectroscopy or EDX for elemental analysis. An 3D‐EEM analysis was conducted to confirm the alterations in the interactional behavior of MPs. The characterization of surface morphologies, functional groups, and crystal structures was accomplished through FTIR (Vertex 70, Bruker), XRD (D8 Advance, Bruker), and XPS (Escalab 250Xi, Thermo Fisher Scientific). Additionally, the wettability of polymer surfaces subjected to UV radiation at room temperature was measured using the OCA 15EC goniometer tilting unit TBU 100 (Data Physics Instruments GmbH, Filderstadt, Germany). Contact angle measurements were conducted using a Krüss Drop Shape Analyzer (DSA) (CAM, JY-82B, Germany), with triplicate measurements per sample. The mean contact angle and standard deviation (±SD) were calculated and reported to ensure precision and reproducibility. The Zeta sizer Nano ZS (ZEN3600UK) was employed to measure the surface potential, with triplicate measurements taken for each sample. Error margins (±SD) were reported to reflect the measurement variability. TC concentrations were analyzed using reversed‐phase HPLC with columns such as the Shim‐pack GIS C18 column (4.60 × 250.00 mm, 5.00 μm) and L1 column (3 μm, 150 × 4.6 mm)[ 45 ] with data recorded in triplicates and with error margins reported as ±SD."
 
 **cell B**
-- answer: `{"verdict": "not_comparable", "blockers": ["material", "ionic_strength"], "citations": ["PMC12598813:L15", "PMC12598813:L31"]}`
-- score: correct=True, blocker_precision=1.00, blocker_recall=0.29, blockers_exact=0.00
+- answer: `{"verdict": "not_comparable", "blockers": ["ionic_strength", "pH", "temperature"], "citations": ["PMC12598813:L15", "PMC12598813:L31"]}`
+- score: correct=True, blocker_precision=1.00, blocker_recall=0.43, blockers_exact=0.00
 - cited lines:
   - PMC12598813:L15	"Figure 3. a) XRD patterns that compare the crystallinity of fresh and aged PBAT and PS, b) FTIR spectra compare the difference of surface functionalization between fresh and aged PBAT and PS, and corresponding c) ζ‐potential of fresh (F‐PBAT, F‐PS) and UV‐aged (aged‐PBAT, aged‐PS) MPs (pH 7, 25 °C). Bars represent mean ± SD (n = 3) and letters above bars denote statistical grouping: columns that share a letter do not differ significantly (one‐way ANOVA followed by Tukey's HSD, p ≥ 0.05), d) contact angles changes depicting the change in surface wettability between fresh and aged PBAT and PS with error bars representing mean ± SD (n = 3)."
   - PMC12598813:L31	"Ionic‐strength suppression is studied to assess the effect of salt on the surface charge and to develop a mechanistic, electrostatic framework for TC adsorption over aged MPs.[ 62 ] The electrokinetic measurements (Table S8–9 and Figure S10, Supporting Information) further show that adding NaCl or KCl (0–30 mg L-1) raises the ionic strength from 0.010 M to ≈0.0105 M (10 mM HEPES), progressively compressing the double layer and unmasking fixed charges on the MPs. Figure S10, Supporting Information shows that fresh MPs start only mildly positive (+5.5 mV for PBAT, +6.9 mV for PS), and once salt is introduced ζ rapidly inverts, ending at -16.5 mV (PBAT) and -19.4 mV (PS) at 30 mg L-1 NaCl. In contrast, aged MPs, already rich in carbonyl and hydroxyl groups, begin strongly negative (-52 mV PBAT, -49 mV PS) and are driven only part‐way toward neutrality by the same salt doses, finishing at -22.1 and -17.6 mV, respectively (Figure S10, Supporting Information). Throughout, PBAT remains the more negative, consistent with its larger CI drop, lower contact angle, and denser polar functionality. Table S9, Supporting Information confirms that equal masses of NaCl deliver 15–27% more moles than KCl, shortening κ-1 from 3.04 to 2.96 nm vs 2.98 nm. This extra 0.02 nm compression yields stronger charge attenuation. For example, at 20 mg L-1 salt, aged PBAT is -28.1 mV in NaCl but -34.3 mV in KCl, an 18% additional neutralization. The steeper ζ decay in NaCl parallels the sharper drop in TC uptake (Figure 5), confirming that ion‐specific charge screening governs the electrostatic component of adsorption rather than ionic size.[ 21 , 25 , 57 ] Thus, Na‐rich saline waters will more efficiently mobilize TC from aged PBAT and PS than K‐dominated waters, with PBAT remaining the more interactive sorbent because of its higher residual negative charge and greater density of photo‐generated polar groups."

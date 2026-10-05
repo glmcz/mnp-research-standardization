@@ -63,20 +63,20 @@ How many corpus rows (in any paper) this row is `comparable` or `conditionally_c
 
 ### Blocker fields: this paper versus the kind E query set
 
-The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair stratified sample**, not the full 1,785,105 possible pairs in the corpus. Share of pairs blocked on each field, side by side.
+The kind E query set (`queries/kind_e_comparability.csv`) is a **274-pair stratified sample**, not the full 1,809,753 possible pairs in the corpus. Share of pairs blocked on each field, side by side.
 
-| field | this paper (of 1 pairs) | kind E sample (of 320 pairs) |
+| field | this paper (of 1 pairs) | kind E sample (of 274 pairs) |
 |---|---|---|
-| conversion_model | 0.0% | 9.7% |
-| functionalisation | 0.0% | 76.2% |
-| instrument | 0.0% | 55.0% |
-| ionic_strength | 100.0% | 84.1% |
-| material | 0.0% | 23.1% |
-| medium | 0.0% | 90.9% |
-| pH | 100.0% | 76.2% |
-| quantity | 0.0% | 5.6% |
-| size_measured_nm | 0.0% | 36.2% |
-| temperature | 100.0% | 66.2% |
+| conversion_model | 0.0% | 3.3% |
+| functionalisation | 0.0% | 86.5% |
+| instrument | 0.0% | 54.7% |
+| ionic_strength | 100.0% | 94.5% |
+| material | 0.0% | 23.7% |
+| medium | 0.0% | 92.0% |
+| pH | 100.0% | 86.9% |
+| quantity | 0.0% | 5.1% |
+| size_measured_nm | 0.0% | 74.8% |
+| temperature | 100.0% | 78.8% |
 
 ## 5. Harmonised value
 
@@ -88,17 +88,17 @@ The kind E query set (`queries/kind_e_comparability.csv`) is a **320-pair strati
 ## 6. Resampling
 
 - rows in this paper: 2
-- weight per row (n / 1890): 0.00106
-- weight per paper (1 / 491): 0.00204
+- weight per row (n / 1903): 0.00105
+- weight per paper (1 / 467): 0.00214
 
 | metric | per-row (with paper) | per-row (without) | per-paper (with) | per-paper (without) |
 |---|---|---|---|---|
-| medium_reported | 83.2% | 83.2% | 72.1% | 72.1% |
-| ionic_strength_reported | 13.7% | 13.7% | 8.6% | 8.6% |
-| pH_reported | 21.3% | 21.3% | 16.8% | 16.8% |
-| temperature_reported | 25.6% | 25.6% | 20.3% | 20.3% |
-| instrument_reported | 88.8% | 88.8% | 81.0% | 81.0% |
-| conditions_complete | 3.2% | 3.2% | 2.1% | 2.1% |
+| medium_reported | 78.8% | 78.8% | 67.6% | 67.5% |
+| ionic_strength_reported | 12.6% | 12.6% | 7.2% | 7.2% |
+| pH_reported | 18.5% | 18.5% | 13.6% | 13.6% |
+| temperature_reported | 23.0% | 23.0% | 19.0% | 19.0% |
+| instrument_reported | 87.2% | 87.2% | 80.9% | 80.9% |
+| conditions_complete | 2.4% | 2.4% | 1.6% | 1.6% |
 
 ## 7. Reader
 
@@ -134,9 +134,10 @@ What ionic strength was used for the zeta-potential and electrophoretic-mobility
   - PMC10145996:L17	"The physio-chemical properties of the 50 nm and 1 μm PS-NH2 MNPs are shown in Figure 1. TEM images (Figure 1A,C) revealed that PS-NH2 had a fairly spherical shape, and the size was close with the results obtained by DLS. Their sizes for the 50 nm and 1 μm PS-NH2 MNPs analyzed by DLS were 50.7 ± 0.8 and 955.0 ± 24.194 nm (Figure 1B,D), respectively. The zeta-potential values of 50 nm PS-NH2 and 1 μm PS-NH2 were +24.13 ± 0.660 and -33.97 ± 0.447 mV, respectively."
 
 **cell B**
-- answer: `{"reported": false, "value": null, "citations": ["PMC10145996:L4"]}`
+- answer: `{"reported": false, "value": null, "citations": ["PMC10145996:L4", "PMC10145996:L17"]}`
 - score: correct=True, fabricated=False
 - cited lines:
+  - PMC10145996:L17	"The physio-chemical properties of the 50 nm and 1 μm PS-NH2 MNPs are shown in Figure 1. TEM images (Figure 1A,C) revealed that PS-NH2 had a fairly spherical shape, and the size was close with the results obtained by DLS. Their sizes for the 50 nm and 1 μm PS-NH2 MNPs analyzed by DLS were 50.7 ± 0.8 and 955.0 ± 24.194 nm (Figure 1B,D), respectively. The zeta-potential values of 50 nm PS-NH2 and 1 μm PS-NH2 were +24.13 ± 0.660 and -33.97 ± 0.447 mV, respectively."
   - PMC10145996:L4	"Non-fluorescently labelled PS-NH2 with diameters of 50 nm and 1 μm were characterized using dynamic light scattering (DLS) (Malvern Zetasizer Nano ZS90, Malvern Instruments Ltd., Malvern, UK) and a transmission electron microscope (TEM) (HT7800, Hitachi, Tokyo, Japan). The hydrodynamic diameter (Z-average), polydispersity index (PDI), and zeta potential were measured as key parameters describing PS-NH2 behavior in ultrapure water. Measurements were carried out in triplicate. The primary morphology and particle size of PS-NH2 were identified using TEM at 80 kV."
 
 ### X10-E
@@ -153,12 +154,8 @@ May the zeta_potential reported in PMC10145996 (row PMC10145996-r1) be compared 
   - PMC10145996:L17	"The physio-chemical properties of the 50 nm and 1 μm PS-NH2 MNPs are shown in Figure 1. TEM images (Figure 1A,C) revealed that PS-NH2 had a fairly spherical shape, and the size was close with the results obtained by DLS. Their sizes for the 50 nm and 1 μm PS-NH2 MNPs analyzed by DLS were 50.7 ± 0.8 and 955.0 ± 24.194 nm (Figure 1B,D), respectively. The zeta-potential values of 50 nm PS-NH2 and 1 μm PS-NH2 were +24.13 ± 0.660 and -33.97 ± 0.447 mV, respectively."
 
 **cell B**
-- answer: `{"verdict": "not_comparable", "blockers": ["size_measured_nm"], "citations": ["PMC10145996:L17", "PMC10145996:L18", "row:PMC10145996-r1", "row:PMC10145996-r2"]}`
+- answer: `{"verdict": "not_comparable", "blockers": ["size_measured_nm"], "citations": ["PMC10145996:L17", "PMC10145996:L4"]}`
 - score: correct=True, blocker_precision=0.00, blocker_recall=0.00, blockers_exact=0.00
 - cited lines:
   - PMC10145996:L17	"The physio-chemical properties of the 50 nm and 1 μm PS-NH2 MNPs are shown in Figure 1. TEM images (Figure 1A,C) revealed that PS-NH2 had a fairly spherical shape, and the size was close with the results obtained by DLS. Their sizes for the 50 nm and 1 μm PS-NH2 MNPs analyzed by DLS were 50.7 ± 0.8 and 955.0 ± 24.194 nm (Figure 1B,D), respectively. The zeta-potential values of 50 nm PS-NH2 and 1 μm PS-NH2 were +24.13 ± 0.660 and -33.97 ± 0.447 mV, respectively."
-  - PMC10145996:L18	"Figure 1. TEM images (A,C) and DLS measurements (B,D) of PS-NH2 MNPs in ultrapure water. Dh, PDI, and ζ-potential represent hydrodynamic diameter (nm), polydispersity index (PDI), and zeta potential (mV), respectively."
   - PMC10145996:L4	"Non-fluorescently labelled PS-NH2 with diameters of 50 nm and 1 μm were characterized using dynamic light scattering (DLS) (Malvern Zetasizer Nano ZS90, Malvern Instruments Ltd., Malvern, UK) and a transmission electron microscope (TEM) (HT7800, Hitachi, Tokyo, Japan). The hydrodynamic diameter (Z-average), polydispersity index (PDI), and zeta potential were measured as key parameters describing PS-NH2 behavior in ultrapure water. Measurements were carried out in triplicate. The primary morphology and particle size of PS-NH2 were identified using TEM at 80 kV."
-  - PMC10145996:L17	"The physio-chemical properties of the 50 nm and 1 μm PS-NH2 MNPs are shown in Figure 1. TEM images (Figure 1A,C) revealed that PS-NH2 had a fairly spherical shape, and the size was close with the results obtained by DLS. Their sizes for the 50 nm and 1 μm PS-NH2 MNPs analyzed by DLS were 50.7 ± 0.8 and 955.0 ± 24.194 nm (Figure 1B,D), respectively. The zeta-potential values of 50 nm PS-NH2 and 1 μm PS-NH2 were +24.13 ± 0.660 and -33.97 ± 0.447 mV, respectively."
-  - PMC10145996:L4	"Non-fluorescently labelled PS-NH2 with diameters of 50 nm and 1 μm were characterized using dynamic light scattering (DLS) (Malvern Zetasizer Nano ZS90, Malvern Instruments Ltd., Malvern, UK) and a transmission electron microscope (TEM) (HT7800, Hitachi, Tokyo, Japan). The hydrodynamic diameter (Z-average), polydispersity index (PDI), and zeta potential were measured as key parameters describing PS-NH2 behavior in ultrapure water. Measurements were carried out in triplicate. The primary morphology and particle size of PS-NH2 were identified using TEM at 80 kV."
-  - PMC10145996:L17	"The physio-chemical properties of the 50 nm and 1 μm PS-NH2 MNPs are shown in Figure 1. TEM images (Figure 1A,C) revealed that PS-NH2 had a fairly spherical shape, and the size was close with the results obtained by DLS. Their sizes for the 50 nm and 1 μm PS-NH2 MNPs analyzed by DLS were 50.7 ± 0.8 and 955.0 ± 24.194 nm (Figure 1B,D), respectively. The zeta-potential values of 50 nm PS-NH2 and 1 μm PS-NH2 were +24.13 ± 0.660 and -33.97 ± 0.447 mV, respectively."

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -218,3 +219,26 @@ def test_the_census_block_is_hidden_unless_the_data_carries_it() -> None:
     assert " hidden" in block, block
     assert "DATA.same_particle" in template
     assert "if (!SP) return;" in template
+
+
+# -- the template: every number slot has a key the page's script defines ----------------------
+
+
+def _missing_keys(template: str) -> list[str]:
+    """`data-k` slots no key in the script's key block names. A missing key renders as "?"."""
+    fill = "document.querySelectorAll('[data-k]')"
+    script = template.split("function spKeys", 1)[1].split(fill)[0]
+    defined = set(re.findall(r"\b(\w+):", script))
+    slots = set(re.findall(r'data-k="(\w+)"', template.split("<script", 1)[0]))
+    return sorted(slots - defined)
+
+
+def test_every_number_slot_in_the_template_has_a_key() -> None:
+    template = (HERE / "template.html").read_text(encoding="utf-8")
+    assert not _missing_keys(template)
+
+
+def test_a_slot_with_no_key_is_caught() -> None:
+    template = (HERE / "template.html").read_text(encoding="utf-8")
+    broken = template.replace('data-k="rows"', 'data-k="rows_typo"', 1)
+    assert _missing_keys(broken) == ["rows_typo"]

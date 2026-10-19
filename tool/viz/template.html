@@ -307,6 +307,52 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
 #tip .tip-r span.l { color: var(--ink-2); }
 #tip .tip-k { width: 12px; height: 2px; border-radius: 1px; flex: none; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* how it works */
+.rail { display: grid; }
+.stage { display: grid; grid-template-columns: 8.5rem minmax(0, 1.2fr) minmax(0, 1fr); gap: 6px 22px; padding: 14px 0; border-top: 1px solid var(--grid); }
+.stage:first-child { border-top: 0; padding-top: 2px; }
+.stage .who { display: grid; gap: 6px; align-content: start; }
+.stage .step { font-family: var(--display); font-stretch: 85%; font-weight: 700; font-size: 1.15rem; line-height: 1.1; }
+.badge { justify-self: start; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 7px; border-radius: 4px; border: 1px solid; color: var(--ink); }
+.badge.code { background: var(--s1-wash); border-color: var(--s1); }
+.badge.model { background: var(--s2-wash); border-color: var(--s2); }
+.stage p { font-size: 0.92rem; color: var(--ink-2); }
+.stage .label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.stage .risk { border-left: 3px solid var(--s2); padding-left: 10px; }
+.stage .holds { border-left: 3px solid var(--s1); padding-left: 10px; }
+@media (max-width: 720px) { .stage { grid-template-columns: minmax(0, 1fr); } .stage .who { grid-auto-flow: column; justify-content: start; align-items: center; gap: 10px; } }
+.ideas .tile { align-content: start; gap: 6px; }
+.ideas .tile .t-value { font-family: var(--display); font-stretch: 85%; font-weight: 700; font-size: 1.3rem; }
+.ideas .tile p { font-size: 0.9rem; color: var(--ink-2); }
+.glossary { display: grid; grid-template-columns: minmax(9rem, max-content) minmax(0, 1fr); gap: 8px 18px; margin: 0; font-size: 0.92rem; }
+.glossary dt { font-weight: 600; }
+.glossary dd { margin: 0; color: var(--ink-2); }
+@media (max-width: 560px) { .glossary { grid-template-columns: minmax(0, 1fr); gap: 2px; } .glossary dd { margin-bottom: 8px; } }
+
+/* upgrades */
+.up-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px 28px; align-items: start; }
+@media (max-width: 760px) { .up-cols { grid-template-columns: minmax(0, 1fr); } }
+.up-col { display: grid; gap: 12px; }
+.up-col > h3 { padding-bottom: 6px; border-bottom: 2px solid var(--ink); }
+.up { display: grid; gap: 6px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.up h4 { margin: 0; font-size: 1rem; font-weight: 600; }
+.up p { font-size: 0.9rem; color: var(--ink-2); }
+.up p b { color: var(--ink); font-weight: 600; }
+.up .chips { margin: 0; gap: 6px; }
+.chip.soon { background: var(--s2-wash); color: var(--ink); }
+.chip.ref { font-family: var(--mono); font-size: 0.76rem; }
+.order { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; max-width: 78ch; color: var(--ink-2); }
+.order b { color: var(--ink); font-weight: 600; }
+.nw { white-space: nowrap; }
+.plan { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.plan th, .plan td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--grid); }
+.plan th { font-weight: 600; white-space: nowrap; }
+.plan td { color: var(--ink-2); }
+.plan td b { color: var(--ink); font-weight: 600; }
+@media (max-width: 560px) { .plan, .plan tbody, .plan tr, .plan th, .plan td { display: block; } .plan th { border-bottom: 0; padding-bottom: 0; } }
+.schem path { fill: none; stroke-width: 2.4; }
+.schem .ref { stroke: var(--axis); stroke-dasharray: 5 5; stroke-width: 1.2; }
 </style>
 
 <main>
@@ -323,10 +369,11 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
       <span><b><span data-k="rows"></span></b>rows</span>
       <span><b><span data-k="papers"></span></b>papers</span>
       <span><b><span data-k="complete"></span></b>rows with all five conditions</span>
-      <span><b><span data-k="comparable"></span></b>comparable pairs, all within one paper</span>
+      <span><b><span data-k="comparable"></span></b>comparable pairs, <span data-k="comparable_cross"></span> of them across papers</span>
     </div>
     <nav aria-label="Sections">
       <ol class="toc">
+        <li><a href="#how"><span>0</span>How it works</a></li>
         <li><a href="#funnel"><span>1</span>The funnel</a></li>
         <li><a href="#five"><span>2</span>The five conditions</a></li>
         <li id="toc-origin"><a href="#origin"><span>3</span>Where the particles came from</a></li>
@@ -337,9 +384,123 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
         <li><a href="#grid"><span>8</span>The eval grid</a></li>
         <li><a href="#explorer"><span>9</span>Explorer</a></li>
         <li><a href="#limits"><span>·</span>What it does not prove</a></li>
+        <li><a href="#next"><span>10</span>Where it goes next</a></li>
       </ol>
     </nav>
   </header>
+
+  <section class="sec" id="how">
+    <header>
+      <p class="eyebrow">0 · How it works</p>
+      <h2>A model reads the papers; code decides everything else</h2>
+      <p class="gloss">MNP means micro- and nanoplastics. The project turns <span data-k="fetched"></span> open-access papers into one table where every surface-charge value carries its conditions, the address of the line it came from, and an explicit “not reported” wherever the paper is silent. Only one step uses an AI model to judge. Every other step is plain code that anyone can rerun and get the same bytes.</p>
+    </header>
+    <p class="callout">If you have worked with energy-market data: a price means nothing without its delivery period, its unit and its time zone, and you cannot recover the time zone from the price itself. Ionic strength is the time zone of a zeta potential. It is also the condition papers leave out most often.</p>
+    <div class="sub">
+      <p class="sub-title">The original idea: read the curve, not the dot</p>
+      <div class="panel">
+        <div class="chart">
+          <svg class="schem" viewBox="0 0 620 230" role="img" aria-label="Mobility against salt: a soft particle levels off at a plateau, a hard particle falls toward zero; one dot at the reference condition cannot tell them apart">
+            <line x1="50" y1="190" x2="600" y2="190" class="baseline"/>
+            <line x1="50" y1="14" x2="50" y2="190" class="baseline"/>
+            <line x1="215" y1="14" x2="215" y2="190" class="ref"/>
+            <path d="M50,24 C120,40 170,88 215,100 S330,122 440,124 L560,124" class="st-s1"/>
+            <path d="M50,60 C100,36 160,78 215,100 S330,160 440,176 L560,182" class="st-ink"/>
+            <circle cx="215" cy="100" r="6" class="f-ink"/>
+            <text x="223" y="26" class="lab">reference condition</text>
+            <text x="223" y="92" class="val">one dot: hard or soft?</text>
+            <text x="566" y="120" class="lab" text-anchor="end" style="fill:var(--s1)">soft: stops at a plateau</text>
+            <text x="566" y="160" class="lab" text-anchor="end">hard: falls toward zero</text>
+            <text x="600" y="210" text-anchor="end">salt (ionic strength), log scale</text>
+            <text x="36" y="102" text-anchor="middle" transform="rotate(-90 36 102)">mobility</text>
+          </svg>
+        </div>
+        <table class="plan">
+          <tr><th>Tried</th><td>Unify published zeta values: shift each paper’s single dot to one common condition.</td><td><b>Blocked.</b> Shifting a dot needs its ionic strength, the condition papers leave out most (section 6). Even the complete case 14 still disagrees.</td></tr>
+          <tr><th>Built</th><td>The curve method: soft- and hard-particle physics (Ohshima), and inference by MCMC and a neural posterior estimator trained on simulated curves.</td><td><b>Works on simulations.</b> The physics matches an independent recomputation, and simulation-based calibration passes (README, D4 notes).</td></tr>
+          <tr><th>Not done</th><td>Run it on measured salt series; report mobility at one reference condition, and the plateau.</td><td><b>No measured curve has gone through it.</b> Papers print dots; full salt series exist mostly for reference particles such as sulfate latex, silica and bacteria.</td></tr>
+        </table>
+      </div>
+      <div class="read">
+        <div><h3>How to read this</h3><p>A hard particle carries its charge on its skin: salt hides it, and mobility falls toward zero. A soft particle carries charge inside a layer water flows through: salt cannot hide it, and mobility stops at a plateau set by the layer’s charge density and how hard water flows through it. One measurement at one salt level sits where the two curves can meet.</p></div>
+        <div><h3>What it means</h3><p>Zeta was never the goal. Measure across salt, fit the physics, and report two numbers: mobility at one reference condition, comparable across labs, like a solar panel quoted at standard test conditions; and the plateau, which stays defined under a protein corona, where zeta has no shear plane.</p></div>
+      </div>
+    </div>
+    <div class="sub">
+      <p class="sub-title">The pipeline, step by step</p>
+      <div class="panel">
+        <div class="legend">
+          <span><span class="badge code">code</span>deterministic, no model, same output every run</span>
+          <span><span class="badge model">model</span>a Claude agent reads and judges</span>
+        </div>
+        <ol class="rail" style="list-style:none;margin:0;padding:0">
+          <li class="stage">
+            <div class="who"><span class="step">Fetch</span><span class="badge code">code</span></div>
+            <p><span class="label">What happens</span>One search query to Europe PMC: <span data-k="hits_all"></span> hits, <span data-k="hits_oa"></span> of them open access, <span data-k="fetched"></span> full texts downloaded once and packed with a checksum manifest.</p>
+            <p class="holds"><span class="label">What it guarantees</span>The corpus cannot drift. Europe PMC is not an archive, so the texts are never fetched again (<span class="nw">CP-01</span>, <span class="nw">CP-02</span>).</p>
+          </li>
+          <li class="stage">
+            <div class="who"><span class="step">Convert</span><span class="badge code">code</span></div>
+            <p><span class="label">What happens</span>Each paper’s XML becomes plain text with numbered lines. Every paragraph gets an address made from a hash of its own content.</p>
+            <p class="holds"><span class="label">What it guarantees</span>A value can point to the exact line it came from, for almost no extra tokens. Raw XML would cost several times more (<span class="nw">CP-03</span>, <span class="nw">CP-04</span>).</p>
+          </li>
+          <li class="stage">
+            <div class="who"><span class="step">Scan</span><span class="badge code">code</span></div>
+            <p><span class="label">What happens</span>Regular expressions find every printed number that could be a zeta potential or a mobility. The scanner knows nothing about plastics.</p>
+            <p class="holds"><span class="label">What it guarantees</span>The reader starts from a list of candidates, so a value is not lost because a model skimmed past it (<span class="nw">EX-01</span>).</p>
+          </li>
+          <li class="stage">
+            <div class="who"><span class="step">Read</span><span class="badge model">model</span></div>
+            <p><span class="label">What happens</span>Claude worker agents read each paper under a written brief, stored by its hash. For every value they decide which particle, which liquid and which conditions it belongs to, and return the value, a verbatim quote and the line addresses. A condition the paper does not give is written down as “not reported”, never guessed.</p>
+            <p class="risk"><span class="label">What went wrong</span>Agents fill the structure they are given: a value cited from another study became a measurement, a storage temperature became the measurement temperature, an n appeared that the paper never states. Each was caught by a check against the data, not by trusting the agent (<span class="nw">EX-09</span>, <span class="nw">EX-10</span>).</p>
+          </li>
+          <li class="stage">
+            <div class="who"><span class="step">Verify</span><span class="badge code">code</span></div>
+            <p><span class="label">What happens</span>The quote must appear word for word on the cited lines and the number must sit inside it; units are read from the article. A row that fails is dropped and counted. Three rules Martin ratified then clear defaults that slipped through: a printed zero is not an ionic strength (R1), a storage or step temperature is not the measurement temperature (R2, R2b), a buffer’s concentration is not its ionic strength (R3).</p>
+            <p class="risk"><span class="label">What went wrong</span>A check that flags a correct value teaches the agent to delete it. Guards that missed molar units, kelvin or powers of ten pushed correct values toward “not reported”. They were fixed test-first, and a worker now never deletes a printed value to clear a flag (<span class="nw">EX-12</span>, <span class="nw">EX-13</span>, <span class="nw">EX-14</span>).</p>
+          </li>
+          <li class="stage">
+            <div class="who"><span class="step">Decide</span><span class="badge code">code</span></div>
+            <p><span class="label">What happens</span>Every pair of rows is checked: the same measured quantity, the same particle description, and every condition stated and matching within a tolerance. The printed value itself is never used as evidence. Henry’s formula turns a missing input into an interval, never into a default.</p>
+            <p class="holds"><span class="label">What it guarantees</span>Comparability is computed, not judged, so anyone can rerun every verdict and the census of section 6 (<span class="nw">CM-01</span>, <span class="nw">CM-03</span>, <span class="nw">HM-01</span>).</p>
+          </li>
+          <li class="stage">
+            <div class="who"><span class="step">Evaluate</span><span class="badge model">model</span></div>
+            <p><span class="label">What happens</span>The model becomes the test subject. One reader, <span data-k="grid_model"></span>, answers the same <span data-k="grid_asked"></span> questions twice: once handed the table (cell D), once handed keyword search over the papers’ lines (cell B).</p>
+            <p class="holds"><span class="label">What it shows</span>Where retrieval over text fails: comparability lives in the join of two rows, and no single passage contains it (section 8, <span class="nw">GR-15</span>).</p>
+          </li>
+          <li class="stage">
+            <div class="who"><span class="step">Rebuild</span><span class="badge code">code</span></div>
+            <p><span class="label">What happens</span><code>report reproduce</code> rebuilds every committed table and document offline, with the network refused, and compares the result byte for byte.</p>
+            <p class="holds"><span class="label">What it guarantees</span>This page is built from one commit; no number on it is typed by hand, and <span data-k="checks_n"></span> of them are cross-checked against the review guide (<span class="nw">PR-02</span>).</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div class="sub">
+      <p class="sub-title">Three ideas to keep</p>
+      <div class="tiles ideas">
+        <div class="tile"><span class="t-value">Absence is a value</span><p>“pH not reported” is a fact about the paper. A blank cell would hide it, and a default would lie about it. Each row carries one true-or-false flag per condition.</p></div>
+        <div class="tile"><span class="t-value">Compare pairs, not numbers</span><p>One zeta value is neither right nor wrong on its own. Two rows are comparable only when their conditions match, and that is a property of the pair, which no single passage of text holds.</p></div>
+        <div class="tile"><span class="t-value">A model reads; code decides</span><p>An agent’s output is a claim with an address. Code checks it, applies the rules and makes every decision, so no result rests on trusting an agent.</p></div>
+      </div>
+    </div>
+    <div class="sub">
+      <p class="sub-title">Words used on this page</p>
+      <div class="panel">
+        <dl class="glossary">
+          <dt>Zeta potential (ζ)</dt><dd>The electric potential, in mV, at the particle’s slipping plane in a liquid: how charged the particle looks to its surroundings. It belongs to the particle in that liquid, not to the particle alone.</dd>
+          <dt>Mobility</dt><dd>What the instrument actually measures: how fast the particle drifts in an electric field. Zeta is computed from it.</dd>
+          <dt>Ionic strength</dt><dd>How much dissolved salt the liquid holds, in mM. It sets the Debye length.</dd>
+          <dt>Debye length (κ⁻¹)</dt><dd>The thickness of the cloud of ions around the particle. More salt, thinner cloud.</dd>
+          <dt>Henry’s factor f(κa)</dt><dd>The factor that turns mobility into zeta. It runs between the Hückel and the Smoluchowski limits and depends on particle size against the Debye length, so it needs the ionic strength (section 5).</dd>
+          <dt>Fully conditioned</dt><dd>A row that states all five conditions: medium, ionic strength, pH, temperature, instrument.</dd>
+          <dt>Comparable pair</dt><dd>Two rows whose difference can be blamed on the particle, because everything else is stated and matches.</dd>
+          <dt>Lost only to absence</dt><dd>A pair of rows on the same particle where nothing either row states differs, but a condition is missing, so no one can decide.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
 
   <section class="sec" id="funnel">
     <header>
@@ -349,7 +510,7 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
     <div class="panel"><div id="c-funnel" class="hb"></div></div>
     <div class="read">
       <div><h3>How to read this</h3><p>Each bar is one step of the pipeline. The scale is logarithmic: each gridline is ten times the one before, so a bar half as long is about a hundred times smaller. The unit changes on the way down, from articles to rows (one row is one reported measurement) to pairs of rows.</p></div>
-      <div><h3>What it means</h3><p>Measurements are not scarce: <span data-k="rows"></span> of them exist. The drop comes at the conditions. Only <span data-k="complete"></span> rows state all five, and of <span data-k="all_pairs"></span> possible pairs of rows only <span data-k="comparable"></span> may be compared, every one of them inside a single paper. The last bar is empty.</p></div>
+      <div><h3>What it means</h3><p>Measurements are not scarce: <span data-k="rows"></span> of them exist. The drop comes at the conditions. Only <span data-k="complete"></span> rows state all five, and of <span data-k="all_pairs"></span> possible pairs of rows only <span data-k="comparable"></span> may be compared. Zeta pairs among them that cross from one paper to another, the last bar: <span data-k="comparable_zeta_cross"></span>.</p></div>
     </div>
   </section>
 
@@ -691,6 +852,109 @@ footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
     </ul>
   </section>
 
+  <section class="sec" id="next">
+    <header>
+      <p class="eyebrow">10 · Where it goes next</p>
+      <h2>Upgrades that would raise the impact, for the science and for AI</h2>
+      <p class="gloss">Every limit above is also a to-do. Within each column the upgrades are ordered by impact for the effort. The grey tags name where the decision is recorded (<code>docs/DECISIONS.md</code>, or the file named); untagged ideas are new.</p>
+    </header>
+    <div class="sub">
+      <p class="sub-title">If only a few get done</p>
+      <ol class="order">
+        <li><b>The human audit of “not reported”.</b> The thesis rests on it, and today no person has checked a row against its paper (rows re-judged by a human: <span data-k="gold_human"></span>).</li>
+        <li><b>A fair rival for the structured reader.</b> Without a stronger retrieval baseline and the agentic cells, “structure beats retrieval” only holds against keyword search.</li>
+        <li><b>Ask the authors.</b> The cheapest way to show what one reported number is worth, measured instead of argued.</li>
+        <li><b>Then, real curves for the curve method.</b> It is the original plan and it is built; it only lacks measured salt series.</li>
+      </ol>
+    </div>
+    <div class="up-cols">
+      <div class="up-col">
+        <h3>Micro- and nanoplastic science</h3>
+        <article class="up">
+          <h4>Audit the absences</h4>
+          <p>Draw rows that say a condition is not reported, open each paper at the cited lines, and answer yes, no or unsure, condition by condition.</p>
+          <p><b>Impact:</b> the <span data-k="sp_absence"></span> same-particle pairs lost to absence are only as good as the precision of “not reported”. A measured precision turns the thesis from agent-checked to human-checked.</p>
+          <div class="chips"><span class="chip soon">before the talk</span><span class="chip">low effort</span><span class="chip ref">OD-03</span></div>
+        </article>
+        <article class="up">
+          <h4>Ask the authors for the missing number</h4>
+          <p>For the <span data-k="sp_only"></span> same-particle pairs where one missing field alone blocks the verdict, mostly ionic strength or measured size, write to the corresponding authors and ask for that value.</p>
+          <p><b>Impact:</b> turns a count into an intervention. It answers “how much comparability does one reported number buy?” with data, and gives editors a concrete story.</p>
+          <div class="chips"><span class="chip">low effort</span><span class="chip ref">C12</span></div>
+        </article>
+        <article class="up">
+          <h4>A reporting standard a machine can check</h4>
+          <p>Publish the minimum report (the five conditions, the particle’s supplier, lot and surface, the conversion model) as a JSON Schema and a one-page checklist, offer it to journal editors and standards groups, and propose the ontology term that is missing: no ontology term exists for ionic strength in ENM, NPO, CHMO or ENVO.</p>
+          <p><b>Impact:</b> moves from describing the gap to preventing it in papers not yet written.</p>
+          <div class="chips"><span class="chip">medium effort</span><span class="chip ref">out/checklist.md</span></div>
+        </article>
+        <article class="up">
+          <h4>Check a manuscript before it is submitted</h4>
+          <p>Point the same reader at one manuscript’s Methods and list which of the five conditions are missing, citing the lines it read.</p>
+          <p><b>Impact:</b> the cheapest moment to report a condition is while the lab notebook is still open. The census measures the gap; this closes it at the source.</p>
+          <div class="chips"><span class="chip">medium effort</span></div>
+        </article>
+        <article class="up">
+          <h4>Beyond the laboratory bead</h4>
+          <p><span data-k="o_syn_pct"></span> of rows measure bought or lab-made particles. Widen the corpus (other indexes, paywalled papers) as a new study with its own counts, and look for collaborators who measure collected particles, salt series, and the liquid on its own.</p>
+          <p><b>Impact:</b> links reporting quality to the particles people are actually exposed to.</p>
+          <div class="chips"><span class="chip">high effort</span><span class="chip ref">OS-03</span><span class="chip ref">OS-04</span></div>
+        </article>
+        <article class="up">
+          <h4>Feed the curve method real curves</h4>
+          <p>The physics and the neural posterior are built and calibrated on simulations, and have never seen a measured curve. Digitise the published salt sweeps of reference particles first, then find a lab to measure plastics across salt, with and without a protein corona, and let the posterior say which salt level to measure next.</p>
+          <p><b>Impact:</b> values become convertible to a common condition instead of only labelled incomparable, and the plateau gives a charge number that survives a corona.</p>
+          <div class="chips"><span class="chip">high effort</span><span class="chip ref">README.md, D4 notes</span></div>
+        </article>
+      </div>
+      <div class="up-col">
+        <h3>AI</h3>
+        <article class="up">
+          <h4>A fair rival</h4>
+          <p>Replace the keyword baseline with hybrid retrieval and a reranker, then run the agentic cells: C, an agent searching the papers, and E, an agent querying the table.</p>
+          <p><b>Impact:</b> answers “you strawmanned RAG” before anyone asks. The step from C to E is the real question: does structure help an agent that can already search?</p>
+          <div class="chips"><span class="chip soon">before the talk, or say so on stage</span><span class="chip">medium effort</span><span class="chip ref">OD-14</span><span class="chip ref">OD-15</span></div>
+        </article>
+        <article class="up">
+          <h4>An absence benchmark</h4>
+          <p>Release the questions whose true answer is “not reported”, the comparability pairs and the expert edge cases as an open evaluation, every answer tied to its lines.</p>
+          <p><b>Impact:</b> extraction benchmarks score what a model finds. Few score whether it stays silent when the paper is silent. This one does, with ground truth, for any model family.</p>
+          <div class="chips"><span class="chip">medium effort</span><span class="chip ref">GR-04</span><span class="chip ref">tests/edge/key.yaml</span></div>
+        </article>
+        <article class="up">
+          <h4>Write up the guard effect</h4>
+          <p>Document how false flags from automated checks taught workers to delete correct values, with the adversarial fixture and a measured deletion rate under false flags.</p>
+          <p><b>Impact:</b> every agent pipeline with validators, model judges or CI gates can drift the same way. The rule travels: a flag may add doubt, but never removes a printed value.</p>
+          <div class="chips"><span class="chip">low effort</span><span class="chip ref">EX-12</span><span class="chip ref">EX-13</span><span class="chip ref">EX-14</span></div>
+        </article>
+        <article class="up">
+          <h4>Two model families, disagreements to a human</h4>
+          <p>Re-read a stratified sample with a second model family. Where the readers disagree, send the row to the human audit.</p>
+          <p><b>Impact:</b> an agreement envelope instead of one model’s word, and human time spent only where the models disagree.</p>
+          <div class="chips"><span class="chip">medium effort</span><span class="chip ref">OD-04</span><span class="chip ref">EX-09</span></div>
+        </article>
+        <article class="up">
+          <h4>An interface agents can query</h4>
+          <p>Serve the table, its absence flags and its line addresses through an MCP server and a Python package.</p>
+          <p><b>Impact:</b> other agents query conditioned records instead of re-reading papers, and cell E needs exactly this.</p>
+          <div class="chips"><span class="chip">medium effort</span><span class="chip ref">docs/ARCHITECTURE_PLAN.md</span></div>
+        </article>
+        <article class="up">
+          <h4>Retrieve precedent, not passages</h4>
+          <p>Index the ratified rulings (R1, R2, R3 and the edge-case key) so that a worker meeting a familiar sentence gets the nearest ruling and its reasoning.</p>
+          <p><b>Impact:</b> one hour of expert judgement, applied every time the same sentence shape returns.</p>
+          <div class="chips"><span class="chip">low effort</span><span class="chip ref">ideas.md</span></div>
+        </article>
+        <article class="up">
+          <h4>Port the method</h4>
+          <p>Line-addressed reading, absence as a value and decisions made in code fit any literature where conditions decide whether two numbers can be compared: nanomaterials, drug dosing, battery cycling, and market data that drops its unit or time zone.</p>
+          <p><b>Impact:</b> the contribution becomes a method other fields can reuse, not one dataset.</p>
+          <div class="chips"><span class="chip">high effort</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <span>Built from the committed files of mnp-research at <span class="mono" data-k="commit"></span> (<span class="mono" data-k="ref"></span>) by build_data.py; no number on this page is typed in by hand.</span>
     <span><span data-k="checks_ok"></span> of <span data-k="checks_n"></span> cross-checks against out/review/REVIEW.md agree.</span>
@@ -745,7 +1009,7 @@ function spKeys(sp) {
   return {
     sp_pairs: fmt(sp.pairs), sp_absence: fmt(by.lost_to_absence),
     sp_absence_pct: pct(by.lost_to_absence / sp.pairs), sp_absence_cross: fmt(sp.absence_cross),
-    sp_comparable: fmt(by.comparable),
+    sp_comparable: fmt(by.comparable), sp_only: fmt(sp.fields.reduce((a, f) => a + f.only, 0)),
     sp_top_field: top ? (FIELD_NAME[top.field] || [top.field])[0] : '',
     sp_top_pct: top ? pct(top.pairs / by.lost_to_absence) : '',
   };
@@ -766,10 +1030,10 @@ function originKeys(o) {
 const ciWindow = Math.ceil((Math.max(...CL.metrics.map(m => Math.max(m.row_hi, m.paper_hi, m.naive_hi) - Math.min(m.row_lo, m.paper_lo, m.naive_lo))) * 100 + 4) / 2) * 2;
 const K = {
   commit: DATA.commit, ref: DATA.ref,
-  hits_all: fmt(F[0].n), hits_oa: fmt(F[1].n), papers: fmt(F[3].n), rows: fmt(F[4].n),
+  hits_all: fmt(F[0].n), hits_oa: fmt(F[1].n), fetched: fmt(F[2].n), papers: fmt(F[3].n), rows: fmt(F[4].n),
   complete: fmt(F[5].n), complete_pct: pct(F[5].n / F[4].n),
   complete_papers: fmt(FV.complete_papers_any),
-  comparable: fmt(C.comparable), comparable_zeta: fmt(C.comparable_zeta),
+  comparable: fmt(C.comparable), comparable_cross: fmt(C.comparable_cross), comparable_zeta: fmt(C.comparable_zeta),
   comparable_zeta_cross: fmt(C.comparable_zeta_cross),
   conditional: fmt(C.conditional), conditional_cross: fmt(C.conditional_cross),
   all_pairs: fmt(C.all_pairs), rows_passing: fmt(C.rows_passing), pairs_checked: fmt(C.pairs_checked),

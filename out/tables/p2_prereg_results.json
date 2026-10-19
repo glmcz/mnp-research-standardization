@@ -1,0 +1,133 @@
+{
+ "prereg_commit": "050d5d1",
+ "code_commit": "050d5d1",
+ "alpha_default": 1.6,
+ "alpha_band": [
+  1.3,
+  1.9
+ ],
+ "seed": 20261019,
+ "bootstrap": 2000,
+ "inputs": {
+  "data/raw/datasets_recon/conc/soil_wu/soil_mp_2005_2026.xlsx": "8dba8a1e8a36aca6f5ce6f1b9dcc1091da7d5567b08ec802c742b4c0804ea06e",
+  "data/raw/datasets_recon/conc/mpsizebase/MPsizeBase_v19-5-2026.xlsx": "2bf00714d8131c5fc16b355b67d9a80407070753c28578c432974aec8519d25d",
+  "data/raw/datasets_recon/conc/pangaea/p_937685.tab": "9f1dbdadac462f5768c3732757e3093bb63cb9134be1144ba0c621e4b5192b6b",
+  "data/raw/datasets_recon/conc/pangaea/p_938143.tab": "ecccbfcabd6efd4e6e4da14db1c53df6837dbc9ec92ef477a63c6991d5ea957f"
+ },
+ "P1": {
+  "studies": 281,
+  "rho": -0.353,
+  "slope": -0.655,
+  "slope_ci95": [
+   -0.847,
+   -0.459
+  ],
+  "prediction": "rho in [-0.40, -0.15] and slope in [-1.2, -0.3]",
+  "refuted_if": "rho >= 0, or the slope interval misses [-1.2, -0.3]",
+  "verdict": "supported"
+ },
+ "P2": {
+  "cells": 163,
+  "median_reduction": 0.0,
+  "share_cells_wider_after": 0.472,
+  "prediction": "median reduction < 0.25",
+  "refuted_if": "median reduction >= 0.50",
+  "verdict": "supported"
+ },
+ "P3": {
+  "distributions": 194,
+  "median_alpha": 1.28,
+  "alpha_p10_p90": [
+   0.43,
+   2.14
+  ],
+  "share_within_1.6pm0.3": 0.232,
+  "median_by_type": {
+   "Atmosphere": 1.28,
+   "Ocean": 1.2
+  },
+  "n_by_type": {
+   "Atmosphere": 96,
+   "Ocean": 98
+  },
+  "mannwhitney_p_two_largest_types": 0.36,
+  "types_compared": [
+   "Ocean",
+   "Atmosphere"
+  ],
+  "source_alpha_spearman": -0.6,
+  "prediction": "median alpha in [1.3, 2.2]; >= 30 % outside 1.6 ± 0.3; type medians differ",
+  "refuted_if": ">= 80 % within 1.6 ± 0.3",
+  "verdict": "partly"
+ },
+ "P4": {
+  "rows": 1046,
+  "papers": 278,
+  "feature_sets": {
+   "size": {
+    "r2": -0.091,
+    "r2_ci95": [
+     -0.163,
+     -0.039
+    ]
+   },
+   "polymer": {
+    "r2": 0.003,
+    "r2_ci95": [
+     -0.062,
+     0.06
+    ]
+   },
+   "surface": {
+    "r2": 0.075,
+    "r2_ci95": [
+     -0.04,
+     0.164
+    ]
+   },
+   "liquid_pH": {
+    "r2": -0.129,
+    "r2_ci95": [
+     -0.278,
+     -0.026
+    ]
+   },
+   "all": {
+    "r2": -0.074,
+    "r2_ci95": [
+     -0.286,
+     0.089
+    ]
+   }
+  },
+  "zeta_table_sha256": "317ec33ed6cde6e1d997acfd1eae0827fe78538628bdfad6775ed617883f5afc",
+  "prediction": "R2(all) < 0.5; R2(size) <= 0.05; surface and liquid_pH each > polymer",
+  "refuted_if": "R2(all) >= 0.69, or polymer or size out-predicts both surface and liquid_pH",
+  "verdict": "partly"
+ },
+ "secondary": {
+  "note": "chosen after seeing P1–P4; descriptive, not confirmatory",
+  "P4_random_split_r2_paper_mean_only": 0.069,
+  "P2_cells_with_different_windows": {
+   "cells": 112,
+   "median_reduction": -0.045,
+   "share_wider_after": 0.545
+  },
+  "P3_lod_filtered": {
+   "distributions": 148,
+   "median_alpha": 1.67,
+   "alpha_p10_p90": [
+    0.85,
+    2.74
+   ],
+   "share_within_1.6pm0.3": 0.223,
+   "median_by_type": {
+    "Atmosphere": 1.67,
+    "Ocean": 1.73
+   },
+   "mannwhitney_p": 0.0072
+  },
+  "P4_random_split_r2_all": 0.302,
+  "P1_implied_alpha": 1.66
+ }
+}

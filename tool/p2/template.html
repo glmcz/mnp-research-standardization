@@ -1,0 +1,792 @@
+<title>Size, Charge and Place</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Same tokens as the MNP-KB Atlas (tool/viz/template.html), so P2 reads as part of it.
+   Layout: one reading column; each chart sits in its own figure with filters above and a table below. */
+:root {
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #6c6a65;
+  --axis-text: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --line: rgba(11, 11, 11, 0.10);
+  --land: #e7e6e0;
+  --s1: #2a78d6;
+  --s2: #eb6834;
+  --s3: #1baf7a;
+  --s4: #eda100;
+  --s5: #e87ba4;
+  --absent: #b9b7ae;
+  --s1-wash: rgba(42, 120, 214, 0.10);
+  --s2-wash: rgba(235, 104, 52, 0.14);
+  --link: #1c5cab;
+  --hover: rgba(11, 11, 11, 0.04);
+  --y1: #cde2fb; --y2: #86b6ef; --y3: #3987e5; --y4: #1c5cab; --y5: #0d366b;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #a5a49c;
+    --axis-text: #898781; --grid: #2c2c2a; --axis: #383835; --line: rgba(255, 255, 255, 0.10);
+    --land: #262624; --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --absent: #5b5a54;
+    --s1-wash: rgba(57, 135, 229, 0.16); --s2-wash: rgba(217, 89, 38, 0.20); --link: #86b6ef;
+    --hover: rgba(255, 255, 255, 0.05);
+    --y1: #104281; --y2: #1c5cab; --y3: #3987e5; --y4: #6da7ec; --y5: #b7d3f6;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #a5a49c;
+  --axis-text: #898781; --grid: #2c2c2a; --axis: #383835; --line: rgba(255, 255, 255, 0.10);
+  --land: #262624; --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --absent: #5b5a54;
+  --s1-wash: rgba(57, 135, 229, 0.16); --s2-wash: rgba(217, 89, 38, 0.20); --link: #86b6ef;
+  --hover: rgba(255, 255, 255, 0.05);
+  --y1: #104281; --y2: #1c5cab; --y3: #3987e5; --y4: #6da7ec; --y5: #b7d3f6;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--page); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; padding-inline: 16px; }
+main { max-width: 980px; margin: 0 auto; padding-block: 40px 72px; display: grid; gap: 56px; }
+a { color: var(--link); text-underline-offset: 2px; }
+button:focus-visible, summary:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h1 { font-family: var(--display); font-stretch: 78%; font-weight: 750; font-size: clamp(2rem, 5.2vw, 3.1rem); line-height: 1.02; letter-spacing: -0.01em; }
+h2 { font-family: var(--display); font-stretch: 85%; font-weight: 650; font-size: clamp(1.35rem, 3vw, 1.8rem); line-height: 1.15; }
+h3 { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+p { margin: 0; max-width: 68ch; }
+.eyebrow { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+code { font-family: var(--mono); font-size: 0.88em; }
+header { display: grid; gap: 14px; }
+header p { color: var(--ink-2); }
+section { display: grid; gap: 16px; }
+.lede { color: var(--ink-2); }
+.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.finding { padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.finding b { font-family: var(--display); font-stretch: 85%; font-size: 1.6rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.finding span { color: var(--ink-2); font-size: 0.9rem; }
+figure { margin: 0; display: grid; gap: 10px; min-width: 0; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.seg-label { font-size: 0.78rem; color: var(--muted); font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.seg button { font: inherit; font-size: 0.85rem; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--axis); background: var(--surface); color: var(--ink-2); cursor: pointer; font-variant-numeric: tabular-nums; }
+.seg button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--page); }
+.seg button:hover { border-color: var(--ink-2); }
+.chart { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; min-width: 0; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart svg text { font-family: var(--sans); font-size: 11.5px; fill: var(--axis-text); font-variant-numeric: tabular-nums; }
+.chart svg text.lab { fill: var(--ink-2); font-size: 12px; }
+.chart svg text.strong { fill: var(--ink); font-weight: 600; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.85rem; color: var(--ink-2); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+.legend i.bar { border-radius: 2px; width: 14px; height: 8px; }
+.stat { font-size: 0.92rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.stat b { color: var(--ink); font-weight: 600; }
+.note { font-size: 0.88rem; color: var(--muted); max-width: 78ch; }
+.tip { position: absolute; pointer-events: none; z-index: 2; background: var(--surface); color: var(--ink); border: 1px solid var(--axis); border-radius: 6px; padding: 8px 10px; font-size: 0.82rem; line-height: 1.4; max-width: 280px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); font-variant-numeric: tabular-nums; }
+.tip .t { font-weight: 600; }
+.tip .m { color: var(--ink-2); }
+details { font-size: 0.88rem; }
+details summary { cursor: pointer; color: var(--ink-2); }
+.tw { overflow-x: auto; margin-top: 8px; }
+table { border-collapse: collapse; font-size: 0.82rem; font-variant-numeric: tabular-nums; min-width: 100%; }
+th, td { text-align: left; padding: 4px 10px 4px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { color: var(--muted); font-weight: 500; }
+td.r, th.r { text-align: right; }
+.absent-list { display: grid; gap: 6px; padding-left: 1.1em; margin: 0; color: var(--ink-2); font-size: 0.92rem; }
+footer { display: grid; gap: 8px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--line); padding-top: 16px; }
+@media (prefers-reduced-motion: no-preference) { .chart circle, .chart rect { transition: opacity 0.15s; } }
+</style>
+
+<main>
+  <header>
+    <div class="eyebrow">MNP-KB · P2 · review call 2026-10-10</div>
+    <h1>Size, charge and place</h1>
+    <p>Two questions from the review call. Does a particle's zeta potential follow its size once a thousand literature values are pooled? And when microplastic surveys each count a different size window, at a different place and time, can their numbers be put side by side?</p>
+    <div class="findings" id="findings"></div>
+  </header>
+
+  <section id="prereg">
+    <div class="eyebrow">Pre-registered tests · predictions committed before the runs</div>
+    <h2 id="pr-h"></h2>
+    <p class="lede">Every prediction below was written down from physics, published values or other datasets, and committed (<code id="pr-commit"></code>) before the test ran on data nobody on the project had analysed. A verdict follows the rule committed with its prediction. Analyses chosen after seeing the results are listed separately and decide nothing.</p>
+    <div class="tw" id="pr-table"></div>
+    <figure>
+      <div class="chart" id="c-r2"></div>
+      <p class="note" id="r2-note"></p>
+    </figure>
+  </section>
+
+  <section id="zeta">
+    <div class="eyebrow">Part 1 · zeta potential against particle size</div>
+    <h2 id="zeta-h"></h2>
+    <p class="lede">Every dot is one zeta potential that an agent read from a paper and code matched to its line. Size is the manufacturer's nominal size where the paper gives it, otherwise the measured one. Colour is the surface chemistry the paper names.</p>
+    <figure>
+      <div class="controls">
+        <span class="seg-label">Liquid</span><div class="seg" id="z-medium" role="group" aria-label="Liquid"></div>
+      </div>
+      <div class="controls">
+        <span class="seg-label">Plastic</span><div class="seg" id="z-mat" role="group" aria-label="Plastic"></div>
+      </div>
+      <div class="legend" id="z-legend"></div>
+      <div class="chart" id="c-zeta"></div>
+      <p class="stat" id="z-stat"></p>
+      <details><summary>Table: rank correlation by surface, polystyrene only</summary><div class="tw" id="z-table"></div></details>
+    </figure>
+  </section>
+
+  <section id="polymers">
+    <div class="eyebrow">Part 1 · polymer by polymer</div>
+    <h2 id="poly-h"></h2>
+    <p class="lede">Polyethylene carries no charged groups in its chain, polystyrene none either, PET and PMMA have esters. Yet in water most of their reported charges overlap. Within each plastic, size does not order the charge either. For most plastics, zeta alone cannot tell you which one you hold, or how big it is.</p>
+    <p class="lede" id="poly-exc"></p>
+    <figure>
+      <div class="chart" id="c-poly-range"></div>
+      <div class="legend" id="p-legend"></div>
+      <div class="chart" id="c-poly-small"></div>
+      <details><summary>Table: by polymer</summary><div class="tw" id="p-table"></div></details>
+      <p class="note">"Other" pools every remaining material (polycaprolactone, PLGA, PEF, polycarbonate and more) and is shown for completeness, not as one plastic. With this many polymers tested, one borderline p value is what chance alone would give.</p>
+    </figure>
+  </section>
+
+  <section id="amine">
+    <div class="eyebrow">Part 1 · the same label, a different sign</div>
+    <h2 id="amine-h"></h2>
+    <p class="lede">Amine groups make a polystyrene bead positive in clean water. In the liquids the papers actually used, most reported values are negative: ions, proteins and pH change what the bead carries. The liquid decides, and the next part of the talk asks whether the liquid was reported at all.</p>
+    <figure>
+      <div class="chart" id="c-amine"></div>
+      <details><summary>Table: amine polystyrene by liquid</summary><div class="tw" id="a-table"></div></details>
+    </figure>
+  </section>
+
+  <section id="map">
+    <div class="eyebrow">Part 2 · where the surveys sampled</div>
+    <h2 id="map-h"></h2>
+    <p class="lede">NOAA NCEI's global marine microplastics database, every record with a place. Ocean water and beach values are pieces per m³; sediment is pieces per kg dry weight. NCEI converted each study to these units itself. Soil records come from the global soil dataset (Wu et al., on Zenodo; see sources below) in items per kg, and most of them are from China, so a global soil claim leans on one country.</p>
+    <figure>
+      <div class="controls">
+        <span class="seg-label">Colour</span><div class="seg" id="m-color" role="group" aria-label="Colour points by"></div>
+        <span class="seg-label">Show</span><div class="seg" id="m-case" role="group" aria-label="Highlight"></div>
+      </div>
+      <div class="legend" id="m-legend"></div>
+      <div class="chart" id="c-map"></div>
+      <p class="note" id="m-note"></p>
+    </figure>
+  </section>
+
+  <section id="windows">
+    <div class="eyebrow">Part 2 · what each study could see, and what it found</div>
+    <h2 id="win-h"></h2>
+    <p class="lede">Each rectangle is one study. Left to right it spans the particle sizes the method could count: the lower edge is the finest mesh or filter, the upper edge the largest size kept. Bottom to top it spans the concentrations the study reported (10th to 90th percentile in NCEI, minimum to maximum in MP-SED). The dot sits at the study's lower size limit and its median.</p>
+    <figure>
+      <div class="controls">
+        <span class="seg-label">Dataset</span><div class="seg" id="w-set" role="group" aria-label="Dataset"></div>
+      </div>
+      <div class="legend" id="w-legend"></div>
+      <div class="chart" id="c-win"></div>
+      <p class="stat" id="w-stat"></p>
+      <details><summary>Table: studies in this view</summary><div class="tw" id="w-table"></div></details>
+    </figure>
+  </section>
+
+  <section id="time">
+    <div class="eyebrow">Part 2 · when, and how fine</div>
+    <h2 id="time-h"></h2>
+    <p class="lede">Each line is one study, drawn from its first to its last sampling date at the height of its finest size limit. If the limits keep falling, a count that rises over the years can come from finer nets as much as from more plastic.</p>
+    <figure>
+      <div class="legend" id="t-legend"></div>
+      <div class="chart" id="c-time"></div>
+      <p class="stat" id="t-stat"></p>
+    </figure>
+  </section>
+
+  <section id="slope">
+    <div class="eyebrow">Part 2 · the slope everyone assumes</div>
+    <h2 id="slope-h"></h2>
+    <p class="lede">Rescaling a count to a common size window assumes the particle sizes follow a power law with one slope, usually α = <span id="a0"></span>. MPsizeBase holds measured size distributions from air and sea. Each one gives its own α.</p>
+    <figure>
+      <div class="controls">
+        <span class="seg-label">Bins</span><div class="seg" id="a-set" role="group" aria-label="Which bins"></div>
+      </div>
+      <div class="legend" id="a-legend"></div>
+      <div class="chart" id="c-alpha"></div>
+      <p class="stat" id="a-stat"></p>
+    </figure>
+    <h3>One river, two windows</h3>
+    <p class="lede" id="weser-lede"></p>
+    <figure>
+      <div class="legend" id="ws-legend"></div>
+      <div class="chart" id="c-weser"></div>
+    </figure>
+  </section>
+
+  <section id="absence">
+    <div class="eyebrow">The same gap, in other databases</div>
+    <h2>Absence shows up here too</h2>
+    <ul class="absent-list" id="absent"></ul>
+  </section>
+
+  <footer id="sources"></footer>
+</main>
+
+<script type="application/json" id="p2-data">__DATA__</script>
+<script>
+const DATA = JSON.parse(document.getElementById('p2-data').textContent);
+const NS = 'http://www.w3.org/2000/svg';
+const nf = n => Math.round(n).toLocaleString('en-US').replace(/,/g, ' ');
+const SURF = [
+  ['carboxyl', 'carboxyl', 'var(--s1)'], ['amine', 'amine', 'var(--s2)'], ['plain', 'plain', 'var(--s3)'],
+  ['sulfate', 'sulfate', 'var(--s4)'], ['unreported', 'not stated', 'var(--absent)'],
+];
+const SURF_COLOR = Object.fromEntries(SURF.map(([k, , c]) => [k, c]));
+const SURF_LABEL = Object.fromEntries(SURF.map(([k, l]) => [k, l]));
+const MED_LABEL = {
+  DI_water: 'DI water', culture_medium: 'culture medium', unreported: 'not stated', other: 'other',
+  salt_solution: 'salt solution', buffer: 'buffer', environmental_water: 'environmental water', biofluid: 'biofluid',
+};
+
+function el(tag, attrs, parent, text) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text != null) e.textContent = text;
+  if (parent) parent.appendChild(e);
+  return e;
+}
+const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) / (d1 - d0) * (r1 - r0);
+const logs = (d0, d1, r0, r1) => { const a = Math.log10(d0), b = Math.log10(d1); return v => r0 + (Math.log10(v) - a) / (b - a) * (r1 - r0); };
+const decades = (d0, d1) => { const out = []; for (let e = Math.ceil(Math.log10(d0) - 1e-9); e <= Math.floor(Math.log10(d1) + 1e-9); e++) out.push(10 ** e); return out; };
+function sizeLabel(nm) {
+  if (nm >= 1e6) return `${nm / 1e6} mm`;
+  if (nm >= 1e3) return `${nm / 1e3} µm`;
+  return `${nm} nm`;
+}
+function umLabel(um) {
+  if (um >= 1000) return `${um / 1000} mm`;
+  if (um >= 1) return `${um} µm`;
+  return `${um * 1000} nm`;
+}
+function concLabel(v) {
+  if (v >= 1e6) return `${v / 1e6}M`;
+  if (v >= 1e3) return `${v / 1e3}k`;
+  return `${v}`;
+}
+const fmtG = v => v == null ? '–' : (v >= 100 ? nf(v) : v >= 1 ? v.toFixed(1) : v.toPrecision(2));
+
+function ranks(a) {
+  const idx = a.map((v, i) => [v, i]).sort((x, y) => x[0] - y[0]);
+  const r = new Array(a.length);
+  for (let i = 0; i < idx.length;) {
+    let j = i; while (j + 1 < idx.length && idx[j + 1][0] === idx[i][0]) j++;
+    const avg = (i + j) / 2 + 1;
+    for (let k = i; k <= j; k++) r[idx[k][1]] = avg;
+    i = j + 1;
+  }
+  return r;
+}
+function spearman(x, y) {
+  if (x.length < 3) return null;
+  const rx = ranks(x), ry = ranks(y), n = x.length;
+  const mx = rx.reduce((a, b) => a + b) / n, my = ry.reduce((a, b) => a + b) / n;
+  let sxy = 0, sxx = 0, syy = 0;
+  for (let i = 0; i < n; i++) { const a = rx[i] - mx, b = ry[i] - my; sxy += a * b; sxx += a * a; syy += b * b; }
+  return sxy / Math.sqrt(sxx * syy);
+}
+
+function segmented(root, options, value, onChange) {
+  root.innerHTML = '';
+  for (const [key, label] of options) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.textContent = label; b.setAttribute('aria-pressed', key === value ? 'true' : 'false');
+    b.addEventListener('click', () => {
+      for (const o of root.children) o.setAttribute('aria-pressed', 'false');
+      b.setAttribute('aria-pressed', 'true'); onChange(key);
+    });
+    root.appendChild(b);
+  }
+}
+function legend(root, items, kind = 'dot') {
+  root.innerHTML = items.map(([label, color]) => `<span><i class="${kind === 'bar' ? 'bar' : ''}" style="background:${color}"></i>${label}</span>`).join('');
+}
+function tooltip(chart) {
+  let tip = chart.querySelector('.tip');
+  if (!tip) { tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; chart.appendChild(tip); }
+  return {
+    show(evt, html) {
+      tip.innerHTML = html; tip.hidden = false;
+      const box = chart.getBoundingClientRect();
+      let x = evt.clientX - box.left + 14, y = evt.clientY - box.top + 14;
+      if (x + tip.offsetWidth > box.width - 4) x = evt.clientX - box.left - tip.offsetWidth - 14;
+      if (y + tip.offsetHeight > box.height - 4) y = evt.clientY - box.top - tip.offsetHeight - 14;
+      tip.style.left = `${Math.max(4, x)}px`; tip.style.top = `${Math.max(4, y)}px`;
+    },
+    hide() { tip.hidden = true; },
+  };
+}
+function frame(chart, height) {
+  chart.querySelector('svg')?.remove();
+  const w = Math.max(300, chart.clientWidth - 16);
+  const svg = el('svg', { viewBox: `0 0 ${w} ${height}`, role: 'img' });
+  chart.insertBefore(svg, chart.firstChild);
+  return [svg, w];
+}
+function table(root, head, rows) {
+  root.innerHTML = `<table><thead><tr>${head.map(h => `<th class="${h[1] || ''}">${h[0]}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map((c, i) => `<td class="${head[i][1] || ''}">${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+
+/* ---------- findings strip ---------- */
+const Z = DATA.zeta.stats, N = DATA.ncei.stats, M = DATA.mpsed.stats;
+document.getElementById('findings').innerHTML = [
+  [`ρ ${Z.all_spearman.rho.toFixed(2)}`, `size against zeta across ${nf(Z.rows)} values from ${nf(Z.papers)} papers`],
+  [`${Z.amine_negative} of ${Z.amine_rows}`, 'amine polystyrene values reported negative'],
+  [`ρ ${N.water_lower_vs_median.rho.toFixed(2)}`, `finer size limit, higher median count (${N.water_lower_vs_median.n} ocean-water studies)`],
+  [`ρ ${N.lower_vs_year.rho.toFixed(2)}`, `size limits fall over the years (${N.lower_vs_year.n} NCEI study rows)`],
+].map(([b, s]) => `<div class="finding"><b>${b}</b><span>${s}</span></div>`).join('');
+
+/* ---------- Part 1a: zeta vs size ---------- */
+const ZR = DATA.zeta.rows.map((r, i) => ({ i, size: r[0], z: r[1], surf: r[2], med: r[3], mat: r[4], pmcid: r[5], row: r[6], kind: r[7] }));
+document.getElementById('zeta-h').textContent = `Across ${nf(Z.rows)} values, size tells you almost nothing about the charge`;
+const zState = { med: 'all', mat: 'all' };
+const medCounts = {}; ZR.forEach(r => medCounts[r.med] = (medCounts[r.med] || 0) + 1);
+const medOpts = [['all', `all ${nf(ZR.length)}`], ...Object.entries(medCounts).sort((a, b) => b[1] - a[1]).map(([k, n]) => [k, `${MED_LABEL[k] || k} ${n}`])];
+segmented(document.getElementById('z-medium'), medOpts, 'all', v => { zState.med = v; drawZeta(); });
+const matCounts = {}; ZR.forEach(r => matCounts[r.mat] = (matCounts[r.mat] || 0) + 1);
+const matOpts = [['all', 'all'], ...Object.entries(matCounts).sort((a, b) => b[1] - a[1]).map(([k, n]) => [k, `${k} ${n}`])];
+segmented(document.getElementById('z-mat'), matOpts, 'all', v => { zState.mat = v; drawZeta(); });
+
+function drawZeta() {
+  const chart = document.getElementById('c-zeta');
+  const rows = ZR.filter(r => (zState.med === 'all' || r.med === zState.med) && (zState.mat === 'all' || r.mat === zState.mat));
+  const H = 400, [svg, W] = frame(chart, H);
+  svg.setAttribute('aria-label', `Zeta potential against particle size, ${rows.length} values`);
+  const m = { l: 46, r: 12, t: 12, b: 40 };
+  const x = logs(1, 1e6, m.l, W - m.r), y = lin(-100, 120, H - m.b, m.t);
+  for (const v of [-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100, 120]) {
+    el('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: v === 0 ? 'var(--axis)' : 'var(--grid)', 'stroke-width': v === 0 ? 1.5 : 1 }, svg);
+    if (v % 40 === 0 || v === -100) el('text', { x: m.l - 8, y: y(v) + 4, 'text-anchor': 'end' }, svg, `${v > 0 ? '+' : ''}${v}`);
+  }
+  for (const v of decades(1, 1e6)) {
+    el('line', { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b, stroke: 'var(--grid)' }, svg);
+    el('text', { x: x(v), y: H - m.b + 18, 'text-anchor': 'middle' }, svg, sizeLabel(v));
+  }
+  el('text', { x: m.l, y: H - 6, class: 'lab' }, svg, 'particle size (log scale)');
+  el('text', { x: 4, y: m.t + 4, class: 'lab', transform: `rotate(-90 4 ${m.t + 4})`, 'text-anchor': 'end' }, svg, 'zeta potential, mV');
+  const order = ['unreported', 'plain', 'sulfate', 'carboxyl', 'amine'];
+  const g = el('g', {}, svg);
+  const tip = tooltip(chart);
+  for (const s of order) for (const r of rows) if (r.surf === s) {
+    el('circle', { cx: x(r.size), cy: y(Math.max(-100, Math.min(120, r.z))), r: 4, fill: SURF_COLOR[s], 'fill-opacity': s === 'unreported' ? 0.55 : 0.8, stroke: 'var(--surface)', 'stroke-width': 1, 'data-i': r.i }, g);
+  }
+  g.addEventListener('pointermove', e => {
+    const i = e.target.getAttribute && e.target.getAttribute('data-i'); if (i == null) return tip.hide();
+    const r = ZR[+i];
+    tip.show(e, `<div class="t">${r.z > 0 ? '+' : ''}${r.z} mV · ${sizeLabel(r.size)}</div><div class="m">${r.mat} · ${SURF_LABEL[r.surf]} surface · ${MED_LABEL[r.med] || r.med}</div><div class="m">${r.pmcid} ${r.row} · ${r.kind} size</div>`);
+  });
+  g.addEventListener('pointerleave', () => tip.hide());
+  const counts = {}; rows.forEach(r => counts[r.surf] = (counts[r.surf] || 0) + 1);
+  legend(document.getElementById('z-legend'), SURF.filter(([k]) => counts[k]).map(([k, l, c]) => [`${l} ${counts[k]}`, c]));
+  const rho = spearman(rows.map(r => Math.log10(r.size)), rows.map(r => r.z));
+  document.getElementById('z-stat').innerHTML = rho == null ? 'Too few values for a correlation.' :
+    `Spearman rank correlation between size and zeta in this view: <b>ρ = ${rho.toFixed(2)}</b> over ${nf(rows.length)} values. A value near 0 means size does not order the charges.`;
+}
+table(document.getElementById('z-table'), [['surface'], ['values', 'r'], ['papers', 'r'], ['median mV', 'r'], ['ρ (log size, zeta)', 'r'], ['p', 'r']],
+  Object.entries(Z.ps_by_surface).map(([k, v]) => [SURF_LABEL[k], v.rows, v.papers, v.median_mV, v.spearman ? v.spearman.rho.toFixed(2) : '–', v.spearman ? v.spearman.p : '–']));
+
+/* ---------- Part 1b: polymer by polymer ---------- */
+const PB = Z.by_polymer;
+const mv = v => `${v < 0 ? '\u2212' : '+'}${Math.abs(v).toFixed(1)}`;
+const NAMED = PB.filter(p => p.polymer !== 'other'), NEG = NAMED.filter(p => p.zeta_median < 0), POS = NAMED.filter(p => p.zeta_median > 0);
+const negLo = Math.min(...NEG.map(p => p.zeta_median)), negHi = Math.max(...NEG.map(p => p.zeta_median));
+document.getElementById('poly-h').textContent = POS.length
+  ? `${NEG.length} of ${NAMED.length} plastics carry a similar negative charge (medians ${mv(negLo)} to ${mv(negHi)} mV); ${POS.map(p => p.polymer).join(' and ')} is the exception`
+  : `${NAMED.length} plastics, one charge: medians from ${mv(negLo)} to ${mv(negHi)} mV`;
+document.getElementById('poly-exc').textContent = POS.map(p =>
+  `The exception: ${p.polymer} has a median of ${mv(p.zeta_median)} mV, with ${p.positive} of ${p.rows} values positive. They come from ${p.papers} papers, and ${p.top_paper_rows} of them from a single paper, so treat it as a lead to check, not a finding.${p.spearman && p.top_paper_rows > p.rows / 2 ? ` Its size trend (ρ ${p.spearman.rho.toFixed(2)}) rests on that one paper too, where the small and the large particles were also different nylons in different liquids.` : ''}`).join(' ');
+function drawPolyRange() {
+  const chart = document.getElementById('c-poly-range');
+  const narrow = chart.clientWidth < 560, rowH = 30, m = { l: narrow ? 64 : 80, r: narrow ? 92 : 170, t: 10, b: 34 };
+  const H = m.t + m.b + rowH * PB.length, [svg, W] = frame(chart, H);
+  svg.setAttribute('aria-label', 'Zeta potential by polymer: median and 10th to 90th percentile');
+  const x = lin(-80, 60, m.l, W - m.r);
+  for (const v of [-80, -60, -40, -20, 0, 20, 40, 60]) {
+    el('line', { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b, stroke: v === 0 ? 'var(--axis)' : 'var(--grid)', 'stroke-width': v === 0 ? 1.5 : 1 }, svg);
+    if (v % 40 === 0 || !narrow) el('text', { x: x(v), y: H - m.b + 18, 'text-anchor': 'middle' }, svg, `${v > 0 ? '+' : ''}${v}`);
+  }
+  el('text', { x: m.l, y: H - 4, class: 'lab' }, svg, narrow ? 'zeta, mV' : 'zeta potential, mV (10th–90th percentile, median)');
+  PB.forEach((p, i) => {
+    const cy = m.t + rowH * i + rowH / 2, other = p.polymer === 'other';
+    const c = other ? 'var(--absent)' : 'var(--s1)';
+    el('text', { x: m.l - 10, y: cy + 4, 'text-anchor': 'end', class: other ? '' : 'lab strong' }, svg, p.polymer);
+    el('line', { x1: x(p.zeta_p10), x2: x(p.zeta_p90), y1: cy, y2: cy, stroke: c, 'stroke-width': 6, 'stroke-linecap': 'round', 'stroke-opacity': 0.35 }, svg);
+    el('circle', { cx: x(p.zeta_median), cy, r: 6, fill: c, stroke: 'var(--surface)', 'stroke-width': 2 }, svg);
+    const sp = p.spearman ? ` · ρ ${p.spearman.rho.toFixed(2)}` : '';
+    el('text', { x: W - m.r + 10, y: cy + 4, class: 'lab' }, svg, narrow ? `n ${p.rows}` : `n ${nf(p.rows)} · ${p.papers} papers${sp}`);
+  });
+}
+function drawPolySmall() {
+  const chart = document.getElementById('c-poly-small');
+  const Wc = Math.max(300, chart.clientWidth - 16), cols = Wc >= 760 ? 4 : 2, gap = 14;
+  const pw = (Wc - gap * (cols - 1)) / cols, ph = 170, rows = Math.ceil(PB.length / cols);
+  const H = rows * (ph + gap), [svg] = frame(chart, H);
+  svg.setAttribute('aria-label', 'Zeta potential against size, one panel per polymer, shared axes');
+  const tip = tooltip(chart), g = el('g', {}, svg);
+  PB.forEach((p, k) => {
+    const ox = (k % cols) * (pw + gap), oy = Math.floor(k / cols) * (ph + gap);
+    const m = { l: 34, r: 6, t: 22, b: 22 };
+    const x = logs(1, 1e6, ox + m.l, ox + pw - m.r), y = lin(-100, 120, oy + ph - m.b, oy + m.t);
+    el('rect', { x: ox + m.l, y: oy + m.t, width: pw - m.l - m.r, height: ph - m.t - m.b, fill: 'none', stroke: 'var(--grid)' }, svg);
+    for (const v of [-80, 0, 80]) {
+      el('line', { x1: ox + m.l, x2: ox + pw - m.r, y1: y(v), y2: y(v), stroke: v === 0 ? 'var(--axis)' : 'var(--grid)' }, svg);
+      el('text', { x: ox + m.l - 4, y: y(v) + 4, 'text-anchor': 'end' }, svg, `${v > 0 ? '+' : ''}${v}`);
+    }
+    for (const v of [1, 1e3, 1e6]) el('text', { x: x(v), y: oy + ph - 6, 'text-anchor': v === 1 ? 'start' : v === 1e6 ? 'end' : 'middle' }, svg, sizeLabel(v));
+    const sp = p.spearman ? `ρ ${p.spearman.rho.toFixed(2)}` : 'too few for ρ';
+    el('text', { x: ox + m.l, y: oy + 14, class: 'lab strong' }, svg, p.polymer);
+    el('text', { x: ox + pw - m.r, y: oy + 14, 'text-anchor': 'end' }, svg, `n ${nf(p.rows)} · ${sp}`);
+    for (const r of ZR) if (r.mat === p.polymer) {
+      el('circle', { cx: x(r.size), cy: y(Math.max(-100, Math.min(120, r.z))), r: 3, fill: SURF_COLOR[r.surf], 'fill-opacity': r.surf === 'unreported' ? 0.5 : 0.8, stroke: 'var(--surface)', 'stroke-width': 0.75, 'data-i': r.i }, g);
+    }
+    el('line', { x1: ox + m.l, x2: ox + pw - m.r, y1: y(p.zeta_median), y2: y(p.zeta_median), stroke: 'var(--ink)', 'stroke-width': 1, 'stroke-dasharray': '4 3', 'stroke-opacity': 0.6 }, svg);
+  });
+  g.addEventListener('pointermove', e => {
+    const i = e.target.getAttribute && e.target.getAttribute('data-i'); if (i == null) return tip.hide();
+    const r = ZR[+i];
+    tip.show(e, `<div class="t">${r.z > 0 ? '+' : ''}${r.z} mV · ${sizeLabel(r.size)}</div><div class="m">${r.mat} · ${SURF_LABEL[r.surf]} surface · ${MED_LABEL[r.med] || r.med}</div><div class="m">${r.pmcid} ${r.row}</div>`);
+  });
+  g.addEventListener('pointerleave', () => tip.hide());
+  legend(document.getElementById('p-legend'), [...SURF.map(([, l, c]) => [l, c]), ['median', 'var(--ink)']]);
+}
+table(document.getElementById('p-table'), [['polymer'], ['values', 'r'], ['papers', 'r'], ['p10 mV', 'r'], ['median mV', 'r'], ['p90 mV', 'r'], ['median size', 'r'], ['share under 1 µm', 'r'], ['values from the top paper', 'r'], ['ρ (log size, zeta)', 'r'], ['p', 'r']],
+  PB.map(p => [p.polymer, nf(p.rows), p.papers, p.zeta_p10, p.zeta_median, p.zeta_p90, sizeLabel(p.size_median_nm), `${Math.round(p.nano_share * 100)} %`, p.top_paper_rows, p.spearman ? p.spearman.rho.toFixed(2) : '–', p.spearman ? p.spearman.p : '–']));
+
+/* ---------- Part 1c: amine by liquid ---------- */
+document.getElementById('amine-h').textContent = `${Z.amine_negative} of ${Z.amine_rows} "positive" amine beads are reported negative`;
+function drawAmine() {
+  const chart = document.getElementById('c-amine');
+  const am = ZR.filter(r => r.mat === 'PS' && r.surf === 'amine');
+  const byMed = {}; am.forEach(r => (byMed[r.med] = byMed[r.med] || []).push(r));
+  const meds = Object.keys(byMed).filter(k => byMed[k].length >= 3).sort((a, b) => median(byMed[b].map(r => r.z)) - median(byMed[a].map(r => r.z)));
+  const narrow = chart.clientWidth < 560, rowH = 34, m = { l: narrow ? 100 : 132, r: narrow ? 62 : 112, t: 14, b: 34 };
+  const H = m.t + m.b + rowH * meds.length, [svg, W] = frame(chart, H);
+  svg.setAttribute('aria-label', 'Zeta potential of amine polystyrene by liquid');
+  const x = lin(-80, 80, m.l, W - m.r);
+  for (const v of [-80, -40, 0, 40, 80]) {
+    el('line', { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b, stroke: v === 0 ? 'var(--axis)' : 'var(--grid)', 'stroke-width': v === 0 ? 1.5 : 1 }, svg);
+    el('text', { x: x(v), y: H - m.b + 18, 'text-anchor': 'middle' }, svg, `${v > 0 ? '+' : ''}${v} mV`);
+  }
+  el('text', { x: x(-80), y: H - 4, class: 'lab' }, svg, 'negative');
+  el('text', { x: x(80), y: H - 4, class: 'lab', 'text-anchor': 'end' }, svg, 'positive');
+  const tip = tooltip(chart), g = el('g', {}, svg);
+  meds.forEach((k, i) => {
+    const rs = byMed[k], cy = m.t + rowH * i + rowH / 2;
+    el('text', { x: m.l - 10, y: cy + 4, 'text-anchor': 'end', class: 'lab' }, svg, MED_LABEL[k] || k);
+    rs.forEach((r, j) => {
+      const jit = ((j * 7919) % 11 - 5) * 1.6;
+      el('circle', { cx: x(Math.max(-80, Math.min(80, r.z))), cy: cy + jit, r: 4, fill: r.z > 0 ? 'var(--s2)' : 'var(--s1)', 'fill-opacity': 0.8, stroke: 'var(--surface)', 'stroke-width': 1, 'data-i': r.i }, g);
+    });
+    const md = median(rs.map(r => r.z));
+    el('line', { x1: x(md), x2: x(md), y1: cy - 12, y2: cy + 12, stroke: 'var(--ink)', 'stroke-width': 2 }, svg);
+    const pos = rs.filter(r => r.z > 0).length;
+    el('text', { x: W - m.r + 10, y: cy + 4, class: 'lab' }, svg, `${pos}+ / ${rs.length - pos}−`);
+  });
+  g.addEventListener('pointermove', e => {
+    const i = e.target.getAttribute && e.target.getAttribute('data-i'); if (i == null) return tip.hide();
+    const r = ZR[+i]; tip.show(e, `<div class="t">${r.z > 0 ? '+' : ''}${r.z} mV</div><div class="m">${MED_LABEL[r.med] || r.med} · ${sizeLabel(r.size)}</div><div class="m">${r.pmcid} ${r.row}</div>`);
+  });
+  g.addEventListener('pointerleave', () => tip.hide());
+}
+function median(a) { const s = [...a].sort((x, y) => x - y), n = s.length; return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2; }
+table(document.getElementById('a-table'), [['liquid'], ['values', 'r'], ['papers', 'r'], ['median mV', 'r'], ['positive', 'r'], ['negative', 'r']],
+  Object.entries(Z.amine_by_medium).sort((a, b) => b[1].rows - a[1].rows).map(([k, v]) => [MED_LABEL[k] || k, v.rows, v.papers, v.median_mV, v.positive, v.negative]));
+
+/* ---------- Part 2a: map ---------- */
+const SET_COLOR = ['var(--s1)', 'var(--s4)', 'var(--s3)'];
+const SOIL_COLOR = 'var(--s5)';
+const SOIL = DATA.ext.soil_points;
+const PTS = DATA.ncei.points;
+const CASE_K = new Set(DATA.ncei.studies.filter(s => s.case).map(s => DATA.ncei.study_dois.indexOf(s.doi)));
+const STUDY_BY_K = {}; DATA.ncei.studies.forEach(s => { const k = DATA.ncei.study_dois.indexOf(s.doi); (STUDY_BY_K[k] = STUDY_BY_K[k] || []).push(s); });
+document.getElementById('map-h').textContent = `${nf(N.records + SOIL.length)} samples: ${nf(N.records)} marine from ${N.studies} studies (NCEI), ${nf(SOIL.length)} soil from ${DATA.ext.soil_studies.length} (Wu et al.)`;
+const mState = { color: 'setting', only: 'all' };
+segmented(document.getElementById('m-color'), [['setting', 'by setting'], ['year', 'by year']], 'setting', v => { mState.color = v; drawMap(); });
+segmented(document.getElementById('m-case'), [['all', 'all studies'], ['case', 'Reisser / Eriksen']], 'all', v => { mState.only = v; drawMap(); });
+const YEAR_STEPS = [[1990, 'var(--y1)', 'before 1990'], [2010, 'var(--y2)', '1990–2009'], [2015, 'var(--y3)', '2010–2014'], [2020, 'var(--y4)', '2015–2019'], [9999, 'var(--y5)', '2020 on']];
+const yearColor = y => YEAR_STEPS.find(([lim]) => y < lim)[1];
+function drawMap() {
+  const chart = document.getElementById('c-map');
+  chart.querySelector('svg')?.remove();
+  const svg = el('svg', { viewBox: '0 12 360 140', role: 'img', 'aria-label': 'World map of microplastic sampling locations', style: 'overflow:hidden' });
+  const pr = Math.max(0.55, 1.8 * 360 / Math.max(300, chart.clientWidth - 16));
+  chart.insertBefore(svg, chart.firstChild);
+  el('path', { d: DATA.land, fill: 'var(--land)', stroke: 'none' }, svg);
+  const g = el('g', {}, svg), tip = tooltip(chart);
+  PTS.forEach((p, i) => {
+    const isCase = CASE_K.has(p[6]);
+    if (mState.only === 'case' && !isCase) return;
+    const c = mState.color === 'year' ? yearColor(p[2]) : SET_COLOR[p[5]];
+    el('circle', { cx: (p[0] + 180).toFixed(2), cy: (90 - p[1]).toFixed(2), r: mState.only === 'case' ? pr * 1.6 : pr,
+      fill: p[4] ? 'none' : c, stroke: p[4] ? c : 'none', 'stroke-width': 0.25, 'fill-opacity': 0.75, 'data-i': i }, g);
+  });
+  if (mState.only === 'all') SOIL.forEach((p, i) => {
+    const c = mState.color === 'year' ? (p[2] ? yearColor(p[2]) : 'var(--absent)') : SOIL_COLOR;
+    el('circle', { cx: (p[0] + 180).toFixed(2), cy: (90 - p[1]).toFixed(2), r: pr, fill: c, 'fill-opacity': 0.75, 'data-s': i }, g);
+  });
+  g.addEventListener('pointermove', e => {
+    const si = e.target.getAttribute && e.target.getAttribute('data-s');
+    if (si != null) {
+      const p = SOIL[+si];
+      return tip.show(e, `<div class="t">Soil · Wu et al. 2026</div><div class="m">${p[2] || 'year not reported'} · ${p[3] == null ? 'no value' : fmtG(10 ** p[3]) + ' items per kg'}</div><div class="m">${p[1].toFixed(2)}°, ${p[0].toFixed(2)}°</div>`);
+    }
+    const i = e.target.getAttribute && e.target.getAttribute('data-i'); if (i == null) return tip.hide();
+    const p = PTS[+i], st = (STUDY_BY_K[p[6]] || [])[0] || {};
+    const v = p[4] ? '0 (none found)' : p[3] == null ? 'no value' : fmtG(10 ** p[3]);
+    tip.show(e, `<div class="t">${st.ref || ''}</div><div class="m">${DATA.ncei.settings[p[5]]} · ${p[2]} · ${v} ${st.unit || ''}</div><div class="m">${p[1].toFixed(2)}°, ${p[0].toFixed(2)}°</div>`);
+  });
+  g.addEventListener('pointerleave', () => tip.hide());
+  if (mState.color === 'year') legend(document.getElementById('m-legend'), YEAR_STEPS.map(([, c, l]) => [l, c]));
+  else legend(document.getElementById('m-legend'), [...DATA.ncei.settings.map((s, i) => [`${s} ${nf(N.by_setting[s].records)}`, SET_COLOR[i]]), [`Soil (Wu et al.) ${nf(SOIL.length)}`, SOIL_COLOR]]);
+}
+
+const C = DATA.case, CM = C.median_ratio_by_method;
+document.getElementById('m-note').innerHTML = `The highlighted case: Reisser 2013 and Eriksen 2014 report the same ${C.tows} net tows in the Tasman Sea. NCEI holds them twice, converted with different net depths and size cuts, so one tow carries two values: Reisser's over Eriksen's has a median of ${CM['Manta net'].toFixed(2)} for Manta tows and ${CM['Neuston net'].toFixed(2)} for Neuston tows, and ${C.zero_E_positive_R} tows are zero in one and positive in the other (<code>tool/colocation/reisser_eriksen/README.md</code>).`;
+
+/* ---------- Part 2b: size window x concentration ---------- */
+const WIN_SETS = {
+  water: { label: 'Ocean water · NCEI', unit: 'pieces per m³', studies: DATA.ncei.studies.filter(s => s.setting === 'Ocean water' && s.conc_median != null && s.lower_um_min != null)
+    .map(s => ({ ref: s.ref, lo: s.lower_um_min, hi: s.upper_um, y0: s.conc_p10, y1: s.conc_p90, med: s.conc_median, n: s.n, where: [s.ocean, s.region].filter(Boolean).join(', '), when: `${s.date_first.slice(0, 4)}–${s.date_last.slice(0, 4)}`, case: s.case })),
+    stat: N.water_lower_vs_median, spread: 'p10–p90' },
+  sediment: { label: 'Sediment · MP-SED', unit: 'pieces per kg dry sediment', studies: DATA.mpsed.studies.filter(s => s.lower_um != null && s.conc_median > 0)
+    .map(s => ({ ref: s.ref, lo: s.lower_um, hi: s.upper_um, y0: s.conc_min, y1: s.conc_max, med: s.conc_median, n: s.n, where: [s.countries, s.waterbodies].filter(Boolean).join(' · '), when: s.year_first ? `${s.year_first}${s.year_last !== s.year_first ? '–' + s.year_last : ''}` : 'year not reported', case: '' })),
+    stat: M.lower_vs_median, spread: 'min–max' },
+  soil: { label: 'Soil · Wu et al. 2026', unit: 'items per kg soil', studies: DATA.ext.soil_studies.filter(s => s.hi > s.lo && s.med > 0)
+    .map(s => ({ ref: s.study, lo: s.lo, hi: s.hi, y0: s.p10, y1: s.p90, med: s.med, n: s.n, where: `${s.lat.toFixed(1)}°, ${s.lon.toFixed(1)}°`, when: s.y0 ? `${s.y0}${s.y1 !== s.y0 ? '–' + s.y1 : ''}` : 'year not reported', case: '' })),
+    stat: { rho: DATA.ext.prereg.P1.rho, p: 'pre-registered P1, ' + DATA.ext.prereg.P1.verdict, n: DATA.ext.prereg.P1.studies }, spread: 'p10–p90' },
+};
+let wSet = 'water';
+segmented(document.getElementById('w-set'), Object.entries(WIN_SETS).map(([k, v]) => [k, `${v.label} · ${v.studies.length}`]), wSet, v => { wSet = v; drawWin(); });
+document.getElementById('win-h').textContent = 'The finer the net, the more plastic it finds';
+function drawWin() {
+  const S = WIN_SETS[wSet], chart = document.getElementById('c-win');
+  const H = 420, [svg, W] = frame(chart, H);
+  svg.setAttribute('aria-label', `Size window against reported concentration, ${S.label}`);
+  const m = { l: 56, r: 16, t: 12, b: 40 };
+  const pos = S.studies.flatMap(s => [s.y0, s.y1, s.med]).filter(v => v > 0);
+  const ylo = 10 ** Math.floor(Math.log10(Math.min(...pos))), yhi = 10 ** Math.ceil(Math.log10(Math.max(...pos)));
+  const x = logs(0.1, 10000, m.l, W - m.r), y = logs(ylo, yhi, H - m.b, m.t);
+  for (const v of decades(ylo, yhi)) {
+    el('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: 'var(--grid)' }, svg);
+    el('text', { x: m.l - 8, y: y(v) + 4, 'text-anchor': 'end' }, svg, concLabel(v));
+  }
+  for (const v of decades(0.1, 10000)) {
+    el('line', { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b, stroke: 'var(--grid)' }, svg);
+    el('text', { x: x(v), y: H - m.b + 18, 'text-anchor': 'middle' }, svg, umLabel(v));
+  }
+  el('line', { x1: x(5000), x2: x(5000), y1: m.t, y2: H - m.b, stroke: 'var(--axis)', 'stroke-dasharray': '3 3' }, svg);
+  el('text', { x: x(5000) - 4, y: m.t + 12, 'text-anchor': 'end', class: 'lab' }, svg, '5 mm');
+  el('text', { x: m.l, y: H - 6, class: 'lab' }, svg, 'particle size the method can count (log scale)');
+  el('text', { x: 4, y: m.t + 4, class: 'lab', transform: `rotate(-90 4 ${m.t + 4})`, 'text-anchor': 'end' }, svg, S.unit);
+  const g = el('g', {}, svg), tip = tooltip(chart);
+  const sorted = S.studies.map((s, i) => [s, i]).sort((a, b) => (!!a[0].case - !!b[0].case) || (b[0].hi - b[0].lo) - (a[0].hi - a[0].lo));
+  for (const [s, i] of sorted) {
+    const c = s.case ? 'var(--s2)' : 'var(--s1)';
+    const y0 = y(Math.max(ylo, s.y0 > 0 ? s.y0 : ylo)), y1 = y(Math.max(ylo, s.y1));
+    el('rect', { x: x(s.lo), y: Math.min(y0, y1), width: Math.max(2, x(s.hi) - x(s.lo)), height: Math.max(2, Math.abs(y0 - y1)),
+      fill: c, 'fill-opacity': 0.07, stroke: c, 'stroke-opacity': 0.5, 'stroke-width': 1, rx: 2, 'data-i': i }, g);
+  }
+  for (const [s, i] of sorted) {
+    el('circle', { cx: x(s.lo), cy: y(s.med), r: 4.5, fill: s.case ? 'var(--s2)' : 'var(--s1)', stroke: 'var(--surface)', 'stroke-width': 1.5, 'data-i': i }, g);
+  }
+  g.addEventListener('pointermove', e => {
+    const i = e.target.getAttribute && e.target.getAttribute('data-i'); if (i == null) return tip.hide();
+    const s = S.studies[+i];
+    tip.show(e, `<div class="t">${s.ref}</div><div class="m">${s.where}</div><div class="m">${s.when} · ${nf(s.n)} records</div><div class="m">counts ${umLabel(+s.lo.toPrecision(3))} to ${umLabel(s.hi)}</div><div class="m">median ${fmtG(s.med)}, ${S.spread} ${fmtG(s.y0)}–${fmtG(s.y1)}</div>`);
+  });
+  g.addEventListener('pointerleave', () => tip.hide());
+  const items = [['one study: size window × reported range', 'var(--s1)']];
+  if (S.studies.some(s => s.case)) items.push(['Reisser 2013 / Eriksen 2014', 'var(--s2)']);
+  legend(document.getElementById('w-legend'), items, 'bar');
+  document.getElementById('w-stat').innerHTML = `Across these ${S.stat.n} studies, the lower size limit against the median count: <b>Spearman ρ = ${S.stat.rho.toFixed(2)}</b> (${typeof S.stat.p === 'string' ? S.stat.p : 'p = ' + S.stat.p}). Finer limits go with higher counts, so two studies with different limits disagree before anything about the place differs.`;
+  table(document.getElementById('w-table'), [['study'], ['where'], ['when'], ['records', 'r'], ['lower', 'r'], ['upper', 'r'], ['median', 'r'], [S.spread, 'r']],
+    [...S.studies].sort((a, b) => a.lo - b.lo).map(s => [s.ref, s.where, s.when, nf(s.n), umLabel(+s.lo.toPrecision(3)), umLabel(s.hi), fmtG(s.med), `${fmtG(s.y0)}–${fmtG(s.y1)}`]));
+}
+
+/* ---------- Part 2c: timeline ---------- */
+document.getElementById('time-h').textContent = 'Size limits get finer over the years';
+function drawTime() {
+  const chart = document.getElementById('c-time');
+  const H = 380, [svg, W] = frame(chart, H);
+  svg.setAttribute('aria-label', 'Sampling period against lower size limit, one line per study');
+  const m = { l: 56, r: 16, t: 12, b: 40 };
+  const x = lin(1970, 2026, m.l, W - m.r), y = logs(0.1, 2000, H - m.b, m.t);
+  for (const v of decades(0.1, 2000)) {
+    el('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: 'var(--grid)' }, svg);
+    el('text', { x: m.l - 8, y: y(v) + 4, 'text-anchor': 'end' }, svg, umLabel(v));
+  }
+  for (let v = 1970; v <= 2025; v += 10) {
+    el('line', { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b, stroke: 'var(--grid)' }, svg);
+    el('text', { x: x(v), y: H - m.b + 18, 'text-anchor': 'middle' }, svg, String(v));
+  }
+  el('text', { x: m.l, y: H - 6, class: 'lab' }, svg, 'sampling period');
+  el('text', { x: 4, y: m.t + 4, class: 'lab', transform: `rotate(-90 4 ${m.t + 4})`, 'text-anchor': 'end' }, svg, 'finest size limit (log)');
+  const lines = [
+    ...DATA.ncei.studies.filter(s => s.lower_um_min != null).map(s => ({ a: +s.date_first.slice(0, 4) + (+s.date_first.slice(5, 7) - 1) / 12, b: +s.date_last.slice(0, 4) + (+s.date_last.slice(5, 7)) / 12, lo: s.lower_um_min, c: SET_COLOR[DATA.ncei.settings.indexOf(s.setting)], ref: s.ref, what: `NCEI · ${s.setting}` })),
+    ...DATA.mpsed.studies.filter(s => s.lower_um != null && s.year_first).map(s => ({ a: s.year_first, b: s.year_last + 1, lo: s.lower_um, c: 'var(--s2)', ref: s.ref, what: 'MP-SED · sediment' })),
+    ...DATA.ext.soil_studies.filter(s => s.y0 && s.lo > 0).map(s => ({ a: s.y0, b: s.y1 + 1, lo: s.lo, c: SOIL_COLOR, ref: s.study, what: 'Soil · Wu et al.' })),
+  ];
+  const g = el('g', {}, svg), tip = tooltip(chart);
+  lines.forEach((l, i) => {
+    const yy = y(Math.max(0.1, l.lo));
+    el('line', { x1: x(l.a), x2: Math.max(x(l.a) + 3, x(l.b)), y1: yy, y2: yy, stroke: l.c, 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-opacity': 0.85, 'data-i': i }, g);
+  });
+  g.addEventListener('pointermove', e => {
+    const i = e.target.getAttribute && e.target.getAttribute('data-i'); if (i == null) return tip.hide();
+    const l = lines[+i]; tip.show(e, `<div class="t">${l.ref}</div><div class="m">${l.what}</div><div class="m">${Math.floor(l.a)}–${Math.floor(l.b - 1e-6)} · finest limit ${umLabel(+l.lo.toPrecision(3))}</div>`);
+  });
+  g.addEventListener('pointerleave', () => tip.hide());
+  legend(document.getElementById('t-legend'), [...DATA.ncei.settings.map((s, i) => [`NCEI ${s.toLowerCase()}`, SET_COLOR[i]]), ['MP-SED sediment', 'var(--s2)'], ['Soil (Wu et al.)', SOIL_COLOR]], 'bar');
+  document.getElementById('t-stat').innerHTML = `First sampling year against the finest size limit: NCEI <b>ρ = ${N.lower_vs_year.rho.toFixed(2)}</b> (p = ${N.lower_vs_year.p}, ${N.lower_vs_year.n} study rows); MP-SED ρ = ${M.lower_vs_year.rho.toFixed(2)} (p = ${M.lower_vs_year.p}, ${M.lower_vs_year.n}).`;
+}
+
+/* ---------- absence and sources ---------- */
+const nceiLowerMissing = DATA.ncei.studies.reduce((a, s) => a + s.lower_missing, 0);
+document.getElementById('absent').innerHTML = [
+  `MP-SED codes the lower size limit as <code>99999</code> when the paper does not report it: <b>${M.lower_unknown_records}</b> of ${nf(M.records)} records.`,
+  `MP-SED has no sampling year for <b>${M.year_missing_records}</b> records ("(N/R)" or a month without a year).`,
+  `NCEI has no mesh size for <b>${nceiLowerMissing}</b> of ${nf(N.records)} records outside the nurdle survey.`,
+  `NCEI's upper size limit is its own rule, not each study's statement: it keeps pieces under 5 mm (Nyadjro et al. 2023, Sci Data).`,
+].map(s => `<li>${s}</li>`).join('');
+document.getElementById('sources').innerHTML = `
+  <div><b>Zeta values:</b> <code>${DATA.sources.d1}</code>, rows read by agents, each verified against its source line. Built by <code>tool/p2/build.py</code>.</div>
+  <div><b>NOAA NCEI</b> Global Marine Microplastics Observations, ArcGIS export, sha256 <code>${DATA.sources.ncei.slice(0, 16)}…</code>.</div>
+  <div><b>Soil</b>: Wu et al., global soil microplastics 2005–2026, Zenodo record 20806151, CC BY 4.0. <b>MPsizeBase</b> v19-5-2026 (CNRS, Zenodo). <b>Weser</b>: PANGAEA 937685 and 938143, CC BY 4.0. All sha256-pinned in <code>tool/p2/extension.py</code>.</div>
+  <div><b>MP-SED</b> (US Army ERDC), sha256 <code>${DATA.sources.mpsed.slice(0, 16)}…</code>. Land outline: Natural Earth 110 m via world-atlas 2.0.2.</div>
+  <div>Correlations are Spearman rank correlations across studies; they show association, not cause. No person has yet checked these rows against their papers.</div>`;
+
+/* ---------- pre-registered tests ---------- */
+const PR = DATA.ext.prereg, SEC = PR.secondary;
+const VERDICT = { supported: ['supported', 'var(--s3)'], partly: ['partly', 'var(--s4)'], refuted: ['refuted', 'var(--s2)'] };
+const nV = v => Object.values(PR).filter(x => x && x.verdict === v).length;
+const nTests = Object.values(PR).filter(x => x && x.verdict).length;
+document.getElementById('pr-h').textContent = `${nTests} tests: ${nV('supported')} supported, ${nV('partly')} partly, ${nV('refuted')} refuted`;
+document.getElementById('pr-commit').textContent = PR.prereg_commit;
+const badge = v => `<span style="display:inline-flex;align-items:center;gap:6px"><i style="width:9px;height:9px;border-radius:50%;background:${VERDICT[v][1]};display:inline-block"></i>${VERDICT[v][0]}</span>`;
+const P4 = PR.P4.feature_sets;
+table(document.getElementById('pr-table'), [['test'], ['verdict'], ['result'], ['data'], ['predicted']], [
+  ['P1 finer limit, more plastic', badge(PR.P1.verdict), `ρ ${PR.P1.rho}; slope ${PR.P1.slope} (${PR.P1.slope_ci95.join(' to ')})`, `soil, ${PR.P1.studies} studies`, PR.P1.prediction],
+  ['P2 rescaling settles co-located studies?', badge(PR.P2.verdict), `median reduction ${PR.P2.median_reduction}`, `soil, ${PR.P2.cells} places`, PR.P2.prediction],
+  ['P3 one slope fits all?', badge(PR.P3.verdict), `median α ${PR.P3.median_alpha}; ${Math.round(PR.P3['share_within_1.6pm0.3'] * 100)} % within ${PR.alpha_band.join('–')}`, `MPsizeBase, ${PR.P3.distributions} distributions`, PR.P3.prediction],
+  ['P4 can descriptors predict zeta?', badge(PR.P4.verdict), `R² all ${P4.all.r2}, surface ${P4.surface.r2}, liquid + pH ${P4.liquid_pH.r2}`, `${nf(PR.P4.rows)} values, ${PR.P4.papers} papers`, PR.P4.prediction],
+]);
+function drawR2() {
+  const chart = document.getElementById('c-r2');
+  const rows = [['size', P4.size], ['polymer', P4.polymer], ['surface', P4.surface], ['liquid + pH', P4.liquid_pH], ['all', P4.all],
+    ['all, rows shuffled across papers', { r2: SEC.P4_random_split_r2_all, leak: true }]];
+  const narrow = chart.clientWidth < 560, rowH = 30, m = { l: narrow ? 120 : 220, r: 56, t: 10, b: 34 };
+  const H = m.t + m.b + rowH * rows.length, [svg, W] = frame(chart, H);
+  svg.setAttribute('aria-label', 'Out-of-paper R squared per feature set, and the leaky random split');
+  const x = lin(-0.4, 0.4, m.l, W - m.r);
+  for (const v of [-0.4, -0.2, 0, 0.2, 0.4]) {
+    el('line', { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b, stroke: v === 0 ? 'var(--axis)' : 'var(--grid)', 'stroke-width': v === 0 ? 1.5 : 1 }, svg);
+    el('text', { x: x(v), y: H - m.b + 18, 'text-anchor': 'middle' }, svg, v.toFixed(1));
+  }
+  el('text', { x: m.l, y: H - 4, class: 'lab' }, svg, 'R², predicting zeta for papers the model never saw');
+  rows.forEach(([lab, r], i) => {
+    const cy = m.t + rowH * i + rowH / 2, c = r.leak ? 'var(--s2)' : 'var(--s1)';
+    el('text', { x: m.l - 10, y: cy + 4, 'text-anchor': 'end', class: r.leak ? 'lab strong' : 'lab' }, svg, narrow && r.leak ? 'all, leaky split' : lab);
+    const x0 = x(Math.min(0, r.r2)), x1 = x(Math.max(0, r.r2));
+    el('rect', { x: x0, y: cy - 8, width: Math.max(2, x1 - x0), height: 16, rx: 3, fill: c, 'fill-opacity': r.leak ? 0.85 : 0.7 }, svg);
+    if (r.r2_ci95) el('line', { x1: x(Math.max(-0.4, r.r2_ci95[0])), x2: x(Math.min(0.4, r.r2_ci95[1])), y1: cy, y2: cy, stroke: 'var(--ink)', 'stroke-width': 1.5 }, svg);
+    el('text', { x: W - m.r + 8, y: cy + 4, class: 'lab' }, svg, r.r2.toFixed(2));
+  });
+  document.getElementById('r2-note').textContent = `Gradient-boosted trees, five folds grouped by paper, so no paper is in both training and test. Lines are paper-bootstrap 95 % intervals. Shuffled across papers instead, the same model scores ${SEC.P4_random_split_r2_all.toFixed(2)}: rows from one paper teach it their own answers. Paper identity alone explains ${SEC.P4_random_split_r2_paper_mean_only.toFixed(2)}. (The shuffled split was chosen after the run; it decides nothing.)`;
+}
+
+/* ---------- the slope ---------- */
+const AL = DATA.ext.alpha, WS = DATA.ext.weser, A0 = PR.alpha_default, [B0, B1] = PR.alpha_band;
+document.getElementById('a0').textContent = A0;
+document.getElementById('slope-h').textContent = `${Math.round((1 - PR.P3['share_within_1.6pm0.3']) * 100)} % of measured size distributions fall outside α ${B0}–${B1}`;
+let aSet = 'raw';
+segmented(document.getElementById('a-set'), [['raw', `all bins · pre-registered · ${AL.raw.length}`], ['lod', `detection-limit bins removed · ${AL.lod.length}`]], aSet, v => { aSet = v; drawAlpha(); });
+const TYPE_COLOR = { Ocean: 'var(--s1)', Atmosphere: 'var(--s4)' };
+function drawAlpha() {
+  const chart = document.getElementById('c-alpha'), A = AL[aSet];
+  const H = 300, [svg, W] = frame(chart, H), m = { l: 40, r: 12, t: 12, b: 40 };
+  svg.setAttribute('aria-label', 'Histogram of fitted power-law slopes');
+  const lo = -1, hi = 5, bw = 0.25, nb = Math.round((hi - lo) / bw);
+  const types = Object.keys(TYPE_COLOR), counts = types.map(() => new Array(nb).fill(0));
+  A.forEach(([a, t]) => { const k = Math.min(nb - 1, Math.max(0, Math.floor((a - lo) / bw))); const ti = types.indexOf(t); if (ti >= 0) counts[ti][k]++; });
+  const ymax = Math.max(...counts[0].map((c, k) => c + counts[1][k]));
+  const ytop = Math.ceil((ymax + 4) / 5) * 5, x = lin(lo, hi, m.l, W - m.r), y = lin(0, ytop, H - m.b, m.t);
+  el('rect', { x: x(B0), y: m.t, width: x(B1) - x(B0), height: H - m.b - m.t, fill: 'var(--s1-wash)' }, svg);
+  for (let v = 0; v <= ytop; v += 5) {
+    el('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: 'var(--grid)' }, svg);
+    el('text', { x: m.l - 6, y: y(v) + 4, 'text-anchor': 'end' }, svg, String(v));
+  }
+  for (let v = lo; v <= hi; v++) el('text', { x: x(v), y: H - m.b + 18, 'text-anchor': 'middle' }, svg, String(v));
+  el('text', { x: m.l, y: H - 6, class: 'lab' }, svg, 'fitted α (steeper to the right)');
+  const tip = tooltip(chart), g = el('g', {}, svg);
+  for (let k = 0; k < nb; k++) {
+    let base = 0;
+    types.forEach((t, ti) => {
+      const c = counts[ti][k]; if (!c) return;
+      const x0 = x(lo + k * bw) + 1, w = x(lo + (k + 1) * bw) - x(lo + k * bw) - 2;
+      el('rect', { x: x0, y: y(base + c), width: Math.max(1, w), height: y(base) - y(base + c) - 1, fill: TYPE_COLOR[t], 'data-k': k, 'data-t': ti }, g);
+      base += c;
+    });
+  }
+  el('line', { x1: x(A0), x2: x(A0), y1: m.t, y2: H - m.b, stroke: 'var(--ink)', 'stroke-dasharray': '4 3' }, svg);
+  el('text', { x: x(A0) + 4, y: m.t + 12, class: 'lab' }, svg, `α = ${A0}, the usual assumption`);
+  g.addEventListener('pointermove', e => {
+    const k = e.target.getAttribute && e.target.getAttribute('data-k'); if (k == null) return tip.hide();
+    const ti = +e.target.getAttribute('data-t');
+    tip.show(e, `<div class="t">α ${(lo + k * bw).toFixed(2)} to ${(lo + (+k + 1) * bw).toFixed(2)}</div><div class="m">${types[ti]}: ${counts[ti][k]} distributions</div>`);
+  });
+  g.addEventListener('pointerleave', () => tip.hide());
+  legend(document.getElementById('a-legend'), [...types.map(t => [`${t} ${A.filter(a => a[1] === t).length}`, TYPE_COLOR[t]]), [`${B0}–${B1}`, 'var(--s1-wash)']], 'bar');
+  const a = A.map(r => r[0]).sort((p, q) => p - q), med = a[Math.floor(a.length / 2)];
+  const within = a.filter(v => v >= B0 && v <= B1).length;
+  document.getElementById('a-stat').innerHTML = aSet === 'raw'
+    ? `Pre-registered fit on every bin: median <b>α ${med.toFixed(2)}</b>; ${within} of ${a.length} within ${B0}–${B1}. Bins near the detection limit are under-counted, which flattens a slope.`
+    : `Bins near the detection limit removed, with MPsizeBase's own filter (chosen after the run; it decides nothing): median <b>α ${med.toFixed(2)}</b>, still only ${within} of ${a.length} within ${B0}–${B1}. The soil slope in P1 implies α ${SEC.P1_implied_alpha}: right on average, wrong for most single studies.`;
+}
+document.getElementById('weser-lede').textContent = `One Weser estuary study sampled the same ${WS.pairs.length} stations in two size fractions: ${WS.windows.small_um.join('–')} µm by pump and µFTIR, ${WS.windows.large_um.join('–')} µm by net and ATR-FTIR. Small particles outnumber large ones by a median of ${nf(WS.median_ratio)} (${WS.pairs.length - WS.stations_without_large} stations; ${WS.stations_without_large} found no large particles, so it has no ratio). With α = ${A0} a power law predicts ${WS.ratio_at_default_alpha}; matching the data needs α ≈ ${WS.implied_alpha}. The identification method also differs between the fractions.`;
+function drawWeser() {
+  const chart = document.getElementById('c-weser'), P = WS.pairs;
+  const H = 300, [svg, W] = frame(chart, H), m = { l: 56, r: 12, t: 12, b: 40 };
+  svg.setAttribute('aria-label', 'Small and large microplastic counts per station, Weser');
+  const vals = P.flatMap(p => [p.small, p.large]).filter(v => v > 0);
+  const ylo = 10 ** Math.floor(Math.log10(Math.min(...vals))), yhi = 10 ** Math.ceil(Math.log10(Math.max(...vals)));
+  const order = [...P].sort((a, b) => b.small - a.small);
+  const x = i => m.l + (i + 0.5) * (W - m.l - m.r) / order.length, y = logs(ylo, yhi, H - m.b, m.t);
+  for (const v of decades(ylo, yhi)) {
+    el('line', { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: 'var(--grid)' }, svg);
+    el('text', { x: m.l - 8, y: y(v) + 4, 'text-anchor': 'end' }, svg, concLabel(v));
+  }
+  el('text', { x: m.l, y: H - 14, class: 'lab' }, svg, 'stations, sorted by the small-particle count');
+  el('text', { x: 4, y: m.t + 4, class: 'lab', transform: `rotate(-90 4 ${m.t + 4})`, 'text-anchor': 'end' }, svg, 'particles per m³');
+  const tip = tooltip(chart), g = el('g', {}, svg);
+  order.forEach((p, i) => {
+    if (p.small > 0 && p.large > 0) el('line', { x1: x(i), x2: x(i), y1: y(p.small), y2: y(p.large), stroke: 'var(--axis)', 'stroke-width': 1.5 }, g);
+    if (p.small > 0) el('circle', { cx: x(i), cy: y(p.small), r: 5, fill: 'var(--s1)', stroke: 'var(--surface)', 'stroke-width': 1.5, 'data-i': i }, g);
+    if (p.large > 0) el('circle', { cx: x(i), cy: y(p.large), r: 5, fill: 'var(--s2)', stroke: 'var(--surface)', 'stroke-width': 1.5, 'data-i': i }, g);
+  });
+  g.addEventListener('pointermove', e => {
+    const i = e.target.getAttribute && e.target.getAttribute('data-i'); if (i == null) return tip.hide();
+    const p = order[+i];
+    tip.show(e, `<div class="t">${p.location} · station ${p.station}</div><div class="m">${p.date}</div><div class="m">${WS.windows.small_um.join('–')} µm: ${fmtG(p.small)} · ${WS.windows.large_um.join('–')} µm: ${fmtG(p.large)} per m³</div><div class="m">ratio ${p.ratio ? nf(p.ratio) : '–'}</div>`);
+  });
+  g.addEventListener('pointerleave', () => tip.hide());
+  legend(document.getElementById('ws-legend'), [[`${WS.windows.small_um.join('–')} µm (pump, µFTIR)`, 'var(--s1)'], [`${WS.windows.large_um.join('–')} µm (net, ATR-FTIR)`, 'var(--s2)']]);
+}
+
+function drawAll() { drawR2(); drawZeta(); drawPolyRange(); drawPolySmall(); drawAmine(); drawMap(); drawWin(); drawTime(); drawAlpha(); drawWeser(); }
+drawAll();
+let resizeT; new ResizeObserver(() => { clearTimeout(resizeT); resizeT = setTimeout(drawAll, 120); }).observe(document.querySelector('main'));
+</script>

@@ -1,0 +1,73 @@
+doi,ref,countries,waterbodies,n,year_first,year_last,year_missing,lower_um,upper_um,conc_min,conc_median,conc_max,stats
+https://doi.org/10.1007/s00244-017-0414-9,interp_graph; Figure 2; interp_graph; Figure 4; interp_graph; Figure 5-GT14; int,Japan; Malaysia; South Africa; Thailand,Durban Bay; Gulf of Thailand; Sakurada-bori Moat; Straits of Johor; Tokyo Bay,23,2001.0,2012.0,0,315.0,5000.0,0.0,297.5,7243.0,Composite; Single
+https://doi.org/10.1007/s10933-019-00071-7,table_text; Table 2,United Kingdom,urban lake,15,2009.0,2009.0,0,500.0,1000.0,0.0,58.9,539.2,Single
+https://doi.org/10.1139/cjfas-2014-0281,table_text; Table 1; table_text; Table 1 AMOCC; table_text; Table 1 EMS; table_t,Canada,St. Lawrence River,10,2010.0,2013.0,0,500.0,5000.0,0.0,1.0,713.0,Mean
+https://doi.org/10.1016/j.marpolbul.2020.110916,interp_graph; Figure 2-GOT-1; interp_graph; Figure 2-GOT-5; interp_graph; Figure,Thailand,Gulf of Thailand,6,2011.0,2011.0,0,20.0,5000.0,23.4,122.35,186.1,Single
+https://doi.org/10.1016/j.marpolbul.2016.06.037,table_text; Table 1,Canada,Lake Ontario; St. Lawrence River,40,2012.0,2015.0,0,63.0,5000.0,40.0,505.0,27830.0,Single
+https://dx.doi.org/10.3389/fmars.2022.1093815,interp_graph; Figure 2A-386; interp_graph; Figure 2A-466; interp_graph; Figure 2,United Kingdom,Celtic Sea; North Sea,36,2013.0,2021.0,0,10.0,5000.0,0.0,2269.8,12688.6,Single
+https://doi.org/10.1016/j.envpol.2015.04.009,table_text; Table 2 St. 208; table_text; Table 2 St. 403,Canada,Lake Ontario,2,2013.0,2013.0,0,80.0,5000.0,87.0,351.5,616.0,Single
+https://doi.org/10.1016/j.envint.2017.01.018,table_text; Table 3 A1-6; table_text; Table S2-Estuarine; table_text; Table S2-N,Netherlands,Amsterdam canals; North Sea; Rhine Estuary; Wadden Sea,4,2013.0,2013.0,0,10.0,5000.0,438.0,1420.5,3305.0,Mean; Single
+https://doi.org/10.1021/acs.est.5b00492,table_text; Table S5 M1; table_text; Table S5 M2; table_text; Table S5 R1; table,Germany,Main River; Rhine River,10,2013.0,2013.0,0,63.0,5000.0,228.0,537.5,3763.0,Single
+https://doi.org/10.1016/j.marenvres.2016.01.005,table_text; page 4 A1; table_text; page 4 A2,Spain,Balearic Sea,2,2013.0,2013.0,0,63.0,5000.0,120.0,140.0,160.0,Mean
+https://doi.org/10.1016/j.jglr.2018.07.014,table_text; Table 1,Canada,Lake Erie,17,2014.0,2015.0,0,63.0,5000.0,0.0,42.0,462.0,Single
+https://doi.org/10.1016/j.marpolbul.2016.09.004,table_text; Table 1,United Kingdom,Thames River,4,2014.0,2014.0,0,1000.0,4000.0,185.0,276.5,660.0,Mean
+https://doi.org/10.1007/s11356-017-8419-5,table_text; Table 1 B13; table_text; Table 1 KO; table_text; Table 1 P16; table_,Poland,Baltic Sea,4,2014.0,2014.0,0,45.0,5000.0,15.0,22.5,27.0,Single
+https://doi.org/10.1139/facets-2016-0070,interp_graph; Figure 1,Canada,Ottawa River,10,2015.0,2015.0,0,300.0,5000.0,112.0,182.5,450.0,Single
+https://doi.org/10.1016/j.envpol.2016.12.064,interp_graph; Figure 2 B NB; interp_graph; Figure 2 B NC; interp_graph; Figure 2,China,East China Sea,4,2015.0,2015.0,0,1.0,5000.0,82.0,103.5,170.0,Mean
+https://doi.org/10.1016/j.envpol.2016.06.036,interp_graph; Figure 3 C1 CA; interp_graph; Figure 3 C1 NWA; interp_graph; Figur,China,Taihu Lake,3,2015.0,2015.0,0,63.0,5000.0,29.0,97.0,182.0,Mean
+https://doi.org/10.1016/j.chemosphere.2016.12.074,table_text; Table 1,China,Beijiang River,8,2015.0,2015.0,0,1.0,5000.0,178.0,305.5,544.0,Mean
+https://doi.org/10.1016/j.marpolbul.2016.10.060,table_text; Table 1,Russian Federation,Baltic Sea,3,2015.0,2015.0,0,174.0,5000.0,35.0,40.0,48.0,Single
+https://doi.org/10.1016/j.marpolbul.2016.11.003,table_text; Table 1-Jun to Jul 2015; table_text; Table 1-Mar 2016; table_text; T,China,Deep Bay; Tolo Harbor; Tsing Yi; Victoria Harbor,27,2015.0,2016.0,0,32.0,5000.0,44.0,109.0,458.0,Single
+https://doi.org/10.1016/j.marpolbul.2017.02.021,table_text; Table 2-Summer; table_text; Table 2-Winter,Italy,Albegna River; Ombrone River; Osa River,16,2015.0,2016.0,0,10.0,5000.0,57.0,178.0,477.0,Single
+https://doi.org/10.1038/s41561-018-0080-1,table_text; Table 2; table_text; Table 5,United Kingdom,Chew Brook; Eagley Brook; River Beal; River Black Brook; River Bradshaw Brook; River Croal; River Etherow; River Glossop,92,2015.0,2015.0,12,63.0,5000.0,0.0,1450.0,72400.0,Single
+https://doi.org/10.1016/j.marpolbul.2019.02.015,table_text; Table S1-Kvr1; table_text; Table S1-St11; table_text; Table S1-St4; ,Norway,Byfjorden,4,2015.0,2015.0,0,11.0,5000.0,12199.0,49572.5,205859.0,Mean
+https://doi.org/10.1016/j.marpolbul.2022.113709,table_text; Table S5-GB1; table_text; Table S5-GB11; table_text; Table S5-GB12; ,Canada; United States,Lake Huron,76,2015.0,2017.0,0,53.0,5000.0,59.0,2691.5,335714.0,Single
+https://doi.org/10.1007/s11270-017-3439-9,interp_graph; Figure 2,Tunisia,Lagoon of Bizerte,4,2016.0,2016.0,0,10.0,5000.0,3191.0,5155.0,17921.0,Mean
+https://doi.org/10.1021/acs.est.9b03850,interp_graph; Figure 4-INH; interp_graph; Figure 4-KKF; interp_graph; Figure 4-K,United States,Lake Michigan,9,2016.0,2016.0,0,174.0,5000.0,33.0,318.9,6239.6,Single
+https://doi.org/10.1007/s11852-021-00847-y,table_text; Figure 6; table_text; Figure 8,United States,Bay Champagne; Little Lake,54,2016.0,2016.0,0,100.0,5000.0,0.0,102.05,4366.0,Single
+https://doi.org/10.1016/j.jhazmat.2020.124132,table_text; Page 3,China,Huangtian River; Yuechen River,4,2016.0,2017.0,0,25.0,5000.0,10580.0,18015.5,29031.0,Mean
+https://doi.org/10.1016/j.scitotenv.2017.08.298,table_text; Page 953,South Africa,Bloukrans River,2,2016.0,2016.0,0,63.0,5000.0,6.3,83.2,160.1,Mean
+https://doi.org/10.1016/j.marpolbul.2019.06.061,table_text; SM Table 1,United States,Ashley River; Cooper River; Wando River,14,2016.0,2016.0,0,63.0,5000.0,12.1,21.35,3291.7,Mean
+https://doi.org/10.1016/j.envpol.2017.11.034,table_text; Table 1-HK; table_text; Table 1-MH; table_text; Table 1-PD; table_te,China,Beishagang River; Caohejing River; Huangpu River branch; Jiangjiagang River; Shajinggang River; Yujiabang River,6,2016.0,2016.0,0,1.0,5000.0,410.0,942.5,1600.0,Mean
+https://doi.org/10.1016/j.watres.2018.07.050,table_text; Table S1,China,Wen-Rui Tang River,12,2016.0,2016.0,0,20.0,5000.0,18690.0,29985.0,74800.0,Single
+https://doi.org/10.1021/acs.est.9b04896,table_text; Table S1-386; table_text; Table S1-388; table_text; Table S1-389; ta,Canada,Thames River,34,2016.0,2016.0,0,63.0,5000.0,6.0,158.5,2444.0,Single
+https://doi.org/10.1016/j.envpol.2019.03.105,table_text; Table S2-Awa; table_text; Table S2-Cas; table_text; Table S2-Cox; ta,New Zealand,Awaruku Stream; Cascades Stream; Cox Creek; Lucas Creek; Meola Creek; Motions Creek; New Market Stream; Oakley Creek; Om,21,2016.0,2016.0,0,63.0,5000.0,9.0,24.0,80.0,Single
+https://dx.doi.org/10.1016/j.marenvres.2022.105804,interp_graph; Figure 2-BVW-1; interp_graph; Figure 2-BVW-2; interp_graph; Figure,Netherlands,North Sea,20,2017.0,2017.0,0,100.0,5000.0,23.6,349.65,785.5,Single
+https://doi.org/10.1016/j.scitotenv.2019.02.028,interp_graph; Figure 2-Dam 1; interp_graph; Figure 2-Dam 2; interp_graph; Figure,United States,Fall Creek; Six Mile Creek,18,2017.0,2017.0,0,1.0,5000.0,9.1,48.55,224.5,Single
+https://doi.org/10.1007/s00128-020-02866-1,interp_graph; Figure 2-S1; interp_graph; Figure 2-S2; interp_graph; Figure 2-S3;,China,Bohai Sea,9,2017.0,2017.0,0,1.0,5000.0,280.0,467.6,775.4,Mean
+https://doi.org/10.1007/s11356-021-13724-w,table_text; Page 45381,United States,Santa Cruz River,2,2017.0,2018.0,0,330.0,5000.0,250.0,263.75,277.5,Single
+https://doi.org/10.3390/w10111597,table_text; Table 1-T1; table_text; Table 1-T2; table_text; Table 1-T3; table_te,United Kingdom,River Tame,6,2017.0,2017.0,0,63.0,4000.0,20.0,175.0,350.0,Single
+https://doi.org/10.1016/j.marpolbul.2019.07.068,table_text; Table 5-1S; table_text; Table 5-2S; table_text; Table 5-3S; table_te,United States,Tampa Bay,9,2017.0,2017.0,0,53.0,5000.0,300.0,1800.0,7900.0,Single
+https://doi.org/10.1016/j.envpol.2020.113994,table_text; Table S1-G2B; table_text; Table S1-S1; table_text; Table S1-S10; tab,Canada,St. Lawrence River,21,2017.0,2017.0,0,10.0,5000.0,86.0,667.0,3738.0,Mean
+https://doi.org/10.1016/j.scitotenv.2018.03.336,table_text; Table S6,China,Jiulong River Estuary; Western Harbor,8,2017.0,2017.0,0,330.0,5000.0,76.0,155.0,330.0,Single
+https://doi.org/10.1016/j.jwpe.2020.101640,interp_graph; Figure 1b-S-A-C; interp_graph; Figure 1b-S-A-FP-1; interp_graph; F,United States,James River; Roanoke River; Stroubles Creek,14,2018.0,2018.0,0,100.0,5000.0,2.0,36.0,300.0,Single
+https://doi.org/10.1016/j.marpolbul.2023.115201,interp_graph; Figure 2,China,Bohai Sea; East China Sea; South China Sea; Yellow Sea,8,2018.0,2018.0,0,1.0,5000.0,45.5,93.25,282.8,Mean
+https://dx.doi.org/10.1016/j.marpolbul.2022.114545,interp_graph; Figure 2,India,Arabian Sea,12,2018.0,2018.0,0,1.0,5000.0,4974.4,9028.75,15325.9,Mean
+https://doi.org/10.1016/j.jglr.2020.10.007,interp_graph; Figure 2C-C6; interp_graph; Figure 2C-E50; interp_graph; Figure 2C,Canada,Lake Simcoe,12,2018.0,2019.0,0,125.0,5000.0,6.7,322.5,1066.7,Single
+https://doi.org/10.1016/j.envpol.2019.113658,interp_graph; Figure 3B,China,canals,21,2018.0,2018.0,0,20.0,5000.0,17.0,90.0,1323.0,Single
+https://doi.org/10.1371/journal.pone.0228896,interp_graph; Figure 4,United States,Lake Meade; Lake Mohave,9,2018.0,2018.0,0,355.0,5000.0,87.0,232.0,1017.0,Single
+https://dx.doi.org/10.7185/geochemlet.2012,interp_graph; Figure S-2-S03; interp_graph; Figure S-2-S04,China,South China Sea,16,2018.0,2018.0,0,,5000.0,96.9,198.3,1393.4,Single
+https://doi.org/10.1016/j.scitotenv.2020.143111,table_text; Table S1-1; table_text; Table S1-2; table_text; Table S1-3,Poland,Vistula River,3,2018.0,2018.0,0,30.0,5000.0,190.0,460.0,580.0,Single
+https://doi.org/10.1016/j.marpolbul.2020.110885,table_text; Table S1-S1; table_text; Table S1-S2; table_text; Table S1-S3; table,China,Jiaozhou Bay,45,2018.0,2018.0,0,1.0,5000.0,0.0,12.5,30.0,Single
+https://doi.org/10.1016/j.marpolbul.2021.113254,interp_graph; Figure 3,United States,Narragansett Bay,7,2019.0,2019.0,0,45.0,1000.0,320.0,1512.0,36836032.0,Single
+https://doi.org/10.1016/j.scitotenv.2021.147306,interp_graph; Figure 4-1; interp_graph; Figure 4-10; interp_graph; Figure 4-11; ,Hungary; Ukraine,Tisza River,60,2019.0,2019.0,0,90.0,5000.0,487.0,3020.65,8065.2,Single
+https://doi.org/10.1016/j.watres.2020.116449,table_text; Page 5,China,Yangtze River,5,2019.0,2019.0,0,300.0,5000.0,16.336,24.4,37.536,Mean
+https://doi.org/10.1016/j.marpolbul.2020.111166,table_text; Table 1-S1; table_text; Table 1-S2; table_text; Table 1-S3; table_te,Iran,Oman Sea,8,2019.0,2019.0,0,1.2,5000.0,138.4,222.0,930.3,Mean
+https://doi.org/10.1007/s11356-022-19001-8,table_text; Table 2,Denmark,Arresø; Bryrup langsø; Hinge sø; Ravn sø; Silkeborg langsø,5,2019.0,2019.0,0,50.0,5000.0,9.0,22.0,53.0,Single
+https://doi.org/10.1016/j.marpolbul.2020.111948,table_text; Table S1-Canal Road-f; table_text; Table S1-Concord Cranes-z; table_,South Africa,Durban Bay,22,2019.0,2019.0,0,1.0,5000.0,2400.0,13316.5,111933.0,Mean
+https://doi.org/10.1021/acs.est.0c08386,table_text; Table S2-Site 1; table_text; Table S2-Site 2,France,Aa River,2,2019.0,2019.0,0,125.0,5000.0,36.0,428.0,820.0,Mean
+https://doi.org/10.1007/s12665-022-10670-9,table_text; Table SI-9,Canada,headwater lakes,14,2019.0,2019.0,0,100.0,5000.0,340.0,1725.0,5450.0,Single
+https://doi.org/10.3389/fenvs.2021.794895,interp_graph; Figure 2-downstream; interp_graph; Figure 2-upstream,Germany,Elbe River,2,2020.0,2020.0,0,20.0,5000.0,66.2,162.35,258.5,Single
+https://dx.doi.org/10.1016/j.jhazmat.2022.130067,table_text; Page 4-5,China,Shaying River,3,2020.0,2020.0,0,40.0,5000.0,248.4,303.8,421.4,Mean
+https://dx.doi.org/10.1016/j.scitotenv.2022.160932,interp_graph; Figure 2A,China,Yan River,11,2021.0,2021.0,0,1.0,5000.0,208.7,446.3,687.2,Mean
+https://dx.doi.org/10.1016/j.scitotenv.2022.159071,interp_graph; Figure 3-a-1; interp_graph; Figure 3-b-2; interp_graph; Figure 3-c,China,Jianhu Lake,30,2021.0,2021.0,0,50.0,5000.0,125.5,594.35,2942.3,Single
+https://doi.org/10.1126/science.1094559,interp_graph; Figure 1,United Kingdom,English Channel,2,,,2,1.0,5000.0,31.0,58.5,86.0,Single
+https://doi.org/10.1007/s00128-019-02762-3,interp_graph; Figure 2,United States,Gulf of Mexico; Horseshoe Lake (oxbow lake); Lake Erie; Long Island Sound; Miami Terrace; Mississippi River,11,,,11,30.0,5000.0,217.0,1313.0,5019.0,Mean
+https://doi.org/10.1016/j.envpol.2017.05.057,interp_graph; Figure 4,United Kingdom,Edgbaston Pool,10,,,10,500.0,5000.0,10.0,59.0,280.0,Single
+https://doi.org/10.1016/j.scitotenv.2020.139025,interp_graph; Figure 5A-SR1; interp_graph; Figure 5A-SR2; interp_graph; Figure 5,China,Daliao River; Liaohe estuary; Shuangtaizi River,29,,,29,50.0,5000.0,45.0,132.0,432.0,Mean
+https://doi.org/10.1016/j.watres.2019.115140,table_text; Page 4,Australia,Multiple estuaries; Multiple streams; Multiple wetlands,3,,,3,1.0,5000.0,75.5,79.1,87.4,Mean
+https://dx.doi.org/10.1016/j.scitotenv.2022.159344,table_text; Page 5,Bangladesh,Buriganga River,13,,,13,10.0,5000.0,3500.0,7000.0,8160.0,Single
+https://doi.org/10.1371/journal.pone.0229777,table_text; Table 1,United States,San Diego Bay,1,,,1,500.0,5000.0,148.0,148.0,148.0,Mean
+https://doi.org/10.1016/j.ecss.2013.03.022,table_text; Table 2,Italy,Lagoon of Venice,10,,,10,32.0,5000.0,672.0,1435.0,2175.0,Mean
+https://doi.org/10.1016/j.jembe.2008.09.007,table_text; Table 2,United States,Gulf of Mexico; North Atlantic Ocean,3,,,3,250.0,5000.0,82.0,91.0,167.0,Single
+https://doi.org/10.1016/j.marpolbul.2011.06.030,table_text; Table 3,Belgium,North Sea,4,,,4,38.0,5000.0,97.0,149.0,213.0,Mean

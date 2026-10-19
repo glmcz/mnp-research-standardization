@@ -1,0 +1,85 @@
+{
+ "judges": [
+  "groq:openai/gpt-oss-120b",
+  "google/gemini-2.5-flash-lite",
+  "mistralai/mistral-small-3.2-24b-instruct"
+ ],
+ "self_preference_probe": "claude-sonnet-5",
+ "tier1": "not run: Nimble needs Ollama ≥ 0.35 (installed 0.21.0); Microsoft-Decision-1 is not on OpenRouter (checked 2026-10-19)",
+ "per_judge": {
+  "claude": {
+   "rows_judged": 69,
+   "rows_judged_A": 69,
+   "J1_yes_rate": 0.638,
+   "J1_yes_rate_on_reader_A": 0.638,
+   "J2_agrees_with_reader": 0.71,
+   "J1_agrees_with_code_V1": 0.609,
+   "J3_abstain_rate": 0.232,
+   "order_flip_rate_J2": 0.261,
+   "decoy_accepted_rate": null
+  },
+  "google/gemini-2.5-flash-lite": {
+   "rows_judged": 138,
+   "rows_judged_A": 69,
+   "J1_yes_rate": 1.0,
+   "J1_yes_rate_on_reader_A": 1.0,
+   "J2_agrees_with_reader": 1.0,
+   "J1_agrees_with_code_V1": 0.986,
+   "J3_abstain_rate": 0.13,
+   "order_flip_rate_J2": 0.0,
+   "decoy_accepted_rate": 0.87
+  },
+  "groq:openai/gpt-oss-120b": {
+   "rows_judged": 67,
+   "rows_judged_A": 34,
+   "J1_yes_rate": 0.687,
+   "J1_yes_rate_on_reader_A": 0.794,
+   "J2_agrees_with_reader": 0.836,
+   "J1_agrees_with_code_V1": 0.657,
+   "J3_abstain_rate": 0.403,
+   "order_flip_rate_J2": 0.018,
+   "decoy_accepted_rate": 0.0
+  },
+  "mistralai/mistral-small-3.2-24b-instruct": {
+   "rows_judged": 138,
+   "rows_judged_A": 69,
+   "J1_yes_rate": 0.797,
+   "J1_yes_rate_on_reader_A": 0.812,
+   "J2_agrees_with_reader": 1.0,
+   "J1_agrees_with_code_V1": 0.783,
+   "J3_abstain_rate": 0.007,
+   "order_flip_rate_J2": 0.0,
+   "decoy_accepted_rate": 0.406
+  }
+ },
+ "jury": {
+  "rows": 138,
+  "unanimous_J1": 0.717,
+  "J2_split_rate": 0.0
+ },
+ "traps": {
+  "openai/gpt-6-luna|reisser_1.9": "no",
+  "openai/gpt-6-luna|clumped_beads": "no",
+  "claude|reisser_1.9": "no",
+  "google/gemini-3.8-flash|reisser_1.9": "no",
+  "google/gemini-3.8-flash|clumped_beads": "no",
+  "claude|clumped_beads": "yes",
+  "google/gemini-2.5-flash-lite|reisser_1.9": "yes",
+  "mistralai/mistral-small-3.2-24b-instruct|reisser_1.9": "no",
+  "groq:openai/gpt-oss-120b|reisser_1.9": "yes",
+  "groq:openai/gpt-oss-120b|clumped_beads": "yes"
+ },
+ "traps_caught": {
+  "claude": 1,
+  "google/gemini-2.5-flash-lite": 0,
+  "groq:openai/gpt-oss-120b": 0,
+  "mistralai/mistral-small-3.2-24b-instruct": 1
+ },
+ "traps_run": {
+  "claude": 2,
+  "google/gemini-2.5-flash-lite": 1,
+  "groq:openai/gpt-oss-120b": 2,
+  "mistralai/mistral-small-3.2-24b-instruct": 1
+ },
+ "traps_total": 2
+}

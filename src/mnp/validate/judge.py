@@ -325,6 +325,12 @@ def load_items() -> list[dict]:
     return [json.loads(t) for t in path.read_text(encoding="utf-8").splitlines() if t.strip()]
 
 
+def latest(items: Sequence[dict]) -> list[dict]:
+    """One record per call. Runs split by judge can overlap and record the same call twice."""
+    last = {(it["judge"], it["pmcid"], it["reader"], it["variant"]): it for it in items}
+    return list(last.values())
+
+
 def per_row(items: Sequence[dict]) -> pd.DataFrame:
     rows = []
     for it in items:
@@ -350,6 +356,7 @@ def per_row(items: Sequence[dict]) -> pd.DataFrame:
 
 
 def score(v: pd.DataFrame, items: Sequence[dict], labels: Mapping[tuple[str, str], str]) -> dict:
+    items = latest(items)
     j = per_row(items)
     m: dict[str, Any] = {
         "judges": list(JURY),
@@ -373,6 +380,7 @@ def score(v: pd.DataFrame, items: Sequence[dict], labels: Mapping[tuple[str, str
         a = g[g.reader == "A"]
         per[judge] = {
             "rows_judged": len(g),
+            "rows_judged_A": len(a),
             "J1_yes_rate": round(float((g.J1 == "yes").mean()), 3),
             "J1_yes_rate_on_reader_A": round(float((a.J1 == "yes").mean()), 3) if len(a) else None,
             "J2_agrees_with_reader": round(float((g.J2 == g.reader_cause).mean()), 3),
@@ -425,6 +433,10 @@ def score(v: pd.DataFrame, items: Sequence[dict], labels: Mapping[tuple[str, str
         )
         for jd in sorted({it["judge"] for it in trap_items})
     }
+    # A trap call can fail (402 on an empty account); each judge is scored on the traps it saw.
+    m["traps_run"] = {
+        jd: sum(it["judge"] == jd for it in trap_items) for jd in sorted(m["traps_caught"])
+    }
     m["traps_total"] = len(TRAPS)
     if labels:
         lab = base[[(p, r) in labels for p, r in zip(base.pmcid, base.row_id, strict=True)]].copy()
@@ -449,11 +461,18 @@ def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="python -m mnp.validate.judge")
     p.add_argument("what", choices=["estimate", "run", "score"])
     p.add_argument("--jobs", type=int, default=6)
+    p.add_argument("--judge", help="only judges whose name contains this (run a slow one apart)")
+    p.add_argument("--skip", help="skip judges whose name contains this")
     args = p.parse_args(argv)
     cands = sign.candidates()
     answers = {r: origin.load_answers(sign.answers_dir(), sign.RUN_IDS[r]) for r in sign.READERS}
     if args.what in ("estimate", "run"):
-        work = tasks(cands, answers)
+        work = [
+            t
+            for t in tasks(cands, answers)
+            if (not args.judge or args.judge in t["judge"])
+            and (not args.skip or args.skip not in t["judge"])
+        ]
         toks = sum(origin.approx_tokens(t["prompt"]) for t in work)
         print(f"{len(work)} judge calls, about {toks:,} prompt tokens")
         if args.what == "run":

@@ -22,8 +22,15 @@ def main(src: str) -> None:
         doc = json.loads(f.read_text(encoding="utf-8"))
         body = doc.get("data", doc)  # the export wraps the body in "data"; accept both
         if body.get("cause") in sign.CAUSES:
-            out.append({"pmcid": body["pmcid"], "row_id": body["row_id"], "cause": body["cause"],
-                        "note": body.get("note", ""), "at": body.get("at", "")})
+            out.append(
+                {
+                    "pmcid": body["pmcid"],
+                    "row_id": body["row_id"],
+                    "cause": body["cause"],
+                    "note": body.get("note", ""),
+                    "at": body.get("at", ""),
+                }
+            )
     path = sign.labels_path()
     path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in out), "utf-8")
     print(f"{len(out)} labels from {len(files)} files -> {path}")

@@ -10,7 +10,6 @@ uv run python tool/validate/build_labels.py   # writes tool/validate/labels.html
 
 from __future__ import annotations
 
-import json
 import sys
 from pathlib import Path
 
@@ -29,11 +28,11 @@ N = 30
 DEFINITIONS = {
     "ph": "The lines give a pH at which this group does not carry its usual charge.",
     "corona": "Proteins, serum, a culture medium, humic or organic matter, or another coating "
-              "adsorbed in the measured liquid.",
+    "adsorbed in the measured liquid.",
     "ions": "Salts or buffer ions in the measured liquid that the lines connect to the charge.",
     "label_error": "The lines show the particle is not the one with this surface group.",
     "extraction_error": "The paper prints this value with the other sign, or it belongs to "
-                        "another particle or condition.",
+    "another particle or condition.",
     "other_stated": "The paper itself states another reason.",
     "unexplained": "The lines do not give a reason.",
 }
@@ -57,17 +56,29 @@ def main() -> None:
         papers[pmcid] = origin.render(ev)
         for r in rows.to_dict("records"):
             if r["row_id"] in picked:
-                cases.append({
-                    "row_id": r["row_id"], "pmcid": pmcid, "particle": r["particle_name"],
-                    "surface": r["surface"], "zeta_mV": r["zeta_mV"],
-                    "liquid": r["medium_text"] if isinstance(r["medium_text"], str) else None,
-                    "pH": None if r["pH"] != r["pH"] else r["pH"],
-                })
-    data = {"cases": cases, "papers": papers, "causes": list(sign.CAUSES),
-            "definitions": DEFINITIONS, "seed": SEED, "of": len(cands)}
+                cases.append(
+                    {
+                        "row_id": r["row_id"],
+                        "pmcid": pmcid,
+                        "particle": r["particle_name"],
+                        "surface": r["surface"],
+                        "zeta_mV": r["zeta_mV"],
+                        "liquid": r["medium_text"] if isinstance(r["medium_text"], str) else None,
+                        "pH": None if r["pH"] != r["pH"] else r["pH"],
+                    }
+                )
+    data = {
+        "cases": cases,
+        "papers": papers,
+        "causes": list(sign.CAUSES),
+        "definitions": DEFINITIONS,
+        "seed": SEED,
+        "of": len(cands),
+    }
     out = HERE / "labels.html"
-    out.write_text(inline((HERE / "labels_template.html").read_text(encoding="utf-8"), data),
-                   encoding="utf-8")
+    out.write_text(
+        inline((HERE / "labels_template.html").read_text(encoding="utf-8"), data), encoding="utf-8"
+    )
     print(f"wrote {out}: {len(cases)} cases from {len(papers)} papers")
 
 

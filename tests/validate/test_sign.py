@@ -222,3 +222,27 @@ def test_judge_scoring_counts_order_flips_and_accepted_decoys():
     assert j["decoy_accepted_rate"] == 0.5
     assert j["J1_agrees_with_code_V1"] == 0.5  # r2: the judge accepts what code rejected
     assert m["traps_caught"][jd0] == 0
+    assert m["traps_run"][jd0] == 1
+
+
+def test_a_judge_call_recorded_twice_counts_once():
+    """Two runs can overlap and both record one call; the later record is the one scored."""
+    trap = {"judge": judge.JURY[0], "pmcid": "reisser_1.9", "reader": "-", "variant": "trap"}
+    items = [trap | {"answer": {"J1": "yes"}}, trap | {"answer": {"J1": "no"}}]
+    assert judge.latest(items) == [items[1]]
+    v = pd.DataFrame(
+        {
+            "pmcid": ["P"],
+            "row_id": ["r1"],
+            "raw_A": ["ph"],
+            "raw_B": ["ph"],
+            "v1_A": ["ph"],
+            "v1_B": ["ph"],
+        }
+    )
+    row = {"row_id": "r1", "J1": "yes", "J2": "ph", "J3": "no"}
+    judged = trap | {"pmcid": "P", "reader": "A", "variant": "order0", "answer": {"rows": [row]}}
+    m = judge.score(v, [judged, judged, *items], {})
+    assert m["per_judge"][judge.JURY[0]]["rows_judged"] == 1
+    assert m["traps_caught"][judge.JURY[0]] == 1
+    assert m["traps_run"][judge.JURY[0]] == 1

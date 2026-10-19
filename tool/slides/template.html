@@ -248,6 +248,9 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .chart .val-in-a { font-size: 16px; font-weight: 650; fill: var(--paper); }
 .chart .rug { stroke: var(--ink-2); stroke-width: 1; }
 .chart .curve { fill: none; stroke: var(--ink-2); stroke-width: 2.2; }
+.chart .curve-s { fill: none; stroke: var(--absent); stroke-width: 2.4; }
+.chart .plat { stroke: var(--absent-soft); stroke-width: 1.2; stroke-dasharray: 4 5; }
+.chart .lab-a { font-size: 15px; font-weight: 650; fill: var(--absent); }
 .chart .dot { fill: var(--ink); fill-opacity: 0.7; }
 .chart .band { fill: var(--absent-wash); stroke: var(--absent); stroke-width: 2; }
 .chart .band-t { font-size: 14px; fill: var(--absent); }
@@ -323,7 +326,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .legend .k-ink { background: var(--ink); }
 .legend .k-abs { background: var(--absent-wash); outline: 1px solid var(--absent-soft); }
 
-/* ---- slide 7 ---- */
+/* ---- slide 17 ---- */
 .defaults { display: grid; gap: 0.9em; align-content: start; }
 .default-big { font-family: var(--mono); font-size: 1.45em; color: var(--ink); border-left: 3px solid var(--absent); padding: 0.2em 0 0.2em 0.7em; }
 .rules { display: grid; gap: 1em; }
@@ -333,7 +336,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .rule h3 { font-size: 1.22em; font-weight: 650; line-height: 1.3; }
 .rule p { grid-column: 2; font-size: 1em; color: var(--ink-2); line-height: 1.42; }
 
-/* ---- slide 10 ---- */
+/* ---- slide 23 ---- */
 .agree { display: grid; gap: 1.25em; align-content: start; }
 .agree-row { display: grid; grid-template-columns: 8.5em minmax(0, 1fr) 6.4em; gap: 0.9em; align-items: center; font-size: 1.3em; }
 .agree-row .track { height: 0.9em; }
@@ -344,7 +347,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .stat .big .small { font-family: var(--text); font-size: 0.32em; font-weight: 400; }
 .stat .big .n { color: var(--absent); }
 
-/* ---- slides 11 and 12: real cases in rows ---- */
+/* ---- slides 24 and 25: real cases in rows ---- */
 .cases { display: grid; gap: 0; border-top: 1px solid var(--ink); }
 .case-row {
   display: grid;
@@ -362,7 +365,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .case-row .how { color: var(--ink-2); }
 .lesson { font-size: 1.02em; border-left: 3px solid var(--absent); padding-left: 0.8em; max-width: 52em; }
 
-/* ---- slide 13 ---- */
+/* ---- slide 26 ---- */
 .grid-cmp { display: grid; gap: 0.15em; }
 .cmp-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.4em 1.4em; align-items: center; padding: 0.55em 0; border-bottom: 1px solid var(--rule); }
 @media (min-width: 760px) { .cmp-row { grid-template-columns: 16.5em minmax(0, 1fr) minmax(0, 1fr); } }
@@ -374,7 +377,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .track .fill.cost { background: var(--quiet); }
 .cmp-row .m { font-size: 1.08em; }
 
-/* ---- slide 14 ---- */
+/* ---- slide 27 ---- */
 .steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.9em; counter-reset: step; list-style: none; padding: 0; }
 @media (min-width: 760px) { .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.4em; } }
 .steps li { counter-increment: step; border-top: 2px solid var(--ink); padding-top: 0.6em; display: grid; gap: 0.35em; align-content: start; }
@@ -384,7 +387,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .steps p { font-size: 1.04em; color: var(--ink-2); line-height: 1.4; }
 .status { display: inline-flex; gap: 0.6em; align-items: baseline; font: 600 0.8em var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--absent); border: 1.5px solid var(--absent); padding: 0.25em 0.7em; justify-self: start; }
 
-/* ---- slide 15 ---- */
+/* ---- slide 21 ---- */
 .cancant { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.6em; }
 @media (min-width: 760px) { .cancant { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3em; } }
 .cancant h3 { font-family: var(--display); font-size: 1.9em; font-weight: 600; padding-bottom: 0.2em; border-bottom: 2px solid var(--ink); }
@@ -394,7 +397,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .cancant li { font-size: 1.3em; line-height: 1.32; }
 .cancant li small { display: block; font-size: 0.78em; color: var(--ink-2); margin-top: 0.15em; }
 
-/* ---- slide 16 ---- */
+/* ---- slide 22 ---- */
 .standard { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2em; }
 @media (min-width: 760px) { .standard { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2em; } }
 .standard section { border-top: 2px solid var(--ink); padding-top: 0.55em; display: grid; gap: 0.4em; align-content: start; }
@@ -404,6 +407,31 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .where { display: flex; flex-wrap: wrap; gap: 0.4em 2.2em; font-size: 1em; }
 .where b { font-weight: 650; }
 .scope { font-size: 0.95em; color: var(--ink-2); border-left: 3px solid var(--absent); padding-left: 0.8em; max-width: 60em; line-height: 1.42; }
+
+/* ---- the hypotheses and their tests (2026-10-19) ---- */
+.quotes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2em; }
+@media (min-width: 760px) { .quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.2em; } }
+.quote { margin: 0; border-left: 3px solid var(--absent); padding-left: 0.9em; display: grid; gap: 0.6em; align-content: start; }
+.quote p { font-family: var(--display); font-size: 1.28em; line-height: 1.34; color: var(--ink); }
+.quote cite { font: 0.78em/1.4 var(--mono); color: var(--muted); font-style: normal; }
+.hyps { list-style: none; padding: 0; display: grid; gap: 0.75em; counter-reset: h; }
+.hyps li { display: grid; grid-template-columns: 2.2em 11em minmax(0, 1fr); gap: 0.2em 0.9em; align-items: baseline; counter-increment: h; }
+.hyps li::before { content: "H" counter(h); font: 600 1em var(--mono); color: var(--absent); }
+.hyps b { font-weight: 650; }
+.hyps span { font-family: var(--display); font-style: italic; color: var(--ink-2); }
+@media (max-width: 759px) { .hyps li { grid-template-columns: 2.2em minmax(0, 1fr); } .hyps span { grid-column: 2; } }
+.tests { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.4em; }
+@media (min-width: 760px) { .tests { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2em; } }
+.tests .stat .big { font-size: 2.6em; }
+.tests .stat .label { font: 0.78em/1.35 var(--mono); color: var(--muted); }
+.jt-wrap { overflow-x: auto; min-width: 0; }
+.jt { border-collapse: collapse; width: 100%; font-size: 1.02em; font-variant-numeric: tabular-nums; }
+.jt th { font: 0.74em/1.3 var(--mono); color: var(--muted); text-align: left; font-weight: 500; padding: 0 0.9em 0.5em 0; vertical-align: bottom; }
+.jt td { padding: 0.45em 0.9em 0.45em 0; border-top: 1px solid var(--rule); }
+.jt tr.probe td { color: var(--muted); }
+.jt td:first-child { white-space: nowrap; }
+@media (max-width: 559px) { .jt { font-size: 0.86em; } }
+.slide.backup .eyebrow span:last-child { color: var(--absent); }
 .scope b { color: var(--ink); }
 </style>
 
@@ -434,10 +462,52 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s2" aria-label="Slide 2: the best case fails">
+<section class="slide" id="s2" aria-label="Slide 2: charge decides what a particle does">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">02</span><span>Act I · the problem</span></p>
+    <p class="eyebrow"><span class="idx">02</span><span>Act I · why it matters</span></p>
+    <h2>Charge decides what a particle does in a body.</h2>
+    <p class="msg">Reviews of the toxicology agree on that. They also say most studies never measured it in a way another study could compare.</p>
+  </header>
+  <div class="body">
+    <div class="quotes">
+      <blockquote class="quote"><p>“{{mot.shen}}.”</p><cite>{{mot.shen.ref}}</cite></blockquote>
+      <blockquote class="quote"><p>“… {{mot.xu}}.”</p><cite>{{mot.xu.ref}}</cite></blockquote>
+    </div>
+    <p class="lead-in">The charge matters for what a particle does. Whether two measured charges can be compared depends on how they were measured, and that is what this talk measures.</p>
+  </div>
+  <p class="src">docs/2026-10-19-motivation-sources.md, the two abstracts as read on PubMed</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Why should an AI audience care about the charge of a plastic particle? Because the toxicology reviews say it changes what the particle does: positively charged ones affect cells more. And the same reviews say the charge was rarely measured in a comparable way, which is the gap this talk measures.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s3" aria-label="Slide 3: what zeta is">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">03</span><span>Act I · why it matters</span></p>
+    <h2>What zeta is: how fast a particle drifts in a field.</h2>
+    <p class="msg">The instrument measures speed, the mobility. Zeta is computed from it with a model, and the liquid is part of that model.</p>
+  </header>
+  <div class="body">
+    <div class="rules">
+      <div class="rule"><span class="rid">I</span><h3>Measure the speed.</h3><p>An electric field pulls the particle through the liquid and laser light reads how fast it moves. Of the rows that name an instrument, {{zb.zetasizer}} name a Malvern Zetasizer.</p></div>
+      <div class="rule"><span class="rid">II</span><h3>Convert with a model.</h3><p>Zeta follows from the mobility through Smoluchowski’s, Hückel’s or Henry’s formula. Which one fits depends on the particle’s size against the cloud of ions around it, and the salt in the liquid sets that cloud.</p></div>
+      <div class="rule"><span class="rid">III</span><h3>Print one number.</h3><p>Papers print the converted zeta in {{zb.zeta_rows}} rows and the measured mobility in {{zb.mob_rows}}. What the instrument measured is mostly gone; the converted number stays, without the liquid it depends on.</p></div>
+    </div>
+  </div>
+  <p class="src">out/tables/d1_zeta_table.csv: quantity, instrument</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>For the computer scientists: zeta is not measured, it is computed. The instrument measures how fast the particle moves in a field, and a model turns that into a potential, a model that needs the salt in the liquid. Papers almost always print only the computed number.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s4" aria-label="Slide 4: the best case fails">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">04</span><span>Act I · why it matters</span></p>
     <h2>The best case fails.</h2>
     <p class="msg">One lab, the same {{c14.size_nominal}} nm polystyrene, the same five conditions, two papers {{c14.years}} years apart: {{c14.a.value}} against {{c14.b.value}} mV.</p>
   </header>
@@ -468,10 +538,34 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s3" aria-label="Slide 3: zeta belongs to the particle in its liquid">
+<section class="slide" id="s5" aria-label="Slide 5: five hypotheses">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">03</span><span>Act I · the problem</span></p>
+    <p class="eyebrow"><span class="idx">05</span><span>Act I · why it matters</span></p>
+    <h2>Five hypotheses, in the abstract’s own words.</h2>
+    <p class="msg">Each is tested in what follows. Where the prediction was committed before its data was seen, the slide says pre-registered.</p>
+  </header>
+  <div class="body">
+    <ol class="hyps">
+      <li><b>{{hyp.H1.name}}</b><span>“{{hyp.H1.quote}}”</span></li>
+      <li><b>{{hyp.H2.name}}</b><span>“{{hyp.H2.quote}}”</span></li>
+      <li><b>{{hyp.H3.name}}</b><span>“{{hyp.H3.quote}}”</span></li>
+      <li><b>{{hyp.H4.name}}</b><span>“{{hyp.H4.quote}}”</span></li>
+      <li><b>{{hyp.H5.name}}</b><span>“{{hyp.H5.quote}}”</span></li>
+    </ol>
+    <p class="lead-in">Predictions for the new data were written from physics, published values and other datasets, and committed at {{pr.commit}} before any of it was run.</p>
+  </div>
+  <p class="src">docs/DESIGN_2026-10-18_hypotheses-method-evaluation.md, the hypotheses table · docs/PREREG_2026-10.md</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Each hypothesis is one sentence of my abstract, made testable. The first is about what papers leave out, the next three about what the numbers then say, and the last about the agents themselves. For the new datasets I wrote the predictions down and committed them before running anything.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s6" aria-label="Slide 6: zeta belongs to the particle in its liquid">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">06</span><span>Act II · what is missing</span></p>
     <h2>Zeta belongs to the particle in its liquid.</h2>
     <p class="msg">One particle, three liquids: the zeta potential moves {{c02.spread}} mV, and none of the three rows states an ionic strength.</p>
   </header>
@@ -492,10 +586,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s4" aria-label="Slide 4: five conditions">
+<section class="slide" id="s7" aria-label="Slide 7: five conditions">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">04</span><span>Act I · the problem</span></p>
+    <p class="eyebrow"><span class="idx">07</span><span>Act II · what is missing</span></p>
     <h2>Five conditions.</h2>
     <p class="msg">Each one changes the number a zeta measurement prints. All five stand on the same row for {{five.complete}} of {{rows}} rows.</p>
   </header>
@@ -517,10 +611,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s5" aria-label="Slide 5: not different, just unreported">
+<section class="slide" id="s8" aria-label="Slide 8: not different, just unreported">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">05</span><span>Act I · the problem</span></p>
+    <p class="eyebrow"><span class="idx">08</span><span>Act II · what is missing</span></p>
     <h2>“Not different, just unreported.”</h2>
     <p class="msg">{{sp.cat.lost_to_absence}} same-particle comparisons fail on a missing number, not on science.</p>
   </header>
@@ -536,10 +630,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s6" aria-label="Slide 6: what costs the most">
+<section class="slide" id="s9" aria-label="Slide 9: what costs the most">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">06</span><span>Act I · the problem</span></p>
+    <p class="eyebrow"><span class="idx">09</span><span>Act II · what is missing</span></p>
     <h2>What costs the most.</h2>
     <p class="msg">Ionic strength is missing in {{sp.field.ionic_strength.pairs}} of the {{sp.cat.lost_to_absence}} pairs lost to absence ({{sp.top_pct}}). In {{sp.only_total}} pairs, one reported number would decide the pair.</p>
   </header>
@@ -556,10 +650,157 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s7" aria-label="Slide 7: the AI problem">
+<section class="slide" id="s10" aria-label="Slide 10: why not assume the water">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">07</span><span>Act II · reading what isn’t there</span></p>
+    <p class="eyebrow"><span class="idx">10</span><span>Act II · what is missing</span></p>
+    <h2>“It’s a lab. Just assume the water.”</h2>
+    <p class="msg">Whether ionic strength is stated depends on the liquid: {{lab.salt.share}} of salt-solution rows state it, {{lab.DI_water.stated}} of {{lab.DI_water.rows}} DI-water rows do. Where it is stated, it runs from {{lab.lo}} to {{lab.hi}} mM.</p>
+  </header>
+  <div class="body fill">
+    <figure class="fig" style="margin:0">
+      {{svg:lab}}
+      <figcaption class="small">Bars: rows per liquid, ink where ionic strength is stated or computed from a printed salt, cobalt where it is not. Dots: each distinct value stated.</figcaption>
+    </figure>
+    <p class="lead-in">Missing not at random: a default filled in for the silent rows lands on exactly the liquids that never state it. What the paper names can give a range, marked estimated, never a value marked reported. And stating it is not enough: case 14 states {{c14.medium}} in both papers and still differs by {{c14.gap}} mV.</p>
+  </div>
+  <p class="src">out/tables/d1_zeta_table.csv: medium_class, ionic_strength_reported, ionic_strength_mM · docs/DECISIONS.md RC-05, RC-06</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>This is the question an AI audience asks first: why not impute? Because the gap is not random: salt-solution papers state the ionic strength, DI-water papers never do, and where it is stated it spans from {{lab.lo}} to {{lab.hi}} mM. A filled-in default would manufacture the comparability the census says is missing.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s11" aria-label="Slide 11: absence has a size">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">11</span><span>Act II · what is missing</span></p>
+    <h2>Absence has a size.</h2>
+    <p class="msg">Without ionic strength, one printed zeta becomes an interval of ±{{h.hw_f}}. Without the conversion model as well, as in {{h.z4}} rows, ±{{h.hw_z4}}.</p>
+  </header>
+  <div class="body fill">
+    <figure class="fig" style="margin:0">
+      {{svg:henry}}
+      <figcaption class="small debye-note">Curve: f(κa) for a {{c14.size_nominal}} nm particle (radius {{h.radius}} nm), κ⁻¹ = {{h.debye_c}}/√I nm with I in mol/L, a 1:1 electrolyte at 25 °C. Dots: the {{h.points}} rows that report an ionic strength and a size, each at its own f. Ticks on the axis: {{h.rug}} rows with an ionic strength but no size. Band: {{h.band}} rows with no ionic strength, f anywhere from {{h.f_lo}} to {{h.f_hi}}.</figcaption>
+    </figure>
+  </div>
+  <p class="src">comparability.debye_length_nm, henry_f · harmonise case Z4 · out/review/harmonised_all_rows.csv · REVIEW.md §5.4, §5.5</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>This is why ionic strength costs the most. Henry’s function converts the measured mobility into zeta; it runs from {{h.f_lo}} to {{h.f_hi}} depending on the particle’s size against the Debye length, and the Debye length depends on ionic strength. Without ionic strength, f can sit anywhere in the band, which is ±{{h.hw_f}} on the printed value. When the conversion model is unknown too, as in {{h.z4}} rows, it is ±{{h.hw_z4}}.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s12" aria-label="Slide 12: zeta tells neither size, plastic nor label">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">12</span><span>Act III · what the numbers say</span></p>
+    <h2>Zeta tells you neither the size, the plastic nor the label.</h2>
+    <p class="msg">Across {{p2.rows}} values from {{p2.papers}} papers, size and zeta are unrelated (ρ {{p2.rho}}). {{p2.neg_n}} of {{p2.named_n}} plastics sit between {{p2.neg_lo}} and {{p2.neg_hi}} mV, and {{p2.amine_neg}} of {{p2.amine_n}} amine beads, sold as positive, are reported negative.</p>
+  </header>
+  <div class="body fill">
+    <figure class="fig" style="margin:0">{{svg:pol}}</figure>
+    <p class="lead-in">The exception, {{p2.exc}}, rests on {{p2.exc_papers}} papers, {{p2.exc_top}} of its {{p2.exc_n}} values from a single one: a lead to check, not a finding. What moves a charge is the surface and the liquid, not the polymer or the size.</p>
+  </div>
+  <p class="src">out/tables/p2_zeta_size.csv · tool/p2/build.py</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>If zeta were a property of the particle, it should follow its size or its polymer. It follows neither: polyethylene with no charged groups and PET with esters land in the same band. And an amine bead, positive in clean water, is reported negative in most of the liquids people actually used.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s13" aria-label="Slide 13: a model learns the papers">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">13</span><span>Act III · what the numbers say</span></p>
+    <h2>A model learns the papers, not the zeta.</h2>
+    <p class="msg">Predicting zeta for papers it never saw, no set of descriptors beats the average: R² {{p4.all}} with all of them. Shuffle the rows across papers and the same model scores {{p4.leak}}.</p>
+  </header>
+  <div class="body fill">
+    <figure class="fig" style="margin:0">{{svg:r2}}</figure>
+    <p class="lead-in">Gradient-boosted trees on {{p4.rows}} values from {{p4.papers}} papers, five folds split by paper; lines are bootstrap intervals over papers. Pre-registered, verdict {{p4.verdict}}: the low score was predicted, liquid and pH beating the polymer was not. Paper identity alone explains {{p4.paper_only}}; the rest of the leak is near-copies, one particle in several conditions.</p>
+  </div>
+  <p class="src">out/tables/p2_prereg_results.json, P4 and its secondary analysis · tool/p2/prereg.py</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>This is the slide for an AI audience. Split the data at random and the model looks like it learned zeta; split it by paper and it learned nothing, because rows from one paper are near-copies of each other. Without the conditions, the literature does not contain a learnable zeta.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s14" aria-label="Slide 14: the curve, not the dot">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">14</span><span>Act III · what the numbers say</span></p>
+    <h2>The plan was never zeta. It was the curve.</h2>
+    <p class="msg">One dot cannot tell a hard bead from a soft, coated one; a curve across salt can. The method to read the curve is built. What is missing is data: papers print dots, not curves.</p>
+  </header>
+  <div class="body cols wide-left">
+    <figure class="fig" style="margin:0">
+      {{svg:curve}}
+      <figcaption class="small">Computed with the physics demo’s own models: three particles tuned to the same mobility at {{curve.I}} mM. Hard: the charge sits on the skin, salt hides it, mobility falls toward zero. Soft: the charge sits inside a layer water flows through, salt cannot hide it, mobility stops at a plateau.</figcaption>
+    </figure>
+    <div class="rules">
+      <div class="rule"><span class="rid">I</span><h3>Measure a salt series.</h3><p>Mobility at a handful of salt levels, low to high. A solar panel is not rated at whatever the weather was; it is measured across temperatures and quoted at standard test conditions.</p></div>
+      <div class="rule"><span class="rid">II</span><h3>Fit by simulation-based inference.</h3><p>A physics simulator makes many curves; a neural network learns to go back from a curve to the layer’s charge and softness, with uncertainty. Trained on {{d4.sims}} simulations, calibration passes on all {{d4.sbc_params}} parameters (lowest p {{d4.ks_min}}).</p></div>
+      <div class="rule"><span class="rid">III</span><h3>Report two numbers.</h3><p>Mobility at one reference condition, here {{curve.I}} mM at {{curve.T}} °C, comparable across labs. And the plateau, which stays defined under a protein corona, where zeta has no shear plane.</p></div>
+      <p class="lead-in">Measured curves run through it so far: <b>{{d4.measured}}</b>. Full salt series exist mostly for reference particles such as sulfate latex, silica and bacteria.</p>
+    </div>
+  </div>
+  <p class="src">src/mnp/ek/soft.py, hard.py · src/mnp/infer/figures.py same_zeta_figure · out/tables/d4_sbc.csv · CHANGELOG.md, physics demo · data/raw/digitised/</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>The project did not start from zeta: it started from curves, because a curve across salt separates a hard bead from a soft or coated one, and one dot cannot. The physics and the neural posterior are built and calibrated on simulations, but no measured salt series has gone through them yet. That is the second half of the call: publish the curve, not the dot.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s15" aria-label="Slide 15: the window decides the count">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">15</span><span>Act III · what the numbers say</span></p>
+    <h2>The size window decides the count.</h2>
+    <p class="msg">In one river, particles of {{w.small.lo}}–{{w.small.hi}} µm outnumber those of {{w.large.lo}}–{{w.large.hi}} µm by {{w.ratio}} over {{w.stations}} stations. The slope rescaling assumes, α {{w.alpha0}}, predicts {{w.pred}}.</p>
+  </header>
+  <div class="body">
+    <div class="tests">
+      <div class="stat"><span class="label">Soil, {{p1.studies}} studies · pre-registered, {{p1.verdict}}</span><span class="big">ρ {{p1.rho}}</span><span class="small">A finer lower size limit, more plastic counted; slope {{p1.slope}} per decade.</span></div>
+      <div class="stat"><span class="label">Rescaling, {{p2t.cells}} places · pre-registered, {{p2t.verdict}}</span><span class="big">{{p2t.reduction}}</span><span class="small">median narrowing of disagreement; where the windows differed, wider in {{p2t.wider}} of {{p2t.diff_cells}} places.</span></div>
+      <div class="stat"><span class="label">{{p3.n}} measured size distributions · pre-registered, {{p3.verdict}}</span><span class="big">{{p3.outside}}</span><span class="small">outside α {{p3.band_lo}}–{{p3.band_hi}}; median {{p3.median}} on all bins, {{p3.lod_median}} without the bins near the detection limit.</span></div>
+    </div>
+    <p class="lead-in">Matching the river needs α {{w.alpha}}. The slope everyone assumes is right on average and wrong for most single studies, so two counts with different windows are not two measurements of the same thing.</p>
+  </div>
+  <p class="src">out/tables/p2_weser_pairs.csv (PANGAEA, Weser estuary) · out/tables/p2_prereg_results.json, P1 to P3 · docs/PREREG_2026-10.md</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>The same absence story holds for concentrations, with the size window in place of the liquid. In one river the small fraction outnumbers the large by thousands, where the textbook slope predicts about a dozen. Across soil studies a finer limit means more plastic, and rescaling everything to one window does not settle the disagreement.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s16" aria-label="Slide 16: same tow, two values">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">16</span><span>Act III · what the numbers say</span></p>
+    <h2>Same tow, two values.</h2>
+    <p class="msg">Two papers report the same {{re.tows}} net tows, with the same numbers for {{re.same}} of them. A global database holds them twice and converts each copy its own way.</p>
+  </header>
+  <div class="body">
+    <div class="tests">
+      <div class="stat"><span class="label">Manta tows</span><span class="big">×{{re.manta}}</span><span class="small">median ratio of the two copies of one tow</span></div>
+      <div class="stat"><span class="label">Neuston tows</span><span class="big">×{{re.neuston}}</span><span class="small">the other net, the other direction</span></div>
+      <div class="stat"><span class="label">Zero against positive</span><span class="big">{{re.zero}}</span><span class="small">tows that are zero in one copy and positive in the other</span></div>
+    </div>
+    <p class="lead-in">The trap: a first, careless pairing gave a ratio of {{re.trap}}, and the paper’s own wind-mixing correction has a median of {{re.trap}}. A model would explain one with the other. It is a coincidence, and only the arithmetic tow by tow shows it.</p>
+  </div>
+  <p class="src">tool/colocation/reisser_eriksen/README.md · tow_identity_R_E.csv (NOAA NCEI; Reisser and Eriksen)</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Harmonised databases are where agents will look first, so this one matters. The same tows sit in a global database twice, converted with different net depths and size cuts, so one physical sample carries two values. And the first explanation a model would reach for is a coincidence that only arithmetic exposes.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s17" aria-label="Slide 17: the AI problem">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">17</span><span>Act IV · agents that check</span></p>
     <h2>Silence is invisible to a reader.</h2>
     <p class="msg">A model sees what is written. Asked for a condition the paper never gives, an extractor left to itself supplies a plausible default.</p>
   </header>
@@ -583,10 +824,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s8" aria-label="Slide 8: the architecture">
+<section class="slide" id="s18" aria-label="Slide 18: the architecture">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">08</span><span>Act II · reading what isn’t there</span></p>
+    <p class="eyebrow"><span class="idx">18</span><span>Act IV · agents that check</span></p>
     <h2>A model reads; code decides.</h2>
     <p class="msg">Every value links to the line it came from.</p>
   </header>
@@ -602,164 +843,65 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </div>
   <p class="src">out/tables/d1_zeta_table.csv · REVIEW.md §2 · docs/DECISIONS.md CP-03, CP-04, PR-02</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>The agents never write to the table directly. Each value arrives as a verbatim quote with the addresses of the lines it sits in, and code checks that the quote is in the paper. Everything after the reading is deterministic: the comparability verdicts, the census and the whole build, which <code>report reproduce</code> rebuilds byte for byte. The example is the first row of the pair on slide two.</p>
+    <p>The agents never write to the table directly. Each value arrives as a verbatim quote with the addresses of the lines it sits in, and code checks that the quote is in the paper. Everything after the reading is deterministic: the comparability verdicts, the census and the whole build, which <code>report reproduce</code> rebuilds byte for byte. The example is the first row of the pair on slide four.</p>
   </aside>
 </div>
 </section>
 
-<section class="slide" id="s9" aria-label="Slide 9: absence has a size">
+<section class="slide" id="s19" aria-label="Slide 19: the validation ladder">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">09</span><span>Act II · reading what isn’t there</span></p>
-    <h2>Absence has a size.</h2>
-    <p class="msg">Without ionic strength, one printed zeta becomes an interval of ±{{h.hw_f}}. Without the conversion model as well, as in {{h.z4}} rows, ±{{h.hw_z4}}.</p>
-  </header>
-  <div class="body fill">
-    <figure class="fig" style="margin:0">
-      {{svg:henry}}
-      <figcaption class="small debye-note">Curve: f(κa) for a {{c14.size_nominal}} nm particle (radius {{h.radius}} nm), κ⁻¹ = {{h.debye_c}}/√I nm with I in mol/L, a 1:1 electrolyte at 25 °C. Dots: the {{h.points}} rows that report an ionic strength and a size, each at its own f. Ticks on the axis: {{h.rug}} rows with an ionic strength but no size. Band: {{h.band}} rows with no ionic strength, f anywhere from {{h.f_lo}} to {{h.f_hi}}.</figcaption>
-    </figure>
-  </div>
-  <p class="src">comparability.debye_length_nm, henry_f · harmonise case Z4 · out/review/harmonised_all_rows.csv · REVIEW.md §5.4, §5.5</p>
-  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>This is why ionic strength costs the most. Henry’s function converts the measured mobility into zeta; it runs from {{h.f_lo}} to {{h.f_hi}} depending on the particle’s size against the Debye length, and the Debye length depends on ionic strength. Without ionic strength, f can sit anywhere in the band, which is ±{{h.hw_f}} on the printed value. When the conversion model is unknown too, as in {{h.z4}} rows, it is ±{{h.hw_z4}}.</p>
-  </aside>
-</div>
-</section>
-
-<section class="slide" id="s10" aria-label="Slide 10: how reliable is one reading">
-<div class="frame">
-  <header>
-    <p class="eyebrow"><span class="idx">10</span><span>Act II · reading what isn’t there</span></p>
-    <h2>How reliable is one reading?</h2>
-    <p class="msg">Two blind readings agree on the condition flags. They disagree on which rows exist.</p>
-  </header>
-  <div class="body cols wide-left">
-    <div class="agree">
-      <p class="label">Flags agreeing, on the {{rr.matched}} rows both readings found</p>
-      <div class="agree-row weak"><span>medium</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.medium_reported}}"></span></span><span class="v">{{rr.agree.medium_reported}}</span></div>
-      <div class="agree-row"><span>ionic strength</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.ionic_strength_reported}}"></span></span><span class="v">{{rr.agree.ionic_strength_reported}}</span></div>
-      <div class="agree-row"><span>pH</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.pH_reported}}"></span></span><span class="v">{{rr.agree.pH_reported}}</span></div>
-      <div class="agree-row"><span>temperature</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.temperature_reported}}"></span></span><span class="v">{{rr.agree.temperature_reported}}</span></div>
-      <div class="agree-row"><span>instrument</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.instrument_reported}}"></span></span><span class="v">{{rr.agree.instrument_reported}}</span></div>
-      <div class="agree-row"><span>all five</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.conditions_complete}}"></span></span><span class="v">{{rr.agree.conditions_complete}}</span></div>
-    </div>
-    <div class="defaults">
-      <div class="stat"><span class="label">Same number of rows</span><span class="big">{{rr.same_count}} <span class="small">of {{rr.papers}} papers</span></span></div>
-      <p class="lead-in">Rows found: {{rr.rows_a}} in reading A, {{rr.rows_b}} in reading B.</p>
-      <p class="small">{{rr.papers}} papers, a seeded sample, each read twice by separate agents under the same brief and run through the dataset’s own pipeline without recording anything.</p>
-    </div>
-  </div>
-  <p class="src">data/interim/reread_control/summary.json · docs/DECISIONS.md EX-09</p>
-  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>To measure reading noise, {{rr.papers}} papers were each read twice, blind, under the same brief. On rows both readings found, the condition flags agree almost perfectly; the medium is the weakest at {{rr.agree.medium_reported}}. The readings differ mainly on which rows exist, with the same row count in only {{rr.same_count}} of {{rr.papers}} papers. Against the older recorded extraction, the control also showed that in {{rr.cited}} papers the recorded rows were values cited from other studies.</p>
-  </aside>
-</div>
-</section>
-
-<section class="slide" id="s11" aria-label="Slide 11: what the agents got wrong">
-<div class="frame">
-  <header>
-    <p class="eyebrow"><span class="idx">11</span><span>Act II · reading what isn’t there</span></p>
-    <h2>What the agents got wrong.</h2>
-    <p class="msg">Each was caught by a check against the data, never by trusting an agent’s report.</p>
+    <p class="eyebrow"><span class="idx">19</span><span>Act IV · agents that check</span></p>
+    <h2>Read, check, challenge.</h2>
+    <p class="msg">{{v.cands}} values contradict their surface label. A reader gives a cause with cited lines, code keeps it only if the lines carry the evidence, and a second reader must agree.</p>
   </header>
   <div class="body">
-    <div class="cases">
-      <div class="case-row head"><span>what the agent did</span><span>the evidence</span><span>how it was caught</span></div>
-      <div class="case-row"><span class="what">Recorded a value cited from another study as the paper’s own</span><span class="ev">{{g.cited.pmcid}}: “{{g.cited.quote}}”</span><span class="how">Two blind re-readings found no measurement of the paper’s own. The brief now excludes cited values.</span></div>
-      <div class="case-row"><span class="what">Wrote down an n the paper never states</span><span class="ev">{{g.n.pmcid}}</span><span class="how">The main session read every worker report and sent the paper back.</span></div>
-      <div class="case-row"><span class="what">Recorded DLVO model inputs as measurements</span><span class="ev">{{g.dlvo.pmcid}}</span><span class="how">Sent back. The first correction then dropped a measurement the paper says it made but never prints, which had to stay.</span></div>
-      <div class="case-row"><span class="what">Counted one reading twice, as zeta and as mobility</span><span class="ev">{{g.twice.pmcid}}</span><span class="how">Found in the re-read of {{g.reread}} papers under one brief; sent back.</span></div>
-      <div class="case-row"><span class="what">Took a storage temperature as the measurement one</span><span class="ev">{{r2.pmcid}}: “{{r2.example}}”, {{r2.rows}} rows</span><span class="how">Candidate rows read against their papers; rule R2b now clears it.</span></div>
+    <div class="tests">
+      <div class="stat"><span class="label">V0 · one reader, {{v.modelA}}</span><span class="big">{{v.v0}}</span><span class="small">causes given, for {{v.tokA}} input tokens in {{v.secA}} s over {{v.papers}} papers</span></div>
+      <div class="stat"><span class="label">V1 · plus code</span><span class="big">{{v.v1_rej}}</span><span class="small">rejected: the cited lines did not carry the evidence the cause needs</span></div>
+      <div class="stat"><span class="label">V2 · plus a second reader, {{v.modelB}}</span><span class="big">{{v.v2_kept}}</span><span class="small">kept where both agree; {{v.v2_abst}} abstained; same cause {{v.agree}}, κ {{v.kappa}}</span></div>
     </div>
+    <p class="lead-in">On the first run, code rejected {{v.first_rej}} answers, {{v.guard}} of them correct: our own guard did not know that a coating counts as a corona. Found by reading the rejections, fixed test first. Scored against blind human labels: {{v.labelled}} of {{v.label_target}} so far.</p>
   </div>
-  <p class="src">docs/DECISIONS.md, agent actions; EX-09, EX-10, RC-09 · data/interim/extractions.jsonl</p>
+  <p class="src">out/tables/validate_sign_metrics.json · docs/2026-10-19-validation-results.md · src/mnp/validate/sign.py</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>These are real errors the agents made, and each was caught by a check, not by trusting the agent’s own report. The pattern is that agents fill the structure they are given: a cited value becomes a measurement, a model input becomes a data point, a storage temperature becomes the measurement temperature. The made-up n was in {{g.n.pmcid}}, which is the newer paper of the pair on slide two.</p>
+    <p>This is the system the abstract asks for, on one question. Each rung adds one stage, so the difference between rungs is what that stage buys. The most useful finding was a failure of mine: the code that checks the model was wrong, and it would have deleted correct answers silently.</p>
   </aside>
 </div>
 </section>
 
-<section class="slide" id="s12" aria-label="Slide 12: our own checks pushed the data toward absence">
+<section class="slide" id="s20" aria-label="Slide 20: a judge is one more reader">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">12</span><span>Act II · reading what isn’t there</span></p>
-    <h2>The twist: our own checks pushed the data toward absence.</h2>
-    <p class="msg">A check that flags a correct value teaches the agent to delete it.</p>
+    <p class="eyebrow"><span class="idx">20</span><span>Act IV · agents that check</span></p>
+    <h2>A judge is one more reader, so test it like one.</h2>
+    <p class="msg">Three judges from other model families score the readers’ answers twice, with the causes listed in opposite orders, and once more with a fluent wrong cause swapped in. Claude scores its own family’s reader.</p>
   </header>
   <div class="body">
-    <div class="cases">
-      <div class="case-row head"><span>what the check missed</span><span>the text it failed on</span><span>what happened</span></div>
-      <div class="case-row"><span class="what">An ionic strength in molar</span><span class="ev"><span class="verbatim">“{{gd.molar}}”, “{{gd.comma}}”</span></span><span class="how">The check looked for “{{gd.looked1}}” and “{{gd.looked2}}”. Worker {{gd.worker}} deleted {{gd.harmed}}’s value to clear the flag.</span></div>
-      <div class="case-row"><span class="what">An exponent inside the unit</span><span class="ev"><span class="verbatim">“{{gd.mmol}}”</span></span><span class="how">A medium stating {{gd.mmol_text}} recorded no ionic strength.</span></div>
-      <div class="case-row"><span class="what">A power of ten</span><span class="ev"><span class="verbatim">“{{gd.pow}}”</span></span><span class="how">Read as {{gd.pow_read}}, and the rows dropped.</span></div>
-      <div class="case-row"><span class="what">A temperature in kelvin</span><span class="ev"><span class="verbatim">“{{gd.kelvin}}”</span></span><span class="how">Not found.</span></div>
-      <div class="case-row"><span class="what">The step guard read too far</span><span class="ev"><span class="verbatim">“{{gd.step}}”</span></span><span class="how">In the next sentence, it cleared a temperature the paper ties to the Zetasizer.</span></div>
-      <div class="case-row"><span class="what">Our own fix, widened too far</span><span class="ev"><span class="verbatim">“{{gd.bpa}}”</span></span><span class="how">Taught to accept any unit, the check let a co-exposure count as {{gd.bpa_mM}} of ionic strength. Now another unit counts only bound to a salt or within {{gd.window}} characters after “ionic strength”.</span></div>
+    <div class="jt-wrap">
+      <table class="jt">
+        <thead><tr><th>Judge</th><th>Rows judged</th><th>Calls reader A supported</th><th>Accepts the wrong cause</th><th>Pick changes with the order</th><th>Traps caught</th></tr></thead>
+        <tbody>
+          <tr><td>{{j.1.name}}</td><td>{{j.1.rows}}</td><td>{{j.1.yes}}</td><td>{{j.1.decoy}}</td><td>{{j.1.flip}}</td><td>{{j.1.traps}}</td></tr>
+          <tr><td>{{j.2.name}}</td><td>{{j.2.rows}}</td><td>{{j.2.yes}}</td><td>{{j.2.decoy}}</td><td>{{j.2.flip}}</td><td>{{j.2.traps}}</td></tr>
+          <tr><td>{{j.3.name}}</td><td>{{j.3.rows}}</td><td>{{j.3.yes}}</td><td>{{j.3.decoy}}</td><td>{{j.3.flip}}</td><td>{{j.3.traps}}</td></tr>
+          <tr class="probe"><td>{{j.4.name}}, own family</td><td>{{j.4.rows}}</td><td>{{j.4.yes}}</td><td>{{j.4.decoy}}</td><td>{{j.4.flip}}</td><td>{{j.4.traps}}</td></tr>
+        </tbody>
+      </table>
     </div>
-    <p class="lesson">The workers reported the first five, because the re-read brief asked for “{{gd.asked}}”; the adversarial verify fixture caught our own regression. Each fix began as a failing test, and a worker now never deletes a printed value to clear a flag.</p>
+    <p class="lead-in">{{j.decoy_top.name}} called {{j.decoy_top}} of the wrong causes supported. Claude was no softer on its own family, but its pick moved with the order of the list. A judge’s yes is one more vote, never the check: judges read, code derives.</p>
   </div>
-  <p class="src">docs/DECISIONS.md EX-12, EX-13, EX-14</p>
+  <p class="src">out/tables/validate_judge_metrics.json · src/mnp/validate/judge.py · the decision-tuned judges were not run: docs/2026-10-19-validation-results.md</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>This was the most uncomfortable finding. The verifier flags any value it cannot find in the text, and the workers were told to act on flags. When a guard failed to recognise a correct value, written in molar, in kelvin or with an exponent, a worker deleted the value to clear the flag, and the data moved toward absence, the very quantity we measure. Then our own fix widened one guard too far and let a co-exposure concentration through as an ionic strength.</p>
+    <p>An LLM judge is just another reader, so it gets the same tests: does it say yes to everything, does it accept a fluent wrong answer, does its pick depend on the order of a list. One judge accepted most of the wrong causes, and Claude was stricter on its own family than the others but less stable. So the judge is a vote, and the checks stay in code.</p>
   </aside>
 </div>
 </section>
 
-<section class="slide" id="s13" aria-label="Slide 13: structure against retrieval">
+<section class="slide" id="s21" aria-label="Slide 21: what AI can and cannot do">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">13</span><span>Act II · reading what isn’t there</span></p>
-    <h2>Structure vs retrieval, same model.</h2>
-    <p class="msg">Retrieval over text cannot reach the comparability verdict. In cell D the code decides it, and the model reads it back.</p>
-  </header>
-  <div class="body">
-    <div class="grid-cmp">
-      <div class="cmp-row head"><span>the same questions</span><span>cell D: the table</span><span>cell B: BM25 over the papers’ lines</span></div>
-      <div class="cmp-row"><span class="m">comparable pairs found (kind E)</span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.D.comparable}}"></span></span><span class="v">{{gr.D.comparable}}</span></span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.B.comparable}}"></span></span><span class="v">{{gr.B.comparable}}</span></span></div>
-      <div class="cmp-row"><span class="m">kind E, balanced accuracy</span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.D.bal}}"></span></span><span class="v">{{gr.D.bal}}</span></span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.B.bal}}"></span></span><span class="v">{{gr.B.bal}}</span></span></div>
-      <div class="cmp-row"><span class="m">a numeric filter across papers (kind C)</span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.D.C}}"></span></span><span class="v">{{gr.D.C}}</span></span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.B.C}}"></span></span><span class="v">{{gr.B.C}}</span></span></div>
-      <div class="cmp-row"><span class="m">input tokens, all questions</span><span class="cell"><span class="track plain"><span class="fill cost" style="width:{{w:gr.D.tokens}}"></span></span><span class="v">{{gr.D.tokens}}</span></span><span class="cell"><span class="track plain"><span class="fill cost" style="width:{{w:gr.B.tokens}}"></span></span><span class="v">{{gr.B.tokens}}</span></span></div>
-    </div>
-    <p class="honest">In cell D the code decides comparability and the model reads the verdict. The point is that retrieval over text cannot reach the verdict at all. B’s raw kind E accuracy, {{gr.B.E}}, is the base rate: it called every pair not comparable ({{gr.B.said_not}} answers).</p>
-    <p class="small">One reader, {{gr.model}}, asked the same {{gr.asked}} questions in each cell, once.</p>
-  </div>
-  <p class="src">data/interim/runs/{{gr.D.run}}, {{gr.B.run}} · docs/DECISIONS.md GR-15</p>
-  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Same model, same questions, two ways of handing it the evidence. In cell D the reader gets the table, and for comparability the code’s verdict is in the prompt, so its perfect score is transcription, not judgement. Cell B retrieves lines from the papers and never finds a comparable pair; its raw accuracy is high only because it calls everything not comparable. Comparability lives in the join of two rows, and no passage of text contains it.</p>
-  </aside>
-</div>
-</section>
-
-<section class="slide" id="s14" aria-label="Slide 14: the human audit">
-<div class="frame">
-  <header>
-    <p class="eyebrow"><span class="idx">14</span><span>Act II · reading what isn’t there</span></p>
-    <h2>The human audit.</h2>
-    <p class="msg">Not done yet. No person has checked a row against its paper.</p>
-  </header>
-  <div class="body">
-    <span class="status">Status: not done</span>
-    <ol class="steps">
-      <li><h3>Draw a sample from the final rows</h3><p>Aimed at the rows that say a condition is not reported, condition by condition.</p></li>
-      <li><h3>Open each paper at the cited lines</h3><p>Every row carries the addresses of its lines, so this is a lookup, not a search.</p></li>
-      <li class="key"><h3>Is it really not reported?</h3><p>For this measurement, by the dataset’s own rules: yes, no or unsure.</p></li>
-      <li class="key"><h3>The precision of “not reported”</h3><p>Per condition. The census rests on it: a false “not reported” moves a pair out of “lost only to absence”.</p></li>
-    </ol>
-    <p class="small">It is the one check no agent can do for us. Its result will be reported as measured, whatever it is.</p>
-  </div>
-  <p class="src">docs/DECISIONS.md OD-03 · REVIEW.md §7 · out/review/audit_sample.csv holds no verdict yet</p>
-  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>No person has yet checked a row against its paper. The audit will draw a sample from the final rows, aimed at the claim the census rests on: that a condition is really not reported. Its result will say how far the absence counts can be trusted, and it goes into the dataset whatever it shows.</p>
-  </aside>
-</div>
-</section>
-
-<section class="slide" id="s15" aria-label="Slide 15: what AI can and cannot do">
-<div class="frame">
-  <header>
-    <p class="eyebrow"><span class="idx">15</span><span>Act III · what AI can and can’t do</span></p>
+    <p class="eyebrow"><span class="idx">21</span><span>Act V · the close</span></p>
     <h2>Can, and can’t.</h2>
     <p class="msg">Agents made the reading possible at scale. Code made it checkable.</p>
   </header>
@@ -789,25 +931,154 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s16" aria-label="Slide 16: a minimal reporting standard">
+<section class="slide" id="s22" aria-label="Slide 22: a minimal reporting standard">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">16</span><span>Act III · what AI can and can’t do</span></p>
+    <p class="eyebrow"><span class="idx">22</span><span>Act V · the close</span></p>
     <h2>The call: a minimal reporting standard.</h2>
-    <p class="msg">Report the five conditions, identify the particle, and name the conversion model.</p>
+    <p class="msg">Report the five conditions, identify the particle, and name the conversion model. For counts, state the size window.</p>
   </header>
   <div class="body">
     <div class="standard">
       <section><h3>The five conditions</h3><ul><li>the medium</li><li>ionic strength as a number, not a buffer name</li><li>pH</li><li>the temperature of the measurement itself</li><li>the instrument</li></ul></section>
       <section><h3>The particle</h3><p>Supplier, lot and surface chemistry. Case 14’s two lots of {{c14.size_nominal}} nm polystyrene pass all five conditions and still differ by {{c14.gap}} mV.</p></section>
-      <section><h3>The conversion model</h3><p>Smoluchowski, Hückel or Henry’s function. Without it and without κa, as in {{h.z4}} rows, a printed zeta is only known to ±{{h.hw_z4}}.</p></section>
+      <section><h3>The conversion model, or the curve</h3><p>Smoluchowski, Hückel or Henry’s function. Without it and without κa, as in {{h.z4}} rows, a printed zeta is only known to ±{{h.hw_z4}}. Better still, report mobility itself at two or more ionic strengths: a curve, not a dot (out/checklist.md).</p></section>
     </div>
     <p class="where"><span><b>Dataset</b> {{dataset}}, {{licence}}, <code>out/release/</code></span><span><b>Code</b> this repository; <code>report reproduce</code> rebuilds it</span><span><b>Review guide</b> <code>out/review/REVIEW.md</code></span></p>
-    <p class="scope"><b>Scope.</b> {{sc.synthetic}} {{sc.corpus}} {{sc.use}}</p>
+    <p class="scope"><b>Scope.</b> {{sc.synthetic}} Bought beads in laboratory liquids are the easiest case to compare, and the best pair still differs by {{c14.gap}} mV. {{sc.corpus}} {{sc.use}}</p>
   </div>
   <p class="src">mnp.report.scope · out/release/LICENSE</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>The ask is small: report the five conditions, identify the particle, and name the conversion model. Case 14 shows that the five alone are not enough. Everything here is open: the dataset under {{licence}}, the code and the review guide. And the scope: these are synthetic particles measured in laboratory liquids, read from one open-access corpus.</p>
+    <p>The ask is small: report the five conditions, identify the particle, name the conversion model, and for counts state the size window. Case 14 shows that the five alone are not enough. Everything here is open: the dataset under {{licence}}, the code and the review guide. And the scope: these are synthetic particles measured in laboratory liquids, read from one open-access corpus.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide backup" id="s23" aria-label="Slide 23: how reliable is one reading">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">23</span><span>Backup</span></p>
+    <h2>How reliable is one reading?</h2>
+    <p class="msg">Two blind readings agree on the condition flags. They disagree on which rows exist.</p>
+  </header>
+  <div class="body cols wide-left">
+    <div class="agree">
+      <p class="label">Flags agreeing, on the {{rr.matched}} rows both readings found</p>
+      <div class="agree-row weak"><span>medium</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.medium_reported}}"></span></span><span class="v">{{rr.agree.medium_reported}}</span></div>
+      <div class="agree-row"><span>ionic strength</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.ionic_strength_reported}}"></span></span><span class="v">{{rr.agree.ionic_strength_reported}}</span></div>
+      <div class="agree-row"><span>pH</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.pH_reported}}"></span></span><span class="v">{{rr.agree.pH_reported}}</span></div>
+      <div class="agree-row"><span>temperature</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.temperature_reported}}"></span></span><span class="v">{{rr.agree.temperature_reported}}</span></div>
+      <div class="agree-row"><span>instrument</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.instrument_reported}}"></span></span><span class="v">{{rr.agree.instrument_reported}}</span></div>
+      <div class="agree-row"><span>all five</span><span class="track plain"><span class="fill" style="width:{{w:rr.agree.conditions_complete}}"></span></span><span class="v">{{rr.agree.conditions_complete}}</span></div>
+    </div>
+    <div class="defaults">
+      <div class="stat"><span class="label">Same number of rows</span><span class="big">{{rr.same_count}} <span class="small">of {{rr.papers}} papers</span></span></div>
+      <p class="lead-in">Rows found: {{rr.rows_a}} in reading A, {{rr.rows_b}} in reading B.</p>
+      <p class="small">{{rr.papers}} papers, a seeded sample, each read twice by separate agents under the same brief and run through the dataset’s own pipeline without recording anything.</p>
+    </div>
+  </div>
+  <p class="src">data/interim/reread_control/summary.json · docs/DECISIONS.md EX-09</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>To measure reading noise, {{rr.papers}} papers were each read twice, blind, under the same brief. On rows both readings found, the condition flags agree almost perfectly; the medium is the weakest at {{rr.agree.medium_reported}}. The readings differ mainly on which rows exist, with the same row count in only {{rr.same_count}} of {{rr.papers}} papers. Against the older recorded extraction, the control also showed that in {{rr.cited}} papers the recorded rows were values cited from other studies.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide backup" id="s24" aria-label="Slide 24: what the agents got wrong">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">24</span><span>Backup</span></p>
+    <h2>What the agents got wrong.</h2>
+    <p class="msg">Each was caught by a check against the data, never by trusting an agent’s report.</p>
+  </header>
+  <div class="body">
+    <div class="cases">
+      <div class="case-row head"><span>what the agent did</span><span>the evidence</span><span>how it was caught</span></div>
+      <div class="case-row"><span class="what">Recorded a value cited from another study as the paper’s own</span><span class="ev">{{g.cited.pmcid}}: “{{g.cited.quote}}”</span><span class="how">Two blind re-readings found no measurement of the paper’s own. The brief now excludes cited values.</span></div>
+      <div class="case-row"><span class="what">Wrote down an n the paper never states</span><span class="ev">{{g.n.pmcid}}</span><span class="how">The main session read every worker report and sent the paper back.</span></div>
+      <div class="case-row"><span class="what">Recorded DLVO model inputs as measurements</span><span class="ev">{{g.dlvo.pmcid}}</span><span class="how">Sent back. The first correction then dropped a measurement the paper says it made but never prints, which had to stay.</span></div>
+      <div class="case-row"><span class="what">Counted one reading twice, as zeta and as mobility</span><span class="ev">{{g.twice.pmcid}}</span><span class="how">Found in the re-read of {{g.reread}} papers under one brief; sent back.</span></div>
+      <div class="case-row"><span class="what">Took a storage temperature as the measurement one</span><span class="ev">{{r2.pmcid}}: “{{r2.example}}”, {{r2.rows}} rows</span><span class="how">Candidate rows read against their papers; rule R2b now clears it.</span></div>
+    </div>
+  </div>
+  <p class="src">docs/DECISIONS.md, agent actions; EX-09, EX-10, RC-09 · data/interim/extractions.jsonl</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>These are real errors the agents made, and each was caught by a check, not by trusting the agent’s own report. The pattern is that agents fill the structure they are given: a cited value becomes a measurement, a model input becomes a data point, a storage temperature becomes the measurement temperature. The made-up n was in {{g.n.pmcid}}, which is the newer paper of the pair on slide four.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide backup" id="s25" aria-label="Slide 25: our own checks pushed the data toward absence">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">25</span><span>Backup</span></p>
+    <h2>The twist: our own checks pushed the data toward absence.</h2>
+    <p class="msg">A check that flags a correct value teaches the agent to delete it.</p>
+  </header>
+  <div class="body">
+    <div class="cases">
+      <div class="case-row head"><span>what the check missed</span><span>the text it failed on</span><span>what happened</span></div>
+      <div class="case-row"><span class="what">An ionic strength in molar</span><span class="ev"><span class="verbatim">“{{gd.molar}}”, “{{gd.comma}}”</span></span><span class="how">The check looked for “{{gd.looked1}}” and “{{gd.looked2}}”. Worker {{gd.worker}} deleted {{gd.harmed}}’s value to clear the flag.</span></div>
+      <div class="case-row"><span class="what">An exponent inside the unit</span><span class="ev"><span class="verbatim">“{{gd.mmol}}”</span></span><span class="how">A medium stating {{gd.mmol_text}} recorded no ionic strength.</span></div>
+      <div class="case-row"><span class="what">A power of ten</span><span class="ev"><span class="verbatim">“{{gd.pow}}”</span></span><span class="how">Read as {{gd.pow_read}}, and the rows dropped.</span></div>
+      <div class="case-row"><span class="what">A temperature in kelvin</span><span class="ev"><span class="verbatim">“{{gd.kelvin}}”</span></span><span class="how">Not found.</span></div>
+      <div class="case-row"><span class="what">The step guard read too far</span><span class="ev"><span class="verbatim">“{{gd.step}}”</span></span><span class="how">In the next sentence, it cleared a temperature the paper ties to the Zetasizer.</span></div>
+      <div class="case-row"><span class="what">Our own fix, widened too far</span><span class="ev"><span class="verbatim">“{{gd.bpa}}”</span></span><span class="how">Taught to accept any unit, the check let a co-exposure count as {{gd.bpa_mM}} of ionic strength. Now another unit counts only bound to a salt or within {{gd.window}} characters after “ionic strength”.</span></div>
+    </div>
+    <p class="lesson">The workers reported the first five, because the re-read brief asked for “{{gd.asked}}”; the adversarial verify fixture caught our own regression. Each fix began as a failing test, and a worker now never deletes a printed value to clear a flag.</p>
+  </div>
+  <p class="src">docs/DECISIONS.md EX-12, EX-13, EX-14</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>This was the most uncomfortable finding. The verifier flags any value it cannot find in the text, and the workers were told to act on flags. When a guard failed to recognise a correct value, written in molar, in kelvin or with an exponent, a worker deleted the value to clear the flag, and the data moved toward absence, the very quantity we measure. Then our own fix widened one guard too far and let a co-exposure concentration through as an ionic strength.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide backup" id="s26" aria-label="Slide 26: structure against retrieval">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">26</span><span>Backup</span></p>
+    <h2>Structure vs retrieval, same model.</h2>
+    <p class="msg">Retrieval over text cannot reach the comparability verdict. In cell D the code decides it, and the model reads it back.</p>
+  </header>
+  <div class="body">
+    <div class="grid-cmp">
+      <div class="cmp-row head"><span>the same questions</span><span>cell D: the table</span><span>cell B: BM25 over the papers’ lines</span></div>
+      <div class="cmp-row"><span class="m">comparable pairs found (kind E)</span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.D.comparable}}"></span></span><span class="v">{{gr.D.comparable}}</span></span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.B.comparable}}"></span></span><span class="v">{{gr.B.comparable}}</span></span></div>
+      <div class="cmp-row"><span class="m">kind E, balanced accuracy</span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.D.bal}}"></span></span><span class="v">{{gr.D.bal}}</span></span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.B.bal}}"></span></span><span class="v">{{gr.B.bal}}</span></span></div>
+      <div class="cmp-row"><span class="m">a numeric filter across papers (kind C)</span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.D.C}}"></span></span><span class="v">{{gr.D.C}}</span></span><span class="cell"><span class="track plain"><span class="fill" style="width:{{w:gr.B.C}}"></span></span><span class="v">{{gr.B.C}}</span></span></div>
+      <div class="cmp-row"><span class="m">input tokens, all questions</span><span class="cell"><span class="track plain"><span class="fill cost" style="width:{{w:gr.D.tokens}}"></span></span><span class="v">{{gr.D.tokens}}</span></span><span class="cell"><span class="track plain"><span class="fill cost" style="width:{{w:gr.B.tokens}}"></span></span><span class="v">{{gr.B.tokens}}</span></span></div>
+    </div>
+    <p class="honest">In cell D the code decides comparability and the model reads the verdict. The point is that retrieval over text cannot reach the verdict at all. B’s raw kind E accuracy, {{gr.B.E}}, is the base rate: it called every pair not comparable ({{gr.B.said_not}} answers).</p>
+    <p class="small">One reader, {{gr.model}}, asked the same {{gr.asked}} questions in each cell, once.</p>
+  </div>
+  <p class="src">data/interim/runs/{{gr.D.run}}, {{gr.B.run}} · docs/DECISIONS.md GR-15</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Same model, same questions, two ways of handing it the evidence. In cell D the reader gets the table, and for comparability the code’s verdict is in the prompt, so its perfect score is transcription, not judgement. Cell B retrieves lines from the papers and never finds a comparable pair; its raw accuracy is high only because it calls everything not comparable. Comparability lives in the join of two rows, and no passage of text contains it.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide backup" id="s27" aria-label="Slide 27: the human audit">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">27</span><span>Backup</span></p>
+    <h2>The human audit.</h2>
+    <p class="msg">Not done yet. No person has checked a row against its paper.</p>
+  </header>
+  <div class="body">
+    <span class="status">Status: not done</span>
+    <ol class="steps">
+      <li><h3>Draw a sample from the final rows</h3><p>Aimed at the rows that say a condition is not reported, condition by condition.</p></li>
+      <li><h3>Open each paper at the cited lines</h3><p>Every row carries the addresses of its lines, so this is a lookup, not a search.</p></li>
+      <li class="key"><h3>Is it really not reported?</h3><p>For this measurement, by the dataset’s own rules: yes, no or unsure.</p></li>
+      <li class="key"><h3>The precision of “not reported”</h3><p>Per condition. The census rests on it: a false “not reported” moves a pair out of “lost only to absence”.</p></li>
+    </ol>
+    <p class="small">It is the one check no agent can do for us. Its result will be reported as measured, whatever it is.</p>
+  </div>
+  <p class="src">docs/DECISIONS.md OD-03 · REVIEW.md §7 · out/review/audit_sample.csv holds no verdict yet</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>No person has yet checked a row against its paper. The audit will draw a sample from the final rows, aimed at the claim the census rests on: that a condition is really not reported. Its result will say how far the absence counts can be trusted, and it goes into the dataset whatever it shows.</p>
   </aside>
 </div>
 </section>

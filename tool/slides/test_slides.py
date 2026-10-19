@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import csv
 import importlib.util
+import inspect
 import io
 import json
 import math
@@ -251,6 +252,44 @@ def expected(get=show) -> dict:
     E["r3.example"] = one(rc10, r"Question: \"([^\"]+)\" was stored")[0]
     E["r3.ions"] = one(rc10, r"Why: ([^.]+ of ions)\.")[0]
 
+    # the liquids of slide 10, counted from the table's own rows rather than through pandas
+    liquids: dict = {}
+    for r in d1.values():
+        c = liquids.setdefault(r["medium_class"], {"rows": 0, "mM": []})
+        c["rows"] += 1
+        if r["ionic_strength_reported"] == "True":
+            c["mM"].append(float(r["ionic_strength_mM"]))
+    for cls, c in liquids.items():
+        E[f"lab.{cls}.rows"], E[f"lab.{cls}.stated"] = c["rows"], len(c["mM"])
+        if c["mM"] and min(c["mM"]) != max(c["mM"]):
+            E[f"lab.{cls}.lo"], E[f"lab.{cls}.hi"] = min(c["mM"]), max(c["mM"])
+        elif c["mM"]:
+            E[f"lab.{cls}.at"] = c["mM"][0]
+    every = [x for c in liquids.values() for x in c["mM"]]
+    E["lab.lo"], E["lab.hi"] = min(every), max(every)
+    salt = liquids["salt_solution"]
+    E["lab.salt.share"] = len(salt["mM"]) / salt["rows"]
+
+    # slide 14: the physics demo's figure defaults, and what README's demo notes say it reached
+    from mnp.ek import constants as ek_constants
+    from mnp.ek import hard as ek_hard
+    from mnp.infer import figures
+
+    fig = inspect.signature(figures.same_zeta_figure).parameters
+    salt, T = fig["I_match_mM"].default, fig["T_C"].default
+    E["curve.I"], E["curve.T"] = salt, T
+    radius = fig["hard_radius_nm"].default * 1e-9
+    mu = float(ek_hard.mobility_hard(fig["hard_sigma_C_m2"].default, radius, salt, T_C=T))
+    E["curve.zeta"] = Near(1e3 * ek_constants.viscosity(T) * mu / ek_constants.permittivity(T), 0.5)
+    readme = flat(get("README.md"))
+    E["d4.sims"] = n(one(readme, r"The final ([\d ]+)-sim run")[0])
+    ks = one(
+        readme,
+        r"KS p = ([\d.]+) / ([\d.]+) \(soft \|ZN\|, 1/λ\), ([\d.]+) / ([\d.]+) \(hard σ, a\)",
+    )
+    E["d4.sbc_params"], E["d4.ks_min"] = len(ks), Near(min(float(x) for x in ks), 0.005)
+    E["d4.measured"] = 0 if "No digitised CSVs yet" in readme else MISSING
+
     # one row and its line addresses
     row = d1[a_id]
     E["arch.row_id"] = a_id
@@ -356,6 +395,229 @@ def expected(get=show) -> dict:
     E["sc.synthetic"] = one(review, r"\*\*Where the particles came from\.\*\* (.+? in a lab\.)")[0]
     E["sc.corpus"] = one(review, r"\*\*The corpus\.\*\* (.+?) \(`d1_stats\.json`\)")[0] + "."
     E["sc.use"] = one(review, r"\*\*What it can be used for\.\*\* (.+? soil\.)")[0]
+    E.update(expected_findings(get))
+    return E
+
+
+def _ranks(xs: list[float]) -> list[float]:
+    order = sorted(range(len(xs)), key=xs.__getitem__)
+    out = [0.0] * len(xs)
+    i = 0
+    while i < len(order):
+        j = i
+        while j + 1 < len(order) and xs[order[j + 1]] == xs[order[i]]:
+            j += 1
+        for k in range(i, j + 1):
+            out[order[k]] = (i + j) / 2 + 1
+        i = j + 1
+    return out
+
+
+def _quantile(xs: list[float], q: float) -> float:
+    """Linear interpolation between order statistics, the definition pandas uses by default."""
+    s = sorted(xs)
+    pos = (len(s) - 1) * q
+    lo = math.floor(pos)
+    return s[lo] + (s[min(lo + 1, len(s) - 1)] - s[lo]) * (pos - lo)
+
+
+def expected_findings(get=show) -> dict:
+    """The 2026-10-19 slides, each source read again with csv, statistics and plain regex."""
+    import statistics
+
+    E: dict = {}
+    # slide 2: the two review abstracts, as the sources note quotes them
+    src = get("docs/2026-10-19-motivation-sources.md")
+    quotes = [ln[2:] for ln in src.splitlines() if ln.startswith("> ")]
+    shen = next(q for q in quotes if q.startswith("Positively charged"))
+    E["mot.shen"] = shen[: shen.index(", and smaller")]
+    xu = next(q for q in quotes if "not benchmarked" in q)
+    E["mot.xu"] = xu[xu.index("identified several") : xu.rindex(".")]
+    heads = dict(re.findall(r"^## (\w+) et al\. (\d{4})", src, re.M))
+    journals = dict(
+        re.findall(r"^(?:Shen|Xu) .*?\n.*?(Environ Pollut|Sci Total Environ) (\d+)", src, re.M)
+    )
+    E["mot.shen.ref"] = f"Shen et al. {heads['Shen']}, Environ Pollut {journals['Environ Pollut']}"
+    E["mot.xu.ref"] = f"Xu et al. {heads['Xu']}, Sci Total Environ {journals['Sci Total Environ']}"
+
+    # slide 3: the quantity and instrument columns of the table
+    d1 = list(csv.DictReader(io.StringIO(get("out/tables/d1_zeta_table.csv"))))
+    E["zb.zeta_rows"] = sum(r["quantity"] == "zeta_potential" for r in d1)
+    E["zb.mob_rows"] = sum(r["quantity"] == "electrophoretic_mobility" for r in d1)
+    named = [r["instrument"] for r in d1 if r["instrument"].strip()]
+    E["zb.zetasizer"] = [sum("zetasizer" in s.lower() for s in named), len(named)]
+
+    # slide 5: the design's table, split on its cells
+    for line in get("docs/DESIGN_2026-10-18_hypotheses-method-evaluation.md").splitlines():
+        cells = [c.strip() for c in line.split(" | ")]
+        if line.startswith('| "') and len(cells) >= 2 and cells[1].startswith("**H"):
+            h = cells[1][2:4]
+            E[f"hyp.{h}.quote"] = cells[0][3:-1]
+            E[f"hyp.{h}.name"] = cells[1][5 : cells[1].index(".**")]
+    prereg = json.loads(get("out/tables/p2_prereg_results.json"))
+    E["pr.commit"] = prereg["prereg_commit"]
+
+    # slide 12: the P2 table with csv and statistics
+    p2 = list(csv.DictReader(io.StringIO(get("out/tables/p2_zeta_size.csv"))))
+    E["p2.rows"], E["p2.papers"] = len(p2), len({r["pmcid"] for r in p2})
+    size = [math.log10(float(r["size_nm"])) for r in p2]
+    zeta = [float(r["zeta_mV"]) for r in p2]
+    E["p2.rho"] = Near(statistics.correlation(_ranks(size), _ranks(zeta)), 0.005)
+    groups: dict = {}
+    for r in p2:
+        groups.setdefault(r["material_group"], []).append(r)
+    named_groups = {g: rs for g, rs in groups.items() if g != "other" and len(rs) >= 10}
+    meds = {g: _quantile([float(r["zeta_mV"]) for r in rs], 0.5) for g, rs in named_groups.items()}
+    for g, m in meds.items():
+        E[f"p2.pol.{g}.med"] = Near(m, 1e-9)
+    neg = [m for m in meds.values() if m < 0]
+    E["p2.neg_n"], E["p2.named_n"] = len(neg), len(meds)
+    E["p2.neg_lo"], E["p2.neg_hi"] = Near(min(neg), 1e-9), Near(max(neg), 1e-9)
+    exc = next(g for g, m in meds.items() if m > 0)
+    E["p2.exc"] = exc
+    papers_of = [r["pmcid"] for r in named_groups[exc]]
+    E["p2.exc_papers"] = len(set(papers_of))
+    E["p2.exc_top"] = max(papers_of.count(p) for p in set(papers_of))
+    E["p2.exc_n"] = len(papers_of)
+    amine = [float(r["zeta_mV"]) for r in groups["PS"] if r["surface"] == "amine"]
+    E["p2.amine_neg"], E["p2.amine_n"] = sum(z < 0 for z in amine), len(amine)
+
+    # slide 13: P4 and its secondary analysis, as the run wrote them
+    p4, sec = prereg["P4"], prereg["secondary"]
+    E["p4.rows"], E["p4.papers"], E["p4.verdict"] = p4["rows"], p4["papers"], p4["verdict"]
+    for k, v in p4["feature_sets"].items():
+        E[f"p4.{k}"] = v["r2"]
+    E["p4.leak"] = sec["P4_random_split_r2_all"]
+    E["p4.paper_only"] = sec["P4_random_split_r2_paper_mean_only"]
+
+    # slide 15: the Weser fractions with csv, the power law solved by bisection on its own formula
+    w = list(csv.DictReader(io.StringIO(get("out/tables/p2_weser_pairs.csv"))))
+    small = (float(w[0]["small_lo_um"]), float(w[0]["small_hi_um"]))
+    large = (float(w[0]["large_lo_um"]), float(w[0]["large_hi_um"]))
+    ratios = [float(r["small"]) / float(r["large"]) for r in w if float(r["large"]) > 0]
+    E["w.stations"] = len(ratios)
+    E["w.small.lo"], E["w.small.hi"] = int(small[0]), int(small[1])
+    E["w.large.lo"], E["w.large.hi"] = int(large[0]), int(large[1])
+    med = statistics.median(ratios)
+    E["w.ratio"] = round(med)
+
+    def count(a: float, b: float, alpha: float) -> float:  # ∫ d^−α from a to b, up to a constant
+        return (b ** (1 - alpha) - a ** (1 - alpha)) / (1 - alpha)
+
+    E["w.alpha0"] = prereg["alpha_default"]
+    E["w.pred"] = Near(
+        count(*small, prereg["alpha_default"]) / count(*large, prereg["alpha_default"]), 1e-6
+    )
+    a, b = 1.05, 6.0
+    while b - a > 1e-9:
+        m = (a + b) / 2
+        a, b = (m, b) if count(*small, m) / count(*large, m) < med else (a, m)
+    E["w.alpha"] = Near(a, 1e-6)
+    p1, p2t, p3 = prereg["P1"], prereg["P2"], prereg["P3"]
+    E["p1.studies"], E["p1.rho"], E["p1.slope"], E["p1.verdict"] = (
+        p1["studies"],
+        p1["rho"],
+        p1["slope"],
+        p1["verdict"],
+    )
+    E["p2t.cells"], E["p2t.reduction"], E["p2t.verdict"] = (
+        p2t["cells"],
+        p2t["median_reduction"],
+        p2t["verdict"],
+    )
+    diff = sec["P2_cells_with_different_windows"]
+    E["p2t.diff_cells"], E["p2t.wider"] = diff["cells"], diff["share_wider_after"]
+    E["p3.n"], E["p3.median"], E["p3.verdict"] = (
+        p3["distributions"],
+        p3["median_alpha"],
+        p3["verdict"],
+    )
+    E["p3.outside"] = Near(1 - p3["share_within_1.6pm0.3"], 1e-12)
+    E["p3.lod_median"] = sec["P3_lod_filtered"]["median_alpha"]
+    E["p3.band_lo"], E["p3.band_hi"] = prereg["alpha_band"]
+
+    # slide 16: the tow table with csv, the README's own sentences
+    tows = list(
+        csv.DictReader(
+            io.StringIO(get("tool/colocation/reisser_eriksen/out_2026-10-12/tow_identity_R_E.csv"))
+        )
+    )
+    E["re.tows"] = len(tows)
+    by: dict = {}
+    for t in tows:
+        r, e = float(t["value_R"]), float(t["value_E"])
+        if r > 0 and e > 0:
+            by.setdefault(t["Sampling Method"], []).append(r / e)
+    E["re.manta"] = Near(statistics.median(by["Manta net"]), 1e-9)
+    E["re.neuston"] = Near(statistics.median(by["Neuston net"]), 1e-9)
+    E["re.zero"] = sum(float(t["value_E"]) == 0 and float(t["value_R"]) > 0 for t in tows)
+    readme = flat(get("tool/colocation/reisser_eriksen/README.md"))
+    E["re.trap"] = float(one(readme, r"own wind-mixing median of ([\d.]+) is a coincidence")[0])
+    E["re.same"] = int(one(readme, r"within 0\.1 % for (\d+) of the")[0])
+
+    # slide 19: the validation metrics, the labelling page's sample size, the results note
+    vm = json.loads(get("out/tables/validate_sign_metrics.json"))
+    E["v.cands"], E["v.papers"] = vm["candidates"], vm["papers"]
+    E["v.v0"] = vm["candidates"] - vm["V0"]["abstained"]
+    E["v.v1_rej"] = vm["v1_rejected"]["A"]
+    E["v.v2_kept"] = vm["candidates"] - vm["V2"]["abstained"]
+    E["v.v2_abst"] = vm["V2"]["abstained"]
+    E["v.kappa"], E["v.agree"] = vm["reader_kappa_raw"], vm["reader_agreement_raw"]
+    E["v.modelA"], E["v.modelB"] = vm["cost_A"]["model"], vm["cost_B"]["model"]
+    E["v.tokA"], E["v.secA"] = vm["cost_A"]["input_tokens"], round(vm["cost_A"]["seconds"])
+    E["v.labelled"] = vm["labelled"]
+    E["v.label_target"] = int(one(get("tool/validate/build_labels.py"), r"\nN = (\d+)\n")[0])
+    notes = flat(get("docs/2026-10-19-validation-results.md"))
+    E["v.first_rej"] = int(one(notes, r"rejected (\d+) reader answers")[0])
+    E["v.guard"] = int(one(notes, r"(\d+) of them were \"corona\" answers")[0])
+
+    # slide 20: the judges, recounted from the raw judge records rather than the metrics file
+    jm = json.loads(get("out/tables/validate_judge_metrics.json"))
+    last = {}
+    for text in get("data/interim/validate/sign/judge_items.jsonl").splitlines():
+        it = json.loads(text)
+        last[(it["judge"], it["pmcid"], it["reader"], it["variant"])] = it
+
+    def judged(jd: str, variant: str, reader: str | None = None) -> dict:
+        return {
+            (p, r, str(e["row_id"])): e
+            for (j, p, r, v), it in last.items()
+            if j == jd and v == variant and reader in (None, r)
+            for e in (it["answer"] or {}).get("rows") or []
+            if isinstance(e, dict) and e.get("row_id")
+        }
+
+    def share(entries, test) -> Near:
+        return Near(sum(map(test, entries)) / len(entries), 5e-4)
+
+    def name(jd: str) -> str:
+        return re.sub(r"-instruct$", "", re.sub(r"^.*[:/]", "", jd))
+
+    for i, jd in enumerate([*jm["judges"], "claude"], start=1):
+        o0, o1 = judged(jd, "order0"), judged(jd, "order1")
+        E[f"j.{i}.name"] = jm["self_preference_probe"] if jd == "claude" else name(jd)
+        E[f"j.{i}.rows"] = [len(judged(jd, "order0", "A")), vm["candidates"]]
+        E[f"j.{i}.yes"] = share(
+            judged(jd, "order0", "A").values(), lambda e: str(e.get("J1")).lower() == "yes"
+        )
+        both = o0.keys() & o1.keys()
+        E[f"j.{i}.flip"] = share([str(o0[k].get("J2")) != str(o1[k].get("J2")) for k in both], bool)
+        decoy = judged(jd, "decoy").values()
+        E[f"j.{i}.decoy"] = (
+            share(decoy, lambda e: str(e.get("J1")).lower() == "yes") if decoy else "not asked"
+        )
+        traps = [it for (j, _, _, v), it in last.items() if j == jd and v == "trap"]
+        E[f"j.{i}.traps"] = [
+            sum(str((t["answer"] or {}).get("J1", "")).lower() == "no" for t in traps),
+            len(traps),
+        ]
+    rates = {
+        jd: sum(str(e.get("J1")).lower() == "yes" for e in judged(jd, "decoy").values())
+        / len(judged(jd, "decoy"))
+        for jd in jm["judges"]
+    }
+    top = max(rates, key=rates.get)
+    E["j.decoy_top.name"], E["j.decoy_top"] = name(top), Near(rates[top], 5e-4)
     return E
 
 
@@ -454,6 +716,15 @@ def test_the_register_and_the_guide_state_what_the_data_holds(deck, want) -> Non
     assert f"Input tokens: {V['gr.D.tokens'] / 1e6:.2f} M vs {V['gr.B.tokens'] / 1e6:.2f} M" in gr15
     assert f"({V['gr.asked']} questions each)" in gr15
 
+    printed = one(review, r"Rows per `medium_class`: ([^.]+)\.")[0]
+    per_liquid = {
+        name.strip(): int(k) for name, k in re.findall(r"([a-zA-Z ]+?) (\d+)(?:,|$)", printed)
+    }
+    words = {"DI_water": "DI water", "unreported": "unreported"}
+    for key in (k for k in V if k.startswith("lab.") and k.endswith(".rows")):
+        cls = key.split(".")[1]
+        assert per_liquid[words.get(cls, cls.replace("_", " "))] == V[key], key
+
     case02 = next(c for c in cases.CASES if c.nn == "02")
     assert round(V["c02.spread"]) == int(one(case02.mode, r"moves zeta (\d+) mV")[0])
     # rows in d1 agree with the case-14 sentence the expectations were read from
@@ -536,13 +807,30 @@ def test_the_henry_chart_is_recomputed_from_the_printed_formula(deck, want) -> N
 def test_every_axis_label_names_a_value_its_chart_reaches(deck) -> None:
     charts = deck["charts"]
     ticks = [v for v in deck["values"].values() if v["kind"] == "tick"]
-    assert {t["chart"] for t in ticks} == {"c14", "c02", "fields", "henry"}
+    assert {t["chart"] for t in ticks} == {
+        "c14",
+        "c02",
+        "fields",
+        "henry",
+        "lab",
+        "curve",
+        "pol",
+        "r2",
+    }
     for t in ticks:
         lo, hi = charts[t["chart"]][t["axis"]]
         assert lo - 1e-9 <= t["v"] <= hi + 1e-9, t
-    for name in ("c14", "c02", "fields"):
+    for name in ("c14", "c02", "fields", "lab"):
         lo, hi = charts[name]["x"]
         assert all(lo <= m <= hi for m in charts[name]["marks"]), name
+    c = charts["curve"]
+    at = min(range(len(c["grid"])), key=lambda i: abs(c["grid"][i] - c["match"][0]))
+    assert math.isclose(c["grid"][at], c["match"][0], rel_tol=1e-9)
+    for s in c["soft"]:
+        assert math.isclose(s["mu"][at], c["hard"][at], rel_tol=1e-6)
+        assert abs(c["hard"][-1]) < abs(s["plateau"]) <= min(abs(m) for m in s["mu"]) + 1e-12
+    lo, hi = charts["pol"]["x"]
+    assert all(lo <= r["p10"] <= r["med"] <= r["p90"] <= hi for r in charts["pol"]["rows"])
     h = charts["henry"]
     xs = [p[0] for p in h["points"]] + h["rug"] + [p[0] for p in h["curve"]]
     assert h["x"][0] <= min(xs) and max(xs) <= h["x"][1] * (1 + 1e-9)
@@ -582,6 +870,8 @@ ALLOWED = (
     (r"\b1:1\b", "debye-note", "electrolyte"),
     (r"\b25 °C\b", "debye-note", "temperature"),
     (r"^\d{2}$", "idx", "slide"),
+    (r"\bV[0-3]\b", None, "rung"),
+    (r"\bP[1-6]\b", None, "prediction"),
 )
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "wbr"}
 
@@ -673,6 +963,8 @@ def test_no_digit_on_the_deck_is_untraced(scan) -> None:
 def test_every_identifier_shown_exists_in_its_source(scan) -> None:
     register = show("docs/DECISIONS.md")
     review = show("out/review/REVIEW.md")
+    design = show("docs/DESIGN_2026-10-18_hypotheses-method-evaluation.md")
+    prereg = show("docs/PREREG_2026-10.md")
     tokens, _ = _allowed_tokens(scan)
     nns = {c.nn for c in cases.CASES}
     files = subprocess.run(
@@ -704,6 +996,10 @@ def test_every_identifier_shown_exists_in_its_source(scan) -> None:
             assert slide == f"s{int(token)}", (token, slide)
         elif kind == "path":
             assert any(f == token or f.endswith("/" + token) for f in files), token
+        elif kind == "rung":
+            assert f"| **{token}** |" in design, token
+        elif kind == "prediction":
+            assert f"\n## {token} · " in prereg, token
 
 
 def test_the_data_is_inlined_whole(deck, page) -> None:
@@ -711,14 +1007,16 @@ def test_the_data_is_inlined_whole(deck, page) -> None:
     assert m and json.loads(m.group(1)) == json.loads(json.dumps(deck))
 
 
-def test_sixteen_slides_each_with_a_title_a_message_and_notes(page) -> None:
+def test_every_slide_has_a_title_a_message_and_notes(page) -> None:
     slides = re.findall(
         r'<section class="slide[^"]*" id="(s\d+)"(.*?)</section>'
         r'\s*(?=<section class="slide|</main>)',
         page,
         re.S,
     )
-    assert [s for s, _ in slides] == [f"s{i}" for i in range(1, 17)]
+    assert [s for s, _ in slides] == [f"s{i}" for i in range(1, 28)]
+    backup = re.findall(r'<section class="slide backup" id="(s\d+)"', page)
+    assert backup == [f"s{i}" for i in range(23, 28)]
     for sid, body in slides:
         assert re.search(r"<h[12]>", body), sid
         assert sid == "s1" or 'class="msg"' in body, sid
@@ -727,6 +1025,14 @@ def test_sixteen_slides_each_with_a_title_a_message_and_notes(page) -> None:
         prose = re.sub(r"<[^>]+>", "", re.sub(r'<span class="label">[^<]*</span>', "", notes[0]))
         sentences = [s for s in re.split(r"(?<=[.!?])\s+", prose.strip()) if s]
         assert 2 <= len(sentences) <= 4, (sid, len(sentences))
+
+
+def test_the_judges_slide_says_what_the_judges_did(deck) -> None:
+    # "Claude was no softer on its own family, but its pick moved with the order of the list."
+    V = {k: v["v"] for k, v in deck["values"].items()}
+    jury = (1, 2, 3)
+    assert V["j.4.yes"] <= min(V[f"j.{i}.yes"] for i in jury)
+    assert V["j.4.flip"] > max(V[f"j.{i}.flip"] for i in jury)
 
 
 def test_the_page_follows_the_artifact_contract(page) -> None:
@@ -749,3 +1055,98 @@ def test_the_page_follows_the_artifact_contract(page) -> None:
     markup = page.split("<main", 1)[1].split("<script", 1)[0]
     assert ".notes { display: none; }" in style and "show-notes" not in markup
     assert ":focus-visible" in style and "prefers-reduced-motion" in page
+
+
+# ---- the talk script (build_script.py) ----------------------------------------------------------
+
+
+@pytest.fixture(scope="module")
+def sc():
+    spec = importlib.util.spec_from_file_location("build_script", HERE / "build_script.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+@pytest.fixture(scope="module")
+def script_page(sc, deck, page):
+    return sc.render(deck, page)
+
+
+@pytest.fixture(scope="module")
+def script_scan(script_page):
+    s = Scan()
+    s.feed(script_page)
+    s.close()
+    return s
+
+
+def test_the_time_plan_fills_twenty_minutes_over_five_acts(sc) -> None:
+    # The design's talk order (DESIGN_2026-10-18 §6): twenty minutes, the backup slides untimed.
+    assert [s for _, _, slides in sc.ACTS for s in slides] == list(sc.PLAN)
+    assert list(sc.PLAN) == [f"s{i}" for i in range(1, 23)]
+    assert sc.BACKUP == tuple(f"s{i}" for i in range(23, 28))
+    acts = {name: sum(sc.PLAN[s] for s in slides) for name, _, slides in sc.ACTS}
+    assert acts == {"I": 240, "II": 290, "III": 315, "IV": 215, "V": 140}
+    assert sc.timing_values()["at.s22"]["text"] == "20:00"
+
+
+def test_the_script_has_one_card_per_slide_under_the_decks_title(script_page, page) -> None:
+    cards = re.findall(r'<section class="card" id="(s\d+)">(.*?)</section>', script_page, re.S)
+    assert [sid for sid, _ in cards] == [f"s{i}" for i in range(1, 28)]
+    titles = {
+        sid: re.search(r"<h([12])[^>]*>(.*?)</h\1>", body, re.S).group(2)
+        for sid, body in re.findall(
+            r'<section class="slide[^"]*" id="(s\d+)"(.*?)</section>'
+            r'\s*(?=<section class="slide|</main>)',
+            page,
+            re.S,
+        )
+    }
+    for sid, body in cards:
+        assert f"<h3>{titles[sid]}</h3>" in body, sid
+        assert 'class="say"' in body, sid
+
+
+def test_the_script_markup_nests_and_has_no_open_slot(script_scan, script_page) -> None:
+    assert not script_scan.errors, script_scan.errors[:5]
+    assert not script_scan.stack, [t for t, _, _ in script_scan.stack]
+    assert "{{" not in script_page and "__DATA__" not in script_page
+
+
+def test_every_script_slot_shows_its_value(sc, deck, script_scan) -> None:
+    values = {**deck["values"], **sc.timing_values()}
+    wrong = [
+        (k, t, values[k]["text"])
+        for k, t in script_scan.owned
+        if k in values and t != values[k]["text"]
+    ]
+    unknown = [k for k, _ in script_scan.owned if k not in values and k != "build.commit"]
+    assert not wrong and not unknown, (wrong[:5], unknown[:5])
+
+
+def test_no_digit_in_the_script_is_untraced(script_scan) -> None:
+    _, stray = _allowed_tokens(script_scan)
+    assert not stray, stray[:10]
+
+
+def test_every_identifier_in_the_script_exists_in_its_source(script_scan) -> None:
+    test_every_identifier_shown_exists_in_its_source(script_scan)
+
+
+def test_the_script_follows_the_artifact_contract(script_page) -> None:
+    title = one(script_page, r"<title>([^<]+)</title>")[0]
+    assert 2 <= len(title.split()) <= 4 and ":" not in title
+    assert not re.search(r"<!doctype|<(?:html|head|body)[\s>]", script_page, re.I)
+    hosts = set(re.findall(r"https?://([^/\"' )]+)", script_page))
+    assert hosts <= {"fonts.googleapis.com", "fonts.gstatic.com"}, hosts
+    style = script_page.split("<style>", 1)[1].split("</style>", 1)[0]
+    root = set(re.findall(r"(--[\w-]+):", one(style, r"(?s):root \{(.*?)\}")[0]))
+    for block in (
+        one(style, r"(?s):root:not\(\[data-theme=\"light\"\]\) \{(.*?)\}")[0],
+        one(style, r"(?s):root\[data-theme=\"dark\"\] \{(.*?)\}")[0],
+    ):
+        assert "color-scheme: dark" in block
+        assert set(re.findall(r"(--[\w-]+):", block)) == root - {"--display", "--text", "--mono"}
+    assert re.search(r"body \{[^}]*background: var\(--paper\)", style)
+    assert "prefers-reduced-motion" in style

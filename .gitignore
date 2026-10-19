@@ -30,6 +30,30 @@ tool/viz/mnp-results.html
 
 # rebuilt by tool/slides/build_slides.py; publish, do not commit
 tool/slides/slides.html
+tool/slides/script.html
 
 # hand-check packets quote article text; local only
 data/interim/origin/hand_check_packet-*.txt
+
+# phone recordings of a review call and their raw transcripts: a third party's voice
+# and a private chat on screen; local only (docs/2026-10-10-review-call.md is the summary)
+*.MOV
+*.mov
+out/review/*.transcript.*.txt
+
+# external datasets fetched by tool/colocation (URL + sha256 in its README)
+data/raw/ncei/
+data/raw/mpsed/
+
+# PMC supplementary files (tool/si_scan): third-party files, local only
+data/raw/pmc_si/
+# SI text, candidate quotes and reading packets quote third-party SI: local only
+data/interim/si_text/
+data/interim/si_scan/
+
+# rebuilt by tool/p2/build.py; publish, do not commit
+tool/p2/p2.html
+tool/p2/data.json
+
+# third-party downloads from dataset recon (tool/datasets/)
+data/raw/datasets_recon/

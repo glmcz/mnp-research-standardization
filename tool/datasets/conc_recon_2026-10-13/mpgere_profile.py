@@ -1,0 +1,27 @@
+import sys, re
+import pandas as pd
+df = pd.read_csv(sys.argv[1], low_memory=False)
+ncei = pd.read_csv(sys.argv[2], low_memory=False, encoding='utf-8-sig')
+norm = lambda s: re.sub(r'^https?://(dx\.)?doi\.org/', '', str(s).strip().lower())
+ncei_dois = set(norm(v) for v in ncei['DOI'].dropna())
+print('rows', len(df), 'cols', list(df.columns))
+print(df['matrix'].value_counts(dropna=False).to_dict())
+lohi = df['size_min_um'].notna() & df['size_max_um'].notna()
+coords = df['latitude'].notna() & df['longitude'].notna()
+print('size lo', df['size_min_um'].notna().sum(), 'hi', df['size_max_um'].notna().sum(), 'both', lohi.sum(), 'coords', coords.sum(), 'both+coords', (lohi & coords).sum())
+print('std value', df['standard_value'].notna().sum(), df['standard_unit'].value_counts().head(5).to_dict())
+print('dois', df['doi'].nunique())
+ok = ~df['qa_flags'].fillna('').str.contains('mass_conversion_blocked|schema_error|non_mp_substance|std_dev_as_value|above maximum')
+print('analysis-ok rows', ok.sum())
+print('by matrix, ok & coords & lohi:', df[ok & coords & lohi]['matrix'].value_counts().to_dict())
+dois = set(norm(v) for v in df['doi'].dropna())
+inn = dois & ncei_dois
+print('MP-GERE dois in NCEI', len(inn), 'rows', df['doi'].dropna().map(norm).isin(ncei_dois).sum())
+print('needs_manual_review', df['needs_manual_review'].value_counts().to_dict())
+print('confidence', df['confidence'].describe().round(2).to_dict())
+pd.set_option('display.width', 250); pd.set_option('display.max_colwidth', 120)
+s = df[ok & coords & lohi & df['matrix'].isin(['freshwater'])].sample(6, random_state=3)
+print(s[['doi', 'latitude', 'longitude', 'raw_value', 'raw_unit', 'standard_value', 'standard_unit', 'size_min_um', 'size_max_um', 'source_quote']].to_string())
+# integrity: coordinates duplicated across many studies?
+print('top coordinate pairs', df[coords].groupby(['latitude', 'longitude']).size().sort_values(ascending=False).head(5).to_dict())
+print('doi string sample', df['doi'].dropna().sample(5, random_state=1).tolist())

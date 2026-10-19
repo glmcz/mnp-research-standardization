@@ -1,0 +1,162 @@
+Installed 7 packages in 165ms
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+Beach: candidate pairs within 100 km 12029, different study 1239
+Nurdle Patrol: candidate pairs within 100 km 4972323, different study 0
+Ocean sediment: candidate pairs within 100 km 13402, different study 27
+Ocean water: candidate pairs within 100 km 395486, different study 48213
+ radius_km max_days  record_pairs  same_unit  diff_unit  same_method  diff_method  same_mesh(<=1.1x)  mesh_ratio>10  mesh_missing  same_method&mesh  both_nonzero  same_org  exact_dup  study_pairs  study_pairs_same_method&mesh  studies  records  cells_1deg  clusters
+        10      365          1271       1271          0          776          495                834             13             0               358           817       701         11           22                            12       28      764         163       180
+        10     none          2485       2485          0         1416         1069               1375            413             0               767          1806       807         11           76                            29       39     1602         262       317
+        50      365          2653       2653          0         1777          876               1514            187             0               930          2046      1425         11           43                            19       39     1216         245       201
+        50     none         16017      16017          0         6758         9259               7948           5206             0              4841         11386      2139         11          149                            47       61     4953         735       423
+       100      365          5898       5898          0         3721         2177               3779            680             0              2693          4846      2610         11           63                            24       50     1962         411       161
+       100     none         49472      49472          0        17112        32360              25601          16529             0             14429         33993      4373         11          193                            56       70     8664        1323       305
+
+by setting, 50 km / 365 d
+             pairs  study_pairs  same_method  same_mesh
+setting                                                
+Beach          489            2          429         39
+Ocean water   2164           41         1348       1475
+
+Top 10 study-pairs, 50 km / 365 d
+ 1. 550 pairs | Ocean water | Ocean=Pacific Ocean; Region=Tasman Sea | ~(-26.3,148.4) | median km 1, median days 0
+      A: Reisser et al. 2013 | n=171 | Manta net;Neuston net | mesh 0.333;0.335 mm | pieces/m3 | 2011-2012 | median 0.01523
+      B: Eriksen et al. 2014 | n=171 | Neuston net | mesh 0.33 mm | pieces/m3 | 2011-2012 | median 0.01165
+ 2. 429 pairs | Beach | Ocean=Atlantic Ocean; Region=Gulf of America (formerly Gulf of Mexico); Country=Mexico | ~(21.5,-87.4) | median km 1, median days 0
+      A: Alvarez-Zeferino et al. 2020 | n=11 | PVC cylinder | mesh 0.5;1.13 mm | pieces/m3 | 2018-2018 | median 705.2
+      B: Cruz-Salas et al. 2022 | n=39 | PVC cylinder | mesh 1.13 mm | pieces/m3 | 2018-2018 | median 706.4
+ 3. 208 pairs | Ocean water | Ocean=Pacific Ocean | ~(33.8,-140.5) | median km 4, median days 0
+      A: Egger et al. 2020 | n=65 | Manta net | mesh 0.333 mm | pieces/m3 | 2015-2019 | median 3.316
+      B: Egger et al. 2021 | n=54 | Manta net | mesh 0.333 mm | pieces/m3 | 2015-2019 | median 3.555
+ 4. 204 pairs | Ocean water | Ocean=Indian Ocean; Region=Arabian Sea | ~(15.4,73.8) | median km 32, median days 24
+      A: Kalangutkar et al. 2025 | n=17 | Steel bucket | mesh 0.3 mm | pieces/m3 | 2023-2023 | median 870
+      B: Kalangutkar et al. 2026 | n=12 | Steel bucket | mesh 0.1 mm | pieces/m3 | 2023-2023 | median 370
+ 5. 201 pairs | Ocean water | Ocean=Atlantic Ocean; Region=Mediterranean Sea | ~(43.5,7.2) | median km 28, median days 322
+      A: Pedrotti et al. 2022 | n=15 | Manta net | mesh 0.333 mm | pieces/m3 | 2014-2014 | median 0.6388
+      B: Pedrotti et al. 2016 | n=30 | Manta net | mesh 0.333 mm | pieces/m3 | 2013-2013 | median 0.7912
+ 6. 118 pairs | Ocean water | Ocean=Indian Ocean; Region=Arabian Sea | ~(15.3,73.9) | median km 46, median days 277
+      A: Kalangutkar et al. 2025a | n=14 | Steel bucket | mesh 0.3 mm | pieces/m3 | 2022-2022 | median 215
+      B: Kalangutkar et al. 2025 | n=9 | Steel bucket | mesh 0.3 mm | pieces/m3 | 2023-2023 | median 440
+ 7. 98 pairs | Ocean water | Ocean=Atlantic Ocean; Region=Inner Seas off the West Coast of Scotland | ~(58.2,-6.1) | median km 30, median days 204
+      A: Lusher et al. 2014 | n=18 | Pump | mesh 0.0012 mm | pieces/m3 | 2013-2013 | median 4
+      B: Russell and Webster, 2021 | n=22 | Neuston net | mesh 0.335 mm | pieces/m3 | 2014-2014 | median 0.0189
+ 8. 96 pairs | Ocean water | Ocean=Indian Ocean; Region=Arabian Sea | ~(15.6,73.7) | median km 17, median days 284
+      A: Kalangutkar et al. 2025a | n=8 | Steel bucket | mesh 0.3 mm | pieces/m3 | 2022-2022 | median 190
+      B: Kalangutkar et al. 2026 | n=12 | Steel bucket | mesh 0.1 mm | pieces/m3 | 2023-2023 | median 370
+ 9. 80 pairs | Ocean water | Ocean=Atlantic Ocean; Region=Mediterranean Sea | ~(44.3,9.1) | median km 25, median days 114
+      A: Caldwell et al. 2019 | n=6 | Manta net | mesh 0.33 mm | pieces/m3 | 2018-2018 | median 0.06453
+      B: Tsiaras et al. 2022 | n=20 | Manta net | mesh 0.1 mm | pieces/m3 | 2018-2019 | median 0.2439
+10. 77 pairs | Ocean water | Ocean=Atlantic Ocean; Region=Mediterranean Sea | ~(44.2,9.1) | median km 29, median days 276
+      A: Caldwell et al. 2020 | n=6 | Manta net | mesh 0.33 mm | pieces/m3 | 2019-2019 | median 0.9426
+      B: Tsiaras et al. 2022 | n=23 | Manta net | mesh 0.1 mm | pieces/m3 | 2018-2019 | median 0.2281
+
+Top 10 study-pairs, 50 km / no date limit
+ 1. 2673 pairs | Ocean water | Ocean=Atlantic Ocean; Region=Caribbean Sea | ~(24.4,-64.9) | median km 35, median days 6273
+      A: Barrows et al. 2018 | n=178 | Grab sample | mesh 0.00045 mm | pieces/m3 | 2013-2016 | median 0.005
+      B: Law et al. 2010 | n=858 | Neuston net | mesh 0.335 mm | pieces/m3 | 1986-2008 | median 0.002082
+ 2. 851 pairs | Ocean water | Ocean=Pacific Ocean | ~(31.7,-147.0) | median km 32, median days 2950
+      A: Law et al. 2014 | n=298 | Neuston net | mesh 0.335 mm | pieces/m3 | 2002-2012 | median 0
+      B: Egger et al. 2020 | n=43 | Manta net | mesh 0.333 mm | pieces/m3 | 2015-2019 | median 2.214
+ 3. 640 pairs | Beach | Ocean=Pacific Ocean; Region=Eastern China Sea; Country=Taiwan | ~(25.2,121.7) | median km 20, median days 707
+      A: Kunz et al. 2016 | n=8 | Metal scoop | mesh 0.038 mm | pieces/m3 | 2015-2015 | median 1440
+      B: Bancin et al. 2019 | n=80 | Metal scoop | mesh 1 mm | pieces/m3 | 2017-2017 | median 4600
+ 4. 612 pairs | Ocean water | Ocean=Atlantic Ocean; Region=Mediterranean Sea | ~(42.4,6.8) | median km 29, median days 2290
+      A: Pedrotti et al. 2022 | n=67 | Manta net | mesh 0.333 mm | pieces/m3 | 2014-2014 | median 0.9705
+      B: Unpublished | n=178 | Manta net | mesh 0.33 mm | pieces/m3 | 2013-2024 | median 0.2517
+ 5. 570 pairs | Ocean water | Ocean=Atlantic Ocean; Region=Inner Seas off the West Coast of Scotland | ~(57.7,-6.5) | median km 33, median days 1661
+      A: Lusher et al. 2014 | n=42 | Pump | mesh 0.0012 mm | pieces/m3 | 2013-2013 | median 3
+      B: Russell and Webster, 2021 | n=108 | Neuston net | mesh 0.335 mm | pieces/m3 | 2014-2022 | median 0.02571
+ 6. 559 pairs | Ocean water | Ocean=Pacific Ocean; Region=Tasman Sea | ~(-26.3,148.4) | median km 1, median days 0
+      A: Reisser et al. 2013 | n=171 | Manta net;Neuston net | mesh 0.333;0.335 mm | pieces/m3 | 2011-2012 | median 0.01523
+      B: Eriksen et al. 2014 | n=174 | Neuston net | mesh 0.33 mm | pieces/m3 | 2011-2013 | median 0.01186
+ 7. 481 pairs | Ocean water | Ocean=Atlantic Ocean; Region=Mediterranean Sea | ~(42.6,8.7) | median km 30, median days 509
+      A: Collignon et al. 2014 | n=37 | Plankton net | mesh 0.2 mm | pieces/m3 | 2011-2012 | median 0.05
+      B: Eriksen et al. 2014 | n=13 | Neuston net | mesh 0.33 mm | pieces/m3 | 2010-2010 | median 0.4006
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+/private/tmp/claude-501/-Users-martindurak-Desktop-web-rust-nanoplastics/4df6ebb2-6551-4680-98eb-0d7e82019072/scratchpad/c1/scripts/colocate.py:150: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  reg = df.loc[recs, ["Ocean", "Region", "Country"]].replace("", np.nan)
+ 8. 429 pairs | Beach | Ocean=Atlantic Ocean; Region=Gulf of America (formerly Gulf of Mexico); Country=Mexico | ~(21.5,-87.4) | median km 1, median days 0
+      A: Alvarez-Zeferino et al. 2020 | n=11 | PVC cylinder | mesh 0.5;1.13 mm | pieces/m3 | 2018-2018 | median 705.2
+      B: Cruz-Salas et al. 2022 | n=39 | PVC cylinder | mesh 1.13 mm | pieces/m3 | 2018-2018 | median 706.4
+ 9. 421 pairs | Ocean water | Ocean=Atlantic Ocean; Region=Mediterranean Sea | ~(41.4,2.2) | median km 35, median days 1179
+      A: de Haan et al. 2022 | n=124 | Manta net | mesh 0.333 mm | pieces/m3 | 2020-2021 | median 1.022
+      B: Unpublished | n=10 | Manta net | mesh 0.33 mm | pieces/m3 | 2014-2024 | median 0.4092
+10. 418 pairs | Ocean water | Ocean=Atlantic Ocean; Region=Mediterranean Sea | ~(43.1,6.6) | median km 31, median days 2160
+      A: Pedrotti et al. 2016 | n=33 | Manta net | mesh 0.333 mm | pieces/m3 | 2013-2013 | median 0.7932
+      B: Unpublished | n=77 | Manta net | mesh 0.33 mm | pieces/m3 | 2015-2023 | median 0.2006
+
+All study pairs 50 km / 365 d with record-pair counts and comparability
+                                                        pairs  same_method  same_mesh  nonzero      setting
+Reisser et al. 2013 || Eriksen et al. 2014                550         0.23       1.00     0.64  Ocean water
+Alvarez-Zeferino et al. 2020 || Cruz-Salas et al. 2022    429         1.00       0.09     0.41        Beach
+Egger et al. 2020 || Egger et al. 2021                    208         1.00       1.00     0.96  Ocean water
+Kalangutkar et al. 2025 || Kalangutkar et al. 2026        204         1.00       0.00     1.00  Ocean water
+Pedrotti et al. 2022 || Pedrotti et al. 2016              201         1.00       1.00     1.00  Ocean water
+Kalangutkar et al. 2025a || Kalangutkar et al. 2025       118         1.00       1.00     1.00  Ocean water
+Lusher et al. 2014 || Russell and Webster, 2021            98         0.00       0.00     0.82  Ocean water
+Kalangutkar et al. 2025a || Kalangutkar et al. 2026        96         1.00       0.00     1.00  Ocean water
+Caldwell et al. 2019 || Tsiaras et al. 2022                80         1.00       0.00     1.00  Ocean water
+Caldwell et al. 2020 || Tsiaras et al. 2022                77         1.00       0.00     1.00  Ocean water
+Goldstein et al. 2013 || Eriksen et al. 2014               62         0.00       1.00     1.00  Ocean water
+Botterell et al. 2025 || Alvarez-Zeferino et al. 2020      60         0.00       0.00     0.10        Beach
+Caldwell et al. 2019 || Caldwell et al. 2020               60         1.00       1.00     0.95  Ocean water
+Eriksen et al. 2013 || Eriksen et al. 2014                 50         0.00       1.00     0.94  Ocean water
+Barrows et al. 2018 || Russell and Webster, 2021           43         0.00       0.00     0.33  Ocean water
+Eriksen et al. 2018 || Eriksen et al. 2014                 38         0.00       1.00     1.00  Ocean water
+Pedrotti et al. 2022 || Unpublished                        29         1.00       1.00     1.00  Ocean water
+de Haan et al. 2019 || Unpublished                         25         1.00       1.00     1.00  Ocean water
+de Haan et al. 2019 || Pedrotti et al. 2022                17         1.00       1.00     1.00  Ocean water
+Law et al. 2014 || Eriksen et al. 2014                     16         1.00       1.00     0.00  Ocean water
+Unpublished || Tsiaras et al. 2022                         16         1.00       1.00     1.00  Ocean water
+Barrows et al. 2018 || Unpublished                         16         0.00       0.00     0.94  Ocean water
+Suaria et al. 2016 || Cózar et al. 2015                    15         1.00       1.00     1.00  Ocean water
+Law et al. 2014 || Law et al. 2010                         14         1.00       1.00     0.00  Ocean water
+de Lucia et al. 2014 || Suaria et al. 2016                 14         0.00       0.00     1.00  Ocean water
+Trani et al. 2023 || Unpublished                           13         1.00       1.00     1.00  Ocean water
+Barrows et al. 2018 || Kanhai et al. 2017                  12         0.00       0.00     0.92  Ocean water
+Pedrotti et al. 2022 || Adamopoulou et al. 2021            11         1.00       1.00     1.00  Ocean water
+Russell and Webster, 2021 || Unpublished                   10         0.00       1.00     0.50  Ocean water
+Tanhua et al. 2020 || Unpublished                          10         0.00       0.00     1.00  Ocean water
+de Haan et al. 2022 || Unpublished                          9         1.00       1.00     1.00  Ocean water
+Barrows et al. 2018 || Egger et al. 2020                    8         0.00       0.00     1.00  Ocean water
+Cózar et al. 2015 || Unpublished                            7         0.00       0.00     1.00  Ocean water
+Barrows et al. 2018 || Pedrotti et al. 2022                 6         0.00       0.00     1.00  Ocean water
+Collignon et al. 2014 || Pedrotti et al. 2016               6         0.00       0.00     1.00  Ocean water
+Egger et al. 2022 || Unpublished                            6         1.00       1.00     0.67  Ocean water
+Faure et al. 2015 || Unpublished                            4         1.00       1.00     1.00  Ocean water
+Faure et al. 2015 || Cózar et al. 2015                      3         0.00       0.00     1.00  Ocean water
+Egger et al. 2020 || Egger et al. 2020                      3         1.00       1.00     1.00  Ocean water
+Suaria et al. 2016 || Unpublished                           3         0.00       0.00     1.00  Ocean water
+Barrows et al. 2018 || Kanhai et al. 2018                   2         0.00       0.00     0.50  Ocean water
+Barrows et al. 2018 || Thushari et al. 2023                 2         0.00       0.00     1.00  Ocean water
+Faure et al. 2015 || Suaria et al. 2016                     2         0.00       0.00     1.00  Ocean water

@@ -1,0 +1,11 @@
+50km/365d comparable independent pairs 150 study pairs 10
+  excluding Unpublished and Reisser-Eriksen: 43 study pairs 3 records 47
+  methods: 150 {'Manta net': np.int64(124), 'Neuston net': np.int64(26)}
+  region of record a: {'Mediterranean Sea / Atlantic Ocean': np.int64(129), 'Tasman Sea / Pacific Ocean': np.int64(7), '<none> / Atlantic Ocean': np.int64(6), 'English Channel / Atlantic Ocean': np.int64(3), 'Great Australian Bight / Indian Ocean': np.int64(2), '<none> / Indian Ocean': np.int64(2)}
+  log10 ratio quantiles (all comparable): {0.25: 0.27, 0.5: 0.56, 0.75: 1.0, 0.9: 1.32}
+100km/none comparable independent pairs 10199 study pairs 42
+  excluding Unpublished and Reisser-Eriksen: 3491 study pairs 26 records 1144
+  methods: 10199 {'Manta net': np.int64(9496), 'Neuston net': np.int64(703)}
+  region of record a: {'Mediterranean Sea / Atlantic Ocean': np.int64(8525), '<none> / Pacific Ocean': np.int64(1122), '<none> / Atlantic Ocean': np.int64(463), 'Coral Sea / Pacific Ocean': np.int64(27), 'North Sea / Atlantic Ocean': np.int64(15), 'Celtic Sea / Atlantic Ocean': np.int64(12)}
+  log10 ratio quantiles (all comparable): {0.25: 0.3, 0.5: 0.63, 0.75: 1.07, 0.9: 1.51}
+unpublished DOIs: ['https://doi.org/10.25921/ccz7-mq57', 'https://doi.org/10.25921/d1bs-3m40'] {'https://doi.org/10.25921/ccz7-mq57': 'University of Texas Marine Science Institute', 'https://doi.org/10.25921/d1bs-3m40': 'Oceaneye Association,  Switzerland'}

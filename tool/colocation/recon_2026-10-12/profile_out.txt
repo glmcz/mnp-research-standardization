@@ -1,0 +1,275 @@
+Downloading pandas (10.3MiB)
+ Downloading pandas
+Installed 6 packages in 74ms
+rows 29076
+columns 37
+  'Unique ID': non-empty 29076, distinct 29076
+  'Sample Date': non-empty 29076, distinct 7597
+  'Latitude (degree)': non-empty 29076, distinct 17403
+  'Longitude (degree)': non-empty 29076, distinct 17690
+  'Ocean': non-empty 27687, distinct 6
+  'Region': non-empty 13309, distinct 83
+  'Subregion': non-empty 1843, distinct 19
+  'Country': non-empty 11684, distinct 83
+  'State': non-empty 10262, distinct 69
+  'Beach Location': non-empty 10964, distinct 4155
+  'Marine Setting': non-empty 29076, distinct 4
+  'Ocean Bottom Depth (m)': non-empty 332, distinct 142
+  'Water Sample Depth (m)': non-empty 16935, distinct 49
+  'Sediment Sample Depth (m)': non-empty 680, distinct 7
+  'Sampling Method': non-empty 29076, distinct 39
+  'Mesh Size (mm)': non-empty 18414, distinct 33
+  'Transect Number': non-empty 298, distinct 7
+  'Sampling Point on Beach': non-empty 560, distinct 25
+  'Volunteers Number': non-empty 10615, distinct 70
+  'Collecting Time (min)': non-empty 10615, distinct 86
+  'Standardized Nurdle  Amount': non-empty 10615, distinct 375
+  'Microplastics Measurement': non-empty 18461, distinct 6584
+  'Unit': non-empty 29076, distinct 3
+  'Concentration Class Range': non-empty 29076, distinct 20
+  'Concentration Class': non-empty 29076, distinct 5
+  'Short Reference': non-empty 29076, distinct 93
+  'Long Reference': non-empty 29076, distinct 96
+  'DOI': non-empty 29076, distinct 96
+  'Organization': non-empty 29076, distinct 68
+  'Keywords': non-empty 27676, distinct 65
+  'NCEI Accession Number': non-empty 29076, distinct 96
+  'NCEI Accession Link': non-empty 29076, distinct 96
+  'Study Type': non-empty 29076, distinct 2
+  'ObjectId': non-empty 29076, distinct 29076
+  'Symbology': non-empty 29076, distinct 24
+  'x': non-empty 29069, distinct 17689
+  'y': non-empty 29069, distinct 17402
+unparsed dates 0 min 1972-04-20 05:00:00 max 2026-04-28 05:00:00
+Sample Date
+1972      31
+1973      14
+1986      20
+1987     161
+1989     180
+1990     110
+1991     294
+1992     517
+1993     362
+1994     324
+1995     350
+1996     408
+1997     388
+1998     415
+1999     355
+2000     445
+2001     474
+2002     446
+2003     419
+2004     401
+2005     492
+2006     573
+2007     479
+2008     440
+2009     420
+2010     315
+2011     591
+2012     644
+2013    1023
+2014    1259
+2015    1126
+2016     621
+2017     737
+2018    1323
+2019    2911
+2020    1737
+2021    2086
+2022    1840
+2023    1275
+2024    1196
+2025    1638
+2026     236
+
+== Marine Setting
+Marine Setting
+Ocean water       16988
+Nurdle Patrol     10615
+Beach               893
+Ocean sediment      580
+
+== Unit
+Unit
+pieces/m3           17881
+pieces/10 mins      10615
+pieces kg-1 d.w.      580
+
+== Sampling Method
+Sampling Method
+Neuston net                  10720
+Hand picking                 10633
+Manta net                     3204
+Grab sample                   1389
+Pump                           563
+PVC cylinder                   370
+Intake seawater pump           284
+Plankton net                   240
+Metal trowel                   208
+Van Dorn sampler               181
+Metal spoon                    145
+Megacorer                       90
+Metal scoop                     89
+Niskin bottle                   81
+Stainless steel bucket          80
+Shovel                          72
+Van Veen grab                   66
+Trowel                          60
+Stainless steel corer           58
+Aluminum bucket                 57
+Stainless steel spoon           50
+CTD rosette sampler             48
+Ekman dredge                    45
+Steel bucket                    43
+Remotely operated vehicle       40
+
+== Mesh Size (mm)
+Mesh Size (mm)
+<empty>    10662
+0.335       9382
+0.33        2061
+0.333       1667
+0.00045     1496
+0.0012       850
+0.5          384
+1            353
+0.3          340
+0.2          309
+0.505        270
+0.1          240
+0.25         193
+0.45         132
+0.052         90
+0.0625        83
+0.048         72
+0.011         72
+0.08          64
+0.032         58
+0.064         57
+0.063         56
+0.15          40
+1.13          40
+0.02          30
+
+== Study Type
+Study Type
+Professional Science    16858
+Citizen Science         12218
+
+== Ocean
+Ocean
+Atlantic Ocean    19394
+Pacific Ocean      7103
+<empty>            1389
+Indian Ocean        777
+Arctic Ocean        386
+Southern Ocean       27
+
+== Concentration Class
+Concentration Class
+Medium       13498
+Very Low      7243
+High          4067
+Low           3177
+Very High     1091
+
+== Marine Setting x Unit
+Unit            pieces kg-1 d.w.  pieces/10 mins  pieces/m3
+Marine Setting                                             
+Beach                          0               0        893
+Nurdle Patrol                  0           10615          0
+Ocean sediment               580               0          0
+Ocean water                    0               0      16988
+
+== Sampling Method x Marine Setting (top methods)
+Marine Setting          Beach  Nurdle Patrol  Ocean sediment  Ocean water
+Sampling Method                                                          
+Aluminum bucket             0              0               0           57
+Grab sample                 0              0               0         1389
+Hand picking               18          10615               0            0
+Intake seawater pump        0              0               0          284
+Manta net                   0              0               0         3204
+Megacorer                   0              0              90            0
+Metal scoop                89              0               0            0
+Metal spoon                59              0              86            0
+Metal trowel              208              0               0            0
+Neuston net                 0              0               0        10720
+Niskin bottle               0              0               0           81
+PVC cylinder              370              0               0            0
+Plankton net                0              0               0          240
+Pump                        0              0               0          563
+Shovel                      0              0              72            0
+Stainless steel bucket      0              0               0           80
+Stainless steel corer       0              0              58            0
+Trowel                     60              0               0            0
+Van Dorn sampler            0              0               0          181
+Van Veen grab               0              0              66            0
+
+measurement non-numeric: 10615  zero: 5210
+DOI: empty 0, distinct 96
+Short Reference: empty 0, distinct 93
+Long Reference: empty 0, distinct 96
+Organization: empty 0, distinct 68
+NCEI Accession Number: empty 0, distinct 96
+
+rows per accession, top 15
+NCEI Accession Number
+259486    10615
+211007     6135
+211008     2530
+211009     1389
+276422     1145
+275968      680
+276264      663
+314176      563
+259692      514
+278270      331
+314178      270
+253448      235
+285700      224
+308031      208
+252260      171
+
+short refs per accession (max) NCEI Accession Number
+276265    1
+276264    1
+276263    1
+276021    1
+276020    1
+276019    1
+276018    1
+314559    1
+259486    2
+276422    2
+
+accessions per short ref (max) Short Reference
+Eriksen et al. 2014     1
+Eriksen et al. 2013     1
+Egger et al. 2022       1
+Frias et al. 2024       1
+de Lucia et al. 2014    1
+Egger et al. 2020       2
+Nchimbi et al. 2022     2
+Fatema et al. 2023      2
+Unpublished             2
+Yakushev et al. 2021    2
+
+DOIs per short ref (max) Short Reference
+de Lucia et al. 2014    1
+Egger et al. 2020       2
+Nchimbi et al. 2022     2
+Fatema et al. 2023      2
+Unpublished             2
+
+short refs per DOI (max) DOI
+https://doi.org/10.1016/j.marpolbul.2019.01.053    1
+https://doi.org/10.1016/j.marpolbul.2019.01.028    1
+https://doi.org/10.1016/j.marpolbul.2018.12.042    1
+https://doi.org/10.1016/j.marpolbul.2018.03.011    1
+https://doi.org/10.1016/j.marpolbul.2016.12.052    1
+https://doi.org/10.1016/j.marpolbul.2020.111016    1
+https://doi.org/10.3389/fmars.2022.784937          1
+https://doi.org/10.25921/ccz7-mq57                 2

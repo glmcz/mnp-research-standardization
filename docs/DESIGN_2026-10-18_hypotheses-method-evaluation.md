@@ -103,10 +103,16 @@ Each block lists the prediction, the method, the metric, what would refute it, a
     written down first.
   - **Also on soil:** whether the 201 places with two or more studies disagree less after
     rescaling.
-- **H3b: at one place on one day, the method decides the count.**
-  - Weser estuary, PANGAEA 937685 and 938143: 23 stations sampled with a 10 µm filter and a
-    300 µm net. The recon measured a median ratio of 5 340 (minimum 404). This is recomputed in
-    the build before it is quoted.
+- **H3b: within one river, the size window decides the count.** *Corrected 2026-10-19: an
+  earlier version said "the method decides".*
+  - Weser estuary, PANGAEA 937685 and 938143 (CC BY 4.0): one study sampled two complementary
+    size fractions at the same 23 stations. S-MP is 11–500 µm (pump, µFTIR); L-MP is
+    500–5000 µm (net, ATR-FTIR).
+  - The small fraction outnumbers the large by a median of 5 237 (22 stations; one found no large
+    particles), which implies a power-law α ≈ 3.24, against the 1.6 usually assumed. *(5 340 corrected to 5 237 on 2026-10-19: one station with no large particles had added an infinite ratio to the median.)*
+  - It is not a measurement disagreement. It shows how much any count depends on where its
+    window starts, and that the default slope can be badly wrong for small particles.
+  - The identification method also differs between the fractions, which is a confounder.
 - **H3c: rescaling to one size window does not repair the disagreement.**
   - D3 (the results page) puts 34 drinking and freshwater studies on 1–5000 µm with the
     Kooi & Koelmans power law. The spread goes from 8.3 decades to 7.5 at α = 1.6.
@@ -359,7 +365,7 @@ Never cut: the PREREG entries, Martin's 30 labels, the V0 → V2 delta.
 | **Then** | the five hypotheses as the abstract's own sentences |
 | **H1** | today's absence slides, now with "we checked the supplements: 8.1 % → 9.2 %" |
 | **H2** | P2 Part 1 (size explains nothing; the amine sign flips), then the H2b model as a test, not a picture |
-| **H3** | the Weser pair (×5 340), the rectangles, then the soil result as the confirmation |
+| **H3** | the Weser pair (×5 237), the rectangles, then the soil result as the confirmation |
 | **H4** | same tow, two values, and the 1.9 trap |
 | **H5** | the system, the ablation ladder, the false-explanation rate per rung, the cost per rung |
 | **Close** | what AI can and cannot do here, and the call |

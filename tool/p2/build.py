@@ -432,6 +432,17 @@ def extension() -> dict:
     )
     weser, windows = ext.weser()
     med_ratio = float(weser.ratio.dropna().median())
+    # Small derived tables the deck reads with `git show` (the raw inputs are gitignored).
+    tables = ROOT / "out/tables"
+    weser.assign(
+        small_lo_um=windows["small_um"][0],
+        small_hi_um=windows["small_um"][1],
+        large_lo_um=windows["large_um"][0],
+        large_hi_um=windows["large_um"][1],
+    ).to_csv(tables / "p2_weser_pairs.csv", index=False)
+    pd.concat([raw.assign(bins_used="all"), lod.assign(bins_used="lod_filtered")]).to_csv(
+        tables / "p2_alpha_fits.csv", index=False
+    )
     return {
         "soil_studies": json.loads(
             studies.assign(study=studies.study.str.slice(0, 120)).to_json(orient="records")

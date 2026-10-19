@@ -148,14 +148,14 @@ def parse_cli_output(stdout: str, model: str = READER_MODEL) -> Reply:
     )
 
 
-def read(prompt: str) -> Reply:
+def read(prompt: str, model: str = READER_MODEL) -> Reply:
     cwd = reader_cwd()
     planted = instruction_files_above(cwd)
     if planted:
         raise ReaderError(f"instruction files above the reader's cwd: {planted}")
     try:
         done = subprocess.run(
-            reader_command(),
+            reader_command(model),
             input=prompt,
             capture_output=True,
             text=True,
@@ -166,7 +166,7 @@ def read(prompt: str) -> Reply:
         raise ReaderError(f"timed out after {TIMEOUT_S} s") from exc
     if done.returncode != 0 and not done.stdout.strip():
         raise ReaderError(f"exit {done.returncode}: {done.stderr.strip()[-300:]}")
-    return parse_cli_output(done.stdout)
+    return parse_cli_output(done.stdout, model)
 
 
 def cli_version() -> str:

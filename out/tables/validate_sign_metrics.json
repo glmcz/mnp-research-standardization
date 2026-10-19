@@ -1,0 +1,58 @@
+{
+ "candidates": 69,
+ "papers": 19,
+ "V0": {
+  "distribution": {
+   "ions": 25,
+   "corona": 16,
+   "unexplained": 12,
+   "other_stated": 10,
+   "ph": 4,
+   "label_error": 2
+  },
+  "abstained": 0
+ },
+ "V1": {
+  "distribution": {
+   "ions": 25,
+   "corona": 16,
+   "unexplained": 12,
+   "other_stated": 10,
+   "ph": 4,
+   "unsupported": 2
+  },
+  "abstained": 2
+ },
+ "V2": {
+  "distribution": {
+   "abstain": 22,
+   "corona": 16,
+   "unexplained": 12,
+   "other_stated": 10,
+   "ions": 6,
+   "ph": 3
+  },
+  "abstained": 22
+ },
+ "reader_kappa_raw": 0.6047904191616766,
+ "reader_agreement_raw": 0.6811594202898551,
+ "v1_rejected": {
+  "A": 2,
+  "B": 0
+ },
+ "cost_A": {
+  "papers": 19,
+  "input_tokens": 114292,
+  "output_tokens": 17950,
+  "seconds": 188.3,
+  "model": "claude-sonnet-5"
+ },
+ "cost_B": {
+  "papers": 19,
+  "input_tokens": 85847,
+  "output_tokens": 13187,
+  "seconds": 257.5,
+  "model": "claude-opus-4-6"
+ },
+ "labelled": 0
+}

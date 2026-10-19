@@ -1,0 +1,168 @@
+<title>Blind Cause Labels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Same tokens as the P2 page. Layout: one case per screen; the row on top, the paper's lines in
+   a scrolling panel, the causes as a list of choices, and the save state always visible. */
+:root {
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #6c6a65;
+  --line: rgba(11, 11, 11, 0.10); --axis: #c3c2b7; --s1: #2a78d6; --s1-wash: rgba(42, 120, 214, 0.10);
+  --good: #0ca30c; --code-bg: #f0efea;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark; --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #a5a49c; --line: rgba(255, 255, 255, 0.10); --axis: #383835; --s1: #3987e5;
+    --s1-wash: rgba(57, 135, 229, 0.16); --good: #0ca30c; --code-bg: #222220;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark; --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+  --muted: #a5a49c; --line: rgba(255, 255, 255, 0.10); --axis: #383835; --s1: #3987e5;
+  --s1-wash: rgba(57, 135, 229, 0.16); --good: #0ca30c; --code-bg: #222220;
+}
+* { box-sizing: border-box; }
+body { background: var(--page); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5; padding-inline: 16px; }
+main { max-width: 860px; margin: 0 auto; padding-block: 28px 64px; display: grid; gap: 18px; }
+h1 { font-family: var(--display); font-stretch: 80%; font-weight: 750; font-size: clamp(1.7rem, 4.5vw, 2.4rem); line-height: 1.05; margin: 0; }
+p { margin: 0; max-width: 68ch; color: var(--ink-2); }
+.eyebrow { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; position: sticky; top: env(safe-area-inset-top, 0px); background: var(--page); padding-block: 8px; z-index: 1; border-bottom: 1px solid var(--line); }
+.progress { font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: 0.92rem; }
+.status { font-size: 0.85rem; color: var(--muted); }
+.status.ok { color: var(--good); }
+.nav { display: flex; gap: 8px; }
+button { font: inherit; font-size: 0.9rem; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--axis); background: var(--surface); color: var(--ink); cursor: pointer; }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--s1); outline-offset: 2px; }
+button:disabled { opacity: 0.4; cursor: default; }
+.row { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: grid; gap: 6px; }
+.row dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; font-size: 0.95rem; }
+.row dt { color: var(--muted); }
+.row dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.zeta { font-family: var(--display); font-stretch: 85%; font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.lines { background: var(--code-bg); border-radius: 8px; padding: 12px 14px; max-height: 46vh; overflow: auto; font-family: var(--mono); font-size: 0.8rem; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 6px; }
+legend { font-weight: 600; margin-bottom: 6px; }
+label.choice { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); cursor: pointer; }
+label.choice:has(input:checked) { border-color: var(--s1); background: var(--s1-wash); }
+label.choice b { font-family: var(--mono); font-size: 0.85rem; font-weight: 500; }
+label.choice span { color: var(--ink-2); font-size: 0.9rem; }
+textarea { width: 100%; min-height: 3.2em; font: inherit; font-size: 0.92rem; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--axis); background: var(--surface); color: var(--ink); }
+.export { display: grid; gap: 8px; }
+.export textarea { font-family: var(--mono); font-size: 0.75rem; min-height: 8em; }
+</style>
+
+<main>
+  <header style="display:grid;gap:10px">
+    <div class="eyebrow">MNP validation · Q2 · blind labels</div>
+    <h1>Why is this value the "wrong" sign?</h1>
+    <p id="intro"></p>
+  </header>
+  <div class="bar">
+    <span class="progress" id="progress"></span>
+    <span class="status" id="status">Connecting…</span>
+    <div class="nav"><button type="button" id="prev">Previous</button><button type="button" id="next">Next</button><button type="button" id="nextopen">Next unlabelled</button></div>
+  </div>
+  <section class="row" id="row" aria-live="polite"></section>
+  <section>
+    <div class="eyebrow" style="margin-bottom:6px">The lines the readers saw</div>
+    <div class="lines" id="lines" tabindex="0"></div>
+  </section>
+  <form id="form">
+    <fieldset id="causes"><legend>Cause</legend></fieldset>
+    <label for="note" class="eyebrow" style="display:block;margin:14px 0 6px">Note (optional)</label>
+    <textarea id="note" placeholder="Anything that made this one hard"></textarea>
+  </form>
+  <section class="export" id="export" hidden>
+    <p>Saving is not available in this view. Copy this and send it to Claude:</p>
+    <textarea id="dump" readonly></textarea>
+    <button type="button" id="copy">Copy</button>
+  </section>
+</main>
+
+<script type="application/json" id="data">__DATA__</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const labels = {};
+let i = 0, db = null, noteTimer = null;
+const $ = id => document.getElementById(id);
+$('intro').textContent = `${D.cases.length} rows, drawn at random from the ${D.of} whose zeta potential has the opposite sign to the one their surface group gives in clean water. For each, read the lines and choose the cause the lines support. Readers' and judges' answers are not shown. Unexplained is a valid answer.`;
+
+function render() {
+  const c = D.cases[i];
+  const done = Object.keys(labels).length;
+  $('progress').textContent = `Row ${i + 1} of ${D.cases.length} · ${done} labelled`;
+  const sign = c.zeta_mV > 0 ? '+' : '−';
+  $('row').innerHTML = '';
+  const z = document.createElement('div'); z.className = 'zeta'; z.textContent = `${sign}${Math.abs(c.zeta_mV)} mV`;
+  const dl = document.createElement('dl');
+  for (const [k, v] of [['paper', c.pmcid], ['row', c.row_id], ['particle', c.particle], ['surface group', c.surface], ['liquid', c.liquid || 'not stated'], ['pH', c.pH ?? 'not stated']]) {
+    const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; dl.append(dt, dd);
+  }
+  $('row').append(z, dl);
+  $('lines').textContent = D.papers[c.pmcid];
+  $('lines').scrollTop = 0;
+  const fs = $('causes'); fs.querySelectorAll('label').forEach(n => n.remove());
+  for (const cause of D.causes) {
+    const l = document.createElement('label'); l.className = 'choice';
+    const r = document.createElement('input'); r.type = 'radio'; r.name = 'cause'; r.value = cause; r.id = `c-${cause}`;
+    r.checked = labels[c.row_id]?.cause === cause;
+    r.addEventListener('change', () => save(c, { cause }));
+    const t = document.createElement('div'); const b = document.createElement('b'); b.textContent = cause;
+    const s = document.createElement('span'); s.textContent = ' ' + D.definitions[cause]; t.append(b, s);
+    l.append(r, t); fs.append(l);
+  }
+  $('note').value = labels[c.row_id]?.note || '';
+  $('prev').disabled = i === 0; $('next').disabled = i === D.cases.length - 1;
+  $('dump').value = JSON.stringify(Object.values(labels));
+}
+
+async function save(c, patch) {
+  const prev = labels[c.row_id] || { row_id: c.row_id, pmcid: c.pmcid, cause: null, note: '' };
+  const next = { ...prev, ...patch, at: new Date().toISOString() };
+  labels[c.row_id] = next;
+  render();
+  if (!db) { $('export').hidden = false; return; }
+  if (!next.cause) return;
+  $('status').textContent = 'Saving…'; $('status').className = 'status';
+  try {
+    await db.collection('labels').doc(c.row_id).set(next);
+    $('status').textContent = 'Saved'; $('status').className = 'status ok';
+  } catch (e) {
+    $('status').textContent = `Not saved (${e && e.code || 'error'}). Your choice is still in the export below.`;
+    $('export').hidden = false;
+  }
+}
+
+$('note').addEventListener('input', () => {
+  clearTimeout(noteTimer);
+  const c = D.cases[i], v = $('note').value;
+  noteTimer = setTimeout(() => { if (labels[c.row_id]?.cause) save(c, { note: v }); else labels[c.row_id] = { ...(labels[c.row_id] || { row_id: c.row_id, pmcid: c.pmcid, cause: null }), note: v }; }, 800);
+});
+$('prev').addEventListener('click', () => { if (i > 0) { i--; render(); } });
+$('next').addEventListener('click', () => { if (i < D.cases.length - 1) { i++; render(); } });
+$('nextopen').addEventListener('click', () => {
+  for (let k = 1; k <= D.cases.length; k++) { const j = (i + k) % D.cases.length; if (!labels[D.cases[j].row_id]?.cause) { i = j; render(); return; } }
+});
+$('copy').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText($('dump').value); $('copy').textContent = 'Copied'; }
+  catch { $('dump').select(); }
+});
+
+render();
+(async () => {
+  try { db = await window.claude?.use?.('db'); } catch { db = null; }
+  if (!db) { $('status').textContent = 'Saving unavailable here'; $('export').hidden = false; return; }
+  $('status').textContent = 'Ready';
+  db.collection('labels').onSnapshot(snap => {
+    for (const d of snap.docs) { const v = d.data(); if (v && v.cause) labels[d.id] = v; }
+    if (document.activeElement === $('note')) {
+      $('progress').textContent = `Row ${i + 1} of ${D.cases.length} · ${Object.keys(labels).length} labelled`;
+    } else render();
+  }, () => { $('status').textContent = 'Saving unavailable here'; $('export').hidden = false; db = null; });
+})();
+</script>

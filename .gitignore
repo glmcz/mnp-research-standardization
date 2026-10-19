@@ -57,3 +57,9 @@ tool/p2/data.json
 
 # third-party downloads from dataset recon (tool/datasets/)
 data/raw/datasets_recon/
+
+# validation runs: logs only (answers stay versioned, like data/interim/origin)
+data/interim/validate/**/*.log
+
+# rebuilt by tool/validate/build_labels.py; publish, do not commit
+tool/validate/labels.html

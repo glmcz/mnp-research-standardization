@@ -24,10 +24,19 @@ P["log10_ratio"] = np.log10(np.maximum(P["val_a"], P["val_b"]) / np.minimum(P["v
 
 print("same-tow pairs (same day, <2 km) by study pair, any radius:")
 st = P[P["same_tow"]]
-print(st.groupby("study_pair").agg(n=("i", "size"), same_group=("same_group", "first"),
-                                   med_log10_ratio=("log10_ratio", "median"),
-                                   share_equal=("exact_dup", "mean")).sort_values("n", ascending=False)
-      .rename(index=lambda sp: " || ".join(ref[s] for s in sp.split(" || "))).round(3).to_string())
+print(
+    st.groupby("study_pair")
+    .agg(
+        n=("i", "size"),
+        same_group=("same_group", "first"),
+        med_log10_ratio=("log10_ratio", "median"),
+        share_equal=("exact_dup", "mean"),
+    )
+    .sort_values("n", ascending=False)
+    .rename(index=lambda sp: " || ".join(ref[s] for s in sp.split(" || ")))
+    .round(3)
+    .to_string()
+)
 
 rows = []
 for r in (10, 50, 100):
@@ -36,28 +45,47 @@ for r in (10, 50, 100):
         if d is not None:
             m &= P["days"] <= d
         S = P[m]
-        I = S[S["indep"]]
-        C = I[I["comparable"]]
-        rows.append({
-            "radius_km": r, "max_days": d or "none", "all_pairs": len(S),
-            "same_group": int(S["same_group"].sum()), "same_tow": int(S["same_tow"].sum()),
-            "independent": len(I), "indep_study_pairs": I["study_pair"].nunique(),
-            "indep_same_method": int(I["same_method"].sum()), "indep_same_mesh": int(I["same_mesh"].sum()),
-            "indep_comparable": len(C), "comparable_study_pairs": C["study_pair"].nunique(),
-            "comparable_records": len(set(C["i"]) | set(C["j"])),
-            "comparable_med_log10_ratio": round(C["log10_ratio"].median(), 2) if len(C) else None,
-        })
+        ind = S[S["indep"]]
+        C = ind[ind["comparable"]]
+        rows.append(
+            {
+                "radius_km": r,
+                "max_days": d or "none",
+                "all_pairs": len(S),
+                "same_group": int(S["same_group"].sum()),
+                "same_tow": int(S["same_tow"].sum()),
+                "independent": len(ind),
+                "indep_study_pairs": ind["study_pair"].nunique(),
+                "indep_same_method": int(ind["same_method"].sum()),
+                "indep_same_mesh": int(ind["same_mesh"].sum()),
+                "indep_comparable": len(C),
+                "comparable_study_pairs": C["study_pair"].nunique(),
+                "comparable_records": len(set(C["i"]) | set(C["j"])),
+                "comparable_med_log10_ratio": round(C["log10_ratio"].median(), 2)
+                if len(C)
+                else None,
+            }
+        )
 pd.set_option("display.width", 300)
 print("\n", pd.DataFrame(rows).to_string(index=False))
 
-for label, m in (("50 km / 365 d", (P["km"] <= 50) & (P["days"] <= 365)),
-                 ("100 km / no date limit", P["km"] <= 100)):
-    I = P[m & P["indep"]]
-    t = I.groupby("study_pair").agg(
-        pairs=("i", "size"), setting=("setting", "first"),
-        same_method=("same_method", "mean"), same_mesh=("same_mesh", "mean"),
-        comparable=("comparable", "sum"), med_km=("km", "median"), med_days=("days", "median"),
-        med_log10_ratio=("log10_ratio", "median"))
+for label, m in (
+    ("50 km / 365 d", (P["km"] <= 50) & (P["days"] <= 365)),
+    ("100 km / no date limit", P["km"] <= 100),
+):
+    ind = P[m & P["indep"]]
+    t = ind.groupby("study_pair").agg(
+        pairs=("i", "size"),
+        setting=("setting", "first"),
+        same_method=("same_method", "mean"),
+        same_mesh=("same_mesh", "mean"),
+        comparable=("comparable", "sum"),
+        med_km=("km", "median"),
+        med_days=("days", "median"),
+        med_log10_ratio=("log10_ratio", "median"),
+    )
     t.index = [" || ".join(ref[s] for s in sp.split(" || ")) for sp in t.index]
-    print(f"\nIndependent study pairs, {label}: {len(t)}; with >=1 comparable record pair: {(t['comparable'] > 0).sum()}")
+    print(
+        f"\nIndependent study pairs, {label}: {len(t)}; with >=1 comparable record pair: {(t['comparable'] > 0).sum()}"
+    )
     print(t.sort_values("comparable", ascending=False).head(40).round(2).to_string())

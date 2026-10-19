@@ -27,15 +27,35 @@ pd.set_option("display.width", 250)
 pd.set_option("display.max_colwidth", 120)
 for tag, g in sub.groupby("tag"):
     print(f"=== {tag}: {len(g)} rows")
-    for c in ["Short Reference", "Long Reference", "Organization", "Sampling Method", "Mesh Size (mm)",
-              "Unit", "Water Sample Depth (m)", "Ocean", "Region", "Subregion", "Country",
-              "NCEI Accession Number", "Study Type", "Keywords", "Collecting Time (min)"]:
+    for c in [
+        "Short Reference",
+        "Long Reference",
+        "Organization",
+        "Sampling Method",
+        "Mesh Size (mm)",
+        "Unit",
+        "Water Sample Depth (m)",
+        "Ocean",
+        "Region",
+        "Subregion",
+        "Country",
+        "NCEI Accession Number",
+        "Study Type",
+        "Keywords",
+        "Collecting Time (min)",
+    ]:
         print(f"  {c}: {g[c].value_counts().to_dict()}")
     print(f"  date range {g['date'].min()} .. {g['date'].max()}")
-    print(f"  date hour/minute values: {g['date'].dt.strftime('%H:%M').value_counts().head(10).to_dict()}")
+    print(
+        f"  date hour/minute values: {g['date'].dt.strftime('%H:%M').value_counts().head(10).to_dict()}"
+    )
     print(f"  lat {g['lat'].min()} .. {g['lat'].max()}, lon {g['lon'].min()} .. {g['lon'].max()}")
     print(f"  years: {g['date'].dt.year.value_counts().sort_index().to_dict()}")
-    print(f"  values: n={g['value'].notna().sum()} zeros={(g['value'] == 0).sum()} "
-          f"min={g['value'].min()} median={g['value'].median()} max={g['value'].max()}")
-    print(f"  lat/lon decimals: {g['Latitude (degree)'].str.split('.').str[1].str.len().value_counts().to_dict()}")
+    print(
+        f"  values: n={g['value'].notna().sum()} zeros={(g['value'] == 0).sum()} "
+        f"min={g['value'].min()} median={g['value'].median()} max={g['value'].max()}"
+    )
+    print(
+        f"  lat/lon decimals: {g['Latitude (degree)'].str.split('.').str[1].str.len().value_counts().to_dict()}"
+    )
     print(f"  value strings sample: {g['Microplastics Measurement'].head(8).tolist()}")

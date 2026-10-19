@@ -6,7 +6,6 @@ Usage: python -I eriksen_global_depth.py <rows_R_E.csv> <figshare_eriksen2014.cs
 
 import sys
 
-import numpy as np
 import pandas as pd
 
 D = pd.read_csv(sys.argv[1], dtype={"Unique ID": str})

@@ -22,8 +22,21 @@ print("\naccessions per DOI max", df.groupby("DOI")["NCEI Accession Number"].nun
 print("DOIs per accession max", df.groupby("NCEI Accession Number")["DOI"].nunique().max())
 print("DOIs that are NCEI dataset DOIs (10.25921):", sum("10.25921" in d for d in g.index))
 print("orgs with >1 DOI:")
-print(df.groupby("Organization")["DOI"].nunique().loc[lambda s: s > 1].sort_values(ascending=False).to_string())
-print("\nnon-nurdle rows with empty mesh:",
-      ((df["Marine Setting"] != "Nurdle Patrol") & (df["Mesh Size (mm)"].str.strip() == "")).sum())
+print(
+    df.groupby("Organization")["DOI"]
+    .nunique()
+    .loc[lambda s: s > 1]
+    .sort_values(ascending=False)
+    .to_string()
+)
+print(
+    "\nnon-nurdle rows with empty mesh:",
+    ((df["Marine Setting"] != "Nurdle Patrol") & (df["Mesh Size (mm)"].str.strip() == "")).sum(),
+)
 print("mesh by setting (non-empty share):")
-print(df.assign(has=df["Mesh Size (mm)"].str.strip() != "").groupby("Marine Setting")["has"].mean().to_string())
+print(
+    df.assign(has=df["Mesh Size (mm)"].str.strip() != "")
+    .groupby("Marine Setting")["has"]
+    .mean()
+    .to_string()
+)

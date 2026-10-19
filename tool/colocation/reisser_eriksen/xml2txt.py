@@ -33,7 +33,6 @@ def walk(el, path):
             walk(ch, path + [text(t) if t is not None else "?"])
         elif ch.tag in ("p", "table-wrap", "fig", "supplementary-material", "disp-formula"):
             label = ch.find("label")
-            cap = ch.find("caption")
             head = " ".join(x for x in [text(label) if label is not None else "", ""] if x)
             if ch.tag == "p":
                 out.append(f"[{' > '.join(path)}] {text(ch)}")

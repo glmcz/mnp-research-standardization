@@ -41,6 +41,12 @@ src = ["src", "tests"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
 
+[tool.ruff.lint.per-file-ignores]
+# One-off recon probes: their query strings are kept exactly as they were run, and their
+# diagnostic prints are not worth re-splitting.
+"tool/colocation/**" = ["E501"]
+"tool/datasets/*_recon_*/**" = ["E501"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-m 'not slow'"

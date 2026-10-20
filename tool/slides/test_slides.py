@@ -447,6 +447,24 @@ def expected_findings(get=show) -> dict:
     named = [r["instrument"] for r in d1 if r["instrument"].strip()]
     E["zb.zetasizer"] = [sum("zetasizer" in s.lower() for s in named), len(named)]
 
+    # slide 7: ionic strength with the supplements, recounted from the table and the accepted rows
+    si_rows = set(json.loads(get("out/tables/si_rates.json"))["accepted_rows"])
+    papers: dict[str, list[dict]] = {}
+    for r in d1:
+        papers.setdefault(r["pmcid"], []).append(r)
+
+    def stated(r: dict, with_si: bool) -> bool:
+        return r["ionic_strength_reported"] == "True" or (with_si and r["row_id"] in si_rows)
+
+    E["si.mean"] = Near(
+        statistics.fmean(sum(stated(r, True) for r in rs) / len(rs) for rs in papers.values()),
+        1e-9,
+    )
+    E["si.new"] = sum(
+        any(stated(r, True) for r in rs) and not any(stated(r, False) for r in rs)
+        for rs in papers.values()
+    )
+
     # slide 5: the design's table, split on its cells
     for line in get("docs/DESIGN_2026-10-18_hypotheses-method-evaluation.md").splitlines():
         cells = [c.strip() for c in line.split(" | ")]
@@ -1025,6 +1043,14 @@ def test_every_slide_has_a_title_a_message_and_notes(page) -> None:
         prose = re.sub(r"<[^>]+>", "", re.sub(r'<span class="label">[^<]*</span>', "", notes[0]))
         sentences = [s for s in re.split(r"(?<=[.!?])\s+", prose.strip()) if s]
         assert 2 <= len(sentences) <= 4, (sid, len(sentences))
+
+
+def test_no_di_water_row_gained_an_ionic_strength_from_the_supplements() -> None:
+    # The script says so; the SI rescued rows whose liquid the main text left unnamed.
+    si_rows = set(json.loads(show("out/tables/si_rates.json"))["accepted_rows"])
+    d1 = rows_by_id(show("out/tables/d1_zeta_table.csv"))
+    assert si_rows <= set(d1)
+    assert not [r for r in si_rows if d1[r]["medium_class"] == "DI_water"]
 
 
 def test_the_judges_slide_says_what_the_judges_did(deck) -> None:

@@ -269,6 +269,16 @@ def case02(V: Values, charts: dict, table: pd.DataFrame) -> None:
     charts["c02"] = _mv_axis(V, "c02", values)
 
 
+def si_values(V: Values, ref: str, base: dict) -> None:
+    """Slide 7: ionic strength once the supplements are read too (the 2026-10-12 SI census)."""
+    si = json.loads(show(ref, SI_RATES))
+    main = next(p for p in base["five"]["params"] if p["key"] == "ionic_strength_reported")
+    if abs(si["main_text"]["paper_mean_pct"] / 100 - main["paper_mean_share"]) > 5e-4:
+        raise SystemExit(f"{SI_RATES} counted a different main text than slide 7's bar")
+    V.pct("si.mean", si["main_plus_si"]["paper_mean_pct"] / 100, 1, SI_RATES + ": main_plus_si")
+    V.int("si.new", si["accepted_papers_new"], SI_RATES + ": accepted_papers_new")
+
+
 def five_values(V: Values, ref: str, base: dict) -> None:
     method = show(ref, "out/demo/METHOD.md")
     for p in base["five"]["params"]:
@@ -686,6 +696,7 @@ TOWS_README = "tool/colocation/reisser_eriksen/README.md"
 VSIGN = "out/tables/validate_sign_metrics.json"
 VJUDGE = "out/tables/validate_judge_metrics.json"
 VRESULTS = "docs/2026-10-19-validation-results.md"
+SI_RATES = "out/tables/si_rates.json"
 #: A polymer gets its own row on the polymer slide only with at least this many values.
 POLYMER_MIN_ROWS = 10
 
@@ -976,6 +987,7 @@ def build(ref: str) -> dict:
     case14(V, charts, d1, harm, table, base)
     case02(V, charts, table)
     five_values(V, ref, base)
+    si_values(V, ref, base)
     census_values(V, charts, base)
     rules_values(V, ref)
     lab_values(V, charts, table)

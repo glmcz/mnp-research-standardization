@@ -602,9 +602,9 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
       <div class="cond"><span class="name">Temperature</span><span class="why">{{five.why.temperature_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.temperature_reported}}"></span></span><span class="v">{{five.temperature_reported}}</span></div>
       <div class="cond"><span class="name">Instrument</span><span class="why">{{five.why.instrument_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.instrument_reported}}"></span></span><span class="v">{{five.instrument_reported}}</span></div>
     </div>
-    <p class="legend"><span><i class="k-ink"></i>reported</span><span><i class="k-abs"></i>not reported</span><span>All five on one row, per paper: a mean of {{five.complete_paper}}.</span></p>
+    <p class="legend"><span><i class="k-ink"></i>reported</span><span><i class="k-abs"></i>not reported</span><span>All five on one row, per paper: a mean of {{five.complete_paper}}.</span><span>With the supplements read too, ionic strength reaches only {{si.mean}}: {{si.new}} more papers state it.</span></p>
   </div>
-  <p class="src">out/review/conditions_per_paper.csv (REVIEW.md §5.1) · reasons: out/demo/METHOD.md</p>
+  <p class="src">out/review/conditions_per_paper.csv (REVIEW.md §5.1) · reasons: out/demo/METHOD.md · supplements: out/tables/si_rates.json (docs/2026-10-12-si-ionic-strength.md)</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
     <p>These are the five conditions without which a zeta value cannot be interpreted. Each bar is per paper: the average share of a paper’s rows that report the condition, so a paper with many rows does not outvote one with few. Only {{five.complete}} of {{rows}} rows carry all five. And “reported” is generous here: a pH range, “room temperature” and an instrument family all count, so every figure is an upper bound.</p>
   </aside>

@@ -1,0 +1,59 @@
+{
+  "n_rows": 1903,
+  "n_papers": 467,
+  "papers_read": 101,
+  "verdicts": 173,
+  "accepted": 22,
+  "accepted_rows": [
+    "PMC10952355-r1",
+    "PMC11840474-r1",
+    "PMC11840474-r2",
+    "PMC11840474-r3",
+    "PMC11840474-r4",
+    "PMC11840474-r5",
+    "PMC11840474-r6",
+    "PMC11840474-r7",
+    "PMC11990826-r1",
+    "PMC11990826-r2",
+    "PMC13181784-r2",
+    "PMC13181784-r4",
+    "PMC13298883-r5",
+    "PMC13298883-r6",
+    "PMC13298883-r7",
+    "PMC13298883-r8",
+    "PMC9370236-r1",
+    "PMC9370236-r2",
+    "PMC9370236-r3",
+    "PMC9370236-r4",
+    "PMC9370236-r5",
+    "PMC9370236-r6"
+  ],
+  "accepted_papers": 6,
+  "accepted_papers_new": 5,
+  "findings_papers": {
+    "buffer_only": 9,
+    "di_water_only": 6,
+    "mass_units_composition": 2,
+    "series_unmapped": 6
+  },
+  "upper_bound_papers_any": 47,
+  "upper_bound_papers_any_pct": 10.06423982869379,
+  "outcomes": {
+    "accepted": 22,
+    "finding": 151
+  },
+  "main_text": {
+    "rows": 240,
+    "rows_pct": 12.611665790856541,
+    "papers_any": 38,
+    "papers_any_pct": 8.137044967880085,
+    "paper_mean_pct": 7.163760579178137
+  },
+  "main_plus_si": {
+    "rows": 262,
+    "rows_pct": 13.767735155018393,
+    "papers_any": 43,
+    "papers_any_pct": 9.207708779443255,
+    "paper_mean_pct": 8.180891200163149
+  }
+}

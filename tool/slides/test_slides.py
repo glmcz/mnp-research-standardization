@@ -1053,6 +1053,13 @@ def test_no_di_water_row_gained_an_ionic_strength_from_the_supplements() -> None
     assert not [r for r in si_rows if d1[r]["medium_class"] == "DI_water"]
 
 
+def test_the_standalone_page_opens_from_a_file(bs, page) -> None:
+    doc = bs.standalone(page)
+    assert doc.startswith("<!doctype html>") and doc.rstrip().endswith("</html>")
+    assert 'name="viewport" content="width=device-width' in doc
+    assert page in doc
+
+
 def test_the_judges_slide_says_what_the_judges_did(deck) -> None:
     # "Claude was no softer on its own family, but its pick moved with the order of the list."
     V = {k: v["v"] for k, v in deck["values"].items()}

@@ -105,11 +105,13 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--ref", default="HEAD", help="git ref to read every input from")
     ap.add_argument("--out", default=str(HERE / "script.html"))
+    ap.add_argument("--standalone", action="store_true", help="a whole document, to open as a file")
     args = ap.parse_args()
 
     deck = bs.build(args.ref)
     out = Path(args.out)
-    out.write_text(render(deck, bs.render(deck)), encoding="utf-8")
+    page = render(deck, bs.render(deck))
+    out.write_text(bs.standalone(page) if args.standalone else page, encoding="utf-8")
     print(f"{args.ref} ({deck['commit']}): wrote {out}, {out.stat().st_size:,} bytes")
 
 

@@ -12,7 +12,7 @@ uv run python tool/slides/build_slides.py [--ref HEAD] [--out tool/slides/slides
 uv run pytest -q -p no:cacheprovider tool/slides/test_slides.py
 ```
 
-`slides.html` is a build output and is not committed. Open it in a browser: on a wide screen one slide fills the window. Arrow keys, space, Page Up/Down and a click move between slides, Home and End jump to the ends, `N` shows the speaker notes, `F` asks for fullscreen, and `#s5` in the address opens slide 5. On a phone the slides stack as one column.
+`slides.html` is a build output and is not committed. It is the fragment the artifact host wraps; `--standalone` writes a whole document instead (doctype, viewport), to open as a file on a phone or offline. `build_script.py` takes the same flag. Open it in a browser: on a wide screen one slide fills the window. Arrow keys, space, Page Up/Down and a click move between slides, Home and End jump to the ends, `N` shows the speaker notes, `F` asks for fullscreen, and `#s5` in the address opens slide 5. On a phone the slides stack as one column.
 
 ## The talk script
 

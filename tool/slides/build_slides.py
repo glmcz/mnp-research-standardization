@@ -1674,15 +1674,27 @@ def render(deck: dict, template: str | None = None) -> str:
     return build_page.inline(page, deck)
 
 
+def standalone(page: str) -> str:
+    """The page as a whole document, to open from a file on a phone or offline. The artifact host
+    adds this skeleton itself, so the published page leaves it out."""
+    return (
+        '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+        '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+        "</head>\n<body>\n" + page + "\n</body>\n</html>\n"
+    )
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--ref", default="HEAD", help="git ref to read every input from")
     ap.add_argument("--out", default=str(HERE / "slides.html"))
+    ap.add_argument("--standalone", action="store_true", help="a whole document, to open as a file")
     args = ap.parse_args()
 
     deck = build(args.ref)
     out = Path(args.out)
-    out.write_text(render(deck), encoding="utf-8")
+    page = render(deck)
+    out.write_text(standalone(page) if args.standalone else page, encoding="utf-8")
     rc = deck["review_checks"]
     print(f"{args.ref} ({deck['commit']}): wrote {out}, {out.stat().st_size:,} bytes")
     print(

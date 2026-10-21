@@ -1,10 +1,10 @@
 # Reading What Isn't There: the conference deck
 
-Twenty-two timed slides for the 20-minute talk, in the five acts of the design (`docs/DESIGN_2026-10-18_hypotheses-method-evaluation.md` §6), and five backup slides for questions, generated as one HTML page. It is the results page's sibling (`tool/viz/`) and is built the same way: data first, read from one commit, then a template filled with it.
+Twenty-one timed slides for the 20-minute talk, in the five acts of the design (`docs/DESIGN_2026-10-18_hypotheses-method-evaluation.md` §6), and six backup slides for questions, generated as one HTML page. It is the results page's sibling (`tool/viz/`) and is built the same way: data first, read from one commit, then a template filled with it.
 
 - `build_slides.py` first runs `tool/viz/build_data.py`'s `build(ref)`, so its checks against REVIEW.md run at the same ref, and stops if any disagree. It then reads the rest with `git show <ref>:<path>`: the final grid runs (`celld-final-20261003`, `cellb-final-20261003`), the re-read control's `summary.json`, `docs/DECISIONS.md` for the quoted examples, `out/demo/METHOD.md` for the reason each condition matters, and the release `LICENSE`. Every number becomes a value with its raw form, its shown text and its source.
 - `template.html` holds the words. A `{{key}}` slot becomes `<span data-k="key">` around the value's text, `{{svg:name}}` becomes a chart the builder draws as inline SVG from the same values (to scale, coloured from the page's tokens), and `{{w:key}}` becomes a bar's width. The deck's data is inlined as JSON through `tool/viz/build_page.py`'s `inline`.
-- The build stops when a slide's claim no longer holds: case 14 must still be the only comparable pair across papers, its harmonised intervals must not overlap, the cited-value example must still be gone from the record, `out/review/audit_sample.csv` must hold no verdict, since slide 27 says the human audit has not been done, and the blind labels must not be complete, since slide 19 reports agreement, not accuracy.
+- The build stops when a slide's claim no longer holds: case 14 must still be the only comparable pair across papers, its harmonised intervals must not overlap, the cited-value example must still be gone from the record, `out/review/audit_sample.csv` must hold no verdict, since slide 27 says the human audit has not been done, and the blind labels must not be complete, since slide 18 reports agreement, not accuracy.
 
 ```
 unset VIRTUAL_ENV

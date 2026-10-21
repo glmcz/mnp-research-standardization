@@ -28,19 +28,19 @@ _spec.loader.exec_module(bs)
 PLAN = {
     "s1": 30, "s2": 50, "s3": 55, "s4": 55, "s5": 50,
     "s6": 45, "s7": 45, "s8": 55, "s9": 35, "s10": 60, "s11": 50,
-    "s12": 65, "s13": 55, "s14": 70, "s15": 70, "s16": 55,
-    "s17": 45, "s18": 45, "s19": 70, "s20": 55,
-    "s21": 40, "s22": 100,
+    "s12": 75, "s13": 65, "s14": 85, "s15": 65,
+    "s16": 45, "s17": 45, "s18": 80, "s19": 65,
+    "s20": 40, "s21": 105,
 }  # fmt: skip
 ACTS = (
     ("I", "why it matters", ("s1", "s2", "s3", "s4", "s5")),
     ("II", "what is missing", ("s6", "s7", "s8", "s9", "s10", "s11")),
-    ("III", "what the numbers say", ("s12", "s13", "s14", "s15", "s16")),
-    ("IV", "agents that check", ("s17", "s18", "s19", "s20")),
-    ("V", "the close", ("s21", "s22")),
+    ("III", "what the numbers say", ("s12", "s13", "s14", "s15")),
+    ("IV", "agents that check", ("s16", "s17", "s18", "s19")),
+    ("V", "the close", ("s20", "s21")),
 )
 #: Slides kept for questions: a card each, no time.
-BACKUP = ("s23", "s24", "s25", "s26", "s27")
+BACKUP = ("s22", "s23", "s24", "s25", "s26", "s27")
 TOTAL = sum(PLAN.values())
 SRC = "tool/slides/build_script.py PLAN"
 

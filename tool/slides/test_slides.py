@@ -270,7 +270,8 @@ def expected(get=show) -> dict:
     salt = liquids["salt_solution"]
     E["lab.salt.share"] = len(salt["mM"]) / salt["rows"]
 
-    # slide 14: the physics demo's figure defaults, and what README's demo notes say it reached
+    # slide 22 (backup): the physics demo's figure defaults, and what README's demo notes say it
+    # reached
     from mnp.ek import constants as ek_constants
     from mnp.ek import hard as ek_hard
     from mnp.infer import figures
@@ -508,7 +509,7 @@ def expected_findings(get=show) -> dict:
     E["p4.leak"] = sec["P4_random_split_r2_all"]
     E["p4.paper_only"] = sec["P4_random_split_r2_paper_mean_only"]
 
-    # slide 15: the Weser fractions with csv, the power law solved by bisection on its own formula
+    # slide 14: the Weser fractions with csv, the power law solved by bisection on its own formula
     w = list(csv.DictReader(io.StringIO(get("out/tables/p2_weser_pairs.csv"))))
     small = (float(w[0]["small_lo_um"]), float(w[0]["small_hi_um"]))
     large = (float(w[0]["large_lo_um"]), float(w[0]["large_hi_um"]))
@@ -554,7 +555,7 @@ def expected_findings(get=show) -> dict:
     E["p3.lod_median"] = sec["P3_lod_filtered"]["median_alpha"]
     E["p3.band_lo"], E["p3.band_hi"] = prereg["alpha_band"]
 
-    # slide 16: the tow table with csv, the README's own sentences
+    # slide 15: the tow table with csv, the README's own sentences
     tows = list(
         csv.DictReader(
             io.StringIO(get("tool/colocation/reisser_eriksen/out_2026-10-12/tow_identity_R_E.csv"))
@@ -573,7 +574,7 @@ def expected_findings(get=show) -> dict:
     E["re.trap"] = float(one(readme, r"own wind-mixing median of ([\d.]+) is a coincidence")[0])
     E["re.same"] = int(one(readme, r"within 0\.1 % for (\d+) of the")[0])
 
-    # slide 19: the validation metrics, the labelling page's sample size, the results note
+    # slide 18: the validation metrics, the labelling page's sample size, the results note
     vm = json.loads(get("out/tables/validate_sign_metrics.json"))
     E["v.cands"], E["v.papers"] = vm["candidates"], vm["papers"]
     E["v.v0"] = vm["candidates"] - vm["V0"]["abstained"]
@@ -589,7 +590,7 @@ def expected_findings(get=show) -> dict:
     E["v.first_rej"] = int(one(notes, r"rejected (\d+) reader answers")[0])
     E["v.guard"] = int(one(notes, r"(\d+) of them were \"corona\" answers")[0])
 
-    # slide 20: the judges, recounted from the raw judge records rather than the metrics file
+    # slide 19: the judges, recounted from the raw judge records rather than the metrics file
     jm = json.loads(get("out/tables/validate_judge_metrics.json"))
     last = {}
     for text in get("data/interim/validate/sign/judge_items.jsonl").splitlines():
@@ -1034,7 +1035,7 @@ def test_every_slide_has_a_title_a_message_and_notes(page) -> None:
     )
     assert [s for s, _ in slides] == [f"s{i}" for i in range(1, 28)]
     backup = re.findall(r'<section class="slide backup" id="(s\d+)"', page)
-    assert backup == [f"s{i}" for i in range(23, 28)]
+    assert backup == [f"s{i}" for i in range(22, 28)]
     for sid, body in slides:
         assert re.search(r"<h[12]>", body), sid
         assert sid == "s1" or 'class="msg"' in body, sid
@@ -1117,11 +1118,11 @@ def script_scan(script_page):
 def test_the_time_plan_fills_twenty_minutes_over_five_acts(sc) -> None:
     # The design's talk order (DESIGN_2026-10-18 §6): twenty minutes, the backup slides untimed.
     assert [s for _, _, slides in sc.ACTS for s in slides] == list(sc.PLAN)
-    assert list(sc.PLAN) == [f"s{i}" for i in range(1, 23)]
-    assert sc.BACKUP == tuple(f"s{i}" for i in range(23, 28))
+    assert list(sc.PLAN) == [f"s{i}" for i in range(1, 22)]
+    assert sc.BACKUP == tuple(f"s{i}" for i in range(22, 28))
     acts = {name: sum(sc.PLAN[s] for s in slides) for name, _, slides in sc.ACTS}
-    assert acts == {"I": 240, "II": 290, "III": 315, "IV": 215, "V": 140}
-    assert sc.timing_values()["at.s22"]["text"] == "20:00"
+    assert acts == {"I": 240, "II": 290, "III": 290, "IV": 235, "V": 145}
+    assert sc.timing_values()["at.s21"]["text"] == "20:00"
 
 
 def test_the_script_has_one_card_per_slide_under_the_decks_title(script_page, page) -> None:

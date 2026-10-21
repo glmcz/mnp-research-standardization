@@ -326,7 +326,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .legend .k-ink { background: var(--ink); }
 .legend .k-abs { background: var(--absent-wash); outline: 1px solid var(--absent-soft); }
 
-/* ---- slide 17 ---- */
+/* ---- slide 16 ---- */
 .defaults { display: grid; gap: 0.9em; align-content: start; }
 .default-big { font-family: var(--mono); font-size: 1.45em; color: var(--ink); border-left: 3px solid var(--absent); padding: 0.2em 0 0.2em 0.7em; }
 .rules { display: grid; gap: 1em; }
@@ -387,7 +387,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .steps p { font-size: 1.04em; color: var(--ink-2); line-height: 1.4; }
 .status { display: inline-flex; gap: 0.6em; align-items: baseline; font: 600 0.8em var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--absent); border: 1.5px solid var(--absent); padding: 0.25em 0.7em; justify-self: start; }
 
-/* ---- slide 21 ---- */
+/* ---- slide 20 ---- */
 .cancant { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.6em; }
 @media (min-width: 760px) { .cancant { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3em; } }
 .cancant h3 { font-family: var(--display); font-size: 1.9em; font-weight: 600; padding-bottom: 0.2em; border-bottom: 2px solid var(--ink); }
@@ -397,7 +397,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .cancant li { font-size: 1.3em; line-height: 1.32; }
 .cancant li small { display: block; font-size: 0.78em; color: var(--ink-2); margin-top: 0.15em; }
 
-/* ---- slide 22 ---- */
+/* ---- slide 21 ---- */
 .standard { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2em; }
 @media (min-width: 760px) { .standard { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2em; } }
 .standard section { border-top: 2px solid var(--ink); padding-top: 0.55em; display: grid; gap: 0.4em; align-content: start; }
@@ -727,36 +727,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s14" aria-label="Slide 14: the curve, not the dot">
+<section class="slide" id="s14" aria-label="Slide 14: the window decides the count">
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">14</span><span>Act III · what the numbers say</span></p>
-    <h2>The plan was never zeta. It was the curve.</h2>
-    <p class="msg">One dot cannot tell a hard bead from a soft, coated one; a curve across salt can. The method to read the curve is built. What is missing is data: papers print dots, not curves.</p>
-  </header>
-  <div class="body cols wide-left">
-    <figure class="fig" style="margin:0">
-      {{svg:curve}}
-      <figcaption class="small">Computed with the physics demo’s own models: three particles tuned to the same mobility at {{curve.I}} mM. Hard: the charge sits on the skin, salt hides it, mobility falls toward zero. Soft: the charge sits inside a layer water flows through, salt cannot hide it, mobility stops at a plateau.</figcaption>
-    </figure>
-    <div class="rules">
-      <div class="rule"><span class="rid">I</span><h3>Measure a salt series.</h3><p>Mobility at a handful of salt levels, low to high. A solar panel is not rated at whatever the weather was; it is measured across temperatures and quoted at standard test conditions.</p></div>
-      <div class="rule"><span class="rid">II</span><h3>Fit by simulation-based inference.</h3><p>A physics simulator makes many curves; a neural network learns to go back from a curve to the layer’s charge and softness, with uncertainty. Trained on {{d4.sims}} simulations, calibration passes on all {{d4.sbc_params}} parameters (lowest p {{d4.ks_min}}).</p></div>
-      <div class="rule"><span class="rid">III</span><h3>Report two numbers.</h3><p>Mobility at one reference condition, here {{curve.I}} mM at {{curve.T}} °C, comparable across labs. And the plateau, which stays defined under a protein corona, where zeta has no shear plane.</p></div>
-      <p class="lead-in">Measured curves run through it so far: <b>{{d4.measured}}</b>. Full salt series exist mostly for reference particles such as sulfate latex, silica and bacteria.</p>
-    </div>
-  </div>
-  <p class="src">src/mnp/ek/soft.py, hard.py · src/mnp/infer/figures.py same_zeta_figure · out/tables/d4_sbc.csv · CHANGELOG.md, physics demo · data/raw/digitised/</p>
-  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>The project did not start from zeta: it started from curves, because a curve across salt separates a hard bead from a soft or coated one, and one dot cannot. The physics and the neural posterior are built and calibrated on simulations, but no measured salt series has gone through them yet. That is the second half of the call: publish the curve, not the dot.</p>
-  </aside>
-</div>
-</section>
-
-<section class="slide" id="s15" aria-label="Slide 15: the window decides the count">
-<div class="frame">
-  <header>
-    <p class="eyebrow"><span class="idx">15</span><span>Act III · what the numbers say</span></p>
     <h2>The size window decides the count.</h2>
     <p class="msg">In one river, particles of {{w.small.lo}}–{{w.small.hi}} µm outnumber those of {{w.large.lo}}–{{w.large.hi}} µm by {{w.ratio}} over {{w.stations}} stations. The slope rescaling assumes, α {{w.alpha0}}, predicts {{w.pred}}.</p>
   </header>
@@ -775,10 +749,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s16" aria-label="Slide 16: same tow, two values">
+<section class="slide" id="s15" aria-label="Slide 15: same tow, two values">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">16</span><span>Act III · what the numbers say</span></p>
+    <p class="eyebrow"><span class="idx">15</span><span>Act III · what the numbers say</span></p>
     <h2>Same tow, two values.</h2>
     <p class="msg">Two papers report the same {{re.tows}} net tows, with the same numbers for {{re.same}} of them. A global database holds them twice and converts each copy its own way.</p>
   </header>
@@ -797,10 +771,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s17" aria-label="Slide 17: the AI problem">
+<section class="slide" id="s16" aria-label="Slide 16: the AI problem">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">17</span><span>Act IV · agents that check</span></p>
+    <p class="eyebrow"><span class="idx">16</span><span>Act IV · agents that check</span></p>
     <h2>Silence is invisible to a reader.</h2>
     <p class="msg">A model sees what is written. Asked for a condition the paper never gives, an extractor left to itself supplies a plausible default.</p>
   </header>
@@ -824,10 +798,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s18" aria-label="Slide 18: the architecture">
+<section class="slide" id="s17" aria-label="Slide 17: the architecture">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">18</span><span>Act IV · agents that check</span></p>
+    <p class="eyebrow"><span class="idx">17</span><span>Act IV · agents that check</span></p>
     <h2>A model reads; code decides.</h2>
     <p class="msg">Every value links to the line it came from.</p>
   </header>
@@ -848,10 +822,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s19" aria-label="Slide 19: the validation ladder">
+<section class="slide" id="s18" aria-label="Slide 18: the validation ladder">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">19</span><span>Act IV · agents that check</span></p>
+    <p class="eyebrow"><span class="idx">18</span><span>Act IV · agents that check</span></p>
     <h2>Read, check, challenge.</h2>
     <p class="msg">{{v.cands}} values contradict their surface label. A reader gives a cause with cited lines, code keeps it only if the lines carry the evidence, and a second reader must agree.</p>
   </header>
@@ -870,10 +844,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s20" aria-label="Slide 20: a judge is one more reader">
+<section class="slide" id="s19" aria-label="Slide 19: a judge is one more reader">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">20</span><span>Act IV · agents that check</span></p>
+    <p class="eyebrow"><span class="idx">19</span><span>Act IV · agents that check</span></p>
     <h2>A judge is one more reader, so test it like one.</h2>
     <p class="msg">Three judges from other model families score the readers’ answers twice, with the causes listed in opposite orders, and once more with a fluent wrong cause swapped in. Claude scores its own family’s reader.</p>
   </header>
@@ -898,10 +872,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s21" aria-label="Slide 21: what AI can and cannot do">
+<section class="slide" id="s20" aria-label="Slide 20: what AI can and cannot do">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">21</span><span>Act V · the close</span></p>
+    <p class="eyebrow"><span class="idx">20</span><span>Act V · the close</span></p>
     <h2>Can, and can’t.</h2>
     <p class="msg">Agents made the reading possible at scale. Code made it checkable.</p>
   </header>
@@ -931,10 +905,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s22" aria-label="Slide 22: a minimal reporting standard">
+<section class="slide" id="s21" aria-label="Slide 21: a minimal reporting standard">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">22</span><span>Act V · the close</span></p>
+    <p class="eyebrow"><span class="idx">21</span><span>Act V · the close</span></p>
     <h2>The call: a minimal reporting standard.</h2>
     <p class="msg">Report the five conditions, identify the particle, and name the conversion model. For counts, state the size window.</p>
   </header>
@@ -950,6 +924,33 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   <p class="src">mnp.report.scope · out/release/LICENSE</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
     <p>The ask is small: report the five conditions, identify the particle, name the conversion model, and for counts state the size window. Case 14 shows that the five alone are not enough. Everything here is open: the dataset under {{licence}}, the code and the review guide. And the scope: these are synthetic particles measured in laboratory liquids, read from one open-access corpus.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide backup" id="s22" aria-label="Slide 22: the curve, not the dot">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">22</span><span>Backup</span></p>
+    <h2>The plan was never zeta. It was the curve.</h2>
+    <p class="msg">One dot cannot tell a hard bead from a soft, coated one; a curve across salt can. The method to read the curve is built. What is missing is data: papers print dots, not curves.</p>
+  </header>
+  <div class="body cols wide-left">
+    <figure class="fig" style="margin:0">
+      {{svg:curve}}
+      <figcaption class="small">Computed with the physics demo’s own models: three particles tuned to the same mobility at {{curve.I}} mM. Hard: the charge sits on the skin, salt hides it, mobility falls toward zero. Soft: the charge sits inside a layer water flows through, salt cannot hide it, mobility stops at a plateau.</figcaption>
+      <p class="lead-in">A curve cannot be pieced together from different papers’ dots: the amount and spread of a particle’s charge move the whole curve. It needs one particle measured across salt.</p>
+    </figure>
+    <div class="rules">
+      <div class="rule"><span class="rid">I</span><h3>Measure a salt series.</h3><p>Mobility at a handful of salt levels, low to high. A solar panel is not rated at whatever the weather was; it is measured across temperatures and quoted at standard test conditions.</p></div>
+      <div class="rule"><span class="rid">II</span><h3>Fit by simulation-based inference.</h3><p>A physics simulator makes many curves; a neural network learns to go back from a curve to the layer’s charge and softness, with uncertainty. Trained on {{d4.sims}} simulations, calibration passes on all {{d4.sbc_params}} parameters (lowest p {{d4.ks_min}}).</p></div>
+      <div class="rule"><span class="rid">III</span><h3>Report two numbers.</h3><p>Mobility at one reference condition, here {{curve.I}} mM at {{curve.T}} °C, comparable across labs. And the plateau, which stays defined under a protein corona, where zeta has no shear plane.</p></div>
+      <p class="lead-in">Measured curves run through it so far: <b>{{d4.measured}}</b>. Full salt series exist mostly for reference particles such as sulfate latex, silica and bacteria.</p>
+    </div>
+  </div>
+  <p class="src">src/mnp/ek/soft.py, hard.py · src/mnp/infer/figures.py same_zeta_figure · out/tables/d4_sbc.csv · CHANGELOG.md, physics demo · data/raw/digitised/</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>The project did not start from zeta: it started from curves, because a curve across salt separates a hard bead from a soft or coated one, and one dot cannot. The physics and the neural posterior are built and calibrated on simulations, but no measured salt series has gone through them yet. That is the second half of the call: publish the curve, not the dot.</p>
   </aside>
 </div>
 </section>

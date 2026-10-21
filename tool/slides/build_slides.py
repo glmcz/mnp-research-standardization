@@ -394,9 +394,9 @@ def lab_values(V: Values, charts: dict, table: pd.DataFrame) -> None:
 
 
 def curve_values(V: Values, charts: dict) -> None:
-    """Slide 14: the method the talk started from. One hard and two soft particles, matched to
-    the same mobility at one ionic strength by the physics demo's own figure function, so one
-    zeta cannot tell them apart while the curves across salt can."""
+    """Slide 22 (backup): the method the talk started from. One hard and two soft particles,
+    matched to the same mobility at one ionic strength by the physics demo's own figure function,
+    so one zeta cannot tell them apart while the curves across salt can."""
     from mnp.infer import figures
 
     src = "src/mnp/infer/figures.py same_zeta_figure"
@@ -421,7 +421,7 @@ def curve_values(V: Values, charts: dict) -> None:
         softs.append({"lambda_inv_nm": lam, "mu": mu.tolist(), "plateau": plateau})
     hard_mu = (hard.mobility_hard(p["hard_sigma_C_m2"], radius_m, grid, T_C=T) / MU_UNIT).tolist()
     if not all(abs(hard_mu[-1]) < abs(s["plateau"]) for s in softs):
-        raise SystemExit("the hard particle no longer falls below the soft plateaus: slide 14")
+        raise SystemExit("the hard particle no longer falls below the soft plateaus: slide 22")
     e0, e1 = round(math.log10(grid[0])), round(math.log10(grid[-1]))
     for i, e in enumerate(range(e0, e1 + 1)):
         V.tick(f"curve.x.{i}", 10.0**e, max(0, -e), "curve", "x")
@@ -435,13 +435,13 @@ def curve_values(V: Values, charts: dict) -> None:
 
 
 def d4_values(V: Values, ref: str) -> None:
-    """Slide 14: what of the curve method is built, and that no measured curve has met it."""
+    """Slide 22 (backup): what of the curve method is built, and that no measured curve met it."""
     log = flat(show(ref, "CHANGELOG.md"))
     sims = find("CHANGELOG.md", log, r"trained at ([\d,]+) simulations")[0]
     V.int("d4.sims", int(sims.replace(",", "")), "CHANGELOG.md, the physics demo")
     sbc = list(csv.DictReader(io.StringIO(show(ref, "out/tables/d4_sbc.csv"))))
     if not all(r["pass"] == "True" for r in sbc):
-        raise SystemExit("out/tables/d4_sbc.csv: a calibration no longer passes; slide 14")
+        raise SystemExit("out/tables/d4_sbc.csv: a calibration no longer passes; slide 22")
     V.int("d4.sbc_params", len(sbc), "out/tables/d4_sbc.csv")
     V.float("d4.ks_min", min(float(r["ks_pvalue"]) for r in sbc), 2, "out/tables/d4_sbc.csv")
     tree = subprocess.run(
@@ -835,7 +835,7 @@ def window_ratio(alpha: float, small: tuple[float, float], large: tuple[float, f
 
 
 def window_values(V: Values, ref: str) -> None:
-    """Slide 15: one river's two size windows, then the three pre-registered tests."""
+    """Slide 14: one river's two size windows, then the three pre-registered tests."""
     w = pd.read_csv(io.StringIO(show(ref, WESER)))
     small = (float(w["small_lo_um"].iat[0]), float(w["small_hi_um"].iat[0]))
     large = (float(w["large_lo_um"].iat[0]), float(w["large_hi_um"].iat[0]))
@@ -882,7 +882,7 @@ def window_values(V: Values, ref: str) -> None:
 
 
 def reisser_values(V: Values, ref: str) -> None:
-    """Slide 16: the same tows twice in one database, and a coincidence that looks like a cause."""
+    """Slide 15: the same tows twice in one database, and a coincidence that looks like a cause."""
     t = pd.read_csv(io.StringIO(show(ref, TOWS)))
     both = t[(t["value_R"] > 0) & (t["value_E"] > 0)]
     ratio = both["value_R"] / both["value_E"]
@@ -906,7 +906,7 @@ def reisser_values(V: Values, ref: str) -> None:
 
 
 def validation_values(V: Values, ref: str) -> None:
-    """Slide 19: the validation ladder on Q2, and the guard that was wrong on the first run."""
+    """Slide 18: the validation ladder on Q2, and the guard that was wrong on the first run."""
     m = json.loads(show(ref, VSIGN))
     src = VSIGN
     V.int("v.cands", m["candidates"], src)
@@ -925,7 +925,7 @@ def validation_values(V: Values, ref: str) -> None:
     builder = show(ref, "tool/validate/build_labels.py")
     target = int(find("tool/validate/build_labels.py", builder, r"\nN = (\d+)")[0])
     if m["labelled"] >= target:
-        raise SystemExit("every blind label is in: slide 19 and its card must report accuracy")
+        raise SystemExit("every blind label is in: slide 18 and its card must report accuracy")
     V.int("v.label_target", target, "tool/validate/build_labels.py: N")
     notes = flat(show(ref, VRESULTS))
     first, a, b = find(
@@ -946,7 +946,7 @@ def judge_name(model: str) -> str:
 
 
 def judge_values(V: Values, ref: str) -> None:
-    """Slide 20: three judges from other families, and Claude judging its own family's reader."""
+    """Slide 19: three judges from other families, and Claude judging its own family's reader."""
     m = json.loads(show(ref, VJUDGE))
     cands = json.loads(show(ref, VSIGN))["candidates"]
     per = m["per_judge"]

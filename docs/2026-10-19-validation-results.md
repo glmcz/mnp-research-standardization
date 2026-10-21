@@ -75,6 +75,6 @@ What it says:
   cause list was reversed. The jury's picks hardly moved.
 - **Neither trap is safe with a judge.** No judge caught both. gpt-oss-120b fell for both.
 
-So a judge is one more vote, and the checks that can be code stay code. The deck's slide 20
+So a judge is one more vote, and the checks that can be code stay code. The deck's slide 19
 shows this table from the metrics file.
 

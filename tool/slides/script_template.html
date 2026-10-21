@@ -151,14 +151,14 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
     <p class="eyebrow">Talk script · AI conference · rehearsal copy</p>
     <h1>{{title:s1}}</h1>
     <p class="lede">{{msg:s1}}</p>
-    <p class="facts"><span>Length <b>{{talk.total}}</b></span><span><b>Five acts</b>, twenty-two slides and five in backup</span><span>Speaker: <b>{{author}}</b></span></p>
+    <p class="facts"><span>Length <b>{{talk.total}}</b></span><span><b>Five acts</b>, twenty-one slides and six in backup</span><span>Speaker: <b>{{author}}</b></span></p>
     <p class="intro">What to say on each slide, how long it gets, and where the clock should be when you leave it. Every number below is the number on the slide, read from the same build. Read it aloud slowly: short sentences, and a real pause where it says <span class="pause">pause</span>. Words in bold carry the stress. Under each slide, “In depth” holds what you need to explain it further: the mechanism, where each number comes from, and the hardest follow-up question.</p>
   </header>
 
   <section class="block" aria-labelledby="h-shape">
     <h2 id="h-shape">The shape of the talk</h2>
     <nav class="bar" aria-label="Time per slide">
-      <a class="a1" href="#s1" style="width:{{w:t.s1}}" aria-label="slide 1"></a><a class="a1" href="#s2" style="width:{{w:t.s2}}" aria-label="slide 2"></a><a class="a1" href="#s3" style="width:{{w:t.s3}}" aria-label="slide 3"></a><a class="a1" href="#s4" style="width:{{w:t.s4}}" aria-label="slide 4"></a><a class="a1" href="#s5" style="width:{{w:t.s5}}" aria-label="slide 5"></a><a class="a2" href="#s6" style="width:{{w:t.s6}}" aria-label="slide 6"></a><a class="a2" href="#s7" style="width:{{w:t.s7}}" aria-label="slide 7"></a><a class="a2" href="#s8" style="width:{{w:t.s8}}" aria-label="slide 8"></a><a class="a2" href="#s9" style="width:{{w:t.s9}}" aria-label="slide 9"></a><a class="a2" href="#s10" style="width:{{w:t.s10}}" aria-label="slide 10"></a><a class="a2" href="#s11" style="width:{{w:t.s11}}" aria-label="slide 11"></a><a class="a3" href="#s12" style="width:{{w:t.s12}}" aria-label="slide 12"></a><a class="a3" href="#s13" style="width:{{w:t.s13}}" aria-label="slide 13"></a><a class="a3" href="#s14" style="width:{{w:t.s14}}" aria-label="slide 14"></a><a class="a3" href="#s15" style="width:{{w:t.s15}}" aria-label="slide 15"></a><a class="a3" href="#s16" style="width:{{w:t.s16}}" aria-label="slide 16"></a><a class="a4" href="#s17" style="width:{{w:t.s17}}" aria-label="slide 17"></a><a class="a4" href="#s18" style="width:{{w:t.s18}}" aria-label="slide 18"></a><a class="a4" href="#s19" style="width:{{w:t.s19}}" aria-label="slide 19"></a><a class="a4" href="#s20" style="width:{{w:t.s20}}" aria-label="slide 20"></a><a class="a5" href="#s21" style="width:{{w:t.s21}}" aria-label="slide 21"></a><a class="a5" href="#s22" style="width:{{w:t.s22}}" aria-label="slide 22"></a>
+      <a class="a1" href="#s1" style="width:{{w:t.s1}}" aria-label="slide 1"></a><a class="a1" href="#s2" style="width:{{w:t.s2}}" aria-label="slide 2"></a><a class="a1" href="#s3" style="width:{{w:t.s3}}" aria-label="slide 3"></a><a class="a1" href="#s4" style="width:{{w:t.s4}}" aria-label="slide 4"></a><a class="a1" href="#s5" style="width:{{w:t.s5}}" aria-label="slide 5"></a><a class="a2" href="#s6" style="width:{{w:t.s6}}" aria-label="slide 6"></a><a class="a2" href="#s7" style="width:{{w:t.s7}}" aria-label="slide 7"></a><a class="a2" href="#s8" style="width:{{w:t.s8}}" aria-label="slide 8"></a><a class="a2" href="#s9" style="width:{{w:t.s9}}" aria-label="slide 9"></a><a class="a2" href="#s10" style="width:{{w:t.s10}}" aria-label="slide 10"></a><a class="a2" href="#s11" style="width:{{w:t.s11}}" aria-label="slide 11"></a><a class="a3" href="#s12" style="width:{{w:t.s12}}" aria-label="slide 12"></a><a class="a3" href="#s13" style="width:{{w:t.s13}}" aria-label="slide 13"></a><a class="a3" href="#s14" style="width:{{w:t.s14}}" aria-label="slide 14"></a><a class="a3" href="#s15" style="width:{{w:t.s15}}" aria-label="slide 15"></a><a class="a4" href="#s16" style="width:{{w:t.s16}}" aria-label="slide 16"></a><a class="a4" href="#s17" style="width:{{w:t.s17}}" aria-label="slide 17"></a><a class="a4" href="#s18" style="width:{{w:t.s18}}" aria-label="slide 18"></a><a class="a4" href="#s19" style="width:{{w:t.s19}}" aria-label="slide 19"></a><a class="a5" href="#s20" style="width:{{w:t.s20}}" aria-label="slide 20"></a><a class="a5" href="#s21" style="width:{{w:t.s21}}" aria-label="slide 21"></a>
     </nav>
     <div class="acts">
       <p><i class="a1"></i><b>Act I, why it matters</b>: {{act.I}}, done at {{act.I.end}}. Why charge matters, what zeta is, the best case, and what I set out to test.</p>
@@ -472,7 +472,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the cobalt bar, then the bars around zero.</p>
-        <p class="then"><span class="k">Then</span>What would make zeta learnable? One particle measured across salt.</p>
+        <p class="then"><span class="k">Then</span>The same story holds when you count particles: there the missing condition is the size window.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
@@ -487,30 +487,6 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
     <section class="card" id="s14">
       <header><span class="idx">14</span><h3>{{title:s14}}</h3><p class="time"><b>{{t.s14}}</b> · ends at {{at.s14}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s14}}</p>
-      <div class="say">
-        <p>The project did not start from zeta. It started from curves: measure <strong>mobility across salt</strong>.</p>
-        <p>These three particles have the same mobility at {{curve.I}} millimolar: one zeta, {{curve.zeta}} millivolts. Then they split. The hard one has its charge on its skin; salt hides it, and it falls toward zero. The soft ones carry charge inside a layer water flows through; salt cannot hide it, and they stop at a plateau.</p>
-        <p>A neural network trained on {{d4.sims}} simulated curves reads a measured one and reports the plateau, which survives a protein corona.</p>
-        <p>It is built. It has never seen a measured curve: {{d4.measured}}. <strong>Papers print dots, not curves.</strong></p>
-      </div>
-      <div class="cue">
-        <p><span class="k">Point at</span>the dot where the three curves meet, then the gap between the plateaus and the hard curve at the right edge.</p>
-        <p><span class="k">If late</span>drop the network sentence.</p>
-        <p class="then"><span class="k">Then</span>The same story holds when you count particles in rivers and soil.</p>
-      </div>
-      <details class="deep">
-        <summary>In depth</summary>
-        <div class="deep-body">
-          <p><span class="k">What is really going on</span>A hard particle carries its charge on its surface. Add salt and the ion cloud collapses onto the surface, hiding the charge, so mobility falls toward zero. A soft particle carries charge inside a layer that water flows through; salt cannot hide charge spread through the layer, so mobility levels off at a plateau set by the charge density in the layer, how strongly the layer resists the flow, and the water’s viscosity. That is why one dot cannot tell them apart, and the curve can. Simulation-based inference fits such a curve: a simulator draws parameters and makes curves, and a neural network learns the reverse, from a curve to the parameters, with uncertainty.</p>
-          <p><span class="k">Where the numbers come from</span>The three particles are tuned by the physics demo’s own function to the same mobility at {{curve.I}} mM and {{curve.T}} °C, one zeta of {{curve.zeta}} mV. The network was trained on {{d4.sims}} simulated curves. Calibration: draw parameters, simulate, infer, and check that the true value’s rank among posterior samples is uniform; it passes on all {{d4.sbc_params}} parameters, lowest p {{d4.ks_min}}. Measured curves run through it: {{d4.measured}}.</p>
-          <p><span class="k">If they push</span><b>Why does the plateau survive a protein corona?</b> Zeta needs a shear plane on a hard surface, and a coated particle has none. The plateau needs only charge spread through a layer that water flows through, and a corona is such a layer. So the plateau keeps its meaning where zeta loses it.</p>
-        </div>
-      </details>
-    </section>
-
-    <section class="card" id="s15">
-      <header><span class="idx">15</span><h3>{{title:s15}}</h3><p class="time"><b>{{t.s15}}</b> · ends at {{at.s15}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s15}}</p>
       <div class="say">
         <p>Now the same story for counting particles in the environment. Here the missing condition is the <strong>size window</strong>: from which size up a method can see.</p>
         <p>One river, one study, two windows. The small particles outnumber the large ones by about five thousand. The textbook slope predicts about a dozen.</p>
@@ -530,9 +506,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s16">
-      <header><span class="idx">16</span><h3>{{title:s16}}</h3><p class="time"><b>{{t.s16}}</b> · ends at {{at.s16}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s16}}</p>
+    <section class="card" id="s15">
+      <header><span class="idx">15</span><h3>{{title:s15}}</h3><p class="time"><b>{{t.s15}}</b> · ends at {{at.s15}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s15}}</p>
       <div class="say">
         <p>Agents will look in harmonised databases first. So here is one.</p>
         <p>Two papers report the <strong>same {{re.tows}} net tows</strong>, with the same numbers. A global database holds them twice, and converts each copy its own way. So one physical sample carries two values.</p>
@@ -557,9 +533,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
   <section class="act a4" aria-labelledby="h-act4">
     <header><h2 id="h-act4">Act IV · agents that check</h2><p class="eyebrow">{{act.IV}} · ends at {{act.IV.end}}</p></header>
 
-    <section class="card" id="s17">
-      <header><span class="idx">17</span><h3>{{title:s17}}</h3><p class="time"><b>{{t.s17}}</b> · ends at {{at.s17}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s17}}</p>
+    <section class="card" id="s16">
+      <header><span class="idx">16</span><h3>{{title:s16}}</h3><p class="time"><b>{{t.s16}}</b> · ends at {{at.s16}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s16}}</p>
       <div class="say">
         <p>Now, why is this an AI problem? A language model reads what is on the page. <strong>Silence has no tokens.</strong> Give an extractor a field called temperature and a paper that never states one, and it gives a plausible answer: {{ai.defaults}}. A guess dressed as data.</p>
         <p>So the first design rule: <strong>absence is a value</strong>. “Not reported” is stored as a fact and never filled in. The row stays. Only the guess goes.</p>
@@ -577,9 +553,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s18">
-      <header><span class="idx">18</span><h3>{{title:s18}}</h3><p class="time"><b>{{t.s18}}</b> · ends at {{at.s18}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s18}}</p>
+    <section class="card" id="s17">
+      <header><span class="idx">17</span><h3>{{title:s17}}</h3><p class="time"><b>{{t.s17}}</b> · ends at {{at.s17}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s17}}</p>
       <div class="say">
         <p>The second rule is about who decides. Code fetches the papers, numbers every line, and lists every candidate number.</p>
         <p>Then Claude agents read. This is the only step with judgement. They return a value, a verbatim quote and the line addresses. Code checks that the quote is on those lines, word for word, and makes every decision after that.</p>
@@ -599,9 +575,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s19">
-      <header><span class="idx">19</span><h3>{{title:s19}}</h3><p class="time"><b>{{t.s19}}</b> · ends at {{at.s19}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s19}}</p>
+    <section class="card" id="s18">
+      <header><span class="idx">18</span><h3>{{title:s18}}</h3><p class="time"><b>{{t.s18}}</b> · ends at {{at.s18}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s18}}</p>
       <div class="say">
         <p>This is the system my abstract asks for, on one question: why does a value have the wrong sign?</p>
         <p>Three rungs. One reader gives a cause and cites lines. Then <strong>code</strong> checks that the lines carry the evidence. Then a <strong>second reader</strong> must agree. Each rung adds one stage, so the difference is what that stage buys.</p>
@@ -621,9 +597,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s20">
-      <header><span class="idx">20</span><h3>{{title:s20}}</h3><p class="time"><b>{{t.s20}}</b> · ends at {{at.s20}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s20}}</p>
+    <section class="card" id="s19">
+      <header><span class="idx">19</span><h3>{{title:s19}}</h3><p class="time"><b>{{t.s19}}</b> · ends at {{at.s19}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s19}}</p>
       <div class="say">
         <p>Everyone now uses a language model to grade a language model. So who checks the judge? <span class="pause">pause</span></p>
         <p>I treat a judge as <strong>one more reader</strong> and give it the same tests. Does it say yes to everything? Does it accept a fluent but wrong cause? Does its pick change when I only reverse the list?</p>
@@ -649,9 +625,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
   <section class="act a5" aria-labelledby="h-act5">
     <header><h2 id="h-act5">Act V · the close</h2><p class="eyebrow">{{act.V}} · ends at {{act.V.end}}</p></header>
 
-    <section class="card" id="s21">
-      <header><span class="idx">21</span><h3>{{title:s21}}</h3><p class="time"><b>{{t.s21}}</b> · ends at {{at.s21}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s21}}</p>
+    <section class="card" id="s20">
+      <header><span class="idx">20</span><h3>{{title:s20}}</h3><p class="time"><b>{{t.s20}}</b> · ends at {{at.s20}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s20}}</p>
       <div class="say">
         <p>So what can AI do here? Read a whole corpus with every value quoted and tied to its line. Measure the gap, because absence is a value we can count. Find the pairs one number would decide.</p>
         <p>What it cannot do: fill in a missing condition, replace a human check, or decide comparability on its own.</p>
@@ -670,9 +646,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s22">
-      <header><span class="idx">22</span><h3>{{title:s22}}</h3><p class="time"><b>{{t.s22}}</b> · ends at {{at.s22}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s22}}</p>
+    <section class="card" id="s21">
+      <header><span class="idx">21</span><h3>{{title:s21}}</h3><p class="time"><b>{{t.s21}}</b> · ends at {{at.s21}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s21}}</p>
       <div class="say">
         <p>Report the five conditions: the medium; the ionic strength as a number, not a buffer name; the pH; the temperature of the measurement itself; and the instrument.</p>
         <p>Identify the particle: supplier, lot and surface chemistry. The best-case pair shows the five alone are not enough: all five matching, and still {{c14.gap}} millivolts apart.</p>
@@ -694,6 +670,28 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
 
   <section class="act backup" aria-labelledby="h-backup">
     <header><h2 id="h-backup">Backup · for questions</h2><p class="eyebrow">not timed</p></header>
+
+    <section class="card" id="s22">
+      <header><span class="idx">22</span><h3>{{title:s22}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s22}}</p>
+      <div class="say">
+        <p>The project did not start from zeta. It started from curves: measure <strong>mobility across salt</strong>.</p>
+        <p>These three particles have the same mobility at {{curve.I}} millimolar: one zeta, {{curve.zeta}} millivolts. Then they split. The hard one has its charge on its skin; salt hides it, and it falls toward zero. The soft ones carry charge inside a layer water flows through; salt cannot hide it, and they stop at a plateau.</p>
+        <p>A neural network trained on {{d4.sims}} simulated curves reads a measured one and reports the plateau, which survives a protein corona.</p>
+        <p>It is built. It has never seen a measured curve: {{d4.measured}}. <strong>Papers print dots, not curves.</strong></p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Use</span>if someone asks about the curve or about soft, coated particles. Say first what the reviewer said: a curve cannot be pieced together from different papers’ dots, because the amount and spread of the charge move it. It needs one particle measured across salt, and papers rarely publish that.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>A hard particle carries its charge on its surface. Add salt and the ion cloud collapses onto the surface, hiding the charge, so mobility falls toward zero. A soft particle carries charge inside a layer that water flows through; salt cannot hide charge spread through the layer, so mobility levels off at a plateau set by the charge density in the layer, how strongly the layer resists the flow, and the water’s viscosity. That is why one dot cannot tell them apart, and the curve can. Simulation-based inference fits such a curve: a simulator draws parameters and makes curves, and a neural network learns the reverse, from a curve to the parameters, with uncertainty.</p>
+          <p><span class="k">Where the numbers come from</span>The three particles are tuned by the physics demo’s own function to the same mobility at {{curve.I}} mM and {{curve.T}} °C, one zeta of {{curve.zeta}} mV. The network was trained on {{d4.sims}} simulated curves. Calibration: draw parameters, simulate, infer, and check that the true value’s rank among posterior samples is uniform; it passes on all {{d4.sbc_params}} parameters, lowest p {{d4.ks_min}}. Measured curves run through it: {{d4.measured}}.</p>
+          <p><span class="k">If they push</span><b>Why does the plateau survive a protein corona?</b> Zeta needs a shear plane on a hard surface, and a coated particle has none. The plateau needs only charge spread through a layer that water flows through, and a corona is such a layer. So the plateau keeps its meaning where zeta loses it.</p>
+        </div>
+      </details>
+    </section>
 
     <section class="card" id="s23">
       <header><span class="idx">23</span><h3>{{title:s23}}</h3><p class="time">backup · not timed</p></header>
@@ -849,8 +847,8 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <li><b>The last slide shows no link</b> while the repository is private. Decide on OD-20 before you show one.</li>
       <li><b>Keys:</b> arrows or space to move, N for notes, F for fullscreen, Home and End for the ends.</li>
       <li><b>Run it offline once:</b> the deck is one HTML file. Keep a local copy on the laptop.</li>
-      <li><b>Time two full run-throughs</b> aloud. You should leave Act I at {{act.I.end}}, Act II at {{act.II.end}}, Act III at {{act.III.end}} and Act IV at {{act.IV.end}}. If you are late, use the “If late” cuts on slides nine and fourteen.</li>
-      <li><b>Slow down</b> on slides four, eight, thirteen and nineteen. They carry the story; let the numbers land.</li>
+      <li><b>Time two full run-throughs</b> aloud. You should leave Act I at {{act.I.end}}, Act II at {{act.II.end}}, Act III at {{act.III.end}} and Act IV at {{act.IV.end}}. If you are late, use the “If late” cut on slide nine.</li>
+      <li><b>Slow down</b> on slides four, eight, thirteen and eighteen. They carry the story; let the numbers land.</li>
     </ol>
   </section>
 

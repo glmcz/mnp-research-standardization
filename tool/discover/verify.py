@@ -28,9 +28,23 @@ ROLES = {
     "lon": r"^lon\b|^long\b|longitude|^lon_|\blon\s*\(",
     "date": r"date|year|time|sampling.?period",
     "size": r"size|mesh|µm|\bum\b|\bmm\b|fraction|lower.?limit",
-    "conc": r"conc|abundance|particles?/|items?/|pieces?/|/m3|/m\^?3|/l\b|/kg|/m2|/km2|n/|#/|"
-    r"density|count|number of (?:particles|items|pieces)|mp\s*\(|microplastic",
 }
+#: A concentration column names plastic and either a unit per volume, mass or area, or the
+#: word for a measured amount. "O2 sat [mg/l]" has a unit but no plastic; "Microplastic part
+#: size [µm]" has plastic but no such unit; both were passed by the first run.
+_PLASTIC = r"plastic|\bmp\b|\bmps\b|particle|\bitems?\b|\bpieces?\b|fib(?:re|er)|polymer|litter|#"
+_PER = r"#/|/\s*(?:m3|m\*\*3|m\^3|l|kg|g|m2|m\*\*2|km2|km\*\*2|m)\b|per (?:m3|litre|liter|kg|km2)"
+_AMOUNT = r"measurement|concentration|\bconc\b|density"
+
+
+def is_concentration(header: str) -> bool:
+    low = header.lower()
+    if "abundance" in low:
+        return True
+    per = re.search(_PER, low)
+    if not per and re.search(r"size|µm|\bum\b|diam|length|\bvol\b", low):
+        return False  # a particle's size or volume, even when its header says "measurement"
+    return bool(re.search(_PLASTIC, low)) and bool(per or re.search(_AMOUNT, low))
 
 
 def roles(columns) -> dict[str, list[str]]:
@@ -41,6 +55,8 @@ def roles(columns) -> dict[str, list[str]]:
         for role, pat in ROLES.items():
             if re.search(pat, low):
                 out.setdefault(role, []).append(str(col))
+        if is_concentration(str(col)):
+            out.setdefault("conc", []).append(str(col))
     return out
 
 
@@ -105,7 +121,7 @@ def ncei_overlap(c: dict, ncei_dois: set[str]) -> bool:
 
 
 def verify(c: dict, max_files: int = 3) -> dict:
-    host, fs = catalog.files(c["doi"])
+    host, fs = catalog.files(c["doi"], c.get("url", ""))
     tab = catalog.tabular(fs)
     if not fs:
         return {"host": host, "verdict": "not_verifiable", "files": 0, "rows": 0, "roles": {}}

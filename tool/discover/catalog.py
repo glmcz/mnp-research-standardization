@@ -11,6 +11,7 @@ import hashlib
 import json
 import re
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from dataclasses import asdict, dataclass, field
@@ -54,6 +55,7 @@ class Candidate:
     sizes: list[str]
     has_geolocation: bool
     related: list[str] = field(default_factory=list)
+    url: str = ""
     queries: list[str] = field(default_factory=list)
 
 
@@ -64,13 +66,17 @@ def get(url: str, data: bytes | None = None, headers: dict | None = None) -> byt
     if path.is_file():
         return path.read_bytes()
     req = urllib.request.Request(url, data=data, headers={"User-Agent": UA, **(headers or {})})
-    for attempt in range(3):
+    for attempt in range(4):
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
                 body = r.read()
             break
+        except urllib.error.HTTPError as exc:
+            if exc.code != 429 or attempt == 3:
+                raise
+            time.sleep(float(exc.headers.get("Retry-After") or 20 * (attempt + 1)))
         except Exception:  # noqa: BLE001 - a flaky catalogue is retried, then the error stands
-            if attempt == 2:
+            if attempt == 3:
                 raise
             time.sleep(3 * (attempt + 1))
     CACHE.mkdir(parents=True, exist_ok=True)
@@ -97,6 +103,7 @@ def _candidate(item: dict, query: str) -> Candidate:
             for r in a.get("relatedIdentifiers") or []
         ][:12],
         queries=[query],
+        url=a.get("url") or "",
     )
 
 
@@ -140,7 +147,7 @@ def about_plastic(c: Candidate) -> bool:
 # -- files, from the repository that hosts the DOI ---------------------------------------------
 
 
-def files(doi: str) -> tuple[str, list[dict]]:
+def files(doi: str, url: str = "") -> tuple[str, list[dict]]:
     """(host, [{name, size, url}]) for a DOI whose host has a public file API; else (host, [])."""
     if doi.startswith("10.5281/zenodo."):
         rid = doi.rsplit(".", 1)[-1]
@@ -193,6 +200,19 @@ def files(doi: str) -> tuple[str, list[dict]]:
                 "url": base + f["_links"]["stash:download"]["href"],
             }  # fmt: skip
             for f in (listing.get("_embedded") or {}).get("stash:files") or []
+        ]
+    if "/dataset.xhtml" in url or "dataverse" in url:
+        net = urllib.parse.urlsplit(url).netloc
+        api = f"https://{net}/api/datasets/:persistentId/?persistentId=doi:{doi}"
+        ds = json.loads(get(api)).get("data") or {}
+        return "dataverse", [
+            {
+                "name": f["dataFile"]["filename"],
+                "size": f["dataFile"].get("filesize", 0),
+                "url": f"https://{net}/api/access/datafile/{f['dataFile']['id']}",
+            }  # fmt: skip
+            for f in (ds.get("latestVersion") or {}).get("files") or []
+            if "dataFile" in f
         ]
     host = doi.split("/", 1)[0]
     return host, []

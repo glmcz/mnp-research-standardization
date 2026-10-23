@@ -52,6 +52,28 @@ def test_column_roles_come_from_the_header() -> None:
     assert verify.roles(["Station", "Depth", "Salinity"]) == {}
 
 
+def test_a_concentration_needs_plastic_and_a_unit_per_volume_mass_or_area() -> None:
+    # the first run passed a water-chemistry table and two particle-size tables as concentrations
+    conc = [
+        "Microplastic [#/m**3]",
+        "Plastic particle conc [#/l] (Abundance in sample)",
+        "Microplastic [#/kg] (MP kg-1)",
+        "abundance_numeric",
+        "Microplastics Measurement",
+        "items/m3",
+    ]
+    not_conc = [
+        "O2 sat [mg/l] (Multiparameter probe)",
+        "Chl a [µg/l]",
+        "Microplastic part size [µm] (measurement 1)",
+        "Microplastic part [#]",
+        "Microplastic part vol [mm**3]",
+        "Country",
+    ]
+    assert verify.roles(conc).get("conc") == conc
+    assert verify.roles(not_conc).get("conc") is None
+
+
 def test_a_table_is_usable_only_with_place_time_and_a_concentration() -> None:
     full = pd.DataFrame({"lat": [1.0] * 25, "lon": [2.0] * 25, "year": [2020] * 25,
                          "particles/m3": [0.1] * 25})  # fmt: skip

@@ -1,0 +1,16 @@
+{
+ "found": 1132,
+ "distinct": 711,
+ "on_topic": 700,
+ "triaged": 700,
+ "to_verify": 272,
+ "verdicts": {
+  "not_verifiable": 136,
+  "not_usable": 81,
+  "partial": 16,
+  "error": 15,
+  "usable": 12,
+  "no_table": 12
+ },
+ "usable_independent": 10
+}

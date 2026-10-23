@@ -101,12 +101,15 @@ def main() -> None:
     dup.to_csv(TABLES / "survey_duplicates.csv", index=False)
     v.completeness(t).to_csv(TABLES / "survey_completeness.csv")
     water = t[t.setting == "Ocean water"]
+    # studies against studies inside one database (the questions ask about NCEI); databases
+    # against each other are across_datasets, judged by the window guard
+    ncei = water[water.dataset == "ncei"]
     out = {
         "records": {k: int(n) for k, n in t.groupby("dataset").size().items()},
-        "same_method_50km_365d": colocated_summary(water, 50, 365, True, dup),
-        "any_method_50km_365d": colocated_summary(water, 50, 365, False, dup),
+        "same_method_50km_365d": colocated_summary(ncei, 50, 365, True, dup),
+        "any_method_50km_365d": colocated_summary(ncei, 50, 365, False, dup),
         "mediterranean_same_method_50km_365d": colocated_summary(
-            water[water.region == "Mediterranean Sea"], 50, 365, True, dup
+            ncei[ncei.region == "Mediterranean Sea"], 50, 365, True, dup
         ),
         "across_datasets": across_datasets(water, 50, 365, dup),
         # the same area in another dataset, in any year: descriptive, place held, time not

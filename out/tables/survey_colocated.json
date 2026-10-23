@@ -16,21 +16,21 @@
   "km": 50,
   "days": 365,
   "same_method": true,
-  "pairs": 993,
+  "pairs": 981,
   "excluded_held_twice": 258,
-  "study_pairs": 19,
-  "median_fold": 3.25,
-  "p90_fold": 17.9
+  "study_pairs": 18,
+  "median_fold": 3.27,
+  "p90_fold": 17.7
  },
  "any_method_50km_365d": {
   "km": 50,
   "days": 365,
   "same_method": false,
-  "pairs": 1245,
+  "pairs": 1230,
   "excluded_held_twice": 636,
-  "study_pairs": 37,
-  "median_fold": 3.72,
-  "p90_fold": 48.6
+  "study_pairs": 35,
+  "median_fold": 3.76,
+  "p90_fold": 50.1
  },
  "mediterranean_same_method_50km_365d": {
   "km": 50,

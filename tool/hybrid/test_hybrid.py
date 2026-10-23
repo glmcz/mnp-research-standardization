@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import sys
+from dataclasses import asdict
 from pathlib import Path
 
 import pytest
@@ -24,6 +25,11 @@ from mnp.eval import grid  # noqa: E402
 @pytest.fixture(scope="module")
 def qs():
     return questions.build()
+
+
+def test_the_scored_question_file_is_the_one_the_sources_make_today(qs) -> None:
+    # a new dataset in the survey once moved two truths inside their tolerance, unnoticed
+    assert [asdict(q) for q in qs] == [asdict(q) for q in questions.read()]
 
 
 def test_every_reference_plan_reproduces_the_independent_truth(qs) -> None:

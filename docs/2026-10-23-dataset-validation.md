@@ -1,7 +1,7 @@
 # Validating the survey datasets, 2026-10-23
 
 Code: `tool/survey/` (table, validators, P7, report). Tests: `tool/survey/test_survey.py`
-(13 tests; four mutations each turn one red). Outputs: `out/tables/survey_*.{csv,json}`.
+(12 tests; four mutations each turn one red). Outputs: `out/tables/survey_*.{csv,json}`.
 
 ## The table
 
@@ -47,7 +47,7 @@ A field the source does not give stays empty. Completeness (`survey_completeness
    - The pooled NCEI ocean-water median rises ×94 from the 2000s to the 2020s.
    - Inside Law et al. 2010's own series it stays flat (ρ −0.02; P7a supported).
    - Two of five long series do rise ×10 or more (P7b refuted). One is the North Pacific gyre,
-     where a published fourfold-decade increase exists. The other is Law 2014, whose rise halves
+     where a published increase over four decades exists. The other is Law 2014, whose rise halves
      inside its own accumulation zone, because later cruises sampled the zone more.
 4. **The window decides the count.** This exists already (P1, the Weser pair, MPsizeBase).
    - The window check refuses to convert between the Weser fractions: no single slope in α

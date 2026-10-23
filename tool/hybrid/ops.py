@@ -15,7 +15,7 @@ import sys
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal, get_args, get_origin, get_type_hints
 
 import numpy as np
 import pandas as pd
@@ -66,7 +66,30 @@ class Plan:
         missing = sorted(
             n for n, p in params.items() if p.default is inspect._empty and n not in self.args
         )
-        return [f"unknown arg {a!r}" for a in extra] + [f"missing arg {m!r}" for m in missing]
+        hints = get_type_hints(OPS[self.op])
+        bad = [
+            f"{name}={value!r} is not one of {list(allowed)}"
+            for name, value in self.args.items()
+            if (allowed := _choices(hints.get(name))) and value not in allowed
+        ]
+        return [f"unknown arg {a!r}" for a in extra] + [f"missing arg {m!r}" for m in missing] + bad
+
+
+def _choices(hint) -> tuple:
+    """The values a Literal argument allows (inside Optional too); empty for any other type."""
+    if get_origin(hint) is Literal:
+        return get_args(hint)
+    for inner in get_args(hint):
+        if get_origin(inner) is Literal:
+            return get_args(inner) + (None,)
+    return ()
+
+
+Dataset = Literal["ncei", "mpsed", "soil", "pangaea_weser"]
+Field = Literal["lat", "date", "year", "size_min_um", "method", "study"]
+Polymer = Literal["PS", "PE", "PET", "PMMA", "PP", "PVC", "PLA", "PBAT", "nylon", "other"]
+Surface = Literal["amine", "carboxyl", "plain", "sulfate", "unreported"]
+Condition = Literal["ionic_strength", "pH", "temperature", "medium", "instrument"]
 
 
 @dataclass
@@ -130,7 +153,9 @@ def _study(t: pd.DataFrame, study: str) -> pd.DataFrame:
 # -- operations ---------------------------------------------------------------------------------
 
 
-def period_change(period_from: int, period_to: int, per: str = "record") -> Result:
+def period_change(
+    period_from: int, period_to: int, per: Literal["record", "study"] = "record"
+) -> Result:
     """NCEI ocean water: the median in five-year period `period_to` over `period_from`."""
     w = _water().assign(period=lambda d: (d.year // 5) * 5)
     a, b = w[w.period == period_from], w[w.period == period_to]
@@ -174,7 +199,7 @@ def _centroid_km(a: pd.DataFrame, b: pd.DataFrame) -> float:
     return float(v.haversine(la1, lo1, la2, lo2))
 
 
-def series_trend(study: str, statistic: str = "ratio") -> Result:
+def series_trend(study: str, statistic: Literal["ratio", "spearman"] = "ratio") -> Result:
     """One NCEI series: last third of years over first (ratio) or Spearman ρ of year (spearman)."""
     g = _study(_water(), study)
     g = g[g.method == g.method.value_counts().index[0]]
@@ -205,8 +230,8 @@ def colocated_agreement(
 ) -> Result:
     """Independent NCEI ocean-water studies near each other: how far apart are their values?"""
     w = _water()
-    if region:
-        w = w[w.region == region]
+    if region:  # "Mediterranean" finds "Mediterranean Sea"
+        w = w[w.region.astype(str).str.contains(region, case=False, regex=False)]
     p = v.colocated(w, km=km, days=days, same_method=same_method)
     dup = v.duplicates(survey())
     twice = {frozenset((a, b)) for a, b in zip(dup.study_a, dup.study_b, strict=True)}
@@ -298,7 +323,7 @@ def weser_window_ratio() -> Result:
     )
 
 
-def completeness(dataset: str, field: str) -> Result:
+def completeness(dataset: Dataset, field: Field) -> Result:
     """The share of a dataset's records that do not give `field`."""
     c = v.completeness(survey())
     return Result(
@@ -306,7 +331,9 @@ def completeness(dataset: str, field: str) -> Result:
     )
 
 
-def zeta_sign_share(surface: str, sign: str, polymer: str | None = None) -> Result:
+def zeta_sign_share(
+    surface: Surface, sign: Literal["negative", "positive"], polymer: Polymer | None = None
+) -> Result:
     """Of the zeta values for a surface group (optionally one polymer), how many have a sign."""
     z = zeta()
     g = z[(z.surface == surface) & ((z.material_group == polymer) if polymer else True)]
@@ -331,7 +358,7 @@ def zeta_size_correlation() -> Result:
     )
 
 
-def polymer_median(polymer: str) -> Result:
+def polymer_median(polymer: Polymer) -> Result:
     """The median zeta of one polymer group, and how many of its values one paper supplies."""
     z = zeta()
     g = z[z.material_group == polymer]
@@ -344,7 +371,7 @@ def polymer_median(polymer: str) -> Result:
     )
 
 
-def reported_share(condition: str) -> Result:
+def reported_share(condition: Condition) -> Result:
     """The share of papers with at least one zeta row that states `condition`."""
     t = d1()
     col = f"{condition}_reported"
@@ -399,9 +426,21 @@ def registry_text() -> str:
     """What the planner is shown: each operation's signature and docstring, nothing computed."""
     lines = []
     for name, f in OPS.items():
-        sig = str(inspect.signature(f)).replace(" -> Result", "").replace("'", '"')
-        lines.append(f"- {name}{sig}\n    {inspect.getdoc(f).splitlines()[0]}")
+        hints = get_type_hints(f)
+        params = []
+        for pname, p in inspect.signature(f).parameters.items():
+            allowed = _choices(hints.get(pname))
+            kind = (
+                " | ".join(json.dumps(x) for x in allowed) if allowed else _type_name(hints[pname])
+            )
+            default = "" if p.default is inspect._empty else f" = {json.dumps(p.default)}"
+            params.append(f"{pname}: {kind}{default}")
+        lines.append(f"- {name}({', '.join(params)})\n    {inspect.getdoc(f).splitlines()[0]}")
     return "\n".join(lines)
+
+
+def _type_name(hint) -> str:
+    return getattr(hint, "__name__", str(hint)).replace("typing.", "")
 
 
 def execute(plan: Plan) -> Result:

@@ -55,6 +55,10 @@ def test_a_plan_from_a_model_is_checked_before_it_runs() -> None:
     assert ops.Plan("bogus").validate() == ["unknown op 'bogus'"]
     assert ops.Plan("study_count", {"period": 2015, "x": 1}).validate() == ["unknown arg 'x'"]
     assert ops.Plan("study_count", {}).validate() == ["missing arg 'period'"]
+    # the pilot's planner wrote names a person would use; the registry's values are enforced
+    loose = ops.Plan("completeness", {"dataset": "soil microplastic", "field": "sampling method"})
+    assert len(loose.validate()) == 2
+    assert ops.Plan("completeness", {"dataset": "soil", "field": "method"}).validate() == []
 
 
 def test_grounding_rejects_a_number_the_result_does_not_hold() -> None:

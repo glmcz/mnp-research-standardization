@@ -239,6 +239,8 @@ def score() -> dict:
     rows = []
     for d in sorted(RUNS.glob("hy-*-r*")):
         arm, rep = d.name.split("-")[1], int(d.name.split("-r")[-1])
+        if rep == 0:  # the pilot: seen while building, never scored
+            continue
         for f in sorted(d.glob("*.json")):
             rec = json.loads(f.read_text())
             if rec["qid"] in qs:

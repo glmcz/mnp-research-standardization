@@ -430,7 +430,12 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .jt td { padding: 0.45em 0.9em 0.45em 0; border-top: 1px solid var(--rule); }
 .jt tr.probe td { color: var(--muted); }
 .jt td:first-child { white-space: nowrap; }
-@media (max-width: 559px) { .jt { font-size: 0.86em; } }
+.jt tr.found td { border-top: 1.5px solid var(--ink); }
+@media (min-width: 760px) { .tests.four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2em 2em; } }
+.funnel { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3em 0.9em; margin: 0; padding: 0; font: 0.84em/1.4 var(--mono); color: var(--muted); }
+.funnel li:not(:first-child)::before { content: "→"; margin-right: 0.9em; }
+.funnel b { color: var(--ink); font-weight: 600; }
+@media (max-width: 559px) { .jt { font-size: 0.86em; } .jt td:first-child { white-space: normal; } }
 .slide.backup .eyebrow span:last-child { color: var(--absent); }
 .scope b { color: var(--ink); }
 </style>
@@ -551,12 +556,12 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s6" aria-label="Slide 6: four datasets and what each never gives">
+<section class="slide" id="s6" aria-label="Slide 6: the datasets, and the agent that found more">
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">06</span><span>Act III · what the datasets say</span></p>
-    <h2>Four datasets, one table, and what each never gives.</h2>
-    <p class="msg">NOAA’s marine database, a sediment database, a soil compilation and one river: {{sv.total}} records read into one table without filling a single gap.</p>
+    <h2>{{sv.n.datasets}} datasets in one table; an agent found {{ds.joined}} of them.</h2>
+    <p class="msg">A search agent read {{ds.on_topic}} catalogue records, opened the files of {{ds.to_verify}} and found {{ds.usable}} that hold a concentration, a place and a date. {{sv.total}} records now sit in one table, and no gap is filled.</p>
   </header>
   <div class="body">
     <div class="jt-wrap">
@@ -567,14 +572,20 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
           <tr><td>MP-SED, sediment</td><td>{{sv.n.mpsed}}</td><td>coordinates, for {{sv.miss.mpsed.lat}} of records; a year for {{sv.miss.mpsed.year}}</td></tr>
           <tr><td>Soil compilation, Wu et al.</td><td>{{sv.n.soil}}</td><td>a sampling method, for {{sv.miss.soil.method}}; a year for {{sv.miss.soil.year}}</td></tr>
           <tr><td>Weser estuary, PANGAEA</td><td>{{sv.n.weser}}</td><td>one size window: two fractions at the same stations</td></tr>
+          <tr><td>EMODnet trawls, Baltic</td><td>{{sv.n.emodnet}}</td><td>a mesh size, for {{sv.miss.emodnet.mesh}}</td></tr>
+          <tr><td>Air compilation, Fu et al.</td><td>{{sv.n.air}}</td><td>a date, for {{sv.miss.air.date}}; a method, for {{sv.miss.air.method}}</td></tr>
+          <tr class="found"><td>PANGAEA sets the agent found</td><td>{{sv.n.found}}</td><td>an upper size limit, for {{sv.miss.found.max}}; a lower one in {{sv.found_nolower}} of {{ds.joined}} sets</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="lead-in">Absence is a value here too. A missing coordinate stays missing, and a check that needs it refuses instead of guessing.</p>
+    <ol class="funnel" aria-label="The search agent, stage by stage">
+      <li><b>{{ds.found}}</b> found</li><li><b>{{ds.distinct}}</b> distinct</li><li><b>{{ds.on_topic}}</b> on topic</li><li><b>{{ds.to_verify}}</b> opened</li><li><b>{{ds.usable}}</b> usable</li><li><b>{{ds.joined}}</b> joined</li>
+    </ol>
+    <p class="lead-in">Claude reads each catalogue record; a rule over its answer picks what to open, and code decides from the files. A missing field stays missing, and a check that needs it refuses.</p>
   </div>
-  <p class="src">out/tables/survey_colocated.json · out/tables/survey_completeness.csv · tool/survey/table.py</p>
+  <p class="src">out/tables/survey_colocated.json · out/tables/survey_completeness.csv · out/tables/dataset_search.json · tool/discover/run.py</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Papers are not the only source an agent will read; it will read databases first. These four were read into one table, and every field a source does not give stays empty. What a dataset never gives decides which questions it can answer.</p>
+    <p>NOAA’s database is one source, so a search agent went through the open catalogues: Claude read each record, a rule chose what to open, and code decided from the files. Of the usable ones, some were already in NOAA or already here; the PANGAEA sets joined. Another {{ds.partial}} hold a concentration without a place or a date, and {{ds.not_verifiable}} had no public file API to open. Every field a source does not give stays empty.</p>
   </aside>
 </div>
 </section>
@@ -609,16 +620,17 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
     <p class="msg">Independent studies within {{sv.co.km}} km and {{sv.co.days}} days, same sampling method: their values differ by a median ×{{sv.co.median}}, and by ×{{sv.co.p90}} or more for one pair in ten.</p>
   </header>
   <div class="body">
-    <div class="tests">
+    <div class="tests four">
       <div class="stat"><span class="label">Same method</span><span class="big">×{{sv.co.median}}</span><span class="small">{{sv.co.pairs}} record pairs from {{sv.co.studypairs}} pairs of studies</span></div>
       <div class="stat"><span class="label">Any method</span><span class="big">×{{sv.co.any_median}}</span><span class="small">one pair in ten differs by ×{{sv.co.any_p90}} or more</span></div>
       <div class="stat"><span class="label">Mediterranean, same method</span><span class="big">×{{sv.co.med_median}}</span><span class="small">{{sv.co.med_studypairs}} pairs of studies, the best-sampled sea</span></div>
+      <div class="stat"><span class="label">Across two databases · window guard</span><span class="big">×{{sv.x.median}}</span><span class="small">{{sv.x.compared}} EMODnet–NOAA pairs within {{sv.x.km}} km, any year, caveated; {{sv.x.refused}} more refused, ×{{sv.x.refused_fold}} apart: a net against a pump that counts far smaller particles</span></div>
     </div>
     <p class="lead-in">Before agreement is measured, {{sv.co.excluded}} record pairs are taken out: they are the same samples held under two studies. Left in, they would make the studies look like they agree.</p>
   </div>
   <p class="src">out/tables/survey_colocated.json · tool/survey/validators.py</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. Independent studies still differ about threefold, and one pair in ten by more than an order of magnitude. And a naive check would have counted duplicated samples as agreement.</p>
+    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. Independent studies still differ about threefold, one pair in ten by more than an order of magnitude, and a naive check would have counted duplicated samples as agreement. Across two databases the window guard decides first: EMODnet and NOAA nets sit a median ×{{sv.x.median}} apart, one pair in ten ×{{sv.x.p90}}, a median {{sv.x.years}} years apart. A fine-filter pump is refused, not averaged in; pooled with it, one pair in ten would be ×{{sv.x.raw_p90}} apart.</p>
   </aside>
 </div>
 </section>

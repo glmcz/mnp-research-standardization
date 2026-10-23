@@ -641,14 +641,35 @@ def expected_findings(get=show) -> dict:
 
     # slides 6 to 9: the survey outputs, with the counts redone from their rows where they have any
     co = json.loads(get("out/tables/survey_colocated.json"))
-    names = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser"}
+    names = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser",
+             "emodnet": "emodnet", "air_fu2023": "air"}  # fmt: skip
+    found = [k for k in co["records"] if k not in names]
+    assert all(k.startswith("pangaea_") and k[8:].isdigit() for k in found), found
     for ds, n_ in co["records"].items():
-        E[f"sv.n.{names[ds]}"] = n_
+        if ds in names:
+            E[f"sv.n.{names[ds]}"] = n_
+    E["sv.n.found"] = sum(co["records"][k] for k in found)
+    E["sv.n.datasets"], E["ds.joined"] = len(co["records"]), len(found)
     E["sv.total"] = sum(co["records"].values())
+    # the search funnel, recounted from the per-candidate rows where the rows hold the stage
+    cands = list(csv.DictReader(io.StringIO(get("out/tables/dataset_candidates.csv"))))
+    search = json.loads(get("out/tables/dataset_search.json"))
+    E["ds.found"], E["ds.distinct"] = search["found"], search["distinct"]
+    E["ds.on_topic"] = len(cands)
+    E["ds.to_verify"] = sum(r["stage"] == "verified" for r in cands)
+    for key in ("usable", "partial", "not_verifiable"):
+        E[f"ds.{key}"] = sum(r["verdict"] == key for r in cands)
     miss = {
         r["dataset"]: r
         for r in csv.DictReader(io.StringIO(get("out/tables/survey_completeness.csv")))
     }
+    E["sv.miss.emodnet.mesh"] = float(miss["emodnet"]["size_min_um"])
+    E["sv.miss.air.date"] = float(miss["air_fu2023"]["date"])
+    E["sv.miss.air.method"] = float(miss["air_fu2023"]["method"])
+    E["sv.miss.found.max"] = sum(
+        float(miss[k]["size_max_um"]) * co["records"][k] for k in found
+    ) / sum(co["records"][k] for k in found)
+    E["sv.found_nolower"] = sum(float(miss[k]["size_min_um"]) == 1.0 for k in found)
     E["sv.miss.mpsed.lat"] = float(miss["mpsed"]["lat"])
     E["sv.miss.mpsed.year"] = float(miss["mpsed"]["year"])
     E["sv.miss.soil.method"] = float(miss["soil"]["method"])
@@ -680,6 +701,22 @@ def expected_findings(get=show) -> dict:
     E["sv.co.excluded"] = same["excluded_held_twice"]
     E["sv.co.any_median"], E["sv.co.any_p90"] = anym["median_fold"], anym["p90_fold"]
     E["sv.co.med_median"], E["sv.co.med_studypairs"] = med["median_fold"], med["study_pairs"]
+    # across databases: the totals are the sums of the per-pair groups, and the refused gap is
+    # wider than any window factor the guard could have applied to it
+    x = co["across_datasets_100km_any_year"]
+    groups = x["by_dataset_pair"]
+    kept = [g for g in groups if g["decision"] != "refuse"]
+    gone = [g for g in groups if g["decision"] == "refuse"]
+    E["sv.x.km"] = x["km"]
+    E["sv.x.compared"], E["sv.x.refused"] = (
+        sum(g["pairs"] for g in kept),
+        sum(g["pairs"] for g in gone),
+    )
+    E["sv.x.median"], E["sv.x.p90"] = kept[0]["median_fold"], kept[0]["p90_fold"]
+    E["sv.x.years"] = kept[0]["median_years_apart"]
+    E["sv.x.refused_fold"] = gone[0]["median_fold"]
+    assert gone[0]["median_fold"] > 100 * 61  # the ×4–61 a 300 → 10 µm window could explain
+    E["sv.x.raw_p90"] = x["unguarded"]["p90_fold"]
     dup = list(csv.DictReader(io.StringIO(get("out/tables/survey_duplicates.csv"))))
     E["sv.dup.n"] = len(dup)
     E["sv.dup.identical"] = sum(abs(float(r["median_ratio_a_over_b"]) - 1) < 0.01 for r in dup)
@@ -1227,7 +1264,7 @@ def test_the_time_plan_fills_twenty_minutes_over_five_acts(sc) -> None:
     assert list(sc.PLAN) == [f"s{i}" for i in range(1, 20)]
     assert sc.BACKUP == tuple(f"s{i}" for i in range(20, 36))
     acts = {name: sum(sc.PLAN[s] for s in slides) for name, _, slides in sc.ACTS}
-    assert acts == {"I": 125, "II": 145, "III": 370, "IV": 265, "V": 155, "VI": 140}
+    assert acts == {"I": 120, "II": 145, "III": 385, "IV": 265, "V": 155, "VI": 130}
     assert sc.timing_values()["at.s19"]["text"] == "20:00"
 
 

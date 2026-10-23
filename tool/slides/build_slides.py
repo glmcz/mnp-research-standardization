@@ -971,20 +971,45 @@ SV_P7 = "out/tables/survey_p7.json"
 SV_COLOC = "out/tables/survey_colocated.json"
 SV_DUP = "out/tables/survey_duplicates.csv"
 SV_MISS = "out/tables/survey_completeness.csv"
+DS_SEARCH = "out/tables/dataset_search.json"
+#: The survey's datasets by the key their slide values use; the search agent's PANGAEA finds are
+#: the pangaea_<id> datasets, shown as one row.
+SV_NAMES = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser",
+            "emodnet": "emodnet", "air_fu2023": "air"}  # fmt: skip
 
 
 def survey_values(V: Values, ref: str) -> None:
     """The dataset slides: the table, the pooled rise and its series, same place, held twice."""
     coloc = json.loads(show(ref, SV_COLOC))
-    for ds, key in (
-        ("ncei", "ncei"),
-        ("mpsed", "mpsed"),
-        ("soil", "soil"),
-        ("pangaea_weser", "weser"),
-    ):
-        V.int(f"sv.n.{key}", coloc["records"][ds], SV_COLOC + ": records")
-    V.int("sv.total", sum(coloc["records"].values()), SV_COLOC + ": records, summed")
+    recs = coloc["records"]
+    found = sorted(k for k in recs if re.fullmatch(r"pangaea_\d+", k))
+    if set(recs) != set(SV_NAMES) | set(found):
+        raise SystemExit(f"{SV_COLOC}: a dataset has no row on slide 6: {sorted(recs)}")
+    for ds, key in SV_NAMES.items():
+        V.int(f"sv.n.{key}", recs[ds], SV_COLOC + ": records")
+    V.int("sv.n.found", sum(recs[k] for k in found), SV_COLOC + ": records, pangaea_<id>")
+    V.int("sv.n.datasets", len(recs), SV_COLOC + ": records, datasets")
+    V.int("sv.total", sum(recs.values()), SV_COLOC + ": records, summed")
+
+    ds = json.loads(show(ref, DS_SEARCH))
+    for key in ("found", "distinct", "on_topic", "to_verify"):
+        V.int(f"ds.{key}", ds[key], DS_SEARCH)
+    for key in ("usable", "partial", "not_verifiable"):
+        V.int(f"ds.{key}", ds["verdicts"][key], DS_SEARCH + ": verdicts")
+    V.int("ds.joined", len(found), SV_COLOC + ": records, pangaea_<id> datasets")
+
     miss = pd.read_csv(io.StringIO(show(ref, SV_MISS))).set_index("dataset")
+    V.pct("sv.miss.emodnet.mesh", miss.loc["emodnet", "size_min_um"], 0, SV_MISS + ": emodnet")
+    V.pct("sv.miss.air.date", miss.loc["air_fu2023", "date"], 0, SV_MISS + ": air, date")
+    V.pct("sv.miss.air.method", miss.loc["air_fu2023", "method"], 0, SV_MISS + ": air, method")
+    n_found = pd.Series({k: recs[k] for k in found})
+    no_max = (miss.loc[found, "size_max_um"] * n_found).sum() / n_found.sum()
+    V.pct("sv.miss.found.max", no_max, 0, SV_MISS + ": pangaea_<id>, upper limit, by record")
+    V.int(
+        "sv.found_nolower",
+        int((miss.loc[found, "size_min_um"] == 1).sum()),
+        SV_MISS + ": pangaea_<id> with no lower limit at all",
+    )
     V.pct("sv.miss.mpsed.lat", miss.loc["mpsed", "lat"], 0, SV_MISS + ": mpsed, lat")
     V.pct("sv.miss.mpsed.year", miss.loc["mpsed", "year"], 0, SV_MISS + ": mpsed, year")
     V.pct("sv.miss.soil.method", miss.loc["soil", "method"], 0, SV_MISS + ": soil, method")
@@ -1030,6 +1055,21 @@ def survey_values(V: Values, ref: str) -> None:
     V.float("sv.co.any_p90", anym["p90_fold"], 0, SV_COLOC + ": any method")
     V.float("sv.co.med_median", med["median_fold"], 1, SV_COLOC + ": Mediterranean")
     V.int("sv.co.med_studypairs", med["study_pairs"], SV_COLOC + ": Mediterranean")
+
+    x = coloc["across_datasets_100km_any_year"]
+    src = SV_COLOC + ": across_datasets_100km_any_year"
+    kept = [g for g in x["by_dataset_pair"] if g["decision"] != "refuse"]
+    refused = [g for g in x["by_dataset_pair"] if g["decision"] == "refuse"]
+    if len(kept) != 1 or len(refused) != 1:
+        raise SystemExit(f"{src}: slide 8 names one compared and one refused pair of databases")
+    V.int("sv.x.km", x["km"], src)
+    V.int("sv.x.compared", x["compared"], src)
+    V.float("sv.x.median", x["median_fold"], 1, src)
+    V.float("sv.x.p90", x["p90_fold"], 0, src)
+    V.float("sv.x.years", kept[0]["median_years_apart"], 0, src + ", median years apart")
+    V.int("sv.x.refused", x["refused"], src)
+    V.float("sv.x.refused_fold", refused[0]["median_fold"], 0, src + ", the refused pair")
+    V.float("sv.x.raw_p90", x["unguarded"]["p90_fold"], 0, src + ", unguarded")
 
     dup = pd.read_csv(io.StringIO(show(ref, SV_DUP)))
     V.int("sv.dup.n", len(dup), SV_DUP)

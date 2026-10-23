@@ -26,12 +26,12 @@ _spec.loader.exec_module(bs)
 
 # Seconds on each timed slide, at about a hundred spoken words a minute.
 PLAN = {
-    "s1": 30, "s2": 45, "s3": 50,
+    "s1": 30, "s2": 45, "s3": 45,
     "s4": 75, "s5": 70,
-    "s6": 55, "s7": 95, "s8": 70, "s9": 80, "s10": 70,
+    "s6": 70, "s7": 95, "s8": 80, "s9": 70, "s10": 70,
     "s11": 45, "s12": 65, "s13": 50, "s14": 55, "s15": 50,
     "s16": 85, "s17": 70,
-    "s18": 45, "s19": 95,
+    "s18": 45, "s19": 85,
 }  # fmt: skip
 ACTS = (
     ("I", "why and the goal", ("s1", "s2", "s3")),

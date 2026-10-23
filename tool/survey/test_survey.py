@@ -190,6 +190,7 @@ def test_a_cross_dataset_ratio_is_taken_only_where_the_window_guard_allows_it() 
     out = report.across_datasets(t, km=100, days=None, dup=none)
     assert out["pairs"] == 3 and out["compared"] == 1 and out["refused"] == 2
     assert out["median_fold"] == 2.0  # the ×5000 and ×2500 pairs never enter it
+    assert out["unguarded"]["median_fold"] == 2500.0  # what a pooled, unguarded median reports
     by = {(r["datasets"], r["decision"]): r for r in out["by_dataset_pair"]}
     assert by[("x vs z", "refuse")]["reason"] == "window_factor_too_uncertain"
     held = pd.DataFrame({"study_a": ["A"], "study_b": ["B"]})

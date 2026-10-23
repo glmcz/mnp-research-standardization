@@ -51,6 +51,10 @@
   "refused": 0,
   "median_fold": 1.18,
   "p90_fold": 1.5,
+  "unguarded": {
+   "median_fold": 1.18,
+   "p90_fold": 1.5
+  },
   "by_dataset_pair": [
    {
     "datasets": "emodnet vs ncei",
@@ -72,6 +76,10 @@
   "refused": 13,
   "median_fold": 1.52,
   "p90_fold": 7.2,
+  "unguarded": {
+   "median_fold": 1.71,
+   "p90_fold": 29388.1
+  },
   "by_dataset_pair": [
    {
     "datasets": "emodnet vs ncei",

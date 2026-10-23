@@ -91,6 +91,7 @@ def across_datasets(t, km: float, days: int | None, dup) -> dict:
         "compared": int(len(compared)),
         "refused": int(len(p) - len(compared)),
         **(_folds(compared.log10_ratio) if len(compared) else {}),
+        "unguarded": _folds(p.log10_ratio),  # what pooling every pair would have reported
         "by_dataset_pair": groups,
     }
 

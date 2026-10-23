@@ -1,0 +1,17 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": 1.5, \"verdict\": \"caveat\", \"caveats\": [\"different_window\", \"size_distribution_assumption\" in [] ? [] : [], \"composition_shift\"], \"answer\": \"Counts from a 0.333 mm net and a 0.300 mm net are not directly comparable because smaller mesh captures more small particles; literature correction factors scaling 0.333 mm counts up to a 0.300 mm-equivalent window typically range up to about 1.5x, depending on size distribution. This factor is approximate and assumes a similar particle size spectrum across sites.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 560,
+   "output_tokens": 190,
+   "cost_usd": 0.007549999999999999,
+   "ms": 3601
+  }
+ ],
+ "answer": null,
+ "ungrounded": null,
+ "qid": "W2",
+ "arm": "N0",
+ "rep": 2
+}

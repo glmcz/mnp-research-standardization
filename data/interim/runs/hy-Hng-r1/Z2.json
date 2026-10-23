@@ -1,0 +1,13 @@
+{
+ "answer": {
+  "value": 0.02,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Across 1046 measurements from 278 papers, Spearman's rho between log size and zeta potential is 0.02 (p=0.46), indicating essentially no correlation. Zeta potential does not follow particle size in the literature."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "Z2",
+ "arm": "Hng",
+ "rep": 1
+}

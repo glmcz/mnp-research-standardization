@@ -1,0 +1,16 @@
+{
+ "answer": {
+  "value": 3.76,
+  "verdict": "caveat",
+  "caveats": [
+   "method_mix",
+   "held_twice"
+  ],
+  "answer": "Across independent ocean-water studies within 50 km and a year, the median factor between values is 3.76 (n=1230), mixing sampling methods and with 636 duplicate-held pairs excluded."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "S3",
+ "arm": "Hg",
+ "rep": 2
+}

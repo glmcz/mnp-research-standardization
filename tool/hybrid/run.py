@@ -206,6 +206,7 @@ def score_one(q: questions.Q, rec: dict) -> dict:
         "qid": q.qid,
         "family": q.family,
         "adversarial": q.adversarial,
+        "flag_required": q.verdict != "allow",
         "parsed": bool(a),
         "value_ok": value_ok,
         "verdict_exact": verdict == q.verdict,
@@ -234,6 +235,27 @@ def mcnemar(a: list[bool], b: list[bool]) -> dict:
     return {"only_this_right": only_a, "only_H_right": only_b, "p": round(float(p), 4)}
 
 
+def _numbers(x) -> list[float]:
+    if isinstance(x, bool):
+        return []
+    if isinstance(x, int | float):
+        return [float(x)]
+    if isinstance(x, dict):
+        return [n for y in x.values() for n in _numbers(y)]
+    if isinstance(x, list):
+        return [n for y in x for n in _numbers(y)]
+    return []
+
+
+def _final_ungrounded(q: questions.Q, arm: str, rep: int) -> list[float]:
+    """Numbers in a hybrid answer's final text that the stored result does not hold."""
+    h = json.loads(path("H", rep, q.qid).read_text())
+    res = h["result"]
+    allowed = _numbers({k: v for k, v in res.items() if k != "provenance"})
+    allowed += agents.numbers_in(q.text)
+    return agents.ungrounded(h[arm]["final"], allowed)
+
+
 def score() -> dict:
     qs = {q.qid: q for q in questions.read()}
     rows = []
@@ -243,8 +265,11 @@ def score() -> dict:
             continue
         for f in sorted(d.glob("*.json")):
             rec = json.loads(f.read_text())
-            if rec["qid"] in qs:
-                rows.append({"arm": arm, "rep": rep} | score_one(qs[rec["qid"]], rec))
+            if rec["qid"] not in qs:
+                continue
+            if arm in ("H", "Hg") and rec.get("answer"):
+                rec = rec | {"ungrounded": _final_ungrounded(qs[rec["qid"]], arm, rep)}
+            rows.append({"arm": arm, "rep": rep} | score_one(qs[rec["qid"]], rec))
     out = {"questions": len(qs), "adversarial": sum(q.adversarial for q in qs.values()), "arms": {}}
     for arm in ARMS:
         r = [x for x in rows if x["arm"] == arm]
@@ -256,6 +281,8 @@ def score() -> dict:
             "reps": sorted({x["rep"] for x in r}),
             "correct": _mean(x["correct"] for x in r),
             "correct_adversarial": _mean(x["correct"] for x in adv),
+            "correct_flag_required": _mean(x["correct"] for x in r if x["flag_required"]),
+            "correct_no_flag": _mean(x["correct"] for x in r if not x["flag_required"]),
             "value_ok": _mean(x["value_ok"] for x in r),
             "flagged_ok": _mean(x["flagged_ok"] for x in r),
             "caveat_named": _mean(x["caveat_ok"] for x in r),

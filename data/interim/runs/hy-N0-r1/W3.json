@@ -1,0 +1,27 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"caveat\", \"caveats\": [\"different_window\", \"method_mix\", \"composition_shift\", \"sampling_area_shift\"], \"answer\": \"A single power-law slope can in principle be extrapolated across the 11-500 and 500-5000 um windows, but pump vs net sampling differ in mesh/filter cutoff, flow area, and size-dependent capture efficiency, so the fitted exponent from one method rarely transfers reliably to the other's range. Any converted count should be treated as a rough order-of-magnitude estimate, not a validated figure.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 526,
+   "output_tokens": 192,
+   "cost_usd": 0.007430000000000001,
+   "ms": 3689
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window",
+   "method_mix",
+   "composition_shift",
+   "sampling_area_shift"
+  ],
+  "answer": "A single power-law slope can in principle be extrapolated across the 11-500 and 500-5000 um windows, but pump vs net sampling differ in mesh/filter cutoff, flow area, and size-dependent capture efficiency, so the fitted exponent from one method rarely transfers reliably to the other's range. Any converted count should be treated as a rough order-of-magnitude estimate, not a validated figure."
+ },
+ "ungrounded": null,
+ "qid": "W3",
+ "arm": "N0",
+ "rep": 1
+}

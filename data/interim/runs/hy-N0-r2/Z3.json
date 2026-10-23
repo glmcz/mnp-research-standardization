@@ -1,0 +1,17 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": 5, \"verdict\": \"caveat\", \"caveats\": [\"liquid_dependent\", \"single_paper\", \"not_comparable\"], \"answer\": \"Amine-modified polystyrene (PS-NH2) nanoplastics are the polymer group most consistently reported with a positive zeta potential, with reported medians around +5 to +10 mV in water. This value is not robust: zeta potential is highly sensitive to pH, ionic strength, and media composition, and most unmodified polymers (PS, PE, PP, PVC) show negative values instead.\"",
+   "model": "claude-sonnet-5",
+   "input_tokens": 506,
+   "output_tokens": 182,
+   "cost_usd": 0.00708,
+   "ms": 3512
+  }
+ ],
+ "answer": null,
+ "ungrounded": null,
+ "qid": "Z3",
+ "arm": "N0",
+ "rep": 2
+}

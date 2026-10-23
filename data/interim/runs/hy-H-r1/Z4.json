@@ -1,0 +1,101 @@
+{
+ "plan": {
+  "op": "reported_share",
+  "args": {
+   "condition": "ionic_strength"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 0.081,
+  "n": 467,
+  "diagnostics": {
+   "papers_reporting": 38
+  },
+  "provenance": []
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": 0.081,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "About 0.081 (38 out of 467 papers reporting zeta potentials) state the ionic strength for at least one value."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 0.081,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "About 0.081 (38 out of 467 papers reporting zeta potentials) state the ionic strength for at least one value."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 0.081,
+   "verdict": "caveat",
+   "caveats": [
+    "window_unreported"
+   ],
+   "answer": "About 3.8% (38 of 467) of papers reporting zeta potentials state the ionic strength for at least one value. This share is low and the measurement conditions/window for ionic strength reporting are not standardized across papers."
+  },
+  "draft_ungrounded": [
+   3.8
+  ],
+  "final": {
+   "value": 0.081,
+   "verdict": "caveat",
+   "caveats": [
+    "window_unreported"
+   ],
+   "answer": "About 0.081 (38 of 467) of papers reporting zeta potentials specify the ionic strength for at least one value, but the measurement conditions for the remaining papers are unreported."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"reported_share\", \"args\": {\"condition\": \"ionic_strength\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1265,
+   "output_tokens": 30,
+   "cost_usd": 0.00865375,
+   "ms": 1089
+  },
+  {
+   "text": "{\"value\": 0.081, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"About 0.081 (38 out of 467 papers reporting zeta potentials) state the ionic strength for at least one value.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 607,
+   "output_tokens": 72,
+   "cost_usd": 0.004835,
+   "ms": 2226
+  },
+  {
+   "text": "{\"value\": 0.081, \"verdict\": \"caveat\", \"caveats\": [\"window_unreported\"], \"answer\": \"About 3.8% (38 of 467) of papers reporting zeta potentials state the ionic strength for at least one value. This share is low and the measurement conditions/window for ionic strength reporting are not standardized across papers.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 564,
+   "output_tokens": 111,
+   "cost_usd": 0.005595000000000001,
+   "ms": 2640
+  },
+  {
+   "text": "{\"value\": 0.081, \"verdict\": \"caveat\", \"caveats\": [\"window_unreported\"], \"answer\": \"About 0.081 (38 of 467) of papers reporting zeta potentials specify the ionic strength for at least one value, but the measurement conditions for the remaining papers are unreported.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 592,
+   "output_tokens": 139,
+   "cost_usd": 0.006435,
+   "ms": 3097
+  }
+ ],
+ "answer": {
+  "value": 0.081,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "About 0.081 (38 out of 467 papers reporting zeta potentials) state the ionic strength for at least one value."
+ },
+ "qid": "Z4",
+ "arm": "H",
+ "rep": 1
+}

@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 21.8,
+  "verdict": "caveat",
+  "caveats": [
+   "single_paper"
+  ],
+  "answer": "The polymer group shows a positive median zeta potential of 21.8 mV across 25 measurements from 3 papers, but 20 of those 25 values come from a single paper, limiting robustness. This concentration means the result may not generalize beyond that one study's conditions."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "Z3",
+ "arm": "Hg",
+ "rep": 2
+}

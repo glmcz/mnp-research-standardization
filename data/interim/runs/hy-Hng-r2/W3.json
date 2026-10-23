@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "different_window"
+  ],
+  "answer": "The pump (11-500 um) and net (500-5000 um) samples cover different, non-overlapping size windows, and the power-law conversion factor is too uncertain to bridge them. No valid conversion between the two counts can be given."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "W3",
+ "arm": "Hng",
+ "rep": 2
+}

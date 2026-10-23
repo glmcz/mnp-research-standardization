@@ -1,0 +1,90 @@
+{
+ "plan": {
+  "op": "zeta_size_correlation",
+  "args": {},
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 0.02,
+  "n": 1046,
+  "diagnostics": {
+   "p": 0.46171032046386346,
+   "papers": 278
+  },
+  "provenance": []
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": 0.02,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Across 1046 measurements from 278 papers, Spearman's rho between log size and zeta potential is 0.02 (p=0.46), indicating essentially no correlation. Zeta potential does not follow particle size in the literature."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 0.02,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Across 1046 measurements from 278 papers, Spearman's rho between log size and zeta potential is 0.02 (p=0.46), indicating essentially no correlation. Zeta potential does not follow particle size in the literature."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 0.02,
+   "verdict": "caveat",
+   "caveats": [
+    "method_mix"
+   ],
+   "answer": "Across 1046 measurements from 278 papers, log size and zeta potential show essentially no correlation (Spearman's rho = 0.02, p = 0.46), indicating zeta potential does not track particle size. This pooled result spans diverse measurement methods and conditions, limiting direct comparability across studies."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 0.02,
+   "verdict": "caveat",
+   "caveats": [
+    "method_mix"
+   ],
+   "answer": "Across 1046 measurements from 278 papers, log size and zeta potential show essentially no correlation (Spearman's rho = 0.02, p = 0.46), indicating zeta potential does not track particle size. This pooled result spans diverse measurement methods and conditions, limiting direct comparability across studies."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"zeta_size_correlation\", \"args\": {}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1276,
+   "output_tokens": 23,
+   "cost_usd": 0.0085475,
+   "ms": 1952
+  },
+  {
+   "text": "{\"value\": 0.02, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"Across 1046 measurements from 278 papers, Spearman's rho between log size and zeta potential is 0.02 (p=0.46), indicating essentially no correlation. Zeta potential does not follow particle size in the literature.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 628,
+   "output_tokens": 107,
+   "cost_usd": 0.005815,
+   "ms": 2608
+  },
+  {
+   "text": "{\"value\": 0.02, \"verdict\": \"caveat\", \"caveats\": [\"method_mix\"], \"answer\": \"Across 1046 measurements from 278 papers, log size and zeta potential show essentially no correlation (Spearman's rho = 0.02, p = 0.46), indicating zeta potential does not track particle size. This pooled result spans diverse measurement methods and conditions, limiting direct comparability across studies.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 585,
+   "output_tokens": 140,
+   "cost_usd": 0.006425,
+   "ms": 2977
+  }
+ ],
+ "answer": {
+  "value": 0.02,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Across 1046 measurements from 278 papers, Spearman's rho between log size and zeta potential is 0.02 (p=0.46), indicating essentially no correlation. Zeta potential does not follow particle size in the literature."
+ },
+ "qid": "Z2",
+ "arm": "H",
+ "rep": 1
+}

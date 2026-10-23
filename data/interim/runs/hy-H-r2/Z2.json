@@ -1,0 +1,92 @@
+{
+ "plan": {
+  "op": "zeta_size_correlation",
+  "args": {},
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 0.02,
+  "n": 1046,
+  "diagnostics": {
+   "p": 0.46171032046386346,
+   "papers": 278
+  },
+  "provenance": []
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": 0.02,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Across 278 papers and 1046 measurements, Spearman's rho between log particle size and zeta potential is 0.02 (p=0.46), indicating no meaningful correlation. Zeta potential does not follow particle size in the literature data."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 0.02,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Across 278 papers and 1046 measurements, Spearman's rho between log particle size and zeta potential is 0.02 (p=0.46), indicating no meaningful correlation. Zeta potential does not follow particle size in the literature data."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 0.02,
+   "verdict": "caveat",
+   "caveats": [
+    "method_mix",
+    "liquid_dependent"
+   ],
+   "answer": "Across 278 papers (n=1046), Spearman's rho between log particle size and zeta potential is only 0.02 (p=0.46), indicating no significant monotonic relationship. This near-zero, non-significant correlation suggests zeta potential does not meaningfully track particle size in the pooled literature data, though zeta values are also highly sensitive to the measurement medium and methods used across studies."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 0.02,
+   "verdict": "caveat",
+   "caveats": [
+    "method_mix",
+    "liquid_dependent"
+   ],
+   "answer": "Across 278 papers (n=1046), Spearman's rho between log particle size and zeta potential is only 0.02 (p=0.46), indicating no significant monotonic relationship. This near-zero, non-significant correlation suggests zeta potential does not meaningfully track particle size in the pooled literature data, though zeta values are also highly sensitive to the measurement medium and methods used across studies."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"zeta_size_correlation\", \"args\": {}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1276,
+   "output_tokens": 23,
+   "cost_usd": 0.001222,
+   "ms": 2346
+  },
+  {
+   "text": "{\"value\": 0.02, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"Across 278 papers and 1046 measurements, Spearman's rho between log particle size and zeta potential is 0.02 (p=0.46), indicating no meaningful correlation. Zeta potential does not follow particle size in the literature data.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 628,
+   "output_tokens": 111,
+   "cost_usd": 0.005915,
+   "ms": 3896
+  },
+  {
+   "text": "{\"value\": 0.02, \"verdict\": \"caveat\", \"caveats\": [\"method_mix\", \"liquid_dependent\"], \"answer\": \"Across 278 papers (n=1046), Spearman's rho between log particle size and zeta potential is only 0.02 (p=0.46), indicating no significant monotonic relationship. This near-zero, non-significant correlation suggests zeta potential does not meaningfully track particle size in the pooled literature data, though zeta values are also highly sensitive to the measurement medium and methods used across studies.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 585,
+   "output_tokens": 436,
+   "cost_usd": 0.013825,
+   "ms": 5523
+  }
+ ],
+ "answer": {
+  "value": 0.02,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Across 278 papers and 1046 measurements, Spearman's rho between log particle size and zeta potential is 0.02 (p=0.46), indicating no meaningful correlation. Zeta potential does not follow particle size in the literature data."
+ },
+ "qid": "Z2",
+ "arm": "H",
+ "rep": 2
+}

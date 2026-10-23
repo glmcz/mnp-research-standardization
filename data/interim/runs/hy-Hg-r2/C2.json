@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 1.0,
+  "verdict": "caveat",
+  "caveats": [
+   "method_mix"
+  ],
+  "answer": "All 6197 soil microplastic records in the Wu et al. compilation (fraction = 1.0) lack a reported sampling method. This suggests the 'sampling method' field is entirely unreported rather than a meaningful comparison across methods."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "C2",
+ "arm": "Hg",
+ "rep": 2
+}

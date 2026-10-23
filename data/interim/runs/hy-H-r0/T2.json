@@ -1,0 +1,102 @@
+{
+ "plan": {
+  "op": "study_count",
+  "args": {
+   "period": 2015
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 42,
+  "n": 3521,
+  "diagnostics": {},
+  "provenance": [
+   "https://doi.org/10.1007/s00128-022-03620-5",
+   "https://doi.org/10.1007/s11356-022-24998-z",
+   "https://doi.org/10.1007/s43217-023-00131-z",
+   "https://doi.org/10.1016/j.chemosphere.2022.133980",
+   "https://doi.org/10.1016/j.envint.2020.105494",
+   "https://doi.org/10.1016/j.envpol.2017.09.058",
+   "https://doi.org/10.1016/j.envpol.2018.02.062",
+   "https://doi.org/10.1016/j.gr.2021.10.024",
+   "https://doi.org/10.1016/j.marenvres.2016.05.009",
+   "https://doi.org/10.1016/j.marpolbul.2016.12.025",
+   "https://doi.org/10.1016/j.marpolbul.2016.12.052",
+   "https://doi.org/10.1016/j.marpolbul.2018.03.011"
+  ]
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": 42,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "42 different studies contributed NCEI ocean-water samples in 2015-2019."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 42.0,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "42 different studies contributed NCEI ocean-water samples in 2015-2019."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 42,
+   "verdict": "caveat",
+   "caveats": [
+    "window_unreported"
+   ],
+   "answer": "42 different studies contributed NCEI ocean-water samples in 2015-2019; the count for 2000-2004 is not provided in the RESULT data."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 42.0,
+   "verdict": "caveat",
+   "caveats": [
+    "window_unreported"
+   ],
+   "answer": "42 different studies contributed NCEI ocean-water samples in 2015-2019; the count for 2000-2004 is not provided in the RESULT data."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"study_count\", \"args\": {\"period\": 2015}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1172,
+   "output_tokens": 23,
+   "cost_usd": 0.0078975,
+   "ms": 1898
+  },
+  {
+   "text": "{\"value\": 42, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"42 different studies contributed NCEI ocean-water samples in 2015-2019.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 922,
+   "output_tokens": 58,
+   "cost_usd": 0.006059999999999999,
+   "ms": 2066
+  },
+  {
+   "text": "{\"value\": 42, \"verdict\": \"caveat\", \"caveats\": [\"window_unreported\"], \"answer\": \"42 different studies contributed NCEI ocean-water samples in 2015-2019; the count for 2000-2004 is not provided in the RESULT data.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 879,
+   "output_tokens": 88,
+   "cost_usd": 0.006595,
+   "ms": 2555
+  }
+ ],
+ "answer": {
+  "value": 42.0,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "42 different studies contributed NCEI ocean-water samples in 2015-2019."
+ },
+ "qid": "T2",
+ "arm": "H",
+ "rep": 0
+}

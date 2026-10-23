@@ -1,0 +1,16 @@
+{
+ "answer": {
+  "value": 5237.0,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window",
+   "method_mix"
+  ],
+  "answer": "Across 22 paired stations, small particles (11-500 \u00b5m) outnumbered large particles (500-5000 \u00b5m) by a median factor of about 5237. This far exceeds the ~12x expected from a typical power-law size distribution, suggesting the two size windows were likely counted with different methods/resolutions rather than reflecting a purely physical size trend."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "W1",
+ "arm": "Hg",
+ "rep": 2
+}

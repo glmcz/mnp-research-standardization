@@ -1,0 +1,13 @@
+{
+ "answer": {
+  "value": 1.0,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "All 6197 soil microplastic records in the Wu et al. compilation lack a reported sampling method, a fraction of 1.0 (100%)."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "C2",
+ "arm": "Hng",
+ "rep": 2
+}

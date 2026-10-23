@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 10.34,
+  "verdict": "caveat",
+  "caveats": [
+   "sampling_area_shift"
+  ],
+  "answer": "The mean concentration in the last third of sampled years (2001\u20132012) is 10.34x higher than the first third, but the sampling centroid shifted ~1042 km between periods and the rank correlation with year is weak (\u03c1=0.168), so this ratio likely reflects a change in sampling location rather than a true temporal rise in Pacific plastic."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "T4",
+ "arm": "Hg",
+ "rep": 2
+}

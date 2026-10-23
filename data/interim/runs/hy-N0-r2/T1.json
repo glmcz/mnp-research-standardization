@@ -1,0 +1,17 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"refuse\", \"caveats\": [\"sampling_area_shift\", \"method_mix\", \"composition_shift\", \"not_comparable\"], \"answer\": \"I cannot provide a reliable factor because the NCEI database compiles disparate studies with uneven, non-random spatial coverage and inconsistent collection/measurement methods across time periods, so changes in reported medians largely reflect shifts in where and how sampling was done rather than true ocean-wide trends. Even if a ratio were computed, it would not demonstrate that actual microplastic concentrations in the ocean rose by that factor.\"",
+   "model": "claude-sonnet-5",
+   "input_tokens": 554,
+   "output_tokens": 200,
+   "cost_usd": 0.00777,
+   "ms": 2898
+  }
+ ],
+ "answer": null,
+ "ungrounded": null,
+ "qid": "T1",
+ "arm": "N0",
+ "rep": 2
+}

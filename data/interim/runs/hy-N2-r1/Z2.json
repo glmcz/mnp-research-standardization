@@ -1,0 +1,27 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": -0.07, \"verdict\": \"caveat\", \"caveats\": [\"composition_shift\", \"method_mix\", \"liquid_dependent\", \"held_twice\"], \"answer\": \"Across this compiled literature set, log(size) and zeta potential show only a very weak, near-null Spearman correlation (rho \u2248 -0.07), so size is not a reliable predictor of zeta potential. The signal is swamped by differences in surface chemistry (plain/amine/carboxyl/sulfate, which flips the sign) and suspension medium (DI water vs. salt/culture media, which strongly dampens magnitude).\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 27607,
+   "output_tokens": 1286,
+   "cost_usd": 0.20469125,
+   "ms": 15900
+  }
+ ],
+ "answer": {
+  "value": -0.07,
+  "verdict": "caveat",
+  "caveats": [
+   "composition_shift",
+   "method_mix",
+   "liquid_dependent",
+   "held_twice"
+  ],
+  "answer": "Across this compiled literature set, log(size) and zeta potential show only a very weak, near-null Spearman correlation (rho \u2248 -0.07), so size is not a reliable predictor of zeta potential. The signal is swamped by differences in surface chemistry (plain/amine/carboxyl/sulfate, which flips the sign) and suspension medium (DI water vs. salt/culture media, which strongly dampens magnitude)."
+ },
+ "ungrounded": [],
+ "qid": "Z2",
+ "arm": "N2",
+ "rep": 1
+}

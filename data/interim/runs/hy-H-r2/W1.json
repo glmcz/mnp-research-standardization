@@ -1,0 +1,111 @@
+{
+ "plan": {
+  "op": "weser_window_ratio",
+  "args": {},
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 5237.0,
+  "n": 22,
+  "diagnostics": {
+   "predicted_at_alpha_1_6": 11.9,
+   "implied_alpha": 3.24,
+   "window_small_um": [
+    11.0,
+    500.0
+   ],
+   "window_large_um": [
+    500.0,
+    5000.0
+   ]
+  },
+  "provenance": [
+   "PANGAEA 937685",
+   "PANGAEA 938143"
+  ]
+ },
+ "guard": {
+  "verdict": "caveat",
+  "reasons": [
+   "different_window"
+  ]
+ },
+ "H": {
+  "draft": {
+   "value": 5237.0,
+   "verdict": "caveat",
+   "caveats": [
+    "different_window"
+   ],
+   "answer": "Small particles (11-500 \u00b5m) outnumbered large ones (500-5000 \u00b5m) by a median factor of about 5237 across 22 matched stations. This comparison spans very different size windows, so the factor reflects the size-distribution slope rather than a like-for-like count."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 5237.0,
+   "verdict": "caveat",
+   "caveats": [
+    "different_window"
+   ],
+   "answer": "Small particles (11-500 \u00b5m) outnumbered large ones (500-5000 \u00b5m) by a median factor of about 5237 across 22 matched stations. This comparison spans very different size windows, so the factor reflects the size-distribution slope rather than a like-for-like count."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 5237.0,
+   "verdict": "caveat",
+   "caveats": [
+    "different_window",
+    "method_mix"
+   ],
+   "answer": "Across 22 paired stations, small particles (11-500 \u00b5m) outnumbered large particles (500-5000 \u00b5m) by a median factor of about 5237. This far exceeds the ~12x expected from a typical power-law size distribution, suggesting the two size windows were likely counted with different methods/resolutions rather than reflecting a purely physical size trend."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 5237.0,
+   "verdict": "caveat",
+   "caveats": [
+    "different_window",
+    "method_mix"
+   ],
+   "answer": "Across 22 paired stations, small particles (11-500 \u00b5m) outnumbered large particles (500-5000 \u00b5m) by a median factor of about 5237. This far exceeds the ~12x expected from a typical power-law size distribution, suggesting the two size windows were likely counted with different methods/resolutions rather than reflecting a purely physical size trend."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"weser_window_ratio\", \"args\": {}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1299,
+   "output_tokens": 22,
+   "cost_usd": 0.0012085,
+   "ms": 2007
+  },
+  {
+   "text": "{\"value\": 5237.0, \"verdict\": \"caveat\", \"caveats\": [\"different_window\"], \"answer\": \"Small particles (11-500 \u00b5m) outnumbered large ones (500-5000 \u00b5m) by a median factor of about 5237 across 22 matched stations. This comparison spans very different size windows, so the factor reflects the size-distribution slope rather than a like-for-like count.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 726,
+   "output_tokens": 127,
+   "cost_usd": 0.006805,
+   "ms": 3966
+  },
+  {
+   "text": "{\"value\": 5237.0, \"verdict\": \"caveat\", \"caveats\": [\"different_window\", \"method_mix\"], \"answer\": \"Across 22 paired stations, small particles (11-500 \\u00b5m) outnumbered large particles (500-5000 \\u00b5m) by a median factor of about 5237. This far exceeds the ~12x expected from a typical power-law size distribution, suggesting the two size windows were likely counted with different methods/resolutions rather than reflecting a purely physical size trend.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 680,
+   "output_tokens": 340,
+   "cost_usd": 0.0119,
+   "ms": 5080
+  }
+ ],
+ "answer": {
+  "value": 5237.0,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window"
+  ],
+  "answer": "Small particles (11-500 \u00b5m) outnumbered large ones (500-5000 \u00b5m) by a median factor of about 5237 across 22 matched stations. This comparison spans very different size windows, so the factor reflects the size-distribution slope rather than a like-for-like count."
+ },
+ "qid": "W1",
+ "arm": "H",
+ "rep": 2
+}

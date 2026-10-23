@@ -1,0 +1,24 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": 66, \"verdict\": \"caveat\", \"caveats\": [\"liquid_dependent\"], \"answer\": \"Out of 115 amine-functionalised PS zeta-potential values reported, 66 (about 57%) are negative, mostly measured in culture media, salt solutions, or environmental water where corona formation or ionic screening reverses the charge. So these particles are not consistently positively charged; they tend to be positive mainly in DI water and often turn negative in biological/saline media.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 27611,
+   "output_tokens": 5994,
+   "cost_usd": 0.16366450000000002,
+   "ms": 43464
+  }
+ ],
+ "answer": {
+  "value": 66,
+  "verdict": "caveat",
+  "caveats": [
+   "liquid_dependent"
+  ],
+  "answer": "Out of 115 amine-functionalised PS zeta-potential values reported, 66 (about 57%) are negative, mostly measured in culture media, salt solutions, or environmental water where corona formation or ionic screening reverses the charge. So these particles are not consistently positively charged; they tend to be positive mainly in DI water and often turn negative in biological/saline media."
+ },
+ "ungrounded": [],
+ "qid": "Z1",
+ "arm": "N2",
+ "rep": 2
+}

@@ -1,0 +1,22 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": 42, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"42 studies have date ranges overlapping 2015-2019, compared to 3 studies overlapping 2000-2004.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 8300,
+   "output_tokens": 3545,
+   "cost_usd": 0.09278399999999999,
+   "ms": 29423
+  }
+ ],
+ "answer": {
+  "value": 42,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "42 studies have date ranges overlapping 2015-2019, compared to 3 studies overlapping 2000-2004."
+ },
+ "ungrounded": [],
+ "qid": "T2",
+ "arm": "N2",
+ "rep": 2
+}

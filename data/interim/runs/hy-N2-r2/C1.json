@@ -1,0 +1,24 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"refuse\", \"caveats\": [\"not_comparable\"], \"answer\": \"The data provided only includes 3 example records from the 1064 total MP-SED records, all three lacking coordinates, so the overall fraction missing lat/lon cannot be reliably calculated from this sample. Full record-level data would be needed to compute the true share.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1877,
+   "output_tokens": 966,
+   "cost_usd": 0.0250975,
+   "ms": 11950
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "not_comparable"
+  ],
+  "answer": "The data provided only includes 3 example records from the 1064 total MP-SED records, all three lacking coordinates, so the overall fraction missing lat/lon cannot be reliably calculated from this sample. Full record-level data would be needed to compute the true share."
+ },
+ "ungrounded": [],
+ "qid": "C1",
+ "arm": "N2",
+ "rep": 2
+}

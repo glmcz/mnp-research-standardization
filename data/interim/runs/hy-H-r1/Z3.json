@@ -1,0 +1,104 @@
+{
+ "plan": {
+  "op": "polymer_median",
+  "args": {
+   "polymer": "nylon"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 21.8,
+  "n": 25,
+  "diagnostics": {
+   "papers": 3,
+   "top_paper_values": 20
+  },
+  "provenance": [
+   "PMC11314056",
+   "PMC11944792",
+   "PMC9370135"
+  ]
+ },
+ "guard": {
+  "verdict": "caveat",
+  "reasons": [
+   "single_paper"
+  ]
+ },
+ "H": {
+  "draft": {
+   "value": 21.8,
+   "verdict": "caveat",
+   "caveats": [
+    "single_paper"
+   ],
+   "answer": "The polymer group with a positive median zeta potential is reported at 21.8 mV (n=25 across 3 papers). However, 20 of these values come from a single paper, so this result should be treated cautiously."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 21.8,
+   "verdict": "caveat",
+   "caveats": [
+    "single_paper"
+   ],
+   "answer": "The polymer group with a positive median zeta potential is reported at 21.8 mV (n=25 across 3 papers). However, 20 of these values come from a single paper, so this result should be treated cautiously."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 21.8,
+   "verdict": "caveat",
+   "caveats": [
+    "single_paper"
+   ],
+   "answer": "The polymer group with a positive median zeta potential is reported at 21.8 mV, based on 25 measurements across 3 papers. However, 20 of these 25 values come from a single paper, so the result is not strongly robust."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 21.8,
+   "verdict": "caveat",
+   "caveats": [
+    "single_paper"
+   ],
+   "answer": "The polymer group with a positive median zeta potential is reported at 21.8 mV, based on 25 measurements across 3 papers. However, 20 of these 25 values come from a single paper, so the result is not strongly robust."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"polymer_median\", \"args\": {\"polymer\": \"nylon\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1266,
+   "output_tokens": 29,
+   "cost_usd": 0.008634999999999999,
+   "ms": 2151
+  },
+  {
+   "text": "{\"value\": 21.8, \"verdict\": \"caveat\", \"caveats\": [\"single_paper\"], \"answer\": \"The polymer group with a positive median zeta potential is reported at 21.8 mV (n=25 across 3 papers). However, 20 of these values come from a single paper, so this result should be treated cautiously.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 644,
+   "output_tokens": 105,
+   "cost_usd": 0.005845,
+   "ms": 2603
+  },
+  {
+   "text": "{\"value\": 21.8, \"verdict\": \"caveat\", \"caveats\": [\"single_paper\"], \"answer\": \"The polymer group with a positive median zeta potential is reported at 21.8 mV, based on 25 measurements across 3 papers. However, 20 of these 25 values come from a single paper, so the result is not strongly robust.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 597,
+   "output_tokens": 232,
+   "cost_usd": 0.008785,
+   "ms": 3574
+  }
+ ],
+ "answer": {
+  "value": 21.8,
+  "verdict": "caveat",
+  "caveats": [
+   "single_paper"
+  ],
+  "answer": "The polymer group with a positive median zeta potential is reported at 21.8 mV (n=25 across 3 papers). However, 20 of these values come from a single paper, so this result should be treated cautiously."
+ },
+ "qid": "Z3",
+ "arm": "H",
+ "rep": 1
+}

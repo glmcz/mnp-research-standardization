@@ -53,3 +53,22 @@ A field the source does not give stays empty. Completeness (`survey_completeness
    - The window check refuses to convert between the Weser fractions: no single slope in α
      1.3–2.2 gives a factor within ×10.
    - It allows a 333 µm count to be compared with a 300 µm count with a factor of 1.06–1.14.
+
+## The hybrid agent against naive Claude (PREREG P8–P10)
+
+The same 19 questions, two runs each, claude-sonnet-5 throughout (`tool/hybrid/`):
+
+| arm | correct |
+|---|---|
+| Claude from memory | 11 % |
+| Claude with the data pasted in | 32 % |
+| the hybrid | 100 % |
+
+- **Paired:** the hybrid is right where pasted-data Claude is wrong 26 times; the reverse never
+  happens.
+- **Without the guard:** Claude flags every question that needs a flag. But it also flags most
+  that do not, and answers only 17 % of the plain questions correctly. The pre-registered
+  expectation (that it would miss flags) was wrong in direction.
+- **Without the grounding check:** 0.13 numbers per answer that the computation never produced.
+- **Limit:** the questions were written with the operations in mind, so the planner's choice is
+  easy. This measures the guard, the arithmetic and the grounding, not open-ended planning.

@@ -1,0 +1,24 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": 35, \"verdict\": \"caveat\", \"caveats\": [\"different_window\"], \"answer\": \"Using date_first to assign each study to a 5-year window, 35 studies have a sampling start date in 2015-2019, versus 1 study (Law et al. 2014) starting in 2000-2004. Note some studies span multiple windows (e.g., sampling continuing past 2019 or starting before 2015), so counts could differ if based on full date ranges rather than start date.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 8300,
+   "output_tokens": 4502,
+   "cost_usd": 0.1644225,
+   "ms": 34214
+  }
+ ],
+ "answer": {
+  "value": 35,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window"
+  ],
+  "answer": "Using date_first to assign each study to a 5-year window, 35 studies have a sampling start date in 2015-2019, versus 1 study (Law et al. 2014) starting in 2000-2004. Note some studies span multiple windows (e.g., sampling continuing past 2019 or starting before 2015), so counts could differ if based on full date ranges rather than start date."
+ },
+ "ungrounded": [],
+ "qid": "T2",
+ "arm": "N2",
+ "rep": 0
+}

@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 5237.0,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window"
+  ],
+  "answer": "Across the 22 matched stations in PANGAEA 937685/938143, small (11-500 \u00b5m) particles outnumbered large (500-5000 \u00b5m) ones by a median factor of about 5237. This reflects the much wider and smaller size window counted for the small fraction, so the ratio is highly sensitive to the size-window definition rather than a simple abundance difference."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "W1",
+ "arm": "Hg",
+ "rep": 1
+}

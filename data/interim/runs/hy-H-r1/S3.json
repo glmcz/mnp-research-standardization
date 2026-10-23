@@ -1,0 +1,120 @@
+{
+ "plan": {
+  "op": "colocated_agreement",
+  "args": {
+   "km": 50,
+   "days": 365,
+   "same_method": false
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 3.76,
+  "n": 1230,
+  "diagnostics": {
+   "p90_fold": 50.1,
+   "same_method": false,
+   "excluded_held_twice": 636
+  },
+  "provenance": [
+   "https://doi.org/10.1007/s11356-015-4453-3",
+   "https://doi.org/10.1007/s12665-024-12042-x",
+   "https://doi.org/10.1007/s12665-025-12462-3",
+   "https://doi.org/10.1007/s12665-025-12773-5",
+   "https://doi.org/10.1016/j.envpol.2018.02.062",
+   "https://doi.org/10.1016/j.envpol.2022.120702",
+   "https://doi.org/10.1016/j.marenvres.2014.03.017",
+   "https://doi.org/10.1016/j.marpolbul.2013.11.023",
+   "https://doi.org/10.1016/j.marpolbul.2014.08.023",
+   "https://doi.org/10.1016/j.marpolbul.2016.12.025",
+   "https://doi.org/10.1016/j.marpolbul.2018.03.011",
+   "https://doi.org/10.1016/j.marpolbul.2019.01.053"
+  ]
+ },
+ "guard": {
+  "verdict": "caveat",
+  "reasons": [
+   "method_mix"
+  ]
+ },
+ "H": {
+  "draft": {
+   "value": 3.76,
+   "verdict": "caveat",
+   "caveats": [
+    "method_mix"
+   ],
+   "answer": "Across 1230 paired ocean-water comparisons within 50 km and a year from independent studies, the median factor between values is 3.76\u00d7. This mixes different sampling methods, so part of the spread likely reflects methodological differences rather than true environmental variation."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 3.76,
+   "verdict": "caveat",
+   "caveats": [
+    "method_mix"
+   ],
+   "answer": "Across 1230 paired ocean-water comparisons within 50 km and a year from independent studies, the median factor between values is 3.76\u00d7. This mixes different sampling methods, so part of the spread likely reflects methodological differences rather than true environmental variation."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 3.76,
+   "verdict": "caveat",
+   "caveats": [
+    "method_mix",
+    "held_twice"
+   ],
+   "answer": "Across 1230 paired ocean-water comparisons from independent studies within 50 km and a year, the median factor between values is 3.76x, but this mixes different sampling methods and excludes 636 pairs held twice to avoid double counting.",
+   "value_note": null
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 3.76,
+   "verdict": "caveat",
+   "caveats": [
+    "method_mix",
+    "held_twice"
+   ],
+   "answer": "Across 1230 paired ocean-water comparisons from independent studies within 50 km and a year, the median factor between values is 3.76x, but this mixes different sampling methods and excludes 636 pairs held twice to avoid double counting.",
+   "value_note": null
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"colocated_agreement\", \"args\": {\"km\": 50, \"days\": 365, \"same_method\": false}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1274,
+   "output_tokens": 39,
+   "cost_usd": 0.008934999999999998,
+   "ms": 2041
+  },
+  {
+   "text": "{\"value\": 3.76, \"verdict\": \"caveat\", \"caveats\": [\"method_mix\"], \"answer\": \"Across 1230 paired ocean-water comparisons within 50 km and a year from independent studies, the median factor between values is 3.76\\u00d7. This mixes different sampling methods, so part of the spread likely reflects methodological differences rather than true environmental variation.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 957,
+   "output_tokens": 125,
+   "cost_usd": 0.00791,
+   "ms": 3051
+  },
+  {
+   "text": "{\"value\": 3.76, \"verdict\": \"caveat\", \"caveats\": [\"method_mix\", \"held_twice\"], \"answer\": \"Across 1230 paired ocean-water comparisons from independent studies within 50 km and a year, the median factor between values is 3.76x, but this mixes different sampling methods and excludes 636 pairs held twice to avoid double counting.\", \"value_note\": null}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 910,
+   "output_tokens": 129,
+   "cost_usd": 0.007775,
+   "ms": 3446
+  }
+ ],
+ "answer": {
+  "value": 3.76,
+  "verdict": "caveat",
+  "caveats": [
+   "method_mix"
+  ],
+  "answer": "Across 1230 paired ocean-water comparisons within 50 km and a year from independent studies, the median factor between values is 3.76\u00d7. This mixes different sampling methods, so part of the spread likely reflects methodological differences rather than true environmental variation."
+ },
+ "qid": "S3",
+ "arm": "H",
+ "rep": 1
+}

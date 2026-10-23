@@ -1,0 +1,25 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"refuse\", \"caveats\": [\"method_mix\", \"not_comparable\"], \"answer\": \"No specific aggregated dataset of paired same-method Mediterranean ocean-water microplastic samples within 50 km and one year exists in the literature to compute a reliable median factor. Reported Mediterranean surface water concentrations vary by orders of magnitude across studies even with similar methods, driven largely by differing sampling/extraction protocols rather than true spatial-temporal variability, so no single defensible number can be given.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 512,
+   "output_tokens": 180,
+   "cost_usd": 0.00706,
+   "ms": 3917
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "method_mix",
+   "not_comparable"
+  ],
+  "answer": "No specific aggregated dataset of paired same-method Mediterranean ocean-water microplastic samples within 50 km and one year exists in the literature to compute a reliable median factor. Reported Mediterranean surface water concentrations vary by orders of magnitude across studies even with similar methods, driven largely by differing sampling/extraction protocols rather than true spatial-temporal variability, so no single defensible number can be given."
+ },
+ "ungrounded": null,
+ "qid": "S2",
+ "arm": "N0",
+ "rep": 2
+}

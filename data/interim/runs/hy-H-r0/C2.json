@@ -1,0 +1,110 @@
+{
+ "plan": {
+  "op": "completeness",
+  "args": {
+   "dataset": "soil",
+   "field": "method"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 1.0,
+  "n": 6197,
+  "diagnostics": {},
+  "provenance": []
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": 1.0,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "All 6,197 soil microplastic records in the Wu et al. compilation lack a recorded sampling method, i.e., a fraction of 1.0 (100%)."
+  },
+  "draft_ungrounded": [
+   6.197
+  ],
+  "final": {
+   "value": 1.0,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "All 6197 soil microplastic records in the Wu et al. compilation lack a sampling method, i.e., a fraction of 1.0 (100%)."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 1.0,
+   "verdict": "caveat",
+   "caveats": [
+    "method_mix"
+   ],
+   "answer": "All 6,197 soil microplastic records in the Wu et al. compilation lack a recorded sampling method, i.e., a fraction of 1.0 (100%). This suggests the sampling-method field was not populated/mapped for this dataset rather than reflecting actual methodology absence."
+  },
+  "draft_ungrounded": [
+   6.197
+  ],
+  "final": {
+   "value": 1.0,
+   "verdict": "caveat",
+   "caveats": [
+    "method_mix"
+   ],
+   "answer": "All 6197 soil microplastic records in the Wu et al. compilation lack a reported sampling method, i.e., a fraction of 1.0 (100%). This complete absence of method metadata limits cross-study comparability."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"completeness\", \"args\": {\"dataset\": \"soil\", \"field\": \"method\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1268,
+   "output_tokens": 32,
+   "cost_usd": 0.0087225,
+   "ms": 1816
+  },
+  {
+   "text": "{\"value\": 1.0, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"All 6,197 soil microplastic records in the Wu et al. compilation lack a recorded sampling method, i.e., a fraction of 1.0 (100%).\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 601,
+   "output_tokens": 87,
+   "cost_usd": 0.00518,
+   "ms": 2739
+  },
+  {
+   "text": "{\"value\": 1.0, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"All 6197 soil microplastic records in the Wu et al. compilation lack a sampling method, i.e., a fraction of 1.0 (100%).\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 629,
+   "output_tokens": 83,
+   "cost_usd": 0.005220000000000001,
+   "ms": 2334
+  },
+  {
+   "text": "{\"value\": 1.0, \"verdict\": \"caveat\", \"caveats\": [\"method_mix\"], \"answer\": \"All 6,197 soil microplastic records in the Wu et al. compilation lack a recorded sampling method, i.e., a fraction of 1.0 (100%). This suggests the sampling-method field was not populated/mapped for this dataset rather than reflecting actual methodology absence.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 558,
+   "output_tokens": 132,
+   "cost_usd": 0.00609,
+   "ms": 2938
+  },
+  {
+   "text": "{\"value\": 1.0, \"verdict\": \"caveat\", \"caveats\": [\"method_mix\"], \"answer\": \"All 6197 soil microplastic records in the Wu et al. compilation lack a reported sampling method, i.e., a fraction of 1.0 (100%). This complete absence of method metadata limits cross-study comparability.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 586,
+   "output_tokens": 111,
+   "cost_usd": 0.005705,
+   "ms": 2584
+  }
+ ],
+ "answer": {
+  "value": 1.0,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "All 6197 soil microplastic records in the Wu et al. compilation lack a sampling method, i.e., a fraction of 1.0 (100%)."
+ },
+ "qid": "C2",
+ "arm": "H",
+ "rep": 0
+}

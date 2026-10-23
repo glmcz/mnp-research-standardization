@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 10.34,
+  "verdict": "caveat",
+  "caveats": [
+   "sampling_area_shift"
+  ],
+  "answer": "The mean concentration in the last third of sampled years (2010-2012) was 10.34 times higher than in the first third (2001-2003), but this does not clearly show a rise in Pacific plastic because the sampling locations shifted substantially (centroid shift of ~1042 km) across years, and the weak Spearman correlation (rho=0.168) suggests the trend may largely reflect spatial sampling differences rather than a true temporal increase."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "T4",
+ "arm": "Hng",
+ "rep": 2
+}

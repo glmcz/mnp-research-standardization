@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 3.92,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Among 550 same-method Mediterranean ocean-water sample pairs within 50 km and one year, the median factor between paired values is 3.92 (90th percentile ~21.4-fold)."
+ },
+ "calls": [],
+ "ungrounded": [
+  90.0
+ ],
+ "qid": "S2",
+ "arm": "Hng",
+ "rep": 1
+}

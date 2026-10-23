@@ -1,0 +1,13 @@
+{
+ "answer": {
+  "value": 0.081,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "About 8.1% (38 of 467) of papers reporting zeta potentials specify the ionic strength for at least one value."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "Z4",
+ "arm": "Hg",
+ "rep": 2
+}

@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 67.0,
+  "verdict": "caveat",
+  "caveats": [
+   "liquid_dependent"
+  ],
+  "answer": "67 of the 117 reported zeta potentials for amine-functionalised polystyrene nanoparticles are negative, so a majority are negative rather than positive. Despite amine groups typically implying positive surface charge, measured zeta potential varies strongly with the suspending liquid (e.g., near 100% negative in biofluids vs only ~11% in unreported media)."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "Z1",
+ "arm": "Hg",
+ "rep": 2
+}

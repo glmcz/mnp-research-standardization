@@ -1,0 +1,27 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"refuse\", \"caveats\": [\"single_paper\", \"not_comparable\", \"liquid_dependent\", \"composition_shift\"], \"answer\": \"There is no established consensus Spearman's rho correlating log particle size with zeta potential across the micro/nanoplastics literature, since zeta potential depends heavily on polymer type, surface functionalization, and suspension medium rather than size alone. No reliable aggregate statistic exists to answer this without a specific compiled dataset.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 516,
+   "output_tokens": 166,
+   "cost_usd": 0.00673,
+   "ms": 3273
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "single_paper",
+   "not_comparable",
+   "liquid_dependent",
+   "composition_shift"
+  ],
+  "answer": "There is no established consensus Spearman's rho correlating log particle size with zeta potential across the micro/nanoplastics literature, since zeta potential depends heavily on polymer type, surface functionalization, and suspension medium rather than size alone. No reliable aggregate statistic exists to answer this without a specific compiled dataset."
+ },
+ "ungrounded": null,
+ "qid": "Z2",
+ "arm": "N0",
+ "rep": 2
+}

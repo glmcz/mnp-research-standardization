@@ -1,0 +1,24 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"refuse\", \"caveats\": [\"not_comparable\"], \"answer\": \"Only 3 example rows out of 6197 soil records are shown, all with blank method, so the exact fraction lacking a sampling method cannot be computed from the provided data.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1885,
+   "output_tokens": 504,
+   "cost_usd": 0.0135515,
+   "ms": 6275
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "not_comparable"
+  ],
+  "answer": "Only 3 example rows out of 6197 soil records are shown, all with blank method, so the exact fraction lacking a sampling method cannot be computed from the provided data."
+ },
+ "ungrounded": [],
+ "qid": "C2",
+ "arm": "N2",
+ "rep": 2
+}

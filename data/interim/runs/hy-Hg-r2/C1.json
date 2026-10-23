@@ -1,0 +1,13 @@
+{
+ "answer": {
+  "value": 1.0,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "All 1,064 MP-SED sediment records (a fraction of 1.0, i.e., 100%) lack geographic coordinates."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "C1",
+ "arm": "Hg",
+ "rep": 2
+}

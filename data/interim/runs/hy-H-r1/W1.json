@@ -1,0 +1,109 @@
+{
+ "plan": {
+  "op": "weser_window_ratio",
+  "args": {},
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 5237.0,
+  "n": 22,
+  "diagnostics": {
+   "predicted_at_alpha_1_6": 11.9,
+   "implied_alpha": 3.24,
+   "window_small_um": [
+    11.0,
+    500.0
+   ],
+   "window_large_um": [
+    500.0,
+    5000.0
+   ]
+  },
+  "provenance": [
+   "PANGAEA 937685",
+   "PANGAEA 938143"
+  ]
+ },
+ "guard": {
+  "verdict": "caveat",
+  "reasons": [
+   "different_window"
+  ]
+ },
+ "H": {
+  "draft": {
+   "value": 5237.0,
+   "verdict": "caveat",
+   "caveats": [
+    "different_window"
+   ],
+   "answer": "The median factor by which small (11-500 \u00b5m) particles outnumber large (500-5000 \u00b5m) particles across the 22 matched stations is about 5237x. This is far higher than a power-law extrapolation would predict, suggesting the two size windows were not measured or reported comparably."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 5237.0,
+   "verdict": "caveat",
+   "caveats": [
+    "different_window"
+   ],
+   "answer": "The median factor by which small (11-500 \u00b5m) particles outnumber large (500-5000 \u00b5m) particles across the 22 matched stations is about 5237x. This is far higher than a power-law extrapolation would predict, suggesting the two size windows were not measured or reported comparably."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 5237.0,
+   "verdict": "caveat",
+   "caveats": [
+    "different_window"
+   ],
+   "answer": "Across the 22 matched stations in PANGAEA 937685/938143, small (11-500 \u00b5m) particles outnumbered large (500-5000 \u00b5m) ones by a median factor of about 5237. This reflects the much wider and smaller size window counted for the small fraction, so the ratio is highly sensitive to the size-window definition rather than a simple abundance difference."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 5237.0,
+   "verdict": "caveat",
+   "caveats": [
+    "different_window"
+   ],
+   "answer": "Across the 22 matched stations in PANGAEA 937685/938143, small (11-500 \u00b5m) particles outnumbered large (500-5000 \u00b5m) ones by a median factor of about 5237. This reflects the much wider and smaller size window counted for the small fraction, so the ratio is highly sensitive to the size-window definition rather than a simple abundance difference."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"weser_window_ratio\", \"args\": {}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1299,
+   "output_tokens": 22,
+   "cost_usd": 0.00866625,
+   "ms": 2238
+  },
+  {
+   "text": "{\"value\": 5237.0, \"verdict\": \"caveat\", \"caveats\": [\"different_window\"], \"answer\": \"The median factor by which small (11-500 \\u00b5m) particles outnumber large (500-5000 \\u00b5m) particles across the 22 matched stations is about 5237x. This is far higher than a power-law extrapolation would predict, suggesting the two size windows were not measured or reported comparably.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 726,
+   "output_tokens": 136,
+   "cost_usd": 0.00703,
+   "ms": 3730
+  },
+  {
+   "text": "{\"value\": 5237.0, \"verdict\": \"caveat\", \"caveats\": [\"different_window\"], \"answer\": \"Across the 22 matched stations in PANGAEA 937685/938143, small (11-500 \u00b5m) particles outnumbered large (500-5000 \u00b5m) ones by a median factor of about 5237. This reflects the much wider and smaller size window counted for the small fraction, so the ratio is highly sensitive to the size-window definition rather than a simple abundance difference.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 680,
+   "output_tokens": 442,
+   "cost_usd": 0.014450000000000001,
+   "ms": 6582
+  }
+ ],
+ "answer": {
+  "value": 5237.0,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window"
+  ],
+  "answer": "The median factor by which small (11-500 \u00b5m) particles outnumber large (500-5000 \u00b5m) particles across the 22 matched stations is about 5237x. This is far higher than a power-law extrapolation would predict, suggesting the two size windows were not measured or reported comparably."
+ },
+ "qid": "W1",
+ "arm": "H",
+ "rep": 1
+}

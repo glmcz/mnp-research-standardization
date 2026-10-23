@@ -1,0 +1,13 @@
+{
+ "answer": {
+  "value": -0.02,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Spearman's rho between sampling year and concentration is -0.02 (p=0.12, n=6135), indicating no statistically significant monotonic trend from 1986 to 2008."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "T3",
+ "arm": "Hng",
+ "rep": 2
+}

@@ -1,0 +1,87 @@
+{
+ "plan": {
+  "op": "reported_share",
+  "args": {
+   "condition": "ionic_strength"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 0.081,
+  "n": 467,
+  "diagnostics": {
+   "papers_reporting": 38
+  },
+  "provenance": []
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": 0.081,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "About 0.081 (38/467) of papers reporting zeta potentials state the ionic strength for at least one value."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 0.081,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "About 0.081 (38/467) of papers reporting zeta potentials state the ionic strength for at least one value."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 0.081,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "About 8.1% (38 of 467) of papers reporting zeta potentials specify the ionic strength for at least one value."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 0.081,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "About 8.1% (38 of 467) of papers reporting zeta potentials specify the ionic strength for at least one value."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"reported_share\", \"args\": {\"condition\": \"ionic_strength\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1265,
+   "output_tokens": 30,
+   "cost_usd": 0.0013915,
+   "ms": 1891
+  },
+  {
+   "text": "{\"value\": 0.081, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"About 0.081 (38/467) of papers reporting zeta potentials state the ionic strength for at least one value.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 607,
+   "output_tokens": 69,
+   "cost_usd": 0.00476,
+   "ms": 2114
+  },
+  {
+   "text": "{\"value\": 0.081, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"About 8.1% (38 of 467) of papers reporting zeta potentials specify the ionic strength for at least one value.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 564,
+   "output_tokens": 182,
+   "cost_usd": 0.007370000000000001,
+   "ms": 3434
+  }
+ ],
+ "answer": {
+  "value": 0.081,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "About 0.081 (38/467) of papers reporting zeta potentials state the ionic strength for at least one value."
+ },
+ "qid": "Z4",
+ "arm": "H",
+ "rep": 2
+}

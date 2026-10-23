@@ -1,0 +1,24 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"refuse\", \"caveats\": [\"single_paper\"], \"answer\": \"I don't have reliable knowledge of the specific fraction of records lacking a sampling method in the Wu et al. soil microplastic compilation. No data was provided to verify this figure.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 508,
+   "output_tokens": 95,
+   "cost_usd": 0.004914999999999999,
+   "ms": 2634
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "single_paper"
+  ],
+  "answer": "I don't have reliable knowledge of the specific fraction of records lacking a sampling method in the Wu et al. soil microplastic compilation. No data was provided to verify this figure."
+ },
+ "ungrounded": null,
+ "qid": "C2",
+ "arm": "N0",
+ "rep": 0
+}

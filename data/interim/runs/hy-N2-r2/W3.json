@@ -1,0 +1,27 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"caveat\", \"caveats\": [\"different_window\", \"method_mix\", \"sampling_area_shift\", \"not_comparable\"], \"answer\": \"In principle a single power-law slope lets you rescale abundance between size windows, but pump vs net samples differ in sampling area/efficiency and the true slope often breaks or shifts across the 500 um boundary, so a naive conversion is unreliable without site-specific fitting. A nominal conversion could be computed, but it should be treated as a rough estimate rather than a validated count.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 526,
+   "output_tokens": 180,
+   "cost_usd": 0.007130000000000001,
+   "ms": 3503
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window",
+   "method_mix",
+   "sampling_area_shift",
+   "not_comparable"
+  ],
+  "answer": "In principle a single power-law slope lets you rescale abundance between size windows, but pump vs net samples differ in sampling area/efficiency and the true slope often breaks or shifts across the 500 um boundary, so a naive conversion is unreliable without site-specific fitting. A nominal conversion could be computed, but it should be treated as a rough estimate rather than a validated count."
+ },
+ "ungrounded": [],
+ "qid": "W3",
+ "arm": "N2",
+ "rep": 2
+}

@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 0.081,
+  "verdict": "caveat",
+  "caveats": [
+   "window_unreported"
+  ],
+  "answer": "About 0.081 (38 of 467) of papers reporting zeta potentials specify the ionic strength for at least one value, but the measurement conditions for the remaining papers are unreported."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "Z4",
+ "arm": "Hg",
+ "rep": 1
+}

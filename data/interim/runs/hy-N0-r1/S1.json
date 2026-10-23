@@ -1,0 +1,25 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"refuse\", \"caveats\": [\"method_mix\", \"not_comparable\"], \"answer\": \"NCEI's microplastic database compiles heterogeneous studies with vastly different sampling, extraction, and counting methods, so even same-mesh-net pairs near in space/time often differ by orders of magnitude due to non-harmonized protocols rather than true environmental variation. No single validated median factor across such pairs has been established in the literature.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 524,
+   "output_tokens": 153,
+   "cost_usd": 0.006445000000000001,
+   "ms": 3019
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "method_mix",
+   "not_comparable"
+  ],
+  "answer": "NCEI's microplastic database compiles heterogeneous studies with vastly different sampling, extraction, and counting methods, so even same-mesh-net pairs near in space/time often differ by orders of magnitude due to non-harmonized protocols rather than true environmental variation. No single validated median factor across such pairs has been established in the literature."
+ },
+ "ungrounded": null,
+ "qid": "S1",
+ "arm": "N0",
+ "rep": 1
+}

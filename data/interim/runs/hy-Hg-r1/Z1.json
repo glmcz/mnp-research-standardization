@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 67.0,
+  "verdict": "caveat",
+  "caveats": [
+   "liquid_dependent"
+  ],
+  "answer": "Of 117 reported zeta potentials for amine-functionalised PS nanoparticles, 67 are negative, so despite their amine groups they are not consistently positively charged. The share of negative readings varies strongly by medium (e.g., 100% in biofluids vs 44% in DI water), so charge sign depends heavily on the surrounding liquid."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "Z1",
+ "arm": "Hg",
+ "rep": 1
+}

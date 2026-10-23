@@ -1,0 +1,28 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"caveat\", \"caveats\": [\"different_window\", \"method_mix\"], \"answer\": \"Counts from a 0.333 mm net and a 0.300 mm net are not directly comparable because smaller mesh captures more small particles, inflating counts; a size-distribution-dependent correction factor (commonly cited up to roughly 2-3x) is needed to convert 0.333 mm counts to an equivalent 0.300 mm-window estimate. No single universal factor exists since it depends on the particle size distribution of each study.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 560,
+   "output_tokens": 181,
+   "cost_usd": 0.007325,
+   "ms": 3362
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window",
+   "method_mix"
+  ],
+  "answer": "Counts from a 0.333 mm net and a 0.300 mm net are not directly comparable because smaller mesh captures more small particles, inflating counts; a size-distribution-dependent correction factor (commonly cited up to roughly 2-3x) is needed to convert 0.333 mm counts to an equivalent 0.300 mm-window estimate. No single universal factor exists since it depends on the particle size distribution of each study."
+ },
+ "ungrounded": [
+  2.0,
+  3.0
+ ],
+ "qid": "W2",
+ "arm": "N2",
+ "rep": 1
+}

@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 5237.0,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window"
+  ],
+  "answer": "The median factor by which small (11-500 \u00b5m) particles outnumber large (500-5000 \u00b5m) particles across the 22 matched stations is about 5237x. This is far higher than a power-law extrapolation would predict, suggesting the two size windows were not measured or reported comparably."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "W1",
+ "arm": "Hng",
+ "rep": 1
+}

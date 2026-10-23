@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": -0.02,
+  "verdict": "caveat",
+  "caveats": [
+   "sampling_area_shift"
+  ],
+  "answer": "Spearman's rho is -0.02 (p=0.12), indicating no significant monotonic trend in concentration over 1986-2008. However, the sampling centroid shifted ~194 km over the period, which could confound any trend interpretation."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "T3",
+ "arm": "Hg",
+ "rep": 1
+}

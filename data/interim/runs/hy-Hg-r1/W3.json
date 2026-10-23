@@ -1,0 +1,16 @@
+{
+ "answer": {
+  "value": 0.233,
+  "verdict": "refuse",
+  "caveats": [
+   "different_window",
+   "window_unreported"
+  ],
+  "answer": "The pump (11-500 um) and net (500-5000 um) samples cover different size windows, and the conversion factor is too uncertain (0.01-0.233) to reliably convert one count into the other's window. No single conversion number can be given."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "W3",
+ "arm": "Hg",
+ "rep": 1
+}

@@ -1,0 +1,122 @@
+{
+ "plan": {
+  "op": "period_change",
+  "args": {
+   "period_from": 2000,
+   "period_to": 2020,
+   "per": "record"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 93.7,
+  "n": 3302,
+  "diagnostics": {
+   "median_from": 0.00214,
+   "median_to": 0.200429,
+   "studies_from": 3,
+   "studies_to": 17,
+   "studies_in_both": 0
+  },
+  "provenance": [
+   "https://doi.org/10.1007/s10661-022-10468-z",
+   "https://doi.org/10.1007/s11356-022-24998-z",
+   "https://doi.org/10.1007/s12665-024-12042-x",
+   "https://doi.org/10.1007/s12665-025-12462-3",
+   "https://doi.org/10.1007/s12665-025-12773-5",
+   "https://doi.org/10.1007/s43217-023-00131-z",
+   "https://doi.org/10.1016/j.envpol.2022.120702",
+   "https://doi.org/10.1016/j.marpolbul.2021.112210",
+   "https://doi.org/10.1016/j.marpolbul.2022.113710",
+   "https://doi.org/10.1016/j.marpolbul.2022.113940",
+   "https://doi.org/10.1016/j.marpolbul.2022.114179",
+   "https://doi.org/10.1016/j.marpolbul.2022.114452"
+  ]
+ },
+ "guard": {
+  "verdict": "caveat",
+  "reasons": [
+   "composition_shift"
+  ]
+ },
+ "H": {
+  "draft": {
+   "value": 93.7,
+   "verdict": "caveat",
+   "caveats": [
+    "composition_shift"
+   ],
+   "answer": "The median ocean-water concentration rose by a factor of about 93.7 (0.00214 to 0.200429 pieces/m3) from 2000-2004 to 2020-2024, but this does not show microplastic pollution itself rose by that factor, since the samples come from entirely different sets of studies (3 vs. 17, none overlapping) with likely different locations and methods."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 93.7,
+   "verdict": "caveat",
+   "caveats": [
+    "composition_shift"
+   ],
+   "answer": "The median ocean-water concentration rose by a factor of about 93.7 (0.00214 to 0.200429 pieces/m3) from 2000-2004 to 2020-2024, but this does not show microplastic pollution itself rose by that factor, since the samples come from entirely different sets of studies (3 vs. 17, none overlapping) with likely different locations and methods."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 93.7,
+   "verdict": "caveat",
+   "caveats": [
+    "composition_shift",
+    "sampling_area_shift",
+    "method_mix"
+   ],
+   "answer": "The median concentration rose by a factor of about 93.7x (from 0.00214 to 0.200429 pieces/m3), but this comes from only 3 studies in 2000-2004 versus 17 in 2020-2024 with no overlapping studies, so it reflects differences in sampling locations, methods, and study composition rather than a true temporal trend in ocean microplastic levels."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 93.7,
+   "verdict": "caveat",
+   "caveats": [
+    "composition_shift",
+    "sampling_area_shift",
+    "method_mix"
+   ],
+   "answer": "The median concentration rose by a factor of about 93.7x (from 0.00214 to 0.200429 pieces/m3), but this comes from only 3 studies in 2000-2004 versus 17 in 2020-2024 with no overlapping studies, so it reflects differences in sampling locations, methods, and study composition rather than a true temporal trend in ocean microplastic levels."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"period_change\", \"args\": {\"period_from\": 2000, \"period_to\": 2020, \"per\": \"record\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1314,
+   "output_tokens": 41,
+   "cost_usd": 0.0016910000000000002,
+   "ms": 1922
+  },
+  {
+   "text": "{\"value\": 93.7, \"verdict\": \"caveat\", \"caveats\": [\"composition_shift\"], \"answer\": \"The median ocean-water concentration rose by a factor of about 93.7 (0.00214 to 0.200429 pieces/m3) from 2000-2004 to 2020-2024, but this does not show microplastic pollution itself rose by that factor, since the samples come from entirely different sets of studies (3 vs. 17, none overlapping) with likely different locations and methods.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1007,
+   "output_tokens": 161,
+   "cost_usd": 0.00906,
+   "ms": 3074
+  },
+  {
+   "text": "{\"value\": 93.7, \"verdict\": \"caveat\", \"caveats\": [\"composition_shift\", \"sampling_area_shift\", \"method_mix\"], \"answer\": \"The median concentration rose by a factor of about 93.7x (from 0.00214 to 0.200429 pieces/m3), but this comes from only 3 studies in 2000-2004 versus 17 in 2020-2024 with no overlapping studies, so it reflects differences in sampling locations, methods, and study composition rather than a true temporal trend in ocean microplastic levels.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 959,
+   "output_tokens": 180,
+   "cost_usd": 0.009295000000000001,
+   "ms": 3526
+  }
+ ],
+ "answer": {
+  "value": 93.7,
+  "verdict": "caveat",
+  "caveats": [
+   "composition_shift"
+  ],
+  "answer": "The median ocean-water concentration rose by a factor of about 93.7 (0.00214 to 0.200429 pieces/m3) from 2000-2004 to 2020-2024, but this does not show microplastic pollution itself rose by that factor, since the samples come from entirely different sets of studies (3 vs. 17, none overlapping) with likely different locations and methods."
+ },
+ "qid": "T1",
+ "arm": "H",
+ "rep": 2
+}

@@ -1,0 +1,129 @@
+{
+ "plan": {
+  "op": "colocated_agreement",
+  "args": {
+   "km": 50,
+   "days": 365,
+   "same_method": true,
+   "region": "Mediterranean Sea"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 3.92,
+  "n": 550,
+  "diagnostics": {
+   "p90_fold": 21.4,
+   "same_method": true,
+   "excluded_held_twice": 0
+  },
+  "provenance": [
+   "https://doi.org/10.1007/s11356-015-4453-3",
+   "https://doi.org/10.1016/j.envpol.2022.120702",
+   "https://doi.org/10.1016/j.marpolbul.2019.01.053",
+   "https://doi.org/10.1016/j.marpolbul.2019.110572",
+   "https://doi.org/10.1016/j.marpolbul.2020.111515",
+   "https://doi.org/10.1016/j.scitotenv.2022.155958",
+   "https://doi.org/10.1038/srep37551",
+   "https://doi.org/10.1088/1748-9326/ac5df1",
+   "https://doi.org/10.1371/journal.pone.0121762",
+   "https://doi.org/10.1371/journal.pone.0161581",
+   "https://doi.org/10.25921/d1bs-3m40",
+   "https://doi.org/10.3389/fmars.2021.699000"
+  ]
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": 3.92,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Among 550 same-method Mediterranean ocean-water sample pairs within 50 km and one year, the median factor between paired values is 3.92 (90th percentile ~21.4-fold)."
+  },
+  "draft_ungrounded": [
+   90.0
+  ],
+  "final": {
+   "value": 3.92,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Among 550 independent same-method ocean-water sample pairs in the Mediterranean Sea within 50 km and one year, the median factor between their values is 3.92."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 3.92,
+   "verdict": "caveat",
+   "caveats": [
+    "sampling_area_shift"
+   ],
+   "answer": "The median factor between independent same-method ocean-water samples in the Mediterranean (within 50 km, one year) is 3.92x, based on 550 pairs across 12 studies. This reflects natural spatial/temporal variability even under matched methodology, so individual pairwise comparisons can still differ substantially (p90 ~21.4x)."
+  },
+  "draft_ungrounded": [
+   12.0
+  ],
+  "final": {
+   "value": 3.92,
+   "verdict": "caveat",
+   "caveats": [
+    "sampling_area_shift"
+   ],
+   "answer": "(templated: the composer's text was not grounded)"
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"colocated_agreement\", \"args\": {\"km\": 50, \"days\": 365, \"same_method\": true, \"region\": \"Mediterranean Sea\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1272,
+   "output_tokens": 54,
+   "cost_usd": 0.0092975,
+   "ms": 2167
+  },
+  {
+   "text": "{\"value\": 3.92, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"Among 550 same-method Mediterranean ocean-water sample pairs within 50 km and one year, the median factor between paired values is 3.92 (90th percentile ~21.4-fold).\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 928,
+   "output_tokens": 96,
+   "cost_usd": 0.00704,
+   "ms": 2571
+  },
+  {
+   "text": "{\"value\": 3.92, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"Among 550 independent same-method ocean-water sample pairs in the Mediterranean Sea within 50 km and one year, the median factor between their values is 3.92.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 956,
+   "output_tokens": 86,
+   "cost_usd": 0.00693,
+   "ms": 2413
+  },
+  {
+   "text": "{\"value\": 3.92, \"verdict\": \"caveat\", \"caveats\": [\"sampling_area_shift\"], \"answer\": \"The median factor between independent same-method ocean-water samples in the Mediterranean (within 50 km, one year) is 3.92x, based on 550 pairs across 12 studies. This reflects natural spatial/temporal variability even under matched methodology, so individual pairwise comparisons can still differ substantially (p90 ~21.4x).\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 885,
+   "output_tokens": 154,
+   "cost_usd": 0.008275000000000001,
+   "ms": 3053
+  },
+  {
+   "text": "{\"value\": 3.92, \"verdict\": \"caveat\", \"caveats\": [\"sampling_area_shift\"], \"answer\": \"Across 550 matched same-method ocean-water pairs in the Mediterranean within 50 km and one year, the median difference was about a 3.92-fold factor, though the 90th percentile reached 21.4-fold, indicating substantial spatial variability even within this proximity window.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 913,
+   "output_tokens": 341,
+   "cost_usd": 0.01309,
+   "ms": 5342
+  }
+ ],
+ "answer": {
+  "value": 3.92,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Among 550 independent same-method ocean-water sample pairs in the Mediterranean Sea within 50 km and one year, the median factor between their values is 3.92."
+ },
+ "qid": "S2",
+ "arm": "H",
+ "rep": 1
+}

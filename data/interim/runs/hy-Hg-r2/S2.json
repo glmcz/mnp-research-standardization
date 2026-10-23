@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 3.92,
+  "verdict": "caveat",
+  "caveats": [
+   "sampling_area_shift"
+  ],
+  "answer": "The median factor between independent same-method ocean-water samples within 50 km and one year in the Mediterranean Sea is 3.92x, with a p90 fold of 21.4 across 550 pairs. Spatial proximity (up to 50 km) and temporal (up to one year) windows still allow for real environmental variability driving this spread."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "S2",
+ "arm": "Hg",
+ "rep": 2
+}

@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "held_twice"
+  ],
+  "answer": "These are not independent confirmations: of the 341 shared-region records, 170 are duplicate entries held in both datasets (the same samples counted twice), with a median Reisser/Eriksen ratio of 0.98 at a median 0.79 km apart. Because the records overlap rather than being separately collected, this cannot be treated as two independent measurements confirming each other."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "D1",
+ "arm": "Hng",
+ "rep": 1
+}

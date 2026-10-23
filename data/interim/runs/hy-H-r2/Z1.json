@@ -1,0 +1,125 @@
+{
+ "plan": {
+  "op": "zeta_sign_share",
+  "args": {
+   "surface": "amine",
+   "sign": "negative",
+   "polymer": "PS"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 67,
+  "n": 117,
+  "diagnostics": {
+   "of": 117,
+   "share_by_liquid": {
+    "DI_water": 0.44,
+    "biofluid": 1.0,
+    "buffer": 0.86,
+    "culture_medium": 0.55,
+    "environmental_water": 0.5,
+    "other": 0.42,
+    "salt_solution": 0.71,
+    "unreported": 0.11
+   },
+   "papers": 33
+  },
+  "provenance": [
+   "PMC10145996",
+   "PMC10295233",
+   "PMC10522980",
+   "PMC10974996",
+   "PMC11117817",
+   "PMC11480280",
+   "PMC11615417",
+   "PMC11846901",
+   "PMC11899741",
+   "PMC12635965",
+   "PMC12890322",
+   "PMC12907071"
+  ]
+ },
+ "guard": {
+  "verdict": "caveat",
+  "reasons": [
+   "liquid_dependent"
+  ]
+ },
+ "H": {
+  "draft": {
+   "value": 67,
+   "verdict": "caveat",
+   "caveats": [
+    "liquid_dependent"
+   ],
+   "answer": "Of 117 reported zeta potentials for amine-functionalised polystyrene nanoparticles across 33 papers, 67 are negative, so despite their amine functionalisation these particles are often not measured as positively charged. The sign varies strongly with the suspending liquid (e.g., ~100% negative in biofluids vs. ~44% in DI water), so charge cannot be stated as uniformly positive."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 67.0,
+   "verdict": "caveat",
+   "caveats": [
+    "liquid_dependent"
+   ],
+   "answer": "Of 117 reported zeta potentials for amine-functionalised polystyrene nanoparticles across 33 papers, 67 are negative, so despite their amine functionalisation these particles are often not measured as positively charged. The sign varies strongly with the suspending liquid (e.g., ~100% negative in biofluids vs. ~44% in DI water), so charge cannot be stated as uniformly positive."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 67,
+   "verdict": "caveat",
+   "caveats": [
+    "liquid_dependent"
+   ],
+   "answer": "67 of the 117 reported zeta potentials for amine-functionalised polystyrene nanoparticles are negative, so a majority are negative rather than positive. Despite amine groups typically implying positive surface charge, measured zeta potential varies strongly with the suspending liquid (e.g., near 100% negative in biofluids vs only ~11% in unreported media)."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 67.0,
+   "verdict": "caveat",
+   "caveats": [
+    "liquid_dependent"
+   ],
+   "answer": "67 of the 117 reported zeta potentials for amine-functionalised polystyrene nanoparticles are negative, so a majority are negative rather than positive. Despite amine groups typically implying positive surface charge, measured zeta potential varies strongly with the suspending liquid (e.g., near 100% negative in biofluids vs only ~11% in unreported media)."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"zeta_sign_share\", \"args\": {\"surface\": \"amine\", \"sign\": \"negative\", \"polymer\": \"PS\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1280,
+   "output_tokens": 47,
+   "cost_usd": 0.0018239999999999999,
+   "ms": 2625
+  },
+  {
+   "text": "{\"value\": 67, \"verdict\": \"caveat\", \"caveats\": [\"liquid_dependent\"], \"answer\": \"Of 117 reported zeta potentials for amine-functionalised polystyrene nanoparticles across 33 papers, 67 are negative, so despite their amine functionalisation these particles are often not measured as positively charged. The sign varies strongly with the suspending liquid (e.g., ~100% negative in biofluids vs. ~44% in DI water), so charge cannot be stated as uniformly positive.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 823,
+   "output_tokens": 173,
+   "cost_usd": 0.00844,
+   "ms": 3800
+  },
+  {
+   "text": "{\"value\": 67, \"verdict\": \"caveat\", \"caveats\": [\"liquid_dependent\"], \"answer\": \"67 of the 117 reported zeta potentials for amine-functionalised polystyrene nanoparticles are negative, so a majority are negative rather than positive. Despite amine groups typically implying positive surface charge, measured zeta potential varies strongly with the suspending liquid (e.g., near 100% negative in biofluids vs only ~11% in unreported media).\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 773,
+   "output_tokens": 402,
+   "cost_usd": 0.013915,
+   "ms": 5613
+  }
+ ],
+ "answer": {
+  "value": 67.0,
+  "verdict": "caveat",
+  "caveats": [
+   "liquid_dependent"
+  ],
+  "answer": "Of 117 reported zeta potentials for amine-functionalised polystyrene nanoparticles across 33 papers, 67 are negative, so despite their amine functionalisation these particles are often not measured as positively charged. The sign varies strongly with the suspending liquid (e.g., ~100% negative in biofluids vs. ~44% in DI water), so charge cannot be stated as uniformly positive."
+ },
+ "qid": "Z1",
+ "arm": "H",
+ "rep": 2
+}

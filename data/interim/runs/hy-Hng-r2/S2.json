@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 3.92,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Among 550 pairs of independent same-method ocean-water microplastic samples in the Mediterranean Sea taken within 50 km and one year of each other, the median factor between paired values was 3.92x. The 90th percentile fold-difference was 21.4x, indicating substantial variability even under matched method/space/time conditions."
+ },
+ "calls": [],
+ "ungrounded": [
+  90.0
+ ],
+ "qid": "S2",
+ "arm": "Hng",
+ "rep": 2
+}

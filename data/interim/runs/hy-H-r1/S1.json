@@ -1,0 +1,128 @@
+{
+ "plan": {
+  "op": "colocated_agreement",
+  "args": {
+   "km": 50,
+   "days": 365,
+   "same_method": true
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 3.27,
+  "n": 981,
+  "diagnostics": {
+   "p90_fold": 17.7,
+   "same_method": true,
+   "excluded_held_twice": 258
+  },
+  "provenance": [
+   "https://doi.org/10.1007/s11356-015-4453-3",
+   "https://doi.org/10.1007/s12665-024-12042-x",
+   "https://doi.org/10.1007/s12665-025-12462-3",
+   "https://doi.org/10.1007/s12665-025-12773-5",
+   "https://doi.org/10.1016/j.envpol.2022.120702",
+   "https://doi.org/10.1016/j.marpolbul.2019.01.053",
+   "https://doi.org/10.1016/j.marpolbul.2019.110572",
+   "https://doi.org/10.1016/j.marpolbul.2020.111515",
+   "https://doi.org/10.1016/j.scitotenv.2022.155958",
+   "https://doi.org/10.1038/s41598-020-64465-8",
+   "https://doi.org/10.1038/s41598-022-17742-7",
+   "https://doi.org/10.1038/srep37551"
+  ]
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": 3.27,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Across 981 matched pairs of ocean water samples (same net type, within 50 km and one year) in NCEI, the median factor between paired values is 3.27x. The 90th percentile fold-difference reaches 17.7x, indicating substantial spread even among comparable pairs."
+  },
+  "draft_ungrounded": [
+   90.0
+  ],
+  "final": {
+   "value": 3.27,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Across 981 matched pairs of ocean water samples collected within 50 km and one year of each other using the same net type, the median factor between their reported values was 3.27."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 3.27,
+   "verdict": "caveat",
+   "caveats": [
+    "held_twice"
+   ],
+   "answer": "Across 981 matched pairs from independent studies sampling within 50 km and one year using the same net type, the median fold-difference in reported values was 3.27x (90th percentile 17.7x). Note that 258 pairs were excluded for being held twice, which may affect the representativeness of this estimate."
+  },
+  "draft_ungrounded": [
+   90.0
+  ],
+  "final": {
+   "value": 3.27,
+   "verdict": "caveat",
+   "caveats": [
+    "held_twice"
+   ],
+   "answer": "Across 981 matched pairs (same net type, within 50 km and one year) in NCEI, the median factor between values is 3.27x. Note that 258 pairs were excluded for being held twice, which may affect the representativeness of this estimate."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"colocated_agreement\", \"args\": {\"km\": 50, \"days\": 365, \"same_method\": true}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1284,
+   "output_tokens": 39,
+   "cost_usd": 0.008997499999999999,
+   "ms": 3382
+  },
+  {
+   "text": "{\"value\": 3.27, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"Across 981 matched pairs of ocean water samples (same net type, within 50 km and one year) in NCEI, the median factor between paired values is 3.27x. The 90th percentile fold-difference reaches 17.7x, indicating substantial spread even among comparable pairs.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 944,
+   "output_tokens": 123,
+   "cost_usd": 0.007795,
+   "ms": 2841
+  },
+  {
+   "text": "{\"value\": 3.27, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"Across 981 matched pairs of ocean water samples collected within 50 km and one year of each other using the same net type, the median factor between their reported values was 3.27.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 972,
+   "output_tokens": 302,
+   "cost_usd": 0.012410000000000001,
+   "ms": 4917
+  },
+  {
+   "text": "{\"value\": 3.27, \"verdict\": \"caveat\", \"caveats\": [\"held_twice\"], \"answer\": \"Across 981 matched pairs from independent studies sampling within 50 km and one year using the same net type, the median fold-difference in reported values was 3.27x (90th percentile 17.7x). Note that 258 pairs were excluded for being held twice, which may affect the representativeness of this estimate.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 901,
+   "output_tokens": 135,
+   "cost_usd": 0.00788,
+   "ms": 3042
+  },
+  {
+   "text": "{\"value\": 3.27, \"verdict\": \"caveat\", \"caveats\": [\"held_twice\"], \"answer\": \"Across 981 matched pairs (same net type, within 50 km and one year) in NCEI, the median factor between values is 3.27x. Note that 258 pairs were excluded for being held twice, which may affect the representativeness of this estimate.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 929,
+   "output_tokens": 401,
+   "cost_usd": 0.014669999999999999,
+   "ms": 5995
+  }
+ ],
+ "answer": {
+  "value": 3.27,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Across 981 matched pairs of ocean water samples collected within 50 km and one year of each other using the same net type, the median factor between their reported values was 3.27."
+ },
+ "qid": "S1",
+ "arm": "H",
+ "rep": 1
+}

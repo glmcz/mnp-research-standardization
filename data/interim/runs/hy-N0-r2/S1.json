@@ -1,0 +1,25 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"refuse\", \"caveats\": [\"method_mix\", \"not_comparable\"], \"answer\": \"NCEI's marine microplastics database compiles heterogeneous studies with inconsistent units, mesh sizes, and reporting protocols even when nets are nominally the same, so no verified median factor between paired nearby/near-contemporaneous measurements can be cited from the literature. Published comparisons instead report orders-of-magnitude variability without a single consolidated median ratio statistic.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 524,
+   "output_tokens": 169,
+   "cost_usd": 0.006845,
+   "ms": 3405
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "method_mix",
+   "not_comparable"
+  ],
+  "answer": "NCEI's marine microplastics database compiles heterogeneous studies with inconsistent units, mesh sizes, and reporting protocols even when nets are nominally the same, so no verified median factor between paired nearby/near-contemporaneous measurements can be cited from the literature. Published comparisons instead report orders-of-magnitude variability without a single consolidated median ratio statistic."
+ },
+ "ungrounded": null,
+ "qid": "S1",
+ "arm": "N0",
+ "rep": 2
+}

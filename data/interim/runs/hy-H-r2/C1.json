@@ -1,0 +1,86 @@
+{
+ "plan": {
+  "op": "completeness",
+  "args": {
+   "dataset": "mpsed",
+   "field": "lat"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 1.0,
+  "n": 1064,
+  "diagnostics": {},
+  "provenance": []
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": 1.0,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "All 1064 MP-SED sediment records (a fraction of 1.0, or 100%) lack geographic coordinates."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 1.0,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "All 1064 MP-SED sediment records (a fraction of 1.0, or 100%) lack geographic coordinates."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 1.0,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "All 1,064 MP-SED sediment records (a fraction of 1.0, i.e., 100%) lack geographic coordinates."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 1.0,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "All 1,064 MP-SED sediment records (a fraction of 1.0, i.e., 100%) lack geographic coordinates."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"completeness\", \"args\": {\"dataset\": \"mpsed\", \"field\": \"lat\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1260,
+   "output_tokens": 35,
+   "cost_usd": 0.001514,
+   "ms": 1905
+  },
+  {
+   "text": "{\"value\": 1.0, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"All 1064 MP-SED sediment records (a fraction of 1.0, or 100%) lack geographic coordinates.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 593,
+   "output_tokens": 73,
+   "cost_usd": 0.00479,
+   "ms": 2956
+  },
+  {
+   "text": "{\"value\": 1.0, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"All 1,064 MP-SED sediment records (a fraction of 1.0, i.e., 100%) lack geographic coordinates.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 550,
+   "output_tokens": 77,
+   "cost_usd": 0.004675,
+   "ms": 2279
+  }
+ ],
+ "answer": {
+  "value": 1.0,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "All 1064 MP-SED sediment records (a fraction of 1.0, or 100%) lack geographic coordinates."
+ },
+ "qid": "C1",
+ "arm": "H",
+ "rep": 2
+}

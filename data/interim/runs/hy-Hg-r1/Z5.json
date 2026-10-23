@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 34.0,
+  "verdict": "caveat",
+  "caveats": [
+   "liquid_dependent"
+  ],
+  "answer": "Yes, both report 100 nm polystyrene zeta potential under matching conditions (0.3 mM NaCl, pH 7.4, 25\u00b0C) on the same instrument, so they may be compared. The values differ by 34.0 mV (-48.7 mV vs -14.7 mV), a large discrepancy that likely reflects sensitivity of zeta potential to subtle solution or sample preparation differences."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "Z5",
+ "arm": "Hg",
+ "rep": 1
+}

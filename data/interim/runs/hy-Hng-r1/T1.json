@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 93.7,
+  "verdict": "caveat",
+  "caveats": [
+   "composition_shift"
+  ],
+  "answer": "The median concentration rose by a factor of about 93.7 (from 0.00214 to 0.200429 pieces/m3), but this comes from only 3 studies in 2000-2004 versus 17 in 2020-2024 with no overlapping studies, so the change reflects shifts in which locations/methods were sampled rather than a proven real-world increase in ocean microplastic levels."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "T1",
+ "arm": "Hng",
+ "rep": 1
+}

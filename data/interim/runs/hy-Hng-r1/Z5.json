@@ -1,0 +1,13 @@
+{
+ "answer": {
+  "value": 34.0,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Yes, the two measurements are comparable since they match in material, size, electrolyte, pH, and temperature on the same instrument. The difference between -48.7 mV and -14.7 mV is 34.0 mV."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "Z5",
+ "arm": "Hng",
+ "rep": 1
+}

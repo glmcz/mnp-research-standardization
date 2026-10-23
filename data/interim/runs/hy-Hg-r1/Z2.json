@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 0.02,
+  "verdict": "caveat",
+  "caveats": [
+   "method_mix"
+  ],
+  "answer": "Across 1046 measurements from 278 papers, log size and zeta potential show essentially no correlation (Spearman's rho = 0.02, p = 0.46), indicating zeta potential does not track particle size. This pooled result spans diverse measurement methods and conditions, limiting direct comparability across studies."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "Z2",
+ "arm": "Hg",
+ "rep": 1
+}

@@ -1,0 +1,17 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": 1.5, \"verdict\": \"caveat\", \"caveats\": [\"different_window\", \"size_distribution_assumed\", \"composition_shift\"], \"answer\": \"Counts from 0.333 mm and 0.300 mm nets are not directly comparable because smaller mesh captures additional small particles following a roughly power-law size distribution; literature suggests the 0.333 mm count may need an upward correction factor of up to about 1.5x to approximate the 0.300 mm window, but this factor varies with particle size distribution and polymer composition at each site.\"",
+   "model": "claude-sonnet-5",
+   "input_tokens": 560,
+   "output_tokens": 180,
+   "cost_usd": 0.0073,
+   "ms": 3167
+  }
+ ],
+ "answer": null,
+ "ungrounded": null,
+ "qid": "W2",
+ "arm": "N0",
+ "rep": 1
+}

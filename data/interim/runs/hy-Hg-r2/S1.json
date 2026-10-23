@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 3.27,
+  "verdict": "caveat",
+  "caveats": [
+   "held_twice"
+  ],
+  "answer": "Across 981 matched same-method pairs within 50 km and one year in NCEI, the median factor between values was 3.27x (p90 \u2248 17.7x). 258 pairs were excluded for being counted twice, so some data overlap remains a limitation."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "S1",
+ "arm": "Hg",
+ "rep": 2
+}

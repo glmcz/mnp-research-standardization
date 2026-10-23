@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 1.139,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window"
+  ],
+  "answer": "No, the counts aren't directly comparable because the two nets have different mesh sizes (0.333 mm vs 0.300 mm), capturing different size windows of microplastics. To convert the 0.333 mm count to the 0.300 mm window, apply a factor up to 1.139."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "W2",
+ "arm": "Hng",
+ "rep": 2
+}

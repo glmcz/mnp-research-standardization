@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "different_unit"
+  ],
+  "answer": "These measurements use incompatible units (microplastics/kg sediment vs. pieces/m3 water), so pollution levels cannot be directly compared. A valid comparison would require converting to a common unit or matrix."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "U1",
+ "arm": "Hg",
+ "rep": 2
+}

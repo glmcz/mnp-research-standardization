@@ -1,0 +1,99 @@
+{
+ "plan": {
+  "op": "series_trend",
+  "args": {
+   "study": "10.1126/science.1192321",
+   "statistic": "spearman"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": -0.02,
+  "n": 6135,
+  "diagnostics": {
+   "ratio_last_over_first": 1.4,
+   "spearman_rho": -0.02,
+   "p": 0.12243874226983556,
+   "year_first": 1986,
+   "year_last": 2008,
+   "centroid_shift_km": 194.0
+  },
+  "provenance": [
+   "https://doi.org/10.1126/science.1192321"
+  ]
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": -0.02,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Spearman's rho between sampling year and concentration is -0.02 (p=0.12, n=6135), indicating no statistically significant monotonic trend in NCEI's copy of the Law et al. 2010 tows."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": -0.02,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Spearman's rho between sampling year and concentration is -0.02 (p=0.12, n=6135), indicating no statistically significant monotonic trend in NCEI's copy of the Law et al. 2010 tows."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": -0.02,
+   "verdict": "caveat",
+   "caveats": [
+    "sampling_area_shift"
+   ],
+   "answer": "Spearman's rho is -0.02 (p=0.12), indicating no significant monotonic trend in concentration over 1986-2008. However, the sampling centroid shifted ~194 km over the period, which could confound any trend interpretation."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": -0.02,
+   "verdict": "caveat",
+   "caveats": [
+    "sampling_area_shift"
+   ],
+   "answer": "Spearman's rho is -0.02 (p=0.12), indicating no significant monotonic trend in concentration over 1986-2008. However, the sampling centroid shifted ~194 km over the period, which could confound any trend interpretation."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"series_trend\", \"args\": {\"study\": \"10.1126/science.1192321\", \"statistic\": \"spearman\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1328,
+   "output_tokens": 43,
+   "cost_usd": 0.009372499999999999,
+   "ms": 2138
+  },
+  {
+   "text": "{\"value\": -0.02, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"Spearman's rho between sampling year and concentration is -0.02 (p=0.12, n=6135), indicating no statistically significant monotonic trend in NCEI's copy of the Law et al. 2010 tows.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 755,
+   "output_tokens": 230,
+   "cost_usd": 0.009525,
+   "ms": 3818
+  },
+  {
+   "text": "{\"value\": -0.02, \"verdict\": \"caveat\", \"caveats\": [\"sampling_area_shift\"], \"answer\": \"Spearman's rho is -0.02 (p=0.12), indicating no significant monotonic trend in concentration over 1986-2008. However, the sampling centroid shifted ~194 km over the period, which could confound any trend interpretation.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 712,
+   "output_tokens": 226,
+   "cost_usd": 0.00921,
+   "ms": 3149
+  }
+ ],
+ "answer": {
+  "value": -0.02,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Spearman's rho between sampling year and concentration is -0.02 (p=0.12, n=6135), indicating no statistically significant monotonic trend in NCEI's copy of the Law et al. 2010 tows."
+ },
+ "qid": "T3",
+ "arm": "H",
+ "rep": 1
+}

@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 3.27,
+  "verdict": "caveat",
+  "caveats": [
+   "held_twice"
+  ],
+  "answer": "Across 981 matched pairs (same net type, within 50 km and one year) in NCEI, the median factor between values is 3.27x. Note that 258 pairs were excluded for being held twice, which may affect the representativeness of this estimate."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "S1",
+ "arm": "Hg",
+ "rep": 1
+}

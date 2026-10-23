@@ -1,0 +1,13 @@
+{
+ "answer": {
+  "value": 3.27,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Across 981 matched pairs of independent ocean water samples taken within 50 km and one year using the same net type, the median factor between their reported microplastic concentrations was 3.27."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "S1",
+ "arm": "Hng",
+ "rep": 2
+}

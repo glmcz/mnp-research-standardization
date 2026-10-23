@@ -1,0 +1,24 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": 64, \"verdict\": \"caveat\", \"caveats\": [\"liquid_dependent\"], \"answer\": \"Out of 113 reported zeta-potential values for amine-functionalised polystyrene nanoparticles, 64 are negative (and 49 positive), so the majority are actually negative. These particles are not reliably positively charged; the sign flips depending on the suspension medium (e.g., salt or culture media screen the amine charge), so a blanket 'positively charged' claim is not supported by the data.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 27611,
+   "output_tokens": 4930,
+   "cost_usd": 0.29581625,
+   "ms": 35635
+  }
+ ],
+ "answer": {
+  "value": 64,
+  "verdict": "caveat",
+  "caveats": [
+   "liquid_dependent"
+  ],
+  "answer": "Out of 113 reported zeta-potential values for amine-functionalised polystyrene nanoparticles, 64 are negative (and 49 positive), so the majority are actually negative. These particles are not reliably positively charged; the sign flips depending on the suspension medium (e.g., salt or culture media screen the amine charge), so a blanket 'positively charged' claim is not supported by the data."
+ },
+ "ungrounded": [],
+ "qid": "Z1",
+ "arm": "N2",
+ "rep": 1
+}

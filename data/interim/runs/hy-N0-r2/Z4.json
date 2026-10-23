@@ -1,0 +1,24 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"refuse\", \"caveats\": [\"window_unreported\"], \"answer\": \"There is no reliable systematic survey quantifying what fraction of zeta-potential papers report ionic strength, so no specific fraction can be given. Anecdotally many nanoplastic/microplastic zeta-potential studies omit ionic strength, but this is not a verified statistic.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 505,
+   "output_tokens": 129,
+   "cost_usd": 0.00575,
+   "ms": 2863
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "window_unreported"
+  ],
+  "answer": "There is no reliable systematic survey quantifying what fraction of zeta-potential papers report ionic strength, so no specific fraction can be given. Anecdotally many nanoplastic/microplastic zeta-potential studies omit ionic strength, but this is not a verified statistic."
+ },
+ "ungrounded": null,
+ "qid": "Z4",
+ "arm": "N0",
+ "rep": 2
+}

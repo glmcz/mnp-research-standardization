@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 3.27,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Across 981 matched pairs of ocean water samples (same net type, within 50 km and one year) in NCEI, the median factor between paired values is 3.27x. The 90th percentile fold-difference reaches 17.7x, indicating substantial spread even among comparable pairs."
+ },
+ "calls": [],
+ "ungrounded": [
+  90.0
+ ],
+ "qid": "S1",
+ "arm": "Hng",
+ "rep": 1
+}

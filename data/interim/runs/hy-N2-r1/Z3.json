@@ -1,0 +1,24 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": 21.77, \"verdict\": \"caveat\", \"caveats\": [\"single_paper\"], \"answer\": \"Nylon microplastics show a positive median zeta potential of about 21.77 mV (n=25 measurements), but 20 of those 25 values come from a single study (PMC9370135), so the finding is not robustly supported across independent papers.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 27597,
+   "output_tokens": 3984,
+   "cost_usd": 0.27207875,
+   "ms": 33454
+  }
+ ],
+ "answer": {
+  "value": 21.77,
+  "verdict": "caveat",
+  "caveats": [
+   "single_paper"
+  ],
+  "answer": "Nylon microplastics show a positive median zeta potential of about 21.77 mV (n=25 measurements), but 20 of those 25 values come from a single study (PMC9370135), so the finding is not robustly supported across independent papers."
+ },
+ "ungrounded": [],
+ "qid": "Z3",
+ "arm": "N2",
+ "rep": 1
+}

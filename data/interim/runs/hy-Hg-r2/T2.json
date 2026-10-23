@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 42.0,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window"
+  ],
+  "answer": "42 different studies contributed NCEI ocean-water samples in 2015-2019. The 2000-2004 count is not available in the provided RESULT."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "T2",
+ "arm": "Hg",
+ "rep": 2
+}

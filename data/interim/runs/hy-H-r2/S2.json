@@ -1,0 +1,119 @@
+{
+ "plan": {
+  "op": "colocated_agreement",
+  "args": {
+   "km": 50,
+   "days": 365,
+   "same_method": true,
+   "region": "Mediterranean Sea"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 3.92,
+  "n": 550,
+  "diagnostics": {
+   "p90_fold": 21.4,
+   "same_method": true,
+   "excluded_held_twice": 0
+  },
+  "provenance": [
+   "https://doi.org/10.1007/s11356-015-4453-3",
+   "https://doi.org/10.1016/j.envpol.2022.120702",
+   "https://doi.org/10.1016/j.marpolbul.2019.01.053",
+   "https://doi.org/10.1016/j.marpolbul.2019.110572",
+   "https://doi.org/10.1016/j.marpolbul.2020.111515",
+   "https://doi.org/10.1016/j.scitotenv.2022.155958",
+   "https://doi.org/10.1038/srep37551",
+   "https://doi.org/10.1088/1748-9326/ac5df1",
+   "https://doi.org/10.1371/journal.pone.0121762",
+   "https://doi.org/10.1371/journal.pone.0161581",
+   "https://doi.org/10.25921/d1bs-3m40",
+   "https://doi.org/10.3389/fmars.2021.699000"
+  ]
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": 3.92,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Among 550 pairs of independent same-method ocean-water microplastic samples in the Mediterranean Sea taken within 50 km and one year of each other, the median factor between paired values was 3.92x. The 90th percentile fold-difference was 21.4x, indicating substantial variability even under matched method/space/time conditions."
+  },
+  "draft_ungrounded": [
+   90.0
+  ],
+  "final": {
+   "value": 3.92,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Among independent same-method Mediterranean Sea ocean-water samples within 50 km and one year (n=550), the median factor between paired values is 3.92."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 3.92,
+   "verdict": "caveat",
+   "caveats": [
+    "sampling_area_shift"
+   ],
+   "answer": "The median factor between independent same-method ocean-water samples within 50 km and one year in the Mediterranean Sea is 3.92x, with a p90 fold of 21.4 across 550 pairs. Spatial proximity (up to 50 km) and temporal (up to one year) windows still allow for real environmental variability driving this spread."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 3.92,
+   "verdict": "caveat",
+   "caveats": [
+    "sampling_area_shift"
+   ],
+   "answer": "The median factor between independent same-method ocean-water samples within 50 km and one year in the Mediterranean Sea is 3.92x, with a p90 fold of 21.4 across 550 pairs. Spatial proximity (up to 50 km) and temporal (up to one year) windows still allow for real environmental variability driving this spread."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"colocated_agreement\", \"args\": {\"km\": 50, \"days\": 365, \"same_method\": true, \"region\": \"Mediterranean Sea\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1272,
+   "output_tokens": 54,
+   "cost_usd": 0.001995,
+   "ms": 2017
+  },
+  {
+   "text": "{\"value\": 3.92, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"Among 550 pairs of independent same-method ocean-water microplastic samples in the Mediterranean Sea taken within 50 km and one year of each other, the median factor between paired values was 3.92x. The 90th percentile fold-difference was 21.4x, indicating substantial variability even under matched method/space/time conditions.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 928,
+   "output_tokens": 138,
+   "cost_usd": 0.00809,
+   "ms": 5090
+  },
+  {
+   "text": "{\"value\": 3.92, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"Among independent same-method Mediterranean Sea ocean-water samples within 50 km and one year (n=550), the median factor between paired values is 3.92.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 956,
+   "output_tokens": 83,
+   "cost_usd": 0.006855,
+   "ms": 3403
+  },
+  {
+   "text": "{\"value\": 3.92, \"verdict\": \"caveat\", \"caveats\": [\"sampling_area_shift\"], \"answer\": \"The median factor between independent same-method ocean-water samples within 50 km and one year in the Mediterranean Sea is 3.92x, with a p90 fold of 21.4 across 550 pairs. Spatial proximity (up to 50 km) and temporal (up to one year) windows still allow for real environmental variability driving this spread.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 885,
+   "output_tokens": 151,
+   "cost_usd": 0.0082,
+   "ms": 3314
+  }
+ ],
+ "answer": {
+  "value": 3.92,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Among independent same-method Mediterranean Sea ocean-water samples within 50 km and one year (n=550), the median factor between paired values is 3.92."
+ },
+ "qid": "S2",
+ "arm": "H",
+ "rep": 2
+}

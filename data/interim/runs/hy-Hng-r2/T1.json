@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 93.7,
+  "verdict": "caveat",
+  "caveats": [
+   "composition_shift"
+  ],
+  "answer": "The median ocean-water concentration rose by a factor of about 93.7 (0.00214 to 0.200429 pieces/m3) from 2000-2004 to 2020-2024, but this does not show microplastic pollution itself rose by that factor, since the samples come from entirely different sets of studies (3 vs. 17, none overlapping) with likely different locations and methods."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "T1",
+ "arm": "Hng",
+ "rep": 2
+}

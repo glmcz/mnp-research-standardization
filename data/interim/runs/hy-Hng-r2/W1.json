@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 5237.0,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window"
+  ],
+  "answer": "Small particles (11-500 \u00b5m) outnumbered large ones (500-5000 \u00b5m) by a median factor of about 5237 across 22 matched stations. This comparison spans very different size windows, so the factor reflects the size-distribution slope rather than a like-for-like count."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "W1",
+ "arm": "Hng",
+ "rep": 2
+}

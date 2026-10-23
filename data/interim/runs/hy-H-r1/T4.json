@@ -1,0 +1,107 @@
+{
+ "plan": {
+  "op": "series_trend",
+  "args": {
+   "study": "10.1021/es4053076",
+   "statistic": "ratio"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 10.34,
+  "n": 2530,
+  "diagnostics": {
+   "ratio_last_over_first": 10.34,
+   "spearman_rho": 0.168,
+   "p": 2.055102826981756e-17,
+   "year_first": 2001,
+   "year_last": 2012,
+   "centroid_shift_km": 1042.0
+  },
+  "provenance": [
+   "https://doi.org/10.1021/es4053076"
+  ]
+ },
+ "guard": {
+  "verdict": "caveat",
+  "reasons": [
+   "sampling_area_shift"
+  ]
+ },
+ "H": {
+  "draft": {
+   "value": 10.34,
+   "verdict": "caveat",
+   "caveats": [
+    "sampling_area_shift"
+   ],
+   "answer": "The mean concentration in the last third of sampled years (2010-2012) is about 10.34 times higher than in the first third (2001-2003). However, this cannot be read as a clear rise in Pacific plastic because the sampling locations shifted substantially (centroid shift of ~1042 km) between periods, confounding temporal trend with spatial variation."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 10.34,
+   "verdict": "caveat",
+   "caveats": [
+    "sampling_area_shift"
+   ],
+   "answer": "The mean concentration in the last third of sampled years (2010-2012) is about 10.34 times higher than in the first third (2001-2003). However, this cannot be read as a clear rise in Pacific plastic because the sampling locations shifted substantially (centroid shift of ~1042 km) between periods, confounding temporal trend with spatial variation."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 10.34,
+   "verdict": "caveat",
+   "caveats": [
+    "sampling_area_shift"
+   ],
+   "answer": "The last third of sampled years had a mean concentration 10.34x higher than the first third, but the sampling centroid shifted ~1042 km between periods, so this large ratio likely reflects where sampling occurred rather than a true temporal rise in Pacific plastic."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 10.34,
+   "verdict": "caveat",
+   "caveats": [
+    "sampling_area_shift"
+   ],
+   "answer": "The last third of sampled years had a mean concentration 10.34x higher than the first third, but the sampling centroid shifted ~1042 km between periods, so this large ratio likely reflects where sampling occurred rather than a true temporal rise in Pacific plastic."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"series_trend\", \"args\": {\"study\": \"10.1021/es4053076\", \"statistic\": \"ratio\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1316,
+   "output_tokens": 42,
+   "cost_usd": 0.009272500000000001,
+   "ms": 2576
+  },
+  {
+   "text": "{\"value\": 10.34, \"verdict\": \"caveat\", \"caveats\": [\"sampling_area_shift\"], \"answer\": \"The mean concentration in the last third of sampled years (2010-2012) is about 10.34 times higher than in the first third (2001-2003). However, this cannot be read as a clear rise in Pacific plastic because the sampling locations shifted substantially (centroid shift of ~1042 km) between periods, confounding temporal trend with spatial variation.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 753,
+   "output_tokens": 156,
+   "cost_usd": 0.007665,
+   "ms": 2810
+  },
+  {
+   "text": "{\"value\": 10.34, \"verdict\": \"caveat\", \"caveats\": [\"sampling_area_shift\"], \"answer\": \"The last third of sampled years had a mean concentration 10.34x higher than the first third, but the sampling centroid shifted ~1042 km between periods, so this large ratio likely reflects where sampling occurred rather than a true temporal rise in Pacific plastic.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 702,
+   "output_tokens": 257,
+   "cost_usd": 0.009935,
+   "ms": 4025
+  }
+ ],
+ "answer": {
+  "value": 10.34,
+  "verdict": "caveat",
+  "caveats": [
+   "sampling_area_shift"
+  ],
+  "answer": "The mean concentration in the last third of sampled years (2010-2012) is about 10.34 times higher than in the first third (2001-2003). However, this cannot be read as a clear rise in Pacific plastic because the sampling locations shifted substantially (centroid shift of ~1042 km) between periods, confounding temporal trend with spatial variation."
+ },
+ "qid": "T4",
+ "arm": "H",
+ "rep": 1
+}

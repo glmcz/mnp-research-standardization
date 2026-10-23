@@ -1,0 +1,122 @@
+{
+ "plan": {
+  "op": "period_change",
+  "args": {
+   "period_from": 2000,
+   "period_to": 2020,
+   "per": "record"
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 93.7,
+  "n": 3302,
+  "diagnostics": {
+   "median_from": 0.00214,
+   "median_to": 0.200429,
+   "studies_from": 3,
+   "studies_to": 17,
+   "studies_in_both": 0
+  },
+  "provenance": [
+   "https://doi.org/10.1007/s10661-022-10468-z",
+   "https://doi.org/10.1007/s11356-022-24998-z",
+   "https://doi.org/10.1007/s12665-024-12042-x",
+   "https://doi.org/10.1007/s12665-025-12462-3",
+   "https://doi.org/10.1007/s12665-025-12773-5",
+   "https://doi.org/10.1007/s43217-023-00131-z",
+   "https://doi.org/10.1016/j.envpol.2022.120702",
+   "https://doi.org/10.1016/j.marpolbul.2021.112210",
+   "https://doi.org/10.1016/j.marpolbul.2022.113710",
+   "https://doi.org/10.1016/j.marpolbul.2022.113940",
+   "https://doi.org/10.1016/j.marpolbul.2022.114179",
+   "https://doi.org/10.1016/j.marpolbul.2022.114452"
+  ]
+ },
+ "guard": {
+  "verdict": "caveat",
+  "reasons": [
+   "composition_shift"
+  ]
+ },
+ "H": {
+  "draft": {
+   "value": 93.7,
+   "verdict": "caveat",
+   "caveats": [
+    "composition_shift"
+   ],
+   "answer": "The median concentration rose by a factor of about 93.7 (from 0.00214 to 0.200429 pieces/m3), but this comes from only 3 studies in 2000-2004 versus 17 in 2020-2024 with no overlapping studies, so the change reflects shifts in which locations/methods were sampled rather than a proven real-world increase in ocean microplastic levels."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 93.7,
+   "verdict": "caveat",
+   "caveats": [
+    "composition_shift"
+   ],
+   "answer": "The median concentration rose by a factor of about 93.7 (from 0.00214 to 0.200429 pieces/m3), but this comes from only 3 studies in 2000-2004 versus 17 in 2020-2024 with no overlapping studies, so the change reflects shifts in which locations/methods were sampled rather than a proven real-world increase in ocean microplastic levels."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 93.7,
+   "verdict": "caveat",
+   "caveats": [
+    "composition_shift",
+    "sampling_area_shift",
+    "method_mix"
+   ],
+   "answer": "The median rose about 93.7x from 2000-2004 to 2020-2024, but these periods are based on entirely different sets of studies (0 overlapping) with different sampling locations and methods, so this does not demonstrate a true 93.7x rise in ocean microplastic levels."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 93.7,
+   "verdict": "caveat",
+   "caveats": [
+    "composition_shift",
+    "sampling_area_shift",
+    "method_mix"
+   ],
+   "answer": "The median rose about 93.7x from 2000-2004 to 2020-2024, but these periods are based on entirely different sets of studies (0 overlapping) with different sampling locations and methods, so this does not demonstrate a true 93.7x rise in ocean microplastic levels."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"period_change\", \"args\": {\"period_from\": 2000, \"period_to\": 2020, \"per\": \"record\"}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1314,
+   "output_tokens": 41,
+   "cost_usd": 0.009235,
+   "ms": 1877
+  },
+  {
+   "text": "{\"value\": 93.7, \"verdict\": \"caveat\", \"caveats\": [\"composition_shift\"], \"answer\": \"The median concentration rose by a factor of about 93.7 (from 0.00214 to 0.200429 pieces/m3), but this comes from only 3 studies in 2000-2004 versus 17 in 2020-2024 with no overlapping studies, so the change reflects shifts in which locations/methods were sampled rather than a proven real-world increase in ocean microplastic levels.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1007,
+   "output_tokens": 164,
+   "cost_usd": 0.009135,
+   "ms": 2845
+  },
+  {
+   "text": "{\"value\": 93.7, \"verdict\": \"caveat\", \"caveats\": [\"composition_shift\", \"sampling_area_shift\", \"method_mix\"], \"answer\": \"The median rose about 93.7x from 2000-2004 to 2020-2024, but these periods are based on entirely different sets of studies (0 overlapping) with different sampling locations and methods, so this does not demonstrate a true 93.7x rise in ocean microplastic levels.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 959,
+   "output_tokens": 289,
+   "cost_usd": 0.01202,
+   "ms": 4111
+  }
+ ],
+ "answer": {
+  "value": 93.7,
+  "verdict": "caveat",
+  "caveats": [
+   "composition_shift"
+  ],
+  "answer": "The median concentration rose by a factor of about 93.7 (from 0.00214 to 0.200429 pieces/m3), but this comes from only 3 studies in 2000-2004 versus 17 in 2020-2024 with no overlapping studies, so the change reflects shifts in which locations/methods were sampled rather than a proven real-world increase in ocean microplastic levels."
+ },
+ "qid": "T1",
+ "arm": "H",
+ "rep": 1
+}

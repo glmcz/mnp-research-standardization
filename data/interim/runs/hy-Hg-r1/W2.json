@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 1.139,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window"
+  ],
+  "answer": "No, the counts aren't directly comparable because the two nets have different mesh sizes (lower size windows), so the smaller 0.300 mm net will capture more particles. Converting the 0.333 mm count to the 0.300 mm window requires a correction factor of up to 1.139."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "W2",
+ "arm": "Hg",
+ "rep": 1
+}

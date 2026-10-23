@@ -1,0 +1,26 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": null, \"verdict\": \"refuse\", \"caveats\": [\"method_mix\", \"window_unreported\", \"not_comparable\"], \"answer\": \"No specific dataset was provided, and published Mediterranean microplastic surveys vary widely in sampling depth, mesh size, and quantification method even when geographically close, making a single median 'factor' between paired samples unsupportable from memory. Reported concentration ranges across studies span orders of magnitude (often 10-100x) due to methodological differences rather than a well-defined replicate comparison.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 512,
+   "output_tokens": 177,
+   "cost_usd": 0.006985,
+   "ms": 3212
+  }
+ ],
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "method_mix",
+   "window_unreported",
+   "not_comparable"
+  ],
+  "answer": "No specific dataset was provided, and published Mediterranean microplastic surveys vary widely in sampling depth, mesh size, and quantification method even when geographically close, making a single median 'factor' between paired samples unsupportable from memory. Reported concentration ranges across studies span orders of magnitude (often 10-100x) due to methodological differences rather than a well-defined replicate comparison."
+ },
+ "ungrounded": null,
+ "qid": "S2",
+ "arm": "N0",
+ "rep": 1
+}

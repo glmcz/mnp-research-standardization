@@ -1,0 +1,17 @@
+{
+ "answer": {
+  "value": 3.76,
+  "verdict": "caveat",
+  "caveats": [
+   "method_mix"
+  ],
+  "answer": "Across 1,230 paired ocean-water comparisons within 50 km and a year from independent studies, the median factor between values is 3.76. This mixes different sampling methods, so part of the discrepancy may reflect methodological differences rather than true spatiotemporal variation."
+ },
+ "calls": [],
+ "ungrounded": [
+  1.23
+ ],
+ "qid": "S3",
+ "arm": "Hng",
+ "rep": 2
+}

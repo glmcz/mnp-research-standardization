@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 21.8,
+  "verdict": "caveat",
+  "caveats": [
+   "single_paper"
+  ],
+  "answer": "The polymer group with a positive median zeta potential is reported at 21.8 mV (n=25 across 3 papers). However, 20 of these values come from a single paper, so this result should be treated cautiously."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "Z3",
+ "arm": "Hng",
+ "rep": 1
+}

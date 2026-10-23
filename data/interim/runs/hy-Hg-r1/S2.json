@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 3.92,
+  "verdict": "caveat",
+  "caveats": [
+   "sampling_area_shift"
+  ],
+  "answer": "(templated: the composer's text was not grounded)"
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "S2",
+ "arm": "Hg",
+ "rep": 1
+}

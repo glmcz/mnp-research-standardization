@@ -1,0 +1,13 @@
+{
+ "answer": {
+  "value": 34.0,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Yes, these two zeta potential measurements (same particle, medium, pH, temperature, and instrument) are comparable. They differ by 34.0 mV (-48.7 mV vs -14.7 mV)."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "Z5",
+ "arm": "Hng",
+ "rep": 2
+}

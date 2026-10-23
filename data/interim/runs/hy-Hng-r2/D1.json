@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": null,
+  "verdict": "refuse",
+  "caveats": [
+   "held_twice"
+  ],
+  "answer": "These are not independent confirmations: the two datasets share 170 of 341 records (median distance 0.79 km, median ratio 0.98), indicating the same samples were likely entered into NCEI twice under both papers. This double-counting means the apparent agreement reflects duplicated data, not independent validation."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "D1",
+ "arm": "Hng",
+ "rep": 2
+}

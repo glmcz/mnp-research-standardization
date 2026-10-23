@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 0.98,
+  "verdict": "caveat",
+  "caveats": [
+   "held_twice"
+  ],
+  "answer": "No \u2014 the median Reisser/Eriksen ratio is 0.98 for 170 shared samples located a median of only 0.79 km apart, indicating these are largely the same measurements counted in both datasets rather than independent confirmations. This near-1:1 match with near-zero spatial separation points to data duplication, not independent corroboration."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "D1",
+ "arm": "Hg",
+ "rep": 1
+}

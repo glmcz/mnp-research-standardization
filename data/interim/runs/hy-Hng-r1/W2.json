@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 1.139,
+  "verdict": "caveat",
+  "caveats": [
+   "different_window"
+  ],
+  "answer": "No, counts from a 0.333 mm net cannot be directly compared to a 0.300 mm net count because the smaller mesh captures additional smaller particles. Converting from the 0.333 mm count to the 0.300 mm window requires a factor whose upper end is 1.139."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "W2",
+ "arm": "Hng",
+ "rep": 1
+}

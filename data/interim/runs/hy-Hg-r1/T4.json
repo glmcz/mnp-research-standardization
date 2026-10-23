@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 10.34,
+  "verdict": "caveat",
+  "caveats": [
+   "sampling_area_shift"
+  ],
+  "answer": "The last third of sampled years had a mean concentration 10.34x higher than the first third, but the sampling centroid shifted ~1042 km between periods, so this large ratio likely reflects where sampling occurred rather than a true temporal rise in Pacific plastic."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "T4",
+ "arm": "Hg",
+ "rep": 1
+}

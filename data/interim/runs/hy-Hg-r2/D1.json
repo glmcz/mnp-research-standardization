@@ -1,0 +1,15 @@
+{
+ "answer": {
+  "value": 0.98,
+  "verdict": "caveat",
+  "caveats": [
+   "held_twice"
+  ],
+  "answer": "The median Reisser/Eriksen ratio for the 170 shared samples (median separation ~0.79 km) is 0.98, suggesting these are largely the same underlying tows reported in both papers rather than two independent measurements. So this is not true independent confirmation but likely duplicated data entries in NCEI."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "D1",
+ "arm": "Hg",
+ "rep": 2
+}

@@ -1,0 +1,17 @@
+{
+ "answer": {
+  "value": 93.7,
+  "verdict": "caveat",
+  "caveats": [
+   "composition_shift",
+   "sampling_area_shift",
+   "method_mix"
+  ],
+  "answer": "The median rose about 93.7x from 2000-2004 to 2020-2024, but these periods are based on entirely different sets of studies (0 overlapping) with different sampling locations and methods, so this does not demonstrate a true 93.7x rise in ocean microplastic levels."
+ },
+ "calls": [],
+ "ungrounded": [],
+ "qid": "T1",
+ "arm": "Hg",
+ "rep": 1
+}

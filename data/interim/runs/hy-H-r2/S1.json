@@ -1,0 +1,108 @@
+{
+ "plan": {
+  "op": "colocated_agreement",
+  "args": {
+   "km": 50,
+   "days": 365,
+   "same_method": true
+  },
+  "problems": [],
+  "matches_ref": true
+ },
+ "result": {
+  "value": 3.27,
+  "n": 981,
+  "diagnostics": {
+   "p90_fold": 17.7,
+   "same_method": true,
+   "excluded_held_twice": 258
+  },
+  "provenance": [
+   "https://doi.org/10.1007/s11356-015-4453-3",
+   "https://doi.org/10.1007/s12665-024-12042-x",
+   "https://doi.org/10.1007/s12665-025-12462-3",
+   "https://doi.org/10.1007/s12665-025-12773-5",
+   "https://doi.org/10.1016/j.envpol.2022.120702",
+   "https://doi.org/10.1016/j.marpolbul.2019.01.053",
+   "https://doi.org/10.1016/j.marpolbul.2019.110572",
+   "https://doi.org/10.1016/j.marpolbul.2020.111515",
+   "https://doi.org/10.1016/j.scitotenv.2022.155958",
+   "https://doi.org/10.1038/s41598-020-64465-8",
+   "https://doi.org/10.1038/s41598-022-17742-7",
+   "https://doi.org/10.1038/srep37551"
+  ]
+ },
+ "guard": {
+  "verdict": "allow",
+  "reasons": []
+ },
+ "H": {
+  "draft": {
+   "value": 3.27,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Across 981 matched pairs of independent ocean water samples taken within 50 km and one year using the same net type, the median factor between their reported microplastic concentrations was 3.27."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 3.27,
+   "verdict": "allow",
+   "caveats": [],
+   "answer": "Across 981 matched pairs of independent ocean water samples taken within 50 km and one year using the same net type, the median factor between their reported microplastic concentrations was 3.27."
+  }
+ },
+ "Hg": {
+  "draft": {
+   "value": 3.27,
+   "verdict": "caveat",
+   "caveats": [
+    "held_twice"
+   ],
+   "answer": "Across 981 matched same-method pairs within 50 km and one year in NCEI, the median factor between values was 3.27x (p90 \u2248 17.7x). 258 pairs were excluded for being counted twice, so some data overlap remains a limitation."
+  },
+  "draft_ungrounded": [],
+  "final": {
+   "value": 3.27,
+   "verdict": "caveat",
+   "caveats": [
+    "held_twice"
+   ],
+   "answer": "Across 981 matched same-method pairs within 50 km and one year in NCEI, the median factor between values was 3.27x (p90 \u2248 17.7x). 258 pairs were excluded for being counted twice, so some data overlap remains a limitation."
+  }
+ },
+ "calls": [
+  {
+   "text": "{\"op\": \"colocated_agreement\", \"args\": {\"km\": 50, \"days\": 365, \"same_method\": true}}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 1284,
+   "output_tokens": 39,
+   "cost_usd": 0.0016259999999999998,
+   "ms": 2089
+  },
+  {
+   "text": "{\"value\": 3.27, \"verdict\": \"allow\", \"caveats\": [], \"answer\": \"Across 981 matched pairs of independent ocean water samples taken within 50 km and one year using the same net type, the median factor between their reported microplastic concentrations was 3.27.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 944,
+   "output_tokens": 207,
+   "cost_usd": 0.009895000000000001,
+   "ms": 4750
+  },
+  {
+   "text": "{\"value\": 3.27, \"verdict\": \"caveat\", \"caveats\": [\"held_twice\"], \"answer\": \"Across 981 matched same-method pairs within 50 km and one year in NCEI, the median factor between values was 3.27x (p90 \u2248 17.7x). 258 pairs were excluded for being counted twice, so some data overlap remains a limitation.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 901,
+   "output_tokens": 123,
+   "cost_usd": 0.00758,
+   "ms": 3645
+  }
+ ],
+ "answer": {
+  "value": 3.27,
+  "verdict": "allow",
+  "caveats": [],
+  "answer": "Across 981 matched pairs of independent ocean water samples taken within 50 km and one year using the same net type, the median factor between their reported microplastic concentrations was 3.27."
+ },
+ "qid": "S1",
+ "arm": "H",
+ "rep": 2
+}

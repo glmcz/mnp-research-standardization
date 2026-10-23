@@ -1,0 +1,26 @@
+{
+ "calls": [
+  {
+   "text": "{\"value\": 5, \"verdict\": \"caveat\", \"caveats\": [\"liquid_dependent\", \"single_paper\", \"not_comparable\"], \"answer\": \"Amine-modified (aminated) polystyrene nanoplastics are the main polymer group reported with a positive median zeta potential, roughly around +5 mV in deionized/low-ionic-strength water. This figure is not robust: zeta potential is highly dependent on medium ionic strength, pH, and surface functionalization, and literature values vary widely across studies and conditions.\"}",
+   "model": "claude-sonnet-5",
+   "input_tokens": 506,
+   "output_tokens": 175,
+   "cost_usd": 0.006905,
+   "ms": 3372
+  }
+ ],
+ "answer": {
+  "value": 5,
+  "verdict": "caveat",
+  "caveats": [
+   "liquid_dependent",
+   "single_paper",
+   "not_comparable"
+  ],
+  "answer": "Amine-modified (aminated) polystyrene nanoplastics are the main polymer group reported with a positive median zeta potential, roughly around +5 mV in deionized/low-ionic-strength water. This figure is not robust: zeta potential is highly dependent on medium ionic strength, pH, and surface functionalization, and literature values vary widely across studies and conditions."
+ },
+ "ungrounded": null,
+ "qid": "Z3",
+ "arm": "N0",
+ "rep": 1
+}

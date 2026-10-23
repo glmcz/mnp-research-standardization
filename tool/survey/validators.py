@@ -215,6 +215,9 @@ def pooled_periods(t: pd.DataFrame, width: int = 5) -> pd.DataFrame:
     return a.join(b).reset_index()
 
 
-def completeness(t: pd.DataFrame, fields=("lat", "date", "year", "size_min_um", "method", "study")):
+def completeness(
+    t: pd.DataFrame,
+    fields=("lat", "date", "year", "size_min_um", "size_max_um", "method", "study"),
+):
     """Share of records missing each field, per dataset. Absence is a finding, not noise."""
     return t.groupby("dataset")[list(fields)].agg(lambda s: float(s.isna().mean())).round(4)

@@ -1,7 +1,14 @@
 {
  "records": {
+  "air_fu2023": 62,
+  "emodnet": 217,
   "mpsed": 1064,
   "ncei": 18461,
+  "pangaea_882220": 343,
+  "pangaea_928578": 29,
+  "pangaea_941076": 34,
+  "pangaea_941107": 79,
+  "pangaea_990052": 20,
   "pangaea_weser": 46,
   "soil": 6197
  },
@@ -9,21 +16,21 @@
   "km": 50,
   "days": 365,
   "same_method": true,
-  "pairs": 981,
+  "pairs": 993,
   "excluded_held_twice": 258,
-  "study_pairs": 18,
-  "median_fold": 3.27,
-  "p90_fold": 17.7
+  "study_pairs": 19,
+  "median_fold": 3.25,
+  "p90_fold": 17.9
  },
  "any_method_50km_365d": {
   "km": 50,
   "days": 365,
   "same_method": false,
-  "pairs": 1230,
+  "pairs": 1245,
   "excluded_held_twice": 636,
-  "study_pairs": 35,
-  "median_fold": 3.76,
-  "p90_fold": 50.1
+  "study_pairs": 37,
+  "median_fold": 3.72,
+  "p90_fold": 48.6
  },
  "mediterranean_same_method_50km_365d": {
   "km": 50,
@@ -34,5 +41,56 @@
   "study_pairs": 13,
   "median_fold": 3.92,
   "p90_fold": 21.4
+ },
+ "across_datasets": {
+  "km": 50,
+  "days": 365,
+  "pairs": 3,
+  "excluded_held_twice": 0,
+  "compared": 3,
+  "refused": 0,
+  "median_fold": 1.18,
+  "p90_fold": 1.5,
+  "by_dataset_pair": [
+   {
+    "datasets": "emodnet vs ncei",
+    "decision": "caveat",
+    "reason": "different_window",
+    "pairs": 3,
+    "median_years_apart": 0.0,
+    "median_fold": 1.18,
+    "p90_fold": 1.5
+   }
+  ]
+ },
+ "across_datasets_100km_any_year": {
+  "km": 100,
+  "days": null,
+  "pairs": 70,
+  "excluded_held_twice": 0,
+  "compared": 57,
+  "refused": 13,
+  "median_fold": 1.52,
+  "p90_fold": 7.2,
+  "by_dataset_pair": [
+   {
+    "datasets": "emodnet vs ncei",
+    "decision": "caveat",
+    "reason": "different_window",
+    "pairs": 57,
+    "median_years_apart": 2.0,
+    "median_fold": 1.52,
+    "p90_fold": 7.2
+   },
+   {
+    "datasets": "ncei vs pangaea_990052",
+    "decision": "refuse",
+    "reason": "window_unreported",
+    "pairs": 13,
+    "median_years_apart": 8.0,
+    "median_fold": 61943.83,
+    "p90_fold": 281014.7
+   }
+  ]
  }
 }

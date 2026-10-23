@@ -10,6 +10,7 @@ import json
 import sys
 from pathlib import Path
 
+import numpy as np
 import pytest
 
 HERE = Path(__file__).resolve().parent
@@ -33,6 +34,29 @@ def test_every_source_record_arrives_once(records) -> None:
     assert records.record_id.is_unique
 
 
+def test_the_datasets_added_after_p2_arrive_whole(records) -> None:
+    import struct
+    import zipfile
+
+    raw = zipfile.ZipFile(table.EMODNET).read("mlf_density_nb_m3_monitoring.dbf")
+    n = records.groupby("dataset").size()
+    assert n["emodnet"] == struct.unpack("<I", raw[4:8])[0]
+    with open(table.AIR, encoding="utf-8") as f:
+        air = [r for r in csv.DictReader(f) if r["measure"] == "concentration"]
+    assert n["air_fu2023"] == sum(r["number_units"] == "particle/m3" for r in air)
+    e = records[records.dataset == "emodnet"]
+    # every EMODnet tow in this file was taken in the Baltic and the Kattegat
+    assert e.lat.between(53, 66).all() and e.lon.between(9, 31).all()
+
+
+def test_a_tow_line_is_placed_at_its_midpoint() -> None:
+    import struct
+
+    line = struct.pack("<bII", 1, 2 | 0x20000000, 4326) + struct.pack("<I2d2d", 2, 10, 50, 12, 52)
+    assert table.wkb_midpoint(line.hex()) == (51.0, 11.0)
+    assert all(map(np.isnan, table.wkb_midpoint("zz")))
+
+
 def test_a_field_the_source_lacks_stays_empty(records) -> None:
     m = records[records.dataset == "mpsed"]
     assert m.lat.isna().all() and m.lon.isna().all()
@@ -42,7 +66,6 @@ def test_a_field_the_source_lacks_stays_empty(records) -> None:
     assert n.size_max_um.eq(5000).all() and n["flags"].eq("upper_by_database_rule").all()
 
 
-import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 import validators as v  # noqa: E402
 
@@ -138,3 +161,36 @@ def test_a_tow_that_caught_nothing_counts_in_a_series() -> None:
     rows = [("Z", "w", None, 0, 0, val, "net", y) for y, val in
             [(2000, 0.0), (2000, 2.0), (2001, 5.0), (2002, 1.0), (2002, 1.0)]]  # fmt: skip
     assert v.series_change(_toy(rows)).ratio_last_over_first.iat[0] == 1.0
+
+
+def test_the_found_pangaea_datasets_arrive_whole_with_their_own_window(records) -> None:
+    for pid in table.PANGAEA_FOUND:
+        text = table._pangaea_path(pid).read_text(encoding="utf-8")
+        rows = text.split("*/\n", 1)[1].strip().count("\n")  # data lines under the header
+        assert (records.dataset == f"pangaea_{pid}").sum() == rows, pid
+    w = records[records.dataset.str.startswith("pangaea_9")]
+    lower = w.groupby("dataset").size_min_um.first()
+    # the windows the datasets' own methods state: 300 um meshes, a 10 um counting limit
+    assert lower["pangaea_941076"] == 300 and lower["pangaea_990052"] == 10
+    assert w.loc[w.dataset == "pangaea_928578", "flags"].str.contains("window_unreported").all()
+
+
+def test_a_cross_dataset_ratio_is_taken_only_where_the_window_guard_allows_it() -> None:
+    import report
+
+    rows = [
+        ("A", "w", "2020-01-01", 0.0, 0.0, 1.0, "net", 2020),
+        ("B", "w", "2021-01-01", 0.0, 0.2, 2.0, "net", 2021),  # dataset y, the same window
+        ("C", "w", "2021-01-01", 0.0, 0.3, 5000.0, "pump", 2021),  # dataset z, 10 um and up
+    ]
+    t = _toy(rows).assign(
+        dataset=["x", "y", "z"], size_min_um=[330.0, 330.0, 10.0], size_max_um=5000.0
+    )
+    none = pd.DataFrame(columns=["study_a", "study_b"])
+    out = report.across_datasets(t, km=100, days=None, dup=none)
+    assert out["pairs"] == 3 and out["compared"] == 1 and out["refused"] == 2
+    assert out["median_fold"] == 2.0  # the ×5000 and ×2500 pairs never enter it
+    by = {(r["datasets"], r["decision"]): r for r in out["by_dataset_pair"]}
+    assert by[("x vs z", "refuse")]["reason"] == "window_factor_too_uncertain"
+    held = pd.DataFrame({"study_a": ["A"], "study_b": ["B"]})
+    assert report.across_datasets(t, km=100, days=None, dup=held)["compared"] == 0

@@ -1,0 +1,5 @@
+dataset,lat,date,year,size_min_um,method,study
+mpsed,1.0,1.0,0.0921,0.015,0.0,0.0
+ncei,0.0,0.0,0.0,0.0025,0.0,0.0
+pangaea_weser,1.0,0.0,0.0,0.0,0.0,0.0
+soil,0.0,1.0,0.1804,0.0455,1.0,0.0

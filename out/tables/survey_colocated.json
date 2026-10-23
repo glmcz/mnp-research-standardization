@@ -1,0 +1,38 @@
+{
+ "records": {
+  "mpsed": 1064,
+  "ncei": 18461,
+  "pangaea_weser": 46,
+  "soil": 6197
+ },
+ "same_method_50km_365d": {
+  "km": 50,
+  "days": 365,
+  "same_method": true,
+  "pairs": 981,
+  "excluded_held_twice": 258,
+  "study_pairs": 18,
+  "median_fold": 3.27,
+  "p90_fold": 17.7
+ },
+ "any_method_50km_365d": {
+  "km": 50,
+  "days": 365,
+  "same_method": false,
+  "pairs": 1230,
+  "excluded_held_twice": 636,
+  "study_pairs": 35,
+  "median_fold": 3.76,
+  "p90_fold": 50.1
+ },
+ "mediterranean_same_method_50km_365d": {
+  "km": 50,
+  "days": 365,
+  "same_method": true,
+  "pairs": 550,
+  "excluded_held_twice": 0,
+  "study_pairs": 13,
+  "median_fold": 3.92,
+  "p90_fold": 21.4
+ }
+}

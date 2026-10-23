@@ -1,0 +1,166 @@
+{
+ "prereg_commit": "08fe9a5",
+ "P7a": {
+  "tows": 6135,
+  "years": [
+   1986,
+   2008
+  ],
+  "spearman_rho": -0.0197,
+  "p": 0.12243874226983556,
+  "prediction": "|rho| < 0.1",
+  "refuted_if": "rho >= 0.2 and p < 0.001",
+  "verdict": "supported"
+ },
+ "P7b": {
+  "series": [
+   {
+    "series": "Law et al. 2010",
+    "years": 22,
+    "year_first": 1986,
+    "year_last": 2008,
+    "records": 6135,
+    "mean_first": 0.019051197943444727,
+    "mean_last": 0.026666313043478256,
+    "ratio_last_over_first": 1.3997184388425186,
+    "doi": "https://doi.org/10.1126/science.1192321",
+    "method": "Neuston net",
+    "methods_in_doi": 1
+   },
+   {
+    "series": "Law et al. 2014",
+    "years": 12,
+    "year_first": 2001,
+    "year_last": 2012,
+    "records": 2530,
+    "mean_first": 0.021575331491712705,
+    "mean_last": 0.22311866261398172,
+    "ratio_last_over_first": 10.341378193873117,
+    "doi": "https://doi.org/10.1021/es4053076",
+    "method": "Neuston net",
+    "methods_in_doi": 1
+   },
+   {
+    "series": "Oceaneye (unpublished)",
+    "years": 12,
+    "year_first": 2013,
+    "year_last": 2024,
+    "records": 1107,
+    "mean_first": 0.46062475,
+    "mean_last": 0.5575786724511931,
+    "ratio_last_over_first": 1.2104835279719404,
+    "doi": "https://doi.org/10.25921/d1bs-3m40",
+    "method": "Manta net",
+    "methods_in_doi": 1
+   },
+   {
+    "series": "Russell and Webster 2021",
+    "years": 9,
+    "year_first": 2014,
+    "year_last": 2022,
+    "records": 514,
+    "mean_first": 0.04845381456953642,
+    "mean_last": 0.04643275483870968,
+    "ratio_last_over_first": 0.9582889448688027,
+    "doi": "https://doi.org/10.1016/j.marpolbul.2021.112210",
+    "method": "Neuston net",
+    "methods_in_doi": 1
+   },
+   {
+    "series": "Goldstein et al. 2013",
+    "years": 6,
+    "year_first": 1987,
+    "year_last": 2010,
+    "records": 190,
+    "mean_first": 0.01342857142857143,
+    "mean_last": 3.4741428571428568,
+    "ratio_last_over_first": 258.7127659574467,
+    "doi": "https://doi.org/10.1371/journal.pone.0080020",
+    "method": "Manta net",
+    "methods_in_doi": 2
+   }
+  ],
+  "rises_x10_or_more": 2,
+  "prediction": "every series < x10",
+  "refuted_if": "two or more series rise x10 or more",
+  "verdict": "refuted"
+ },
+ "P7c": {
+  "periods": [
+   {
+    "period": 1970.0,
+    "records": 45,
+    "studies": 1,
+    "median_per_record": 0.003,
+    "median_per_study": 0.003
+   },
+   {
+    "period": 1985.0,
+    "records": 361,
+    "studies": 2,
+    "median_per_record": 0.00432,
+    "median_per_study": 0.00216
+   },
+   {
+    "period": 1990.0,
+    "records": 1607,
+    "studies": 1,
+    "median_per_record": 0.0027,
+    "median_per_study": 0.0027
+   },
+   {
+    "period": 1995.0,
+    "records": 1916,
+    "studies": 2,
+    "median_per_record": 0.00432,
+    "median_per_study": 0.00866
+   },
+   {
+    "period": 2000.0,
+    "records": 2185,
+    "studies": 3,
+    "median_per_record": 0.00214,
+    "median_per_study": 0.0036
+   },
+   {
+    "period": 2005.0,
+    "records": 2404,
+    "studies": 5,
+    "median_per_record": 0.00216,
+    "median_per_study": 0.01195
+   },
+   {
+    "period": 2010.0,
+    "records": 3832,
+    "studies": 24,
+    "median_per_record": 0.044992,
+    "median_per_study": 0.215088
+   },
+   {
+    "period": 2015.0,
+    "records": 3521,
+    "studies": 42,
+    "median_per_record": 0.132975,
+    "median_per_study": 0.516194
+   },
+   {
+    "period": 2020.0,
+    "records": 1117,
+    "studies": 17,
+    "median_per_record": 0.200429,
+    "median_per_study": 0.400292
+   }
+  ],
+  "pooled_ratio_last_over_2000s_per_record": 93.7,
+  "pooled_ratio_last_over_2000s_per_study": 111.2,
+  "first_period": 1970
+ },
+ "P7_secondary_law2014_zone": {
+  "chosen_after_results": true,
+  "zone": "25-41 N, 130-180 W (Law et al. 2014 abstract)",
+  "ratio_whole_series": 10.34,
+  "ratio_inside_zone": 5.29,
+  "share_in_zone_first_third": 0.218,
+  "share_in_zone_last_third": 0.363
+ }
+}

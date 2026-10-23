@@ -81,6 +81,7 @@ section.block { display: grid; gap: 14px; }
 .bar a.a3 { background: var(--ink); }
 .bar a.a4 { background: var(--absent-soft); color: var(--ink); }
 .bar a.a5 { background: var(--ink-2); }
+.bar a.a6 { background: var(--absent); }
 .acts { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 10px 18px; font-size: 0.9rem; color: var(--ink-2); }
 .acts b { color: var(--ink); }
 .acts i { display: inline-block; width: 0.9em; height: 0.9em; margin-right: 6px; vertical-align: -0.1em; }
@@ -89,6 +90,7 @@ section.block { display: grid; gap: 14px; }
 .acts i.a3 { background: var(--ink); }
 .acts i.a4 { background: var(--absent-soft); }
 .acts i.a5 { background: var(--ink-2); }
+.acts i.a6 { background: var(--absent); }
 @media (max-width: 560px) { .acts { grid-template-columns: minmax(0, 1fr); } .bar a { font-size: 0; } }
 
 /* memorise + carry home */
@@ -151,21 +153,22 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
     <p class="eyebrow">Talk script · AI conference · rehearsal copy</p>
     <h1>{{title:s1}}</h1>
     <p class="lede">{{msg:s1}}</p>
-    <p class="facts"><span>Length <b>{{talk.total}}</b></span><span><b>Five acts</b>, twenty-one slides and six in backup</span><span>Speaker: <b>{{author}}</b></span></p>
+    <p class="facts"><span>Length <b>{{talk.total}}</b></span><span><b>Six acts</b>, nineteen slides and sixteen in backup</span><span>Speaker: <b>{{author}}</b></span></p>
     <p class="intro">What to say on each slide, how long it gets, and where the clock should be when you leave it. Every number below is the number on the slide, read from the same build. Read it aloud slowly: short sentences, and a real pause where it says <span class="pause">pause</span>. Words in bold carry the stress. Under each slide, “In depth” holds what you need to explain it further: the mechanism, where each number comes from, and the hardest follow-up question.</p>
   </header>
 
   <section class="block" aria-labelledby="h-shape">
     <h2 id="h-shape">The shape of the talk</h2>
     <nav class="bar" aria-label="Time per slide">
-      <a class="a1" href="#s1" style="width:{{w:t.s1}}" aria-label="slide 1"></a><a class="a1" href="#s2" style="width:{{w:t.s2}}" aria-label="slide 2"></a><a class="a1" href="#s3" style="width:{{w:t.s3}}" aria-label="slide 3"></a><a class="a1" href="#s4" style="width:{{w:t.s4}}" aria-label="slide 4"></a><a class="a1" href="#s5" style="width:{{w:t.s5}}" aria-label="slide 5"></a><a class="a2" href="#s6" style="width:{{w:t.s6}}" aria-label="slide 6"></a><a class="a2" href="#s7" style="width:{{w:t.s7}}" aria-label="slide 7"></a><a class="a2" href="#s8" style="width:{{w:t.s8}}" aria-label="slide 8"></a><a class="a2" href="#s9" style="width:{{w:t.s9}}" aria-label="slide 9"></a><a class="a2" href="#s10" style="width:{{w:t.s10}}" aria-label="slide 10"></a><a class="a2" href="#s11" style="width:{{w:t.s11}}" aria-label="slide 11"></a><a class="a3" href="#s12" style="width:{{w:t.s12}}" aria-label="slide 12"></a><a class="a3" href="#s13" style="width:{{w:t.s13}}" aria-label="slide 13"></a><a class="a3" href="#s14" style="width:{{w:t.s14}}" aria-label="slide 14"></a><a class="a3" href="#s15" style="width:{{w:t.s15}}" aria-label="slide 15"></a><a class="a4" href="#s16" style="width:{{w:t.s16}}" aria-label="slide 16"></a><a class="a4" href="#s17" style="width:{{w:t.s17}}" aria-label="slide 17"></a><a class="a4" href="#s18" style="width:{{w:t.s18}}" aria-label="slide 18"></a><a class="a4" href="#s19" style="width:{{w:t.s19}}" aria-label="slide 19"></a><a class="a5" href="#s20" style="width:{{w:t.s20}}" aria-label="slide 20"></a><a class="a5" href="#s21" style="width:{{w:t.s21}}" aria-label="slide 21"></a>
+      <a class="a1" href="#s1" style="width:{{w:t.s1}}" aria-label="slide 1"></a><a class="a1" href="#s2" style="width:{{w:t.s2}}" aria-label="slide 2"></a><a class="a1" href="#s3" style="width:{{w:t.s3}}" aria-label="slide 3"></a><a class="a2" href="#s4" style="width:{{w:t.s4}}" aria-label="slide 4"></a><a class="a2" href="#s5" style="width:{{w:t.s5}}" aria-label="slide 5"></a><a class="a3" href="#s6" style="width:{{w:t.s6}}" aria-label="slide 6"></a><a class="a3" href="#s7" style="width:{{w:t.s7}}" aria-label="slide 7"></a><a class="a3" href="#s8" style="width:{{w:t.s8}}" aria-label="slide 8"></a><a class="a3" href="#s9" style="width:{{w:t.s9}}" aria-label="slide 9"></a><a class="a3" href="#s10" style="width:{{w:t.s10}}" aria-label="slide 10"></a><a class="a4" href="#s11" style="width:{{w:t.s11}}" aria-label="slide 11"></a><a class="a4" href="#s12" style="width:{{w:t.s12}}" aria-label="slide 12"></a><a class="a4" href="#s13" style="width:{{w:t.s13}}" aria-label="slide 13"></a><a class="a4" href="#s14" style="width:{{w:t.s14}}" aria-label="slide 14"></a><a class="a4" href="#s15" style="width:{{w:t.s15}}" aria-label="slide 15"></a><a class="a5" href="#s16" style="width:{{w:t.s16}}" aria-label="slide 16"></a><a class="a5" href="#s17" style="width:{{w:t.s17}}" aria-label="slide 17"></a><a class="a6" href="#s18" style="width:{{w:t.s18}}" aria-label="slide 18"></a><a class="a6" href="#s19" style="width:{{w:t.s19}}" aria-label="slide 19"></a>
     </nav>
     <div class="acts">
-      <p><i class="a1"></i><b>Act I, why it matters</b>: {{act.I}}, done at {{act.I.end}}. Why charge matters, what zeta is, the best case, and what I set out to test.</p>
-      <p><i class="a2"></i><b>Act II, what is missing</b>: {{act.II}}, done at {{act.II.end}}. What papers leave out, and why a default cannot fill it.</p>
-      <p><i class="a3"></i><b>Act III, what the numbers say</b>: {{act.III}}, done at {{act.III.end}}. What the numbers that are there say: zeta, a model, the size window, a database.</p>
-      <p><i class="a4"></i><b>Act IV, agents that check</b>: {{act.IV}}, done at {{act.IV.end}}. The system, its validation ladder, and the judges tested like readers.</p>
-      <p><i class="a5"></i><b>Act V, the close</b>: {{act.V}}, done at {{act.V.end}}. What AI can and cannot do here, and the call.</p>
+      <p><i class="a1"></i><b>Act I, why and the goal</b>: {{act.I}}, done at {{act.I.end}}. Why comparability matters, and what I set out to test.</p>
+      <p><i class="a2"></i><b>Act II, the engineering</b>: {{act.II}}, done at {{act.II.end}}. The system, and how it is tested.</p>
+      <p><i class="a3"></i><b>Act III, what the datasets say</b>: {{act.III}}, done at {{act.III.end}}. Four datasets: a rise that is several things, the same sea, samples held twice, the window.</p>
+      <p><i class="a4"></i><b>Act IV, what the papers say</b>: {{act.IV}}, done at {{act.IV.end}}. Zeta, what papers leave out, a model that learns papers.</p>
+      <p><i class="a5"></i><b>Act V, naive Claude against the hybrid</b>: {{act.V}}, done at {{act.V.end}}. The same questions, and what each part buys.</p>
+      <p><i class="a6"></i><b>Act VI, the close</b>: {{act.VI}}, done at {{act.VI.end}}. What AI can and cannot do here, and the call.</p>
     </div>
   </section>
 
@@ -190,7 +193,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
   </section>
 
   <section class="act a1" aria-labelledby="h-act1">
-    <header><h2 id="h-act1">Act I · why it matters</h2><p class="eyebrow">{{act.I}} · ends at {{act.I.end}}</p></header>
+    <header><h2 id="h-act1">Act I · why and the goal</h2><p class="eyebrow">{{act.I}} · ends at {{act.I.end}}</p></header>
 
     <section class="card" id="s1">
       <header><span class="idx">01</span><h3>{{title:s1}}</h3><p class="time"><b>{{t.s1}}</b> · ends at {{at.s1}}</p></header>
@@ -223,7 +226,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the left quote, then the words “not benchmarked” on the right.</p>
-        <p class="then"><span class="k">Then</span>So what is this charge we keep measuring?</p>
+        <p class="then"><span class="k">Then</span>So here is what I set out to test.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
@@ -239,59 +242,13 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">03</span><h3>{{title:s3}}</h3><p class="time"><b>{{t.s3}}</b> · ends at {{at.s3}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s3}}</p>
       <div class="say">
-        <p>For the computer scientists: zeta is <strong>not measured</strong>. It is computed.</p>
-        <p>The instrument puts the particles in an electric field and reads how fast they move with laser light. That speed is the mobility. Most papers use one instrument, a Malvern Zetasizer.</p>
-        <p>Then a model turns the speed into a potential. Which model is right depends on the particle’s size against the cloud of ions around it, and the <strong>salt in the liquid</strong> sets that cloud.</p>
-        <p>And papers print the computed number: zeta in {{zb.zeta_rows}} rows, the measured mobility in only {{zb.mob_rows}}.</p>
-      </div>
-      <div class="cue">
-        <p><span class="k">Point at</span>rule II, “Convert with a model”.</p>
-        <p class="then"><span class="k">Then</span>Here is what that does to the best case we have.</p>
-      </div>
-      <details class="deep">
-        <summary>In depth</summary>
-        <div class="deep-body">
-          <p><span class="k">What is really going on</span>A charged particle in water collects a cloud of opposite ions, the double layer. In a field the particle and the inner part of the cloud move together; zeta is the potential at the plane where they slip against the liquid. Smoluchowski’s formula holds for large particles in salty water, Hückel’s for small ones in very dilute water, and Henry’s function bridges the two.</p>
-          <p><span class="k">Where the numbers come from</span>The quantity column of the table: zeta in {{zb.zeta_rows}} rows, mobility in {{zb.mob_rows}}. The instrument column: {{zb.zetasizer}} of the rows that name an instrument name a Zetasizer.</p>
-          <p><span class="k">If they push</span><b>Then why not just use mobility?</b> Exactly the call at the end: report the mobility and the liquid, and anyone can recompute zeta with the right model.</p>
-        </div>
-      </details>
-    </section>
-
-    <section class="card" id="s4">
-      <header><span class="idx">04</span><h3>{{title:s4}}</h3><p class="time"><b>{{t.s4}}</b> · ends at {{at.s4}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s4}}</p>
-      <div class="say">
-        <p>One laboratory. The same {{c14.size_nominal}} nanometre polystyrene bead, the same salt, {{c14.medium}}, the same pH, the same temperature, the same instrument.</p>
-        <p>Two papers, {{c14.years}} years apart: <strong>{{c14.a.value}}</strong> millivolts against <strong>{{c14.b.value}}</strong>. <span class="pause">pause</span></p>
-        <p>Out of {{rows}} measurements, this is the only pair from two papers that passes every rule for comparison. Even with the honest uncertainty of the conversion, the bars do not overlap.</p>
-        <p>What differs is what neither paper had to report: the measured size, {{c14.a.size}} against {{c14.b.size}} nanometres, and the supplier. The numbers are not wrong. They are <strong>under-described</strong>.</p>
-      </div>
-      <div class="cue">
-        <p><span class="k">Point at</span>the gap between the two bars.</p>
-        <p class="then"><span class="k">Then</span>So here is what I set out to test.</p>
-      </div>
-      <details class="deep">
-        <summary>In depth</summary>
-        <div class="deep-body">
-          <p><span class="k">What is really going on</span>Two rows are comparable only when a difference between them can be blamed on the particle: same measured quantity, same particle description, and every condition stated and matching within tight tolerances. The printed value itself is never used as evidence. This pair passes every rule, which is why it is the one cross-paper pair in the whole dataset. The bars are not error bars: they are the range the true zeta can take when the paper does not say which conversion model it used (case Z3: κa known, model open).</p>
-          <p><span class="k">Where the numbers come from</span>Values as printed: {{c14.a.value}} ± {{c14.a.sd}} mV ({{c14.a.year}}) and {{c14.b.value}} ± {{c14.b.sd}} mV ({{c14.b.year}}), a gap of {{c14.gap}} mV. Harmonised intervals: {{c14.a.lo}} to {{c14.a.hi}} and {{c14.b.lo}} to {{c14.b.hi}} mV, still {{c14.igap}} mV apart. Measured sizes {{c14.a.size}} and {{c14.b.size}} nm against a nominal {{c14.size_nominal}} nm, which hints at a different lot or some aggregation.</p>
-          <p><span class="k">If they push</span><b>Maybe one of the two measurements is simply wrong?</b> Possibly. The point is that the two papers do not give us enough to tell. Supplier, lot, surface groups and ageing were not reported, so the five conditions are necessary but not sufficient. That is why the call at the end adds particle identity.</p>
-        </div>
-      </details>
-    </section>
-
-    <section class="card" id="s5">
-      <header><span class="idx">05</span><h3>{{title:s5}}</h3><p class="time"><b>{{t.s5}}</b> · ends at {{at.s5}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s5}}</p>
-      <div class="say">
         <p>Each of these is one sentence of my abstract, made testable.</p>
         <p>The first is about what papers leave out. The next three are about what the numbers then say: about the particle, about the size window, about databases. The last is about the agents themselves.</p>
         <p>For the new data I did one more thing. I wrote the predictions down from physics and published values, and <strong>committed them before running anything</strong>. <span class="pause">pause</span> So when I say pre-registered, it means I could have been wrong in public.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the five rows, top to bottom, without reading them out.</p>
-        <p class="then"><span class="k">Then</span>Start with the first: what is missing.</p>
+        <p class="then"><span class="k">Then</span>Start with how the system is built.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
@@ -305,25 +262,74 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
   </section>
 
   <section class="act a2" aria-labelledby="h-act2">
-    <header><h2 id="h-act2">Act II · what is missing</h2><p class="eyebrow">{{act.II}} · ends at {{act.II.end}}</p></header>
+    <header><h2 id="h-act2">Act II · the engineering</h2><p class="eyebrow">{{act.II}} · ends at {{act.II.end}}</p></header>
+
+    <section class="card" id="s4">
+      <header><span class="idx">04</span><h3>{{title:s4}}</h3><p class="time"><b>{{t.s4}}</b> · ends at {{at.s4}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s4}}</p>
+      <div class="say">
+        <p>So how do you build an agent you can trust with this? You split the work.</p>
+        <p>The model does what it is good at: <strong>reading</strong>, and turning a question into a plan. The plan is one operation from a typed list, and code rejects a plan that asks for something the list does not allow.</p>
+        <p>Then <strong>code</strong> computes over all {{sv.total}} records, and validators decide: allow, caveat, or refuse. The model only phrases the answer, and code throws out any number it did not compute.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Point at</span>the four steps, top to bottom: read, plan, compute and guard, ground.</p>
+        <p class="then"><span class="k">Then</span>And how do we know it works? We test it like any engineered system.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>The planner sees each operation’s signature with the allowed values spelled out (which dataset, which field, which polymer). In the pilot it once asked for “soil microplastic (Wu et al. compilation)”; that plan now fails validation and is retried once. The guard is a set of rules over the computation’s diagnostics: no study in both periods means a composition shift; a series whose sampling centre moved more than a few hundred kilometres means an area shift; the same samples under two studies means not independent.</p>
+          <p><span class="k">Where the numbers come from</span>The survey table holds {{sv.total}} records from four datasets; the operations and validators are tested against known cases, and each check was broken on purpose to see a test fail.</p>
+          <p><span class="k">If they push</span><b>Isn’t this just tool calling?</b> Yes, deliberately. The difference is what is allowed to decide: here no number and no verdict comes from the model, and every one can be traced to a record.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s5">
+      <header><span class="idx">05</span><h3>{{title:s5}}</h3><p class="time"><b>{{t.s5}}</b> · ends at {{at.s5}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s5}}</p>
+      <div class="say">
+        <p>Same model, same {{hy.q}} questions, different arms. Claude from memory. Claude with the data pasted into the chat, the way most people use it. And the hybrid.</p>
+        <p>Then the hybrid again, with <strong>one stage removed</strong> at a time. That is how you find out what each part buys.</p>
+        <p>{{hy.adv}} questions are traps, where the obvious answer is wrong. And the predictions were committed before any scored run.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Check</span>the clock should say {{act.II.end}}.</p>
+        <p class="then"><span class="k">Then</span>Start with the datasets.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>Each question has an answer computed with plain pandas over the source files, apart from the system’s operations, so a bug in an operation cannot also write its own answer key. A test holds every reference plan to that answer. Correct means three things at once: the flag is right (caveat or refuse when, and only when, the question needs it), the number is within tolerance, and the reason is named.</p>
+          <p><span class="k">Where the numbers come from</span>{{hy.q}} questions; {{hy.flagq}} need a flag; {{hy.adv}} adversarial. Pre-registered at code commit {{hy.code}}, with the question file and prompts hashed.</p>
+          <p><span class="k">If they push</span><b>Why not a public benchmark?</b> None asks whether two environmental measurements may be compared. The questions are small in number and say so; the point is the ablation, not the leaderboard.</p>
+        </div>
+      </details>
+    </section>
+  </section>
+
+  <section class="act a3" aria-labelledby="h-act3">
+    <header><h2 id="h-act3">Act III · what the datasets say</h2><p class="eyebrow">{{act.III}} · ends at {{act.III.end}}</p></header>
 
     <section class="card" id="s6">
       <header><span class="idx">06</span><h3>{{title:s6}}</h3><p class="time"><b>{{t.s6}}</b> · ends at {{at.s6}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s6}}</p>
       <div class="say">
-        <p>You saw that the liquid is inside the model that computes zeta. So zeta is not a property of the particle. It is a property of <strong>the particle in its liquid</strong>. For this room: it is like an embedding. The vector only means something inside the model that produced it.</p>
-        <p>One paper, the same {{c02.size}} micrometre bead in water, in PBS and in cell-culture medium. Zeta moves {{c02.spread}} millivolts. And none of the three rows states the ionic strength.</p>
+        <p>Four datasets: NOAA’s marine database, a sediment database, a soil compilation, and one river with two size fractions. {{sv.total}} records in one table.</p>
+        <p>Look at the last column. The sediment database has <strong>no coordinates at all</strong>. The soil compilation never names a sampling method. NOAA applies one upper size limit to everyone.</p>
+        <p>None of that is filled in. A check that needs a missing field refuses.</p>
       </div>
       <div class="cue">
-        <p><span class="k">Point at</span>the dashed slipping plane on the left, then the three dots on the right.</p>
-        <p class="then"><span class="k">Then</span>So how often do papers give the conditions that zeta depends on?</p>
+        <p><span class="k">Point at</span>the column “Never gives”.</p>
+        <p class="then"><span class="k">Then</span>Here is the first thing a naive analysis gets wrong.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
-          <p><span class="k">What is really going on</span>A charged surface in water pulls ions of the opposite charge toward it. Some move with the particle, out to the slipping plane; zeta is the electric potential there. The rest form a diffuse cloud whose thickness, the Debye length, shrinks as you add salt. So the same particle shows a large zeta in nearly pure water, a smaller one in saline, and in a culture medium proteins stick to it and it shows mostly the proteins’ charge.</p>
-          <p><span class="k">Where the numbers come from</span>Case 02, one paper, the same {{c02.size}} µm polystyrene from {{c02.supplier}}: {{c02.r1.value}} mV in {{c02.r1.medium}}, {{c02.r2.value}} mV in {{c02.r2.medium}}, {{c02.r3.value}} mV in {{c02.r3.medium}}. Spread {{c02.spread}} mV. Each row misses the ionic strength for its own reason: a conductivity is printed instead, a buffer is named without its recipe, a medium’s composition is not given.</p>
-          <p><span class="k">If they push</span><b>Isn’t PBS a standard liquid?</b> The name is standard, the recipe is not: strengths and additives vary between labs. And a buffer’s concentration is not its ionic strength: {{r3.ions}}. That is rule R3.</p>
+          <p><span class="k">What is really going on</span>Each dataset is read through a loader pinned by checksum, into one schema: dataset, record, study, place, date, setting, method, size window, unit, value. NOAA’s upper bound of five millimetres is its own rule for every record, not something each study stated, so the table flags it.</p>
+          <p><span class="k">Where the numbers come from</span>NCEI {{sv.n.ncei}}, MP-SED {{sv.n.mpsed}}, soil {{sv.n.soil}}, Weser {{sv.n.weser}}. Missing: MP-SED coordinates {{sv.miss.mpsed.lat}}, year {{sv.miss.mpsed.year}}; soil method {{sv.miss.soil.method}}, year {{sv.miss.soil.year}}; NCEI mesh {{sv.miss.ncei.mesh}}.</p>
+          <p><span class="k">If they push</span><b>Why not geocode the water body names?</b> That is an estimate, and it would be stored as one, never as a coordinate. It is the cheapest upgrade for the sediment data.</p>
         </div>
       </details>
     </section>
@@ -332,16 +338,20 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">07</span><h3>{{title:s7}}</h3><p class="time"><b>{{t.s7}}</b> · ends at {{at.s7}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s7}}</p>
       <div class="say">
-        <p>Five conditions change the number the instrument prints: the medium, the ionic strength, the pH, the temperature and the instrument. Each bar is per paper, so a big paper cannot outvote a small one.</p>
-        <p>Medium and instrument are usually there. Ionic strength, the one the physics needs most: <strong>{{five.ionic_strength_reported}}</strong>. All five on one row: {{five.complete}} rows out of {{rows}}. And we count generously, so every bar is an upper bound. We read the supplements too: ionic strength reaches only {{si.mean}}.</p>
+        <p>Pool NOAA’s ocean samples by period, and the median rises <strong>×{{sv.pooled}}</strong> from {{sv.y_from}} to {{sv.y_to}}. That is the headline a naive analysis writes. <span class="pause">pause</span></p>
+        <p>But {{sv.studies_from}} studies sampled then, and {{sv.studies_to}} now, in other seas, with other nets. Not one study is on both sides.</p>
+        <p>So I predicted, before computing it, that inside one long series it is flat. Law and colleagues, {{sv.law_tows}} tows: <strong>flat</strong>, as they published. Two series do rise, one in the North Pacific gyre, where a rise is published. And the other rises half as much inside its own accumulation zone. Part of its rise is where the ship sailed.</p>
       </div>
-      <div class="cue"><p class="then"><span class="k">Then</span>What does that cost? Here is the thesis of this talk.</p></div>
+      <div class="cue">
+        <p><span class="k">Point at</span>the three numbers, left to right.</p>
+        <p class="then"><span class="k">Then</span>So what happens when two studies sample the same sea?</p>
+      </div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
-          <p><span class="k">What is really going on</span>Each of the five conditions changes the printed number: the medium because zeta belongs to the particle in its liquid; ionic strength because it sets the Debye length; pH because it switches surface groups on and off; temperature because it enters every conversion; the instrument because instruments convert mobility to zeta differently. Reporting is a habit of the paper, not of the row: a paper tends to report a condition for all its rows or for none.</p>
-          <p><span class="k">Where the numbers come from</span>Each bar is a mean over papers of the share of that paper’s rows reporting the condition, so a paper with many rows does not outvote one with few: medium {{five.medium_reported}}, ionic strength {{five.ionic_strength_reported}}, pH {{five.pH_reported}}, temperature {{five.temperature_reported}}, instrument {{five.instrument_reported}}. All five on one row: {{five.complete}} of {{rows}} rows, a paper mean of {{five.complete_paper}}. Soft forms count as reported, so every bar is an upper bound.</p>
-          <p><span class="k">If they push</span><b>Does the instrument really matter?</b> Yes. The instrument measures mobility, and the software converts it to zeta with an assumed model. Two instruments, or two settings, can print different zeta for the same mobility.</p>
+          <p><span class="k">What is really going on</span>This is Simpson’s paradox with a database: the pooled trend is mostly a change in who was sampling where. The pre-registration was mixed, and I report it as it fell: inside the original series there is no trend (ρ {{sv.law_rho}}, {{sv.p7a}}); the prediction that no long series rises tenfold was {{sv.p7b}}, by the North Pacific gyre (×{{sv.goldstein}}) and an eastern Pacific series (×{{sv.law14}}).</p>
+          <p><span class="k">Where the numbers come from</span>NCEI ocean water by five-year period; {{sv.studies_peak}} studies at the peak, in {{sv.y_peak}}–{{sv.y_peak_end}}. The eastern Pacific series’ share of tows inside its accumulation zone grew from {{sv.zone_first}} to {{sv.zone_last}}; inside the zone it rises ×{{sv.law14_zone}}. That last analysis was chosen after the results and is labelled so.</p>
+          <p><span class="k">If they push</span><b>So is ocean microplastic rising or not?</b> In the North Pacific gyre, a published series says yes. This database, pooled, cannot answer it, and an agent should say so instead of reporting the pooled ratio.</p>
         </div>
       </details>
     </section>
@@ -350,21 +360,20 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">08</span><h3>{{title:s8}}</h3><p class="time"><b>{{t.s8}}</b> · ends at {{at.s8}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s8}}</p>
       <div class="say">
-        <p>Take every pair of rows that describe the same particle: the same quantity, polymer and surface. That is {{sp.pairs}} pairs.</p>
-        <p>Most of them, {{sp.cat_pct.stated_difference}}, differ in something the papers did state: another salt, another pH. That is real science.</p>
-        <p>But <strong>{{sp.cat.lost_to_absence}}</strong> pairs are blocked only by something that is missing. Nothing either paper says is different. We just cannot know. <span class="pause">pause</span> <strong>Not different. Just unreported.</strong></p>
-        <p>One honest caveat: this is a count, not a counterfactual. Reported, a pair becomes decidable, not automatically comparable.</p>
+        <p>This is the cross-check a reviewer asked for. Two independent studies, the same sea, within a year, the same kind of net.</p>
+        <p>Their values differ by a median <strong>×{{sv.co.median}}</strong>. One pair in ten differs by ×{{sv.co.p90}} or more. Allow any method and it gets worse.</p>
+        <p>And before measuring that, code takes out {{sv.co.excluded}} pairs that are not independent at all. Left in, they would look like perfect agreement.</p>
       </div>
       <div class="cue">
-        <p><span class="k">Point at</span>the blue block, then the tiny “{{sp.cat.comparable}} comparable” at the right edge.</p>
-        <p class="then"><span class="k">Then</span>Which missing field costs the most?</p>
+        <p><span class="k">Point at</span>the first number, then the last sentence.</p>
+        <p class="then"><span class="k">Then</span>Because some of those pairs are the same samples, counted twice.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
-          <p><span class="k">What is really going on</span>The census takes every pair of rows that describe the same particle as printed: same quantity, same polymer, same surface groups. Code then sorts each pair with the comparability rules. “Lost only to absence” means nothing either row states differs, yet at least one condition is missing, so no one can decide. A surface left unstated on both rows counts as missing, never as “the same” (CM-04).</p>
-          <p><span class="k">Where the numbers come from</span>{{sp.pairs}} same-particle pairs: {{sp.cat.stated_difference}} differ in a stated condition, {{sp.cat.lost_to_absence}} are lost only to absence ({{sp.absence_pct}}), {{sp.cat.undecidable}} are undecidable, {{sp.cat.conditionally_comparable}} conditionally comparable, {{sp.cat.comparable}} comparable. Of the lost pairs, {{sp.absence_cross}} cross a paper boundary.</p>
-          <p><span class="k">If they push</span><b>Pairs grow with the square of the rows. Doesn’t one big paper inflate this?</b> It counts blocked comparisons, not papers, and a meta-analysis is made of exactly such comparisons. The per-paper view on the results page shows the same pattern, because reporting is all-or-nothing per paper.</p>
+          <p><span class="k">What is really going on</span>A pair is two records from different studies within {{sv.co.km}} km and {{sv.co.days}} days, both positive. Pairs between studies that hold the same samples are removed first. Real patchiness explains part of the spread: plastic at the surface is clumped over tens of kilometres, and wind mixes it down.</p>
+          <p><span class="k">Where the numbers come from</span>Same method: {{sv.co.pairs}} record pairs from {{sv.co.studypairs}} study pairs, median ×{{sv.co.median}}, one in ten ×{{sv.co.p90}}. Any method: ×{{sv.co.any_median}}, one in ten ×{{sv.co.any_p90}}. Mediterranean, same method: ×{{sv.co.med_median}} over {{sv.co.med_studypairs}} study pairs.</p>
+          <p><span class="k">If they push</span><b>Isn’t threefold just the ocean being patchy?</b> Partly. That is the point for an agent: two such numbers do not disagree, and they do not confirm each other either.</p>
         </div>
       </details>
     </section>
@@ -373,19 +382,20 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">09</span><h3>{{title:s9}}</h3><p class="time"><b>{{t.s9}}</b> · ends at {{at.s9}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s9}}</p>
       <div class="say">
-        <p>Ionic strength. It is missing in {{sp.field.ionic_strength.pairs}} of those pairs: {{sp.top_pct}}.</p>
-        <p>The right column is the cheap part. In {{sp.only_total}} pairs, exactly one number is missing. One email to an author would decide them.</p>
+        <p>Agents will read harmonised databases first. So I ran a duplicate check over NOAA’s, blind: same day, a few hundred metres apart, another study.</p>
+        <p>It flags {{sv.dup.n}} pairs of studies. One is a case I knew from reading two papers: {{re.tows}} tows held twice, converted two ways. The check finds it from date and position alone. In {{sv.dup.identical}} pairs the shared values are <strong>identical</strong>.</p>
+        <p>And the trap: my first pairing gave {{re.trap}}, which equals the paper’s own wind correction. <span class="pause">pause</span> A coincidence. Only arithmetic shows it.</p>
       </div>
       <div class="cue">
-        <p><span class="k">If late</span>skip the right column; say only the first sentence.</p>
-        <p class="then"><span class="k">Then</span>Some of you are thinking: it is a lab, just assume the water.</p>
+        <p><span class="k">Point at</span>the three numbers, then the trap sentence.</p>
+        <p class="then"><span class="k">Then</span>One more reason two counts differ: the size window.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
-          <p><span class="k">What is really going on</span>Most lost pairs miss several conditions at once, so every bar on the left is long; ionic strength is simply the one that is almost always among them. The right column is the actionable part: pairs where exactly one field is missing, so one number from the authors would decide the pair.</p>
-          <p><span class="k">Where the numbers come from</span>Ionic strength is missing in {{sp.field.ionic_strength.pairs}} of the {{sp.cat.lost_to_absence}} lost pairs ({{sp.top_pct}}), pH in {{sp.field.pH.pairs}}, temperature in {{sp.field.temperature.pairs}}. Only one field missing: ionic strength {{sp.field.ionic_strength.only}}, measured size {{sp.field.size_measured_nm.only}}, temperature {{sp.field.temperature.only}}, {{sp.only_total}} pairs in all.</p>
-          <p><span class="k">If they push</span><b>Why does the measured size matter?</b> Converting mobility to zeta needs the particle radius against the Debye length. Without the size, even a known ionic strength does not fix the conversion.</p>
+          <p><span class="k">What is really going on</span>A pair of studies is flagged when at least ten records on each side share a day and lie within two kilometres. The known case was matched tow by tow from the papers’ own tables; the database converted one copy with half the net depth the paper states and kept only small particles for the other.</p>
+          <p><span class="k">Where the numbers come from</span>The check finds {{sv.dup.re_found}} of the {{re.tows}} known tows. Manta tows differ ×{{re.manta}} between the two copies, Neuston tows ×{{re.neuston}}.</p>
+          <p><span class="k">If they push</span><b>Are the other four really duplicates?</b> The check says they share samples; whether each is one survey published twice is for the database’s maintainers to confirm. I have not asked them yet.</p>
         </div>
       </details>
     </section>
@@ -394,49 +404,51 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">10</span><h3>{{title:s10}}</h3><p class="time"><b>{{t.s10}}</b> · ends at {{at.s10}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s10}}</p>
       <div class="say">
-        <p>It is a lab. Surely they used water. Just fill it in. <span class="pause">pause</span> Here is why not.</p>
-        <p>Look at who states the ionic strength. Salt-solution rows: {{lab.salt.share}}. DI-water rows: {{lab.DI_water.stated}} of {{lab.DI_water.rows}}. Whether the value is missing depends on the liquid. In machine-learning words, it is <strong>missing not at random</strong>, so any default lands exactly on the rows that never say it.</p>
-        <p>And where it is stated, it runs from {{lab.lo}} to {{lab.hi}} millimolar. “Lab water” is not one value. What does work is a range from what the paper does name, marked estimated, never reported.</p>
+        <p>Now the same story for counting particles in the environment. Here the missing condition is the <strong>size window</strong>: from which size up a method can see.</p>
+        <p>One river, one study, two windows. The small particles outnumber the large ones by about five thousand. The textbook slope predicts about a dozen.</p>
+        <p>Three pre-registered tests. In {{p1.studies}} soil studies, a finer limit means <strong>more plastic counted</strong>. Rescaling everything to one window does <strong>not</strong> settle the disagreement. And {{p3.outside}} of measured size distributions do not fit the slope the rescaling assumes.</p>
       </div>
       <div class="cue">
-        <p><span class="k">Point at</span>the cobalt DI-water bar, then the long salt-solution range.</p>
-        <p class="then"><span class="k">Then</span>So instead of a guess, how big is what we do not know?</p>
+        <p><span class="k">Check</span>the clock should say {{act.III.end}}.</p>
+        <p><span class="k">Point at</span>the three numbers, left to right.</p>
+        <p class="then"><span class="k">Then</span>Now the papers: what can one zeta value tell you?</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
-          <p><span class="k">What is really going on</span>In statistics this is “missing not at random”: whether the value is missing depends on the thing you would need to fill it. DI-water papers never state the ionic strength, salt-solution papers usually do. Filling the gaps from the rows that do state it transfers salt-solution values onto water rows, a biased guess exactly where it is used. And DI water is not zero: dissolved carbon dioxide, leftover ions and the bead’s own counter-ions and surfactants all add ions, which is why R1 refuses a printed zero.</p>
-          <p><span class="k">Where the numbers come from</span>Rows stating ionic strength: DI water {{lab.DI_water.stated}} of {{lab.DI_water.rows}}; salt solution {{lab.salt_solution.stated}} of {{lab.salt_solution.rows}} ({{lab.salt.share}}); buffer {{lab.buffer.stated}} of {{lab.buffer.rows}}; culture medium {{lab.culture_medium.stated}} of {{lab.culture_medium.rows}}. Where stated, from {{lab.lo}} to {{lab.hi}} mM. Read straight from the table’s medium class and ionic-strength columns.</p>
-          <p><span class="k">If they push</span><b>So nothing can be said about the silent rows?</b> A range can: what the paper does name, a liquid or a printed conductivity, bounds the ionic strength. It must be stored as estimated, never as reported (OS-02), and it gives an interval, not a value.</p>
-        </div>
-      </details>
-    </section>
-
-    <section class="card" id="s11">
-      <header><span class="idx">11</span><h3>{{title:s11}}</h3><p class="time"><b>{{t.s11}}</b> · ends at {{at.s11}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s11}}</p>
-      <div class="say">
-        <p>The instrument measures mobility. To turn it into zeta you multiply by Henry’s factor, from {{h.f_lo}} to {{h.f_hi}}. Where a measurement sits on this curve depends on the particle’s size against the Debye length, and so on the ionic strength.</p>
-        <p>The dots are the {{h.points}} rows that report both. The band is the {{h.band}} rows without ionic strength: their factor can be anywhere in it, plus or minus {{h.hw_f}} on the printed number.</p>
-        <p>So instead of a default, an interval. <strong>An interval is honest. A default is a confident guess.</strong></p>
-      </div>
-      <div class="cue">
-        <p><span class="k">Check</span>the clock should say {{act.II.end}}.</p>
-        <p class="then"><span class="k">Then</span>So what do the numbers we have say? Start with zeta itself.</p>
-      </div>
-      <details class="deep">
-        <summary>In depth</summary>
-        <div class="deep-body">
-          <p><span class="k">What is really going on</span>The instrument measures mobility. Zeta is mobility times a factor that depends on the particle radius against the Debye length, Henry’s function. For a small particle in a thick ion cloud the factor sits at the Hückel end, for a large particle in a thin cloud at the Smoluchowski end. Without the ionic strength there is no Debye length, so the factor can be anywhere between the two ends, and the printed zeta becomes an interval.</p>
-          <p><span class="k">Where the numbers come from</span>The factor runs from {{h.f_lo}} to {{h.f_hi}}, which is ±{{h.hw_f}} on a printed value. If the conversion model is not named either, as in {{h.z4}} rows, ±{{h.hw_z4}}. On the chart: {{h.points}} rows report ionic strength and size, so their factor is known; {{h.rug}} report ionic strength without size; {{h.band}} rows have no ionic strength at all. The curve is drawn for a {{c14.size_nominal}} nm particle.</p>
-          <p><span class="k">If they push</span><b>Why not just assume Smoluchowski, like the instrument does?</b> That is a default again. For nanoparticles in low salt it can be wrong by most of the band. The interval says honestly how much we do not know.</p>
+          <p><span class="k">What is really going on</span>Particle counts follow roughly a power law: many small, few large. A method that sees from a finer size counts more, so two studies with different windows disagree before anything about the place differs. Rescaling assumes one slope; the measured slopes scatter widely, so the rescaling moves numbers around without bringing them together.</p>
+          <p><span class="k">Where the numbers come from</span>Weser estuary, PANGAEA: {{w.stations}} stations, median ratio {{w.ratio}}, power law at α {{w.alpha0}} predicts {{w.pred}}, the data needs α {{w.alpha}}. Soil (Wu et al., Zenodo): ρ {{p1.rho}}, slope {{p1.slope}}. Rescaling at {{p2t.cells}} places: median change {{p2t.reduction}}. MPsizeBase: median α {{p3.median}} on all bins, {{p3.lod_median}} without the detection-limit bins.</p>
+          <p><span class="k">If they push</span><b>The two Weser fractions used different methods too.</b> Yes, pump and infrared imaging against net and a different infrared method. The ratio mixes window and method, which is the point: a count without its window and method cannot be compared.</p>
         </div>
       </details>
     </section>
   </section>
 
-  <section class="act a3" aria-labelledby="h-act3">
-    <header><h2 id="h-act3">Act III · what the numbers say</h2><p class="eyebrow">{{act.III}} · ends at {{act.III.end}}</p></header>
+  <section class="act a4" aria-labelledby="h-act4">
+    <header><h2 id="h-act4">Act IV · what the papers say</h2><p class="eyebrow">{{act.IV}} · ends at {{act.IV.end}}</p></header>
+
+    <section class="card" id="s11">
+      <header><span class="idx">11</span><h3>{{title:s11}}</h3><p class="time"><b>{{t.s11}}</b> · ends at {{at.s11}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s11}}</p>
+      <div class="say">
+        <p>For the computer scientists: zeta is <strong>not measured</strong>. It is computed.</p>
+        <p>The instrument puts the particles in an electric field and reads how fast they move with laser light. That speed is the mobility. Most papers use one instrument, a Malvern Zetasizer.</p>
+        <p>Then a model turns the speed into a potential. Which model is right depends on the particle’s size against the cloud of ions around it, and the <strong>salt in the liquid</strong> sets that cloud.</p>
+        <p>And papers print the computed number: zeta in {{zb.zeta_rows}} rows, the measured mobility in only {{zb.mob_rows}}.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Point at</span>rule II, “Convert with a model”.</p>
+        <p class="then"><span class="k">Then</span>So does zeta tell you the particle?</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>A charged particle in water collects a cloud of opposite ions, the double layer. In a field the particle and the inner part of the cloud move together; zeta is the potential at the plane where they slip against the liquid. Smoluchowski’s formula holds for large particles in salty water, Hückel’s for small ones in very dilute water, and Henry’s function bridges the two.</p>
+          <p><span class="k">Where the numbers come from</span>The quantity column of the table: zeta in {{zb.zeta_rows}} rows, mobility in {{zb.mob_rows}}. The instrument column: {{zb.zetasizer}} of the rows that name an instrument name a Zetasizer.</p>
+          <p><span class="k">If they push</span><b>Then why not just use mobility?</b> Exactly the call at the end: report the mobility and the liquid, and anyone can recompute zeta with the right model.</p>
+        </div>
+      </details>
+    </section>
 
     <section class="card" id="s12">
       <header><span class="idx">12</span><h3>{{title:s12}}</h3><p class="time"><b>{{t.s12}}</b> · ends at {{at.s12}}</p></header>
@@ -449,7 +461,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the column of medians, then the one cobalt row.</p>
-        <p class="then"><span class="k">Then</span>So can a model learn zeta from the literature?</p>
+        <p class="then"><span class="k">Then</span>And what do the papers leave out?</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
@@ -465,14 +477,56 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">13</span><h3>{{title:s13}}</h3><p class="time"><b>{{t.s13}}</b> · ends at {{at.s13}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s13}}</p>
       <div class="say">
+        <p>Five conditions change the number the instrument prints: the medium, the ionic strength, the pH, the temperature and the instrument. Each bar is per paper, so a big paper cannot outvote a small one.</p>
+        <p>Medium and instrument are usually there. Ionic strength, the one the physics needs most: <strong>{{five.ionic_strength_reported}}</strong>. All five on one row: {{five.complete}} rows out of {{rows}}. And we count generously, so every bar is an upper bound. We read the supplements too: ionic strength reaches only {{si.mean}}.</p>
+      </div>
+      <div class="cue"><p class="then"><span class="k">Then</span>What does that cost? Here is the thesis of this talk.</p></div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>Each of the five conditions changes the printed number: the medium because zeta belongs to the particle in its liquid; ionic strength because it sets the Debye length; pH because it switches surface groups on and off; temperature because it enters every conversion; the instrument because instruments convert mobility to zeta differently. Reporting is a habit of the paper, not of the row: a paper tends to report a condition for all its rows or for none.</p>
+          <p><span class="k">Where the numbers come from</span>Each bar is a mean over papers of the share of that paper’s rows reporting the condition, so a paper with many rows does not outvote one with few: medium {{five.medium_reported}}, ionic strength {{five.ionic_strength_reported}}, pH {{five.pH_reported}}, temperature {{five.temperature_reported}}, instrument {{five.instrument_reported}}. All five on one row: {{five.complete}} of {{rows}} rows, a paper mean of {{five.complete_paper}}. Soft forms count as reported, so every bar is an upper bound.</p>
+          <p><span class="k">If they push</span><b>Does the instrument really matter?</b> Yes. The instrument measures mobility, and the software converts it to zeta with an assumed model. Two instruments, or two settings, can print different zeta for the same mobility.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s14">
+      <header><span class="idx">14</span><h3>{{title:s14}}</h3><p class="time"><b>{{t.s14}}</b> · ends at {{at.s14}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s14}}</p>
+      <div class="say">
+        <p>Take every pair of rows that describe the same particle: the same quantity, polymer and surface. That is {{sp.pairs}} pairs.</p>
+        <p>Most of them, {{sp.cat_pct.stated_difference}}, differ in something the papers did state: another salt, another pH. That is real science.</p>
+        <p>But <strong>{{sp.cat.lost_to_absence}}</strong> pairs are blocked only by something that is missing. Nothing either paper says is different. We just cannot know. <span class="pause">pause</span> <strong>Not different. Just unreported.</strong></p>
+        <p>One honest caveat: this is a count, not a counterfactual. Reported, a pair becomes decidable, not automatically comparable.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Point at</span>the blue block, then the tiny “{{sp.cat.comparable}} comparable” at the right edge.</p>
+        <p class="then"><span class="k">Then</span>So can a model learn zeta anyway?</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>The census takes every pair of rows that describe the same particle as printed: same quantity, same polymer, same surface groups. Code then sorts each pair with the comparability rules. “Lost only to absence” means nothing either row states differs, yet at least one condition is missing, so no one can decide. A surface left unstated on both rows counts as missing, never as “the same” (CM-04).</p>
+          <p><span class="k">Where the numbers come from</span>{{sp.pairs}} same-particle pairs: {{sp.cat.stated_difference}} differ in a stated condition, {{sp.cat.lost_to_absence}} are lost only to absence ({{sp.absence_pct}}), {{sp.cat.undecidable}} are undecidable, {{sp.cat.conditionally_comparable}} conditionally comparable, {{sp.cat.comparable}} comparable. Of the lost pairs, {{sp.absence_cross}} cross a paper boundary.</p>
+          <p><span class="k">If they push</span><b>Pairs grow with the square of the rows. Doesn’t one big paper inflate this?</b> It counts blocked comparisons, not papers, and a meta-analysis is made of exactly such comparisons. The per-paper view on the results page shows the same pattern, because reporting is all-or-nothing per paper.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s15">
+      <header><span class="idx">15</span><h3>{{title:s15}}</h3><p class="time"><b>{{t.s15}}</b> · ends at {{at.s15}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s15}}</p>
+      <div class="say">
         <p>This one is for you, the AI people.</p>
         <p>I trained a model to predict zeta from everything we know: size, plastic, surface, liquid, pH. Tested on papers it never saw, it scores {{p4.all}}. <strong>Worse than the average.</strong></p>
         <p>Now shuffle the rows across papers, the usual random split. Same model: {{p4.leak}}. <span class="pause">pause</span> It looks like it learned something.</p>
         <p>It did not. Rows from one paper are near-copies, one particle in several conditions. The random split lets the model <strong>look up the answer</strong>.</p>
       </div>
       <div class="cue">
+        <p><span class="k">Check</span>the clock should say {{act.IV.end}}.</p>
         <p><span class="k">Point at</span>the cobalt bar, then the bars around zero.</p>
-        <p class="then"><span class="k">Then</span>The same story holds when you count particles: there the missing condition is the size window.</p>
+        <p class="then"><span class="k">Then</span>Now the system against naive Claude, on the same questions.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
@@ -483,72 +537,29 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         </div>
       </details>
     </section>
-
-    <section class="card" id="s14">
-      <header><span class="idx">14</span><h3>{{title:s14}}</h3><p class="time"><b>{{t.s14}}</b> · ends at {{at.s14}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s14}}</p>
-      <div class="say">
-        <p>Now the same story for counting particles in the environment. Here the missing condition is the <strong>size window</strong>: from which size up a method can see.</p>
-        <p>One river, one study, two windows. The small particles outnumber the large ones by about five thousand. The textbook slope predicts about a dozen.</p>
-        <p>Three pre-registered tests. In {{p1.studies}} soil studies, a finer limit means <strong>more plastic counted</strong>. Rescaling everything to one window does <strong>not</strong> settle the disagreement. And {{p3.outside}} of measured size distributions do not fit the slope the rescaling assumes.</p>
-      </div>
-      <div class="cue">
-        <p><span class="k">Point at</span>the three numbers, left to right.</p>
-        <p class="then"><span class="k">Then</span>And databases add one more layer.</p>
-      </div>
-      <details class="deep">
-        <summary>In depth</summary>
-        <div class="deep-body">
-          <p><span class="k">What is really going on</span>Particle counts follow roughly a power law: many small, few large. A method that sees from a finer size counts more, so two studies with different windows disagree before anything about the place differs. Rescaling assumes one slope; the measured slopes scatter widely, so the rescaling moves numbers around without bringing them together.</p>
-          <p><span class="k">Where the numbers come from</span>Weser estuary, PANGAEA: {{w.stations}} stations, median ratio {{w.ratio}}, power law at α {{w.alpha0}} predicts {{w.pred}}, the data needs α {{w.alpha}}. Soil (Wu et al., Zenodo): ρ {{p1.rho}}, slope {{p1.slope}}. Rescaling at {{p2t.cells}} places: median change {{p2t.reduction}}. MPsizeBase: median α {{p3.median}} on all bins, {{p3.lod_median}} without the detection-limit bins.</p>
-          <p><span class="k">If they push</span><b>The two Weser fractions used different methods too.</b> Yes, pump and infrared imaging against net and a different infrared method. The ratio mixes window and method, which is the point: a count without its window and method cannot be compared.</p>
-        </div>
-      </details>
-    </section>
-
-    <section class="card" id="s15">
-      <header><span class="idx">15</span><h3>{{title:s15}}</h3><p class="time"><b>{{t.s15}}</b> · ends at {{at.s15}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s15}}</p>
-      <div class="say">
-        <p>Agents will look in harmonised databases first. So here is one.</p>
-        <p>Two papers report the <strong>same {{re.tows}} net tows</strong>, with the same numbers. A global database holds them twice, and converts each copy its own way. So one physical sample carries two values.</p>
-        <p>And the trap. My first pairing gave a ratio of {{re.trap}}. The paper’s own wind correction has a median of {{re.trap}}. <span class="pause">pause</span> A language model would connect them. It is a <strong>coincidence</strong>. Only arithmetic, tow by tow, shows it.</p>
-      </div>
-      <div class="cue">
-        <p><span class="k">Check</span>the clock should say {{act.III.end}}.</p>
-        <p><span class="k">Point at</span>the three numbers, then the trap sentence.</p>
-        <p class="then"><span class="k">Then</span>So how do you build agents that do not fall for that?</p>
-      </div>
-      <details class="deep">
-        <summary>In depth</summary>
-        <div class="deep-body">
-          <p><span class="k">What is really going on</span>The database converts each paper’s pieces per square kilometre into pieces per cubic metre by dividing by a net depth. It used different depths for the two copies and kept only particles under five millimetres for one of them. Same tow, different arithmetic.</p>
-          <p><span class="k">Where the numbers come from</span>The tow-by-tow table: {{re.tows}} tows matched, the same published value for {{re.same}}. Median ratio of the two copies: ×{{re.manta}} for Manta tows, ×{{re.neuston}} for Neuston tows; {{re.zero}} tows zero in one copy and positive in the other.</p>
-          <p><span class="k">If they push</span><b>Is the database wrong?</b> I have not asked them yet, so I say it differs from the paper’s stated net depth. What matters here is that an agent reading the database cannot see it, and an agent reading the papers and doing the arithmetic can.</p>
-        </div>
-      </details>
-    </section>
   </section>
 
-  <section class="act a4" aria-labelledby="h-act4">
-    <header><h2 id="h-act4">Act IV · agents that check</h2><p class="eyebrow">{{act.IV}} · ends at {{act.IV.end}}</p></header>
+  <section class="act a5" aria-labelledby="h-act5">
+    <header><h2 id="h-act5">Act V · naive Claude against the hybrid</h2><p class="eyebrow">{{act.V}} · ends at {{act.V.end}}</p></header>
 
     <section class="card" id="s16">
       <header><span class="idx">16</span><h3>{{title:s16}}</h3><p class="time"><b>{{t.s16}}</b> · ends at {{at.s16}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s16}}</p>
       <div class="say">
-        <p>Now, why is this an AI problem? A language model reads what is on the page. <strong>Silence has no tokens.</strong> Give an extractor a field called temperature and a paper that never states one, and it gives a plausible answer: {{ai.defaults}}. A guess dressed as data.</p>
-        <p>So the first design rule: <strong>absence is a value</strong>. “Not reported” is stored as a fact and never filled in. The row stays. Only the guess goes.</p>
+        <p>Now the system against naive Claude, on the same questions.</p>
+        <p>From memory, Claude mostly cannot answer: {{hy.N0.correct}}. With the data pasted in, the way most people use it: {{hy.N2.correct}}. The hybrid: <strong>{{hy.H.correct}}</strong>.</p>
+        <p>With pasted data it has to count and divide in its head, over a table that fits only because it is a summary. And the honest limit: these questions fit the operations, so this tests the guard and the arithmetic, not open-ended planning.</p>
       </div>
       <div class="cue">
-        <p class="then"><span class="k">Then</span>So who decides what counts as reported? Code.</p>
+        <p><span class="k">Point at</span>the column “On the traps”.</p>
+        <p class="then"><span class="k">Then</span>So which part of the system does the work?</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
-          <p><span class="k">What is really going on</span>A language model continues text. When a schema has a field called temperature and the page has none, the most probable output is a typical value, not “absent”. Nothing in the model marks the gap. So the schema itself carries absence: each condition has a true-or-false “reported” flag and the ionic strength has a source that can be “unreported”, so a missing value is a fact in the data and not an empty cell.</p>
-          <p><span class="k">Where the numbers come from</span>The defaults within reach: {{ai.defaults}}. The rules Martin ratified clear the ones that slipped through: R1, a printed zero such as “{{r1.example}}”; R2 and R2b, a storage or step temperature, as in {{r2.pmcid}}’s “{{r2.example}}”, which {{r2.rows}} rows had taken as the measurement temperature; R3, a buffer concentration such as “{{r3.example}}” stored as an ionic strength.</p>
-          <p><span class="k">If they push</span><b>Couldn’t a better prompt fix it?</b> A better prompt lowers the rate; it does not remove it. The rules run in code over every row, and the blind re-read measures what is left.</p>
+          <p><span class="k">What is really going on</span>With the data pasted in, the model must count, divide and decide comparability in its head, over a table that only fits because it is a summary. Inside the system those steps are code, and the model’s job shrinks to choosing the operation (it chose the reference operation in {{hy.H.plan}} of answers) and phrasing.</p>
+          <p><span class="k">Where the numbers come from</span>{{hy.reps}} runs of {{hy.q}} questions per arm. On the traps: from memory {{hy.N0.adv}}, pasted data {{hy.N2.adv}}, hybrid {{hy.H.adv}}. Paired: the hybrid right where pasted-data Claude is wrong {{hy.only_H}} times, the reverse {{hy.only_N2}} (p {{hy.p}}). Input tokens per question: {{hy.N0.tokens}}, {{hy.N2.tokens}}, {{hy.H.tokens}}.</p>
+          <p><span class="k">If they push</span><b>Give Claude a code interpreter and it would do the arithmetic.</b> It would close the arithmetic gap. It would not know that no study sampled in both periods, or that two studies hold the same tows; that is what the validators know.</p>
         </div>
       </details>
     </section>
@@ -557,77 +568,31 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">17</span><h3>{{title:s17}}</h3><p class="time"><b>{{t.s17}}</b> · ends at {{at.s17}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s17}}</p>
       <div class="say">
-        <p>The second rule is about who decides. Code fetches the papers, numbers every line, and lists every candidate number.</p>
-        <p>Then Claude agents read. This is the only step with judgement. They return a value, a verbatim quote and the line addresses. Code checks that the quote is on those lines, word for word, and makes every decision after that.</p>
-        <p>Here is the first row of the pair from slide four. Quotes found verbatim: {{arch.verified}}. <strong>Agents never write to the table directly.</strong></p>
+        <p>Same plans, same numbers. Take out the guard, and the model decides on its own when a comparison is unsafe. I predicted it would miss the caveats. <span class="pause">pause</span> I was wrong: it flags almost everything, so on the questions that need a plain answer it falls from {{hy.H.noflag}} to <strong>{{hy.Hg.noflag}}</strong>.</p>
+        <p>Take out the grounding check, and numbers appear in the answers that the computation never produced: {{hy.Hng.ungrounded}} per answer.</p>
+        <p>For anyone building agents: <strong>the knowledge of when a comparison is safe belongs in code</strong>, in both directions.</p>
       </div>
       <div class="cue">
-        <p><span class="k">Point at</span>the orange “read” box: the only model step in the diagram.</p>
-        <p class="then"><span class="k">Then</span>Now the whole ladder, on one hard question.</p>
-      </div>
-      <details class="deep">
-        <summary>In depth</summary>
-        <div class="deep-body">
-          <p><span class="k">What is really going on</span>Only one step judges: the worker agent, reading under a brief stored by its hash. It returns claims with addresses, not table rows. Code checks that each quote is on its cited lines, parses the units from the article, applies the rules and makes every later decision. A line address is a hash of the paragraph’s own content, so it survives re-parsing and cannot be invented without the text existing.</p>
-          <p><span class="k">Where the numbers come from</span>The example is {{arch.row_id}}, from {{arch.location}}, quote “{{arch.quote}}”, line ids {{arch.lines}}. Quotes found verbatim in their paper: {{arch.verified}}. One offline command rebuilds every table and compares it byte for byte.</p>
-          <p><span class="k">If they push</span><b>A verbatim check proves the text exists, not that the reading is right.</b> Correct, and the slide says verified means found, not correct. Meaning is checked by the blind re-read, by the rules, and, still to come, by the human audit.</p>
-        </div>
-      </details>
-    </section>
-
-    <section class="card" id="s18">
-      <header><span class="idx">18</span><h3>{{title:s18}}</h3><p class="time"><b>{{t.s18}}</b> · ends at {{at.s18}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s18}}</p>
-      <div class="say">
-        <p>This is the system my abstract asks for, on one question: why does a value have the wrong sign?</p>
-        <p>Three rungs. One reader gives a cause and cites lines. Then <strong>code</strong> checks that the lines carry the evidence. Then a <strong>second reader</strong> must agree. Each rung adds one stage, so the difference is what that stage buys.</p>
-        <p>The best lesson was my own mistake. On the first run, code rejected {{v.first_rej}} answers, and {{v.guard}} of them were correct. My checker did not know that a coating counts as a corona. <span class="pause">pause</span> A checker that is wrong deletes correct answers silently.</p>
-      </div>
-      <div class="cue">
-        <p><span class="k">Point at</span>the three rungs, then the line about the first run.</p>
-        <p class="then"><span class="k">Then</span>And who checks the checker?</p>
-      </div>
-      <details class="deep">
-        <summary>In depth</summary>
-        <div class="deep-body">
-          <p><span class="k">What is really going on</span>V0 is “ask the AI”. V1 adds deterministic checks: every cited line must exist and carry the kind of evidence the cause needs, a pH for a pH cause, a protein or coating for a corona. V2 adds a second, different model reading blind; only agreement is kept, everything else is abstained, never guessed.</p>
-          <p><span class="k">Where the numbers come from</span>{{v.cands}} candidates in {{v.papers}} papers. V0 gives {{v.v0}} causes, V1 rejects {{v.v1_rej}}, V2 keeps {{v.v2_kept}} and abstains on {{v.v2_abst}}. The readers agree {{v.agree}}, κ {{v.kappa}}. Reader A cost {{v.tokA}} input tokens and {{v.secA}} seconds.</p>
-          <p><span class="k">If they push</span><b>How do you know the kept answers are right?</b> Blind human labels: {{v.labelled}} of {{v.label_target}} so far. Until they are in, I report agreement and rejections, not accuracy.</p>
-        </div>
-      </details>
-    </section>
-
-    <section class="card" id="s19">
-      <header><span class="idx">19</span><h3>{{title:s19}}</h3><p class="time"><b>{{t.s19}}</b> · ends at {{at.s19}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s19}}</p>
-      <div class="say">
-        <p>Everyone now uses a language model to grade a language model. So who checks the judge? <span class="pause">pause</span></p>
-        <p>I treat a judge as <strong>one more reader</strong> and give it the same tests. Does it say yes to everything? Does it accept a fluent but wrong cause? Does its pick change when I only reverse the list?</p>
-        <p>One judge called {{j.decoy_top}} of the wrong causes supported. And Claude, judging its own family, was not softer, but its pick <strong>moved with the order</strong> of the list.</p>
-        <p>So a judge is a vote. The checks stay in code.</p>
-      </div>
-      <div class="cue">
-        <p><span class="k">Check</span>the clock should say {{act.IV.end}}.</p>
-        <p><span class="k">Point at</span>the column “Accepts the wrong cause”, then the Claude row.</p>
+        <p><span class="k">Check</span>the clock should say {{act.V.end}}.</p>
         <p class="then"><span class="k">Then</span>So what can AI do here, and what can it not?</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
-          <p><span class="k">What is really going on</span>Known judge biases are position (the first or last option wins), verbosity and fluency (a confident paragraph wins), and self-preference (a model likes its own family’s text). Each column is one probe: the decoy keeps the reader’s citations and swaps in another cause with a fluent reason; the order probe reverses the list of causes and nothing else.</p>
-          <p><span class="k">Where the numbers come from</span>The judge metrics file. The jury is {{j.1.name}}, {{j.2.name}} and {{j.3.name}}, none of them Claude, so none shares the readers’ family. The rows column shows how many of reader A’s answers each judge scored: a free tier’s daily token cap can stop a judge early, and its rates then rest on fewer rows. Two traps are real cases where the plausible story is false: the database ratio that equals a wind correction by coincidence, and beads whose “size” was a clump.</p>
-          <p><span class="k">If they push</span><b>Why not use a judge trained for decisions, like Nimble or Microsoft’s decision model?</b> I planned to. Nimble needs a newer local runtime than this machine has, and Microsoft’s model was not available on the router I use. They are the next run, and the probes are ready for them.</p>
+          <p><span class="k">What is really going on</span>Both ablations reuse the hybrid’s recorded plans and results, so the only thing that changes is the removed stage. Without the guard, the composer sees the same diagnostics but has to decide the verdict itself.</p>
+          <p><span class="k">Where the numbers come from</span>Correct overall: hybrid {{hy.H.correct}}, without the guard {{hy.Hg.correct}}, without the check {{hy.Hng.correct}}. On questions that need a flag: {{hy.H.flag}}, {{hy.Hg.flag}}, {{hy.Hng.flag}}. Pre-registered: the guard is worth at least {{hy.p9_min}} on flag-required questions; {{hy.p9}}, because the model on its own over-flags rather than under-flags.</p>
+          <p><span class="k">If they push</span><b>A better prompt would tell the model when to caveat.</b> Then the rules live in a prompt nobody tests. Here they are functions with tests that fail when someone breaks them.</p>
         </div>
       </details>
     </section>
   </section>
 
-  <section class="act a5" aria-labelledby="h-act5">
-    <header><h2 id="h-act5">Act V · the close</h2><p class="eyebrow">{{act.V}} · ends at {{act.V.end}}</p></header>
+  <section class="act a6" aria-labelledby="h-act6">
+    <header><h2 id="h-act6">Act VI · the close</h2><p class="eyebrow">{{act.VI}} · ends at {{act.VI.end}}</p></header>
 
-    <section class="card" id="s20">
-      <header><span class="idx">20</span><h3>{{title:s20}}</h3><p class="time"><b>{{t.s20}}</b> · ends at {{at.s20}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s20}}</p>
+    <section class="card" id="s18">
+      <header><span class="idx">18</span><h3>{{title:s18}}</h3><p class="time"><b>{{t.s18}}</b> · ends at {{at.s18}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s18}}</p>
       <div class="say">
         <p>So what can AI do here? Read a whole corpus with every value quoted and tied to its line. Measure the gap, because absence is a value we can count. Find the pairs one number would decide.</p>
         <p>What it cannot do: fill in a missing condition, replace a human check, or decide comparability on its own.</p>
@@ -646,9 +611,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s21">
-      <header><span class="idx">21</span><h3>{{title:s21}}</h3><p class="time"><b>{{t.s21}}</b> · ends at {{at.s21}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s21}}</p>
+    <section class="card" id="s19">
+      <header><span class="idx">19</span><h3>{{title:s19}}</h3><p class="time"><b>{{t.s19}}</b> · ends at {{at.s19}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s19}}</p>
       <div class="say">
         <p>Report the five conditions: the medium; the ionic strength as a number, not a buffer name; the pH; the temperature of the measurement itself; and the instrument.</p>
         <p>Identify the particle: supplier, lot and surface chemistry. The best-case pair shows the five alone are not enough: all five matching, and still {{c14.gap}} millivolts apart.</p>
@@ -671,9 +636,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
   <section class="act backup" aria-labelledby="h-backup">
     <header><h2 id="h-backup">Backup · for questions</h2><p class="eyebrow">not timed</p></header>
 
-    <section class="card" id="s22">
-      <header><span class="idx">22</span><h3>{{title:s22}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s22}}</p>
+    <section class="card" id="s20">
+      <header><span class="idx">20</span><h3>{{title:s20}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s20}}</p>
       <div class="say">
         <p>The project did not start from zeta. It started from curves: measure <strong>mobility across salt</strong>.</p>
         <p>These three particles have the same mobility at {{curve.I}} millimolar: one zeta, {{curve.zeta}} millivolts. Then they split. The hard one has its charge on its skin; salt hides it, and it falls toward zero. The soft ones carry charge inside a layer water flows through; salt cannot hide it, and they stop at a plateau.</p>
@@ -693,9 +658,218 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
+    <section class="card" id="s21">
+      <header><span class="idx">21</span><h3>{{title:s21}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s21}}</p>
+      <div class="say">
+        <p>One laboratory. The same {{c14.size_nominal}} nanometre polystyrene bead, the same salt, {{c14.medium}}, the same pH, the same temperature, the same instrument.</p>
+        <p>Two papers, {{c14.years}} years apart: <strong>{{c14.a.value}}</strong> millivolts against <strong>{{c14.b.value}}</strong>. <span class="pause">pause</span></p>
+        <p>Out of {{rows}} measurements, this is the only pair from two papers that passes every rule for comparison. Even with the honest uncertainty of the conversion, the bars do not overlap.</p>
+        <p>What differs is what neither paper had to report: the measured size, {{c14.a.size}} against {{c14.b.size}} nanometres, and the supplier. The numbers are not wrong. They are <strong>under-described</strong>.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Use</span>if someone asks for the best case: one lab, one bead, every condition stated, and still apart.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>Two rows are comparable only when a difference between them can be blamed on the particle: same measured quantity, same particle description, and every condition stated and matching within tight tolerances. The printed value itself is never used as evidence. This pair passes every rule, which is why it is the one cross-paper pair in the whole dataset. The bars are not error bars: they are the range the true zeta can take when the paper does not say which conversion model it used (case Z3: κa known, model open).</p>
+          <p><span class="k">Where the numbers come from</span>Values as printed: {{c14.a.value}} ± {{c14.a.sd}} mV ({{c14.a.year}}) and {{c14.b.value}} ± {{c14.b.sd}} mV ({{c14.b.year}}), a gap of {{c14.gap}} mV. Harmonised intervals: {{c14.a.lo}} to {{c14.a.hi}} and {{c14.b.lo}} to {{c14.b.hi}} mV, still {{c14.igap}} mV apart. Measured sizes {{c14.a.size}} and {{c14.b.size}} nm against a nominal {{c14.size_nominal}} nm, which hints at a different lot or some aggregation.</p>
+          <p><span class="k">If they push</span><b>Maybe one of the two measurements is simply wrong?</b> Possibly. The point is that the two papers do not give us enough to tell. Supplier, lot, surface groups and ageing were not reported, so the five conditions are necessary but not sufficient. That is why the call at the end adds particle identity.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s22">
+      <header><span class="idx">22</span><h3>{{title:s22}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s22}}</p>
+      <div class="say">
+        <p>You saw that the liquid is inside the model that computes zeta. So zeta is not a property of the particle. It is a property of <strong>the particle in its liquid</strong>. For this room: it is like an embedding. The vector only means something inside the model that produced it.</p>
+        <p>One paper, the same {{c02.size}} micrometre bead in water, in PBS and in cell-culture medium. Zeta moves {{c02.spread}} millivolts. And none of the three rows states the ionic strength.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Use</span>if someone asks why the liquid matters for zeta.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>A charged surface in water pulls ions of the opposite charge toward it. Some move with the particle, out to the slipping plane; zeta is the electric potential there. The rest form a diffuse cloud whose thickness, the Debye length, shrinks as you add salt. So the same particle shows a large zeta in nearly pure water, a smaller one in saline, and in a culture medium proteins stick to it and it shows mostly the proteins’ charge.</p>
+          <p><span class="k">Where the numbers come from</span>Case 02, one paper, the same {{c02.size}} µm polystyrene from {{c02.supplier}}: {{c02.r1.value}} mV in {{c02.r1.medium}}, {{c02.r2.value}} mV in {{c02.r2.medium}}, {{c02.r3.value}} mV in {{c02.r3.medium}}. Spread {{c02.spread}} mV. Each row misses the ionic strength for its own reason: a conductivity is printed instead, a buffer is named without its recipe, a medium’s composition is not given.</p>
+          <p><span class="k">If they push</span><b>Isn’t PBS a standard liquid?</b> The name is standard, the recipe is not: strengths and additives vary between labs. And a buffer’s concentration is not its ionic strength: {{r3.ions}}. That is rule R3.</p>
+        </div>
+      </details>
+    </section>
+
     <section class="card" id="s23">
       <header><span class="idx">23</span><h3>{{title:s23}}</h3><p class="time">backup · not timed</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s23}}</p>
+      <div class="say">
+        <p>Ionic strength. It is missing in {{sp.field.ionic_strength.pairs}} of those pairs: {{sp.top_pct}}.</p>
+        <p>The right column is the cheap part. In {{sp.only_total}} pairs, exactly one number is missing. One email to an author would decide them.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Use</span>if someone asks which missing condition matters most.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>Most lost pairs miss several conditions at once, so every bar on the left is long; ionic strength is simply the one that is almost always among them. The right column is the actionable part: pairs where exactly one field is missing, so one number from the authors would decide the pair.</p>
+          <p><span class="k">Where the numbers come from</span>Ionic strength is missing in {{sp.field.ionic_strength.pairs}} of the {{sp.cat.lost_to_absence}} lost pairs ({{sp.top_pct}}), pH in {{sp.field.pH.pairs}}, temperature in {{sp.field.temperature.pairs}}. Only one field missing: ionic strength {{sp.field.ionic_strength.only}}, measured size {{sp.field.size_measured_nm.only}}, temperature {{sp.field.temperature.only}}, {{sp.only_total}} pairs in all.</p>
+          <p><span class="k">If they push</span><b>Why does the measured size matter?</b> Converting mobility to zeta needs the particle radius against the Debye length. Without the size, even a known ionic strength does not fix the conversion.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s24">
+      <header><span class="idx">24</span><h3>{{title:s24}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s24}}</p>
+      <div class="say">
+        <p>It is a lab. Surely they used water. Just fill it in. <span class="pause">pause</span> Here is why not.</p>
+        <p>Look at who states the ionic strength. Salt-solution rows: {{lab.salt.share}}. DI-water rows: {{lab.DI_water.stated}} of {{lab.DI_water.rows}}. Whether the value is missing depends on the liquid. In machine-learning words, it is <strong>missing not at random</strong>, so any default lands exactly on the rows that never say it.</p>
+        <p>And where it is stated, it runs from {{lab.lo}} to {{lab.hi}} millimolar. “Lab water” is not one value. What does work is a range from what the paper does name, marked estimated, never reported.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Use</span>if someone asks why not fill in the missing ionic strength.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>In statistics this is “missing not at random”: whether the value is missing depends on the thing you would need to fill it. DI-water papers never state the ionic strength, salt-solution papers usually do. Filling the gaps from the rows that do state it transfers salt-solution values onto water rows, a biased guess exactly where it is used. And DI water is not zero: dissolved carbon dioxide, leftover ions and the bead’s own counter-ions and surfactants all add ions, which is why R1 refuses a printed zero.</p>
+          <p><span class="k">Where the numbers come from</span>Rows stating ionic strength: DI water {{lab.DI_water.stated}} of {{lab.DI_water.rows}}; salt solution {{lab.salt_solution.stated}} of {{lab.salt_solution.rows}} ({{lab.salt.share}}); buffer {{lab.buffer.stated}} of {{lab.buffer.rows}}; culture medium {{lab.culture_medium.stated}} of {{lab.culture_medium.rows}}. Where stated, from {{lab.lo}} to {{lab.hi}} mM. Read straight from the table’s medium class and ionic-strength columns.</p>
+          <p><span class="k">If they push</span><b>So nothing can be said about the silent rows?</b> A range can: what the paper does name, a liquid or a printed conductivity, bounds the ionic strength. It must be stored as estimated, never as reported (OS-02), and it gives an interval, not a value.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s25">
+      <header><span class="idx">25</span><h3>{{title:s25}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s25}}</p>
+      <div class="say">
+        <p>The instrument measures mobility. To turn it into zeta you multiply by Henry’s factor, from {{h.f_lo}} to {{h.f_hi}}. Where a measurement sits on this curve depends on the particle’s size against the Debye length, and so on the ionic strength.</p>
+        <p>The dots are the {{h.points}} rows that report both. The band is the {{h.band}} rows without ionic strength: their factor can be anywhere in it, plus or minus {{h.hw_f}} on the printed number.</p>
+        <p>So instead of a default, an interval. <strong>An interval is honest. A default is a confident guess.</strong></p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Use</span>if someone asks how much a missing ionic strength widens one value.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>The instrument measures mobility. Zeta is mobility times a factor that depends on the particle radius against the Debye length, Henry’s function. For a small particle in a thick ion cloud the factor sits at the Hückel end, for a large particle in a thin cloud at the Smoluchowski end. Without the ionic strength there is no Debye length, so the factor can be anywhere between the two ends, and the printed zeta becomes an interval.</p>
+          <p><span class="k">Where the numbers come from</span>The factor runs from {{h.f_lo}} to {{h.f_hi}}, which is ±{{h.hw_f}} on a printed value. If the conversion model is not named either, as in {{h.z4}} rows, ±{{h.hw_z4}}. On the chart: {{h.points}} rows report ionic strength and size, so their factor is known; {{h.rug}} report ionic strength without size; {{h.band}} rows have no ionic strength at all. The curve is drawn for a {{c14.size_nominal}} nm particle.</p>
+          <p><span class="k">If they push</span><b>Why not just assume Smoluchowski, like the instrument does?</b> That is a default again. For nanoparticles in low salt it can be wrong by most of the band. The interval says honestly how much we do not know.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s26">
+      <header><span class="idx">26</span><h3>{{title:s26}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s26}}</p>
+      <div class="say">
+        <p>Agents will look in harmonised databases first. So here is one.</p>
+        <p>Two papers report the <strong>same {{re.tows}} net tows</strong>, with the same numbers. A global database holds them twice, and converts each copy its own way. So one physical sample carries two values.</p>
+        <p>And the trap. My first pairing gave a ratio of {{re.trap}}. The paper’s own wind correction has a median of {{re.trap}}. <span class="pause">pause</span> A language model would connect them. It is a <strong>coincidence</strong>. Only arithmetic, tow by tow, shows it.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Use</span>if someone asks for the tow-by-tow detail of the same-tow case.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>The database converts each paper’s pieces per square kilometre into pieces per cubic metre by dividing by a net depth. It used different depths for the two copies and kept only particles under five millimetres for one of them. Same tow, different arithmetic.</p>
+          <p><span class="k">Where the numbers come from</span>The tow-by-tow table: {{re.tows}} tows matched, the same published value for {{re.same}}. Median ratio of the two copies: ×{{re.manta}} for Manta tows, ×{{re.neuston}} for Neuston tows; {{re.zero}} tows zero in one copy and positive in the other.</p>
+          <p><span class="k">If they push</span><b>Is the database wrong?</b> I have not asked them yet, so I say it differs from the paper’s stated net depth. What matters here is that an agent reading the database cannot see it, and an agent reading the papers and doing the arithmetic can.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s27">
+      <header><span class="idx">27</span><h3>{{title:s27}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s27}}</p>
+      <div class="say">
+        <p>Now, why is this an AI problem? A language model reads what is on the page. <strong>Silence has no tokens.</strong> Give an extractor a field called temperature and a paper that never states one, and it gives a plausible answer: {{ai.defaults}}. A guess dressed as data.</p>
+        <p>So the first design rule: <strong>absence is a value</strong>. “Not reported” is stored as a fact and never filled in. The row stays. Only the guess goes.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Use</span>if someone asks why a language model fills in defaults.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>A language model continues text. When a schema has a field called temperature and the page has none, the most probable output is a typical value, not “absent”. Nothing in the model marks the gap. So the schema itself carries absence: each condition has a true-or-false “reported” flag and the ionic strength has a source that can be “unreported”, so a missing value is a fact in the data and not an empty cell.</p>
+          <p><span class="k">Where the numbers come from</span>The defaults within reach: {{ai.defaults}}. The rules Martin ratified clear the ones that slipped through: R1, a printed zero such as “{{r1.example}}”; R2 and R2b, a storage or step temperature, as in {{r2.pmcid}}’s “{{r2.example}}”, which {{r2.rows}} rows had taken as the measurement temperature; R3, a buffer concentration such as “{{r3.example}}” stored as an ionic strength.</p>
+          <p><span class="k">If they push</span><b>Couldn’t a better prompt fix it?</b> A better prompt lowers the rate; it does not remove it. The rules run in code over every row, and the blind re-read measures what is left.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s28">
+      <header><span class="idx">28</span><h3>{{title:s28}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s28}}</p>
+      <div class="say">
+        <p>The second rule is about who decides. Code fetches the papers, numbers every line, and lists every candidate number.</p>
+        <p>Then Claude agents read. This is the only step with judgement. They return a value, a verbatim quote and the line addresses. Code checks that the quote is on those lines, word for word, and makes every decision after that.</p>
+        <p>Here is the first row of the pair from slide four. Quotes found verbatim: {{arch.verified}}. <strong>Agents never write to the table directly.</strong></p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Use</span>if someone asks how the papers were read and checked.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>Only one step judges: the worker agent, reading under a brief stored by its hash. It returns claims with addresses, not table rows. Code checks that each quote is on its cited lines, parses the units from the article, applies the rules and makes every later decision. A line address is a hash of the paragraph’s own content, so it survives re-parsing and cannot be invented without the text existing.</p>
+          <p><span class="k">Where the numbers come from</span>The example is {{arch.row_id}}, from {{arch.location}}, quote “{{arch.quote}}”, line ids {{arch.lines}}. Quotes found verbatim in their paper: {{arch.verified}}. One offline command rebuilds every table and compares it byte for byte.</p>
+          <p><span class="k">If they push</span><b>A verbatim check proves the text exists, not that the reading is right.</b> Correct, and the slide says verified means found, not correct. Meaning is checked by the blind re-read, by the rules, and, still to come, by the human audit.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s29">
+      <header><span class="idx">29</span><h3>{{title:s29}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s29}}</p>
+      <div class="say">
+        <p>This is the system my abstract asks for, on one question: why does a value have the wrong sign?</p>
+        <p>Three rungs. One reader gives a cause and cites lines. Then <strong>code</strong> checks that the lines carry the evidence. Then a <strong>second reader</strong> must agree. Each rung adds one stage, so the difference is what that stage buys.</p>
+        <p>The best lesson was my own mistake. On the first run, code rejected {{v.first_rej}} answers, and {{v.guard}} of them were correct. My checker did not know that a coating counts as a corona. <span class="pause">pause</span> A checker that is wrong deletes correct answers silently.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Use</span>if someone asks about the validation ladder on one question.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>V0 is “ask the AI”. V1 adds deterministic checks: every cited line must exist and carry the kind of evidence the cause needs, a pH for a pH cause, a protein or coating for a corona. V2 adds a second, different model reading blind; only agreement is kept, everything else is abstained, never guessed.</p>
+          <p><span class="k">Where the numbers come from</span>{{v.cands}} candidates in {{v.papers}} papers. V0 gives {{v.v0}} causes, V1 rejects {{v.v1_rej}}, V2 keeps {{v.v2_kept}} and abstains on {{v.v2_abst}}. The readers agree {{v.agree}}, κ {{v.kappa}}. Reader A cost {{v.tokA}} input tokens and {{v.secA}} seconds.</p>
+          <p><span class="k">If they push</span><b>How do you know the kept answers are right?</b> Blind human labels: {{v.labelled}} of {{v.label_target}} so far. Until they are in, I report agreement and rejections, not accuracy.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s30">
+      <header><span class="idx">30</span><h3>{{title:s30}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s30}}</p>
+      <div class="say">
+        <p>Everyone now uses a language model to grade a language model. So who checks the judge? <span class="pause">pause</span></p>
+        <p>I treat a judge as <strong>one more reader</strong> and give it the same tests. Does it say yes to everything? Does it accept a fluent but wrong cause? Does its pick change when I only reverse the list?</p>
+        <p>One judge called {{j.decoy_top}} of the wrong causes supported. And Claude, judging its own family, was not softer, but its pick <strong>moved with the order</strong> of the list.</p>
+        <p>So a judge is a vote. The checks stay in code.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Use</span>if someone asks about language-model judges.</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>Known judge biases are position (the first or last option wins), verbosity and fluency (a confident paragraph wins), and self-preference (a model likes its own family’s text). Each column is one probe: the decoy keeps the reader’s citations and swaps in another cause with a fluent reason; the order probe reverses the list of causes and nothing else.</p>
+          <p><span class="k">Where the numbers come from</span>The judge metrics file. The jury is {{j.1.name}}, {{j.2.name}} and {{j.3.name}}, none of them Claude, so none shares the readers’ family. The rows column shows how many of reader A’s answers each judge scored: a free tier’s daily token cap can stop a judge early, and its rates then rest on fewer rows. Two traps are real cases where the plausible story is false: the database ratio that equals a wind correction by coincidence, and beads whose “size” was a clump.</p>
+          <p><span class="k">If they push</span><b>Why not use a judge trained for decisions, like Nimble or Microsoft’s decision model?</b> I planned to. Nimble needs a newer local runtime than this machine has, and Microsoft’s model was not available on the router I use. They are the next run, and the probes are ready for them.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s31">
+      <header><span class="idx">31</span><h3>{{title:s31}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s31}}</p>
       <div class="say">
         <p>{{rr.papers}} papers, each read twice, blind, by separate agents with the same brief. On the {{rr.matched}} rows both readings found, the condition flags agree almost perfectly: ionic strength {{rr.agree.ionic_strength_reported}}. The weakest is the medium, {{rr.agree.medium_reported}}.</p>
         <p>Where they disagree is <strong>which rows exist</strong>: the same number of rows in only {{rr.same_count}} of {{rr.papers}} papers. An agent is reliable at saying what is reported. It is less reliable at deciding what counts as a measurement. That is where the errors live.</p>
@@ -713,9 +887,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s24">
-      <header><span class="idx">24</span><h3>{{title:s24}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s24}}</p>
+    <section class="card" id="s32">
+      <header><span class="idx">32</span><h3>{{title:s32}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s32}}</p>
       <div class="say">
         <p>These are real errors. A value cited from another study, recorded as the paper’s own: “{{g.cited.quote}}”. That is someone else’s measurement. An n the paper never states. Model inputs recorded as measurements. One reading counted twice, as zeta and as mobility. A storage temperature taken as the measurement temperature.</p>
         <p>The pattern: <strong>agents fill the structure you give them.</strong> If the schema has a slot, the agent wants to fill it.</p>
@@ -734,9 +908,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s25">
-      <header><span class="idx">25</span><h3>{{title:s25}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s25}}</p>
+    <section class="card" id="s33">
+      <header><span class="idx">33</span><h3>{{title:s33}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s33}}</p>
       <div class="say">
         <p>Our verifier flags any value it cannot find in the text, and the workers were told to act on flags. Some of our guards were simply wrong.</p>
         <p>An ionic strength written in molar, “{{gd.molar}}”. The check looked for “{{gd.looked1}}” and did not find it. Worker {{gd.worker}} deleted a correct value to clear the flag. The same with kelvin, with exponents inside units, with powers of ten. Each time, a correct value moved toward “not reported”, <strong>the very thing we measure.</strong> Our own checks were biasing our headline number. <span class="pause">pause</span></p>
@@ -756,9 +930,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s26">
-      <header><span class="idx">26</span><h3>{{title:s26}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s26}}</p>
+    <section class="card" id="s34">
+      <header><span class="idx">34</span><h3>{{title:s34}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s34}}</p>
       <div class="say">
         <p>One reader model, {{gr.model}}, the same {{gr.asked}} questions, two ways of giving it evidence. Cell D gets the table. Cell B gets BM25 keyword retrieval over the papers’ lines.</p>
         <p>Comparable pairs found: {{gr.D.comparable}} against {{gr.B.comparable}}. A numeric filter across papers: {{gr.D.C}} against {{gr.B.C}}. Input tokens: {{gr.D.tokens}} against {{gr.B.tokens}}.</p>
@@ -778,9 +952,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s27">
-      <header><span class="idx">27</span><h3>{{title:s27}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s27}}</p>
+    <section class="card" id="s35">
+      <header><span class="idx">35</span><h3>{{title:s35}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s35}}</p>
       <div class="say">
         <p>No person has checked a row against its paper yet. The audit samples rows that say “not reported”, opens each paper at the cited lines, which is a lookup and not a search, and answers yes, no or unsure.</p>
         <p>It gives the precision of “not reported”, and the whole census rests on it. <strong>It is the one check no agent can do for us.</strong> I will report the result, whatever it is.</p>
@@ -806,7 +980,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <details><summary>Is BM25 not a strawman?</summary><p>Yes, it is a weak baseline, and the backup slide on structure and retrieval says so. Hybrid retrieval with a reranker, and the agentic cells where the reader decides what to fetch, are the next runs (OD-14, OD-15). The structural point does not depend on the baseline: a comparability verdict is a property of two rows, and no passage of text holds it.</p></details>
       <details><summary>Why not put all the papers in a long context?</summary><p>The corpus does not fit in a million-token window even in its cheapest form, so that cell was cut. And even in context, comparing every pair against five tolerances is arithmetic. Code does arithmetic reliably; a model reading a verdict back is the honest division of labour.</p></details>
       <details><summary>How do you know “not reported” is correct?</summary><p>Two blind readings agree on the condition flags, for example {{rr.agree.ionic_strength_reported}} on ionic strength. “Reported” is counted generously, so the absence shares are lower bounds. The human audit is the missing piece, and it is the first thing on the list.</p></details>
-      <details><summary>Why not impute the missing values with a prior or a model?</summary><p>Slide ten: the gap is not random. DI-water rows never state it, salt-solution rows mostly do, so a default is biased exactly where it is used. And the gap is the finding; a default hides what we measure. Where a value can be estimated, for example ionic strength from a printed conductivity, it would be marked as estimated, never as reported (OS-02). Missing inputs give intervals, not numbers.</p></details>
+      <details><summary>Why not impute the missing values with a prior or a model?</summary><p>The backup slide on assuming the water: the gap is not random. DI-water rows never state it, salt-solution rows mostly do, so a default is biased exactly where it is used. And the gap is the finding; a default hides what we measure. Where a value can be estimated, for example ionic strength from a printed conductivity, it would be marked as estimated, never as reported (OS-02). Missing inputs give intervals, not numbers.</p></details>
       <details><summary>Isn’t the agent just optimising for your verifier?</summary><p>Yes, and it is in the backup. Workers deleted correct values to clear false flags. We fixed the guards test-first, an adversarial fixture now catches regressions, and a worker may never delete a printed value to clear a flag (EX-12, EX-13, EX-14).</p></details>
       <details><summary>What about hallucinated quotes?</summary><p>Every quote must be found word for word on the cited lines, with the number inside it. A row that fails is dropped and counted, not repaired. Quotes found verbatim: {{arch.verified}}.</p></details>
       <details><summary>Which models, and what did it cost?</summary><p>Workers ran as Claude Code subagents, mostly Sonnet. The evaluation reader is pinned to {{gr.model}}. On the grid, the table used {{gr.D.tokens}} input tokens against {{gr.B.tokens}} for retrieval, for the same {{gr.asked}} questions.</p></details>
@@ -825,6 +999,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <details><summary>Your model scores well on a random split. Why not report that?</summary><p>Because rows from one paper are near-copies: one particle in several conditions. A random split puts copies on both sides, so the model looks the answer up: {{p4.leak}} against {{p4.all}} on papers it never saw. Split along the structure you will meet in use, here the paper.</p></details>
       <details><summary>Were the predictions really written before the data?</summary><p>Yes. Each comes from physics, published values or another dataset, and was committed at {{pr.commit}} before the runs. The verdicts are as the rules said: soil {{p1.verdict}}, rescaling {{p2t.verdict}}, size distributions {{p3.verdict}}, the zeta model {{p4.verdict}}.</p></details>
       <details><summary>Why not let an LLM judge decide instead of code?</summary><p>A judge is one more reader with its own biases. One judge accepted {{j.decoy_top}} of fluent wrong causes, and Claude’s pick moved with the order of a list. A judge is a vote; whatever can be written as a check stays in code.</p></details>
+      <details><summary>Weren’t your questions written for your own operations?</summary><p>Yes, and I say so on the slide. The planner chose the reference operation in {{hy.H.plan}} of answers because each question maps to one. What the experiment tests is the guard and the arithmetic; open-ended planning over unseen questions is the next run.</p></details>
+      <details><summary>Give Claude a code interpreter and the naive arm would win.</summary><p>It would close the arithmetic gap. It would not know that no study sampled in both periods, that two studies hold the same tows, or that a window conversion is too uncertain to make. That knowledge is in the validators, and the ablation shows the model alone over-flags instead.</p></details>
+      <details><summary>Is ocean microplastic rising or not?</summary><p>In the North Pacific gyre a published series says yes, and NOAA’s copy of it rises ×{{sv.goldstein}}. Inside the long North Atlantic series it is flat (ρ {{sv.law_rho}}). NOAA’s pooled ×{{sv.pooled}} cannot answer it, because different studies stand on each side.</p></details>
       <details><summary>Can I use it?</summary><p>The dataset is {{dataset}} under {{licence}}, with a review guide. The repository is private today; ask me after the talk (OD-20).</p></details>
     </div>
   </section>
@@ -837,6 +1014,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <li><p><b>Why can’t retrieval find a comparable pair?</b> Because comparability is a property of two rows, measured in different paragraphs or papers. No single passage contains both, so there is nothing to retrieve.</p></li>
       <li><p><b>A paper reports one mobility at {{curve.I}} mM. Hard or soft?</b> You cannot tell: the curves cross there by construction and split only at high salt. Draw both, and put the next measurement at the high-salt end, where hard falls toward zero and soft stops at a plateau.</p></li>
       <li><p><b>Why does the plateau survive a corona?</b> It is charge spread through a layer water flows through, not a potential at a shear plane, so salt cannot screen it away and a coating does not remove the plane it never needed.</p></li>
+      <li><p><b>Why is the pooled rise not a rise?</b> Because no study sampled in both periods: the comparison mixes seas, nets and research groups. Hold the series fixed and the longest one is flat.</p></li>
       <li><p><b>Why does a random split leak here?</b> Rows from one paper share the particle, the lab and the instrument. A random split puts near-copies in training and test, so the model recognises the paper instead of learning zeta.</p></li>
       <li><p><b>Why does the size window change a count?</b> Particle counts follow a power law: many small, few large. A finer lower limit adds the most numerous particles, so two windows give two different counts of the same water.</p></li>
       <li><p><b>Why did correct values disappear?</b> A guard flagged them falsely, the workers were told to act on flags, and deleting the value was the easiest way to clear one.</p></li>
@@ -847,8 +1025,8 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <li><b>The last slide shows no link</b> while the repository is private. Decide on OD-20 before you show one.</li>
       <li><b>Keys:</b> arrows or space to move, N for notes, F for fullscreen, Home and End for the ends.</li>
       <li><b>Run it offline once:</b> the deck is one HTML file. Keep a local copy on the laptop.</li>
-      <li><b>Time two full run-throughs</b> aloud. You should leave Act I at {{act.I.end}}, Act II at {{act.II.end}}, Act III at {{act.III.end}} and Act IV at {{act.IV.end}}. If you are late, use the “If late” cut on slide nine.</li>
-      <li><b>Slow down</b> on slides four, eight, thirteen and eighteen. They carry the story; let the numbers land.</li>
+      <li><b>Time two full run-throughs</b> aloud. You should leave Act I at {{act.I.end}}, Act II at {{act.II.end}}, Act III at {{act.III.end}}, Act IV at {{act.IV.end}} and Act V at {{act.V.end}}. If you are late, cut slide fifteen and say only its first sentence.</li>
+      <li><b>Slow down</b> on slides seven, nine, sixteen and seventeen. They carry the story; let the numbers land.</li>
     </ol>
   </section>
 

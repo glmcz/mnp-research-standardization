@@ -57,7 +57,7 @@ show = build_data.show
 
 # The grid runs are the ones REVIEW.md C9 reports at the same ref (build_data.grid_runs), so
 # the deck and the guide can never show two different grids.
-# The cited-value example (slide 23): the paper, and the commit at which its recorded row was the
+# The cited-value example (slide 31): the paper, and the commit at which its recorded row was the
 # value another study measured (EX-09's re-read control was committed there).
 CITED_PMCID = "PMC12280233"
 CITED_BEFORE = "09c11cd"
@@ -79,7 +79,7 @@ METHOD_ROWS = {
     "temperature_reported": "temperature (°C)",
     "instrument_reported": "instrument",
 }
-# The liquids of slide 10, as `medium_class` names them.
+# The liquids of slide 24, as `medium_class` names them.
 MEDIUM_WORDS = {
     "DI_water": "DI water",
     "unreported": "liquid not named",
@@ -270,11 +270,11 @@ def case02(V: Values, charts: dict, table: pd.DataFrame) -> None:
 
 
 def si_values(V: Values, ref: str, base: dict) -> None:
-    """Slide 7: ionic strength once the supplements are read too (the 2026-10-12 SI census)."""
+    """Slide 13: ionic strength once the supplements are read too (the 2026-10-12 SI census)."""
     si = json.loads(show(ref, SI_RATES))
     main = next(p for p in base["five"]["params"] if p["key"] == "ionic_strength_reported")
     if abs(si["main_text"]["paper_mean_pct"] / 100 - main["paper_mean_share"]) > 5e-4:
-        raise SystemExit(f"{SI_RATES} counted a different main text than slide 7's bar")
+        raise SystemExit(f"{SI_RATES} counted a different main text than slide 13's bar")
     V.pct("si.mean", si["main_plus_si"]["paper_mean_pct"] / 100, 1, SI_RATES + ": main_plus_si")
     V.int("si.new", si["accepted_papers_new"], SI_RATES + ": accepted_papers_new")
 
@@ -356,14 +356,14 @@ def _mM(V: Values, key: str, x: float, src: str) -> None:
 
 
 def lab_values(V: Values, charts: dict, table: pd.DataFrame) -> None:
-    """Slide 10: whether a row states its ionic strength depends on the liquid, and where it is
+    """Slide 24: whether a row states its ionic strength depends on the liquid, and where it is
     stated it runs over decades, so "a lab uses water" is not one value to fill in."""
     src = "out/tables/d1_zeta_table.csv: medium_class, ionic_strength_reported, ionic_strength_mM"
     stated = table[table["ionic_strength_reported"].astype(bool)]
     order = table["medium_class"].value_counts().index.tolist()
     unknown = set(order) - set(MEDIUM_WORDS)
     if unknown:
-        raise SystemExit(f"slide 10 has no words for medium_class {sorted(unknown)}")
+        raise SystemExit(f"slide 24 has no words for medium_class {sorted(unknown)}")
     points = {}
     for c in order:
         mM = stated.loc[stated["medium_class"] == c, "ionic_strength_mM"].astype(float)
@@ -394,7 +394,7 @@ def lab_values(V: Values, charts: dict, table: pd.DataFrame) -> None:
 
 
 def curve_values(V: Values, charts: dict) -> None:
-    """Slide 22 (backup): the method the talk started from. One hard and two soft particles,
+    """Slide 20 (backup): the method the talk started from. One hard and two soft particles,
     matched to the same mobility at one ionic strength by the physics demo's own figure function,
     so one zeta cannot tell them apart while the curves across salt can."""
     from mnp.infer import figures
@@ -421,7 +421,7 @@ def curve_values(V: Values, charts: dict) -> None:
         softs.append({"lambda_inv_nm": lam, "mu": mu.tolist(), "plateau": plateau})
     hard_mu = (hard.mobility_hard(p["hard_sigma_C_m2"], radius_m, grid, T_C=T) / MU_UNIT).tolist()
     if not all(abs(hard_mu[-1]) < abs(s["plateau"]) for s in softs):
-        raise SystemExit("the hard particle no longer falls below the soft plateaus: slide 22")
+        raise SystemExit("the hard particle no longer falls below the soft plateaus: slide 20")
     e0, e1 = round(math.log10(grid[0])), round(math.log10(grid[-1]))
     for i, e in enumerate(range(e0, e1 + 1)):
         V.tick(f"curve.x.{i}", 10.0**e, max(0, -e), "curve", "x")
@@ -435,13 +435,13 @@ def curve_values(V: Values, charts: dict) -> None:
 
 
 def d4_values(V: Values, ref: str) -> None:
-    """Slide 22 (backup): what of the curve method is built, and that no measured curve met it."""
+    """Slide 20 (backup): what of the curve method is built, and that no measured curve met it."""
     log = flat(show(ref, "CHANGELOG.md"))
     sims = find("CHANGELOG.md", log, r"trained at ([\d,]+) simulations")[0]
     V.int("d4.sims", int(sims.replace(",", "")), "CHANGELOG.md, the physics demo")
     sbc = list(csv.DictReader(io.StringIO(show(ref, "out/tables/d4_sbc.csv"))))
     if not all(r["pass"] == "True" for r in sbc):
-        raise SystemExit("out/tables/d4_sbc.csv: a calibration no longer passes; slide 22")
+        raise SystemExit("out/tables/d4_sbc.csv: a calibration no longer passes; slide 20")
     V.int("d4.sbc_params", len(sbc), "out/tables/d4_sbc.csv")
     V.float("d4.ks_min", min(float(r["ks_pvalue"]) for r in sbc), 2, "out/tables/d4_sbc.csv")
     tree = subprocess.run(
@@ -677,11 +677,11 @@ def scope_values(V: Values, base: dict) -> None:
 
 
 def audit_state(ref: str) -> None:
-    """Slide 27 says no person has checked a row. Stop if the audit sheet holds a verdict."""
+    """Slide 35 says no person has checked a row. Stop if the audit sheet holds a verdict."""
     rows = build_data.read_csv(ref, "out/review/audit_sample.csv")
     filled = [r["row_id"] for r in rows for k, v in r.items() if k.endswith("_ok") and v.strip()]
     if filled:
-        raise SystemExit(f"audit_sample.csv holds verdicts ({filled[:3]}): slide 27 must change")
+        raise SystemExit(f"audit_sample.csv holds verdicts ({filled[:3]}): slide 35 must change")
 
 
 # ---- the hypotheses and their tests (2026-10-19) ----------------------------------------------
@@ -725,7 +725,7 @@ def motivation_values(V: Values, ref: str) -> None:
 
 
 def basics_values(V: Values, table: pd.DataFrame) -> None:
-    """Slide 3: the instrument measures mobility; papers print the zeta computed from it."""
+    """Slide 11: the instrument measures mobility; papers print the zeta computed from it."""
     q = table["quantity"].value_counts()
     src = "out/tables/d1_zeta_table.csv: quantity"
     V.int("zb.zeta_rows", int(q["zeta_potential"]), src)
@@ -740,7 +740,7 @@ def basics_values(V: Values, table: pd.DataFrame) -> None:
 
 
 def hypotheses_values(V: Values, ref: str) -> None:
-    """Slide 5: the five hypotheses, each an abstract sentence as the design doc quotes it."""
+    """Slide 3: the five hypotheses, each an abstract sentence as the design doc quotes it."""
     design = show(ref, DESIGN)
     for n, (quote, name) in enumerate(
         re.findall(r'^\| "(.+?)" \| \*\*H\d ([^.*]+)\.\*\*', design, re.M), start=1
@@ -808,7 +808,7 @@ def p2_values(V: Values, charts: dict, ref: str) -> None:
 
 
 def p4_values(V: Values, charts: dict, ref: str) -> None:
-    """Slide 13: the pre-registered zeta model, out of paper, against the leaky split."""
+    """Slide 15: the pre-registered zeta model, out of paper, against the leaky split."""
     r = json.loads(show(ref, PREREG))
     p4, sec = r["P4"], r["secondary"]
     src = PREREG + ": P4"
@@ -835,7 +835,7 @@ def window_ratio(alpha: float, small: tuple[float, float], large: tuple[float, f
 
 
 def window_values(V: Values, ref: str) -> None:
-    """Slide 14: one river's two size windows, then the three pre-registered tests."""
+    """Slide 10: one river's two size windows, then the three pre-registered tests."""
     w = pd.read_csv(io.StringIO(show(ref, WESER)))
     small = (float(w["small_lo_um"].iat[0]), float(w["small_hi_um"].iat[0]))
     large = (float(w["large_lo_um"].iat[0]), float(w["large_hi_um"].iat[0]))
@@ -882,7 +882,7 @@ def window_values(V: Values, ref: str) -> None:
 
 
 def reisser_values(V: Values, ref: str) -> None:
-    """Slide 15: the same tows twice in one database, and a coincidence that looks like a cause."""
+    """Slide 26 (backup): the same tows twice in one database, and a coincidence like a cause."""
     t = pd.read_csv(io.StringIO(show(ref, TOWS)))
     both = t[(t["value_R"] > 0) & (t["value_E"] > 0)]
     ratio = both["value_R"] / both["value_E"]
@@ -906,7 +906,7 @@ def reisser_values(V: Values, ref: str) -> None:
 
 
 def validation_values(V: Values, ref: str) -> None:
-    """Slide 18: the validation ladder on Q2, and the guard that was wrong on the first run."""
+    """Slide 29 (backup): the validation ladder on Q2, and the guard wrong on the first run."""
     m = json.loads(show(ref, VSIGN))
     src = VSIGN
     V.int("v.cands", m["candidates"], src)
@@ -925,7 +925,7 @@ def validation_values(V: Values, ref: str) -> None:
     builder = show(ref, "tool/validate/build_labels.py")
     target = int(find("tool/validate/build_labels.py", builder, r"\nN = (\d+)")[0])
     if m["labelled"] >= target:
-        raise SystemExit("every blind label is in: slide 18 and its card must report accuracy")
+        raise SystemExit("every blind label is in: slide 29 and its card must report accuracy")
     V.int("v.label_target", target, "tool/validate/build_labels.py: N")
     notes = flat(show(ref, VRESULTS))
     first, a, b = find(
@@ -946,7 +946,7 @@ def judge_name(model: str) -> str:
 
 
 def judge_values(V: Values, ref: str) -> None:
-    """Slide 19: three judges from other families, and Claude judging its own family's reader."""
+    """Slide 30 (backup): three judges from other families, and Claude judging its own reader."""
     m = json.loads(show(ref, VJUDGE))
     cands = json.loads(show(ref, VSIGN))["candidates"]
     per = m["per_judge"]
@@ -965,6 +965,141 @@ def judge_values(V: Values, ref: str) -> None:
     top = max(m["judges"], key=lambda jd: per[jd]["decoy_accepted_rate"])
     V.text("j.decoy_top.name", judge_name(top), f"{VJUDGE}: the jury's most accepted decoy")
     V.pct("j.decoy_top", per[top]["decoy_accepted_rate"], 0, f"{VJUDGE}: per_judge[{top}]")
+
+
+SV_P7 = "out/tables/survey_p7.json"
+SV_COLOC = "out/tables/survey_colocated.json"
+SV_DUP = "out/tables/survey_duplicates.csv"
+SV_MISS = "out/tables/survey_completeness.csv"
+
+
+def survey_values(V: Values, ref: str) -> None:
+    """The dataset slides: the table, the pooled rise and its series, same place, held twice."""
+    coloc = json.loads(show(ref, SV_COLOC))
+    for ds, key in (
+        ("ncei", "ncei"),
+        ("mpsed", "mpsed"),
+        ("soil", "soil"),
+        ("pangaea_weser", "weser"),
+    ):
+        V.int(f"sv.n.{key}", coloc["records"][ds], SV_COLOC + ": records")
+    V.int("sv.total", sum(coloc["records"].values()), SV_COLOC + ": records, summed")
+    miss = pd.read_csv(io.StringIO(show(ref, SV_MISS))).set_index("dataset")
+    V.pct("sv.miss.mpsed.lat", miss.loc["mpsed", "lat"], 0, SV_MISS + ": mpsed, lat")
+    V.pct("sv.miss.mpsed.year", miss.loc["mpsed", "year"], 0, SV_MISS + ": mpsed, year")
+    V.pct("sv.miss.soil.method", miss.loc["soil", "method"], 0, SV_MISS + ": soil, method")
+    V.pct("sv.miss.soil.year", miss.loc["soil", "year"], 0, SV_MISS + ": soil, year")
+    V.pct("sv.miss.ncei.mesh", miss.loc["ncei", "size_min_um"], 2, SV_MISS + ": ncei, mesh")
+
+    p7 = json.loads(show(ref, SV_P7))
+    periods = {int(p["period"]): p for p in p7["P7c"]["periods"]}
+    V.float("sv.pooled", p7["P7c"]["pooled_ratio_last_over_2000s_per_record"], 0, SV_P7 + ": P7c")
+    for key, start in (("from", 2000), ("to", 2020), ("peak", 2015)):
+        V.year(f"sv.y_{key}", start, SV_P7 + ": P7c, a five-year period")
+        V.year(f"sv.y_{key}_end", start + 4, SV_P7 + ": P7c, a five-year period")
+    V.int("sv.studies_from", periods[2000]["studies"], SV_P7 + ": P7c, 2000-2004")
+    V.int("sv.studies_to", periods[2020]["studies"], SV_P7 + ": P7c, 2020-2024")
+    V.int("sv.studies_peak", periods[2015]["studies"], SV_P7 + ": P7c, 2015-2019")
+    a = p7["P7a"]
+    V.float("sv.law_rho", a["spearman_rho"], 2, SV_P7 + ": P7a")
+    V.int("sv.law_tows", a["tows"], SV_P7 + ": P7a")
+    V.year("sv.law_y0", a["years"][0], SV_P7 + ": P7a")
+    V.year("sv.law_y1", a["years"][1], SV_P7 + ": P7a")
+    V.words("sv.p7a", a["verdict"], SV_P7 + ": P7a verdict")
+    V.words("sv.p7b", p7["P7b"]["verdict"], SV_P7 + ": P7b verdict")
+    series = {s["series"]: s for s in p7["P7b"]["series"]}
+    V.float("sv.goldstein", series["Goldstein et al. 2013"]["ratio_last_over_first"], 0, SV_P7)
+    V.float("sv.law14", series["Law et al. 2014"]["ratio_last_over_first"], 1, SV_P7)
+    z = p7["P7_secondary_law2014_zone"]
+    if not z["ratio_inside_zone"] < z["ratio_whole_series"]:
+        raise SystemExit(f"{SV_P7}: Law 2014 no longer rises less inside its zone; slide 7")
+    V.float("sv.law14_zone", z["ratio_inside_zone"], 1, SV_P7 + ": secondary")
+    V.pct("sv.zone_first", z["share_in_zone_first_third"], 0, SV_P7 + ": secondary")
+    V.pct("sv.zone_last", z["share_in_zone_last_third"], 0, SV_P7 + ": secondary")
+
+    same, anym = coloc["same_method_50km_365d"], coloc["any_method_50km_365d"]
+    med = coloc["mediterranean_same_method_50km_365d"]
+    V.int("sv.co.km", same["km"], SV_COLOC)
+    V.int("sv.co.days", same["days"], SV_COLOC)
+    V.float("sv.co.median", same["median_fold"], 1, SV_COLOC + ": same method")
+    V.float("sv.co.p90", same["p90_fold"], 0, SV_COLOC + ": same method")
+    V.int("sv.co.pairs", same["pairs"], SV_COLOC + ": same method")
+    V.int("sv.co.studypairs", same["study_pairs"], SV_COLOC + ": same method")
+    V.int("sv.co.excluded", same["excluded_held_twice"], SV_COLOC + ": same method")
+    V.float("sv.co.any_median", anym["median_fold"], 1, SV_COLOC + ": any method")
+    V.float("sv.co.any_p90", anym["p90_fold"], 0, SV_COLOC + ": any method")
+    V.float("sv.co.med_median", med["median_fold"], 1, SV_COLOC + ": Mediterranean")
+    V.int("sv.co.med_studypairs", med["study_pairs"], SV_COLOC + ": Mediterranean")
+
+    dup = pd.read_csv(io.StringIO(show(ref, SV_DUP)))
+    V.int("sv.dup.n", len(dup), SV_DUP)
+    V.int("sv.dup.identical", int((dup.median_ratio_a_over_b - 1).abs().lt(0.01).sum()), SV_DUP)
+    re_pair = dup[
+        dup.study_a.str.endswith("pone.0080466") & dup.study_b.str.endswith("pone.0111913")
+    ]
+    V.int("sv.dup.re_found", int(re_pair.records_a.iat[0]), SV_DUP + ": Reisser/Eriksen")
+
+
+HY = "out/tables/hybrid_results.json"
+HY_Q = "queries/hybrid_questions.jsonl"
+PREREG_DOC = "docs/PREREG_2026-10.md"
+ARM_KEYS = ("N0", "N2", "H", "Hg", "Hng")
+
+
+def hybrid_verdicts(m: dict, p9_min: float) -> tuple[str, str]:
+    """P8 and P9 read against the rules PREREG committed before the runs."""
+    h, n2 = m["arms"]["H"], m["arms"]["N2"]
+    p = n2["vs_H"]["p"]
+    if n2["correct"] >= h["correct"]:
+        p8 = "refuted"
+    else:
+        p8 = "supported" if p < 0.05 else "not significant"
+    drop = h["correct_flag_required"] - m["arms"]["Hg"]["correct_flag_required"]
+    p9 = "supported" if drop >= p9_min else ("refuted" if drop < 0.1 else "partly")
+    return p8, p9
+
+
+def hybrid_values(V: Values, ref: str) -> None:
+    """The naive-vs-hybrid slides: every arm on the same questions, and one stage removed."""
+    m = json.loads(show(ref, HY))
+    qs = [json.loads(x) for x in show(ref, HY_Q).splitlines() if x.strip()]
+    V.int("hy.q", len(qs), HY_Q)
+    V.int("hy.flagq", sum(q["verdict"] != "allow" for q in qs), HY_Q + ": verdict caveat or refuse")
+    V.int("hy.adv", sum(q["adversarial"] for q in qs), HY_Q + ": adversarial")
+    V.int("hy.reps", len(m["arms"]["H"]["reps"]), HY + ": reps")
+    for arm in ARM_KEYS:
+        a, src = m["arms"][arm], f"{HY}: arms[{arm}]"
+        V.pct(f"hy.{arm}.correct", a["correct"], 0, src + ", correct")
+        if arm in ("N0", "N2", "H"):  # slide 16 compares the arms on the traps
+            V.pct(f"hy.{arm}.adv", a["correct_adversarial"], 0, src + ", correct on the traps")
+        if arm in ("H", "Hg", "Hng"):  # slide 17 splits the ablations by the flag needed
+            V.pct(f"hy.{arm}.flag", a["correct_flag_required"], 0, src + ", flag-required")
+            V.pct(f"hy.{arm}.noflag", a["correct_no_flag"], 0, src + ", no flag needed")
+        if a["ungrounded_numbers_per_answer"] is None:
+            V.words(f"hy.{arm}.ungrounded", "not scored", src)
+        else:
+            V.float(f"hy.{arm}.ungrounded", a["ungrounded_numbers_per_answer"], 2, src)
+        if arm in ("N0", "N2", "H"):
+            V.int(f"hy.{arm}.tokens", round(a["input_tokens_per_q"]), src + ", input tokens per q")
+            V.float(f"hy.{arm}.sec", a["seconds_per_q"], 0, src + ", seconds per question")
+    vs = m["arms"]["N2"]["vs_H"]
+    V.int("hy.only_H", vs["only_H_right"], HY + ": N2 vs H")
+    V.int("hy.only_N2", vs["only_this_right"], HY + ": N2 vs H")
+    if vs["p"] < 0.001:
+        V.words("hy.p", "< 0.001", HY + ": N2 vs H, exact McNemar")
+    else:
+        V.float("hy.p", vs["p"], 3, HY + ": N2 vs H, exact McNemar")
+    V.int("hy.paired", m["arms"]["N2"]["answers"], HY + ": N2 answers, paired with H")
+    V.pct("hy.H.plan", m["arms"]["H"]["plan_matches_ref"], 0, HY + ": H, plan = reference op")
+    prereg = flat(show(ref, PREREG_DOC))
+    p9_min = float(
+        find(PREREG_DOC, prereg, r"flag-required questions by at least (\d+(?:\.\d+)?)")[0]
+    )
+    V.float("hy.p9_min", p9_min, 1, PREREG_DOC + ": P9")
+    V.text("hy.code", find(PREREG_DOC, prereg, r"Code at `([0-9a-f]{7})`")[0], PREREG_DOC + ": P8")
+    p8, p9 = hybrid_verdicts(m, p9_min)
+    V.words("hy.p8", p8, HY + " against PREREG P8")
+    V.words("hy.p9", p9, HY + " against PREREG P9")
 
 
 def build(ref: str) -> dict:
@@ -1008,6 +1143,8 @@ def build(ref: str) -> dict:
     reisser_values(V, ref)
     validation_values(V, ref)
     judge_values(V, ref)
+    survey_values(V, ref)
+    hybrid_values(V, ref)
     return {
         "ref": ref,
         "commit": base["commit"],
@@ -1590,7 +1727,7 @@ def chart_pol(values: dict, charts: dict) -> str:
 
 
 def chart_r2(values: dict, charts: dict) -> str:
-    """Slide 13: out-of-paper R² per feature set, and the same model on a leaky split."""
+    """Slide 15: out-of-paper R² per feature set, and the same model on a leaky split."""
     sets = charts["r2"]["sets"] + ["leak"]
     label = {
         "size": "size",

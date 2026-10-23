@@ -3,9 +3,9 @@
 The script is the deck's rehearsal companion. It speaks the deck's own values (`build_slides.build`
 at the same ref), so every number said aloud is the number on the slide, and it copies each
 slide's title and message out of the rendered deck instead of retyping them. `script_template.html`
-holds the words. The only numbers typed here are the time plan: twenty minutes over the five acts of
-the design's talk order (docs/DESIGN_2026-10-18_hypotheses-method-evaluation.md §6). Backup slides
-have a card but no time.
+holds the words. The only numbers typed here are the time plan: twenty minutes over six acts,
+datasets first (the plan of 2026-10-23, after docs/DESIGN_2026-10-18_hypotheses-method-evaluation.md
+§6). Backup slides have a card but no time.
 
     unset VIRTUAL_ENV
     uv run python tool/slides/build_script.py [--ref HEAD] [--out tool/slides/script.html]
@@ -26,21 +26,23 @@ _spec.loader.exec_module(bs)
 
 # Seconds on each timed slide, at about a hundred spoken words a minute.
 PLAN = {
-    "s1": 30, "s2": 50, "s3": 55, "s4": 55, "s5": 50,
-    "s6": 45, "s7": 45, "s8": 55, "s9": 35, "s10": 60, "s11": 50,
-    "s12": 75, "s13": 65, "s14": 85, "s15": 65,
-    "s16": 45, "s17": 45, "s18": 80, "s19": 65,
-    "s20": 40, "s21": 105,
+    "s1": 30, "s2": 45, "s3": 50,
+    "s4": 75, "s5": 70,
+    "s6": 55, "s7": 95, "s8": 70, "s9": 80, "s10": 70,
+    "s11": 45, "s12": 65, "s13": 50, "s14": 55, "s15": 50,
+    "s16": 85, "s17": 70,
+    "s18": 45, "s19": 95,
 }  # fmt: skip
 ACTS = (
-    ("I", "why it matters", ("s1", "s2", "s3", "s4", "s5")),
-    ("II", "what is missing", ("s6", "s7", "s8", "s9", "s10", "s11")),
-    ("III", "what the numbers say", ("s12", "s13", "s14", "s15")),
-    ("IV", "agents that check", ("s16", "s17", "s18", "s19")),
-    ("V", "the close", ("s20", "s21")),
+    ("I", "why and the goal", ("s1", "s2", "s3")),
+    ("II", "the engineering", ("s4", "s5")),
+    ("III", "what the datasets say", ("s6", "s7", "s8", "s9", "s10")),
+    ("IV", "what the papers say", ("s11", "s12", "s13", "s14", "s15")),
+    ("V", "naive Claude against the hybrid", ("s16", "s17")),
+    ("VI", "the close", ("s18", "s19")),
 )
 #: Slides kept for questions: a card each, no time.
-BACKUP = ("s22", "s23", "s24", "s25", "s26", "s27")
+BACKUP = tuple(f"s{i}" for i in range(20, 36))
 TOTAL = sum(PLAN.values())
 SRC = "tool/slides/build_script.py PLAN"
 

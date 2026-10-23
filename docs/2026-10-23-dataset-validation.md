@@ -1,16 +1,23 @@
 # Validating the survey datasets, 2026-10-23
 
 Code: `tool/survey/` (table, validators, P7, report). Tests: `tool/survey/test_survey.py`
-(12 tests; four mutations each turn one red). Outputs: `out/tables/survey_*.{csv,json}`.
+(16 tests; four mutations each turn one red). Outputs: `out/tables/survey_*.{csv,json}`.
 
 ## The table
 
-One table, `data/interim/survey/records.csv.gz` (rebuilt, gitignored), of 25 768 records:
+One table, `data/interim/survey/records.csv.gz` (rebuilt, gitignored), of 26 552 records from 11
+datasets:
 
 - NCEI: 18 461 (ocean water, beach, ocean sediment);
 - MP-SED: 1 064 (sediment);
 - soil (Wu et al.): 6 197;
 - the PANGAEA Weser fractions: 46.
+- Found and verified by the search agent (below):
+  - EMODnet Baltic and Kattegat trawls: 217;
+  - the Fu 2023 atmospheric compilation: 62;
+  - five PANGAEA sets: 343 beach cores (882220), 79 subsurface pumps (941107), 34 net tows
+    (941076), 29 sediment cores (928578), and 20 ship-pump FTIR samples from the eastern Pacific
+    shelf (990052).
 
 A field the source does not give stays empty. Completeness (`survey_completeness.csv`):
 
@@ -53,6 +60,49 @@ A field the source does not give stays empty. Completeness (`survey_completeness
    - The window check refuses to convert between the Weser fractions: no single slope in α
      1.3–2.2 gives a factor within ×10.
    - It allows a 333 µm count to be compared with a 300 µm count with a factor of 1.06–1.14.
+
+5. **Across databases, the window decides first** (`survey_colocated.json`, `across_datasets`).
+   - Within 50 km and a year, only 3 record pairs exist across databases: EMODnet against NCEI,
+     ×1.18 apart.
+   - Within 100 km in any year (the place held, the time not), there are 70 pairs:
+     - 57 EMODnet–NCEI pairs, nets of 330 µm against 333 µm, median ×1.5 (×7.2 at the 90th
+       percentile), a median 2 years apart. These are caveated, not refused.
+     - 13 NCEI–990052 pairs: a 300 µm net against a 10 µm ship pump, ×62 000 apart. The guard
+       refuses them: 990052 states no upper size limit. Even with a 5 mm bound, the conversion
+       spans ×4–61, far too wide to close a ×62 000 gap.
+   - A refused pair is counted and shown, but never enters the summary fold. The raw median of
+     all 70 pairs read ×1.7 with a 90th percentile of ×29 000.
+   - The between-study summaries in findings 2 and 3 stay inside NCEI, as the hybrid's questions
+     ask.
+
+## Finding more datasets: the search agent
+
+`tool/discover/` (README there). One DataCite search reaches Zenodo, figshare, Dryad, PANGAEA,
+Mendeley and university Dataverse repositories.
+
+| stage | how | count |
+|---|---|---|
+| found | 15 queries, DataCite datasets | 1 132 |
+| distinct | one record per title and publisher (versions collapse) | 711 |
+| on topic | code: the record names micro- or nanoplastic | 700 |
+| to open | Claude reads the record; a code rule over its answer picks what to open | 272 |
+| usable | code opens the files: concentration, coordinates, date, 20+ rows | 12 |
+
+- **Of the 12 usable:** two are flagged as overlapping NCEI (986752, and a Zenodo ASV set). Of
+  the other ten:
+  - five PANGAEA sets are new in the table;
+  - three were in it already (the soil compilation, the two Weser fractions);
+  - one is macro-litter (923730);
+  - the global mangrove Dataverse set (154 rows) is not ingested yet.
+- **Partial (16):** a concentration without coordinates or a date, e.g. the Seine (6 322 rows) and
+  the Colombian Caribbean. These are leads, not data.
+- **Not verifiable (136):** no public file API (the publisher's site, a journal supplement, a
+  login).
+- **The first run overcounted.** It passed a water-chemistry table (`O2 sat [mg/l]`) and two
+  particle-size tables as concentrations. A concentration column now has to name plastic and a
+  per-volume, mass or area unit (`verify.is_concentration`, test-first).
+- **Left out:** PANGAEA 986752 (eastern tropical Pacific), whose per-sample abundance column is
+  ambiguous (`table.py`).
 
 ## The hybrid agent against naive Claude (PREREG P8–P10)
 

@@ -1,6 +1,6 @@
 # Survey datasets, validated by code
 
-One table of concentration records from four datasets, and the checks that decide whether two of
+One table of concentration records from eleven datasets, and the checks that decide whether two of
 those numbers may be compared. Findings: `docs/2026-10-23-dataset-validation.md`; the
 pre-registered timeline test: `docs/PREREG_2026-10.md`, P7.
 
@@ -18,6 +18,8 @@ uv run --with openpyxl python -m pytest -q -p no:cacheprovider tool/survey
     300–333 µm mesh. The tow line is binary geometry and is placed at its midpoint.
   - The atmospheric compilation of Fu et al. 2023 as revised by Hough et al. 2026: 62 study-level
     concentrations in particles per m³ of air.
+  - Five PANGAEA sets the search agent (`tool/discover/`) verified (`PANGAEA_FOUND`): each pinned
+    by sha256 with its own setting, method, concentration column and lower size limit.
 - A field a source lacks stays null.
 - An EMODnet study is its organisation: a monitoring programme's cruises are one series, not
   independent studies, as an NCEI DOI is.
@@ -25,7 +27,9 @@ uv run --with openpyxl python -m pytest -q -p no:cacheprovider tool/survey
   - duplicates: the same day, within 2 km, another study;
   - the size-window factor over α 1.3–2.2, with a refusal when it spans more than ×10;
   - units;
-  - co-location;
+  - co-location: between studies inside NCEI (`colocated_summary`), and between databases
+    (`across_datasets`), where every record pair passes the window guard first and a refused pair
+    never enters the fold;
   - change within a series, and pooled periods;
   - completeness.
 - Each check is tested on a known case or toy data, and four mutations each turn a test red.

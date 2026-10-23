@@ -65,3 +65,5 @@ data/interim/validate/**/*.log
 tool/validate/labels.html
 # survey table: rebuilt from the pinned raw files by tool/survey/table.py
 data/interim/survey/
+# dataset search agent: catalogue responses, triage answers, downloaded files
+data/raw/discover/

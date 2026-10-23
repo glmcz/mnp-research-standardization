@@ -58,10 +58,10 @@ _DOI = re.compile(r"10\.\d{4,9}/\S+")
 # -- the model ----------------------------------------------------------------------------------
 
 
-def ask(prompt: str, model: str = MODEL) -> grid.Reply:
-    """grid.read with the shared system prompt: same CLI flags, cwd guard, parsing and pin."""
+def ask(prompt: str, model: str = MODEL, system: str = SYSTEM) -> grid.Reply:
+    """grid.read with a given system prompt: same CLI flags, cwd guard, parsing and pin."""
     cmd = grid.reader_command(model)
-    cmd[cmd.index("--system-prompt") + 1] = SYSTEM
+    cmd[cmd.index("--system-prompt") + 1] = system
     cwd = grid.reader_cwd()
     if grid.instruction_files_above(cwd):
         raise grid.ReaderError("instruction files above the reader's cwd")

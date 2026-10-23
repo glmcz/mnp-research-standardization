@@ -63,3 +63,5 @@ data/interim/validate/**/*.log
 
 # rebuilt by tool/validate/build_labels.py; publish, do not commit
 tool/validate/labels.html
+# survey table: rebuilt from the pinned raw files by tool/survey/table.py
+data/interim/survey/

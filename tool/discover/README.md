@@ -44,3 +44,18 @@ description.
 Every HTTP response is cached under `data/raw/discover/http/` and every triage answer under
 `data/raw/discover/triage/`, keyed by the request (both gitignored). A rerun reads the same answers.
 The User-Agent names the project only.
+
+## The web scout (an agent, run as a subagent)
+
+`.claude/agents/mnp-dataset-scout.md` is a Claude agent with web search for what DataCite cannot
+reach: monitoring portals, data journals, data-availability statements. It reports what it read,
+in a fixed JSON contract, and decides nothing. `scout.py` then opens every file it named, judges
+each with the same rules as above, and tests each claim it made against the file's columns.
+
+```
+uv run --with openpyxl python tool/discover/scout.py
+# out/tables/dataset_scout.json (the agent's report) -> out/tables/dataset_scout_verified.csv
+```
+
+On 2026-10-24 it returned 10 candidates. Code found 3 usable, and its claims held in 15 of 19
+tested. Most failures were the agent reporting a web page rather than the file.

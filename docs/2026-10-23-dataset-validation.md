@@ -5,8 +5,8 @@ Code: `tool/survey/` (table, validators, P7, report). Tests: `tool/survey/test_s
 
 ## The table
 
-One table, `data/interim/survey/records.csv.gz` (rebuilt, gitignored), of 26 552 records from 11
-datasets:
+One table, `data/interim/survey/records.csv.gz` (rebuilt, gitignored), of 35 009 records from 12
+datasets (as of 2026-10-24):
 
 - NCEI: 18 461 (ocean water, beach, ocean sediment);
 - MP-SED: 1 064 (sediment);
@@ -14,10 +14,16 @@ datasets:
 - the PANGAEA Weser fractions: 46.
 - Found and verified by the search agent (below):
   - EMODnet Baltic and Kattegat trawls: 217;
-  - the Fu 2023 atmospheric compilation: 62;
   - five PANGAEA sets: 343 beach cores (882220), 79 subsurface pumps (941107), 34 net tows
     (941076), 29 sediment cores (928578), and 20 ship-pump FTIR samples from the eastern Pacific
     shelf (990052).
+- Found by the web scout (below), opened and judged by code:
+  - Isobe et al. 2021: 8 218 pelagic samples, Level 0 pieces/m³ (the 126 Great Lakes samples are
+    lake water);
+  - Kiessling et al. 2021: 301 German river sites, meso- and microplastics per m³.
+  - Neither file states its size window.
+- **Removed, 2026-10-24:** the Fu 2023 atmospheric compilation. It is a different matrix, and it
+  holds one value per study.
 
 A field the source does not give stays empty. Completeness (`survey_completeness.csv`):
 
@@ -30,7 +36,12 @@ A field the source does not give stays empty. Completeness (`survey_completeness
 ## Findings
 
 1. **The same samples are held twice** (`survey_duplicates.csv`). Run blind, the duplicate check
-   flags 5 study pairs: same day, within 2 km, at least 10 records each.
+   flags 5 study pairs inside NCEI: same day, within 2 km, at least 10 records each. Since
+   2026-10-24 it runs over every database:
+   - 25 pairs: 5 inside NCEI, 19 between NCEI and Isobe 2021, and 1 inside Isobe 2021;
+   - at least 4 437 of Isobe's samples are NCEI's own tows (counted once per Isobe study);
+   - 12 of the 25 pairs have values within 1 %.
+   The web scout's best find is largely NOAA's data under another name.
    - It finds the known Reisser/Eriksen tows (171 and 170 records, 0.79 km apart, median ratio
      0.98).
    - The other four pairs, flagged by the check and not yet read:
@@ -83,7 +94,33 @@ A field the source does not give stays empty. Completeness (`survey_completeness
    - The between-study summaries in findings 2 and 3 stay inside NCEI, as the hybrid's questions
      ask.
 
-## Finding more datasets: the search agent
+## Finding more datasets: a web-search scout agent (2026-10-24)
+
+`.claude/agents/mnp-dataset-scout.md` defines a Claude agent with web search. It is told to search
+portals, data journals and data-availability statements beyond DataCite, to skip air and
+compilations of study means, and to report only what it read. It ran as a subagent and returned
+10 candidates (`out/tables/dataset_scout.json`), with a log of 21 places searched.
+
+`tool/discover/scout.py` opens every file the agent named and decides
+(`out/tables/dataset_scout_verified.csv`):
+
+- **Verdicts.** 3 usable: Isobe 2021, Reisser's north-west Australia set, and Kiessling 2021.
+  2 had no file that could be opened (the Seine record listed none; the SF Bay server returned
+  403).
+- **The agent's claims.** They held in 15 of the 19 cases where a file was read and the agent
+  committed to an answer. In three of the four failures it had reported a web page rather than
+  the file: PANGAEA event metadata for dates, a title for the size window, and a record page for
+  the unit.
+- **Joined:** Isobe 2021 and Kiessling 2021.
+- **Leads, not ingested:**
+  - EMODnet's European floating micro-litter v2024: one row per particle category, so a
+    concentration needs counts summed per sample over the sampled volume.
+  - Harms 2020 soil: counts with sample masses.
+  - SF Bay: sheets to join.
+- **Reader fixes found on the way:** a zip read by its largest tables, ODV comment lines, CR line
+  ends, a header written as a comment, and m⁻³ / L⁻¹ notation.
+
+## Finding more datasets: the catalogue agent
 
 `tool/discover/` (README there). One DataCite search reaches Zenodo, figshare, Dryad, PANGAEA,
 Mendeley and university Dataverse repositories.

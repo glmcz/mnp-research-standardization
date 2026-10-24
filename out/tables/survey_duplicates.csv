@@ -1,6 +1,26 @@
 setting,study_a,study_b,records_a,records_b,median_km,median_ratio_a_over_b
 Beach,https://doi.org/10.1016/j.resconrec.2019.104633,https://doi.org/10.1016/j.rsma.2022.102423,11,29,1.1047598732015227,0.9983429577130015
 Ocean water,https://doi.org/10.1016/j.envpol.2017.09.058,https://doi.org/10.1371/journal.pone.0111913,17,17,0.439654637242378,2.1942278731962106
+Ocean water,https://doi.org/10.1016/j.envpol.2017.09.058,isobe2021:9,17,17,0.439654637242378,
 Ocean water,https://doi.org/10.1016/j.marpolbul.2012.12.021,https://doi.org/10.1371/journal.pone.0111913,48,48,0.0,1.3136252152585712
+Ocean water,https://doi.org/10.1016/j.marpolbul.2012.12.021,isobe2021:9,48,48,0.0,
+Ocean water,https://doi.org/10.1016/j.marpolbul.2013.11.023,isobe2021:4,37,31,0.0,1.0
+Ocean water,https://doi.org/10.1016/j.marpolbul.2014.08.023,isobe2021:13,563,579,0.0,1.0
+Ocean water,https://doi.org/10.1016/j.marpolbul.2016.12.025,isobe2021:25,76,76,0.0043540242360257395,1.0
+Ocean water,https://doi.org/10.1016/j.marpolbul.2018.03.011,isobe2021:27,72,57,0.0028401959311644604,1.0
+Ocean water,https://doi.org/10.1016/j.scitotenv.2018.09.244,isobe2021:14,18,18,0.004132166104694135,1.333632506863418
+Ocean water,https://doi.org/10.1021/es4053076,isobe2021:1,399,397,0.0,2.0
+Ocean water,https://doi.org/10.1038/s43247-021-00091-0,isobe2021:26,108,108,0.0036861601253252827,0.999925925925926
+Ocean water,https://doi.org/10.1038/srep14947,isobe2021:12,19,19,0.7181775158896211,1.0
+Ocean water,https://doi.org/10.1038/srep37551,isobe2021:17,39,39,0.002609051667204744,0.9868141975308641
 Ocean water,https://doi.org/10.1088/1748-9326/abbb4f,https://doi.org/10.3389/fmars.2021.626026,36,38,1.3281694391615106,1.000000706353366
+Ocean water,https://doi.org/10.1126/sciadv.1600582,isobe2021:7,42,42,0.028358008572314873,1.0
+Ocean water,https://doi.org/10.1126/science.1192321,isobe2021:20,2279,2173,0.0,1.0
+Ocean water,https://doi.org/10.1371/journal.pone.0080020,isobe2021:10,146,146,0.0,1.0
 Ocean water,https://doi.org/10.1371/journal.pone.0080466,https://doi.org/10.1371/journal.pone.0111913,171,170,0.7900827885199053,0.9790756091434313
+Ocean water,https://doi.org/10.1371/journal.pone.0080466,isobe2021:16,107,56,0.21829910177334289,1.9356341784761724
+Ocean water,https://doi.org/10.1371/journal.pone.0080466,isobe2021:9,171,170,0.7900827885199053,
+Ocean water,https://doi.org/10.1371/journal.pone.0111913,isobe2021:16,82,56,0.7669039579564942,2.113350076923077
+Ocean water,https://doi.org/10.1371/journal.pone.0111913,isobe2021:9,661,659,0.0,
+Ocean water,https://doi.org/10.1371/journal.pone.0121762,isobe2021:6,38,37,0.433763887371393,1.0
+Ocean water,isobe2021:16,isobe2021:9,56,82,0.7669039579564942,

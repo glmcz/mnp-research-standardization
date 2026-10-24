@@ -39,6 +39,14 @@ PINS = {
     EMODNET: "243dc6c69a2fe70a995bff606680049d6ad6b52645fbf857064f505e2fae50f0",
 }
 DISCOVERED = ROOT / "data/raw/discover/files"
+# Found by the scout agent (.claude/agents/mnp-dataset-scout.md, 2026-10-24) and opened by code
+# (tool/discover/scout.py). Isobe et al. 2021, Microplastics and Nanoplastics 1:16: Level 0
+# pieces/m3 per pelagic sample. Kiessling et al. 2021, Sci Total Environ 789:147849, supplement S4:
+# German rivers sampled by school classes, meso- and microplastics per m3.
+ISOBE = DISCOVERED / "10.1186_s43591-021-00013-z" / "scout_1.zip"
+KIESSLING = DISCOVERED / "10.5281_zenodo.4600790" / "scout_1.xlsx"
+PINS[ISOBE] = "a0a747a9b96b617f6716bca8e2dc2afa0df929ad966d0edd55cbb356b189080e"
+PINS[KIESSLING] = "5dea40db7cd2f90bce7dff97cbf26c647893ba4a0f2eb0bccb22ee1e12c1450a"
 #: PANGAEA datasets the search agent found usable (tool/discover, 2026-10-23), each read with its
 #: own concentration column. The size window is read from the dataset's own methods text.
 PANGAEA_FOUND = {
@@ -317,6 +325,65 @@ def pangaea_found() -> pd.DataFrame:
     return pd.concat(parts, ignore_index=True)
 
 
+def isobe2021() -> pd.DataFrame:
+    """One row per pelagic sample, Level 0 as measured; the Great Lakes rows are lake water."""
+    raw = zipfile.ZipFile(ISOBE).read("Level012R1.csv").decode("utf-8")
+    d = pd.read_csv(io.StringIO(raw), skiprows=[1])  # the second line is a "-999: No data" note
+    lon = pd.to_numeric(d["longitude (degree: E+, W-)"], errors="coerce")
+    lat = pd.to_numeric(d["latitude (degree: N+, S-)"], errors="coerce")
+    date = pd.to_datetime(dict(year=d["year"], month=d["month"], day=d["date"]), errors="coerce")
+    lakes = lon.between(-93, -75.5) & lat.between(41, 49.5)
+    value = pd.to_numeric(d["Level 0 (pieces/m3)"], errors="coerce")
+    return pd.DataFrame(
+        {
+            "dataset": "isobe2021",
+            "record_id": "isobe2021:" + d.index.astype(str),
+            # a sample's source study is its row in the paper's Table 1
+            "study": "isobe2021:" + d["No. in Table 1"].astype("Int64").astype(str),
+            "org": None,
+            "setting": np.where(lakes, "lake water", "Ocean water"),
+            "method": None,
+            "region": None,
+            "lat": lat,
+            "lon": lon,
+            "date": date.dt.date.astype(str).where(date.notna()),
+            "year": date.dt.year.astype(float),
+            "size_min_um": np.nan,
+            "size_max_um": np.nan,
+            "unit": "pieces/m3",
+            "value": value.where(value >= 0),
+            "flags": "found_by_scout;window_unreported",
+        }
+    )
+
+
+def kiessling2021() -> pd.DataFrame:
+    """Rivers sampled by school classes: meso- and microplastics together, per m3."""
+    d = pd.read_excel(KIESSLING, sheet_name="SamplingSites_and_LitterData")
+    date = pd.to_datetime(d["Sampling_date"], errors="coerce")
+    return pd.DataFrame(
+        {
+            "dataset": "kiessling2021",
+            "record_id": "kiessling2021:" + d["Dataset_number"].astype(str),
+            "study": "10.1016/j.scitotenv.2021.147849",
+            "org": None,
+            "setting": "river water",
+            "method": "net",
+            "region": d["Sampling_River"].astype(str),
+            "lat": pd.to_numeric(d["Coordinates_Latitude_approximate"], errors="coerce"),
+            "lon": pd.to_numeric(d["Coordinates_Longitude_approximate"], errors="coerce"),
+            "date": date.dt.date.astype(str).where(date.notna()),
+            "year": date.dt.year.astype(float),
+            "size_min_um": np.nan,
+            "size_max_um": np.nan,
+            "unit": "pieces/m3",
+            "value": pd.to_numeric(d["FloatingMesoplasticsMicroplastics_m-3"], errors="coerce"),
+            "flags": "found_by_scout;window_unreported;includes_mesoplastics;"
+            "coordinates_approximate",
+        }
+    )
+
+
 def check_pins() -> None:
     for pid, spec in PANGAEA_FOUND.items():
         got = hashlib.sha256(_pangaea_path(pid).read_bytes()).hexdigest()
@@ -332,7 +399,8 @@ def build() -> pd.DataFrame:
     p2.check_pins()
     ext.check_pins()
     check_pins()
-    parts = [ncei(), mpsed(), soil(), weser(), emodnet(), pangaea_found()]
+    parts = [ncei(), mpsed(), soil(), weser(), emodnet(), pangaea_found(), isobe2021(),
+             kiessling2021()]  # fmt: skip
     t = pd.concat(parts, ignore_index=True)
     return t.loc[:, list(COLUMNS)]
 

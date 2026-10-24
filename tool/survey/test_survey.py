@@ -240,3 +240,22 @@ def test_a_study_summary_is_its_records_quantiles_and_its_stated_window(records)
     assert (one.size_min_um, one.size_max_um) == (10.0, 5000.0)
     # a study with no positive value has no span to draw, but it is still counted
     assert s.n.sum() == len(records)
+
+
+def test_the_scouts_datasets_arrive_whole_and_keep_their_gaps(records) -> None:
+    import io
+    import zipfile
+
+    raw = zipfile.ZipFile(table.ISOBE).read("Level012R1.csv").decode()
+    lines = [ln for ln in raw.splitlines()[2:] if ln.strip()]  # a header, then a "-999" note
+    i = records[records.dataset == "isobe2021"]
+    assert len(i) == len(lines)
+    # the Laurentian Great Lakes are fresh water, not ocean
+    lakes = i[i.setting == "lake water"]
+    assert len(lakes) and lakes.lon.between(-93, -75.5).all() and lakes.lat.between(41, 49.5).all()
+    k = records[records.dataset == "kiessling2021"]
+    sheet = pd.read_excel(io.BytesIO(table.KIESSLING.read_bytes()), "SamplingSites_and_LitterData")
+    assert len(k) == len(sheet) and k.setting.eq("river water").all()
+    # neither file states the size window it counted; the table does not invent one
+    assert i.size_min_um.isna().all() and k.size_min_um.isna().all()
+    assert i["flags"].str.contains("window_unreported").all()

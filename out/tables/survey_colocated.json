@@ -1,6 +1,8 @@
 {
  "records": {
   "emodnet": 217,
+  "isobe2021": 8218,
+  "kiessling2021": 301,
   "mpsed": 1064,
   "ncei": 18461,
   "pangaea_882220": 343,
@@ -44,15 +46,15 @@
  "across_datasets": {
   "km": 50,
   "days": 365,
-  "pairs": 3,
-  "excluded_held_twice": 0,
+  "pairs": 2065,
+  "excluded_held_twice": 14044,
   "compared": 3,
-  "refused": 0,
+  "refused": 2062,
   "median_fold": 1.18,
   "p90_fold": 1.5,
   "unguarded": {
-   "median_fold": 1.18,
-   "p90_fold": 1.5
+   "median_fold": 3.54,
+   "p90_fold": 37.8
   },
   "by_dataset_pair": [
    {
@@ -64,21 +66,30 @@
     "median_fold": 1.18,
     "p90_fold": 1.5,
     "median_residual_fold": 1.16
+   },
+   {
+    "datasets": "isobe2021 vs ncei",
+    "decision": "refuse",
+    "reason": "window_unreported",
+    "pairs": 2062,
+    "median_years_apart": 0.0,
+    "median_fold": 3.55,
+    "p90_fold": 37.8
    }
   ]
  },
  "across_datasets_100km_any_year": {
   "km": 100,
   "days": null,
-  "pairs": 70,
-  "excluded_held_twice": 0,
+  "pairs": 27145,
+  "excluded_held_twice": 74114,
   "compared": 61,
-  "refused": 9,
+  "refused": 27084,
   "median_fold": 1.56,
   "p90_fold": 52.5,
   "unguarded": {
-   "median_fold": 1.71,
-   "p90_fold": 29388.1
+   "median_fold": 5.82,
+   "p90_fold": 91.7
   },
   "by_dataset_pair": [
    {
@@ -90,6 +101,24 @@
     "median_fold": 1.52,
     "p90_fold": 7.2,
     "median_residual_fold": 1.53
+   },
+   {
+    "datasets": "isobe2021 vs ncei",
+    "decision": "refuse",
+    "reason": "window_unreported",
+    "pairs": 27068,
+    "median_years_apart": 4.0,
+    "median_fold": 5.83,
+    "p90_fold": 91.0
+   },
+   {
+    "datasets": "isobe2021 vs pangaea_990052",
+    "decision": "refuse",
+    "reason": "window_unreported",
+    "pairs": 7,
+    "median_years_apart": 19.0,
+    "median_fold": 203525.32,
+    "p90_fold": 339825.5
    },
    {
     "datasets": "ncei vs pangaea_990052",

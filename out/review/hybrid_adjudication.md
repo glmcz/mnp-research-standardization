@@ -1,6 +1,6 @@
 # Which answer is right? (blind)
 
-For each question, mark **A**, **B**, **both** or **neither** after `Your call:`. Judge the number and the verdict: should the comparison be allowed, caveated, or refused? Do not open `data/interim/runs/hy-adjudication-key.json` until you are done.
+For each question, mark **A**, **B**, **both** or **neither** after `Your call:`. Judge the number and the verdict: should the comparison be allowed, caveated, or refused? If you cannot tell, write **unsure** and, if you like, why: never guess, because a guess is counted as a judgement and an unsure is not. Do not open `data/interim/runs/hy-adjudication-key.json` until you are done.
 
 ## T1. In the NOAA NCEI marine microplastics database, by what factor did the median ocean-water concentration (pieces/m3) change from the 2000-2004 samples to the 2020-2024 samples? Does that show microplastic in the ocean rose by that factor?
 

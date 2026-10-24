@@ -1,8 +1,8 @@
 """A blinded sheet for Martin: for each question, two answers in random order, no truth shown.
 
 The experiment's answer key is computed by code. This sheet is the human check of that key: for
-each question Martin marks which answer is right (A, B, both, neither). The key that says which
-answer came from which arm is written apart, so the sheet can be filled blind.
+each question Martin marks which answer is right (A, B, both, neither, or unsure). The key that
+says which answer came from which arm is written apart, so the sheet can be filled blind.
 
     uv run --with openpyxl python tool/hybrid/adjudication.py
     # out/review/hybrid_adjudication.md (the sheet), data/interim/runs/hy-adjudication-key.json
@@ -42,7 +42,9 @@ def main() -> None:
     intro = (
         "For each question, mark **A**, **B**, **both** or **neither** after `Your call:`. "
         "Judge the number and the verdict: should the comparison be allowed, caveated, or "
-        "refused? Do not open `data/interim/runs/hy-adjudication-key.json` until you are done.\n"
+        "refused? If you cannot tell, write **unsure** and, if you like, why: never guess, "
+        "because a guess is counted as a judgement and an unsure is not. "
+        "Do not open `data/interim/runs/hy-adjudication-key.json` until you are done.\n"
     )
     key: dict = {}
     parts = ["# Which answer is right? (blind)\n", intro]

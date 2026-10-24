@@ -33,7 +33,10 @@ ROLES = {
 #: word for a measured amount. "O2 sat [mg/l]" has a unit but no plastic; "Microplastic part
 #: size [µm]" has plastic but no such unit; both were passed by the first run.
 _PLASTIC = r"plastic|\bmp\b|\bmps\b|particle|\bitems?\b|\bpieces?\b|fib(?:re|er)|polymer|litter|#"
-_PER = r"#/|/\s*(?:m3|m\*\*3|m\^3|l|kg|g|m2|m\*\*2|km2|km\*\*2|m)\b|per (?:m3|litre|liter|kg|km2)"
+_PER = (
+    r"#/|/\s*(?:m3|m\*\*3|m\^3|l|kg|g|m2|m\*\*2|km2|km\*\*2|m)\b|per (?:m3|litre|liter|kg|km2)"
+    r"|(?<![a-z])(?:m\^?-3|m\^?-2|km\^?-2|l\^?-1|kg\^?-1|g\^?-1)\b"  # exponent notation: m-3, L-1
+)
 _AMOUNT = r"measurement|concentration|\bconc\b|density"
 
 
@@ -74,18 +77,28 @@ def read_table(name: str, raw: bytes) -> list[pd.DataFrame]:
             z = zipfile.ZipFile(io.BytesIO(raw))
         except zipfile.BadZipFile:
             return []
+        # An archive may bury its data under many small files (an ODV project folder): read the
+        # largest tables first, whatever their order in the archive.
+        tables = [
+            i for i in z.infolist()
+            if i.filename.lower().endswith(catalog.TABULAR[:-1]) and "__MACOSX" not in i.filename
+        ]  # fmt: skip
         frames = []
-        for member in z.namelist()[:30]:
-            if member.lower().endswith(catalog.TABULAR[:-1]) and not member.startswith("__MACOSX"):
-                frames += read_table(member, z.read(member))
+        for info in sorted(tables, key=lambda i: -i.file_size)[:5]:
+            frames += read_table(info.filename, z.read(info.filename))
         return frames
     try:
         if low.endswith((".xlsx", ".xls")):
             sheets = pd.read_excel(io.BytesIO(raw), sheet_name=None, nrows=20000)
             return [s for s in sheets.values() if s.shape[1] >= 3]
-        text = raw.decode("utf-8", errors="replace")
+        text = raw.decode("utf-8", errors="replace").replace("\r\n", "\n").replace("\r", "\n")
+        if text.startswith("# "):  # a header written as a comment line
+            text = text[2:]
         if low.endswith(".tab") or text.startswith("/* DATA DESCRIPTION"):
             return [_pangaea(text)]
+        if text.startswith("//"):  # ODV spreadsheet text: comment lines, then a tab header
+            body = "\n".join(ln for ln in text.splitlines() if not ln.startswith("//"))
+            return [pd.read_csv(io.StringIO(body), sep="\t", nrows=20000, low_memory=False)]
         return [pd.read_csv(io.StringIO(text), sep=None, engine="python", nrows=20000)]
     except Exception:  # noqa: BLE001 - an unreadable file is a finding, recorded by the caller
         return []

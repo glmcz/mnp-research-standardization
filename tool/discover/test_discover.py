@@ -126,3 +126,37 @@ def test_a_dataset_ncei_already_holds_is_flagged() -> None:
     assert verify.ncei_overlap(c, {"10.1/old"})
     assert verify.ncei_overlap(catalog.to_dict(_cand(description="from NOAA NCEI")), set())
     assert not verify.ncei_overlap(catalog.to_dict(_cand()), {"10.1/old"})
+
+
+def test_an_odv_spreadsheet_skips_its_comment_lines() -> None:
+    # EMODnet's aggregated litter files are ODV text: "//" lines, then a tab-separated header
+    odv = (
+        "//<Encoding>UTF-8</Encoding>\n//SDN_parameter_mapping\n"
+        "Cruise\tStation\tLongitude [degrees_east]\tLatitude [degrees_north]\tMicrolitter [#/m3]\n"
+        "C1\tS1\t10.5\t55.1\t0.3\n"
+    )
+    frames = verify.read_table("litter.txt", odv.encode())
+    assert len(frames) == 1 and "Latitude [degrees_north]" in frames[0].columns
+
+
+def test_a_zip_is_read_by_its_largest_tables_whatever_their_order() -> None:
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        for i in range(40):  # an ODV project folder: many small text files first
+            z.writestr(f"project.Data/misc/readme{i}.txt", "ODV misc files\n")
+        z.writestr("data.txt", "lat,lon,date,items/m3\n" + "1,2,2020-01-01,3\n" * 25)
+    frames = verify.read_table("bundle.zip", buf.getvalue())
+    assert any("items/m3" in f.columns for f in frames)
+
+
+def test_a_csv_with_old_mac_line_ends_and_a_commented_header_is_read() -> None:
+    raw = b"# Date,StartLatitude,StartLongitude,Cs\r2010-01-01,1,2,3\r2010-01-02,1,2,4\r"
+    frames = verify.read_table("tows.csv", raw)
+    assert list(frames[0].columns) == ["Date", "StartLatitude", "StartLongitude", "Cs"]
+    assert len(frames[0]) == 2
+
+
+def test_an_exponent_unit_is_a_per_unit() -> None:
+    assert verify.is_concentration("FloatingMesoplasticsMicroplastics_m-3")
+    assert verify.is_concentration("Microplastics (items L-1)")
+    assert not verify.is_concentration("FloatingMacrolitter_m-1_h-1 sampling effort")

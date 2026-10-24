@@ -226,3 +226,17 @@ def test_a_caveated_cross_dataset_pair_reports_the_gap_the_window_cannot_explain
     assert by["x vs y"]["median_residual_fold"] == round(500.0 / hi, 2)
     # a pair the window fully explains leaves nothing: the same net, the same count
     assert by["x vs z"]["median_residual_fold"] == 1.0
+
+
+def test_a_study_summary_is_its_records_quantiles_and_its_stated_window(records) -> None:
+    import report
+
+    s = report.studies(records)
+    one = s[(s.dataset == "pangaea_990052")].iloc[0]
+    rows = records[records.dataset == "pangaea_990052"]
+    pos = rows.value[rows.value > 0]
+    assert one.n == len(rows) and one.n_pos == len(pos)
+    assert np.isclose(one.p50, pos.median()) and np.isclose(one.p10, pos.quantile(0.1))
+    assert (one.size_min_um, one.size_max_um) == (10.0, 5000.0)
+    # a study with no positive value has no span to draw, but it is still counted
+    assert s.n.sum() == len(records)

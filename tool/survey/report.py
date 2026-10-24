@@ -1,7 +1,8 @@
 """The validators' findings over the whole survey table, written as small committed tables.
 
 uv run --with openpyxl python tool/survey/report.py
-# out/tables/survey_duplicates.csv, survey_completeness.csv, survey_colocated.json
+# out/tables/survey_duplicates.csv, survey_completeness.csv, survey_studies.csv,
+# survey_colocated.json
 """
 
 from __future__ import annotations
@@ -11,6 +12,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -109,11 +111,40 @@ def across_datasets(t, km: float, days: int | None, dup) -> dict:
     }
 
 
+def studies(t: pd.DataFrame) -> pd.DataFrame:
+    """One row per study and setting: its stated window and the span of its positive values.
+
+    This is the reviewer's benchmark plot as a table (review call, 2026-10-10, item 12): x is the
+    size window a study counted, y the concentrations it reports.
+    """
+    keys = ["dataset", "study", "setting", "unit"]
+    t = t.assign(study=t.study.fillna("(no study id)"))
+    g = t.groupby(keys, dropna=False)
+    pos = t[t.value > 0].groupby(keys, dropna=False).value
+    out = pd.DataFrame(
+        {
+            "n": g.size(),
+            "n_pos": pos.size(),
+            "p10": pos.quantile(0.1),
+            "p50": pos.median(),
+            "p90": pos.quantile(0.9),
+            "size_min_um": g.size_min_um.median(),
+            "size_max_um": g.size_max_um.median(),
+            "lat": g.lat.median(),
+            "lon": g.lon.median(),
+            "year_first": g.year.min(),
+            "year_last": g.year.max(),
+        }
+    ).reset_index()
+    return out.fillna({"n_pos": 0}).astype({"n_pos": int})
+
+
 def main() -> None:
     t = table.load()
     dup = v.duplicates(t)
     dup.to_csv(TABLES / "survey_duplicates.csv", index=False)
     v.completeness(t).to_csv(TABLES / "survey_completeness.csv")
+    studies(t).round(6).to_csv(TABLES / "survey_studies.csv", index=False)
     water = t[t.setting == "Ocean water"]
     # studies against studies inside one database (the questions ask about NCEI); databases
     # against each other are across_datasets, judged by the window guard

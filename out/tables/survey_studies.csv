@@ -1,0 +1,484 @@
+dataset,study,setting,unit,n,n_pos,p10,p50,p90,size_min_um,size_max_um,lat,lon,year_first,year_last
+emodnet,EMODnet | Department of Marine Systems at Tallinn University of Technology (713),Ocean water,pieces/m3,171,171,0.267407,0.833076,3.439607,333.0,5000.0,59.457699,24.648999,2016.0,2023.0
+emodnet,EMODnet | Finnish Environment Institute (1104),Ocean water,pieces/m3,16,12,0.042873,0.5558,2.692944,300.0,5000.0,60.197824,24.908119,2020.0,2020.0
+emodnet,EMODnet | Kristineberg Marine Research Station (617),Ocean water,pieces/m3,30,15,33.333334,2323.780015,8516.648206,300.0,5000.0,59.038835,17.6672,2017.0,2017.0
+mpsed,https://doi.org/10.1007/s00128-019-02762-3,sediment,microplastic/kg sediment dry wt.,11,11,429.0,1313.0,3221.0,30.0,5000.0,,,,
+mpsed,https://doi.org/10.1007/s00128-020-02866-1,sediment,microplastic/kg sediment dry wt.,9,9,318.64,467.6,621.8,1.0,5000.0,,,2017.0,2017.0
+mpsed,https://doi.org/10.1007/s00244-017-0414-9,sediment,microplastic/kg sediment dry wt.,23,18,95.27,756.45,3926.14,315.0,5000.0,,,2001.0,2012.0
+mpsed,https://doi.org/10.1007/s10933-019-00071-7,sediment,microplastic/kg sediment dry wt.,15,14,14.55,61.55,237.81,500.0,1000.0,,,2009.0,2009.0
+mpsed,https://doi.org/10.1007/s11270-017-3439-9,sediment,microplastic/kg sediment dry wt.,4,4,3338.3,5155.0,14533.1,10.0,5000.0,,,2016.0,2016.0
+mpsed,https://doi.org/10.1007/s11356-017-8419-5,sediment,microplastic/kg sediment dry wt.,4,4,16.5,22.5,26.4,45.0,5000.0,,,2014.0,2014.0
+mpsed,https://doi.org/10.1007/s11356-021-13724-w,sediment,microplastic/kg sediment dry wt.,2,2,252.75,263.75,274.75,330.0,5000.0,,,2017.0,2018.0
+mpsed,https://doi.org/10.1007/s11356-022-19001-8,sediment,microplastic/kg sediment dry wt.,5,5,10.6,22.0,49.4,50.0,5000.0,,,2019.0,2019.0
+mpsed,https://doi.org/10.1007/s11852-021-00847-y,sediment,microplastic/kg sediment dry wt.,54,50,26.5,108.65,681.34,100.0,5000.0,,,2016.0,2016.0
+mpsed,https://doi.org/10.1007/s12665-022-10670-9,sediment,microplastic/kg sediment dry wt.,14,14,446.0,1725.0,4726.0,100.0,5000.0,,,2019.0,2019.0
+mpsed,https://doi.org/10.1016/j.chemosphere.2016.12.074,sediment,microplastic/kg sediment dry wt.,8,8,208.8,305.5,412.4,1.0,5000.0,,,2015.0,2015.0
+mpsed,https://doi.org/10.1016/j.ecss.2013.03.022,sediment,microplastic/kg sediment dry wt.,10,10,859.2,1435.0,1934.7,32.0,5000.0,,,,
+mpsed,https://doi.org/10.1016/j.envint.2017.01.018,sediment,microplastic/kg sediment dry wt.,4,4,537.6,1420.5,2934.8,10.0,5000.0,,,2013.0,2013.0
+mpsed,https://doi.org/10.1016/j.envpol.2015.04.009,sediment,microplastic/kg sediment dry wt.,2,2,139.9,351.5,563.1,80.0,5000.0,,,2013.0,2013.0
+mpsed,https://doi.org/10.1016/j.envpol.2016.06.036,sediment,microplastic/kg sediment dry wt.,3,3,42.6,97.0,165.0,63.0,5000.0,,,2015.0,2015.0
+mpsed,https://doi.org/10.1016/j.envpol.2016.12.064,sediment,microplastic/kg sediment dry wt.,4,4,84.1,103.5,154.4,1.0,5000.0,,,2015.0,2015.0
+mpsed,https://doi.org/10.1016/j.envpol.2017.05.057,sediment,microplastic/kg sediment dry wt.,10,10,10.0,59.0,105.4,500.0,5000.0,,,,
+mpsed,https://doi.org/10.1016/j.envpol.2017.11.034,sediment,microplastic/kg sediment dry wt.,6,6,566.5,942.5,1567.5,1.0,5000.0,,,2016.0,2016.0
+mpsed,https://doi.org/10.1016/j.envpol.2019.03.105,sediment,microplastic/kg sediment dry wt.,21,21,10.0,24.0,66.0,63.0,5000.0,,,2016.0,2016.0
+mpsed,https://doi.org/10.1016/j.envpol.2019.113658,sediment,microplastic/kg sediment dry wt.,21,21,40.0,90.0,204.0,20.0,5000.0,,,2018.0,2018.0
+mpsed,https://doi.org/10.1016/j.envpol.2020.113994,sediment,microplastic/kg sediment dry wt.,21,21,171.0,667.0,1632.0,10.0,5000.0,,,2017.0,2017.0
+mpsed,https://doi.org/10.1016/j.jembe.2008.09.007,sediment,microplastic/kg sediment dry wt.,3,3,83.8,91.0,151.8,250.0,5000.0,,,,
+mpsed,https://doi.org/10.1016/j.jglr.2018.07.014,sediment,microplastic/kg sediment dry wt.,17,15,24.8,62.0,296.6,63.0,5000.0,,,2014.0,2015.0
+mpsed,https://doi.org/10.1016/j.jglr.2020.10.007,sediment,microplastic/kg sediment dry wt.,12,12,38.97,322.5,693.17,125.0,5000.0,,,2018.0,2019.0
+mpsed,https://doi.org/10.1016/j.jhazmat.2020.124132,sediment,microplastic/kg sediment dry wt.,4,4,10780.1,18015.5,27756.9,25.0,5000.0,,,2016.0,2017.0
+mpsed,https://doi.org/10.1016/j.jwpe.2020.101640,sediment,microplastic/kg sediment dry wt.,14,14,5.5,36.0,176.2,100.0,5000.0,,,2018.0,2018.0
+mpsed,https://doi.org/10.1016/j.marenvres.2016.01.005,sediment,microplastic/kg sediment dry wt.,2,2,124.0,140.0,156.0,63.0,5000.0,,,2013.0,2013.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2011.06.030,sediment,microplastic/kg sediment dry wt.,4,4,105.7,149.0,200.7,38.0,5000.0,,,,
+mpsed,https://doi.org/10.1016/j.marpolbul.2016.06.037,sediment,microplastic/kg sediment dry wt.,40,40,79.0,505.0,2832.0,63.0,5000.0,,,2012.0,2015.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2016.09.004,sediment,microplastic/kg sediment dry wt.,4,4,195.8,276.5,561.6,1000.0,4000.0,,,2014.0,2014.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2016.10.060,sediment,microplastic/kg sediment dry wt.,3,3,36.0,40.0,46.4,174.0,5000.0,,,2015.0,2015.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2016.11.003,sediment,microplastic/kg sediment dry wt.,27,27,50.8,109.0,317.2,32.0,5000.0,,,2015.0,2016.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2017.02.021,sediment,microplastic/kg sediment dry wt.,16,16,87.0,178.0,353.5,10.0,5000.0,,,2015.0,2016.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2019.02.015,sediment,microplastic/kg sediment dry wt.,4,4,16975.9,49572.5,165408.2,11.0,5000.0,,,2015.0,2015.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2019.06.061,sediment,microplastic/kg sediment dry wt.,14,14,13.37,21.35,92.3,63.0,5000.0,,,2016.0,2016.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2019.07.068,sediment,microplastic/kg sediment dry wt.,9,9,380.0,1800.0,7340.0,53.0,5000.0,,,2017.0,2017.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2020.110885,sediment,microplastic/kg sediment dry wt.,45,42,7.5,12.5,24.75,1.0,5000.0,,,2018.0,2018.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2020.110916,sediment,microplastic/kg sediment dry wt.,6,6,29.9,122.35,174.1,20.0,5000.0,,,2011.0,2011.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2020.111166,sediment,microplastic/kg sediment dry wt.,8,8,150.72,222.0,591.5,1.2,5000.0,,,2019.0,2019.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2020.111948,sediment,microplastic/kg sediment dry wt.,22,22,3933.3,13316.5,40513.0,1.0,5000.0,,,2019.0,2019.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2021.113254,sediment,microplastic/kg sediment dry wt.,7,7,344.0,1512.0,14735819.2,45.0,1000.0,,,2019.0,2019.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2022.113709,sediment,microplastic/kg sediment dry wt.,76,76,211.5,2691.5,41098.5,53.0,5000.0,,,2015.0,2017.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2023.115201,sediment,microplastic/kg sediment dry wt.,8,8,63.28,93.25,185.15,1.0,5000.0,,,2018.0,2018.0
+mpsed,https://doi.org/10.1016/j.scitotenv.2017.08.298,sediment,microplastic/kg sediment dry wt.,2,2,21.68,83.2,144.72,63.0,5000.0,,,2016.0,2016.0
+mpsed,https://doi.org/10.1016/j.scitotenv.2018.03.336,sediment,microplastic/kg sediment dry wt.,8,8,77.4,155.0,309.0,330.0,5000.0,,,2017.0,2017.0
+mpsed,https://doi.org/10.1016/j.scitotenv.2019.02.028,sediment,microplastic/kg sediment dry wt.,18,18,16.91,48.55,153.92,1.0,5000.0,,,2017.0,2017.0
+mpsed,https://doi.org/10.1016/j.scitotenv.2020.139025,sediment,microplastic/kg sediment dry wt.,29,29,71.4,132.0,298.6,50.0,5000.0,,,,
+mpsed,https://doi.org/10.1016/j.scitotenv.2020.143111,sediment,microplastic/kg sediment dry wt.,3,3,244.0,460.0,556.0,30.0,5000.0,,,2018.0,2018.0
+mpsed,https://doi.org/10.1016/j.scitotenv.2021.147306,sediment,microplastic/kg sediment dry wt.,60,60,1215.88,3020.65,6517.57,90.0,5000.0,,,2019.0,2019.0
+mpsed,https://doi.org/10.1016/j.watres.2018.07.050,sediment,microplastic/kg sediment dry wt.,12,12,20138.0,29985.0,44346.0,20.0,5000.0,,,2016.0,2016.0
+mpsed,https://doi.org/10.1016/j.watres.2019.115140,sediment,microplastic/kg sediment dry wt.,3,3,76.22,79.1,85.74,1.0,5000.0,,,,
+mpsed,https://doi.org/10.1016/j.watres.2020.116449,sediment,microplastic/kg sediment dry wt.,5,5,18.096,24.4,35.696,300.0,5000.0,,,2019.0,2019.0
+mpsed,https://doi.org/10.1021/acs.est.0c08386,sediment,microplastic/kg sediment dry wt.,2,2,114.4,428.0,741.6,125.0,5000.0,,,2019.0,2019.0
+mpsed,https://doi.org/10.1021/acs.est.5b00492,sediment,microplastic/kg sediment dry wt.,10,10,264.0,537.5,1607.5,63.0,5000.0,,,2013.0,2013.0
+mpsed,https://doi.org/10.1021/acs.est.9b03850,sediment,microplastic/kg sediment dry wt.,9,9,38.12,318.9,2936.32,174.0,5000.0,,,2016.0,2016.0
+mpsed,https://doi.org/10.1021/acs.est.9b04896,sediment,microplastic/kg sediment dry wt.,34,34,30.3,158.5,693.5,63.0,5000.0,,,2016.0,2016.0
+mpsed,https://doi.org/10.1038/s41561-018-0080-1,sediment,microplastic/kg sediment dry wt.,92,91,300.0,1500.0,5200.0,63.0,5000.0,,,2015.0,2015.0
+mpsed,https://doi.org/10.1126/science.1094559,sediment,microplastic/kg sediment dry wt.,2,2,36.5,58.5,80.5,1.0,5000.0,,,,
+mpsed,https://doi.org/10.1139/cjfas-2014-0281,sediment,microplastic/kg sediment dry wt.,10,8,1.0,1.0,214.6,500.0,5000.0,,,2010.0,2013.0
+mpsed,https://doi.org/10.1139/facets-2016-0070,sediment,microplastic/kg sediment dry wt.,10,10,148.0,182.5,315.9,300.0,5000.0,,,2015.0,2015.0
+mpsed,https://doi.org/10.1371/journal.pone.0228896,sediment,microplastic/kg sediment dry wt.,9,9,159.0,232.0,554.6,355.0,5000.0,,,2018.0,2018.0
+mpsed,https://doi.org/10.1371/journal.pone.0229777,sediment,microplastic/kg sediment dry wt.,1,1,148.0,148.0,148.0,500.0,5000.0,,,,
+mpsed,https://doi.org/10.3389/fenvs.2021.794895,sediment,microplastic/kg sediment dry wt.,2,2,85.43,162.35,239.27,20.0,5000.0,,,2020.0,2020.0
+mpsed,https://doi.org/10.3390/w10111597,sediment,microplastic/kg sediment dry wt.,6,6,50.0,175.0,275.0,63.0,4000.0,,,2017.0,2017.0
+mpsed,https://dx.doi.org/10.1016/j.jhazmat.2022.130067,sediment,microplastic/kg sediment dry wt.,3,3,259.48,303.8,397.88,40.0,5000.0,,,2020.0,2020.0
+mpsed,https://dx.doi.org/10.1016/j.marenvres.2022.105804,sediment,microplastic/kg sediment dry wt.,20,20,127.72,349.65,650.65,100.0,5000.0,,,2017.0,2017.0
+mpsed,https://dx.doi.org/10.1016/j.marpolbul.2022.114545,sediment,microplastic/kg sediment dry wt.,12,12,5405.73,9028.75,13876.71,1.0,5000.0,,,2018.0,2018.0
+mpsed,https://dx.doi.org/10.1016/j.scitotenv.2022.159071,sediment,microplastic/kg sediment dry wt.,30,30,200.79,594.35,1927.56,50.0,5000.0,,,2021.0,2021.0
+mpsed,https://dx.doi.org/10.1016/j.scitotenv.2022.159344,sediment,microplastic/kg sediment dry wt.,13,13,4166.0,7000.0,7800.0,10.0,5000.0,,,,
+mpsed,https://dx.doi.org/10.1016/j.scitotenv.2022.160932,sediment,microplastic/kg sediment dry wt.,11,11,235.5,446.3,605.8,1.0,5000.0,,,2021.0,2021.0
+mpsed,https://dx.doi.org/10.3389/fmars.2022.1093815,sediment,microplastic/kg sediment dry wt.,36,35,467.82,2365.7,6238.0,10.0,5000.0,,,2013.0,2021.0
+mpsed,https://dx.doi.org/10.7185/geochemlet.2012,sediment,microplastic/kg sediment dry wt.,16,16,117.35,198.3,498.9,,5000.0,,,2018.0,2018.0
+ncei,https://doi.org/10.1007/s00128-022-03620-5,Ocean water,pieces/m3,8,8,0.1388,0.605,1.716,300.0,5000.0,-6.475,39.213334,2019.0,2019.0
+ncei,https://doi.org/10.1007/s10661-022-10468-z,Ocean sediment,pieces kg-1 d.w.,72,72,13.37,38.15,148.4,11.0,5000.0,8.780439,78.166878,2021.0,2021.0
+ncei,https://doi.org/10.1007/s10661-022-10468-z,Ocean water,pieces/m3,72,72,0.04397,0.1795,0.638,48.0,5000.0,8.780439,78.166878,2021.0,2021.0
+ncei,https://doi.org/10.1007/s11270-021-05323-9,Ocean sediment,pieces kg-1 d.w.,19,18,34.0,108.75,1233.05,500.0,5000.0,45.4985,12.499267,2017.0,2018.0
+ncei,https://doi.org/10.1007/s11356-015-4453-3,Ocean water,pieces/m3,38,38,0.235795,0.776866,1.585743,330.0,5000.0,41.051666,5.34575,2011.0,2012.0
+ncei,https://doi.org/10.1007/s11356-022-24998-z,Ocean sediment,pieces kg-1 d.w.,45,45,28.5,120.0,197.0,300.0,5000.0,22.36101,91.874887,2019.0,2020.0
+ncei,https://doi.org/10.1007/s11356-022-24998-z,Ocean water,pieces/m3,45,45,0.6875,1.729167,2.845833,300.0,5000.0,22.36101,91.874887,2019.0,2020.0
+ncei,https://doi.org/10.1007/s11852-021-00846-z,Beach,pieces/m3,18,12,0.222222,0.777778,1.211111,,5000.0,10.759202,-61.43915,2015.0,2016.0
+ncei,https://doi.org/10.1007/s12665-024-12042-x,Ocean water,pieces/m3,14,14,68.0,215.0,581.0,300.0,5000.0,15.718189,73.710496,2022.0,2022.0
+ncei,https://doi.org/10.1007/s12665-025-12462-3,Ocean water,pieces/m3,17,17,288.0,870.0,1994.0,300.0,5000.0,15.33806,73.89194,2023.0,2023.0
+ncei,https://doi.org/10.1007/s12665-025-12773-5,Ocean water,pieces/m3,12,12,142.0,370.0,1044.0,100.0,5000.0,15.5775,73.739306,2023.0,2023.0
+ncei,https://doi.org/10.1007/s43217-023-00131-z,Beach,pieces/m3,60,60,720.0,1440.0,3048.0,300.0,5000.0,21.382222,91.996667,2019.0,2020.0
+ncei,https://doi.org/10.1007/s43217-023-00131-z,Ocean water,pieces/m3,18,18,0.2125,0.2625,0.3375,300.0,5000.0,21.483056,91.96,2019.0,2020.0
+ncei,https://doi.org/10.1016/j.chemosphere.2022.133980,Ocean water,pieces/m3,69,69,488.0,924.0,1586.4,100.0,5000.0,21.910766,113.650735,2018.0,2018.0
+ncei,https://doi.org/10.1016/j.envint.2020.105494,Ocean water,pieces/m3,75,34,0.003158,0.008722,0.04807,200.0,5000.0,-36.254133,6.993731,2016.0,2017.0
+ncei,https://doi.org/10.1016/j.envpol.2017.09.058,Ocean water,pieces/m3,88,85,0.01426,0.056245,0.17376,335.0,5000.0,-26.47091,-83.522145,2013.0,2015.0
+ncei,https://doi.org/10.1016/j.envpol.2018.02.062,Ocean water,pieces/m3,1389,1148,0.001,0.006,0.036,0.45,5000.0,18.6958,-56.4675,2013.0,2017.0
+ncei,https://doi.org/10.1016/j.envpol.2022.120702,Ocean water,pieces/m3,18,18,0.150868,0.380935,1.335285,300.0,5000.0,40.219444,17.9475,2020.0,2021.0
+ncei,https://doi.org/10.1016/j.gr.2021.10.024,Ocean water,pieces/m3,15,15,0.166,0.44,0.942,330.0,5000.0,20.5,169.99,2019.0,2019.0
+ncei,https://doi.org/10.1016/j.marenvres.2010.10.001,Ocean water,pieces/m3,270,145,0.01364,0.0501,0.142,505.0,5000.0,33.175,-121.03,2006.0,2007.0
+ncei,https://doi.org/10.1016/j.marenvres.2014.03.017,Ocean water,pieces/m3,10,10,0.019,0.18,0.26,500.0,5000.0,39.85755,8.4425,2012.0,2013.0
+ncei,https://doi.org/10.1016/j.marenvres.2016.05.009,Ocean water,pieces/m3,24,22,0.191,0.635,2.519,200.0,5000.0,41.250556,40.185138,2014.0,2015.0
+ncei,https://doi.org/10.1016/j.marpolbul.2012.12.021,Ocean water,pieces/m3,48,48,0.026026,0.250175,1.035898,333.0,5000.0,-28.6558,-103.97245,2011.0,2011.0
+ncei,https://doi.org/10.1016/j.marpolbul.2013.11.023,Ocean water,pieces/m3,37,27,0.02,0.08,0.668,200.0,5000.0,42.5855,8.7295,2011.0,2012.0
+ncei,https://doi.org/10.1016/j.marpolbul.2014.08.023,Ocean water,pieces/m3,563,559,1.5,6.0,13.1,1.2,5000.0,53.8916,-9.1441,2013.0,2013.0
+ncei,https://doi.org/10.1016/j.marpolbul.2016.07.022,Beach,pieces/m3,8,8,544.0,1440.0,39872.0,38.0,5000.0,25.1769,121.61145,2015.0,2015.0
+ncei,https://doi.org/10.1016/j.marpolbul.2016.10.031,Ocean water,pieces/m3,17,17,0.324,2.01,15.85,300.0,5000.0,45.5651,13.5835,2012.0,2014.0
+ncei,https://doi.org/10.1016/j.marpolbul.2016.12.025,Ocean water,pieces/m3,76,61,0.5,1.0,2.5,250.0,5000.0,10.608206,-12.972119,2015.0,2015.0
+ncei,https://doi.org/10.1016/j.marpolbul.2016.12.052,Ocean water,pieces/m3,108,108,0.570804,2.033789,12.479527,333.0,5000.0,32.391917,34.855,2013.0,2015.0
+ncei,https://doi.org/10.1016/j.marpolbul.2018.03.011,Ocean water,pieces/m3,106,87,0.5,2.0,83.0,250.0,5000.0,86.55147,8.03511,2016.0,2016.0
+ncei,https://doi.org/10.1016/j.marpolbul.2018.12.042,Ocean water,pieces/m3,6,6,1.65,5.55,14.05,335.0,5000.0,-22.8875,-43.182777,2016.0,2016.0
+ncei,https://doi.org/10.1016/j.marpolbul.2019.01.028,Beach,pieces/m3,80,75,1200.0,4800.0,24880.0,1000.0,5000.0,25.21756,121.6519,2017.0,2017.0
+ncei,https://doi.org/10.1016/j.marpolbul.2019.01.053,Ocean water,pieces/m3,21,21,0.149,0.303,0.587,335.0,5000.0,37.508333,-0.876667,2015.0,2015.0
+ncei,https://doi.org/10.1016/j.marpolbul.2019.04.023,Ocean water,pieces/m3,13,13,0.0352,0.086,0.276,330.0,5000.0,64.32,-167.77,2017.0,2017.0
+ncei,https://doi.org/10.1016/j.marpolbul.2019.07.068,Ocean sediment,pieces kg-1 d.w.,9,9,38.0,180.0,734.0,53.0,5000.0,27.8118,-82.6092,2017.0,2017.0
+ncei,https://doi.org/10.1016/j.marpolbul.2019.07.068,Ocean water,pieces/m3,215,118,3.04,1000.0,4000.0,1.2,5000.0,27.8493,-82.5559,2016.0,2017.0
+ncei,https://doi.org/10.1016/j.marpolbul.2019.110572,Ocean water,pieces/m3,34,33,0.017678,0.064088,0.313598,330.0,5000.0,42.783266,9.792975,2018.0,2018.0
+ncei,https://doi.org/10.1016/j.marpolbul.2019.110757,Beach,pieces/m3,50,50,2904.0,21840.0,56024.0,1000.0,5000.0,28.152519,-16.43179,2019.0,2019.0
+ncei,https://doi.org/10.1016/j.marpolbul.2020.111016,Ocean sediment,pieces kg-1 d.w.,29,29,0.726666,1.633333,2.926,,5000.0,42.901044,10.466283,2017.0,2017.0
+ncei,https://doi.org/10.1016/j.marpolbul.2020.111092,Ocean sediment,pieces kg-1 d.w.,90,63,24.719311,50.505051,139.523337,52.0,5000.0,57.298,-10.3825,2017.0,2017.0
+ncei,https://doi.org/10.1016/j.marpolbul.2020.111225,Ocean water,pieces/m3,10,10,0.162164,0.385109,1.200567,300.0,5000.0,42.950417,27.995834,2017.0,2017.0
+ncei,https://doi.org/10.1016/j.marpolbul.2020.111239,Ocean water,pieces/m3,81,63,0.0012,0.0014,0.00462,0.45,5000.0,-18.1404,178.3647,2018.0,2018.0
+ncei,https://doi.org/10.1016/j.marpolbul.2020.111345,Beach,pieces/m3,34,34,6056.0,30920.0,169976.0,1.2,5000.0,12.623889,101.548611,2019.0,2019.0
+ncei,https://doi.org/10.1016/j.marpolbul.2020.111361,Ocean water,pieces/m3,20,20,0.200838,0.507388,0.809088,100.0,5000.0,53.188867,-9.394867,2017.0,2017.0
+ncei,https://doi.org/10.1016/j.marpolbul.2020.111515,Ocean water,pieces/m3,20,20,0.05128,0.498088,1.770478,330.0,5000.0,42.9061,9.715434,2019.0,2019.0
+ncei,https://doi.org/10.1016/j.marpolbul.2020.111572,Ocean water,pieces/m3,12,12,0.0819,0.289,0.5282,335.0,5000.0,-17.75145,168.28705,2018.0,2018.0
+ncei,https://doi.org/10.1016/j.marpolbul.2021.112210,Ocean water,pieces/m3,514,339,0.00686,0.029608,0.15671,335.0,5000.0,56.4785,-4.438833,2014.0,2022.0
+ncei,https://doi.org/10.1016/j.marpolbul.2021.112467,Beach,pieces/m3,25,25,171.2,428.0,4965.6,1.2,5000.0,9.743611,99.93,2019.0,2019.0
+ncei,https://doi.org/10.1016/j.marpolbul.2021.112749,Beach,pieces/m3,1,1,3510.0,3510.0,3510.0,1000.0,5000.0,35.497555,139.676277,2020.0,2020.0
+ncei,https://doi.org/10.1016/j.marpolbul.2022.113710,Ocean water,pieces/m3,6,6,0.02,0.055,1.655,300.0,5000.0,-3.819166,40.102084,2020.0,2020.0
+ncei,https://doi.org/10.1016/j.marpolbul.2022.113940,Ocean sediment,pieces kg-1 d.w.,26,26,50.328321,99.5,168.981049,0.45,5000.0,30.455,121.555,2020.0,2020.0
+ncei,https://doi.org/10.1016/j.marpolbul.2022.113940,Ocean water,pieces/m3,26,26,0.575,1.361688,3.042053,300.0,5000.0,30.455,121.555,2020.0,2020.0
+ncei,https://doi.org/10.1016/j.marpolbul.2022.114179,Ocean water,pieces/m3,16,16,0.027116,0.056607,0.098597,50.0,5000.0,-20.199642,148.883866,2020.0,2020.0
+ncei,https://doi.org/10.1016/j.marpolbul.2022.114305,Ocean sediment,pieces kg-1 d.w.,10,10,57.772,110.325,208.497,0.7,5000.0,-6.525,39.233334,2019.0,2019.0
+ncei,https://doi.org/10.1016/j.marpolbul.2022.114452,Ocean sediment,pieces kg-1 d.w.,4,4,10.6,16.0,24.9,8.0,5000.0,40.24604,9.62345,2020.0,2020.0
+ncei,https://doi.org/10.1016/j.marpolbul.2022.114452,Ocean water,pieces/m3,2,2,0.0184,0.02,0.0216,54.0,5000.0,40.24604,9.62345,2020.0,2020.0
+ncei,https://doi.org/10.1016/j.marpolbul.2023.114604,Ocean water,pieces/m3,132,131,0.010514,0.062966,0.492985,450.0,5000.0,32.498333,135.0,2014.0,2014.0
+ncei,https://doi.org/10.1016/j.marpolbul.2024.116132,Ocean sediment,pieces kg-1 d.w.,7,7,4.56,13.33,26.746,20.0,5000.0,23.731542,57.8329,2021.0,2021.0
+ncei,https://doi.org/10.1016/j.marpolbul.2024.116153,Ocean sediment,pieces kg-1 d.w.,7,7,1.706689,3.406923,12.148216,1.2,5000.0,53.202686,-9.31032,2019.0,2019.0
+ncei,https://doi.org/10.1016/j.marpolbul.2024.116153,Ocean water,pieces/m3,11,11,0.95648,1.395576,1.788684,300.0,5000.0,53.14821,-9.31032,2019.0,2019.0
+ncei,https://doi.org/10.1016/j.marpolbul.2024.117288,Ocean sediment,pieces kg-1 d.w.,14,14,699.0,2450.0,4578.0,45.0,5000.0,-2.685627,-80.247234,2022.0,2022.0
+ncei,https://doi.org/10.1016/j.marpolbul.2024.117288,Ocean water,pieces/m3,33,33,1272.0,2860.0,13550.0,300.0,5000.0,-2.686525,-80.239624,2022.0,2022.0
+ncei,https://doi.org/10.1016/j.marpolbul.2024.117511,Beach,pieces/m3,14,8,59.2,140.0,212.0,1000.0,5000.0,11.5497,-72.9192,2021.0,2021.0
+ncei,https://doi.org/10.1016/j.marpolbul.2025.117768,Beach,pieces/m3,208,93,28.985507,125.313283,765.050228,1000.0,5000.0,19.527325,2.028056,2018.0,2020.0
+ncei,https://doi.org/10.1016/j.marpolbul.2025.118144,Ocean sediment,pieces kg-1 d.w.,58,58,1.17,5.5,977.9,32.0,5000.0,-36.7385,173.9745,2019.0,2021.0
+ncei,https://doi.org/10.1016/j.resconrec.2019.104633,Beach,pieces/m3,331,270,705.218618,1410.437236,3526.093089,500.0,5000.0,21.525186,-104.38699,2018.0,2018.0
+ncei,https://doi.org/10.1016/j.rsma.2022.102423,Beach,pieces/m3,39,22,706.389134,1412.778269,3461.306759,1130.0,5000.0,21.526733,-87.37755,2018.0,2018.0
+ncei,https://doi.org/10.1016/j.rsma.2024.103381,Beach,pieces/m3,25,25,7840.0,30800.0,118160.0,100.0,5000.0,14.705439,-92.406542,2023.0,2023.0
+ncei,https://doi.org/10.1016/j.scitotenv.2018.09.244,Ocean water,pieces/m3,18,18,0.004589,0.022966,0.199209,330.0,5000.0,24.009444,146.474722,2017.0,2017.0
+ncei,https://doi.org/10.1016/j.scitotenv.2018.12.192,Ocean water,pieces/m3,23,23,1640.0,2600.0,7946.666667,20.0,5000.0,21.796756,108.551683,2017.0,2017.0
+ncei,https://doi.org/10.1016/j.scitotenv.2019.01.319,Ocean water,pieces/m3,32,31,0.11,0.62,1.58,335.0,5000.0,17.9464,-76.825845,2017.0,2017.0
+ncei,https://doi.org/10.1016/j.scitotenv.2021.147453,Ocean sediment,pieces kg-1 d.w.,14,14,1.16,6.25,41.7,500.0,5000.0,41.114306,1.272916,2018.0,2018.0
+ncei,https://doi.org/10.1016/j.scitotenv.2021.147453,Ocean water,pieces/m3,4,4,0.52,0.9,2.4,80.0,5000.0,41.112778,1.279583,2018.0,2018.0
+ncei,https://doi.org/10.1016/j.scitotenv.2022.154036,Ocean sediment,pieces kg-1 d.w.,17,17,11.14,30.6,50.22,63.0,5000.0,52.027905,-7.977164,2020.0,2021.0
+ncei,https://doi.org/10.1016/j.scitotenv.2022.155958,Ocean water,pieces/m3,124,124,0.115523,0.835916,3.507595,333.0,5000.0,39.00505,10.00805,2014.0,2014.0
+ncei,https://doi.org/10.1016/j.scitotenv.2022.156259,Ocean water,pieces/m3,57,57,893.0,1710.0,3424.0,64.0,5000.0,0.580672,-47.737967,2018.0,2018.0
+ncei,https://doi.org/10.1021/acs.est.2c05926,Ocean sediment,pieces kg-1 d.w.,40,30,5.0,10.0,23.2,1.2,5000.0,50.573502,-11.696624,2019.0,2019.0
+ncei,https://doi.org/10.1021/es4053076,Ocean water,pieces/m3,2530,976,0.00216,0.0108,0.468134,335.0,5000.0,21.42,-147.02,2001.0,2012.0
+ncei,https://doi.org/10.1038/s41598-020-64465-8,Ocean water,pieces/m3,16,15,0.686239,3.656354,20.709158,333.0,5000.0,30.5692,-140.7533,2018.0,2018.0
+ncei,https://doi.org/10.1038/s41598-021-85939-3,Ocean water,pieces/m3,40,40,0.318,0.525,0.782,150.0,5000.0,-0.605,-88.25,2017.0,2017.0
+ncei,https://doi.org/10.1038/s41598-022-17742-7,Ocean water,pieces/m3,36,31,0.15963,0.406777,1.421261,333.0,5000.0,43.220228,-24.673206,2020.0,2020.0
+ncei,https://doi.org/10.1038/s41598-023-36228-8,Ocean sediment,pieces kg-1 d.w.,83,79,347.622,670.97,1915.042,62.5,5000.0,41.692959,-71.3642,2020.0,2021.0
+ncei,https://doi.org/10.1038/s43247-021-00091-0,Ocean water,pieces/m3,108,59,0.013499,0.638162,1.751566,80.0,5000.0,74.55015,122.591933,2019.0,2019.0
+ncei,https://doi.org/10.1038/srep14947,Ocean water,pieces/m3,21,8,0.009906,0.03835,0.1684,333.0,5000.0,76.4447,13.4723,2014.0,2014.0
+ncei,https://doi.org/10.1038/srep37551,Ocean water,pieces/m3,74,74,0.554341,1.652539,6.056308,200.0,5000.0,39.800667,11.838,2013.0,2013.0
+ncei,https://doi.org/10.1088/1748-9326/abbb4f,Ocean water,pieces/m3,663,643,0.21858,1.686723,7.331311,333.0,5000.0,32.00334,-140.612,2015.0,2019.0
+ncei,https://doi.org/10.1088/1748-9326/ac5df1,Ocean water,pieces/m3,124,124,0.192067,1.021666,6.341667,333.0,5000.0,41.397303,2.21315,2020.0,2021.0
+ncei,https://doi.org/10.1126/sciadv.1600582,Ocean water,pieces/m3,42,27,0.01624,0.095,1.1672,330.0,5000.0,72.87115,41.4134,2011.0,2013.0
+ncei,https://doi.org/10.1126/science.1192321,Ocean water,pieces/m3,6135,3812,0.00216,0.01296,0.095032,335.0,5000.0,25.68,-69.05,1986.0,2008.0
+ncei,https://doi.org/10.12681/mms.24899,Ocean water,pieces/m3,24,24,0.191919,0.802284,1.46419,330.0,5000.0,36.746261,2.79824,2018.0,2018.0
+ncei,https://doi.org/10.1371/journal.pone.0080020,Ocean water,pieces/m3,235,200,0.0089,0.469,7.2643,333.0,5000.0,32.3786,-137.9218,1972.0,2010.0
+ncei,https://doi.org/10.1371/journal.pone.0080466,Ocean water,pieces/m3,171,136,0.00528,0.027022,0.106284,333.0,5000.0,-26.293,148.44095,2011.0,2012.0
+ncei,https://doi.org/10.1371/journal.pone.0111913,Ocean water,pieces/m3,680,607,0.013791,0.223863,2.022066,330.0,5000.0,-15.0083,-18.80545,2007.0,2013.0
+ncei,https://doi.org/10.1371/journal.pone.0121762,Ocean water,pieces/m3,39,39,0.04984,0.464,2.662,200.0,5000.0,37.4856,12.5348,2013.0,2013.0
+ncei,https://doi.org/10.1371/journal.pone.0161581,Ocean water,pieces/m3,33,33,0.39209,0.79316,2.835266,333.0,5000.0,43.5429,7.2421,2013.0,2013.0
+ncei,https://doi.org/10.1371/journal.pone.0243203,Ocean water,pieces/m3,90,84,9.0,31.5,91.1,100.0,5000.0,5.82145,-8.9705,2017.0,2018.0
+ncei,https://doi.org/10.25921/d1bs-3m40,Ocean water,pieces/m3,1107,1032,0.010622,0.128661,0.888985,330.0,5000.0,38.136665,-1.898667,2013.0,2024.0
+ncei,https://doi.org/10.2989/1814232X.2018.1492969,Ocean water,pieces/m3,11,11,33.333333,83.333333,183.333333,250.0,5000.0,-3.136517,42.0918,2017.0,2017.0
+ncei,https://doi.org/10.3389/fenvs.2020.582217,Ocean water,pieces/m3,36,36,0.069879,0.2837,1.273892,335.0,5000.0,38.45388,-9.01787,2018.0,2019.0
+ncei,https://doi.org/10.3389/fenvs.2021.719274,Ocean water,pieces/m3,5,5,2310.0,5015.0,39189.0,75.0,5000.0,14.59371,120.94866,2018.0,2019.0
+ncei,https://doi.org/10.3389/fenvs.2022.998513,Ocean sediment,pieces kg-1 d.w.,36,36,38.333333,56.666667,533.333334,63.0,5000.0,38.45388,-9.01787,2018.0,2019.0
+ncei,https://doi.org/10.3389/fmars.2021.626026,Ocean water,pieces/m3,54,53,0.070264,3.692508,15.541621,333.0,5000.0,33.825085,-140.125242,2015.0,2019.0
+ncei,https://doi.org/10.3389/fmars.2021.699000,Ocean water,pieces/m3,76,76,0.1,0.473572,2.801666,333.0,5000.0,37.872,23.6315,2014.0,2020.0
+ncei,https://doi.org/10.3389/fmars.2022.784937,Ocean water,pieces/m3,71,71,0.031328,0.131303,0.724807,330.0,5000.0,43.2475,8.751844,2018.0,2019.0
+pangaea_882220,10.1594/pangaea.882220,Beach,pieces/l sediment,343,338,16.0,52.0,150.9,,,-33.283,22.612,2016.0,2017.0
+pangaea_928578,10.1594/pangaea.928578,Ocean sediment,pieces/kg,29,29,13.8,52.0,307.8,,,45.84795,152.93175,2016.0,2016.0
+pangaea_941076,10.1594/pangaea.941076,Ocean water,pieces/m3,34,22,0.0053,0.014,0.025,300.0,5000.0,-68.483872,-11.141056,2018.0,2019.0
+pangaea_941107,10.1594/pangaea.941107,"Ocean water, subsurface",pieces/m3,79,10,0.259,0.275,1.021,300.0,5000.0,-67.667445,-10.03535,2018.0,2019.0
+pangaea_990052,10.1594/pangaea.990052,Ocean water,pieces/m3,20,20,80.3492,367.376,2321.2629,10.0,5000.0,1.5945,-87.5665,2022.0,2023.0
+pangaea_weser,PANGAEA 937685/938143 (Weser estuary),river water,pieces/m3,46,45,0.054752,23.0,2069.0,255.5,2750.0,,,2018.0,2018.0
+soil,A Method for the Extraction and Analysis of Microplastics from Tropical Agricultural Soils in Southeastern Brazil,soil,items/kg,4,4,1881.0,2381.25,3462.5,50.0,2000.0,-21.2029,-44.98141,2022.0,2022.0
+soil,A Method to Replace NaCl as a Flotation Solution for Extracting MPs in Soil: A Case Study of the Jiaxing Agricultural Soil from China,soil,items/kg,1,1,6327.0,6327.0,6327.0,30.0,5000.0,30.702205,121.055894,2023.0,2023.0
+soil,A Procedure for Measuring Microplastics using Pressurized Fluid Extraction,soil,items/kg,1,0,,,,30.0,1000.0,-33.84,151.21,,
+soil,A case on source to soil to solutions: Distribution characteristics of microplastics in farmland soil of the largest vegetable base in Northwest China,soil,items/kg,20,20,1030.0,1653.0,3610.0,20.0,500.0,34.579583,108.829722,2024.0,2024.0
+soil,A comparative study on the distribution behavior of microplastics through FT-IR analysis on different land uses in agricultural soils,soil,items/kg,6,6,195.0,241.0,306.0,20.0,2000.0,37.582992,127.233216,2020.0,2020.0
+soil,A first report on the spatial and temporal variability of microplastics in coastal soils of an urban town in south-western India: Pre- and post-COVID scenario,soil,items/kg,20,20,373.88,715.55,1126.11,30.0,5000.0,12.4956,74.98805,2019.0,2021.0
+soil,A method for extracting soil microplastics through circulation of sodium bromide solutions,soil,items/kg,4,4,142.19,172.5,236.69,30.0,5000.0,31.056863,121.431099,,
+soil,A modified methodology for extraction and quantification of microplastics in soil,soil,items/kg,6,6,53.3,135.0,230.0,15.0,5000.0,26.897489,80.873684,,
+soil,A multivariate analysis of microplastics in soils along the headwaters of Yangtze river on the Tibetan Plateau,soil,items/kg,33,33,56.7,81.0,104.2,20.0,5000.0,31.12571,98.89569,2021.0,2021.0
+soil,A nationwide assessment of microplastic abundance in agricultural soils: The influence of plastic crop covers within the United Kingdom,soil,items/kg,4,4,2643.0,3665.0,4722.0,10.0,5000.0,53.25,-1.75,,
+soil,A neglected transport of plastic debris to cities from farmland in remote arid regions,soil,items/kg,80,59,16.02,36.19,92.824,50.0,5000.0,37.95205,102.6893,2019.0,2019.0
+soil,Abundance and characteristics of microplastics in soils with different agricultural practices: Importance of sources with internal origin and environmental fate,soil,items/kg,3,3,96.8,160.0,1536.0,100.0,2000.0,37.12,127.16,2018.0,2018.0
+soil,"Abundance and distribution characteristics of microplastic in plateau cultivated land of Yunnan Province, China",soil,items/kg,98,98,5800.0,9000.0,18600.0,50.0,5000.0,25.3514,103.13625,2018.0,2018.0
+soil,Abundance and morphology of microplastics in an agricultural soil following long-term repeated application of pig manure,soil,items/kg,1,1,43.8,43.8,43.8,20.0,5000.0,28.2,116.9167,2018.0,2018.0
+soil,"Abundance, Source Apportionment, and Surface Characteristics of Microplastics in Agricultural Soil in a Flood-Prone Area of Central Bangladesh",soil,items/kg,24,24,4.332,16.67,33.33,500.0,5000.0,23.5276,90.4212,2024.0,2024.0
+soil,"Abundance, distribution, and ecological risks of microplastics in urban and agricultural topsoil of Mian-Ab Plain, Iran",soil,items/kg,14,14,2.3,13.0,20.4,50.0,5000.0,31.8969,48.90145,2023.0,2023.0
+soil,"Abundance, spatial distribution, and characteristics of microplastics in agricultural soils and their relationship with contributing factors",soil,items/kg,16,16,7366.67,11893.75,26345.14,20.0,5000.0,19.28475,109.8635,2023.0,2023.0
+soil,"Abundance, spatial distribution, and physical characteristics of microplastics in stormwater detention ponds",soil,items/kg,8,8,30450.3,42168.5,68104.5,10.0,750.0,35.13208,-89.858443,2021.0,2021.0
+soil,"Abundances of agricultural microplastics and their contribution to the soil organic carbon pool in plastic film mulching fields of Xinjiang, China",soil,items/kg,61,0,,,,20.0,5000.0,43.22,86.46,2019.0,2019.0
+soil,Accumulation characteristics and source analysis of microplastics derived traffic of soil in the Tibetan Plateau,soil,items/kg,32,32,1057.9,1532.5,4245.2,20.0,500.0,36.5788,94.13465,2024.0,2024.0
+soil,Accumulation of microcapsules derived from coated fertilizer in paddy fields,soil,items/kg,2,2,21.0,33.0,45.0,2000.0,3000.0,36.4554,136.5085,,
+soil,"Accumulation of microplastics in greenhouse soil after long-term plastic film mulching in Beijing, China",soil,items/kg,1,1,1028.08,1028.08,1028.08,100.0,5000.0,40.58,116.1,2019.0,2019.0
+soil,Accumulation of soil microplastics and phthalate esters in nine typical Chinese croplands using plastic mulch film,soil,items/kg,27,27,6861.8,12821.0,30952.0,20.0,5000.0,40.6333,119.9167,2022.0,2022.0
+soil,Agricultural fertilisers contribute substantially to microplastic concentrations in UK soils,soil,items/kg,1,1,389.528,389.528,389.528,10.0,5000.0,51.8,-0.366667,2022.0,2022.0
+soil,"Agricultural plastic films reshape soil microplastic distribution, nitrogen cycle and ecological risks in facility agriculture",soil,items/kg,32,32,1065.53,1684.42,2474.22,46.0,5000.0,28.2711,116.324471,,
+soil,Agricultural plastic mulching as a source of microplastics in the terrestrial environment,soil,items/kg,9,9,65.0,225.0,1127.4,100.0,5000.0,44.28,86.11,,
+soil,Agricultural plastic pollution reduces soil function even under best management practices,soil,items/kg,12,12,98.8309,148.409,264.1376,500.0,5000.0,35.61165,-119.55995,2022.0,2022.0
+soil,Agricultural soils and microplastics: Are biosolids the problem?,soil,items/kg,4,4,442.6,679.5,1214.6,25.0,1000.0,51.105,-1.43,2019.0,2020.0
+soil,"Agronomic practices and road proximity drive plastic pollution in agricultural soils: Insights from Bihar, India on weathering, elemental association, and ecological risk",soil,items/kg,22,22,300.5,685.0,979.8,100.0,5000.0,25.579531,85.266288,2023.0,2023.0
+soil,"Amount, distribution and composition of large microplastics in typical agricultural soils in Northern Germany",soil,items/kg,3,3,2.18,3.3,5.3,1000.0,5000.0,54.0,10.53,,
+soil,An evaluation on microplastic accumulations in Turkish soils under different land uses,soil,items/kg,55,55,127.3,192.7,192.7,250.0,5000.0,38.619939,29.348483,2022.0,2022.0
+soil,An integrated evaluation of potentially toxic elements and microplastics in the highland soils of the northeastern Qinghai-Tibetan Plateau,soil,items/kg,8,8,373.331,620.0,1399.332,1000.0,5000.0,35.48475,102.3064,2025.0,2025.0
+soil,"Analysis and risk evaluation of soil microplastics in the Rohingya refugee camp area, Bangladesh: A comprehensive study",soil,items/kg,10,10,74.141858,110.59246,123.013812,250.0,5000.0,21.20816,92.161415,2022.0,2022.0
+soil,"Analysis of Macro- and Microplastics in Riverine, Riverbanks, and Irrigated Farms in Arusha, Tanzania",soil,items/kg,10,10,114.0,407.0,501.9,50.0,5000.0,-3.537615,36.79415,2020.0,2020.0
+soil,Analysis of microplastics in a remote region of the Tibetan Plateau: Implications for natural environmental response to human activities,soil,items/kg,34,34,43.53,47.94,52.35,20.0,5000.0,38.2825,100.1361,2019.0,2019.0
+soil,Analysis of microplastics in soils on the high-altitude area of the Tibetan Plateau: Multiple environmental factors,soil,items/kg,54,53,61.7,61.7,75.7,20.0,5000.0,30.093889,88.403194,2020.0,2020.0
+soil,Anthropogenic activities and hydrologic environment of Danjiangkou Reservoir regulate soil microplastics in the water level fluctuation zone,soil,items/kg,23,23,294.8,674.0,854.4,50.0,5000.0,32.737497,111.28779,2024.0,2024.0
+soil,"Anthropogenic microfibres and other microplastics in the sediments and soils of a small, moorland reservoir (Burrator, southwest England)",soil,items/kg,8,8,5217.4,13919.5,21158.9,80.0,5000.0,50.49744,-4.041538,2022.0,2022.0
+soil,Anthropogenic-vegetation dual controls on the hotspots of microplastic pollution in urban green space soil,soil,items/kg,18,18,833.1,3467.0,3750.0,70.0,5000.0,23.098975,113.29483,,
+soil,Antibiotics and microplastics in manure and surrounding soil of farms in the Loess Plateau: Occurrence and correlation,soil,items/kg,12,12,821.4,2626.5,4874.9,20.0,500.0,38.815,109.958472,,
+soil,Application of hyperspectral and deep learning in farmland soil microplastic detection,soil,items/kg,3,3,9.8,13.0,16.2,,,23.163,113.373,2023.0,2023.0
+soil,Are microplastics correlated to phthalates in facility agriculture soil?,soil,items/kg,4,4,477.4,1297.5,2252.0,20.0,1000.0,35.825,118.08,2019.0,2019.0
+soil,Assessment of Soil Microplastics and Their Relation to Soil and Terrain Attributes Under Different Land Uses,soil,items/kg,3,3,2723.8,3407.0,3742.2,20.0,3000.0,-21.2411,-45.0006,2025.0,2025.0
+soil,"Assessment of microplastic and heavy metal pollution in agricultural soils of Ernakulam District, Kerala, India",soil,items/kg,5,5,17.94,47.9,67.22,50.0,1500.0,9.99934,76.3497,2023.0,2023.0
+soil,"Assessment of microplastic pollution in agricultural soil of Bhopal, Central India",soil,items/kg,2,2,93.3,188.5,283.7,500.0,5000.0,23.283345,77.409105,2022.0,2022.0
+soil,Assessment of microplastics as contaminants in a coal mining region,soil,items/kg,12,11,20.0,70.0,130.0,300.0,1500.0,25.54645,88.95185,2021.0,2021.0
+soil,Association of microplastics with lead and cadmium in soil: Land-use and temporal trends,soil,items/kg,18,18,565.6,1706.5,5916.7,50.0,5000.0,27.4612,69.1014,2022.0,2023.0
+soil,Automated identification and quantification of invisible microplastics in agricultural soils,soil,items/kg,4,4,163300.0,188000.0,283400.0,10.0,5000.0,44.3783,85.7021,2019.0,2019.0
+soil,"Baseline assessment of microplastic contamination
+in agricultural soils from the coastal stretches of Karnataka and Goa, Southwestern India",soil,items/kg,60,60,5.9,19.5,48.3,100.0,5000.0,15.46704,73.81958,2024.0,2024.0
+soil,Changes in Microplastic and Associated Elemental Constituents Across Different Rice Farming Systems in North East India,soil,items/kg,4,4,1004.0,1255.0,1926.0,5.96,5000.0,24.7827,92.8764,,
+soil,"Characteristics of Microplastic Pollution in Agricultural Soils in Xiangtan, China",soil,items/kg,5,5,1586.29,2455.22,8069.466,4.69,5000.0,27.8517,112.812,2024.0,2024.0
+soil,Characteristics of microplastics and their abundance impacts on microbial structure and function in agricultural soils of remote areas in west China,soil,items/kg,17,17,125471.6,308962.0,616981.0,20.0,1000.0,39.0053,99.801,2024.0,2024.0
+soil,"Characteristics of soil microplastics and ecological risks in the Qilian Mountains region, Northeast Tibetan Plateau",soil,items/kg,86,86,4800.0,14700.0,62800.0,10.0,1000.0,38.238815,99.69664,2023.0,2023.0
+soil,"Characterization of Microplastics and Associated Heavy Metals in Urban Soils Affected by Anthropogenic Littering: Distribution, Spatial Variation, and Influence of Soil Properties",soil,items/kg,36,36,55300.0,70300.0,143000.0,10.0,5000.0,21.121095,79.06066,2021.0,2021.0
+soil,"Characterization of microplastic, metals associated and ecological risk assessment in the topsoil of shiraz metropolis, south west of Iran",soil,items/kg,3,3,37.56,41.16,101.152,50.0,5000.0,29.60487,52.44709,2020.0,2020.0
+soil,Characterization of microplastics and the association of heavy metals with microplastics in suburban soil of central China,soil,items/kg,24,24,120000.0,160000.0,410000.0,10.0,5000.0,30.52715,114.3672,2018.0,2018.0
+soil,Children's playgrounds contain more microplastics than other areas in urban parks,soil,items/kg,19,19,13000.0,13000.0,13000.0,10.0,5000.0,34.008778,-118.35186,2022.0,2022.0
+soil,Co-occurrence of light microplastics and phthalate esters in soils of China,soil,items/kg,12,12,1394.1,2912.5,4112.6,20.0,2000.0,44.4415,85.4015,2019.0,2019.0
+soil,"Co-occurrence of macroplastics, microplastics, and legacy and emerging plasticisers in UK soils",soil,items/kg,13,5,3.0,10.0,42.2,25.0,5000.0,51.753265,-1.225,2020.0,2020.0
+soil,"Combined pollution and soil microbial effect of pesticides and microplastics in greenhouse soil of suburban Tianjin, Northern China",soil,items/kg,30,30,679.2,862.0,1040.4,20.0,5000.0,39.565,117.12125,2020.0,2020.0
+soil,"Comparison of Microplastic Characteristics in Mulched and Greenhouse Soils of a Major Agriculture Area, Korea",soil,items/kg,10,10,221.4,289.1,356.8,20.0,5000.0,38.283092,128.132949,2022.0,2022.0
+soil,Condition of composted microplastics after they have been buried for 30 years: Vertical distribution in the soil and degree of degradation,soil,items/kg,1,1,291.0,291.0,291.0,2000.0,5000.0,47.82,1.74,,
+soil,Considering microplastic characteristics in ecological risk assessment: A case study for China,soil,items/kg,80,80,1263.16,1724.7,3376.52,79.0,5000.0,44.023472,122.901,2022.0,2022.0
+soil,Contamination of microplastics in greenhouse soil subjected to plastic mulching,soil,items/kg,12,12,268.67,396.67,680.003,30.0,5000.0,13.68,100.745,,
+soil,Contribution of mulch film to microplastics in agricultural soil and surface water in China,soil,items/kg,19,19,16.34,29.5,75.35,1000.0,5000.0,30.68853,113.7342,,
+soil,Deposition and in-situ translocation of microplastics in floodplain soils,soil,items/kg,2,2,1.539,2.335,3.131,219.0,8321.0,50.8,8.75,,
+soil,Determination and Quantification of Microplastics in Grasslands for Feed,soil,items/kg,1,1,116.7,116.7,116.7,,5000.0,-7.08,113.58,,
+soil,Determination and quantification of microplastics in goat farms,soil,items/kg,1,1,65.0,65.0,65.0,,5000.0,-7.98,112.62,,
+soil,Development and application of an efficient microplastics extraction method based on glycerol flotation for environmental soil samples,soil,items/kg,2,2,120.0,160.0,200.0,,5000.0,20.040071,110.513208,,
+soil,Different functional areas and human activities significantly affect the occurrence and characteristics of microplastics in soils of the Xi'an metropolitan area,soil,items/kg,18,18,816.956,1463.26,3329.784,250.0,5000.0,34.27,108.89,,
+soil,Distinct microplastic distributions in soils of different land-use types: A case study of Chinese farmlands,soil,items/kg,27,27,2914.8,4469.0,5808.8,20.0,5000.0,36.28084,114.673361,2019.0,2019.0
+soil,"Distinct soil microplastic distributions under various farmland-use types around Urumqi, China",soil,items/kg,72,72,321.0,1825.0,3335.2,50.0,5000.0,43.990714,87.475784,2021.0,2021.0
+soil,Distribution Characteristics and Sources of Microplastics in Inland Wetland Ecosystem Soils,soil,items/kg,6,6,798.0,926.5,1885.0,29.0,5000.0,34.75805,117.1625,,
+soil,"Distribution Patterns and Ecological Risks of Microplastics at Major Waste Disposal Environments in Dhaka, Bangladesh",soil,items/kg,20,20,3760.0,5800.0,7440.0,500.0,5000.0,23.800225,90.298935,2023.0,2023.0
+soil,"Distribution and Characteristics of Microplastics in Agricultural Soils around Gehu Lake, China",soil,items/kg,12,12,301.02,1407.4,6909.59,20.0,5000.0,31.617083,119.813194,2023.0,2023.0
+soil,"Distribution and ecological risks of microplastics in a tropical tourism island area in Hainan, China",soil,items/kg,5,5,168.4,1150.0,2130.8,50.0,5000.0,18.3169,109.776,2021.0,2021.0
+soil,"Distribution and migration characteristics of microplastics in farmland soils, surface water and sediments in Caohai Lake, southwestern plateau of China",soil,items/kg,1,1,5550.0,5550.0,5550.0,250.0,5000.0,26.88,104.21,,
+soil,Distribution and weathering characteristics of microplastics in paddy soils following long-term mulching: A field study in Southwest China,soil,items/kg,3,3,84.68,118.6,151.4,42.0,5000.0,30.0834,104.5668,2019.0,2019.0
+soil,Distribution characteristics and correlation of macro- and microplastics under long-term plastic mulching in northwest China,soil,items/kg,80,79,56.0,380.0,908.0,100.0,5000.0,38.75795,99.97145,2020.0,2020.0
+soil,Distribution characteristics and integrated ecological risks evaluation modelling of microplastics and heavy metals in geological high background soil,soil,items/kg,1,1,8667.66,8667.66,8667.66,,5000.0,27.27,106.18,2022.0,2022.0
+soil,Distribution characteristics and transport pathways of soil microplastics in coral reef islands,soil,items/kg,39,39,595.148,1188.35,2355.278,10.0,5000.0,16.9477,112.3311,2023.0,2023.0
+soil,Distribution characteristics of microplastics in agricultural soils from the largest vegetable production base in China,soil,items/kg,6,6,1188.5,1402.5,1793.0,250.0,5000.0,36.90555,118.8375,2019.0,2019.0
+soil,Distribution characteristics of microplastics in soil profiles and aggregates of farmland with different mulching years,soil,items/kg,40,40,15415.3,30445.5,62999.7,20.0,5000.0,44.3833,85.99165,2021.0,2021.0
+soil,Distribution characteristics of soil microplastics and their impact on soil physicochemical properties in agricultural areas of the North China plain,soil,items/kg,30,30,2855.172,6207.6,16262.1,5.0,5000.0,34.84495,113.8839,2020.0,2020.0
+soil,Distribution of Microplastics in an Urban Soil: The Case of a Medium-Sized City in the Central Valley of Chile,soil,items/kg,1,1,27.9,27.9,27.9,1000.0,5000.0,-36.6067,-72.1033,2023.0,2023.0
+soil,Distribution of low-density microplastics in the mollisol farmlands of northeast China,soil,items/kg,5,5,280.0,800.0,6040.0,50.0,5000.0,45.74726,126.7499,2017.0,2017.0
+soil,"Distribution of microplastics in (sub)urban soils of Serbia and Cd, As, and Pb uptake by Capsella bursa-pastoris",soil,items/kg,4,4,268.049113,302.319236,524.529331,25.0,5000.0,44.8964,20.8822,2021.0,2021.0
+soil,"Distribution of microplastics in mulched soil in Xinjiang, China",soil,items/kg,11,11,82.0,1500.0,1640.0,1.1,5000.0,40.55,81.167,,
+soil,Distribution of microplastics in soil by types of land use in metropolitan area of Seoul,soil,items/kg,5,5,1727.4,3646.0,5023.0,100.0,5000.0,37.5519,127.1511,,
+soil,Distribution of microplastics in the soils of a petrochemical industrial region in China: Ecological and Human Health Risks,soil,items/kg,40,40,1214.286,1734.69,4897.961,125.0,5000.0,46.597069,124.96665,2021.0,2021.0
+soil,Distribution pattern and risk assessment of microplastics contamination in different agricultural systems,soil,items/kg,6,6,900.0,1137.5,1575.0,250.0,5000.0,11.007734,76.928659,2024.0,2024.0
+soil,"Distribution, characteristics, and ecological risks of microplastics in the Hongyingzi sorghum production base in China",soil,items/kg,16,16,307.75,941.25,3084.95,20.0,500.0,27.82325,106.2961,2024.0,2024.0
+soil,"Distribution, sources and multi-dimensional environmental risk assessment of microplastics in soils and groundwater along the middle and lower reaches of the Yellow river",soil,items/kg,56,56,258.335,1066.665,1866.665,25.0,5000.0,34.909785,113.5289,2025.0,2025.0
+soil,Driving factors and sources of microplastics in soils in the Yellow River source area,soil,items/kg,21,21,37.26,51.78,122.1,65.0,3275.0,35.36195,101.21033,2021.0,2021.0
+soil,"Driving factors of the distribution of microplastics in the surface soil of the typical uninhabited and habited areas in the Qinghai–Tibet plateau, China",soil,items/kg,106,103,20.0,60.0,130.0,250.0,5000.0,34.72215,93.1475,2024.0,2024.0
+soil,Effect of biodegradable films on microplastic distribution and microbial community composition in paddy soil,soil,items/kg,2,2,831.0,1167.0,1503.0,10.0,5000.0,31.165,120.835,2024.0,2024.0
+soil,Effect of land use on occurrence and spatial variability of soil microplastics in agricultural watershed,soil,items/kg,3,3,642.8,894.0,1438.8,250.0,5000.0,24.84,102.76,,
+soil,Effect of plastic film mulching on the distribution of plastic residues in agricultural fields,soil,items/kg,6,6,1.335,7.665,11.0,,5000.0,11.76,77.615,2019.0,2019.0
+soil,Effects of irrigation on the fate of microplastics in typical agricultural soil and freshwater environments in the upper irrigation area of the Yellow River,soil,items/kg,112,112,192.4,265.0,365.8,50.0,5000.0,37.7262,106.175,2020.0,2020.0
+soil,"Effects of land use and landscape on the occurrence and distribution of microplastics in soil, China",soil,items/kg,11,11,587.53,1159.13,3049.18,250.0,5000.0,44.18,86.39,2021.0,2021.0
+soil,"Effects of land use on the distribution of soil microplastics in the Lihe River watershed, China",soil,items/kg,62,62,214.1,346.0,664.0,50.0,5000.0,31.254672,119.83576,2022.0,2022.0
+soil,Effects of long-term plastic film mulching on microplastic and phthalate esters pollution in salt-affected soils,soil,items/kg,14,14,5103.8,15464.0,29070.9,20.0,500.0,40.6442,81.2625,,
+soil,Effects of multiple environmental factors and land use patterns on microplastic distribution in the topsoil of the Qinghai and Sichuan provinces of China,soil,items/kg,28,27,20.0,40.0,74.0,25.0,5000.0,31.8985,100.1418,2019.0,2019.0
+soil,Effects of plastic mulching on the accumulation and distribution of macro and micro plastics in soils of two farming systems in Northwest China,soil,items/kg,6,6,256.25,320.85,866.65,490.0,2000.0,39.89165,96.7333,2017.0,2017.0
+soil,Effects of soil properties and land use patterns on the distribution of microplastics: A case study in southwest China,soil,items/kg,89,89,2400.0,3045.0,3192.0,250.0,5000.0,26.5882,106.471,2021.0,2021.0
+soil,Environmental factors influence airborne microplastic deposition in the soil of urban allotment gardens,soil,items/kg,9,9,43.2,160.0,769.4,4.68,2452.74,52.482236,13.4169,2023.0,2023.0
+soil,Environmental fate of microplastics in high-altitude basins: the insights into the Yarlung Tsangpo River Basin,soil,items/kg,46,46,32.0,57.0,96.0,20.0,5000.0,29.057917,90.83125,2020.0,2020.0
+soil,Environmental fate of microplastics in the world’s third-largest river: Basin-wide investigation and microplastic community analysis,soil,items/kg,76,76,52.0,296.0,669.5,500.0,5000.0,30.252606,113.794233,2019.0,2019.0
+soil,Environmental risk of multi-year polythene film mulching and its green solution in arid irrigation region,soil,items/kg,1,1,2900.0,2900.0,2900.0,150.0,1000.0,38.625,102.4833,2020.0,2020.0
+soil,"Evaluation of niche, diversity, and risks of microplastics in farmland soils of different rocky desertification areas",soil,items/kg,1,1,8721.0,8721.0,8721.0,250.0,5000.0,27.267,106.197,2024.0,2024.0
+soil,Evidence of microplastic accumulation in agricultural soils from sewage sludge disposal,soil,items/kg,1,1,3500.0,3500.0,3500.0,160.0,4000.0,-35.81,-72.61,,
+soil,Exploring Microplastic Distribution in Agricultural Soils and Health Risk Evaluation,soil,items/kg,15,15,1530.0,1690.0,2310.0,100.0,1000.0,23.980278,89.59091,2022.0,2022.0
+soil,Exploring the Occurrence Characteristics of Microplastics in Typical Maize Farmland Soils With Long-Term Plastic Film Mulching in Northern China,soil,items/kg,45,45,299.2,472.0,1248.0,30.0,5000.0,41.1593,118.796,2020.0,2020.0
+soil,"Extraction and Analysis of Microplastics in the Soil of Diamond City, Surat (Gujarat, India): Ecological Risk, Pollution Indices, and Greenness Evaluation",soil,items/kg,25,25,390.0,870.0,1844.0,250.0,5000.0,21.185,72.8367,2022.0,2022.0
+soil,Extraction and Characterization of Microplastics in Soil: A Case Study from the Hetao Irrigation District,soil,items/kg,12,12,7204.1,16224.2,26591.88,10.0,500.0,41.04295,107.391,2025.0,2025.0
+soil,"Factors influencing the distribution, risk, and transport of microplastics and heavy metals for wildlife and habitats in ""island"" landscapes: From source to sink",soil,items/kg,1,1,72.72,72.72,72.72,20.0,500.0,38.82,105.92,2023.0,2023.0
+soil,Field evidence for transfer of plastic debris along a terrestrial food chain,soil,items/kg,2,2,870.0,870.0,870.0,10.0,5000.0,20.364037,-90.216086,2017.0,2017.0
+soil,Flooding frequency and floodplain topography determine abundance of microplastics in an alluvial Rhine soil,soil,items/kg,6,6,25494.96,43120.5,67971.5,11.0,5000.0,51.050417,6.920306,2019.0,2019.0
+soil,Forest soils accumulate microplastics through atmospheric deposition,soil,items/kg,20,20,1242.0,3608.0,8601.6,21.68,5000.0,49.88825,8.7151,2023.0,2023.0
+soil,Greenhouse farming as a source of macroplastic and microplastics contamination in agricultural soils: a case study from Southeast-Hungary,soil,items/kg,3,3,90.0,150.0,270.0,500.0,5000.0,46.2899,20.18043,2021.0,2021.0
+soil,Health assessment based on exposure to microplastics in tropical agricultural soil,soil,items/kg,126,126,683.2,1090.1,1796.9,250.0,5000.0,19.195,109.67,2021.0,2021.0
+soil,Higher concentrations of microplastics in runoff from biosolid-amended croplands than manure-amended croplands,soil,items/kg,4,4,172.0,570.0,961.0,12.0,5000.0,40.825,-96.625,2020.0,2020.0
+soil,Identification and characterization of extracted microplastics from agricultural soil near industrial area: FTIR and X-ray diffraction method,soil,items/kg,3,3,6251.2,28608.0,14965721.6,50.0,5000.0,31.397628,75.389255,,
+soil,Identification and characterization of microplastics contamination in domestic sewage wastewater irrigated of Napier grass (Pennisetum purpureum) agricultural field,soil,items/kg,5,5,31.6,63.0,80.4,700.0,5000.0,10.9879,77.0191,,
+soil,Identification and quantification of macro- and microplastics on an agricultural farmland,soil,items/kg,1,1,0.34,0.34,0.34,2000.0,5000.0,49.35,10.65,2015.0,2015.0
+soil,Identification of factors influencing the microplastic distribution in agricultural soil on Hainan Island,soil,items/kg,5,5,259.2,486.0,659.0,50.0,5000.0,19.0506,109.5511,2021.0,2021.0
+soil,"Identification of potentially contaminated areas of soil microplastic based on machine learning: A case study in Taihu Lake region, China",soil,items/kg,67,67,384.0,384.0,531.0,50.0,5000.0,31.253834,119.835,2022.0,2022.0
+soil,"Identification, characterization, and implications of microplastics in soil - A case study of Bhopal, central India",soil,items/kg,1,1,75.25,75.25,75.25,500.0,5000.0,23.4884,77.4243,2022.0,2022.0
+soil,Impact of Microplastic on Roadside Vegetable Cultivation: A Case Study of Agricultural Farmland,soil,items/kg,4,4,3491.5,3502.5,3531.0,,5000.0,30.14666,71.453575,2024.0,2024.0
+soil,Impact of land-use patterns on soil microplastics: Distribution characteristics and driving factors in southern China's Pearl River Delta,soil,items/kg,23,23,1203.0,3292.0,4306.0,20.0,5000.0,22.716317,113.510517,2024.0,2024.0
+soil,"Impact of long-term conventional and biodegradable film mulching on microplastic abundance, soil structure and organic carbon in a cotton field",soil,items/kg,2,2,6941.0,7637.0,8333.0,10.0,5000.0,42.0334,45.3334,2021.0,2021.0
+soil,Impact of soil structure and texture on occurrence of microplastics in agricultural soils of karst areas,soil,items/kg,9,9,1891.6,2826.0,4220.6,250.0,5000.0,26.4476,106.556,2022.0,2022.0
+soil,Influence of soil characteristics and agricultural practices on microplastic concentrations in sandy soils and their association with heavy metal contamination,soil,items/kg,11,11,280.0,412.0,1192.0,50.0,1500.0,23.447987,85.43255,,
+soil,"Investigation of microplastic pollution on paddy fields in Xiangtan City, Southern China",soil,items/kg,27,27,430.0,430.0,3805.0,5.0,3000.0,27.7077,112.848,2020.0,2020.0
+soil,"Investigation of microplastics and microplastic communities in selected river and lake basin soils of Thiruvananthapuram District, Kerala, India",soil,items/kg,24,24,335.0,575.0,1071.0,300.0,5000.0,8.487605,76.96735,2022.0,2022.0
+soil,Land-use patterns determine the distribution of soil microplastics in typical agricultural areas on the eastern Qinghai-Tibetan Plateau,soil,items/kg,105,105,424.0,1128.0,2796.8,50.0,5000.0,36.449399,97.93238,2020.0,2020.0
+soil,Low density-microplastics detected in sheep faeces and soil: A case study from the intensive vegetable farming in Southeast Spain,soil,items/kg,1,1,2116.0,2116.0,2116.0,50.0,5000.0,37.8,-1.2,2018.0,2018.0
+soil,"Machine learning-driven analysis of soil microplastic distribution in the Bang Pakong Watershed, Thailand",soil,items/kg,40,40,249.0,555.0,2331.0,1.2,2000.0,13.82795,101.193,2023.0,2023.0
+soil,"Macro, meso, micro and nanoplastics in horticultural soils in Argentina: Abundance, size distribution and fragmentation mechanism",soil,items/kg,1,1,26.7,26.7,26.7,1000.0,5000.0,-34.6341,-58.7914,2022.0,2022.0
+soil,"Macro- and micro-plastic accumulation in soils under different intensive farming systems: A case study in Quzhou county, the North China Plain",soil,items/kg,30,30,8461.0,12097.0,27342.0,3.0,5000.0,36.76214,114.997248,2022.0,2022.0
+soil,"Meso- and microplastic contamination in mulching cultivated soil at a national scale, China",soil,items/kg,54,54,57.21,171.63,419.54,500.0,5000.0,35.765,113.85,,
+soil,"Mesoplastic and Microplastic Pollution in the Soil of Small-Scale Agricultural Areas in Iligan, Mindanao, Philippines",soil,items/kg,1,1,0.83,0.83,0.83,1000.0,5000.0,8.2433,124.2433,2023.0,2023.0
+soil,Micro- and Mesoplastics in Farmlands with Different Irrigation Water Sources,soil,items/kg,108,108,47.0,769.0,1123.0,37.0,5000.0,35.331419,51.293929,2020.0,2020.0
+soil,"Microplastic Abundance in Human-Influenced Soils in Recreational, Residential, and Industrial Areas",soil,items/kg,9,9,2080.264,4932.0,8160.8,0.45,5000.0,41.087956,29.007117,2022.0,2022.0
+soil,"Microplastic Accumulation in Agricultural Soils with Different Mulching Histories in Xinjiang, China",soil,items/kg,12,12,559.9,1977.0,10308.3,600.0,2750.0,41.83565,85.47115,2021.0,2021.0
+soil,"Microplastic Characteristics in Equus kiang (Tibetan Wild Ass) Feces and Soil on the Southern Tibetan Plateau, China",soil,items/kg,8,8,744.0,4010.0,17431.0,20.0,500.0,31.717917,82.555972,2020.0,2020.0
+soil,"Microplastic Contamination in Urban, Farmland and Desert Environments along a Highway in Southern Xinjiang, China",soil,items/kg,22,22,219.6,499.0,6868.8,150.0,5000.0,39.777289,80.986566,2022.0,2022.0
+soil,"Microplastic Contamination of Non-Mulched Agricultural Soils in Bangladesh: Detection, Characterization, Source Apportionment and Probabilistic Health Risk Assessment",soil,items/kg,5,5,6488.0,7360.0,8494.0,,,23.980278,89.59092,,
+soil,"Microplastic Pollution and Its Ecological Risks in the Xisha Islands, South China Sea",soil,items/kg,5,5,27.598,41.64,204.022,90.0,5000.0,16.84111,112.339027,2023.0,2023.0
+soil,"Microplastic Pollution in Agricultural Soils of Lima, Peru",soil,items/kg,4,4,1763.0,2120.0,3807.0,10.0,5000.0,-12.114283,-76.881745,2023.0,2023.0
+soil,Microplastic Pollution in EU Farmland Soils: Preliminary Findings from Agricultural Soils (Southwestern Poland),soil,items/kg,44,41,100.0,800.0,2400.0,500.0,5000.0,51.26007,16.975014,2015.0,2015.0
+soil,"Microplastic Pollution in Riparian Soils of the Rapidly Growing City of Thimphu, Bhutan",soil,items/kg,2,2,16.7,50.3,83.9,20.0,5000.0,27.23,89.65,2023.0,2023.0
+soil,"Microplastic abundance and heavy metal contamination in agricultural soil with the wastewater treatment plants effluent; Tehran, Iran",soil,items/kg,40,40,55.95,83.25,118.5,20.0,5000.0,35.574,51.4389,2024.0,2024.0
+soil,"Microplastic and mesoplastic pollution in farmland soils in suburbs of Shanghai, China",soil,items/kg,40,40,24.5,49.7,96.129,30.0,5000.0,31.11515,121.4035,2017.0,2017.0
+soil,Microplastic and trace element contamination in coastal agricultural soils of southern India: a comparative risk assessment of mulched and unmulched fields,soil,items/kg,24,24,16.5,67.5,325.0,100.0,5000.0,13.78055,74.6379,2023.0,2023.0
+soil,"Microplastic appraisal of soil, water, ditch sediment and airborne dust: The case of agricultural systems",soil,items/kg,3,3,151320.0,289400.0,501720.0,1.0,5000.0,51.5947,4.2353,2023.0,2023.0
+soil,Microplastic characteristic in the soil across the Tibetan Plateau,soil,items/kg,85,85,10.0,30.0,97.0,50.0,5000.0,32.4105,93.2958,2018.0,2019.0
+soil,"Microplastic characteristics and microplastic-heavy metal synergistic contamination in agricultural soil under different cultivation modes in Chengdu, China",soil,items/kg,10,10,2628.687,3298.98,4442.421,50.0,5000.0,30.585,103.46,,
+soil,Microplastic contamination in cotton soils following long-term mulching: A field study for the Xinjiang production and construction corps in China,soil,items/kg,22,22,313.5,988.0,1924.5,20.0,5000.0,42.11294,86.073428,,
+soil,"Microplastic contamination in soils of urban allotment gardens (Toruń, Poland)",soil,items/kg,1,1,2240.0,2240.0,2240.0,100.0,5000.0,53.0222,18.6111,,
+soil,Microplastic contamination of coastal hill soils: Perspective of Rohingya Refugee camps in Bangladesh,soil,items/kg,4,4,266.2,402.0,402.7,250.0,5000.0,21.19425,92.15895,,
+soil,Microplastic contamination of soil: Are input pathways by compost overridden by littering?,soil,items/kg,1,1,26.983533,26.983533,26.983533,65.0,5000.0,37.28368,128.13377,2018.0,2018.0
+soil,"Microplastic diversity, risks and soil impacts: A multi-metric assessment across land-use systems",soil,items/kg,7,7,25.8,31.0,36.2,10.0,5000.0,26.7413,92.7889,,
+soil,"Microplastic fate in a chronosequence of biosolid-amended agricultural soil in Southern Ontario, Canada",soil,items/kg,7,7,3518.0,6720.0,43560.0,20.0,5000.0,44.31,-78.31,2022.0,2022.0
+soil,"Microplastic in Danish wastewater: Sources, occurrences and fate",soil,items/kg,2,2,97400.0,159000.0,220600.0,20.0,500.0,56.8,9.55,2015.0,2015.0
+soil,Microplastic in long-term soil monitoring: first spatial and temporal data on plastics in agricultural topsoils,soil,items/kg,33,32,10.87,32.11,65.17,300.0,5000.0,50.44,9.03,2003.0,2022.0
+soil,Microplastic occurrence in urban and industrial soils of Ahvaz metropolis: a city with a sustained record of air pollution,soil,items/kg,21,21,100.0,295.0,1220.0,50.0,5000.0,31.3133,48.6898,2019.0,2019.0
+soil,"Microplastic pollution in neotropical rainforest, savanna, pine plantations, and pasture soils in lowland areas of Oaxaca, Mexico: Preliminary results",soil,items/kg,5,5,4000.0,4000.0,6100.0,40.0,500.0,17.4,-95.4417,,
+soil,"Microplastic pollution in terrestrial environment: Identification, characterization, and risk assessment in Indore, Central India",soil,items/kg,30,27,3.0,17.0,76.0,500.0,5000.0,22.638901,75.870743,2022.0,2022.0
+soil,"Microplastic pollution in urban green-belt soil in Shihezi City, China",soil,items/kg,11,11,593.0,1180.0,3061.0,20.0,5000.0,44.303793,86.074982,2020.0,2020.0
+soil,"Microplastic pollution in vegetable farmlands of suburb Wuhan,central China",soil,items/kg,20,20,537.3,1060.0,4374.7,20.0,5000.0,30.53555,114.42055,2018.0,2018.0
+soil,"Microplastic transport during desertification in drylands: Abundance and characterization of soil microplastics in the Amu Darya-Aral Sea basin, Central Asia",soil,items/kg,3,3,2377.6,3552.0,5868.0,20.0,500.0,40.88,63.82,2019.0,2019.0
+soil,Microplastics Abundance and Spatial Distribution in Bayinbuluk Alpine Swamp Meadow,soil,items/kg,6,6,37.5,103.0,233.0,250.0,5000.0,42.8008,84.3597,,
+soil,Microplastics abundance associated with farmland use types and the impact on soil microbial communities: A case study in Southern China,soil,items/kg,3,3,3208.8,4176.0,7952.0,15.0,500.0,22.61,113.11,2023.0,2023.0
+soil,"Microplastics are ubiquitous and increasing in soil of a sprawling urban area, Phoenix (Arizona)",soil,items/kg,48,48,200.0,600.0,1000.0,5.0,5000.0,33.4806,-111.99395,2015.0,2015.0
+soil,Microplastics behavior and distribution in mulched agricultural soil under semi-arid climate: A case study from Morocco,soil,items/kg,8,8,720.3,1263.5,3580.0,100.0,5000.0,31.681835,-8.185445,,
+soil,Microplastics from mulching film is a distinct habitat for bacteria in farmland soil,soil,items/kg,1,1,204.8,204.8,204.8,450.0,5000.0,44.363333,85.979722,,
+soil,Microplastics in Agricultural Soils: A Case Study in Cultivation of Watermelons and Canning Tomatoes,soil,items/kg,2,2,92.2,185.0,277.8,20.0,5000.0,37.705,21.575,,
+soil,"Microplastics in Soils of the Thala Hills, East Antarctica",soil,items/kg,7,7,106.8,667.0,1873.6,500.0,5000.0,-67.65779,46.15886,2019.0,2019.0
+soil,Microplastics in Swiss Floodplain Soils,soil,items/kg,1,1,129.0,129.0,129.0,125.0,5000.0,46.82,8.23,,
+soil,"Microplastics in Urban Soils From Different Land Use Activities of Cyberjaya, Malaysia",soil,items/kg,25,25,0.35,0.53,0.842,500.0,5000.0,2.9083,101.6972,,
+soil,"Microplastics in Yellow River Delta wetland: Occurrence, characteristics, human influences, and marker",soil,items/kg,3,3,348.8,1200.0,1888.0,13.0,5000.0,37.8764,119.058,2018.0,2018.0
+soil,Microplastics in agricultural soils from a semi-arid region and their transport by wind erosion,soil,items/kg,20,20,20.7,69.5,178.8,50.0,5000.0,28.85965,52.5201,2020.0,2020.0
+soil,"Microplastics in agricultural soils on the coastal plain of Hangzhou Bay, east China: Multiple sources other than plastic mulching film",soil,items/kg,30,27,86.6,288.0,1047.0,50.0,5000.0,30.2766,121.12245,2018.0,2018.0
+soil,"Microplastics in agricultural soils on the coastal plain: Spatial characteristics, influencing factors and sources",soil,items/kg,32,32,86.55,205.85,498.2,50.0,5000.0,32.804,120.5865,2019.0,2019.0
+soil,"Microplastics in agricultural soils, wastewater effluents and sewage sludge in Mauritius",soil,items/kg,6,6,90.0,158.6,253.35,250.0,5000.0,-20.28,57.59,2020.0,2020.0
+soil,Microplastics in agricultural soils: Evidence from an industrial suburb of Bangladesh,soil,items/kg,40,40,305.336,930.0,1695.33,75.0,5000.0,23.908778,90.258125,,
+soil,Microplastics in agricultural soils: Extraction and characterization after different periods of polythene film mulching in an arid region,soil,items/kg,3,3,66.2,171.0,1308.6,150.0,2000.0,44.901667,85.133611,2016.0,2016.0
+soil,Microplastics in agricultural soils: Extraction and characterization afterdifferent periods of polythene film mulching in an arid region,soil,items/kg,1,1,1258.0,1258.0,1258.0,150.0,2000.0,44.900556,85.094722,2016.0,2016.0
+soil,"Microplastics in arid soils: Impact of different cropping systems (Altay, Xinjiang)",soil,items/kg,3,3,32840.0,57400.0,69240.0,20.0,5000.0,46.68,90.4,2020.0,2020.0
+soil,Microplastics in industrial and urban areas in South-West Iran,soil,items/kg,10,10,368.0,635.0,3389.0,50.0,5000.0,29.3749,48.1352,2017.0,2017.0
+soil,"Microplastics in irrigation water and vegetable garden soils adjacent to the Msimbazi river, Tanzania",soil,items/kg,2,2,28600.0,31000.0,33400.0,250.0,5000.0,-6.82151,39.24955,2023.0,2023.0
+soil,Microplastics in mature SUDS: evaluation of soil storage and its link to larger plastics,soil,items/kg,2,2,3115.5,4025.5,4935.5,,5000.0,38.99185,-0.52265,2023.0,2023.0
+soil,Microplastics in plateau agricultural areas: Spatial changes reveal their source and distribution characteristics,soil,items/kg,110,99,52.0,75.0,186.0,,5000.0,36.7176,101.737,2021.0,2021.0
+soil,"Microplastics in the Amur tiger’s habitat: Occurrence, characteristics, and risk assessment",soil,items/kg,58,58,8350.0,9580.0,10720.0,20.0,500.0,42.965505,130.896413,2023.0,2023.0
+soil,"Microplastics in the Lut and Kavir Deserts, Iran",soil,items/kg,9,9,5.994,13.33,45.33,50.0,5000.0,30.381178,57.669359,2019.0,2019.0
+soil,Microplastics in the Typical Mulched Farmland of Sichuan Province: Characteristics That Vary Across Farming Scales and the Risk Significantly Contributed by Priority Polymers,soil,items/kg,5,5,10731.0,22926.0,25853.4,20.0,5000.0,30.9246,104.417,2024.0,2024.0
+soil,Microplastics in urban soils of Nanjing in eastern China,soil,items/kg,64,64,264.0,470.0,779.0,20.0,5000.0,32.06,118.8095,2020.0,2020.0
+soil,Microplastics in vineyard soils: First insights from plastic-intensive viticulture systems,soil,items/kg,48,48,1480.6,3600.0,8581.4,21.68,5000.0,49.8744,6.6014,2024.0,2024.0
+soil,Microplastics influence nutrient content and quality of salt-affected agricultural soil under plastic mulch,soil,items/kg,2,2,8317.0,9865.0,11413.0,20.0,5000.0,44.80335,123.6685,2022.0,2022.0
+soil,"Microplastics may act as a vector for potentially hazardous metals in rural soils in Xiamen, China",soil,items/kg,16,16,20.0,83.0,333.0,100.0,5000.0,24.711218,118.232718,2021.0,2021.0
+soil,Microplastics occurrence and distribution characteristics in mulched agricultural soils of Guizhou province,soil,items/kg,10,10,761.4,1166.0,1638.9,1.0,1000.0,26.877916,106.602639,2024.0,2024.0
+soil,Microplastics occurrence and frequency in soils under different land uses on a regional scale,soil,items/kg,4,4,1.3,93.0,269.4,40.0,5000.0,-32.9539,-70.31035,2017.0,2017.0
+soil,Microplastics pollution from different plastic mulching years accentuate soil microbial nutrient limitations,soil,items/kg,5,5,761.202,1412.0,2502.4,250.0,5000.0,29.9237,109.34,2019.0,2019.0
+soil,"Microplastics pollution in agricultural farms soils: preliminary findings from tropical environment (Klang Valley, Malaysia)",soil,items/kg,4,4,2.259,2.8,3.25,16.7,1250.0,3.025,101.71,,
+soil,"Microplastics pollution in rice fields: a case study of Pir Bazar rural district of Gilan, Iran",soil,items/kg,6,6,877.885,1744.585,2013.6,1.0,5000.0,37.352014,49.55557,2013.0,2013.0
+soil,Microplastics pollution in the soils of various land-use types along Sheshui River basin of Central China,soil,items/kg,36,36,1209.5,2220.5,4183.5,20.0,5000.0,30.95,114.36,2022.0,2022.0
+soil,Microplastics trapped in soil aggregates of different land-use types,soil,items/kg,60,60,548.7,768.925,928.62,125.0,5000.0,35.337272,105.912883,2022.0,2022.0
+soil,Migration characteristics of microplastics in riparian soils and groundwater,soil,items/kg,22,22,447.0,614.0,874.2,39.0,2498.0,24.7004,118.2775,2022.0,2022.0
+soil,Morphospecies Abundance of Above-Ground Invertebrates in Agricultural Systems under Glyphosate and Microplastics in South-Eastern Mexico,soil,items/kg,3,3,260.12,411.8,942.36,300.0,5000.0,19.5845,-90.1909,2019.0,2019.0
+soil,Multi-method analysis of microplastic distribution by flood frequency and local topography in Rhine floodplains,soil,items/kg,3,3,7343.2,9188.0,40061.6,20.0,5000.0,50.8839,6.9956,2019.0,2019.0
+soil,Multidimensional characterization of microplastic pollution in subtropical urban soils: Combining geospatial analysis and polymer risk indexing,soil,items/kg,29,29,3000.0,8960.0,18832.0,20.0,5000.0,22.168747,113.552981,2024.0,2024.0
+soil,Municipal Park Grounds and Microplastics Contamination,soil,items/kg,4,4,660.1,908.0,1267.2,20.0,5000.0,-23.64725,-46.53625,,
+soil,"New insights into the distribution, potential source and risk of microplastics in Qinghai-Tibet Plateau",soil,items/kg,20,20,62.0,121.0,238.0,250.0,5000.0,36.58875,99.87405,2020.0,2020.0
+soil,New separation protocol reveals spray painting as a neglected source of microplastics in soils,soil,items/kg,6,6,281750.0,2597500.0,9715250.0,4.0,5000.0,52.5404,13.4064,2020.0,2020.0
+soil,"Occurrence and Distribution of Microplastics in Soils and Intertidal Sediments at Fildes Bay, Maritime Antarctica",soil,items/kg,1,1,209.0,209.0,209.0,20.0,500.0,-62.2,-58.96,2018.0,2018.0
+soil,Occurrence and characteristics of microplastics in soils from greenhouse and open-field cultivation using plastic mulch film,soil,items/kg,6,6,18149.0,33744.0,41585.0,50.0,5000.0,40.085,116.905,2019.0,2019.0
+soil,"Occurrence and distribution of microplastics in agricultural lands in the Gampaha District of Sri Lanka: Insights from selected paddy fields, vegetable plots, and coconut cultivations",soil,items/kg,5,5,95.4,267.0,484.0,5.0,5000.0,7.00934,79.949,2023.0,2023.0
+soil,Occurrence and distribution of microplastics in coastal plain soils under three land-use types,soil,items/kg,27,27,51.6,133.0,329.6,500.0,5000.0,30.2779,121.0746,2019.0,2019.0
+soil,Occurrence and distribution of microplastics in long-term biosolid-applied rehabilitation land: An overlooked pathway for microplastic entry into terrestrial ecosystems in Australia,soil,items/kg,11,11,108.413,379.24,696.69,63.0,5000.0,-31.3017,148.0748,2019.0,2019.0
+soil,"Occurrence and distribution of microplastics in the adjacent environment of Yellow River Delta, China",soil,items/kg,23,23,300.0,550.0,1200.0,5.0,5000.0,37.5189,118.596,,
+soil,"Occurrence characteristics and ecological impact of agricultural soil microplastics in the Qinghai Tibetan Plateau, China",soil,items/kg,9,9,180.8,259.0,576.2,90.0,5000.0,29.65,91.13,2022.0,2022.0
+soil,"Occurrence characteristics and risk assessment of microplastics in agricultural soils in the loess hilly gully area of Yan’ an, China",soil,items/kg,23,23,3177.0,5097.0,5636.0,20.0,500.0,36.784185,109.3163,2022.0,2022.0
+soil,Occurrence of Microplastics from Plastic Fragments in Cultivated Soil of Sichuan Province: The Key Controls,soil,items/kg,20,20,82.4,126.0,296.5,,5000.0,29.34805,104.41905,,
+soil,Occurrence of microplastics in agricultural soils in ecologically fragile areas of China,soil,items/kg,115,115,1578.0,2951.0,3864.0,,5000.0,36.48,104.12,2022.0,2022.0
+soil,Occurrence of microplastics in natural and farmland soil in the Qilian Mountains of the Northern Tibetan Plateau,soil,items/kg,35,35,4880.0,25000.0,80800.0,10.0,1000.0,40.295834,99.955556,2022.0,2022.0
+soil,"Occurrence patterns and ecological implications of microplastic contamination in citrus orchard soils on Karst Sloping Terrains, South China",soil,items/kg,2,2,2080.0,2596.0,3112.0,20.0,500.0,25.035,110.385,2022.0,2022.0
+soil,"Occurrence status of microplastics in main agricultural areas of Xinjiang Uygur Autonomous Region, China",soil,items/kg,30,30,537.3,915.0,1365.3,250.0,500.0,42.835495,81.100565,2022.0,2022.0
+soil,"Occurrence, distribution and affecting factors of microplastics in agricultural soils along the lower reaches of Yangtze River, China",soil,items/kg,1,1,38.53,38.53,38.53,90.0,5000.0,31.96,120.64,2019.0,2019.0
+soil,"Occurrence, distribution, and characteristics of microplastics in agricultural soil around a solid waste treatment center in southeast China",soil,items/kg,57,57,432.0,760.0,1344.0,25.0,2000.0,24.7295,118.265,2020.0,2020.0
+soil,"Occurrence, sources, and relationships of soil microplastics with adsorbed heavy metals in the Ebinur Lake Basin, Northwest China",soil,items/kg,3,3,21814.0,27166.0,36003.6,50.0,5000.0,44.78,82.9,2021.0,2021.0
+soil,"Occurrence, sources, and risks of microplastics in agricultural soils of Weishan Irrigation District in the lower reaches of the Yellow River, China",soil,items/kg,42,42,512.0,615.0,900.0,50.0,5000.0,36.52605,115.9794,2023.0,2023.0
+soil,"Organic fertilizer and irrigation water are the primary sources of microplastics in the facility soil, Beijing",soil,items/kg,45,45,227.8,543.0,1229.0,50.0,5000.0,40.110519,116.180818,2022.0,2022.0
+soil,"Parks and Recreational Areas as Sinks of Plastic Debris in Urban Sites: The Case of Light-Density Microplastics in the City of Amsterdam, The Netherlands",soil,items/kg,23,23,840.0,2800.0,9636.2,190.0,5000.0,52.36,4.91,,
+soil,"Plastic contamination of forest, urban, and agricultural soils: a case study of Yeoju City in the Republic of Korea",soil,items/kg,100,97,100.0,480.0,1736.0,500.0,5000.0,37.3128,127.629515,,
+soil,Pollution Characteristics and Risk of Microplastics in Soils Related with Land-Use Type,soil,items/kg,107,107,614.58,1597.83,1597.83,500.0,5000.0,30.903056,120.379167,2019.0,2019.0
+soil,"Pollution and Distribution of Microplastics in Grassland Soils of Qinghai–Tibet Plateau, China",soil,items/kg,22,22,1140.7,1197.0,1248.9,10.0,5000.0,35.891944,97.848889,2021.0,2021.0
+soil,"Pollution level and distribution characteristics of heavy metals and microplastics in the soils from the Qionghai Lake Wetland, Southwest China",soil,items/kg,1,1,5550.0,5550.0,5550.0,100.0,5000.0,27.81,102.28,2022.0,2022.0
+soil,Pollution of Microplastics in Coastal Plain of the Huangshui River Basin,soil,items/kg,12,12,164.03,274.35,371.09,20.0,5000.0,37.674279,120.556806,,
+soil,"Presence of Microplastics in Water, Soil, Organic Fertilizer, and Potato Plants on Potato Plantations",soil,items/kg,1,1,100.0,100.0,100.0,80.0,5000.0,-7.844,112.456,2024.0,2024.0
+soil,Prevalence of microplastics in agricultural soils in southern Portugal,soil,items/kg,4,4,58.11,109.7,200.98,47.0,5000.0,37.079222,-7.775528,2023.0,2023.0
+soil,"Quantification and Analysis of Microplastics in Farmland Soils: Characterization, Sources, and Pathways",soil,items/kg,10,10,0.1079,0.327,1.008,500.0,5000.0,22.906679,120.28048,,
+soil,"Quantification and characterization of microplastics (MPs) pollution in peri-urban agricultural lands of Lahore, Pakistan",soil,items/kg,4,4,680.1,765.0,862.5,62.5,5000.0,31.59766,74.285565,2021.0,2021.0
+soil,"Quantification and characterization of microplastics in farmland soils of Jiangsu Province, East China",soil,items/kg,18,18,1780.3,2866.5,4477.6,20.0,500.0,31.935,118.825,,
+soil,"Record of microplastic deposition revealed by ornithogenic soil and sediment profiles from Ross Island, Antarctica",soil,items/kg,2,2,102.787,183.135,263.483,20.0,500.0,-77.554224,166.165418,2010.0,2010.0
+soil,Response of microplastic occurrence and migration to heavy rainstorm in agricultural catchment on the Loess plateau,soil,items/kg,3,3,878.8,882.0,1603.6,31.0,5866.0,37.41,108.18,2022.0,2022.0
+soil,Retention and migration of microplastics in stepped paddy fields,soil,items/kg,3,3,322.62,444.3,525.98,20.0,5000.0,27.7,110.95,2023.0,2023.0
+soil,"Risk assessment and zoning of soil microplastics in a typical megacity, China",soil,items/kg,64,64,19.41,48.81,65.48,20.0,5000.0,32.08235,118.7905,,
+soil,Risk assessment of microplastic pollution in an industrial region of Bangladesh,soil,items/kg,12,12,21.0,140.0,209.0,300.0,1500.0,23.61745,90.49985,,
+soil,Seasonal variations and feedback from microplastics and cadmium on soil organisms in agricultural fields,soil,items/kg,20,20,78.5,198.5,621.2,25.0,5000.0,31.56375,120.5014,2019.0,2019.0
+soil,Seasonal variations and risk assessment of microplastic contamination in agricultural soil and associated macroinvertebrates in Egypt,soil,items/kg,4,4,384.6,498.0,626.8,250.0,5000.0,26.6348,31.6524,2022.0,2023.0
+soil,Sewage sludge application as a vehicle for microplastics in eastern Spanish agricultural soils,soil,items/kg,4,4,2014.0,3659.5,5205.6,50.0,5000.0,39.475,-0.385,,
+soil,Significant influence of land use types and anthropogenic activities on the distribution of microplastics in soil: A case from a typical mining-agricultural city,soil,items/kg,37,37,635.0,1894.0,3738.0,50.0,5000.0,32.73415,116.8046,,
+soil,"Small-sized microplastics (< 500 μm) in roadside soils of Beijing, China: Accumulation, stability, and human exposure risk",soil,items/kg,21,21,7333.52,14185.46,31647.61,50.0,5000.0,39.907,116.392,2021.0,2021.0
+soil,Soil contamination by microplastics in a small French agricultural watershed,soil,items/kg,11,11,326.7,800.0,3446.6,32.0,5000.0,48.8683,3.13927,2023.0,2023.0
+soil,"Soil contamination by microplastics in relation to local agricultural  development as revealed by FTIR, ICP-MS and pyrolysis-GC/MS",soil,items/kg,1,1,161.0,161.0,161.0,150.0,5000.0,35.6,10.9,,
+soil,Soil contamination in nearby natural areas mirrors that in urban greenspaces worldwide,soil,items/kg,64,64,327.13,686.1,1649.99,20.0,5000.0,29.36955,9.60905,,
+soil,Soil microplastic pollution in an e-waste dismantling zone of China,soil,items/kg,2,1,36.7,36.7,36.7,100.0,5000.0,23.33145,116.355,2018.0,2018.0
+soil,"Soil microplastic pollution under different land uses in tropics, southwestern China",soil,items/kg,32,32,380.0,850.0,14675.0,100.0,5000.0,21.918472,101.269444,,
+soil,Sources of Light Density Microplastic Related to Two Agricultural Practices: The Use of Compost and Plastic Mulch,soil,items/kg,6,6,749.0,1005.0,2240.5,30.0,2000.0,52.7,5.7,,
+soil,Spatial Distribution and Geostatistical Prediction of Microplastic Abundance in a Micro-Watershed with Tropical Soils in Southeastern Brazil,soil,items/kg,95,95,1440.0,3100.0,5200.0,40.0,2000.0,-21.19801,-44.977098,2022.0,2022.0
+soil,"Spatial distribution and impacts of microplastics on potato growth and yield in agroecosystems in Sialkot, Pakistan",soil,items/kg,10,10,232.0,505.0,764.0,,,32.46265,74.58975,2021.0,2021.0
+soil,Spatial distribution of microplastics in Mollisols of the farmland in Northeast China: the role of field management and plastic sources,soil,items/kg,2,2,2079.6,2530.0,2980.4,50.0,5000.0,45.71,126.66,2020.0,2020.0
+soil,Spatial distribution of microplastics in soil with context to human activities: a case study from the urban center,soil,items/kg,1,1,4483.0,4483.0,4483.0,50.0,5000.0,31.52,74.36,,
+soil,"Spatial insights into microplastics and heavy metals levels, and risks in wastewater irrigated surface soils of Okara, Pakistan",soil,items/kg,3,3,2893.0,3629.0,4336.2,250.0,5000.0,30.8216,73.4576,,
+soil,Spatial patterns of mesoplastics and coarse microplastics in floodplain soils as resulting from land use and fluvial processes,soil,items/kg,4,4,1.88,1.88,1.88,2000.0,5000.0,50.643712,8.534746,2019.0,2019.0
+soil,Spatial-temporal distribution and fluxes of microplastics in Jiulong River basin,soil,items/kg,6,6,136.0,215.5,350.0,45.0,5000.0,25.1291,117.4722,2020.0,2020.0
+soil,Spatio-Temporal Variation of Soil Microplastics as Emerging Contamination After Application of Organic Mulching in Phyllostachys violascens Forests,soil,items/kg,18,18,75.6,107.5,182.0,50.0,1500.0,30.265,119.625,,
+soil,"Study on the Prevalence and Characteristics of Microplastics in the Agricultural Soil of Rice Bowl of Puducherry - Bahour, India",soil,items/kg,4,4,59.93,63.13,66.33,50.0,5000.0,11.799686,79.733502,2024.0,2024.0
+soil,Synthetic fibers as an indicator of land application of sludge,soil,items/kg,2,2,1241.0,1245.0,1249.0,,,42.6771,-74.486,2003.0,2003.0
+soil,"Temporal and spatial variation of microplastics in Baotou section of Yellow River, China",soil,items/kg,4,4,3356.669,4316.665,5813.33,20.0,500.0,40.486056,109.692454,2021.0,2021.0
+soil,"The Migration and Pollution Risk of Microplastics in Water, Soil, Sediments, and Aquatic Organisms in the Caohai Watershed, Southwest China",soil,items/kg,9,9,1680.0,4330.0,11050.0,20.0,500.0,26.8359,104.262,2023.0,2023.0
+soil,"The Occurrence and Characteristics of Microplastic Pollution in the Agricultural Soils of Anhui Province, in Eastern China",soil,items/kg,17,17,136.834,268.98,665.418,20.0,5000.0,31.6667,117.274,,
+soil,The Scale and Distribution of Microplastic Pollution in the Soils of a UK Urban Woodland,soil,items/kg,4,4,449.9,921.5,2445.9,50.0,5000.0,51.655,0.035,2022.0,2022.0
+soil,The distribution and morphology of microplastics in coastal soils adjacent to the Bohai Sea and the Yellow Sea,soil,items/kg,4,4,737.59,6572.45,13505.54,100.0,5000.0,37.8161,120.019365,2015.0,2015.0
+soil,The distribution of microplastics in soil aggregate fractions in southwestern China,soil,items/kg,10,10,12561.0,15635.0,26537.0,50.0,5000.0,24.7,102.6667,2016.0,2016.0
+soil,The first report on the source-to-sink characterization of microplastic pollution from a riverine environment in tropical India,soil,items/kg,5,5,38.406,60.88,152.476,300.0,5000.0,12.848778,75.0453,2019.0,2019.0
+soil,"The occurrence and distribution characteristics of microplastics in the agricultural soils of Shaanxi Province, in north-western China",soil,items/kg,9,9,1564.4,1885.0,3124.4,245.0,5000.0,34.4333,109.3167,2019.0,2019.0
+soil,"The occurrence and distributions characteristics of microplastics in soils of different land use patterns in Karst Plateau, Southwest China",soil,items/kg,15,15,2681.17,2766.12,4155.07,250.0,5000.0,26.73,106.52,2022.0,2022.0
+soil,"The occurrence and effect of altitude on microplastics distribution in agricultural soils of Qinghai Province, northwest China",soil,items/kg,63,63,772.0,1740.0,2316.0,250.0,5000.0,36.6612,101.5308,2022.0,2022.0
+soil,"The occurrence of microplastic in Mu Us Sand Land soils in northwest China: Different soil types, vegetation cover and restoration years",soil,items/kg,26,26,1711.0,2562.5,4140.0,250.0,5000.0,38.330245,109.694861,2019.0,2019.0
+soil,The occurrence of microplastics in farmland and grassland soils in the Qinghai-Tibet plateau: Different land use and mulching time in facility agriculture,soil,items/kg,70,64,19.9,47.5,68.07,25.0,5000.0,29.5766,97.343,2019.0,2019.0
+soil,"The persistently breaking trade-offs of three-decade plastic film mulching: Microplastic pollution, soil degradation and reduced cotton yield",soil,items/kg,10,10,23.7,399.5,1371.8,40.0,5000.0,44.899444,85.640556,2018.0,2018.0
+soil,The potential risk of microplastics accumulation in farmland soils and vegetables from the development of rural tourism,soil,items/kg,4,4,871.419,1310.125,4988.55,20.0,5000.0,25.815,100.195,2023.0,2023.0
+soil,The spatial distribution of microplastics in topsoils of an urban environment - Coimbra city case-study,soil,items/kg,8,8,72.5,100.5,136.3,9.0,2949.0,40.21,-8.425,2022.0,2022.0
+soil,Tracking the source of microplastics in soil—an exploratory case study in peach orchards from east-central Portugal,soil,items/kg,3,3,2800.0,5200.0,5760.0,18.0,889.0,40.29,-7.5,2022.0,2022.0
+soil,Transfer and transport of microplastics from biosolids to agricultural soils and the wider environment,soil,items/kg,3,3,149.4,151.0,152.6,300.0,5000.0,52.69,-81.88,2017.0,2017.0
+soil,Transport and accumulation of microplastics from biosolids to Australian agricultural soils: detection of microplastics down to 1 μm,soil,items/kg,2,2,1117.2,1138.0,1158.8,25.0,5000.0,-27.58,151.855,2021.0,2021.0
+soil,Twenty-One Years of Plastic Mulching on Blueberries: Content of Microplastics and Effects on Soil Properties,soil,items/kg,4,4,81.6,108.0,212.8,1000.0,5000.0,-36.535,-71.915,,
+soil,Unseen threat: The devastating impact of microplastics on soil health in agricultural lands,soil,items/kg,1,1,46000.0,46000.0,46000.0,100.0,5000.0,37.0,39.03,,
+soil,Urban Microplastic Pollution Revealed by a Large-Scale Wetland Soil Survey,soil,items/kg,28,28,146.97,322.4,513.99,50.0,5000.0,28.22055,112.9546,,
+soil,"Urban soil microplastic characterization across diverse land use types along the Anyangcheon stream in Seoul, Korea",soil,items/kg,12,12,134.0,472.0,2231.9,20.0,5000.0,37.44725,126.894,2024.0,2024.0
+soil,"Vertical distribution and characteristics of soil microplastics under different land use patterns: A case study of Shouguang City, China",soil,items/kg,210,210,550.964,1280.99,2286.5,100.0,5000.0,37.09635,118.787367,,
+soil,Vertical distribution and post-depositional translocation of microplastics in a Rhine floodplain soil,soil,items/kg,9,9,7496.6,217651.0,692541.0,10.0,5000.0,50.9,6.9,2021.0,2021.0
+soil,"Vertical distribution of microplastics in urban farmland soils. A case of Mabibo Bonde la Mchicha farm, Dar es Salaam, Tanzania",soil,items/kg,3,3,21020.0,29500.0,31580.0,100.0,5000.0,-6.821687,39.207697,2023.0,2023.0
+soil,Vertical distributions of microplastics in long-term mulched soils and their potential impacts on soil properties and microbial diversity,soil,items/kg,70,70,30020.3,121704.0,437524.9,20.0,5000.0,39.0956,99.9031,2023.0,2023.0
+soil,Wetland soil microplastics are negatively related to vegetation cover and stem density,soil,items/kg,1,1,1272.0,1272.0,1272.0,75.0,5000.0,38.910364,-76.947081,2016.0,2016.0

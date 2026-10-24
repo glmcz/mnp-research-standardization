@@ -1,4 +1,32 @@
 dataset,study,setting,unit,n,n_pos,p10,p50,p90,size_min_um,size_max_um,lat,lon,year_first,year_last
+durum,http://dx.doi.org/10.1016/j.scitotenv.2022.160148,stormwater runoff,particles/L,4,4,530.31,2074.55,3585.54,40.0,5000.0,31.241666,121.408334,2020.0,2020.0
+durum,http://dx.doi.org/10.1016/j.scitotenv.2022.161318,stormwater runoff,particles/L,6,6,96.0,169.5,300.5,20.0,5000.0,36.137175,128.429372,2021.0,2021.0
+durum,https://doi.org/10.1016/j.chemosphere.2021.129886,stormwater runoff,particles/L,3,3,0.6,0.6,0.6,500.0,2000.0,40.4862,-74.4518,2019.0,2019.0
+durum,https://doi.org/10.1016/j.envpol.2021.117352,stormwater runoff,particles/L,4,4,58.8,188.5,248.9,25.0,5000.0,48.769722,2.522778,2018.0,2019.0
+durum,https://doi.org/10.1016/j.envpol.2023.121698,stormwater runoff,particles/L,4,4,3.1,4.65,7.81,300.0,5000.0,14.075821,100.616311,2021.0,2021.0
+durum,https://doi.org/10.1016/j.jenvman.2022.116348,stormwater runoff,particles/L,4,4,13283.8,17025.0,18559.8,5.0,100.0,45.490556,12.238056,2021.0,2021.0
+durum,https://doi.org/10.1016/j.jenvman.2024.121050,stormwater runoff,particles/L,5,5,1336.2,2013.0,6767.8,25.0,1000.0,36.4192,127.3962,2022.0,2023.0
+durum,https://doi.org/10.1016/j.marpolbul.2020.111181,stormwater runoff,particles/L,2,2,1.82,2.7,3.58,54.0,1000.0,22.2993,114.196,2015.0,2015.0
+durum,https://doi.org/10.1016/j.scitotenv.2019.03.416,stormwater runoff,particles/L,7,7,0.4924,1.409,15.9664,10.0,2000.0,56.171778,10.12875,2017.0,2017.0
+durum,https://doi.org/10.1016/j.scitotenv.2019.135411,stormwater runoff,particles/L,5,5,73.2,131.0,182.6,200.0,5000.0,32.527917,-116.968214,2017.0,2017.0
+durum,https://doi.org/10.1016/j.scitotenv.2020.142606,stormwater runoff,particles/L,8,8,3.366,8.375,17.29,100.0,5000.0,114.594517,30.858247,2019.0,2019.0
+durum,https://doi.org/10.1016/j.scitotenv.2021.145503,stormwater runoff,particles/L,1,1,583.0,583.0,583.0,20.0,5000.0,57.7166,11.9823,2018.0,2018.0
+durum,https://doi.org/10.1016/j.scitotenv.2021.148939,stormwater runoff,particles/L,2,2,10.134,16.43,22.726,300.0,5000.0,36.81,127.1475,2020.0,2020.0
+durum,https://doi.org/10.1016/j.scitotenv.2021.150559,stormwater runoff,particles/L,8,8,1.86,1.86,1.86,50.0,5000.0,28.948,50.8405,2019.0,2026.0
+durum,https://doi.org/10.1016/j.scitotenv.2021.151104,stormwater runoff,particles/L,3,3,0.314,0.37,0.714,250.0,2000.0,40.5548,-74.4621,2020.0,2020.0
+durum,https://doi.org/10.1016/j.scitotenv.2021.151151,stormwater runoff,particles/L,9,9,51.6,230.0,2244.8,20.0,100.0,62.3908,17.3069,2019.0,2020.0
+durum,https://doi.org/10.1016/j.scitotenv.2023.166685,stormwater runoff,particles/L,6,6,23.0,67.75,168.75,1.0,5000.0,40.747834,-74.174347,2023.0,2023.0
+durum,https://doi.org/10.1016/j.scitotenv.2024.172485,stormwater runoff,particles/L,12,12,0.853,2.12,7.434,500.0,5000.0,40.503653,-74.458125,2021.0,2022.0
+durum,https://doi.org/10.1016/j.watres.2020.115623,stormwater runoff,particles/L,6,6,0.6,6.45,17.4,125.0,5000.0,43.641111,-80.589522,2015.0,2015.0
+durum,https://doi.org/10.1016/j.watres.2020.116073,stormwater runoff,particles/L,6,6,2875.0,4375.0,8000.0,80.0,5000.0,31.3,121.6,2018.0,2018.0
+durum,https://doi.org/10.1021/acs.est.3c03949,stormwater runoff,particles/L,13,13,8.04,19.0,34.0,25.0,5000.0,-27.9628,153.3814,2020.0,2020.0
+durum,https://doi.org/10.1021/acs.estlett.8b00446,stormwater runoff,particles/L,1,0,,,,10.0,5000.0,,,,
+durum,https://doi.org/10.1021/acsestwater.0c00292,stormwater runoff,particles/L,12,12,1.632,6.415,23.205,106.0,5000.0,37.7545,-122.234,2016.0,2016.0
+durum,https://doi.org/10.1021/acsestwater.1c00017,stormwater runoff,particles/L,12,12,1.8,6.5,17.45,125.0,5000.0,37.75,-122.347361,2016.0,2018.0
+durum,https://doi.org/10.1021/acsestwater.4c00037,stormwater runoff,particles/L,18,12,131.1,346.5,900.1,25.0,1300.0,43.8262,-79.5562,2018.0,2019.0
+durum,https://doi.org/10.1061/JSWBAY.0000883,stormwater runoff,particles/L,2,2,0.304,0.88,1.456,125.0,5000.0,76.241721,-45.729375,2017.0,2017.0
+durum,https://doi.org/10.3389/fenvs.2023.1090267,stormwater runoff,particles/L,15,14,98.26,192.75,580.09,37.0,5000.0,51.001556,-114.094611,1970.0,2016.0
+durum,https://doi.org/10.5985/emcr.20200006,stormwater runoff,particles/L,2,2,102.1,186.5,270.9,10.0,5000.0,3.850504,146.468107,2019.0,2019.0
 emodnet,EMODnet | Department of Marine Systems at Tallinn University of Technology (713),Ocean water,pieces/m3,171,171,0.267407,0.833076,3.439607,333.0,5000.0,59.457699,24.648999,2016.0,2023.0
 emodnet,EMODnet | Finnish Environment Institute (1104),Ocean water,pieces/m3,16,12,0.042873,0.5558,2.692944,300.0,5000.0,60.197824,24.908119,2020.0,2020.0
 emodnet,EMODnet | Kristineberg Marine Research Station (617),Ocean water,pieces/m3,30,15,33.333334,2323.780015,8516.648206,300.0,5000.0,59.038835,17.6672,2017.0,2017.0
@@ -31,6 +59,61 @@ isobe2021,isobe2021:7,Ocean water,pieces/m3,42,27,0.01624,0.095,1.1672,,,72.871,
 isobe2021,isobe2021:8,Ocean water,pieces/m3,271,145,0.01364,0.0501,0.142,,,33.16,-121.03,2006.0,2007.0
 isobe2021,isobe2021:9,Ocean water,pieces/m3,677,0,,,,,,-15.1943,-18.1859,2007.0,2013.0
 kiessling2021,10.1016/j.scitotenv.2021.147849,river water,pieces/m3,301,68,0.019385,0.087098,0.566152,,,51.160278,9.274444,2016.0,2017.0
+moore_dw,10.1007/s11356-021-12467-y,"drinking water, tap",particles/L,1,1,0.066,0.066,0.066,5.0,5000.0,,,,
+moore_dw,10.1007/s11356-021-13220-1,"drinking water, tap",particles/L,5,5,0.1,0.2,0.68,1.0,5000.0,,,,
+moore_dw,10.1007/s11356-021-13769-x,"drinking water, tap",particles/L,8,8,277.5,359.5,401.5,0.2,5000.0,,,2019.0,2019.0
+moore_dw,10.1007/s11783-021-1492-5,"drinking water, tap",particles/L,4,2,0.338,1.41,2.482,,,,,,
+moore_dw,10.1016/j.cej.2020.128381,"drinking water, tap",particles/L,23,19,0.00736,0.127,1.3,,,,,,
+moore_dw,10.1016/j.chemosphere.2020.126493,"drinking water, tap",particles/L,38,36,249.0,374.0,748.0,0.2,5000.0,,,,
+moore_dw,10.1016/j.chemosphere.2020.126612,"drinking water, tap",particles/L,15,0,,,,500.0,5000.0,,,,
+moore_dw,10.1016/j.chemosphere.2021.132587,"drinking water, tap",particles/L,1,1,11.0,11.0,11.0,10.0,5000.0,,,,
+moore_dw,10.1016/j.chemosphere.2021.132588,"drinking water, tap",particles/L,1,1,11.0,11.0,11.0,,,,,,
+moore_dw,10.1016/j.chemosphere.2021.132589,"drinking water, tap",particles/L,1,1,31.0,31.0,31.0,,,,,,
+moore_dw,10.1016/j.chemosphere.2021.132590,"drinking water, tap",particles/L,1,1,20.0,20.0,20.0,,,,,,
+moore_dw,10.1016/j.cofs.2021.02.011,"drinking water, bottled",particles/L,8,8,113.6,1482.0,16264404.4,,,,,,
+moore_dw,10.1016/j.cotox.2021.09.003,"drinking water, bottled",particles/L,18,18,6.49,124.5,3321.0,,,,,,
+moore_dw,10.1016/j.cotox.2021.09.003,"drinking water, tap",particles/L,16,14,0.0618,9.5,124.0,,,,,,
+moore_dw,10.1016/j.envpol.2020.114227,"drinking water, tap",particles/L,42,42,7.0,13.0,37.0,0.22,5000.0,,,,
+moore_dw,10.1016/j.envpol.2021.117524,"drinking water, tap",particles/L,6,3,0.0362,0.045,0.1026,10.0,5000.0,,,,
+moore_dw,10.1016/j.envres.2022.112855,"drinking water, tap",particles/L,1,1,29.0,29.0,29.0,5.0,5000.0,,,,
+moore_dw,10.1016/j.etap.2018.12.009,"drinking water, tap",particles/L,7,5,1.62802,2.594,4.47672,0.45,5000.0,,,,
+moore_dw,10.1016/j.hazmat.2021.125708,"drinking water, tap",ug/m3,3,3,6.82,9.7,12.18,0.7,5000.0,,,,
+moore_dw,10.1016/j.impact.2021.100302,"drinking water, bottled",particles/L,4,3,3097.0,4889.0,6011.4,0.2,5000.0,,,,
+moore_dw,10.1016/j.impact.2021.100302,"drinking water, tap",particles/L,6,6,685.0,1642.5,5109.5,0.2,5000.0,,,,
+moore_dw,10.1016/j.jece.2020.104527,,particles/L,6,2,0.003025,0.003125,0.003225,50.0,5000.0,,,,
+moore_dw,10.1016/j.jhazmat.2021.125347,"drinking water, tap",particles/L,5,5,2.464,2.71,3.078,0.7,5000.0,,,2019.0,2020.0
+moore_dw,10.1016/j.jwpe.2020.101884,"drinking water, bottled",particles/bottle,23,23,3.0,7.0,17.8,0.4,5000.0,,,,
+moore_dw,10.1016/j.sciotenv.2018.08.102,"drinking water, bottled",particles/L,3,3,3097.0,4889.0,6011.4,0.2,5000.0,,,,
+moore_dw,10.1016/j.sciotenv.2018.08.102,"drinking water, tap",particles/L,3,3,359.0,443.0,591.0,0.2,5000.0,,,,
+moore_dw,10.1016/j.sciotenv.2018.08.178,"drinking water, tap",particles/L,24,10,0.001,0.001,0.0034,3.0,5000.0,,,,
+moore_dw,10.1016/j.sciotenv.2020.143421,"drinking water, tap",particles/L,1,0,,,,1.2,5000.0,,,,
+moore_dw,10.1016/j.scitotenv.2019.02.431,"drinking water, bottled",particles/L,19,19,26.2,168.0,3097.0,,,,,,
+moore_dw,10.1016/j.scitotenv.2019.02.431,"drinking water, tap",particles/L,2,0,,,,,,,,,
+moore_dw,10.1016/j.scitotenv.2019.134520,"drinking water, tap",particles/L,1,1,930.0,930.0,930.0,0.22,5000.0,,,,
+moore_dw,10.1016/j.scitotenv.2020.140236,"drinking water, tap",particles/L,4,4,5.56,14.5,131.1,0.2,5000.0,,,,
+moore_dw,10.1016/j.scitotenv.2021.148001,"drinking water, tap",particles/L,14,14,0.393,0.555,0.714,,,,,,
+moore_dw,10.1016/j.scitotenv.2021.150545,"drinking water, tap",particles/L,63,55,0.134,200.5,1042.36,0.45,5000.0,,,,
+moore_dw,10.1016/j.scitotenv.2022.154015,"drinking water, tap",particles/L,1,1,0.2,0.2,0.2,0.2,5000.0,,,,
+moore_dw,10.1016/j.watres.2017.11.011,"drinking water, bottled",particles/L,4,4,11.9,32.0,97.6,3.0,5000.0,,,,
+moore_dw,10.1016/j.watres.2019.02.054,"drinking water, tap",,1,0,,,,,,,,,
+moore_dw,10.1016/j.watres.2020.11.6519,"drinking water, tap",,5,0,,,,0.7,5000.0,,,,
+moore_dw,10.1021/acs.est.9b01517,"drinking water, bottled",particles/L,1,1,94.37,94.37,94.37,,,,,,
+moore_dw,10.1021/acs.est.9b01517,"drinking water, tap",particles/L,1,1,4.23,4.23,4.23,,,,,,
+moore_dw,10.1039/c6ay01184e,"drinking water, bottled",particles/L,2,1,3.030303,3.030303,3.030303,0.45,5000.0,,,,
+moore_dw,10.11001/jksww.2020.34.5.357,"drinking water, tap",particles/L,2,2,27.7,82.5,137.3,,,,,,
+moore_dw,10.1371/journal.pone.0194970,"drinking water, bottled",particles/L,13,12,1.33,3.165,8.0,2.5,5000.0,,,,
+moore_dw,10.1371/journal.pone.0194970,"drinking water, tap",particles/L,14,13,1.822,3.92,7.618,2.5,5000.0,,,,
+moore_dw,10.1371/journal.pone.0236838,"drinking water, bottled",particles/L,4,4,3.351,162.7,2246.3,0.2,5000.0,,,,
+moore_dw,10.1371/journal.pone.0236838,"drinking water, tap",particles/L,4,4,0.17749,0.645,12.81,0.2,5000.0,,,,
+moore_dw,10.18520/cs/v117/i11/1874-1879,"drinking water, tap",particles/L,6,6,3.5,5.0,5.5,0.45,5000.0,,,,
+moore_dw,10.21203/rs.3.rs-242504/v1,"drinking water, tap",particles/L,3,3,985.2,1042.0,1329.2,20.0,5000.0,,,,
+moore_dw,10.22630/PNIKS.2019.28.4.59,"drinking water, tap",particles/L,12,12,1000.0,1000.0,2000.0,4.0,5000.0,,,,
+moore_dw,10.3389/fchem.2018.00407,"drinking water, bottled",particles/L,27,27,26.18,156.0,753.4,1.5,5000.0,,,2018.0,2018.0
+moore_dw,10.3390/app112110109,"drinking water, tap",particles/L,112,110,0.1,1.94,56.5,,,,,,
+moore_dw,10.3390/environments8120138,"drinking water, bottled",ug/g,2,1,9.18,9.18,9.18,,,,,,
+moore_dw,10.3390/environments8120138,"drinking water, tap",ug/g,3,1,30.21,30.21,30.21,,,,,,
+moore_dw,10.3390/w12113115,"drinking water, tap",particles/L,1,1,105.8,105.8,105.8,7.0,5000.0,,,,
+moore_dw,http://dce2.au.dk/pub/SR291.pdf ,"drinking water, tap",particles/L,18,18,0.168,0.26,0.552,20.0,5000.0,,,2018.0,2018.0
 mpsed,https://doi.org/10.1007/s00128-019-02762-3,sediment,microplastic/kg sediment dry wt.,11,11,429.0,1313.0,3221.0,30.0,5000.0,,,,
 mpsed,https://doi.org/10.1007/s00128-020-02866-1,sediment,microplastic/kg sediment dry wt.,9,9,318.64,467.6,621.8,1.0,5000.0,,,2017.0,2017.0
 mpsed,https://doi.org/10.1007/s00244-017-0414-9,sediment,microplastic/kg sediment dry wt.,23,18,95.27,756.45,3926.14,315.0,5000.0,,,2001.0,2012.0
@@ -213,6 +296,14 @@ pangaea_941076,10.1594/pangaea.941076,Ocean water,pieces/m3,34,22,0.0053,0.014,0
 pangaea_941107,10.1594/pangaea.941107,"Ocean water, subsurface",pieces/m3,79,10,0.259,0.275,1.021,300.0,5000.0,-67.667445,-10.03535,2018.0,2019.0
 pangaea_990052,10.1594/pangaea.990052,Ocean water,pieces/m3,20,20,80.3492,367.376,2321.2629,10.0,5000.0,1.5945,-87.5665,2022.0,2023.0
 pangaea_weser,PANGAEA 937685/938143 (Weser estuary),river water,pieces/m3,46,45,0.054752,23.0,2069.0,255.5,2750.0,,,2018.0,2018.0
+rivm,10.1016/j.envint.2017.01.018,river water,pieces/m3,6,6,58000.0,91500.0,151500.0,10.0,5000.0,52.365018,4.9015,,
+rivm,10.1016/j.watres.2020.115723,river water,pieces/m3,36,36,37.5,597.0,2268.5,20.0,5000.0,51.564389,5.482864,2017.0,2018.0
+rivm,10.1016/j.watres.2021.116852,river water,pieces/m3,4,4,112486.5,225118.0,328746.8,10.0,500.0,51.92726,5.601431,2019.0,2020.0
+rivm,10.1016/j.watres.2022.118790,river water,pieces/m3,5,5,29363.2,77598.0,318754.6,10.0,500.0,51.718636,4.893752,,
+rivm,10.2166/wst.2022.419,river water,pieces/m3,28,28,15549.3,39020.5,74185.0,20.0,500.0,52.730804,5.132828,2019.0,2019.0
+rivm,na,river water,pieces/m3,4,4,3910.5,10815.0,25275.3,20.0,5000.0,51.464428,5.495595,2024.0,2024.0
+sfbay,sfei_sf_bay_microplastics,Ocean sediment,microparticles/g,22,22,0.776464,3.452901,16.359783,,,37.699016,-122.2022,2014.0,2017.0
+sfbay,sfei_sf_bay_microplastics,Ocean water,microparticles/m3,65,65,0.100881,0.634157,4.650054,,,37.793545,-122.40658,2017.0,2018.0
 soil,A Method for the Extraction and Analysis of Microplastics from Tropical Agricultural Soils in Southeastern Brazil,soil,items/kg,4,4,1881.0,2381.25,3462.5,50.0,2000.0,-21.2029,-44.98141,2022.0,2022.0
 soil,A Method to Replace NaCl as a Flotation Solution for Extracting MPs in Soil: A Case Study of the Jiaxing Agricultural Soil from China,soil,items/kg,1,1,6327.0,6327.0,6327.0,30.0,5000.0,30.702205,121.055894,2023.0,2023.0
 soil,A Procedure for Measuring Microplastics using Pressurized Fluid Extraction,soil,items/kg,1,0,,,,30.0,1000.0,-33.84,151.21,,
@@ -511,3 +602,4 @@ soil,Vertical distribution and post-depositional translocation of microplastics 
 soil,"Vertical distribution of microplastics in urban farmland soils. A case of Mabibo Bonde la Mchicha farm, Dar es Salaam, Tanzania",soil,items/kg,3,3,21020.0,29500.0,31580.0,100.0,5000.0,-6.821687,39.207697,2023.0,2023.0
 soil,Vertical distributions of microplastics in long-term mulched soils and their potential impacts on soil properties and microbial diversity,soil,items/kg,70,70,30020.3,121704.0,437524.9,20.0,5000.0,39.0956,99.9031,2023.0,2023.0
 soil,Wetland soil microplastics are negatively related to vegetation cover and stem density,soil,items/kg,1,1,1272.0,1272.0,1272.0,75.0,5000.0,38.910364,-76.947081,2016.0,2016.0
+valine2020,zenodo.3901297,river water,pieces/m3,22,22,0.021252,0.122174,1.248747,,,44.12957,-122.727778,2018.0,2018.0

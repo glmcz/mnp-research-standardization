@@ -259,3 +259,57 @@ def test_the_scouts_datasets_arrive_whole_and_keep_their_gaps(records) -> None:
     # neither file states the size window it counted; the table does not invent one
     assert i.size_min_um.isna().all() and k.size_min_um.isna().all()
     assert i["flags"].str.contains("window_unreported").all()
+
+
+def test_martins_datasets_arrive_whole_with_what_they_state(records) -> None:
+    import pyreadr
+
+    durum = pd.read_excel(table.DURUM)
+    d = records[records.dataset == "durum"]
+    assert len(d) == len(durum) and d.setting.eq("stormwater runoff").all()
+    assert (d.size_min_um.to_numpy() == durum.x1M_um.to_numpy()).all()  # the window it states
+    rivm = pyreadr.read_r(table.RIVM_TOTAL)[None]
+    r = records[records.dataset == "rivm"].reset_index(drop=True)
+    assert len(r) == len(rivm) and r.unit.eq("pieces/m3").all()
+    # a date printed without its century ("0016-09-20") is not completed by guessing
+    broken = rivm.sampling_date.astype(str).str.startswith("00").to_numpy()
+    assert r.year[broken].isna().all() and r.date[broken].isna().all()
+    assert r["flags"][broken].str.contains("date_without_century").all()
+    v = records[records.dataset == "valine2020"]
+    assert len(v) == len(pd.read_excel(table.VALINE)) and v.size_min_um.isna().all()
+
+
+def test_drinking_water_units_are_converted_only_between_volumes(records) -> None:
+    m = records[records.dataset == "moore_dw"]
+    raw = pd.read_excel(table.MOORE_SAMPLES)
+    assert len(m) == len(raw)
+    m = m.reset_index(drop=True)  # the loader keeps the sheet's row order
+    for unit, factor in (
+        ("particles/mL", 1000),
+        ("particles/m3", 0.001),
+        ("particles/50 L", 1 / 50),
+    ):
+        at = (raw.Concentration_Units == unit).to_numpy()
+        want = pd.to_numeric(raw.Concentration[at], errors="coerce").to_numpy() * factor
+        assert np.allclose(m.value[at].to_numpy(), want, equal_nan=True), unit
+        assert m.unit[at].eq("particles/L").all()
+    # a count per bottle or a mass has no volume to convert by: it keeps its own unit
+    assert set(m.unit) >= {"particles/L", "particles/bottle"}
+    assert not m.unit.str.contains("ug").any() or m[m.unit.str.contains("ug")].value.notna().any()
+
+
+def test_sf_bay_counts_are_microparticles_and_never_called_plastic(records) -> None:
+    sheets = pd.read_excel(table.SFBAY, sheet_name=["manta", "sed"])
+    s = records[records.dataset == "sfbay"]
+    # field and laboratory blanks are quality control, not samples of the bay
+    grabs = {k: d[d.filter(like="SampleType").iloc[:, 0] == "Grab"] for k, d in sheets.items()}
+    assert len(s) == len(grabs["manta"]) + len(grabs["sed"]) and s.record_id.is_unique
+    water = s[s.setting == "Ocean water"].reset_index(drop=True)
+    manta = grabs["manta"]
+    want = manta["Count"] / (manta["Volume.L"] / 1000)
+    assert np.allclose(water.value.to_numpy(), want.to_numpy(), equal_nan=True)
+    # most particles were never characterised, so the unit says microparticles, not plastic
+    assert (
+        water.unit.eq("microparticles/m3").all()
+        and s["flags"].str.contains("not_all_plastic").all()
+    )

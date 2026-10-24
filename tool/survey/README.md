@@ -1,6 +1,6 @@
 # Survey datasets, validated by code
 
-One table of concentration records from ten datasets (water, sediment, beach, soil), and the checks that decide whether two of
+One table of concentration records from seventeen datasets (water, sediment, beach, soil), and the checks that decide whether two of
 those numbers may be compared. Findings: `docs/2026-10-23-dataset-validation.md`; the
 pre-registered timeline test: `docs/PREREG_2026-10.md`, P7.
 
@@ -18,6 +18,10 @@ uv run --with openpyxl python -m pytest -q -p no:cacheprovider tool/survey
     300–333 µm mesh. The tow line is binary geometry and is placed at its midpoint.
   - Five PANGAEA sets the search agent (`tool/discover/`) verified (`PANGAEA_FOUND`): each pinned
     by sha256 with its own setting, method, concentration column and lower size limit.
+- Martin's datasets, fetched on 2026-10-24 (`docs/2026-10-24-dataset-reference-list.md`,
+  `fetch_user.py`): DURUM stormwater, RIVM's Dutch surface waters, Valine's Oregon rivers, the
+  California drinking-water portal, and SFEI's San Francisco Bay, where counts are microparticles
+  and blanks are left out.
 - A field a source lacks stays null.
 - An EMODnet study is its organisation: a monitoring programme's cruises are one series, not
   independent studies, as an NCEI DOI is.

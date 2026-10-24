@@ -67,3 +67,6 @@ tool/validate/labels.html
 data/interim/survey/
 # dataset search agent: catalogue responses, triage answers, downloaded files
 data/raw/discover/
+
+# Datasets Martin fetched (2026-10-24, tool/survey/fetch_user.py): third-party, never committed
+data/raw/datasets_user/

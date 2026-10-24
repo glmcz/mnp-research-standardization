@@ -1,0 +1,127 @@
+{
+ "prereg": {
+  "commit": "af3c5ad",
+  "citation_fixed": "00648be"
+ },
+ "seed": 20261024,
+ "resamples": 2000,
+ "aged_rows": 77,
+ "aged_papers": 20,
+ "aged_rows_by_kind": {
+  "photo": 52,
+  "chemical": 19,
+  "unspecified": 5,
+  "environmental": 1
+ },
+ "pairs": 46,
+ "paired_papers": 9,
+ "P11a": {
+  "papers": 7,
+  "pairs": 43,
+  "papers_more_negative": 4,
+  "papers_less_negative": 2,
+  "sign_test_p": 0.6875,
+  "median_delta_mV": -4.749999999999998,
+  "ci95": [
+   -11.7,
+   0.3999999999999999
+  ],
+  "ci_width": 12.1,
+  "verdict": "partly"
+ },
+ "P11b": {
+  "aged_rows": 71,
+  "aged_papers": 17,
+  "virgin_rows": 1086,
+  "virgin_papers": 301,
+  "median_difference_mV": -6.099999999999998,
+  "ci95": [
+   -12.000375,
+   7.050499999999994
+  ],
+  "ci_width": 19.050874999999994,
+  "verdict": "partly",
+  "width_ratio_unpaired_over_paired": 1.5744524793388426
+ },
+ "descriptive": {
+  "photo": {
+   "papers": 5,
+   "pairs": 26,
+   "papers_more_negative": 3,
+   "papers_less_negative": 1,
+   "sign_test_p": 0.625,
+   "median_delta_mV": -4.100000000000003,
+   "ci95": [
+    -18.55,
+    0.3999999999999999
+   ],
+   "ci_width": 18.95
+  },
+  "chemical": {
+   "papers": 3,
+   "pairs": 17,
+   "papers_more_negative": 2,
+   "papers_less_negative": 1,
+   "sign_test_p": 1.0,
+   "median_delta_mV": -4.9,
+   "ci95": [
+    -10.199999999999998,
+    2.84
+   ],
+   "ci_width": 13.039999999999997
+  },
+  "environmental": {
+   "papers": 1,
+   "pairs": 1,
+   "papers_more_negative": 0,
+   "papers_less_negative": 1,
+   "sign_test_p": 1.0,
+   "median_delta_mV": 9.84,
+   "ci95": [
+    9.84,
+    9.84
+   ],
+   "ci_width": 0.0
+  },
+  "unspecified": {
+   "papers": 2,
+   "pairs": 2,
+   "papers_more_negative": 2,
+   "papers_less_negative": 0,
+   "sign_test_p": 0.5,
+   "median_delta_mV": -4.42,
+   "ci95": [
+    -6.0,
+    -2.84
+   ],
+   "ci_width": 3.16
+  }
+ },
+ "chosen_after_the_results": {
+  "papers_printing_swapped_values": [
+   "PMC12475273"
+  ],
+  "virgin_between_papers": {
+   "PE": {
+    "papers": 32,
+    "iqr_mV": 26.014999999999997
+   },
+   "PET": {
+    "papers": 25,
+    "iqr_mV": 11.3
+   },
+   "PMMA": {
+    "papers": 16,
+    "iqr_mV": 17.963749999999997
+   },
+   "PS": {
+    "papers": 244,
+    "iqr_mV": 24.557499999999997
+   },
+   "PVC": {
+    "papers": 10,
+    "iqr_mV": 14.037499999999994
+   }
+  }
+ }
+}

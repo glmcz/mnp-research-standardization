@@ -67,11 +67,19 @@ A field the source does not give stays empty. Completeness (`survey_completeness
    - Within 100 km in any year (the place held, the time not), there are 70 pairs:
      - 57 EMODnet–NCEI pairs, nets of 330 µm against 333 µm, median ×1.5 (×7.2 at the 90th
        percentile), a median 2 years apart. These are caveated, not refused.
-     - 13 NCEI–990052 pairs: a 300 µm net against a 10 µm ship pump, ×62 000 apart. The guard
-       refuses them: 990052 states no upper size limit. Even with a 5 mm bound, the conversion
-       spans ×4–61, far too wide to close a ×62 000 gap.
-   - A refused pair is counted and shown, but never enters the summary fold. The raw median of
-     all 70 pairs read ×1.7 with a 90th percentile of ×29 000.
+     - 13 NCEI–990052 pairs: nets against a 10 µm ship pump. 990052 states only its lower
+       limit, so (from 2026-10-24) its upper limit is 5 mm by the field's convention, as the
+       reviewer said and as NCEI applies.
+       - 9 pairs are refused, with a median gap of ×68 000. Seven are against 300–335 µm nets
+         (the conversion spans ×4–70) and two against grab samples filtered at 0.45 µm. In
+         each case the conversion's range is wider than ×10.
+       - 4 pairs, against a 150 µm plankton net, are caveated. The window predicts the pump
+         counts ×2.9–26 more; it counts ×492–4 091 more. After the most generous conversion
+         ×22 is left (the median residual), so the window is not the explanation.
+   - A refused pair is counted and shown, but never enters the summary fold. A caveated pair is
+     never dropped for disagreeing (that would bias toward agreement); it reports its residual,
+     the fold left after the window conversion. The raw 90th percentile of all 70 pairs is
+     ×29 000.
    - The between-study summaries in findings 2 and 3 stay inside NCEI, as the hybrid's questions
      ask.
 
@@ -103,6 +111,23 @@ Mendeley and university Dataverse repositories.
   per-volume, mass or area unit (`verify.is_concentration`, test-first).
 - **Left out:** PANGAEA 986752 (eastern tropical Pacific), whose per-sample abundance column is
   ambiguous (`table.py`).
+
+## Aging, the same particle before and after (PREREG P11, idea B)
+
+`tool/p2/aging.py`, `out/tables/p2_aging_pairs.csv`, `out/tables/p2_aging.json`.
+
+- **Coverage.** There are 77 aged zeta values in 20 papers. Only 9 papers measure the same
+  particle before and after in the same liquid (46 pairs), and 7 of those use light or an oxidant.
+- **P11a: partly.** In 4 of 7 papers the aged particle is more negative, in 2 less, and in 1 the
+  same. The median is −4.7 mV (95 % interval −11.7 to +0.4).
+- **P11b: partly.** Unpaired, the interval is ×1.6 as wide; ×2 was predicted.
+- **Scale, chosen after the results.** Between papers, virgin polystyrene's per-paper median has
+  an interquartile range of 25 mV. Aging's ~5 mV is visible only paired.
+- **PMC12475273 prints its aged and virgin values swapped.** Its Methods and its Discussion give
+  the two values the other way round.
+- **Two coding defects** were found by reading the pairs and fixed test-first: O3 was not read as
+  ozone, and one salt series was pooled across its levels. The verdicts did not change, and the
+  first run's numbers are kept in the PREREG.
 
 ## The hybrid agent against naive Claude (PREREG P8–P10)
 

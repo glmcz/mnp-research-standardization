@@ -2,8 +2,9 @@
 
 NCEI (marine water, beach, sediment), MP-SED (sediment), the soil compilation of Wu et al. and the
 two PANGAEA Weser fractions are read through the pinned loaders of tool/p2. Datasets added after
-P2 (EMODnet's European floating-microlitter monitoring, the atmospheric compilation of Fu et al.
-2023 as revised by Hough et al. 2026) are pinned here. A field the source does not give stays
+P2 (EMODnet's European floating-microlitter monitoring, and the PANGAEA sets the dataset search
+found) are pinned here. Air is not a survey matrix: an atmospheric compilation of one value per
+study was read on 2026-10-23 and removed on 2026-10-24. A field the source does not give stays
 null and is never filled;
 `flags` says why a field is what it is (NCEI's 5 mm upper bound is the database's rule, MP-SED's
 lower limit 99999 means unreported).
@@ -34,10 +35,8 @@ import extension as ext  # noqa: E402
 OUT = ROOT / "data/interim/survey/records.csv.gz"
 CONC = ROOT / "data/raw/datasets_recon/conc"
 EMODNET = CONC / "emodnet/mlf_density_nb_m3_monitoring.zip"  # EMODnet Chemistry, CC BY 4.0
-AIR = CONC / "hough/obs_fu2023-revised.csv"  # Hough et al. 2026, Zenodo 22946011
 PINS = {
     EMODNET: "243dc6c69a2fe70a995bff606680049d6ad6b52645fbf857064f505e2fae50f0",
-    AIR: "457678753a356fee9cd8383378f0fcc7a9d32a83fefa63c54cf6d3e5528054d4",
 }
 DISCOVERED = ROOT / "data/raw/discover/files"
 #: PANGAEA datasets the search agent found usable (tool/discover, 2026-10-23), each read with its
@@ -276,34 +275,6 @@ def emodnet() -> pd.DataFrame:
     )
 
 
-def air() -> pd.DataFrame:
-    """Atmospheric concentrations (particles per m3 of air), one row per study, revised values."""
-    d = pd.read_csv(AIR)
-    d = d[(d["measure"] == "concentration") & (d["number_units"] == "particle/m3")]
-    mm = d["size_units"].eq("mm")
-    scale = np.where(mm, 1000.0, 1.0)
-    return pd.DataFrame(
-        {
-            "dataset": "air_fu2023",
-            "record_id": "air:" + d.index.astype(str),
-            "study": _blank(d["doi"]),
-            "org": None,
-            "setting": "air",
-            "method": None,
-            "region": _blank(d["area"]),
-            "lat": pd.to_numeric(d["lat"], errors="coerce"),
-            "lon": pd.to_numeric(d["lon"], errors="coerce"),
-            "date": None,
-            "year": pd.to_numeric(d["year"], errors="coerce"),
-            "size_min_um": pd.to_numeric(d["size_min"], errors="coerce") * scale,
-            "size_max_um": pd.to_numeric(d["size_max"], errors="coerce") * scale,
-            "unit": "particles/m3 air",
-            "value": pd.to_numeric(d["number"], errors="coerce"),
-            "flags": "one_row_per_study",
-        }
-    )
-
-
 def _pangaea_path(pid: int) -> Path:
     return DISCOVERED / f"10.1594_pangaea.{pid}" / f"pangaea_{pid}.tab"
 
@@ -361,7 +332,7 @@ def build() -> pd.DataFrame:
     p2.check_pins()
     ext.check_pins()
     check_pins()
-    parts = [ncei(), mpsed(), soil(), weser(), emodnet(), air(), pangaea_found()]
+    parts = [ncei(), mpsed(), soil(), weser(), emodnet(), pangaea_found()]
     t = pd.concat(parts, ignore_index=True)
     return t.loc[:, list(COLUMNS)]
 

@@ -41,9 +41,8 @@ def test_the_datasets_added_after_p2_arrive_whole(records) -> None:
     raw = zipfile.ZipFile(table.EMODNET).read("mlf_density_nb_m3_monitoring.dbf")
     n = records.groupby("dataset").size()
     assert n["emodnet"] == struct.unpack("<I", raw[4:8])[0]
-    with open(table.AIR, encoding="utf-8") as f:
-        air = [r for r in csv.DictReader(f) if r["measure"] == "concentration"]
-    assert n["air_fu2023"] == sum(r["number_units"] == "particle/m3" for r in air)
+    # air is a different matrix, and a compilation of one value per study is not a survey
+    assert not records.setting.str.contains("air", case=False).any()
     e = records[records.dataset == "emodnet"]
     # every EMODnet tow in this file was taken in the Baltic and the Kattegat
     assert e.lat.between(53, 66).all() and e.lon.between(9, 31).all()

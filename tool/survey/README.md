@@ -1,6 +1,6 @@
 # Survey datasets, validated by code
 
-One table of concentration records from eleven datasets, and the checks that decide whether two of
+One table of concentration records from ten datasets (water, sediment, beach, soil), and the checks that decide whether two of
 those numbers may be compared. Findings: `docs/2026-10-23-dataset-validation.md`; the
 pre-registered timeline test: `docs/PREREG_2026-10.md`, P7.
 
@@ -13,11 +13,9 @@ uv run --with openpyxl python -m pytest -q -p no:cacheprovider tool/survey
 ```
 
 - `table.py` reads NCEI, MP-SED, the soil compilation (Wu et al.) and the PANGAEA Weser
-  fractions through `tool/p2`'s pinned loaders, and pins two datasets added on 2026-10-23:
+  fractions through `tool/p2`'s pinned loaders, and pins the datasets added on 2026-10-23:
   - EMODnet's floating micro-litter monitoring nets: 217 Baltic and Kattegat tows, particles/m³,
     300–333 µm mesh. The tow line is binary geometry and is placed at its midpoint.
-  - The atmospheric compilation of Fu et al. 2023 as revised by Hough et al. 2026: 62 study-level
-    concentrations in particles per m³ of air.
   - Five PANGAEA sets the search agent (`tool/discover/`) verified (`PANGAEA_FOUND`): each pinned
     by sha256 with its own setting, method, concentration column and lower size limit.
 - A field a source lacks stays null.

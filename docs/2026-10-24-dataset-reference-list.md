@@ -12,7 +12,7 @@ as 130-byte pointers.
 | EMODnet floating micro-litter | emodnet.ec.europa.eu | Baltic file **in**. The European v2024 aggregate (found by the scout) is a lead: one row per particle category. |
 | LITTERBASE | litterbase.awi.de | View-only by design. |
 | Isobe et al. 2021, multilevel | microplastics.springeropen.com | **In** (8 218 samples, via the archive the scout found). |
-| Global inland waters, Jin et al. 2025 | nature.com/articles/s43247-025-02320-2 | Data found on figshare (10.6084/m9.figshare.28784873), but saved as R workspaces that neither pyreadr nor rdata can read. **Needs R** to export. |
+| Global inland waters, Jin et al. 2025 | nature.com/articles/s43247-025-02320-2 | **Not usable.** Exported with R (`tool/survey/export_jin.R`), the figshare deposit (10.6084/m9.figshare.28784873) holds only fitted random-forest models. Their training tables give per row a transformed abundance and five environmental predictors (human index, AET, cropland, runoff, PET): no coordinates, date, study, unit or size window. The raw table the paper's code loads (`DATA.MPS.Rdata`) is not in the deposit; it would have to be requested from the authors. |
 | Global lakes compilations (2) | sciencedirect.com | Paywall, HTTP 403. |
 | RIVM MicroplasticsERA_water | github.com/rivm-syso | **In**: 83 Dutch surface-water samples with size windows (`Particle_concentrations_total.rds`, LFS). |
 | DURUM urban stormwater | github.com/abdulmobinibnahafiz | **In**: 180 sampling efforts with size windows. The Kaggle mirror is not needed. |

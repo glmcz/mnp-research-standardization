@@ -326,7 +326,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .legend .k-ink { background: var(--ink); }
 .legend .k-abs { background: var(--absent-wash); outline: 1px solid var(--absent-soft); }
 
-/* ---- slide 33 ---- */
+/* ---- slide 34 ---- */
 .defaults { display: grid; gap: 0.9em; align-content: start; }
 .default-big { font-family: var(--mono); font-size: 1.45em; color: var(--ink); border-left: 3px solid var(--absent); padding: 0.2em 0 0.2em 0.7em; }
 .rules { display: grid; gap: 1em; }
@@ -336,7 +336,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .rule h3 { font-size: 1.22em; font-weight: 650; line-height: 1.3; }
 .rule p { grid-column: 2; font-size: 1em; color: var(--ink-2); line-height: 1.42; }
 
-/* ---- slide 37 ---- */
+/* ---- slide 38 ---- */
 .agree { display: grid; gap: 1.25em; align-content: start; }
 .agree-row { display: grid; grid-template-columns: 8.5em minmax(0, 1fr) 6.4em; gap: 0.9em; align-items: center; font-size: 1.3em; }
 .agree-row .track { height: 0.9em; }
@@ -347,7 +347,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .stat .big .small { font-family: var(--text); font-size: 0.32em; font-weight: 400; }
 .stat .big .n { color: var(--absent); }
 
-/* ---- slides 38 and 39: real cases in rows ---- */
+/* ---- slides 39 and 40: real cases in rows ---- */
 .cases { display: grid; gap: 0; border-top: 1px solid var(--ink); }
 .case-row {
   display: grid;
@@ -365,7 +365,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .case-row .how { color: var(--ink-2); }
 .lesson { font-size: 1.02em; border-left: 3px solid var(--absent); padding-left: 0.8em; max-width: 52em; }
 
-/* ---- slide 40 ---- */
+/* ---- slide 41 ---- */
 .grid-cmp { display: grid; gap: 0.15em; }
 .cmp-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.4em 1.4em; align-items: center; padding: 0.55em 0; border-bottom: 1px solid var(--rule); }
 @media (min-width: 760px) { .cmp-row { grid-template-columns: 16.5em minmax(0, 1fr) minmax(0, 1fr); } }
@@ -377,7 +377,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .track .fill.cost { background: var(--quiet); }
 .cmp-row .m { font-size: 1.08em; }
 
-/* ---- slide 41 ---- */
+/* ---- slide 42 ---- */
 .steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.9em; counter-reset: step; list-style: none; padding: 0; }
 @media (min-width: 760px) { .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.4em; } }
 .steps li { counter-increment: step; border-top: 2px solid var(--ink); padding-top: 0.6em; display: grid; gap: 0.35em; align-content: start; }
@@ -387,7 +387,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .steps p { font-size: 1.04em; color: var(--ink-2); line-height: 1.4; }
 .status { display: inline-flex; gap: 0.6em; align-items: baseline; font: 600 0.8em var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--absent); border: 1.5px solid var(--absent); padding: 0.25em 0.7em; justify-self: start; }
 
-/* ---- slide 21 ---- */
+/* ---- slide 22 ---- */
 .cancant { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.6em; }
 @media (min-width: 760px) { .cancant { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3em; } }
 .cancant h3 { font-family: var(--display); font-size: 1.9em; font-weight: 600; padding-bottom: 0.2em; border-bottom: 2px solid var(--ink); }
@@ -397,7 +397,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .cancant li { font-size: 1.3em; line-height: 1.32; }
 .cancant li small { display: block; font-size: 0.78em; color: var(--ink-2); margin-top: 0.15em; }
 
-/* ---- slide 22 ---- */
+/* ---- slide 23 ---- */
 .standard { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2em; }
 @media (min-width: 760px) { .standard { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2em; } }
 .standard section { border-top: 2px solid var(--ink); padding-top: 0.55em; display: grid; gap: 0.4em; align-content: start; }
@@ -431,6 +431,9 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .jt tr.probe td { color: var(--muted); }
 .jt td:first-child { white-space: nowrap; }
 .jt.dec { font-size: 0.84em; }
+.chart .gap-own { fill: var(--quiet); }
+.chart .gap-pub { fill: var(--absent); }
+.chart .gap-hi { stroke: var(--ink-2); stroke-width: 1.5; }
 .chart .win-n { fill: var(--quiet); fill-opacity: 0.16; stroke: var(--muted); stroke-opacity: 0.55; stroke-width: 1; }
 .chart .win-e { fill: var(--ink); fill-opacity: 0.12; stroke: var(--ink); stroke-width: 1.2; }
 .chart .win-p { fill: var(--absent); fill-opacity: 0.32; stroke: var(--absent); stroke-width: 1.6; }
@@ -914,10 +917,28 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s21" aria-label="Slide 21: what to take home">
+<section class="slide" id="s21" aria-label="Slide 21: how far apart two numbers land">
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">21</span><span>Act VI · the close</span></p>
+    <h2>How far apart two numbers land, by what was held the same.</h2>
+    <p class="msg">Every gap in this talk on one page, beside what laboratories publish when they measure the very same material. What differs is named first.</p>
+  </header>
+  <div class="body fill">
+    <figure class="fig" style="margin:0">{{svg:gaps}}</figure>
+    <p class="lead-in">The best a certified reference allows is ±{{gap.srm}} mV. Eight laboratories measuring one batch of silica spread {{gap.nanovalid}} mV, and their report concludes that “{{gap.nanovalid.said}}”. What this literature leaves unwritten, the batch, the liquid and the size window, moves the number further still.</p>
+  </div>
+  <p class="src">out/tables/gap_ladder.csv · out/tables/gap_scout_verified.csv · .claude/agents/mnp-gap-scout.md</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>The blue bars are interlaboratory studies a second scout agent found; code fetched each page and kept a number only where the quote that holds it was there. They are the floor: good laboratories measuring the same bottle still differ by a few millivolts, or a fraction for counts. The grey bars are this talk, and each one is a condition somebody did not hold fixed or did not write down.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s22" aria-label="Slide 22: what to take home">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">22</span><span>Act VI · the close</span></p>
     <h2>Four things to take home.</h2>
     <p class="msg">None of them is about plastic.</p>
   </header>
@@ -936,10 +957,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s22" aria-label="Slide 22: a minimal reporting standard">
+<section class="slide" id="s23" aria-label="Slide 23: a minimal reporting standard">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">22</span><span>Act VI · the close</span></p>
+    <p class="eyebrow"><span class="idx">23</span><span>Act VI · the close</span></p>
     <h2>The call: a minimal reporting standard.</h2>
     <p class="msg">Report the five conditions, identify the particle, and name the conversion model. For counts, state the size window.</p>
   </header>
@@ -959,10 +980,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s23" aria-label="Slide 23: next, by instrument">
+<section class="slide" id="s24" aria-label="Slide 24: next, by instrument">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">23</span><span>Act VI · the close</span></p>
+    <p class="eyebrow"><span class="idx">24</span><span>Act VI · the close</span></p>
     <h2>Next: what each instrument would let me measure.</h2>
     <p class="msg">The literature cannot give a curve or a clean aging effect. A measurement designed for the question can, and each step needs one more piece of equipment.</p>
   </header>
@@ -982,10 +1003,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s24" aria-label="Slide 24: where the studies sampled">
+<section class="slide backup" id="s25" aria-label="Slide 25: where the studies sampled">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">24</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">25</span><span>Backup</span></p>
     <h2>Where the studies sampled, and where nobody did.</h2>
     <p class="msg">{{map.ocean.n}} ocean-water studies, shaded by their median count, and {{map.soil.n}} soil studies. MP-SED gives no coordinates for {{sv.miss.mpsed.lat}} of its records, so its sediments cannot be placed.</p>
   </header>
@@ -999,10 +1020,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s25" aria-label="Slide 25: tested like a system">
+<section class="slide backup" id="s26" aria-label="Slide 26: tested like a system">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">25</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">26</span><span>Backup</span></p>
     <h2>Tested like a system: same questions, one part removed at a time.</h2>
     <p class="msg">{{hy.q}} questions, each with an answer computed apart from the system. {{hy.flagq}} of them need a caveat or a refusal, and {{hy.adv}} are traps where the obvious answer is wrong.</p>
   </header>
@@ -1021,10 +1042,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s26" aria-label="Slide 26: the curve, not the dot">
+<section class="slide backup" id="s27" aria-label="Slide 27: the curve, not the dot">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">26</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">27</span><span>Backup</span></p>
     <h2>The plan was never zeta. It was the curve.</h2>
     <p class="msg">One dot cannot tell a hard bead from a soft, coated one; a curve across salt can. The method to read the curve is built. What is missing is data: papers print dots, not curves.</p>
   </header>
@@ -1048,10 +1069,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s27" aria-label="Slide 27: the best case fails">
+<section class="slide backup" id="s28" aria-label="Slide 28: the best case fails">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">27</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">28</span><span>Backup</span></p>
     <h2>The best case fails.</h2>
     <p class="msg">One lab, the same {{c14.size_nominal}} nm polystyrene, the same five conditions, two papers {{c14.years}} years apart: {{c14.a.value}} against {{c14.b.value}} mV.</p>
   </header>
@@ -1082,10 +1103,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s28" aria-label="Slide 28: zeta belongs to the particle in its liquid">
+<section class="slide backup" id="s29" aria-label="Slide 29: zeta belongs to the particle in its liquid">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">28</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">29</span><span>Backup</span></p>
     <h2>Zeta belongs to the particle in its liquid.</h2>
     <p class="msg">One particle, three liquids: the zeta potential moves {{c02.spread}} mV, and none of the three rows states an ionic strength.</p>
   </header>
@@ -1106,10 +1127,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s29" aria-label="Slide 29: what costs the most">
+<section class="slide backup" id="s30" aria-label="Slide 30: what costs the most">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">29</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">30</span><span>Backup</span></p>
     <h2>What costs the most.</h2>
     <p class="msg">Ionic strength is missing in {{sp.field.ionic_strength.pairs}} of the {{sp.cat.lost_to_absence}} pairs lost to absence ({{sp.top_pct}}). In {{sp.only_total}} pairs, one reported number would decide the pair.</p>
   </header>
@@ -1126,10 +1147,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s30" aria-label="Slide 30: why not assume the water">
+<section class="slide backup" id="s31" aria-label="Slide 31: why not assume the water">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">30</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">31</span><span>Backup</span></p>
     <h2>“It’s a lab. Just assume the water.”</h2>
     <p class="msg">Whether ionic strength is stated depends on the liquid: {{lab.salt.share}} of salt-solution rows state it, {{lab.DI_water.stated}} of {{lab.DI_water.rows}} DI-water rows do. Where it is stated, it runs from {{lab.lo}} to {{lab.hi}} mM.</p>
   </header>
@@ -1147,10 +1168,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s31" aria-label="Slide 31: absence has a size">
+<section class="slide backup" id="s32" aria-label="Slide 32: absence has a size">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">31</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">32</span><span>Backup</span></p>
     <h2>Absence has a size.</h2>
     <p class="msg">Without ionic strength, one printed zeta becomes an interval of ±{{h.hw_f}}. Without the conversion model as well, as in {{h.z4}} rows, ±{{h.hw_z4}}.</p>
   </header>
@@ -1167,10 +1188,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s32" aria-label="Slide 32: same tow, two values">
+<section class="slide backup" id="s33" aria-label="Slide 33: same tow, two values">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">32</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">33</span><span>Backup</span></p>
     <h2>Same tow, two values.</h2>
     <p class="msg">Two papers report the same {{re.tows}} net tows, with the same numbers for {{re.same}} of them. A global database holds them twice and converts each copy its own way.</p>
   </header>
@@ -1189,10 +1210,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s33" aria-label="Slide 33: the AI problem">
+<section class="slide backup" id="s34" aria-label="Slide 34: the AI problem">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">33</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">34</span><span>Backup</span></p>
     <h2>Silence is invisible to a reader.</h2>
     <p class="msg">A model sees what is written. Asked for a condition the paper never gives, an extractor left to itself supplies a plausible default.</p>
   </header>
@@ -1216,10 +1237,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s34" aria-label="Slide 34: the architecture">
+<section class="slide backup" id="s35" aria-label="Slide 35: the architecture">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">34</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">35</span><span>Backup</span></p>
     <h2>A model reads; code decides.</h2>
     <p class="msg">Every value links to the line it came from.</p>
   </header>
@@ -1240,10 +1261,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s35" aria-label="Slide 35: the validation ladder">
+<section class="slide backup" id="s36" aria-label="Slide 36: the validation ladder">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">35</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">36</span><span>Backup</span></p>
     <h2>Read, check, challenge.</h2>
     <p class="msg">{{v.cands}} values contradict their surface label. A reader gives a cause with cited lines, code keeps it only if the lines carry the evidence, and a second reader must agree.</p>
   </header>
@@ -1262,10 +1283,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s36" aria-label="Slide 36: a judge is one more reader">
+<section class="slide backup" id="s37" aria-label="Slide 37: a judge is one more reader">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">36</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">37</span><span>Backup</span></p>
     <h2>A judge is one more reader, so test it like one.</h2>
     <p class="msg">Three judges from other model families score the readers’ answers twice, with the causes listed in opposite orders, and once more with a fluent wrong cause swapped in. Claude scores its own family’s reader.</p>
   </header>
@@ -1290,10 +1311,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s37" aria-label="Slide 37: how reliable is one reading">
+<section class="slide backup" id="s38" aria-label="Slide 38: how reliable is one reading">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">37</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">38</span><span>Backup</span></p>
     <h2>How reliable is one reading?</h2>
     <p class="msg">Two blind readings agree on the condition flags. They disagree on which rows exist.</p>
   </header>
@@ -1320,10 +1341,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s38" aria-label="Slide 38: what the agents got wrong">
+<section class="slide backup" id="s39" aria-label="Slide 39: what the agents got wrong">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">38</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">39</span><span>Backup</span></p>
     <h2>What the agents got wrong.</h2>
     <p class="msg">Each was caught by a check against the data, never by trusting an agent’s report.</p>
   </header>
@@ -1344,10 +1365,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s39" aria-label="Slide 39: our own checks pushed the data toward absence">
+<section class="slide backup" id="s40" aria-label="Slide 40: our own checks pushed the data toward absence">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">39</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">40</span><span>Backup</span></p>
     <h2>The twist: our own checks pushed the data toward absence.</h2>
     <p class="msg">A check that flags a correct value teaches the agent to delete it.</p>
   </header>
@@ -1370,10 +1391,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s40" aria-label="Slide 40: structure against retrieval">
+<section class="slide backup" id="s41" aria-label="Slide 41: structure against retrieval">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">40</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">41</span><span>Backup</span></p>
     <h2>Structure vs retrieval, same model.</h2>
     <p class="msg">Retrieval over text cannot reach the comparability verdict. In cell D the code decides it, and the model reads it back.</p>
   </header>
@@ -1395,10 +1416,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s41" aria-label="Slide 41: the human audit">
+<section class="slide backup" id="s42" aria-label="Slide 42: the human audit">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">41</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">42</span><span>Backup</span></p>
     <h2>The human audit.</h2>
     <p class="msg">Not done yet. No person has checked a row against its paper.</p>
   </header>

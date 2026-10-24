@@ -255,7 +255,7 @@ def expected(get=show) -> dict:
     E["r3.example"] = one(rc10, r"Question: \"([^\"]+)\" was stored")[0]
     E["r3.ions"] = one(rc10, r"Why: ([^.]+ of ions)\.")[0]
 
-    # the liquids of slide 30, counted from the table's own rows rather than through pandas
+    # the liquids of slide 31, counted from the table's own rows rather than through pandas
     liquids: dict = {}
     for r in d1.values():
         c = liquids.setdefault(r["medium_class"], {"rows": 0, "mM": []})
@@ -273,7 +273,7 @@ def expected(get=show) -> dict:
     salt = liquids["salt_solution"]
     E["lab.salt.share"] = len(salt["mM"]) / salt["rows"]
 
-    # slide 26 (backup): the physics demo's figure defaults, and what README's demo notes say it
+    # slide 27 (backup): the physics demo's figure defaults, and what README's demo notes say it
     # reached
     from mnp.ek import constants as ek_constants
     from mnp.ek import hard as ek_hard
@@ -556,7 +556,7 @@ def expected_findings(get=show) -> dict:
     E["p3.lod_median"] = sec["P3_lod_filtered"]["median_alpha"]
     E["p3.band_lo"], E["p3.band_hi"] = prereg["alpha_band"]
 
-    # slide 32 (backup): the tow table with csv, the README's own sentences
+    # slide 33 (backup): the tow table with csv, the README's own sentences
     tows = list(
         csv.DictReader(
             io.StringIO(get("tool/colocation/reisser_eriksen/out_2026-10-12/tow_identity_R_E.csv"))
@@ -575,7 +575,7 @@ def expected_findings(get=show) -> dict:
     E["re.trap"] = float(one(readme, r"own wind-mixing median of ([\d.]+) is a coincidence")[0])
     E["re.same"] = int(one(readme, r"within 0\.1 % for (\d+) of the")[0])
 
-    # slide 35 (backup): the validation metrics, the labelling page's sample size, the results note
+    # slide 36 (backup): the validation metrics, the labelling page's sample size, the results note
     vm = json.loads(get("out/tables/validate_sign_metrics.json"))
     E["v.cands"], E["v.papers"] = vm["candidates"], vm["papers"]
     E["v.v0"] = vm["candidates"] - vm["V0"]["abstained"]
@@ -591,7 +591,7 @@ def expected_findings(get=show) -> dict:
     E["v.first_rej"] = int(one(notes, r"rejected (\d+) reader answers")[0])
     E["v.guard"] = int(one(notes, r"(\d+) of them were \"corona\" answers")[0])
 
-    # slide 36 (backup): the judges, recounted from the raw judge records, not the metrics file
+    # slide 37 (backup): the judges, recounted from the raw judge records, not the metrics file
     jm = json.loads(get("out/tables/validate_judge_metrics.json"))
     last = {}
     for text in get("data/interim/validate/sign/judge_items.jsonl").splitlines():
@@ -852,7 +852,7 @@ def expected_findings(get=show) -> dict:
     E["cov.matched"] = sum(r.get("n_candidates_matched") or 0 for r in last.values())
     assert E["cov.matched"] <= E["cov.cand"]
 
-    # slide 8 and backup slide 24: the per-study table, counted with csv
+    # slide 8 and backup slide 25: the per-study table, counted with csv
     st = list(csv.DictReader(io.StringIO(get("out/tables/survey_studies.csv"))))
 
     def num(x):
@@ -873,7 +873,24 @@ def expected_findings(get=show) -> dict:
     )  # fmt: skip
     E["map.soil.n"] = sum(r["setting"] == "soil" and not math.isnan(num(r["lat"])) for r in st)
 
-    # slide 21: every verdict, read from its own results file
+    # slide 21: the gap table read with csv; case 14's row must be the case 14 the deck shows
+    for r in csv.DictReader(io.StringIO(get("out/tables/gap_ladder.csv"))):
+        E[f"gap.{r['key']}"] = float(r["value"])
+        if r["high"]:
+            E[f"gap.{r['key']}.high"] = float(r["high"])
+        E[f"gap.{r['key']}.label"], E[f"gap.{r['key']}.tag"] = r["label"], r["tag"]
+    zeta = {
+        r["row_id"]: r for r in csv.DictReader(io.StringIO(get("out/tables/d1_zeta_table.csv")))
+    }
+    pair = [float(zeta[k]["value"]) for k in ("PMC10260929-r1", "PMC13298883-r1")]
+    assert abs(E["gap.case14"] - abs(pair[0] - pair[1])) < 1e-9
+    verified = list(csv.DictReader(io.StringIO(get("out/tables/gap_scout_verified.csv"))))
+    nano = next(r for r in verified if r["name"].startswith("NanoValid") and r["kept"] == "True")
+    said = "the zeta potential method is not recommended as reference"
+    assert said in json.loads(nano["extra_found"])[0]
+    E["gap.nanovalid.said"] = said
+
+    # slide 22: every verdict, read from its own results file
     pre = json.loads(get("out/tables/p2_prereg_results.json"))
     verdicts = [pre[k]["verdict"] for k in ("P1", "P2", "P3", "P4")]
     verdicts += [E["sv.p7a"], E["sv.p7b"], E["hy.p8"], E["hy.p9"]]
@@ -1083,6 +1100,8 @@ def test_every_axis_label_names_a_value_its_chart_reaches(deck) -> None:
         "win_ocean",
         "win_soil",
         "map",
+        "gaps_c",
+        "gaps_n",
     }
     for t in ticks:
         lo, hi = charts[t["chart"]][t["axis"]]
@@ -1286,9 +1305,9 @@ def test_every_slide_has_a_title_a_message_and_notes(page) -> None:
         page,
         re.S,
     )
-    assert [s for s, _ in slides] == [f"s{i}" for i in range(1, 42)]
+    assert [s for s, _ in slides] == [f"s{i}" for i in range(1, 43)]
     backup = re.findall(r'<section class="slide backup" id="(s\d+)"', page)
-    assert backup == [f"s{i}" for i in range(24, 42)]
+    assert backup == [f"s{i}" for i in range(25, 43)]
     for sid, body in slides:
         assert re.search(r"<h[12]>", body), sid
         assert sid == "s1" or 'class="msg"' in body, sid
@@ -1380,11 +1399,11 @@ def script_scan(script_page):
 def test_the_time_plan_fills_twenty_minutes_over_five_acts(sc) -> None:
     # The design's talk order (DESIGN_2026-10-18 §6): twenty minutes, the backup slides untimed.
     assert [s for _, _, slides in sc.ACTS for s in slides] == list(sc.PLAN)
-    assert list(sc.PLAN) == [f"s{i}" for i in range(1, 24)]
-    assert sc.BACKUP == tuple(f"s{i}" for i in range(24, 42))
+    assert list(sc.PLAN) == [f"s{i}" for i in range(1, 25)]
+    assert sc.BACKUP == tuple(f"s{i}" for i in range(25, 43))
     acts = {name: sum(sc.PLAN[s] for s in slides) for name, _, slides in sc.ACTS}
-    assert acts == {"I": 115, "II": 185, "III": 360, "IV": 270, "V": 120, "VI": 150}
-    assert sc.timing_values()["at.s23"]["text"] == "20:00"
+    assert acts == {"I": 115, "II": 180, "III": 350, "IV": 265, "V": 100, "VI": 190}
+    assert sc.timing_values()["at.s24"]["text"] == "20:00"
 
 
 def test_no_card_asks_for_more_than_130_words_a_minute(sc, script_page) -> None:
@@ -1399,7 +1418,7 @@ def test_no_card_asks_for_more_than_130_words_a_minute(sc, script_page) -> None:
 
 def test_the_script_has_one_card_per_slide_under_the_decks_title(script_page, page) -> None:
     cards = re.findall(r'<section class="card" id="(s\d+)">(.*?)</section>', script_page, re.S)
-    assert [sid for sid, _ in cards] == [f"s{i}" for i in range(1, 42)]
+    assert [sid for sid, _ in cards] == [f"s{i}" for i in range(1, 43)]
     titles = {
         sid: re.search(r"<h([12])[^>]*>(.*?)</h\1>", body, re.S).group(2)
         for sid, body in re.findall(

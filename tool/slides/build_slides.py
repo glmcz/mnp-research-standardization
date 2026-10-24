@@ -57,7 +57,7 @@ show = build_data.show
 
 # The grid runs are the ones REVIEW.md C9 reports at the same ref (build_data.grid_runs), so
 # the deck and the guide can never show two different grids.
-# The cited-value example (slide 37): the paper, and the commit at which its recorded row was the
+# The cited-value example (slide 38): the paper, and the commit at which its recorded row was the
 # value another study measured (EX-09's re-read control was committed there).
 CITED_PMCID = "PMC12280233"
 CITED_BEFORE = "09c11cd"
@@ -79,7 +79,7 @@ METHOD_ROWS = {
     "temperature_reported": "temperature (°C)",
     "instrument_reported": "instrument",
 }
-# The liquids of slide 30, as `medium_class` names them.
+# The liquids of slide 31, as `medium_class` names them.
 MEDIUM_WORDS = {
     "DI_water": "DI water",
     "unreported": "liquid not named",
@@ -356,14 +356,14 @@ def _mM(V: Values, key: str, x: float, src: str) -> None:
 
 
 def lab_values(V: Values, charts: dict, table: pd.DataFrame) -> None:
-    """Slide 30: whether a row states its ionic strength depends on the liquid, and where it is
+    """Slide 31: whether a row states its ionic strength depends on the liquid, and where it is
     stated it runs over decades, so "a lab uses water" is not one value to fill in."""
     src = "out/tables/d1_zeta_table.csv: medium_class, ionic_strength_reported, ionic_strength_mM"
     stated = table[table["ionic_strength_reported"].astype(bool)]
     order = table["medium_class"].value_counts().index.tolist()
     unknown = set(order) - set(MEDIUM_WORDS)
     if unknown:
-        raise SystemExit(f"slide 30 has no words for medium_class {sorted(unknown)}")
+        raise SystemExit(f"slide 31 has no words for medium_class {sorted(unknown)}")
     points = {}
     for c in order:
         mM = stated.loc[stated["medium_class"] == c, "ionic_strength_mM"].astype(float)
@@ -394,7 +394,7 @@ def lab_values(V: Values, charts: dict, table: pd.DataFrame) -> None:
 
 
 def curve_values(V: Values, charts: dict) -> None:
-    """Slide 26 (backup): the method the talk started from. One hard and two soft particles,
+    """Slide 27 (backup): the method the talk started from. One hard and two soft particles,
     matched to the same mobility at one ionic strength by the physics demo's own figure function,
     so one zeta cannot tell them apart while the curves across salt can."""
     from mnp.infer import figures
@@ -421,7 +421,7 @@ def curve_values(V: Values, charts: dict) -> None:
         softs.append({"lambda_inv_nm": lam, "mu": mu.tolist(), "plateau": plateau})
     hard_mu = (hard.mobility_hard(p["hard_sigma_C_m2"], radius_m, grid, T_C=T) / MU_UNIT).tolist()
     if not all(abs(hard_mu[-1]) < abs(s["plateau"]) for s in softs):
-        raise SystemExit("the hard particle no longer falls below the soft plateaus: slide 26")
+        raise SystemExit("the hard particle no longer falls below the soft plateaus: slide 27")
     e0, e1 = round(math.log10(grid[0])), round(math.log10(grid[-1]))
     for i, e in enumerate(range(e0, e1 + 1)):
         V.tick(f"curve.x.{i}", 10.0**e, max(0, -e), "curve", "x")
@@ -435,13 +435,13 @@ def curve_values(V: Values, charts: dict) -> None:
 
 
 def d4_values(V: Values, ref: str) -> None:
-    """Slide 26 (backup): what of the curve method is built, and that no measured curve met it."""
+    """Slide 27 (backup): what of the curve method is built, and that no measured curve met it."""
     log = flat(show(ref, "CHANGELOG.md"))
     sims = find("CHANGELOG.md", log, r"trained at ([\d,]+) simulations")[0]
     V.int("d4.sims", int(sims.replace(",", "")), "CHANGELOG.md, the physics demo")
     sbc = list(csv.DictReader(io.StringIO(show(ref, "out/tables/d4_sbc.csv"))))
     if not all(r["pass"] == "True" for r in sbc):
-        raise SystemExit("out/tables/d4_sbc.csv: a calibration no longer passes; slide 26")
+        raise SystemExit("out/tables/d4_sbc.csv: a calibration no longer passes; slide 27")
     V.int("d4.sbc_params", len(sbc), "out/tables/d4_sbc.csv")
     V.float("d4.ks_min", min(float(r["ks_pvalue"]) for r in sbc), 2, "out/tables/d4_sbc.csv")
     tree = subprocess.run(
@@ -677,11 +677,11 @@ def scope_values(V: Values, base: dict) -> None:
 
 
 def audit_state(ref: str) -> None:
-    """Slide 41 says no person has checked a row. Stop if the audit sheet holds a verdict."""
+    """Slide 42 says no person has checked a row. Stop if the audit sheet holds a verdict."""
     rows = build_data.read_csv(ref, "out/review/audit_sample.csv")
     filled = [r["row_id"] for r in rows for k, v in r.items() if k.endswith("_ok") and v.strip()]
     if filled:
-        raise SystemExit(f"audit_sample.csv holds verdicts ({filled[:3]}): slide 41 must change")
+        raise SystemExit(f"audit_sample.csv holds verdicts ({filled[:3]}): slide 42 must change")
 
 
 # ---- the hypotheses and their tests (2026-10-19) ----------------------------------------------
@@ -882,7 +882,7 @@ def window_values(V: Values, ref: str) -> None:
 
 
 def reisser_values(V: Values, ref: str) -> None:
-    """Slide 32 (backup): the same tows twice in one database, and a coincidence like a cause."""
+    """Slide 33 (backup): the same tows twice in one database, and a coincidence like a cause."""
     t = pd.read_csv(io.StringIO(show(ref, TOWS)))
     both = t[(t["value_R"] > 0) & (t["value_E"] > 0)]
     ratio = both["value_R"] / both["value_E"]
@@ -906,7 +906,7 @@ def reisser_values(V: Values, ref: str) -> None:
 
 
 def validation_values(V: Values, ref: str) -> None:
-    """Slide 35 (backup): the validation ladder on Q2, and the guard wrong on the first run."""
+    """Slide 36 (backup): the validation ladder on Q2, and the guard wrong on the first run."""
     m = json.loads(show(ref, VSIGN))
     src = VSIGN
     V.int("v.cands", m["candidates"], src)
@@ -925,7 +925,7 @@ def validation_values(V: Values, ref: str) -> None:
     builder = show(ref, "tool/validate/build_labels.py")
     target = int(find("tool/validate/build_labels.py", builder, r"\nN = (\d+)")[0])
     if m["labelled"] >= target:
-        raise SystemExit("every blind label is in: slide 35 and its card must report accuracy")
+        raise SystemExit("every blind label is in: slide 36 and its card must report accuracy")
     V.int("v.label_target", target, "tool/validate/build_labels.py: N")
     notes = flat(show(ref, VRESULTS))
     first, a, b = find(
@@ -946,7 +946,7 @@ def judge_name(model: str) -> str:
 
 
 def judge_values(V: Values, ref: str) -> None:
-    """Slide 36 (backup): three judges from other families, and Claude judging its own reader."""
+    """Slide 37 (backup): three judges from other families, and Claude judging its own reader."""
     m = json.loads(show(ref, VJUDGE))
     cands = json.loads(show(ref, VSIGN))["candidates"]
     per = m["per_judge"]
@@ -1177,7 +1177,7 @@ def windows_values(V: Values, charts: dict, ref: str) -> None:
 
 
 def map_values(V: Values, charts: dict, ref: str) -> None:
-    """Backup slide 24: where the studies sampled, ocean water shaded by its median count."""
+    """Backup slide 25: where the studies sampled, ocean water shaded by its median count."""
     spec = importlib.util.spec_from_file_location("p2build", HERE.parent / "p2" / "build.py")
     p2b = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(p2b)
@@ -1198,6 +1198,39 @@ def map_values(V: Values, charts: dict, ref: str) -> None:
         ],  # fmt: skip
         "soil": [(r.lon, r.lat) for r in soil.itertuples()],
     }
+
+
+GAPS = "out/tables/gap_ladder.csv"
+GAP_SCOUT = "out/tables/gap_scout_verified.csv"
+
+
+def gap_values(V: Values, charts: dict, ref: str) -> None:
+    """Slide 21: every gap, this project's and the published interlaboratory ones, by key."""
+    g = pd.read_csv(io.StringIO(show(ref, GAPS)))
+    for r in g.itertuples():
+        d = 1 if r.family == "charge" else (2 if r.value < 2 else 1 if r.value < 100 else 0)
+        V.float(f"gap.{r.key}", r.value, d, GAPS + f": {r.key}")
+        if not pd.isna(r.high):
+            V.float(f"gap.{r.key}.high", r.high, 2 if r.high < 2 else 1, GAPS + f": {r.key}, high")
+        V.words(f"gap.{r.key}.label", r.label, GAPS + f": {r.key}, label")
+        V.words(f"gap.{r.key}.tag", r.tag, GAPS + f": {r.key}, metric")
+    sc = pd.read_csv(io.StringIO(show(ref, GAP_SCOUT)))
+    said = json.loads(sc[sc.name.str.startswith("NanoValid") & sc.kept].extra_found.iat[0])[0]
+    m = re.search(r"the zeta potential method is not recommended as reference", said)
+    if not m:
+        raise SystemExit(f"{GAP_SCOUT}: slide 21 quotes NanoValid's conclusion; it changed")
+    V.text("gap.nanovalid.said", m.group(0), GAP_SCOUT + ": NanoValid, a quote found on its page")
+    charge = g[g.family == "charge"].sort_values("value")
+    count = g[g.family == "count"].sort_values("value")
+    hi = math.ceil(charge.value.max() / 20) * 20
+    for i, x in enumerate(range(0, hi + 1, 20)):
+        V.tick(f"gaps_c.x.{i}", x, 0, "gaps_c", "x")
+    xs = _decades(1, count[["value", "high"]].max().max())
+    _log_ticks(V, "gaps_n", "x", xs)
+    rows = lambda d: [(r.key, r.value, None if pd.isna(r.high) else r.high, r.origin)  # noqa: E731
+                      for r in d.itertuples()]  # fmt: skip
+    charts["gaps_c"] = {"x": [0, hi], "rows": rows(charge)}
+    charts["gaps_n"] = {"x": [xs[0], xs[-1]], "rows": rows(count)}
 
 
 AG = "out/tables/p2_aging.json"
@@ -1262,12 +1295,12 @@ def aging_values(V: Values, charts: dict, ref: str) -> None:
 
 
 def prereg_tally(V: Values) -> None:
-    """Slide 21: every pre-registered prediction with a verdict, read from the values above."""
+    """Slide 22: every pre-registered prediction with a verdict, read from the values above."""
     keys = ("p1.verdict", "p2t.verdict", "p3.verdict", "p4.verdict", "sv.p7a", "sv.p7b",
             "hy.p8", "hy.p9", "ag.a.verdict", "ag.b.verdict")  # fmt: skip
     verdicts = [V.v[k]["v"] for k in keys]
     if set(verdicts) - {"supported", "partly", "refuted"}:
-        raise SystemExit(f"slide 21 counts three verdicts; found {sorted(set(verdicts))}")
+        raise SystemExit(f"slide 22 counts three verdicts; found {sorted(set(verdicts))}")
     src = "docs/PREREG_2026-10.md: P1-P4, P7a/b, P8, P9 (guard), P11a/b"
     V.int("pv.n", len(verdicts), src)
     for v in ("supported", "partly", "refuted"):
@@ -1384,6 +1417,7 @@ def build(ref: str) -> dict:
     parse_values(V, ref)
     windows_values(V, charts, ref)
     map_values(V, charts, ref)
+    gap_values(V, charts, ref)
     return {
         "ref": ref,
         "commit": base["commit"],
@@ -2025,6 +2059,54 @@ def chart_parse(values: dict, charts: dict) -> str:
     return svg(W, H, body, "From paper to table: what code checks on every number", "chart arch")
 
 
+def chart_gaps(values: dict, charts: dict) -> str:
+    """Slide 21: how far apart two numbers land, by what differs; charge in mV, counts in folds."""
+    W, x0, x1, row = 960, 430, 790, 25
+    body, y = [], 22
+    panels = (("gaps_c", "charge, mV apart", False), ("gaps_n", "counts, fold apart", True))
+    for name, title, log in panels:
+        c = charts[name]
+        lo, hi = c["x"]
+        if log:
+            sx = lambda v, a=lo, b=hi: x0 + (math.log10(v) - math.log10(a)) / (  # noqa: E731
+                math.log10(b) - math.log10(a)) * (x1 - x0)  # fmt: skip
+        else:
+            sx = lambda v, a=lo, b=hi: x0 + (v - a) / (b - a) * (x1 - x0)  # noqa: E731
+        body.append(T(x0, y, title, values, "ax-t"))
+        top = y + 10
+        for i, (key, v, high, origin) in enumerate(c["rows"]):
+            yy = top + row * i + row / 2
+            cls = "gap-pub" if origin == "published" else "gap-own"
+            base = sx(lo)
+            body += [
+                T(x0 - 12, yy + 5, "{{gap." + key + ".label}}", values, "row-s", "end"),
+                rect(base, yy - 7, max(2.0, sx(v) - base), 14, cls, 2),
+            ]
+            if high:
+                body.append(line(sx(v), yy, sx(high), yy, "gap-hi"))
+            unit = " mV" if not log else ""
+            sign = "×" if log else ""
+            text = sign + "{{gap." + key + "}}" + unit + " · {{gap." + key + ".tag}}"
+            if high:
+                text += ", up to " + sign + "{{gap." + key + ".high}}"
+            body.append(T(x1 + 12, yy + 5, text, values, "val-s"))
+        bottom = top + row * len(c["rows"])
+        for key in _ticks(values, name, "x"):
+            x = sx(values[key]["v"])
+            body += [line(x, top, x, bottom, "grid"),
+                     T(x, bottom + 18, "{{" + key + "}}", values, "tick", "middle")]  # fmt: skip
+        y = bottom + 52
+    H = y - 10
+    published = "published, the same material in other laboratories"
+    body += [
+        rect(x0, H - 12, 14, 12, "gap-own", 2),
+        T(x0 + 20, H - 2, "this talk", values, "val-s"),
+        rect(x0 + 120, H - 12, 14, 12, "gap-pub", 2),
+        T(x0 + 140, H - 2, published, values, "val-s"),
+    ]
+    return svg(W, H + 4, body, "How far apart two measurements land, by what differs between them")
+
+
 def chart_windows(values: dict, charts: dict) -> str:
     """Slide 8: each study a rectangle, its size window by the span of its concentrations."""
     W, H, top, bottom = 960, 446, 34, 330
@@ -2061,7 +2143,7 @@ def chart_windows(values: dict, charts: dict) -> str:
 
 
 def chart_map(values: dict, charts: dict) -> str:
-    """Backup slide 24: the studies' median positions; ocean water shaded by its median count."""
+    """Backup slide 25: the studies' median positions; ocean water shaded by its median count."""
     c = charts["map"]
     k, lat_top, lat_bot = 960 / 360, 85, -60
     MH = round((lat_top - lat_bot) * k)
@@ -2171,6 +2253,7 @@ CHARTS = {
     "parse": chart_parse,
     "windows": chart_windows,
     "map": chart_map,
+    "gaps": chart_gaps,
     "c14": chart_c14,
     "c02": chart_c02,
     "layer": chart_layer,

@@ -975,7 +975,10 @@ DS_SEARCH = "out/tables/dataset_search.json"
 #: The survey's datasets by the key their slide values use; the search agent's PANGAEA finds are
 #: the pangaea_<id> datasets, shown as one row.
 SV_NAMES = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser",
-            "emodnet": "emodnet"}  # fmt: skip
+            "emodnet": "emodnet", "isobe2021": "isobe", "kiessling2021": "kiessling"}  # fmt: skip
+#: The scout agent's finds, which joined the table (tool/survey/table.py).
+SCOUT_JOINED = ("isobe2021", "kiessling2021")
+DS_SCOUT = "out/tables/dataset_scout_verified.csv"
 
 
 def survey_values(V: Values, ref: str) -> None:
@@ -997,9 +1000,21 @@ def survey_values(V: Values, ref: str) -> None:
     for key in ("usable", "partial", "not_verifiable"):
         V.int(f"ds.{key}", ds["verdicts"][key], DS_SEARCH + ": verdicts")
     V.int("ds.joined", len(found), SV_COLOC + ": records, pangaea_<id> datasets")
+    sc = pd.read_csv(io.StringIO(show(ref, DS_SCOUT)))
+    agree = sc.filter(like="agree_")
+    V.int("sc.cands", len(sc), DS_SCOUT)
+    V.int("sc.opened", int(sc.files_opened.gt(0).sum()), DS_SCOUT + ": a file opened")
+    V.int("sc.usable", int(sc.verdict.eq("usable").sum()), DS_SCOUT + ": verdict usable")
+    V.int("sc.joined", sum(k in recs for k in SCOUT_JOINED), SV_COLOC + ": records")
+    V.int("sc.tested", int(agree.notna().sum().sum()), DS_SCOUT + ": claims tested")
+    V.int("sc.held", int(agree.eq(True).sum().sum()), DS_SCOUT + ": claims the files bear out")
+    V.int("found.total", len(found) + sum(k in recs for k in SCOUT_JOINED), SV_COLOC + ": found")
 
     miss = pd.read_csv(io.StringIO(show(ref, SV_MISS))).set_index("dataset")
     V.pct("sv.miss.emodnet.mesh", miss.loc["emodnet", "size_min_um"], 0, SV_MISS + ": emodnet")
+    V.pct("sv.miss.isobe.window", miss.loc["isobe2021", "size_min_um"], 0, SV_MISS + ": isobe2021")
+    V.pct("sv.miss.kiessling.window", miss.loc["kiessling2021", "size_min_um"], 0,
+          SV_MISS + ": kiessling2021")  # fmt: skip
     V.int(
         "sv.found_nolower",
         int((miss.loc[found, "size_min_um"] == 1).sum()),
@@ -1055,9 +1070,10 @@ def survey_values(V: Values, ref: str) -> None:
     src = SV_COLOC + ": across_datasets_100km_any_year"
     groups = {(g["datasets"], g["decision"]): g for g in x["by_dataset_pair"]}
     want = {("emodnet vs ncei", "caveat"), ("ncei vs pangaea_990052", "caveat"),
-            ("ncei vs pangaea_990052", "refuse")}  # fmt: skip
-    if set(groups) != want:
+            ("ncei vs pangaea_990052", "refuse"), ("isobe2021 vs ncei", "refuse")}  # fmt: skip
+    if not want <= set(groups):
         raise SystemExit(f"{src}: slide 10 names these database pairs: {sorted(want)}")
+    V.int("sv.x.iso", groups[("isobe2021 vs ncei", "refuse")]["pairs"], src + ", Isobe and NCEI")
     nets, pump = groups[("emodnet vs ncei", "caveat")], groups[("ncei vs pangaea_990052", "caveat")]
     refused = groups[("ncei vs pangaea_990052", "refuse")]
     V.int("sv.x.km", x["km"], src)
@@ -1074,6 +1090,17 @@ def survey_values(V: Values, ref: str) -> None:
     dup = pd.read_csv(io.StringIO(show(ref, SV_DUP)))
     V.int("sv.dup.n", len(dup), SV_DUP)
     V.int("sv.dup.identical", int((dup.median_ratio_a_over_b - 1).abs().lt(0.01).sum()), SV_DUP)
+    ia, ib = dup.study_a.str.startswith("isobe2021"), dup.study_b.str.startswith("isobe2021")
+    iso = ia ^ ib
+    V.int("sv.dup.ncei", int((~ia & ~ib).sum()), SV_DUP + ": both studies in NCEI")
+    V.int("sv.dup.iso", int(iso.sum()), SV_DUP + ": one study in NCEI, one in Isobe's compilation")
+    V.int("sv.dup.iso_self", int((ia & ib).sum()), SV_DUP + ": both in Isobe's compilation")
+    side = dup[iso].assign(
+        study=lambda d: d.study_b.where(d.study_b.str.startswith("isobe2021"), d.study_a),
+        n=lambda d: d.records_b.where(d.study_b.str.startswith("isobe2021"), d.records_a),
+    )
+    # an Isobe study may twin two NCEI studies (which twin each other): count it once, at least
+    V.int("sv.dup.iso_records", int(side.groupby("study").n.max().sum()), SV_DUP + ", at least")
     re_pair = dup[
         dup.study_a.str.endswith("pone.0080466") & dup.study_b.str.endswith("pone.0111913")
     ]

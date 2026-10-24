@@ -343,8 +343,8 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">07</span><h3>{{title:s7}}</h3><p class="time"><b>{{t.s7}}</b> · ends at {{at.s7}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s7}}</p>
       <div class="say">
-        <p>NOAA’s database is one source, so I built a second agent to find others. It searched the open catalogues: {{ds.on_topic}} records about microplastic. Claude read each record; a rule, not Claude, chose what to open; and code opened the files. {{ds.usable}} hold a concentration, a place and a date. <span class="pause">pause</span></p>
-        <p>{{sv.n.datasets}} datasets, {{sv.total}} records, one table. Look at the last column. The sediment database has <strong>no coordinates at all</strong>. The soil compilation never names a method. And not one of the sets the agent found states an upper size limit.</p>
+        <p>NOAA’s database is one source, so I built two agents to find others. One read {{ds.on_topic}} catalogue records; a second searched the web like a person would. <strong>Code opened every file they named.</strong> <span class="pause">pause</span> The web agent’s claims held in {{sc.held}} of {{sc.tested}} cases; where they failed, it had mostly read a web page, not the file.</p>
+        <p>{{sv.n.datasets}} datasets, {{sv.total}} records, one table. Look at the last column. The sediment database has <strong>no coordinates at all</strong>. And the compilation the web agent found states no size window.</p>
         <p>None of that is filled in. A check that needs a missing field refuses.</p>
       </div>
       <div class="cue">
@@ -432,8 +432,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">11</span><h3>{{title:s11}}</h3><p class="time"><b>{{t.s11}}</b> · ends at {{at.s11}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s11}}</p>
       <div class="say">
-        <p>Agents will read harmonised databases first. So I ran a duplicate check over NOAA’s, blind: same day, a few hundred metres apart, another study.</p>
-        <p>It flags {{sv.dup.n}} pairs of studies. One is a case I knew from reading two papers: {{re.tows}} tows held twice, converted two ways. The check finds it from date and position alone. In {{sv.dup.identical}} pairs the shared values are <strong>identical</strong>.</p>
+        <p>Agents will read harmonised databases first. So I ran a duplicate check over all of them, blind: same day, a few hundred metres apart, another study.</p>
+        <p>It flags {{sv.dup.n}} pairs of studies. One is a case I knew from reading two papers: {{re.tows}} tows held twice, converted two ways.</p>
+        <p>And the web agent’s best find? At least {{sv.dup.iso_records}} of its samples are <strong>NOAA’s own tows</strong>, under another name.</p>
         <p>And the trap: my first pairing gave {{re.trap}}, which equals the paper’s own wind correction. <span class="pause">pause</span> A coincidence. Only arithmetic shows it.</p>
       </div>
       <div class="cue">
@@ -445,7 +446,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         <div class="deep-body">
           <p><span class="k">What is really going on</span>A pair of studies is flagged when at least ten records on each side share a day and lie within two kilometres. The known case was matched tow by tow from the papers’ own tables; the database converted one copy with half the net depth the paper states and kept only small particles for the other.</p>
           <p><span class="k">Where the numbers come from</span>The check finds {{sv.dup.re_found}} of the {{re.tows}} known tows. Manta tows differ ×{{re.manta}} between the two copies, Neuston tows ×{{re.neuston}}.</p>
-          <p><span class="k">If they push</span><b>Are the other four really duplicates?</b> The check says they share samples; whether each is one survey published twice is for the database’s maintainers to confirm. I have not asked them yet.</p>
+          <p><span class="k">If they push</span><b>Are they really duplicates?</b> The check says they share samples: {{sv.dup.ncei}} pairs inside NOAA and {{sv.dup.iso}} between NOAA and the compilation, {{sv.dup.identical}} of all pairs with values within one percent. Whether each is one survey published twice is for the maintainers to confirm. I have not asked them yet.</p>
         </div>
       </details>
     </section>

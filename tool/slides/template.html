@@ -448,6 +448,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 @media (min-width: 760px) { .tests.four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2em 2em; } }
 .funnel { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3em 0.9em; margin: 0; padding: 0; font: 0.84em/1.4 var(--mono); color: var(--muted); }
 .funnel li:not(:first-child)::before { content: "→"; margin-right: 0.9em; }
+.funnel li.lab + li::before { content: none; }
 .funnel b { color: var(--ink); font-weight: 600; }
 @media (max-width: 559px) { .jt { font-size: 0.86em; } .jt td:first-child { white-space: normal; } }
 .slide.backup .eyebrow span:last-child { color: var(--absent); }
@@ -595,12 +596,12 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </aside>
 </div>
 </section>
-<section class="slide" id="s7" aria-label="Slide 7: the datasets, and the agent that found more">
+<section class="slide" id="s7" aria-label="Slide 7: the datasets, and the agents that found more">
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">07</span><span>Act III · what the datasets say</span></p>
-    <h2>{{sv.n.datasets}} datasets in one table; an agent found {{ds.joined}} of them.</h2>
-    <p class="msg">A search agent read {{ds.on_topic}} catalogue records, opened the files of {{ds.to_verify}} and found {{ds.usable}} that hold a concentration, a place and a date. {{sv.total}} records now sit in one table, and no gap is filled.</p>
+    <h2>{{sv.n.datasets}} datasets in one table; two agents found {{found.total}} of them.</h2>
+    <p class="msg">One agent read the open catalogues, a second searched the web. Code opened every file they named and decided what joins: {{sv.total}} records in one table, and no gap is filled.</p>
   </header>
   <div class="body">
     <div class="jt-wrap">
@@ -612,18 +613,22 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
           <tr><td>Soil compilation, Wu et al.</td><td>{{sv.n.soil}}</td><td>a sampling method, for {{sv.miss.soil.method}}; a year for {{sv.miss.soil.year}}</td></tr>
           <tr><td>Weser estuary, PANGAEA</td><td>{{sv.n.weser}}</td><td>one size window: two fractions at the same stations</td></tr>
           <tr><td>EMODnet trawls, Baltic</td><td>{{sv.n.emodnet}}</td><td>a mesh size, for {{sv.miss.emodnet.mesh}}</td></tr>
-          <tr class="found"><td>PANGAEA sets the agent found</td><td>{{sv.n.found}}</td><td>an upper size limit: five millimetres by convention; a lower one in {{sv.found_nolower}} of {{ds.joined}} sets</td></tr>
+          <tr class="found"><td>PANGAEA sets the catalogue agent found</td><td>{{sv.n.found}}</td><td>an upper size limit: five millimetres by convention; a lower one in {{sv.found_nolower}} of {{ds.joined}} sets</td></tr>
+          <tr><td>Isobe et al., found by the web scout</td><td>{{sv.n.isobe}}</td><td>a size window, for {{sv.miss.isobe.window}}; at least {{sv.dup.iso_records}} samples are NOAA’s own</td></tr>
+          <tr><td>German rivers, Kiessling et al., the scout</td><td>{{sv.n.kiessling}}</td><td>a size window, for {{sv.miss.kiessling.window}}; mesoplastics counted with micro</td></tr>
         </tbody>
       </table>
     </div>
-    <ol class="funnel" aria-label="The search agent, stage by stage">
-      <li><b>{{ds.found}}</b> found</li><li><b>{{ds.distinct}}</b> distinct</li><li><b>{{ds.on_topic}}</b> on topic</li><li><b>{{ds.to_verify}}</b> opened</li><li><b>{{ds.usable}}</b> usable</li><li><b>{{ds.joined}}</b> joined</li>
+    <ol class="funnel" aria-label="The catalogue agent, stage by stage">
+      <li class="lab">catalogue agent:</li><li><b>{{ds.found}}</b> found</li><li><b>{{ds.distinct}}</b> distinct</li><li><b>{{ds.on_topic}}</b> on topic</li><li><b>{{ds.to_verify}}</b> opened</li><li><b>{{ds.usable}}</b> usable</li><li><b>{{ds.joined}}</b> joined</li>
     </ol>
-    <p class="lead-in">Claude reads each catalogue record; a rule over its answer picks what to open, and code decides from the files. A missing field stays missing, and a check that needs it refuses.</p>
+    <ol class="funnel" aria-label="The web scout, stage by stage">
+      <li class="lab">web scout:</li><li><b>{{sc.cands}}</b> candidates</li><li><b>{{sc.opened}}</b> opened</li><li><b>{{sc.usable}}</b> usable</li><li><b>{{sc.joined}}</b> joined</li><li>its claims held in <b>{{sc.held}}</b> of <b>{{sc.tested}}</b></li>
+    </ol>
   </div>
-  <p class="src">out/tables/survey_colocated.json · out/tables/survey_completeness.csv · out/tables/dataset_search.json · tool/discover/run.py</p>
+  <p class="src">out/tables/survey_colocated.json · out/tables/survey_completeness.csv · out/tables/dataset_search.json · out/tables/dataset_scout_verified.csv · .claude/agents/mnp-dataset-scout.md</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>NOAA’s database is one source, so a search agent went through the open catalogues: Claude read each record, a rule chose what to open, and code decided from the files. Of the usable ones, some were already in NOAA or already here; the PANGAEA sets joined. Another {{ds.partial}} hold a concentration without a place or a date, and {{ds.not_verifiable}} had no public file API to open. Every field a source does not give stays empty.</p>
+    <p>NOAA’s database is one source, so two agents looked for more: one read the catalogue records, a second searched the web like a person would. Code opened every file either named and checked each claim against it; most claims that failed were the agent reporting a web page, not the file. Another {{ds.partial}} catalogue finds hold a concentration without a place or a date, and {{ds.not_verifiable}} had no public file to open.</p>
   </aside>
 </div>
 </section>
@@ -686,7 +691,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </div>
   <p class="src">out/tables/survey_colocated.json · tool/survey/validators.py</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. Independent studies still differ about threefold, one pair in ten by more than an order of magnitude, and a naive check would have counted duplicated samples as agreement. Across two databases the window guard decides first: EMODnet and NOAA nets sit a median ×{{sv.x.median}} apart, one pair in ten ×{{sv.x.p90}}, a median {{sv.x.years}} years apart. Against a fine-filter pump, converting for the window still leaves ×{{sv.x.residual}}, so the window is not the explanation; pooled raw, one pair in ten would be ×{{sv.x.raw_p90}} apart.</p>
+    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. Independent studies still differ about threefold, one pair in ten by more than an order of magnitude, and a naive check would have counted duplicated samples as agreement. Across two databases the window guard decides first: EMODnet and NOAA nets sit a median ×{{sv.x.median}} apart, one pair in ten ×{{sv.x.p90}}, a median {{sv.x.years}} years apart. Against a fine-filter pump, converting for the window still leaves ×{{sv.x.residual}}, so the window is not the explanation; pooled raw, one pair in ten would be ×{{sv.x.raw_p90}} apart, and the scout’s compilation adds {{sv.x.iso}} more pairs with NOAA, all refused for want of a stated window.</p>
   </aside>
 </div>
 </section>
@@ -696,19 +701,19 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   <header>
     <p class="eyebrow"><span class="idx">11</span><span>Act III · what the datasets say</span></p>
     <h2>The same samples, held twice.</h2>
-    <p class="msg">Run blind over NOAA’s database, the duplicate check flags {{sv.dup.n}} pairs of studies with same-day samples a few hundred metres apart.</p>
+    <p class="msg">Run blind over every database, the duplicate check flags {{sv.dup.n}} pairs of studies with same-day samples a few hundred metres apart: {{sv.dup.ncei}} inside NOAA, {{sv.dup.iso}} between NOAA and the compilation the scout found, {{sv.dup.iso_self}} inside that compilation.</p>
   </header>
   <div class="body">
     <div class="tests">
       <div class="stat"><span class="label">Found blind</span><span class="big">{{sv.dup.re_found}}</span><span class="small">of the {{re.tows}} tows two papers share, matched by date and position alone</span></div>
-      <div class="stat"><span class="label">Identical values</span><span class="big">{{sv.dup.identical}}</span><span class="small">pairs of studies whose shared values agree within one percent: one survey, counted twice</span></div>
+      <div class="stat"><span class="label">Across databases</span><span class="big">{{sv.dup.iso_records}}</span><span class="small">samples, at least, that the scout’s compilation holds and NOAA holds too; {{sv.dup.identical}} flagged pairs agree within one percent</span></div>
       <div class="stat"><span class="label">Converted twice</span><span class="big">×{{re.manta}}</span><span class="small">the same Manta tows, converted with two net depths; Neuston tows ×{{re.neuston}}</span></div>
     </div>
     <p class="lead-in">The trap: a careless pairing gave a ratio of {{re.trap}}, and the paper’s own wind-mixing correction has a median of {{re.trap}}. A model would explain one with the other. Only the arithmetic, tow by tow, shows it is a coincidence.</p>
   </div>
   <p class="src">out/tables/survey_duplicates.csv · tool/colocation/reisser_eriksen/README.md</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Harmonised databases are where agents will look first, and they hold the same samples twice under different studies. The check found the case we knew from reading the papers, and four more. Whether each is one survey published twice is for the database’s maintainers to confirm.</p>
+    <p>Harmonised databases are where agents will look first, and they hold the same samples twice, under different studies and in different databases. The check found the case we knew from reading the papers, and the scout’s best find turned out to be largely NOAA’s own tows. Whether each pair is one survey published twice is for the maintainers to confirm.</p>
   </aside>
 </div>
 </section>

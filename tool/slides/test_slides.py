@@ -642,7 +642,8 @@ def expected_findings(get=show) -> dict:
     # slides 7 to 11: the survey outputs, with the counts redone from their rows where they have any
     co = json.loads(get("out/tables/survey_colocated.json"))
     names = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser",
-             "emodnet": "emodnet"}  # fmt: skip
+             "emodnet": "emodnet", "isobe2021": "isobe", "kiessling2021": "kiessling"}  # fmt: skip
+    scout = ("isobe2021", "kiessling2021")
     found = [k for k in co["records"] if k not in names]
     assert all(k.startswith("pangaea_") and k[8:].isdigit() for k in found), found
     for ds, n_ in co["records"].items():
@@ -650,6 +651,15 @@ def expected_findings(get=show) -> dict:
             E[f"sv.n.{names[ds]}"] = n_
     E["sv.n.found"] = sum(co["records"][k] for k in found)
     E["sv.n.datasets"], E["ds.joined"] = len(co["records"]), len(found)
+    E["found.total"] = len(found) + sum(k in co["records"] for k in scout)
+    # the scout: candidates and claims recounted from the verified rows
+    sc = list(csv.DictReader(io.StringIO(get("out/tables/dataset_scout_verified.csv"))))
+    E["sc.cands"], E["sc.usable"] = len(sc), sum(r["verdict"] == "usable" for r in sc)
+    E["sc.opened"] = sum(int(r["files_opened"]) > 0 for r in sc)
+    E["sc.joined"] = sum(k in co["records"] for k in scout)
+    cells = [r[k] for r in sc for k in r if k.startswith("agree_")]
+    E["sc.tested"] = sum(c in ("True", "False") for c in cells)
+    E["sc.held"] = cells.count("True")
     E["sv.total"] = sum(co["records"].values())
     # the search funnel, recounted from the per-candidate rows where the rows hold the stage
     cands = list(csv.DictReader(io.StringIO(get("out/tables/dataset_candidates.csv"))))
@@ -664,6 +674,8 @@ def expected_findings(get=show) -> dict:
         for r in csv.DictReader(io.StringIO(get("out/tables/survey_completeness.csv")))
     }
     E["sv.miss.emodnet.mesh"] = float(miss["emodnet"]["size_min_um"])
+    E["sv.miss.isobe.window"] = float(miss["isobe2021"]["size_min_um"])
+    E["sv.miss.kiessling.window"] = float(miss["kiessling2021"]["size_min_um"])
     E["sv.found_nolower"] = sum(float(miss[k]["size_min_um"]) == 1.0 for k in found)
     E["sv.miss.mpsed.lat"] = float(miss["mpsed"]["lat"])
     E["sv.miss.mpsed.year"] = float(miss["mpsed"]["year"])
@@ -703,7 +715,9 @@ def expected_findings(get=show) -> dict:
     nets = groups[("emodnet vs ncei", "caveat")]
     pump = groups[("ncei vs pangaea_990052", "caveat")]
     gone = groups[("ncei vs pangaea_990052", "refuse")]
-    assert nets["pairs"] + pump["pairs"] == x["compared"] and gone["pairs"] == x["refused"]
+    kept = sum(g["pairs"] for (_, dec), g in groups.items() if dec != "refuse")
+    assert nets["pairs"] + pump["pairs"] == kept == x["compared"]
+    assert sum(g["pairs"] for (_, dec), g in groups.items() if dec == "refuse") == x["refused"]
     assert 10 < pump["median_residual_fold"] < pump["median_fold"]
     E["sv.x.km"] = x["km"]
     E["sv.x.compared"], E["sv.x.refused"], E["sv.x.cav"] = (
@@ -716,9 +730,25 @@ def expected_findings(get=show) -> dict:
     E["sv.x.refused_fold"] = gone["median_fold"]
     E["sv.x.residual"] = pump["median_residual_fold"]
     E["sv.x.raw_p90"] = x["unguarded"]["p90_fold"]
+    E["sv.x.iso"] = groups[("isobe2021 vs ncei", "refuse")]["pairs"]
     dup = list(csv.DictReader(io.StringIO(get("out/tables/survey_duplicates.csv"))))
     E["sv.dup.n"] = len(dup)
-    E["sv.dup.identical"] = sum(abs(float(r["median_ratio_a_over_b"]) - 1) < 0.01 for r in dup)
+    # a pair with a zero on one side has no ratio, so it cannot be identical
+    E["sv.dup.identical"] = sum(
+        r["median_ratio_a_over_b"] != "" and abs(float(r["median_ratio_a_over_b"]) - 1) < 0.01
+        for r in dup
+    )
+    isa = [(r["study_a"].startswith("isobe2021"), r["study_b"].startswith("isobe2021"))
+           for r in dup]  # fmt: skip
+    E["sv.dup.ncei"] = sum(not a and not b for a, b in isa)
+    E["sv.dup.iso"] = sum(a != b for a, b in isa)
+    E["sv.dup.iso_self"] = sum(a and b for a, b in isa)
+    shared: dict[str, int] = {}
+    for r, (a, b) in zip(dup, isa, strict=True):
+        if a != b:
+            st, n = (r["study_b"], r["records_b"]) if b else (r["study_a"], r["records_a"])
+            shared[st] = max(shared.get(st, 0), int(n))
+    E["sv.dup.iso_records"] = sum(shared.values())
     E["sv.dup.re_found"] = next(
         int(r["records_a"])
         for r in dup

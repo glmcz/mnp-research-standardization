@@ -26,23 +26,23 @@ _spec.loader.exec_module(bs)
 
 # Seconds on each timed slide, at about a hundred spoken words a minute.
 PLAN = {
-    "s1": 30, "s2": 45, "s3": 45,
-    "s4": 75, "s5": 70,
-    "s6": 70, "s7": 95, "s8": 80, "s9": 70, "s10": 70,
-    "s11": 45, "s12": 65, "s13": 50, "s14": 55, "s15": 50,
-    "s16": 85, "s17": 70,
-    "s18": 45, "s19": 85,
+    "s1": 30, "s2": 45, "s3": 40,
+    "s4": 60, "s5": 70, "s6": 50,
+    "s7": 65, "s8": 80, "s9": 70, "s10": 50, "s11": 60,
+    "s12": 40, "s13": 50, "s14": 70, "s15": 45, "s16": 40, "s17": 45,
+    "s18": 70, "s19": 55,
+    "s20": 60, "s21": 50, "s22": 55,
 }  # fmt: skip
 ACTS = (
     ("I", "why and the goal", ("s1", "s2", "s3")),
-    ("II", "the engineering", ("s4", "s5")),
-    ("III", "what the datasets say", ("s6", "s7", "s8", "s9", "s10")),
-    ("IV", "what the papers say", ("s11", "s12", "s13", "s14", "s15")),
-    ("V", "naive Claude against the hybrid", ("s16", "s17")),
-    ("VI", "the close", ("s18", "s19")),
+    ("II", "the engineering", ("s4", "s5", "s6")),
+    ("III", "what the datasets say", ("s7", "s8", "s9", "s10", "s11")),
+    ("IV", "what the papers say", ("s12", "s13", "s14", "s15", "s16", "s17")),
+    ("V", "naive Claude against the hybrid", ("s18", "s19")),
+    ("VI", "the close", ("s20", "s21", "s22")),
 )
 #: Slides kept for questions: a card each, no time.
-BACKUP = tuple(f"s{i}" for i in range(20, 36))
+BACKUP = tuple(f"s{i}" for i in range(23, 39))
 TOTAL = sum(PLAN.values())
 SRC = "tool/slides/build_script.py PLAN"
 

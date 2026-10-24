@@ -326,7 +326,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .legend .k-ink { background: var(--ink); }
 .legend .k-abs { background: var(--absent-wash); outline: 1px solid var(--absent-soft); }
 
-/* ---- slide 27 ---- */
+/* ---- slide 30 ---- */
 .defaults { display: grid; gap: 0.9em; align-content: start; }
 .default-big { font-family: var(--mono); font-size: 1.45em; color: var(--ink); border-left: 3px solid var(--absent); padding: 0.2em 0 0.2em 0.7em; }
 .rules { display: grid; gap: 1em; }
@@ -336,7 +336,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .rule h3 { font-size: 1.22em; font-weight: 650; line-height: 1.3; }
 .rule p { grid-column: 2; font-size: 1em; color: var(--ink-2); line-height: 1.42; }
 
-/* ---- slide 31 ---- */
+/* ---- slide 34 ---- */
 .agree { display: grid; gap: 1.25em; align-content: start; }
 .agree-row { display: grid; grid-template-columns: 8.5em minmax(0, 1fr) 6.4em; gap: 0.9em; align-items: center; font-size: 1.3em; }
 .agree-row .track { height: 0.9em; }
@@ -347,7 +347,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .stat .big .small { font-family: var(--text); font-size: 0.32em; font-weight: 400; }
 .stat .big .n { color: var(--absent); }
 
-/* ---- slides 32 and 33: real cases in rows ---- */
+/* ---- slides 35 and 36: real cases in rows ---- */
 .cases { display: grid; gap: 0; border-top: 1px solid var(--ink); }
 .case-row {
   display: grid;
@@ -365,7 +365,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .case-row .how { color: var(--ink-2); }
 .lesson { font-size: 1.02em; border-left: 3px solid var(--absent); padding-left: 0.8em; max-width: 52em; }
 
-/* ---- slide 34 ---- */
+/* ---- slide 37 ---- */
 .grid-cmp { display: grid; gap: 0.15em; }
 .cmp-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.4em 1.4em; align-items: center; padding: 0.55em 0; border-bottom: 1px solid var(--rule); }
 @media (min-width: 760px) { .cmp-row { grid-template-columns: 16.5em minmax(0, 1fr) minmax(0, 1fr); } }
@@ -377,7 +377,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .track .fill.cost { background: var(--quiet); }
 .cmp-row .m { font-size: 1.08em; }
 
-/* ---- slide 35 ---- */
+/* ---- slide 38 ---- */
 .steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.9em; counter-reset: step; list-style: none; padding: 0; }
 @media (min-width: 760px) { .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.4em; } }
 .steps li { counter-increment: step; border-top: 2px solid var(--ink); padding-top: 0.6em; display: grid; gap: 0.35em; align-content: start; }
@@ -387,7 +387,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .steps p { font-size: 1.04em; color: var(--ink-2); line-height: 1.4; }
 .status { display: inline-flex; gap: 0.6em; align-items: baseline; font: 600 0.8em var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--absent); border: 1.5px solid var(--absent); padding: 0.25em 0.7em; justify-self: start; }
 
-/* ---- slide 18 ---- */
+/* ---- slide 20 ---- */
 .cancant { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.6em; }
 @media (min-width: 760px) { .cancant { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3em; } }
 .cancant h3 { font-family: var(--display); font-size: 1.9em; font-weight: 600; padding-bottom: 0.2em; border-bottom: 2px solid var(--ink); }
@@ -397,7 +397,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .cancant li { font-size: 1.3em; line-height: 1.32; }
 .cancant li small { display: block; font-size: 0.78em; color: var(--ink-2); margin-top: 0.15em; }
 
-/* ---- slide 19 ---- */
+/* ---- slide 21 ---- */
 .standard { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2em; }
 @media (min-width: 760px) { .standard { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2em; } }
 .standard section { border-top: 2px solid var(--ink); padding-top: 0.55em; display: grid; gap: 0.4em; align-content: start; }
@@ -430,6 +430,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .jt td { padding: 0.45em 0.9em 0.45em 0; border-top: 1px solid var(--rule); }
 .jt tr.probe td { color: var(--muted); }
 .jt td:first-child { white-space: nowrap; }
+.jt.dec { font-size: 0.84em; }
+.jt.dec td:first-child { white-space: normal; font-weight: 600; }
+.jt.dec td:last-child { font: 0.86em var(--mono); white-space: nowrap; color: var(--muted); }
+@media (min-width: 760px) { .rules.two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2em 2.4em; } }
 .jt tr.found td { border-top: 1.5px solid var(--ink); }
 @media (min-width: 760px) { .tests.four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2em 2em; } }
 .funnel { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3em 0.9em; margin: 0; padding: 0; font: 0.84em/1.4 var(--mono); color: var(--muted); }
@@ -534,10 +538,40 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s5" aria-label="Slide 5: tested like a system">
+<section class="slide" id="s5" aria-label="Slide 5: each decision against the easy option">
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">05</span><span>Act II · the engineering</span></p>
+    <h2>Each decision, against the easy option.</h2>
+    <p class="msg">“The first principle is that you must not fool yourself, and you are the easiest person to fool.” Feynman said it to scientists; it holds for agents. Each choice below is there so the system cannot fool me.</p>
+  </header>
+  <div class="body">
+    <div class="jt-wrap">
+      <table class="jt dec">
+        <thead><tr><th>Decision</th><th>Instead of</th><th>Why</th><th>Register</th></tr></thead>
+        <tbody>
+          <tr><td>Code computes every number; a model reads and plans</td><td>asking the model for the answer</td><td>a model miscounts and invents; code is tested and reruns the same</td><td>PR-01</td></tr>
+          <tr><td>A missing condition is stored as a value</td><td>a plausible default</td><td>a default is a guess that looks like data, and makes rows look comparable</td><td>RC-05</td></tr>
+          <tr><td>Inputs pinned by checksum; slides built only from committed files</td><td>fetching sources live, numbers typed by hand</td><td>every number traces to a commit, and a changed source stops the build</td><td>CP-02 · PR-02</td></tr>
+          <tr><td>Predictions committed before the run</td><td>looking first, explaining after</td><td>a prediction can fail in public, and the failures stay on the slides</td><td>P1 to P11</td></tr>
+          <tr><td>Each number recomputed a second way; each test seen to fail</td><td>trusting the pipeline</td><td>two routes that agree are evidence; one route is a hope</td><td>PR-07</td></tr>
+          <tr><td>One pinned model, a local command line, no tools</td><td>an agent framework with plug-ins</td><td>same prompt, same model, cached replies: any run can be replayed</td><td>GR-05 · GR-06</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lead-in">Python and pandas for the analysis, Claude through its command line, git as the clock. The same five-condition check runs in the Rust service behind the NanoSolve app, where it ranks each new paper in the daily pick.</p>
+  </div>
+  <p class="src">docs/DECISIONS.md · docs/PREREG_2026-10.md · nanoSolve-backend: src/scraping/comparability.rs</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Feynman’s line from Cargo Cult Science is the design brief. Each row is a place where the easy option would let a wrong number through without anyone noticing. The register holds every decision with its reason, who made it, and the test that keeps it in place.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s6" aria-label="Slide 6: tested like a system">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">06</span><span>Act II · the engineering</span></p>
     <h2>Tested like a system: same questions, one part removed at a time.</h2>
     <p class="msg">{{hy.q}} questions, each with an answer computed apart from the system. {{hy.flagq}} of them need a caveat or a refusal, and {{hy.adv}} are traps where the obvious answer is wrong.</p>
   </header>
@@ -556,10 +590,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s6" aria-label="Slide 6: the datasets, and the agent that found more">
+<section class="slide" id="s7" aria-label="Slide 7: the datasets, and the agent that found more">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">06</span><span>Act III · what the datasets say</span></p>
+    <p class="eyebrow"><span class="idx">07</span><span>Act III · what the datasets say</span></p>
     <h2>{{sv.n.datasets}} datasets in one table; an agent found {{ds.joined}} of them.</h2>
     <p class="msg">A search agent read {{ds.on_topic}} catalogue records, opened the files of {{ds.to_verify}} and found {{ds.usable}} that hold a concentration, a place and a date. {{sv.total}} records now sit in one table, and no gap is filled.</p>
   </header>
@@ -574,7 +608,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
           <tr><td>Weser estuary, PANGAEA</td><td>{{sv.n.weser}}</td><td>one size window: two fractions at the same stations</td></tr>
           <tr><td>EMODnet trawls, Baltic</td><td>{{sv.n.emodnet}}</td><td>a mesh size, for {{sv.miss.emodnet.mesh}}</td></tr>
           <tr><td>Air compilation, Fu et al.</td><td>{{sv.n.air}}</td><td>a date, for {{sv.miss.air.date}}; a method, for {{sv.miss.air.method}}</td></tr>
-          <tr class="found"><td>PANGAEA sets the agent found</td><td>{{sv.n.found}}</td><td>an upper size limit, for {{sv.miss.found.max}}; a lower one in {{sv.found_nolower}} of {{ds.joined}} sets</td></tr>
+          <tr class="found"><td>PANGAEA sets the agent found</td><td>{{sv.n.found}}</td><td>an upper size limit: five millimetres by convention; a lower one in {{sv.found_nolower}} of {{ds.joined}} sets</td></tr>
         </tbody>
       </table>
     </div>
@@ -590,10 +624,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s7" aria-label="Slide 7: a rise that is several things">
+<section class="slide" id="s8" aria-label="Slide 8: a rise that is several things">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">07</span><span>Act III · what the datasets say</span></p>
+    <p class="eyebrow"><span class="idx">08</span><span>Act III · what the datasets say</span></p>
     <h2>A rise of ×{{sv.pooled}} that is several things.</h2>
     <p class="msg">NOAA’s median ocean-water count rises ×{{sv.pooled}} from {{sv.y_from}}–{{sv.y_from_end}} to {{sv.y_to}}–{{sv.y_to_end}}. But {{sv.studies_from}} studies sampled then and {{sv.studies_to}} now, after a peak of {{sv.studies_peak}} in {{sv.y_peak}}–{{sv.y_peak_end}}: other seas, other nets.</p>
   </header>
@@ -612,10 +646,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s8" aria-label="Slide 8: same sea, different numbers">
+<section class="slide" id="s9" aria-label="Slide 9: same sea, different numbers">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">08</span><span>Act III · what the datasets say</span></p>
+    <p class="eyebrow"><span class="idx">09</span><span>Act III · what the datasets say</span></p>
     <h2>Same sea, same net, different numbers.</h2>
     <p class="msg">Independent studies within {{sv.co.km}} km and {{sv.co.days}} days, same sampling method: their values differ by a median ×{{sv.co.median}}, and by ×{{sv.co.p90}} or more for one pair in ten.</p>
   </header>
@@ -624,21 +658,21 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
       <div class="stat"><span class="label">Same method</span><span class="big">×{{sv.co.median}}</span><span class="small">{{sv.co.pairs}} record pairs from {{sv.co.studypairs}} pairs of studies</span></div>
       <div class="stat"><span class="label">Any method</span><span class="big">×{{sv.co.any_median}}</span><span class="small">one pair in ten differs by ×{{sv.co.any_p90}} or more</span></div>
       <div class="stat"><span class="label">Mediterranean, same method</span><span class="big">×{{sv.co.med_median}}</span><span class="small">{{sv.co.med_studypairs}} pairs of studies, the best-sampled sea</span></div>
-      <div class="stat"><span class="label">Across two databases · window guard</span><span class="big">×{{sv.x.median}}</span><span class="small">{{sv.x.compared}} EMODnet–NOAA pairs within {{sv.x.km}} km, any year, caveated; {{sv.x.refused}} more refused, ×{{sv.x.refused_fold}} apart: a net against a pump that counts far smaller particles</span></div>
+      <div class="stat"><span class="label">Across two databases · window guard</span><span class="big">×{{sv.x.median}}</span><span class="small">{{sv.x.compared}} EMODnet–NOAA pairs within {{sv.x.km}} km, any year. Against a pump that counts far smaller particles: {{sv.x.refused}} pairs refused (×{{sv.x.refused_fold}} apart), {{sv.x.cav}} caveated and still ×{{sv.x.residual}} beyond what the window explains</span></div>
     </div>
     <p class="lead-in">Before agreement is measured, {{sv.co.excluded}} record pairs are taken out: they are the same samples held under two studies. Left in, they would make the studies look like they agree.</p>
   </div>
   <p class="src">out/tables/survey_colocated.json · tool/survey/validators.py</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. Independent studies still differ about threefold, one pair in ten by more than an order of magnitude, and a naive check would have counted duplicated samples as agreement. Across two databases the window guard decides first: EMODnet and NOAA nets sit a median ×{{sv.x.median}} apart, one pair in ten ×{{sv.x.p90}}, a median {{sv.x.years}} years apart. A fine-filter pump is refused, not averaged in; pooled with it, one pair in ten would be ×{{sv.x.raw_p90}} apart.</p>
+    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. Independent studies still differ about threefold, one pair in ten by more than an order of magnitude, and a naive check would have counted duplicated samples as agreement. Across two databases the window guard decides first: EMODnet and NOAA nets sit a median ×{{sv.x.median}} apart, one pair in ten ×{{sv.x.p90}}, a median {{sv.x.years}} years apart. Against a fine-filter pump, converting for the window still leaves ×{{sv.x.residual}}, so the window is not the explanation; pooled raw, one pair in ten would be ×{{sv.x.raw_p90}} apart.</p>
   </aside>
 </div>
 </section>
 
-<section class="slide" id="s9" aria-label="Slide 9: the same samples held twice">
+<section class="slide" id="s10" aria-label="Slide 10: the same samples held twice">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">09</span><span>Act III · what the datasets say</span></p>
+    <p class="eyebrow"><span class="idx">10</span><span>Act III · what the datasets say</span></p>
     <h2>The same samples, held twice.</h2>
     <p class="msg">Run blind over NOAA’s database, the duplicate check flags {{sv.dup.n}} pairs of studies with same-day samples a few hundred metres apart.</p>
   </header>
@@ -657,10 +691,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s10" aria-label="Slide 10: the window decides the count">
+<section class="slide" id="s11" aria-label="Slide 11: the window decides the count">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">10</span><span>Act III · what the datasets say</span></p>
+    <p class="eyebrow"><span class="idx">11</span><span>Act III · what the datasets say</span></p>
     <h2>The size window decides the count.</h2>
     <p class="msg">In one river, particles of {{w.small.lo}}–{{w.small.hi}} µm outnumber those of {{w.large.lo}}–{{w.large.hi}} µm by {{w.ratio}} over {{w.stations}} stations. The slope rescaling assumes, α {{w.alpha0}}, predicts {{w.pred}}.</p>
   </header>
@@ -679,10 +713,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s11" aria-label="Slide 11: what zeta is">
+<section class="slide" id="s12" aria-label="Slide 12: what zeta is">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">11</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">12</span><span>Act IV · what the papers say</span></p>
     <h2>What zeta is: how fast a particle drifts in a field.</h2>
     <p class="msg">The instrument measures speed, the mobility. Zeta is computed from it with a model, and the liquid is part of that model.</p>
   </header>
@@ -700,10 +734,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s12" aria-label="Slide 12: zeta tells neither size, plastic nor label">
+<section class="slide" id="s13" aria-label="Slide 13: zeta tells neither size, plastic nor label">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">12</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">13</span><span>Act IV · what the papers say</span></p>
     <h2>Zeta tells you neither the size, the plastic nor the label.</h2>
     <p class="msg">Across {{p2.rows}} values from {{p2.papers}} papers, size and zeta are unrelated (ρ {{p2.rho}}). {{p2.neg_n}} of {{p2.named_n}} plastics sit between {{p2.neg_lo}} and {{p2.neg_hi}} mV, and {{p2.amine_neg}} of {{p2.amine_n}} amine beads, sold as positive, are reported negative.</p>
   </header>
@@ -718,10 +752,29 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s13" aria-label="Slide 13: five conditions">
+<section class="slide" id="s14" aria-label="Slide 14: age the bead, measure it again">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">13</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">14</span><span>Act IV · what the papers say</span></p>
+    <h2>Age the bead, then measure it again.</h2>
+    <p class="msg">{{ag.aged_rows}} aged values in {{ag.aged_papers}} papers, but only {{ag.a.papers}} papers measure an oxidised particle against its own virgin form in the same liquid. In {{ag.a.neg}} of them it turns more negative: a median {{ag.a.median}} mV.</p>
+  </header>
+  <div class="body fill">
+    <figure class="fig" style="margin:0">{{svg:aging}}</figure>
+    <p class="lead-in">Inside one paper the lab, the instrument and the liquid cancel, even where they are unreported. Between papers, virgin polystyrene alone spreads {{ag.iqr.PS}} mV, ×{{ag.scale}} the aging effect, and the unpaired comparison runs from {{ag.b.lo}} to {{ag.b.hi}} mV. Pre-registered: {{ag.a.verdict}}, and {{ag.b.verdict}}.</p>
+    <p class="small">P11: {{ag.pairs}} pairs in {{ag.paired_papers}} papers. With light or an oxidant, {{ag.a.neg}} papers more negative and {{ag.a.pos}} less; interval {{ag.a.lo}} to {{ag.a.hi}} mV, sign test p {{ag.a.p}}. Unpaired: {{ag.b.median}} mV, an interval ×{{ag.b.ratio}} as wide.</p>
+  </div>
+  <p class="src">out/tables/p2_aging_pairs.csv · out/tables/p2_aging.json · docs/PREREG_2026-10.md, P11</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>To learn what sunlight does to a bead, measure the same bead before and after: that removes everything the two measurements share. Few papers did, and the effect is a few millivolts, too small to see across papers. One paper, {{ag.swap}}, prints its aged and virgin values the other way round in two sentences, so the sign of its pair depends on which sentence you read.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide" id="s15" aria-label="Slide 15: five conditions">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">15</span><span>Act IV · what the papers say</span></p>
     <h2>Five conditions.</h2>
     <p class="msg">Each one changes the number a zeta measurement prints. All five stand on the same row for {{five.complete}} of {{rows}} rows.</p>
   </header>
@@ -743,10 +796,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s14" aria-label="Slide 14: not different, just unreported">
+<section class="slide" id="s16" aria-label="Slide 16: not different, just unreported">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">14</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">16</span><span>Act IV · what the papers say</span></p>
     <h2>“Not different, just unreported.”</h2>
     <p class="msg">{{sp.cat.lost_to_absence}} same-particle comparisons fail on a missing number, not on science.</p>
   </header>
@@ -762,10 +815,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s15" aria-label="Slide 15: a model learns the papers">
+<section class="slide" id="s17" aria-label="Slide 17: a model learns the papers">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">15</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">17</span><span>Act IV · what the papers say</span></p>
     <h2>A model learns the papers, not the zeta.</h2>
     <p class="msg">Predicting zeta for papers it never saw, no set of descriptors beats the average: R² {{p4.all}} with all of them. Shuffle the rows across papers and the same model scores {{p4.leak}}.</p>
   </header>
@@ -780,10 +833,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s16" aria-label="Slide 16: naive Claude against the hybrid">
+<section class="slide" id="s18" aria-label="Slide 18: naive Claude against the hybrid">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">16</span><span>Act V · naive Claude against the hybrid</span></p>
+    <p class="eyebrow"><span class="idx">18</span><span>Act V · naive Claude against the hybrid</span></p>
     <h2>Naive Claude against the hybrid, on the same questions.</h2>
     <p class="msg">Correct means the right number, the right flag and the right reason. The hybrid: {{hy.H.correct}}. Claude with the data pasted: {{hy.N2.correct}}. Claude from memory: {{hy.N0.correct}}.</p>
   </header>
@@ -807,10 +860,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s17" aria-label="Slide 17: what each part buys">
+<section class="slide" id="s19" aria-label="Slide 19: what each part buys">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">17</span><span>Act V · naive Claude against the hybrid</span></p>
+    <p class="eyebrow"><span class="idx">19</span><span>Act V · naive Claude against the hybrid</span></p>
     <h2>What each part buys.</h2>
     <p class="msg">Remove one stage of the hybrid and rerun the same questions with the same plans. Without the guard, Claude flags almost everything: it loses on the questions that need a plain answer.</p>
   </header>
@@ -834,43 +887,32 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s18" aria-label="Slide 18: what AI can and cannot do">
+<section class="slide" id="s20" aria-label="Slide 20: what to take home">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">18</span><span>Act VI · the close</span></p>
-    <h2>Can, and can’t.</h2>
-    <p class="msg">Agents made the reading possible at scale. Code made it checkable.</p>
+    <p class="eyebrow"><span class="idx">20</span><span>Act VI · the close</span></p>
+    <h2>Four things to take home.</h2>
+    <p class="msg">None of them is about plastic.</p>
   </header>
-  <div class="body cancant">
-    <div>
-      <h3>Can</h3>
-      <ul>
-        <li>Read the corpus at scale, every value quoted and addressed to its line.<small>Quotes found verbatim in their paper: {{arch.verified}}.</small></li>
-        <li>Measure the gap.<small>A missing condition is recorded as a value, row by row.</small></li>
-        <li>Rank what is missing.<small>And find the pairs one reported number would decide.</small></li>
-        <li>Rebuild everything deterministically.<small><code>report reproduce</code>, byte for byte.</small></li>
-      </ul>
-    </div>
-    <div class="cant">
-      <h3>Can’t</h3>
-      <ul>
-        <li>Fill in a missing condition.<small>A default is a guess, and the dataset refuses it.</small></li>
-        <li>Replace a human check.<small>The audit is still to come.</small></li>
-        <li>Decide comparability by itself.<small>Code does that; the model reads the verdict.</small></li>
-      </ul>
+  <div class="body">
+    <div class="rules two">
+      <div class="rule"><span class="rid">I</span><h3>A number without its conditions is not a measurement.</h3><p>All five conditions stand on one row in {{five.complete}} of {{rows}} rows. Store the absence as a value, and count it.</p></div>
+      <div class="rule"><span class="rid">II</span><h3>Compare a thing with itself.</h3><p>Aging moves zeta {{ag.a.median}} mV inside a paper; between papers one plastic spreads {{ag.iqr.PS}} mV. Split a model’s test by paper, not by row, or it looks up the answer: {{p4.leak}} against {{p4.all}}.</p></div>
+      <div class="rule"><span class="rid">III</span><h3>Let the model read. Let code decide.</h3><p>The same model: {{hy.N2.correct}} correct with the data pasted, {{hy.H.correct}} inside the system. Without the guard it does not miss caveats; it adds them everywhere.</p></div>
+      <div class="rule"><span class="rid">IV</span><h3>Write the prediction down first, and keep the failures.</h3><p>{{pv.n}} predictions committed before their data: {{pv.supported}} held, {{pv.partly}} held in part, {{pv.refuted}} failed. The failures taught the most.</p></div>
     </div>
   </div>
-  <p class="src">REVIEW.md C10 · docs/DECISIONS.md RC-05, GR-15, OD-03</p>
+  <p class="src">docs/PREREG_2026-10.md · out/tables/p2_aging.json · out/tables/hybrid_results.json · REVIEW.md §5.1</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Agents made it possible to read the corpus at this scale with every value traceable to its line. They cannot supply a condition a paper did not report, and they should not decide comparability on their own. The verdicts come from code that anyone can rerun, and the one check that needs a person is still ahead of us.</p>
+    <p>These are the four lessons that travel to any field. A missing condition is information if you store it; a comparison is clean when the two sides share everything but the thing you vary; models read and code decides; and a prediction is only worth something if it could have failed.</p>
   </aside>
 </div>
 </section>
 
-<section class="slide" id="s19" aria-label="Slide 19: a minimal reporting standard">
+<section class="slide" id="s21" aria-label="Slide 21: a minimal reporting standard">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">19</span><span>Act VI · the close</span></p>
+    <p class="eyebrow"><span class="idx">21</span><span>Act VI · the close</span></p>
     <h2>The call: a minimal reporting standard.</h2>
     <p class="msg">Report the five conditions, identify the particle, and name the conversion model. For counts, state the size window.</p>
   </header>
@@ -890,10 +932,33 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s20" aria-label="Slide 20: the curve, not the dot">
+<section class="slide" id="s22" aria-label="Slide 22: next, by instrument">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">20</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">22</span><span>Act VI · the close</span></p>
+    <h2>Next: what each instrument would let me measure.</h2>
+    <p class="msg">The literature cannot give a curve or a clean aging effect. A measurement designed for the question can, and each step needs one more piece of equipment.</p>
+  </header>
+  <div class="body">
+    <div class="rules two">
+      <div class="rule"><span class="rid">I</span><h3>Nothing but code</h3><p>Ingest the mangrove set the search agent found, audit NOAA’s records against their source papers, and run the human audit that has never run (OD-03).</p></div>
+      <div class="rule"><span class="rid">II</span><h3>A day on a zeta analyser</h3><p>One bead’s mobility at several salt levels: the curve the literature cannot give. Aged and virgin halves of one batch in one liquid: P11 by design, not by luck.</p></div>
+      <div class="rule"><span class="rid">III</span><h3>A microcontroller and three probes</h3><p>Conductivity, pH and temperature logged in embedded Rust at the moment of measurement and written into the instrument’s export. Absence becomes impossible, not just reported.</p></div>
+      <div class="rule"><span class="rid">IV</span><h3>A microscope, or a camera and a vision model</h3><p>Count the particles per size class in one sample, and measure the slope of the size distribution instead of assuming it.</p></div>
+    </div>
+    <p class="lead-in">All of it is open: the dataset {{dataset}} under {{licence}}, the code, and the register of decisions. Every field has its ionic strength. Build your agents so that silence stays silent.</p>
+  </div>
+  <p class="src">docs/2026-10-10-review-call.md · docs/DECISIONS.md, OD-03 · out/tables/dataset_candidates.csv</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Each step removes one kind of absence at its source. The analyser turns the reviewer’s objection into an experiment, and the logger is an embedded job: the condition travels with the number, so no reader has to guess it. Leave this slide up for questions.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide backup" id="s23" aria-label="Slide 23: the curve, not the dot">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">23</span><span>Backup</span></p>
     <h2>The plan was never zeta. It was the curve.</h2>
     <p class="msg">One dot cannot tell a hard bead from a soft, coated one; a curve across salt can. The method to read the curve is built. What is missing is data: papers print dots, not curves.</p>
   </header>
@@ -917,10 +982,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s21" aria-label="Slide 21: the best case fails">
+<section class="slide backup" id="s24" aria-label="Slide 24: the best case fails">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">21</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">24</span><span>Backup</span></p>
     <h2>The best case fails.</h2>
     <p class="msg">One lab, the same {{c14.size_nominal}} nm polystyrene, the same five conditions, two papers {{c14.years}} years apart: {{c14.a.value}} against {{c14.b.value}} mV.</p>
   </header>
@@ -951,10 +1016,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s22" aria-label="Slide 22: zeta belongs to the particle in its liquid">
+<section class="slide backup" id="s25" aria-label="Slide 25: zeta belongs to the particle in its liquid">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">22</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">25</span><span>Backup</span></p>
     <h2>Zeta belongs to the particle in its liquid.</h2>
     <p class="msg">One particle, three liquids: the zeta potential moves {{c02.spread}} mV, and none of the three rows states an ionic strength.</p>
   </header>
@@ -975,10 +1040,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s23" aria-label="Slide 23: what costs the most">
+<section class="slide backup" id="s26" aria-label="Slide 26: what costs the most">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">23</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">26</span><span>Backup</span></p>
     <h2>What costs the most.</h2>
     <p class="msg">Ionic strength is missing in {{sp.field.ionic_strength.pairs}} of the {{sp.cat.lost_to_absence}} pairs lost to absence ({{sp.top_pct}}). In {{sp.only_total}} pairs, one reported number would decide the pair.</p>
   </header>
@@ -995,10 +1060,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s24" aria-label="Slide 24: why not assume the water">
+<section class="slide backup" id="s27" aria-label="Slide 27: why not assume the water">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">24</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">27</span><span>Backup</span></p>
     <h2>“It’s a lab. Just assume the water.”</h2>
     <p class="msg">Whether ionic strength is stated depends on the liquid: {{lab.salt.share}} of salt-solution rows state it, {{lab.DI_water.stated}} of {{lab.DI_water.rows}} DI-water rows do. Where it is stated, it runs from {{lab.lo}} to {{lab.hi}} mM.</p>
   </header>
@@ -1016,10 +1081,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s25" aria-label="Slide 25: absence has a size">
+<section class="slide backup" id="s28" aria-label="Slide 28: absence has a size">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">25</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">28</span><span>Backup</span></p>
     <h2>Absence has a size.</h2>
     <p class="msg">Without ionic strength, one printed zeta becomes an interval of ±{{h.hw_f}}. Without the conversion model as well, as in {{h.z4}} rows, ±{{h.hw_z4}}.</p>
   </header>
@@ -1036,10 +1101,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s26" aria-label="Slide 26: same tow, two values">
+<section class="slide backup" id="s29" aria-label="Slide 29: same tow, two values">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">26</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">29</span><span>Backup</span></p>
     <h2>Same tow, two values.</h2>
     <p class="msg">Two papers report the same {{re.tows}} net tows, with the same numbers for {{re.same}} of them. A global database holds them twice and converts each copy its own way.</p>
   </header>
@@ -1058,10 +1123,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s27" aria-label="Slide 27: the AI problem">
+<section class="slide backup" id="s30" aria-label="Slide 30: the AI problem">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">27</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">30</span><span>Backup</span></p>
     <h2>Silence is invisible to a reader.</h2>
     <p class="msg">A model sees what is written. Asked for a condition the paper never gives, an extractor left to itself supplies a plausible default.</p>
   </header>
@@ -1085,10 +1150,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s28" aria-label="Slide 28: the architecture">
+<section class="slide backup" id="s31" aria-label="Slide 31: the architecture">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">28</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">31</span><span>Backup</span></p>
     <h2>A model reads; code decides.</h2>
     <p class="msg">Every value links to the line it came from.</p>
   </header>
@@ -1109,10 +1174,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s29" aria-label="Slide 29: the validation ladder">
+<section class="slide backup" id="s32" aria-label="Slide 32: the validation ladder">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">29</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">32</span><span>Backup</span></p>
     <h2>Read, check, challenge.</h2>
     <p class="msg">{{v.cands}} values contradict their surface label. A reader gives a cause with cited lines, code keeps it only if the lines carry the evidence, and a second reader must agree.</p>
   </header>
@@ -1131,10 +1196,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s30" aria-label="Slide 30: a judge is one more reader">
+<section class="slide backup" id="s33" aria-label="Slide 33: a judge is one more reader">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">30</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">33</span><span>Backup</span></p>
     <h2>A judge is one more reader, so test it like one.</h2>
     <p class="msg">Three judges from other model families score the readers’ answers twice, with the causes listed in opposite orders, and once more with a fluent wrong cause swapped in. Claude scores its own family’s reader.</p>
   </header>
@@ -1159,10 +1224,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s31" aria-label="Slide 31: how reliable is one reading">
+<section class="slide backup" id="s34" aria-label="Slide 34: how reliable is one reading">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">31</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">34</span><span>Backup</span></p>
     <h2>How reliable is one reading?</h2>
     <p class="msg">Two blind readings agree on the condition flags. They disagree on which rows exist.</p>
   </header>
@@ -1189,10 +1254,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s32" aria-label="Slide 32: what the agents got wrong">
+<section class="slide backup" id="s35" aria-label="Slide 35: what the agents got wrong">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">32</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">35</span><span>Backup</span></p>
     <h2>What the agents got wrong.</h2>
     <p class="msg">Each was caught by a check against the data, never by trusting an agent’s report.</p>
   </header>
@@ -1213,10 +1278,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s33" aria-label="Slide 33: our own checks pushed the data toward absence">
+<section class="slide backup" id="s36" aria-label="Slide 36: our own checks pushed the data toward absence">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">33</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">36</span><span>Backup</span></p>
     <h2>The twist: our own checks pushed the data toward absence.</h2>
     <p class="msg">A check that flags a correct value teaches the agent to delete it.</p>
   </header>
@@ -1239,10 +1304,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s34" aria-label="Slide 34: structure against retrieval">
+<section class="slide backup" id="s37" aria-label="Slide 37: structure against retrieval">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">34</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">37</span><span>Backup</span></p>
     <h2>Structure vs retrieval, same model.</h2>
     <p class="msg">Retrieval over text cannot reach the comparability verdict. In cell D the code decides it, and the model reads it back.</p>
   </header>
@@ -1264,10 +1329,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide backup" id="s35" aria-label="Slide 35: the human audit">
+<section class="slide backup" id="s38" aria-label="Slide 38: the human audit">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">35</span><span>Backup</span></p>
+    <p class="eyebrow"><span class="idx">38</span><span>Backup</span></p>
     <h2>The human audit.</h2>
     <p class="msg">Not done yet. No person has checked a row against its paper.</p>
   </header>

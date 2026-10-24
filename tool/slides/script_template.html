@@ -153,22 +153,22 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
     <p class="eyebrow">Talk script · AI conference · rehearsal copy</p>
     <h1>{{title:s1}}</h1>
     <p class="lede">{{msg:s1}}</p>
-    <p class="facts"><span>Length <b>{{talk.total}}</b></span><span><b>Six acts</b>, nineteen slides and sixteen in backup</span><span>Speaker: <b>{{author}}</b></span></p>
+    <p class="facts"><span>Length <b>{{talk.total}}</b></span><span><b>Six acts</b>, twenty-two slides and sixteen in backup</span><span>Speaker: <b>{{author}}</b></span></p>
     <p class="intro">What to say on each slide, how long it gets, and where the clock should be when you leave it. Every number below is the number on the slide, read from the same build. Read it aloud slowly: short sentences, and a real pause where it says <span class="pause">pause</span>. Words in bold carry the stress. Under each slide, “In depth” holds what you need to explain it further: the mechanism, where each number comes from, and the hardest follow-up question.</p>
   </header>
 
   <section class="block" aria-labelledby="h-shape">
     <h2 id="h-shape">The shape of the talk</h2>
     <nav class="bar" aria-label="Time per slide">
-      <a class="a1" href="#s1" style="width:{{w:t.s1}}" aria-label="slide 1"></a><a class="a1" href="#s2" style="width:{{w:t.s2}}" aria-label="slide 2"></a><a class="a1" href="#s3" style="width:{{w:t.s3}}" aria-label="slide 3"></a><a class="a2" href="#s4" style="width:{{w:t.s4}}" aria-label="slide 4"></a><a class="a2" href="#s5" style="width:{{w:t.s5}}" aria-label="slide 5"></a><a class="a3" href="#s6" style="width:{{w:t.s6}}" aria-label="slide 6"></a><a class="a3" href="#s7" style="width:{{w:t.s7}}" aria-label="slide 7"></a><a class="a3" href="#s8" style="width:{{w:t.s8}}" aria-label="slide 8"></a><a class="a3" href="#s9" style="width:{{w:t.s9}}" aria-label="slide 9"></a><a class="a3" href="#s10" style="width:{{w:t.s10}}" aria-label="slide 10"></a><a class="a4" href="#s11" style="width:{{w:t.s11}}" aria-label="slide 11"></a><a class="a4" href="#s12" style="width:{{w:t.s12}}" aria-label="slide 12"></a><a class="a4" href="#s13" style="width:{{w:t.s13}}" aria-label="slide 13"></a><a class="a4" href="#s14" style="width:{{w:t.s14}}" aria-label="slide 14"></a><a class="a4" href="#s15" style="width:{{w:t.s15}}" aria-label="slide 15"></a><a class="a5" href="#s16" style="width:{{w:t.s16}}" aria-label="slide 16"></a><a class="a5" href="#s17" style="width:{{w:t.s17}}" aria-label="slide 17"></a><a class="a6" href="#s18" style="width:{{w:t.s18}}" aria-label="slide 18"></a><a class="a6" href="#s19" style="width:{{w:t.s19}}" aria-label="slide 19"></a>
+      <a class="a1" href="#s1" style="width:{{w:t.s1}}" aria-label="slide 1"></a><a class="a1" href="#s2" style="width:{{w:t.s2}}" aria-label="slide 2"></a><a class="a1" href="#s3" style="width:{{w:t.s3}}" aria-label="slide 3"></a><a class="a2" href="#s4" style="width:{{w:t.s4}}" aria-label="slide 4"></a><a class="a2" href="#s5" style="width:{{w:t.s5}}" aria-label="slide 5"></a><a class="a2" href="#s6" style="width:{{w:t.s6}}" aria-label="slide 6"></a><a class="a3" href="#s7" style="width:{{w:t.s7}}" aria-label="slide 7"></a><a class="a3" href="#s8" style="width:{{w:t.s8}}" aria-label="slide 8"></a><a class="a3" href="#s9" style="width:{{w:t.s9}}" aria-label="slide 9"></a><a class="a3" href="#s10" style="width:{{w:t.s10}}" aria-label="slide 10"></a><a class="a3" href="#s11" style="width:{{w:t.s11}}" aria-label="slide 11"></a><a class="a4" href="#s12" style="width:{{w:t.s12}}" aria-label="slide 12"></a><a class="a4" href="#s13" style="width:{{w:t.s13}}" aria-label="slide 13"></a><a class="a4" href="#s14" style="width:{{w:t.s14}}" aria-label="slide 14"></a><a class="a4" href="#s15" style="width:{{w:t.s15}}" aria-label="slide 15"></a><a class="a4" href="#s16" style="width:{{w:t.s16}}" aria-label="slide 16"></a><a class="a4" href="#s17" style="width:{{w:t.s17}}" aria-label="slide 17"></a><a class="a5" href="#s18" style="width:{{w:t.s18}}" aria-label="slide 18"></a><a class="a5" href="#s19" style="width:{{w:t.s19}}" aria-label="slide 19"></a><a class="a6" href="#s20" style="width:{{w:t.s20}}" aria-label="slide 20"></a><a class="a6" href="#s21" style="width:{{w:t.s21}}" aria-label="slide 21"></a><a class="a6" href="#s22" style="width:{{w:t.s22}}" aria-label="slide 22"></a>
     </nav>
     <div class="acts">
       <p><i class="a1"></i><b>Act I, why and the goal</b>: {{act.I}}, done at {{act.I.end}}. Why comparability matters, and what I set out to test.</p>
-      <p><i class="a2"></i><b>Act II, the engineering</b>: {{act.II}}, done at {{act.II.end}}. The system, and how it is tested.</p>
-      <p><i class="a3"></i><b>Act III, what the datasets say</b>: {{act.III}}, done at {{act.III.end}}. Four datasets: a rise that is several things, the same sea, samples held twice, the window.</p>
-      <p><i class="a4"></i><b>Act IV, what the papers say</b>: {{act.IV}}, done at {{act.IV.end}}. Zeta, what papers leave out, a model that learns papers.</p>
+      <p><i class="a2"></i><b>Act II, the engineering</b>: {{act.II}}, done at {{act.II.end}}. The system, each decision against the easy option, and how it is tested.</p>
+      <p><i class="a3"></i><b>Act III, what the datasets say</b>: {{act.III}}, done at {{act.III.end}}. Eleven datasets, five found by an agent: a rise that is several things, the same sea, samples held twice, the window.</p>
+      <p><i class="a4"></i><b>Act IV, what the papers say</b>: {{act.IV}}, done at {{act.IV.end}}. Zeta, aging measured pair by pair, what papers leave out, a model that learns papers.</p>
       <p><i class="a5"></i><b>Act V, naive Claude against the hybrid</b>: {{act.V}}, done at {{act.V.end}}. The same questions, and what each part buys.</p>
-      <p><i class="a6"></i><b>Act VI, the close</b>: {{act.VI}}, done at {{act.VI.end}}. What AI can and cannot do here, and the call.</p>
+      <p><i class="a6"></i><b>Act VI, the close</b>: {{act.VI}}, done at {{act.VI.end}}. What to take home, the call, and what I would measure next.</p>
     </div>
   </section>
 
@@ -183,12 +183,13 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
   </section>
 
   <section class="block" aria-labelledby="h-home">
-    <h2 id="h-home">What an AI audience should carry home</h2>
-    <p class="intro">Most people in the room have never measured a particle. They build extractors, agents, retrieval and evaluations. Nanoplastics is the case study; these three patterns are the contribution, and every act should point at one of them.</p>
+    <h2 id="h-home">What a research audience should carry home</h2>
+    <p class="intro">The room is PhD students and researchers: some measure, some model, some build tools. Nanoplastics is the case study; these four patterns travel to any field, and every act should point at one of them. Explain each the way Feynman would: the picture first, then the mechanism, then what you do not know.</p>
     <div class="home">
       <div><h3>Absence is a value</h3><p>A field the source never states is stored as “not reported”, never filled with a plausible default. Then you can count the gap instead of hiding it, and the gap is rarely random.</p></div>
       <div><h3>Claims with addresses, decisions in code</h3><p>The agent returns a value, a verbatim quote and the line it sits on. Code checks it and makes every decision after that, so nothing rests on trusting the agent.</p></div>
-      <div><h3>Validators create pressure</h3><p>A check that flags correct values teaches agents to delete them. A flag may add doubt; it must never remove evidence.</p></div>
+      <div><h3>Compare a thing with itself</h3><p>A bead before and after aging, a model tested on papers it never saw, the same tow found under two studies. Pairing removes everything the two sides share, so a small effect becomes visible.</p></div>
+        <div><h3>Validators create pressure</h3><p>A check that flags correct values teaches agents to delete them. A flag may add doubt; it must never remove evidence.</p></div>
     </div>
   </section>
 
@@ -274,13 +275,13 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the four steps, top to bottom: read, plan, compute and guard, ground.</p>
-        <p class="then"><span class="k">Then</span>And how do we know it works? We test it like any engineered system.</p>
+        <p class="then"><span class="k">Then</span>Each of those steps is a decision. Here is why each was made.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
           <p><span class="k">What is really going on</span>The planner sees each operation’s signature with the allowed values spelled out (which dataset, which field, which polymer). In the pilot it once asked for “soil microplastic (Wu et al. compilation)”; that plan now fails validation and is retried once. The guard is a set of rules over the computation’s diagnostics: no study in both periods means a composition shift; a series whose sampling centre moved more than a few hundred kilometres means an area shift; the same samples under two studies means not independent.</p>
-          <p><span class="k">Where the numbers come from</span>The survey table holds {{sv.total}} records from four datasets; the operations and validators are tested against known cases, and each check was broken on purpose to see a test fail.</p>
+          <p><span class="k">Where the numbers come from</span>The survey table holds {{sv.total}} records from {{sv.n.datasets}} datasets; the operations and validators are tested against known cases, and each check was broken on purpose to see a test fail.</p>
           <p><span class="k">If they push</span><b>Isn’t this just tool calling?</b> Yes, deliberately. The difference is what is allowed to decide: here no number and no verdict comes from the model, and every one can be traced to a record.</p>
         </div>
       </details>
@@ -289,6 +290,29 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
     <section class="card" id="s5">
       <header><span class="idx">05</span><h3>{{title:s5}}</h3><p class="time"><b>{{t.s5}}</b> · ends at {{at.s5}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s5}}</p>
+      <div class="say">
+        <p>Richard Feynman told students: <strong>the first principle is that you must not fool yourself, and you are the easiest person to fool.</strong> <span class="pause">pause</span></p>
+        <p>An agent pipeline fools you quietly. So each row is a place where the easy option would let a wrong number through.</p>
+        <p>The model never computes. A missing condition stays missing. Inputs are pinned, and the slides are built only from committed files. Predictions come before the run. Every number is recomputed a second way. And one pinned model, so any run can be replayed.</p>
+        <p>The same check now runs in the Rust service behind our app.</p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Point at</span>the column “Instead of”, row by row.</p>
+        <p class="then"><span class="k">Then</span>So how do we know the whole thing works?</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>Each decision sits in a register with who made it, why, and the test that holds it (docs/DECISIONS.md). The stack is small on purpose: Python and pandas for the analysis; Claude through its command line with tools, settings and plug-ins off; git commits as the timestamps of predictions; a deck builder that reads only committed files, so an uncommitted number cannot reach a slide. The backend is Rust and Axum over PostgreSQL; its comparability stage reads a new paper’s full text for the five conditions and ranks the app’s daily pick by them.</p>
+          <p><span class="k">Where it comes from</span>Register entries PR-01, RC-05, CP-02, PR-02, PR-07, GR-05 and GR-06; the predictions P1 to P11 in the pre-registration.</p>
+          <p><span class="k">If they push</span><b>Isn’t all this checking slow?</b> The deterministic part is free and fast; model calls are the expensive part, so they go only where reading is needed. The hybrid even uses fewer tokens per question than pasting the data: {{hy.H.tokens}} against {{hy.N2.tokens}}.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s6">
+      <header><span class="idx">06</span><h3>{{title:s6}}</h3><p class="time"><b>{{t.s6}}</b> · ends at {{at.s6}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s6}}</p>
       <div class="say">
         <p>Same model, same {{hy.q}} questions, different arms. Claude from memory. Claude with the data pasted into the chat, the way most people use it. And the hybrid.</p>
         <p>Then the hybrid again, with <strong>one stage removed</strong> at a time. That is how you find out what each part buys.</p>
@@ -312,9 +336,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
   <section class="act a3" aria-labelledby="h-act3">
     <header><h2 id="h-act3">Act III · what the datasets say</h2><p class="eyebrow">{{act.III}} · ends at {{act.III.end}}</p></header>
 
-    <section class="card" id="s6">
-      <header><span class="idx">06</span><h3>{{title:s6}}</h3><p class="time"><b>{{t.s6}}</b> · ends at {{at.s6}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s6}}</p>
+    <section class="card" id="s7">
+      <header><span class="idx">07</span><h3>{{title:s7}}</h3><p class="time"><b>{{t.s7}}</b> · ends at {{at.s7}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s7}}</p>
       <div class="say">
         <p>NOAA’s database is one source, so I built a second agent to find others. It searched the open catalogues: {{ds.on_topic}} records about microplastic. Claude read each record; a rule, not Claude, chose what to open; and code opened the files. {{ds.usable}} hold a concentration, a place and a date. <span class="pause">pause</span></p>
         <p>{{sv.n.datasets}} datasets, {{sv.total}} records, one table. Look at the last column. The sediment database has <strong>no coordinates at all</strong>. The soil compilation never names a method. And not one of the sets the agent found states an upper size limit.</p>
@@ -334,9 +358,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s7">
-      <header><span class="idx">07</span><h3>{{title:s7}}</h3><p class="time"><b>{{t.s7}}</b> · ends at {{at.s7}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s7}}</p>
+    <section class="card" id="s8">
+      <header><span class="idx">08</span><h3>{{title:s8}}</h3><p class="time"><b>{{t.s8}}</b> · ends at {{at.s8}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s8}}</p>
       <div class="say">
         <p>Pool NOAA’s ocean samples by period, and the median rises <strong>×{{sv.pooled}}</strong> from {{sv.y_from}} to {{sv.y_to}}. That is the headline a naive analysis writes. <span class="pause">pause</span></p>
         <p>But {{sv.studies_from}} studies sampled then, and {{sv.studies_to}} now, in other seas, with other nets. Not one study is on both sides.</p>
@@ -356,14 +380,14 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s8">
-      <header><span class="idx">08</span><h3>{{title:s8}}</h3><p class="time"><b>{{t.s8}}</b> · ends at {{at.s8}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s8}}</p>
+    <section class="card" id="s9">
+      <header><span class="idx">09</span><h3>{{title:s9}}</h3><p class="time"><b>{{t.s9}}</b> · ends at {{at.s9}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s9}}</p>
       <div class="say">
         <p>This is the cross-check a reviewer asked for. Two independent studies, the same sea, within a year, the same kind of net.</p>
         <p>Their values differ by a median <strong>×{{sv.co.median}}</strong>. One pair in ten differs by ×{{sv.co.p90}} or more. Allow any method and it gets worse.</p>
         <p>And before measuring that, code takes out {{sv.co.excluded}} pairs that are not independent at all. Left in, they would look like perfect agreement.</p>
-        <p>Now two databases, the same sea: EMODnet and NOAA nets, a median <strong>×{{sv.x.median}}</strong> apart. Pool every pair across databases and one in ten is ×{{sv.x.raw_p90}} apart, because a pump that counts far smaller particles is in the pool. The window guard refuses those pairs instead of averaging them.</p>
+        <p>Now two databases, the same sea: EMODnet and NOAA nets, a median <strong>×{{sv.x.median}}</strong> apart. Pool every pair across databases and one in ten is ×{{sv.x.raw_p90}} apart, because a pump that counts far smaller particles is in the pool. So convert for the window first, and look at <strong>what is left</strong>: ×{{sv.x.residual}}. The window is not the explanation.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the first number, then the last sentence.</p>
@@ -374,14 +398,14 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         <div class="deep-body">
           <p><span class="k">What is really going on</span>A pair is two records from different studies within {{sv.co.km}} km and {{sv.co.days}} days, both positive. Pairs between studies that hold the same samples are removed first. Real patchiness explains part of the spread: plastic at the surface is clumped over tens of kilometres, and wind mixes it down.</p>
           <p><span class="k">Where the numbers come from</span>Same method: {{sv.co.pairs}} record pairs from {{sv.co.studypairs}} study pairs, median ×{{sv.co.median}}, one in ten ×{{sv.co.p90}}. Any method: ×{{sv.co.any_median}}, one in ten ×{{sv.co.any_p90}}. Mediterranean, same method: ×{{sv.co.med_median}} over {{sv.co.med_studypairs}} study pairs.</p>
-          <p><span class="k">If they push</span><b>Isn’t threefold just the ocean being patchy?</b> Partly. That is the point for an agent: two such numbers do not disagree, and they do not confirm each other either. <b>Only one pair of databases?</b> Yes: within {{sv.x.km}} km, any year, only EMODnet against NOAA ({{sv.x.compared}} pairs, a median {{sv.x.years}} years apart, ×{{sv.x.p90}} for one in ten) and NOAA against one Pacific pump survey ({{sv.x.refused}} pairs, ×{{sv.x.refused_fold}}, refused: no upper size limit stated, and even with one assumed, the window conversion is too uncertain).</p>
+          <p><span class="k">If they push</span><b>Isn’t threefold just the ocean being patchy?</b> Partly. That is the point for an agent: two such numbers do not disagree, and they do not confirm each other either. <b>Only one pair of databases?</b> Yes: within {{sv.x.km}} km, any year, only EMODnet against NOAA ({{sv.x.compared}} pairs, a median {{sv.x.years}} years apart, ×{{sv.x.p90}} for one in ten) and NOAA against one Pacific pump survey. Of those, {{sv.x.refused}} pairs (×{{sv.x.refused_fold}}) are refused because the window conversion is too uncertain; {{sv.x.cav}} are caveated and stay ×{{sv.x.residual}} apart after the most generous conversion. Dropping them would bias the comparison toward agreement, so they are reported, not removed.</p>
         </div>
       </details>
     </section>
 
-    <section class="card" id="s9">
-      <header><span class="idx">09</span><h3>{{title:s9}}</h3><p class="time"><b>{{t.s9}}</b> · ends at {{at.s9}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s9}}</p>
+    <section class="card" id="s10">
+      <header><span class="idx">10</span><h3>{{title:s10}}</h3><p class="time"><b>{{t.s10}}</b> · ends at {{at.s10}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s10}}</p>
       <div class="say">
         <p>Agents will read harmonised databases first. So I ran a duplicate check over NOAA’s, blind: same day, a few hundred metres apart, another study.</p>
         <p>It flags {{sv.dup.n}} pairs of studies. One is a case I knew from reading two papers: {{re.tows}} tows held twice, converted two ways. The check finds it from date and position alone. In {{sv.dup.identical}} pairs the shared values are <strong>identical</strong>.</p>
@@ -401,9 +425,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s10">
-      <header><span class="idx">10</span><h3>{{title:s10}}</h3><p class="time"><b>{{t.s10}}</b> · ends at {{at.s10}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s10}}</p>
+    <section class="card" id="s11">
+      <header><span class="idx">11</span><h3>{{title:s11}}</h3><p class="time"><b>{{t.s11}}</b> · ends at {{at.s11}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s11}}</p>
       <div class="say">
         <p>Now the same story for counting particles in the environment. Here the missing condition is the <strong>size window</strong>: from which size up a method can see.</p>
         <p>One river, one study, two windows. The small particles outnumber the large ones by about five thousand. The textbook slope predicts about a dozen.</p>
@@ -428,14 +452,14 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
   <section class="act a4" aria-labelledby="h-act4">
     <header><h2 id="h-act4">Act IV · what the papers say</h2><p class="eyebrow">{{act.IV}} · ends at {{act.IV.end}}</p></header>
 
-    <section class="card" id="s11">
-      <header><span class="idx">11</span><h3>{{title:s11}}</h3><p class="time"><b>{{t.s11}}</b> · ends at {{at.s11}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s11}}</p>
+    <section class="card" id="s12">
+      <header><span class="idx">12</span><h3>{{title:s12}}</h3><p class="time"><b>{{t.s12}}</b> · ends at {{at.s12}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s12}}</p>
       <div class="say">
-        <p>For the computer scientists: zeta is <strong>not measured</strong>. It is computed.</p>
-        <p>The instrument puts the particles in an electric field and reads how fast they move with laser light. That speed is the mobility. Most papers use one instrument, a Malvern Zetasizer.</p>
-        <p>Then a model turns the speed into a potential. Which model is right depends on the particle’s size against the cloud of ions around it, and the <strong>salt in the liquid</strong> sets that cloud.</p>
-        <p>And papers print the computed number: zeta in {{zb.zeta_rows}} rows, the measured mobility in only {{zb.mob_rows}}.</p>
+        <p>Zeta is <strong>not measured</strong>. It is computed.</p>
+        <p>Picture a bead in water with an electric field across it. It drifts, and laser light clocks its speed. That speed, the mobility, is what the instrument measures.</p>
+        <p>A model turns the speed into a potential, and the model needs the <strong>salt in the liquid</strong>.</p>
+        <p>Papers print the computed number: zeta in {{zb.zeta_rows}} rows, the measured speed in only {{zb.mob_rows}}.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>rule II, “Convert with a model”.</p>
@@ -451,9 +475,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s12">
-      <header><span class="idx">12</span><h3>{{title:s12}}</h3><p class="time"><b>{{t.s12}}</b> · ends at {{at.s12}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s12}}</p>
+    <section class="card" id="s13">
+      <header><span class="idx">13</span><h3>{{title:s13}}</h3><p class="time"><b>{{t.s13}}</b> · ends at {{at.s13}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s13}}</p>
       <div class="say">
         <p>If zeta were a property of the particle, it should follow its size, or its plastic. <span class="pause">pause</span> It follows neither.</p>
         <p>Size and zeta across {{p2.rows}} values: no relation at all. And the plastics land in <strong>the same band</strong>: polyethylene with no charged groups, PET, PMMA, all around minus twenty-five.</p>
@@ -462,7 +486,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the column of medians, then the one cobalt row.</p>
-        <p class="then"><span class="k">Then</span>And what do the papers leave out?</p>
+        <p class="then"><span class="k">Then</span>So what does change a particle’s charge? Age one and see.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
@@ -474,9 +498,32 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s13">
-      <header><span class="idx">13</span><h3>{{title:s13}}</h3><p class="time"><b>{{t.s13}}</b> · ends at {{at.s13}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s13}}</p>
+    <section class="card" id="s14">
+      <header><span class="idx">14</span><h3>{{title:s14}}</h3><p class="time"><b>{{t.s14}}</b> · ends at {{at.s14}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s14}}</p>
+      <div class="say">
+        <p>The reviewer’s second question: what does <strong>aging</strong> do to the charge? Sunlight and oxidants put oxygen groups on the plastic, and those groups carry negative charge. So I predicted aged beads turn more negative.</p>
+        <p>How do you test that? <strong>Measure the same bead before and after.</strong> Same paper, same lab, same liquid, and even the unreported conditions cancel.</p>
+        <p>{{ag.aged_rows}} aged values, but only {{ag.a.papers}} papers did that. In {{ag.a.neg}}, the bead turned more negative, by about {{ag.a.median}} millivolts. <span class="pause">pause</span></p>
+        <p>Across papers, the same plastic unaged spreads {{ag.iqr.PS}} millivolts. The effect drowns. <strong>Pairing is the instrument.</strong></p>
+      </div>
+      <div class="cue">
+        <p><span class="k">Point at</span>the zero line, then the grey band at the bottom.</p>
+        <p class="then"><span class="k">Then</span>So which conditions do the papers leave out?</p>
+      </div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>A pair is an aged row and the virgin rows of the same paper, polymer, liquid as written, ionic strength, pH, nominal size and additives. Both sides share the lab and the liquid, so the five conditions cancel; that is the only way a few millivolts can be seen in a literature where one plastic moves {{ag.iqr.PS}} mV from paper to paper. Reading the pairs found two coding defects, fixed test-first; the verdicts did not change. One paper, {{ag.swap}}, prints its aged and virgin values swapped between Methods and Discussion.</p>
+          <p><span class="k">Where the numbers come from</span>{{ag.aged_rows}} aged rows in {{ag.aged_papers}} papers; {{ag.pairs}} pairs in {{ag.paired_papers}} papers. P11, paired: {{ag.a.neg}} of {{ag.a.papers}} papers more negative, {{ag.a.pos}} less, median {{ag.a.median}} mV, interval {{ag.a.lo}} to {{ag.a.hi}} mV, sign test p {{ag.a.p}}: {{ag.a.verdict}}. P11, unpaired: {{ag.b.median}} mV, interval {{ag.b.lo}} to {{ag.b.hi}} mV, ×{{ag.b.ratio}} as wide: {{ag.b.verdict}}.</p>
+          <p><span class="k">If they push</span><b>A handful of papers is nothing.</b> Exactly, and that is the finding: the literature holds {{ag.aged_rows}} aged values but few designed comparisons. One day on an instrument would give more than the whole corpus; that is the last slide.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" id="s15">
+      <header><span class="idx">15</span><h3>{{title:s15}}</h3><p class="time"><b>{{t.s15}}</b> · ends at {{at.s15}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s15}}</p>
       <div class="say">
         <p>Five conditions change the number the instrument prints: the medium, the ionic strength, the pH, the temperature and the instrument. Each bar is per paper, so a big paper cannot outvote a small one.</p>
         <p>Medium and instrument are usually there. Ionic strength, the one the physics needs most: <strong>{{five.ionic_strength_reported}}</strong>. All five on one row: {{five.complete}} rows out of {{rows}}. And we count generously, so every bar is an upper bound. We read the supplements too: ionic strength reaches only {{si.mean}}.</p>
@@ -492,9 +539,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s14">
-      <header><span class="idx">14</span><h3>{{title:s14}}</h3><p class="time"><b>{{t.s14}}</b> · ends at {{at.s14}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s14}}</p>
+    <section class="card" id="s16">
+      <header><span class="idx">16</span><h3>{{title:s16}}</h3><p class="time"><b>{{t.s16}}</b> · ends at {{at.s16}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s16}}</p>
       <div class="say">
         <p>Take every pair of rows that describe the same particle: the same quantity, polymer and surface. That is {{sp.pairs}} pairs.</p>
         <p>Most of them, {{sp.cat_pct.stated_difference}}, differ in something the papers did state: another salt, another pH. That is real science.</p>
@@ -515,9 +562,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s15">
-      <header><span class="idx">15</span><h3>{{title:s15}}</h3><p class="time"><b>{{t.s15}}</b> · ends at {{at.s15}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s15}}</p>
+    <section class="card" id="s17">
+      <header><span class="idx">17</span><h3>{{title:s17}}</h3><p class="time"><b>{{t.s17}}</b> · ends at {{at.s17}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s17}}</p>
       <div class="say">
         <p>This one is for you, the AI people.</p>
         <p>I trained a model to predict zeta from everything we know: size, plastic, surface, liquid, pH. Tested on papers it never saw, it scores {{p4.all}}. <strong>Worse than the average.</strong></p>
@@ -543,9 +590,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
   <section class="act a5" aria-labelledby="h-act5">
     <header><h2 id="h-act5">Act V · naive Claude against the hybrid</h2><p class="eyebrow">{{act.V}} · ends at {{act.V.end}}</p></header>
 
-    <section class="card" id="s16">
-      <header><span class="idx">16</span><h3>{{title:s16}}</h3><p class="time"><b>{{t.s16}}</b> · ends at {{at.s16}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s16}}</p>
+    <section class="card" id="s18">
+      <header><span class="idx">18</span><h3>{{title:s18}}</h3><p class="time"><b>{{t.s18}}</b> · ends at {{at.s18}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s18}}</p>
       <div class="say">
         <p>Now the system against naive Claude, on the same questions.</p>
         <p>From memory, Claude mostly cannot answer: {{hy.N0.correct}}. With the data pasted in, the way most people use it: {{hy.N2.correct}}. The hybrid: <strong>{{hy.H.correct}}</strong>.</p>
@@ -565,9 +612,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s17">
-      <header><span class="idx">17</span><h3>{{title:s17}}</h3><p class="time"><b>{{t.s17}}</b> · ends at {{at.s17}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s17}}</p>
+    <section class="card" id="s19">
+      <header><span class="idx">19</span><h3>{{title:s19}}</h3><p class="time"><b>{{t.s19}}</b> · ends at {{at.s19}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s19}}</p>
       <div class="say">
         <p>Same plans, same numbers. Take out the guard, and the model decides on its own when a comparison is unsafe. I predicted it would miss the caveats. <span class="pause">pause</span> I was wrong: it flags almost everything, so on the questions that need a plain answer it falls from {{hy.H.noflag}} to <strong>{{hy.Hg.noflag}}</strong>.</p>
         <p>Take out the grounding check, and numbers appear in the answers that the computation never produced: {{hy.Hng.ungrounded}} per answer.</p>
@@ -575,7 +622,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </div>
       <div class="cue">
         <p><span class="k">Check</span>the clock should say {{act.V.end}}.</p>
-        <p class="then"><span class="k">Then</span>So what can AI do here, and what can it not?</p>
+        <p class="then"><span class="k">Then</span>So what should you take home?</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
@@ -591,38 +638,42 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
   <section class="act a6" aria-labelledby="h-act6">
     <header><h2 id="h-act6">Act VI · the close</h2><p class="eyebrow">{{act.VI}} · ends at {{act.VI.end}}</p></header>
 
-    <section class="card" id="s18">
-      <header><span class="idx">18</span><h3>{{title:s18}}</h3><p class="time"><b>{{t.s18}}</b> · ends at {{at.s18}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s18}}</p>
+    <section class="card" id="s20">
+      <header><span class="idx">20</span><h3>{{title:s20}}</h3><p class="time"><b>{{t.s20}}</b> · ends at {{at.s20}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s20}}</p>
       <div class="say">
-        <p>So what can AI do here? Read a whole corpus with every value quoted and tied to its line. Measure the gap, because absence is a value we can count. Find the pairs one number would decide.</p>
-        <p>What it cannot do: fill in a missing condition, replace a human check, or decide comparability on its own.</p>
-        <p><strong>Let the model read, and let code decide.</strong></p>
+        <p>Four things to take home, and none of them is about plastic.</p>
+        <p>One: <strong>a number without its conditions is not a measurement.</strong> Store the absence, and count it.</p>
+        <p>Two: <strong>compare a thing with itself.</strong> A bead before and after aging. A model tested on papers it never saw.</p>
+        <p>Three: <strong>let the model read, and let code decide.</strong></p>
+        <p>Four: <strong>write the prediction down first.</strong> Of {{pv.n}}, {{pv.refuted}} failed and {{pv.partly}} held only in part. <span class="pause">pause</span> Those taught me the most.</p>
       </div>
       <div class="cue">
+        <p><span class="k">Point at</span>the four headings, not the small print.</p>
         <p class="then"><span class="k">Then</span>So here is what I ask of the field.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
-          <p><span class="k">What is really going on</span>This is the design lesson stated plainly. The agent is good at reading at scale and at saying whether something is stated. It is bad at knowing what is missing, at resisting a schema slot, and at deciding a relation between two rows. So it reads and returns claims with addresses, and code holds absence as a value and makes every decision.</p>
-          <p><span class="k">Where the numbers come from</span>Quotes found verbatim: {{arch.verified}}. Absence is counted row by row, which is what makes the census and the ranking of missing fields possible.</p>
-          <p><span class="k">If they push</span><b>Isn’t “code decides” just hard-coding the expert?</b> Yes, on purpose: the rules are written down, ratified, tested and rerunnable, and anyone can disagree with a rule and rerun everything. A model’s judgement offers none of that.</p>
+          <p><span class="k">What is really going on</span>Each lesson generalises. Absence stored as a value turns a missing field into a measurable property of a literature. Pairing removes everything the two sides share, which is why a within-paper difference of {{ag.a.median}} mV is visible against a between-paper spread of {{ag.iqr.PS}} mV; splitting a model’s test by paper does the same for learning. The guard and the grounding check put the decisions where they can be tested. Pre-registration turns a wrong prediction into a result instead of an embarrassment.</p>
+          <p><span class="k">Where the numbers come from</span>The predictions with a verdict: P1, P2, P3, P4, both parts of P7, P8, P9 and both parts of P11. Supported {{pv.supported}}, partly {{pv.partly}}, refuted {{pv.refuted}}. P5 was not run, and P6 is an estimate with no direction.</p>
+          <p><span class="k">If they push</span><b>Which failure taught you most?</b> The guard. I predicted the model alone would miss caveats; it added them everywhere. The fix was not a better prompt but code that knows when a comparison is safe.</p>
         </div>
       </details>
     </section>
 
-    <section class="card" id="s19">
-      <header><span class="idx">19</span><h3>{{title:s19}}</h3><p class="time"><b>{{t.s19}}</b> · ends at {{at.s19}}</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s19}}</p>
+    <section class="card" id="s21">
+      <header><span class="idx">21</span><h3>{{title:s21}}</h3><p class="time"><b>{{t.s21}}</b> · ends at {{at.s21}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s21}}</p>
       <div class="say">
-        <p>Report the five conditions: the medium; the ionic strength as a number, not a buffer name; the pH; the temperature of the measurement itself; and the instrument.</p>
-        <p>Identify the particle: supplier, lot and surface chemistry. The best-case pair shows the five alone are not enough: all five matching, and still {{c14.gap}} millivolts apart.</p>
+        <p>So here is the ask. Report the five conditions: the medium; ionic strength as a number, not a buffer name; pH; the temperature of the measurement itself; the instrument.</p>
+        <p>Identify the particle: supplier, lot, surface. The best pair matches all five and is still {{c14.gap}} millivolts apart.</p>
         <p>Name the conversion model, or better, <strong>publish the curve</strong>: mobility at two or more salt levels. And for counts, state the size window.</p>
-        <p>Everything is open: the dataset, {{dataset}}, under {{licence}}, and the code. And the scope, honestly: these are mostly synthetic particles from one open-access corpus. That is the easiest case to compare, and even there the best pair fails. <span class="pause">pause</span></p>
-        <p>For the AI people here: <strong>every field has its ionic strength</strong>, the condition everyone assumes and nobody writes down. Build your agents so that silence stays silent. Thank you.</p>
       </div>
-      <div class="cue"><p><span class="k">Leave up</span>this slide during questions. It holds the call and the scope.</p></div>
+      <div class="cue">
+        <p><span class="k">Point at</span>the scope line at the bottom: mostly synthetic particles, one open-access corpus.</p>
+        <p class="then"><span class="k">Then</span>And here is what I will do next.</p>
+      </div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
@@ -632,14 +683,35 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         </div>
       </details>
     </section>
+
+    <section class="card" id="s22">
+      <header><span class="idx">22</span><h3>{{title:s22}}</h3><p class="time"><b>{{t.s22}}</b> · ends at {{at.s22}}</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s22}}</p>
+      <div class="say">
+        <p>What comes next depends on what I can put my hands on.</p>
+        <p>With nothing but code: the datasets the agent found, an audit of NOAA against its own papers, and the human audit this work still owes.</p>
+        <p>With <strong>one day on a zeta analyser</strong>: one bead at several salt levels, the curve the literature cannot give, and aging measured by design.</p>
+        <p>With a <strong>microcontroller and three probes</strong>, which is my home ground: the conditions logged at the moment of measurement. Then absence is not reported. <strong>It is impossible.</strong></p>
+        <p>Every field has its ionic strength. Build your agents so that silence stays silent. Thank you.</p>
+      </div>
+      <div class="cue"><p><span class="k">Leave up</span>this slide during questions. Point at III when you say “home ground”.</p></div>
+      <details class="deep">
+        <summary>In depth</summary>
+        <div class="deep-body">
+          <p><span class="k">What is really going on</span>Each step removes one kind of absence at its source. The code-only step widens and checks what the agents can reach. The analyser turns the reviewer’s objection into an experiment: the same particle at several ionic strengths, so a hard sphere can be told from a soft one. The logger is an embedded job: a small board reads conductivity (which gives the ionic strength), pH and temperature, stamps them with the time, and writes them into the measurement file, so the condition travels with the number. A microscope with a vision model counts particles per size class, so the slope of the size distribution is measured per sample instead of assumed.</p>
+          <p><span class="k">Where it comes from</span>The review call (docs/2026-10-10-review-call.md): the curve objection, aging, the size window. OD-03 in the register: no human has yet checked a row against its paper.</p>
+          <p><span class="k">If they push</span><b>Why not just ask the authors for the missing conditions?</b> Worth doing for the pairs one number would decide, and the census lists them. But it fixes the past one email at a time; a logger fixes the future at the source.</p>
+        </div>
+      </details>
+    </section>
   </section>
 
   <section class="act backup" aria-labelledby="h-backup">
     <header><h2 id="h-backup">Backup · for questions</h2><p class="eyebrow">not timed</p></header>
 
-    <section class="card" id="s20">
-      <header><span class="idx">20</span><h3>{{title:s20}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s20}}</p>
+    <section class="card" id="s23">
+      <header><span class="idx">23</span><h3>{{title:s23}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s23}}</p>
       <div class="say">
         <p>The project did not start from zeta. It started from curves: measure <strong>mobility across salt</strong>.</p>
         <p>These three particles have the same mobility at {{curve.I}} millimolar: one zeta, {{curve.zeta}} millivolts. Then they split. The hard one has its charge on its skin; salt hides it, and it falls toward zero. The soft ones carry charge inside a layer water flows through; salt cannot hide it, and they stop at a plateau.</p>
@@ -659,9 +731,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s21">
-      <header><span class="idx">21</span><h3>{{title:s21}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s21}}</p>
+    <section class="card" id="s24">
+      <header><span class="idx">24</span><h3>{{title:s24}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s24}}</p>
       <div class="say">
         <p>One laboratory. The same {{c14.size_nominal}} nanometre polystyrene bead, the same salt, {{c14.medium}}, the same pH, the same temperature, the same instrument.</p>
         <p>Two papers, {{c14.years}} years apart: <strong>{{c14.a.value}}</strong> millivolts against <strong>{{c14.b.value}}</strong>. <span class="pause">pause</span></p>
@@ -681,9 +753,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s22">
-      <header><span class="idx">22</span><h3>{{title:s22}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s22}}</p>
+    <section class="card" id="s25">
+      <header><span class="idx">25</span><h3>{{title:s25}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s25}}</p>
       <div class="say">
         <p>You saw that the liquid is inside the model that computes zeta. So zeta is not a property of the particle. It is a property of <strong>the particle in its liquid</strong>. For this room: it is like an embedding. The vector only means something inside the model that produced it.</p>
         <p>One paper, the same {{c02.size}} micrometre bead in water, in PBS and in cell-culture medium. Zeta moves {{c02.spread}} millivolts. And none of the three rows states the ionic strength.</p>
@@ -701,9 +773,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s23">
-      <header><span class="idx">23</span><h3>{{title:s23}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s23}}</p>
+    <section class="card" id="s26">
+      <header><span class="idx">26</span><h3>{{title:s26}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s26}}</p>
       <div class="say">
         <p>Ionic strength. It is missing in {{sp.field.ionic_strength.pairs}} of those pairs: {{sp.top_pct}}.</p>
         <p>The right column is the cheap part. In {{sp.only_total}} pairs, exactly one number is missing. One email to an author would decide them.</p>
@@ -721,9 +793,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s24">
-      <header><span class="idx">24</span><h3>{{title:s24}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s24}}</p>
+    <section class="card" id="s27">
+      <header><span class="idx">27</span><h3>{{title:s27}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s27}}</p>
       <div class="say">
         <p>It is a lab. Surely they used water. Just fill it in. <span class="pause">pause</span> Here is why not.</p>
         <p>Look at who states the ionic strength. Salt-solution rows: {{lab.salt.share}}. DI-water rows: {{lab.DI_water.stated}} of {{lab.DI_water.rows}}. Whether the value is missing depends on the liquid. In machine-learning words, it is <strong>missing not at random</strong>, so any default lands exactly on the rows that never say it.</p>
@@ -742,9 +814,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s25">
-      <header><span class="idx">25</span><h3>{{title:s25}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s25}}</p>
+    <section class="card" id="s28">
+      <header><span class="idx">28</span><h3>{{title:s28}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s28}}</p>
       <div class="say">
         <p>The instrument measures mobility. To turn it into zeta you multiply by Henry’s factor, from {{h.f_lo}} to {{h.f_hi}}. Where a measurement sits on this curve depends on the particle’s size against the Debye length, and so on the ionic strength.</p>
         <p>The dots are the {{h.points}} rows that report both. The band is the {{h.band}} rows without ionic strength: their factor can be anywhere in it, plus or minus {{h.hw_f}} on the printed number.</p>
@@ -763,9 +835,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s26">
-      <header><span class="idx">26</span><h3>{{title:s26}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s26}}</p>
+    <section class="card" id="s29">
+      <header><span class="idx">29</span><h3>{{title:s29}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s29}}</p>
       <div class="say">
         <p>Agents will look in harmonised databases first. So here is one.</p>
         <p>Two papers report the <strong>same {{re.tows}} net tows</strong>, with the same numbers. A global database holds them twice, and converts each copy its own way. So one physical sample carries two values.</p>
@@ -784,9 +856,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s27">
-      <header><span class="idx">27</span><h3>{{title:s27}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s27}}</p>
+    <section class="card" id="s30">
+      <header><span class="idx">30</span><h3>{{title:s30}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s30}}</p>
       <div class="say">
         <p>Now, why is this an AI problem? A language model reads what is on the page. <strong>Silence has no tokens.</strong> Give an extractor a field called temperature and a paper that never states one, and it gives a plausible answer: {{ai.defaults}}. A guess dressed as data.</p>
         <p>So the first design rule: <strong>absence is a value</strong>. “Not reported” is stored as a fact and never filled in. The row stays. Only the guess goes.</p>
@@ -804,9 +876,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s28">
-      <header><span class="idx">28</span><h3>{{title:s28}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s28}}</p>
+    <section class="card" id="s31">
+      <header><span class="idx">31</span><h3>{{title:s31}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s31}}</p>
       <div class="say">
         <p>The second rule is about who decides. Code fetches the papers, numbers every line, and lists every candidate number.</p>
         <p>Then Claude agents read. This is the only step with judgement. They return a value, a verbatim quote and the line addresses. Code checks that the quote is on those lines, word for word, and makes every decision after that.</p>
@@ -825,9 +897,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s29">
-      <header><span class="idx">29</span><h3>{{title:s29}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s29}}</p>
+    <section class="card" id="s32">
+      <header><span class="idx">32</span><h3>{{title:s32}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s32}}</p>
       <div class="say">
         <p>This is the system my abstract asks for, on one question: why does a value have the wrong sign?</p>
         <p>Three rungs. One reader gives a cause and cites lines. Then <strong>code</strong> checks that the lines carry the evidence. Then a <strong>second reader</strong> must agree. Each rung adds one stage, so the difference is what that stage buys.</p>
@@ -846,9 +918,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s30">
-      <header><span class="idx">30</span><h3>{{title:s30}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s30}}</p>
+    <section class="card" id="s33">
+      <header><span class="idx">33</span><h3>{{title:s33}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s33}}</p>
       <div class="say">
         <p>Everyone now uses a language model to grade a language model. So who checks the judge? <span class="pause">pause</span></p>
         <p>I treat a judge as <strong>one more reader</strong> and give it the same tests. Does it say yes to everything? Does it accept a fluent but wrong cause? Does its pick change when I only reverse the list?</p>
@@ -868,9 +940,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s31">
-      <header><span class="idx">31</span><h3>{{title:s31}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s31}}</p>
+    <section class="card" id="s34">
+      <header><span class="idx">34</span><h3>{{title:s34}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s34}}</p>
       <div class="say">
         <p>{{rr.papers}} papers, each read twice, blind, by separate agents with the same brief. On the {{rr.matched}} rows both readings found, the condition flags agree almost perfectly: ionic strength {{rr.agree.ionic_strength_reported}}. The weakest is the medium, {{rr.agree.medium_reported}}.</p>
         <p>Where they disagree is <strong>which rows exist</strong>: the same number of rows in only {{rr.same_count}} of {{rr.papers}} papers. An agent is reliable at saying what is reported. It is less reliable at deciding what counts as a measurement. That is where the errors live.</p>
@@ -888,9 +960,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s32">
-      <header><span class="idx">32</span><h3>{{title:s32}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s32}}</p>
+    <section class="card" id="s35">
+      <header><span class="idx">35</span><h3>{{title:s35}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s35}}</p>
       <div class="say">
         <p>These are real errors. A value cited from another study, recorded as the paper’s own: “{{g.cited.quote}}”. That is someone else’s measurement. An n the paper never states. Model inputs recorded as measurements. One reading counted twice, as zeta and as mobility. A storage temperature taken as the measurement temperature.</p>
         <p>The pattern: <strong>agents fill the structure you give them.</strong> If the schema has a slot, the agent wants to fill it.</p>
@@ -909,9 +981,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s33">
-      <header><span class="idx">33</span><h3>{{title:s33}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s33}}</p>
+    <section class="card" id="s36">
+      <header><span class="idx">36</span><h3>{{title:s36}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s36}}</p>
       <div class="say">
         <p>Our verifier flags any value it cannot find in the text, and the workers were told to act on flags. Some of our guards were simply wrong.</p>
         <p>An ionic strength written in molar, “{{gd.molar}}”. The check looked for “{{gd.looked1}}” and did not find it. Worker {{gd.worker}} deleted a correct value to clear the flag. The same with kelvin, with exponents inside units, with powers of ten. Each time, a correct value moved toward “not reported”, <strong>the very thing we measure.</strong> Our own checks were biasing our headline number. <span class="pause">pause</span></p>
@@ -931,9 +1003,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s34">
-      <header><span class="idx">34</span><h3>{{title:s34}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s34}}</p>
+    <section class="card" id="s37">
+      <header><span class="idx">37</span><h3>{{title:s37}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s37}}</p>
       <div class="say">
         <p>One reader model, {{gr.model}}, the same {{gr.asked}} questions, two ways of giving it evidence. Cell D gets the table. Cell B gets BM25 keyword retrieval over the papers’ lines.</p>
         <p>Comparable pairs found: {{gr.D.comparable}} against {{gr.B.comparable}}. A numeric filter across papers: {{gr.D.C}} against {{gr.B.C}}. Input tokens: {{gr.D.tokens}} against {{gr.B.tokens}}.</p>
@@ -953,9 +1025,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       </details>
     </section>
 
-    <section class="card" id="s35">
-      <header><span class="idx">35</span><h3>{{title:s35}}</h3><p class="time">backup · not timed</p></header>
-      <p class="screen"><span class="k">On screen</span>{{msg:s35}}</p>
+    <section class="card" id="s38">
+      <header><span class="idx">38</span><h3>{{title:s38}}</h3><p class="time">backup · not timed</p></header>
+      <p class="screen"><span class="k">On screen</span>{{msg:s38}}</p>
       <div class="say">
         <p>No person has checked a row against its paper yet. The audit samples rows that say “not reported”, opens each paper at the cited lines, which is a lookup and not a search, and answers yes, no or unsure.</p>
         <p>It gives the precision of “not reported”, and the whole census rests on it. <strong>It is the one check no agent can do for us.</strong> I will report the result, whatever it is.</p>

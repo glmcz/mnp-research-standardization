@@ -57,7 +57,7 @@ show = build_data.show
 
 # The grid runs are the ones REVIEW.md C9 reports at the same ref (build_data.grid_runs), so
 # the deck and the guide can never show two different grids.
-# The cited-value example (slide 31): the paper, and the commit at which its recorded row was the
+# The cited-value example (slide 34): the paper, and the commit at which its recorded row was the
 # value another study measured (EX-09's re-read control was committed there).
 CITED_PMCID = "PMC12280233"
 CITED_BEFORE = "09c11cd"
@@ -79,7 +79,7 @@ METHOD_ROWS = {
     "temperature_reported": "temperature (°C)",
     "instrument_reported": "instrument",
 }
-# The liquids of slide 24, as `medium_class` names them.
+# The liquids of slide 27, as `medium_class` names them.
 MEDIUM_WORDS = {
     "DI_water": "DI water",
     "unreported": "liquid not named",
@@ -270,11 +270,11 @@ def case02(V: Values, charts: dict, table: pd.DataFrame) -> None:
 
 
 def si_values(V: Values, ref: str, base: dict) -> None:
-    """Slide 13: ionic strength once the supplements are read too (the 2026-10-12 SI census)."""
+    """Slide 15: ionic strength once the supplements are read too (the 2026-10-12 SI census)."""
     si = json.loads(show(ref, SI_RATES))
     main = next(p for p in base["five"]["params"] if p["key"] == "ionic_strength_reported")
     if abs(si["main_text"]["paper_mean_pct"] / 100 - main["paper_mean_share"]) > 5e-4:
-        raise SystemExit(f"{SI_RATES} counted a different main text than slide 13's bar")
+        raise SystemExit(f"{SI_RATES} counted a different main text than slide 15's bar")
     V.pct("si.mean", si["main_plus_si"]["paper_mean_pct"] / 100, 1, SI_RATES + ": main_plus_si")
     V.int("si.new", si["accepted_papers_new"], SI_RATES + ": accepted_papers_new")
 
@@ -356,14 +356,14 @@ def _mM(V: Values, key: str, x: float, src: str) -> None:
 
 
 def lab_values(V: Values, charts: dict, table: pd.DataFrame) -> None:
-    """Slide 24: whether a row states its ionic strength depends on the liquid, and where it is
+    """Slide 27: whether a row states its ionic strength depends on the liquid, and where it is
     stated it runs over decades, so "a lab uses water" is not one value to fill in."""
     src = "out/tables/d1_zeta_table.csv: medium_class, ionic_strength_reported, ionic_strength_mM"
     stated = table[table["ionic_strength_reported"].astype(bool)]
     order = table["medium_class"].value_counts().index.tolist()
     unknown = set(order) - set(MEDIUM_WORDS)
     if unknown:
-        raise SystemExit(f"slide 24 has no words for medium_class {sorted(unknown)}")
+        raise SystemExit(f"slide 27 has no words for medium_class {sorted(unknown)}")
     points = {}
     for c in order:
         mM = stated.loc[stated["medium_class"] == c, "ionic_strength_mM"].astype(float)
@@ -394,7 +394,7 @@ def lab_values(V: Values, charts: dict, table: pd.DataFrame) -> None:
 
 
 def curve_values(V: Values, charts: dict) -> None:
-    """Slide 20 (backup): the method the talk started from. One hard and two soft particles,
+    """Slide 23 (backup): the method the talk started from. One hard and two soft particles,
     matched to the same mobility at one ionic strength by the physics demo's own figure function,
     so one zeta cannot tell them apart while the curves across salt can."""
     from mnp.infer import figures
@@ -421,7 +421,7 @@ def curve_values(V: Values, charts: dict) -> None:
         softs.append({"lambda_inv_nm": lam, "mu": mu.tolist(), "plateau": plateau})
     hard_mu = (hard.mobility_hard(p["hard_sigma_C_m2"], radius_m, grid, T_C=T) / MU_UNIT).tolist()
     if not all(abs(hard_mu[-1]) < abs(s["plateau"]) for s in softs):
-        raise SystemExit("the hard particle no longer falls below the soft plateaus: slide 20")
+        raise SystemExit("the hard particle no longer falls below the soft plateaus: slide 23")
     e0, e1 = round(math.log10(grid[0])), round(math.log10(grid[-1]))
     for i, e in enumerate(range(e0, e1 + 1)):
         V.tick(f"curve.x.{i}", 10.0**e, max(0, -e), "curve", "x")
@@ -435,13 +435,13 @@ def curve_values(V: Values, charts: dict) -> None:
 
 
 def d4_values(V: Values, ref: str) -> None:
-    """Slide 20 (backup): what of the curve method is built, and that no measured curve met it."""
+    """Slide 23 (backup): what of the curve method is built, and that no measured curve met it."""
     log = flat(show(ref, "CHANGELOG.md"))
     sims = find("CHANGELOG.md", log, r"trained at ([\d,]+) simulations")[0]
     V.int("d4.sims", int(sims.replace(",", "")), "CHANGELOG.md, the physics demo")
     sbc = list(csv.DictReader(io.StringIO(show(ref, "out/tables/d4_sbc.csv"))))
     if not all(r["pass"] == "True" for r in sbc):
-        raise SystemExit("out/tables/d4_sbc.csv: a calibration no longer passes; slide 20")
+        raise SystemExit("out/tables/d4_sbc.csv: a calibration no longer passes; slide 23")
     V.int("d4.sbc_params", len(sbc), "out/tables/d4_sbc.csv")
     V.float("d4.ks_min", min(float(r["ks_pvalue"]) for r in sbc), 2, "out/tables/d4_sbc.csv")
     tree = subprocess.run(
@@ -677,11 +677,11 @@ def scope_values(V: Values, base: dict) -> None:
 
 
 def audit_state(ref: str) -> None:
-    """Slide 35 says no person has checked a row. Stop if the audit sheet holds a verdict."""
+    """Slide 38 says no person has checked a row. Stop if the audit sheet holds a verdict."""
     rows = build_data.read_csv(ref, "out/review/audit_sample.csv")
     filled = [r["row_id"] for r in rows for k, v in r.items() if k.endswith("_ok") and v.strip()]
     if filled:
-        raise SystemExit(f"audit_sample.csv holds verdicts ({filled[:3]}): slide 35 must change")
+        raise SystemExit(f"audit_sample.csv holds verdicts ({filled[:3]}): slide 38 must change")
 
 
 # ---- the hypotheses and their tests (2026-10-19) ----------------------------------------------
@@ -725,7 +725,7 @@ def motivation_values(V: Values, ref: str) -> None:
 
 
 def basics_values(V: Values, table: pd.DataFrame) -> None:
-    """Slide 11: the instrument measures mobility; papers print the zeta computed from it."""
+    """Slide 12: the instrument measures mobility; papers print the zeta computed from it."""
     q = table["quantity"].value_counts()
     src = "out/tables/d1_zeta_table.csv: quantity"
     V.int("zb.zeta_rows", int(q["zeta_potential"]), src)
@@ -752,7 +752,7 @@ def hypotheses_values(V: Values, ref: str) -> None:
 
 
 def p2_values(V: Values, charts: dict, ref: str) -> None:
-    """Slide 12: zeta against size, polymer and surface label, from the P2 table."""
+    """Slide 13: zeta against size, polymer and surface label, from the P2 table."""
     from scipy.stats import spearmanr
 
     t = pd.read_csv(io.StringIO(show(ref, P2Z)))
@@ -791,7 +791,7 @@ def p2_values(V: Values, charts: dict, ref: str) -> None:
     V.float("p2.neg_lo", min(r["med"] for r in neg), 1, src)
     V.float("p2.neg_hi", max(r["med"] for r in neg), 1, src)
     if len(pos) != 1:
-        raise SystemExit(f"slide 12 names one exception; the table now has {len(pos)}")
+        raise SystemExit(f"slide 13 names one exception; the table now has {len(pos)}")
     e = pos[0]
     V.words("p2.exc", e["g"], src)
     V.int("p2.exc_papers", e["papers"], src)
@@ -808,7 +808,7 @@ def p2_values(V: Values, charts: dict, ref: str) -> None:
 
 
 def p4_values(V: Values, charts: dict, ref: str) -> None:
-    """Slide 15: the pre-registered zeta model, out of paper, against the leaky split."""
+    """Slide 17: the pre-registered zeta model, out of paper, against the leaky split."""
     r = json.loads(show(ref, PREREG))
     p4, sec = r["P4"], r["secondary"]
     src = PREREG + ": P4"
@@ -835,7 +835,7 @@ def window_ratio(alpha: float, small: tuple[float, float], large: tuple[float, f
 
 
 def window_values(V: Values, ref: str) -> None:
-    """Slide 10: one river's two size windows, then the three pre-registered tests."""
+    """Slide 11: one river's two size windows, then the three pre-registered tests."""
     w = pd.read_csv(io.StringIO(show(ref, WESER)))
     small = (float(w["small_lo_um"].iat[0]), float(w["small_hi_um"].iat[0]))
     large = (float(w["large_lo_um"].iat[0]), float(w["large_hi_um"].iat[0]))
@@ -882,7 +882,7 @@ def window_values(V: Values, ref: str) -> None:
 
 
 def reisser_values(V: Values, ref: str) -> None:
-    """Slide 26 (backup): the same tows twice in one database, and a coincidence like a cause."""
+    """Slide 29 (backup): the same tows twice in one database, and a coincidence like a cause."""
     t = pd.read_csv(io.StringIO(show(ref, TOWS)))
     both = t[(t["value_R"] > 0) & (t["value_E"] > 0)]
     ratio = both["value_R"] / both["value_E"]
@@ -906,7 +906,7 @@ def reisser_values(V: Values, ref: str) -> None:
 
 
 def validation_values(V: Values, ref: str) -> None:
-    """Slide 29 (backup): the validation ladder on Q2, and the guard wrong on the first run."""
+    """Slide 32 (backup): the validation ladder on Q2, and the guard wrong on the first run."""
     m = json.loads(show(ref, VSIGN))
     src = VSIGN
     V.int("v.cands", m["candidates"], src)
@@ -925,7 +925,7 @@ def validation_values(V: Values, ref: str) -> None:
     builder = show(ref, "tool/validate/build_labels.py")
     target = int(find("tool/validate/build_labels.py", builder, r"\nN = (\d+)")[0])
     if m["labelled"] >= target:
-        raise SystemExit("every blind label is in: slide 29 and its card must report accuracy")
+        raise SystemExit("every blind label is in: slide 32 and its card must report accuracy")
     V.int("v.label_target", target, "tool/validate/build_labels.py: N")
     notes = flat(show(ref, VRESULTS))
     first, a, b = find(
@@ -946,7 +946,7 @@ def judge_name(model: str) -> str:
 
 
 def judge_values(V: Values, ref: str) -> None:
-    """Slide 30 (backup): three judges from other families, and Claude judging its own reader."""
+    """Slide 33 (backup): three judges from other families, and Claude judging its own reader."""
     m = json.loads(show(ref, VJUDGE))
     cands = json.loads(show(ref, VSIGN))["candidates"]
     per = m["per_judge"]
@@ -984,7 +984,7 @@ def survey_values(V: Values, ref: str) -> None:
     recs = coloc["records"]
     found = sorted(k for k in recs if re.fullmatch(r"pangaea_\d+", k))
     if set(recs) != set(SV_NAMES) | set(found):
-        raise SystemExit(f"{SV_COLOC}: a dataset has no row on slide 6: {sorted(recs)}")
+        raise SystemExit(f"{SV_COLOC}: a dataset has no row on slide 7: {sorted(recs)}")
     for ds, key in SV_NAMES.items():
         V.int(f"sv.n.{key}", recs[ds], SV_COLOC + ": records")
     V.int("sv.n.found", sum(recs[k] for k in found), SV_COLOC + ": records, pangaea_<id>")
@@ -1002,9 +1002,6 @@ def survey_values(V: Values, ref: str) -> None:
     V.pct("sv.miss.emodnet.mesh", miss.loc["emodnet", "size_min_um"], 0, SV_MISS + ": emodnet")
     V.pct("sv.miss.air.date", miss.loc["air_fu2023", "date"], 0, SV_MISS + ": air, date")
     V.pct("sv.miss.air.method", miss.loc["air_fu2023", "method"], 0, SV_MISS + ": air, method")
-    n_found = pd.Series({k: recs[k] for k in found})
-    no_max = (miss.loc[found, "size_max_um"] * n_found).sum() / n_found.sum()
-    V.pct("sv.miss.found.max", no_max, 0, SV_MISS + ": pangaea_<id>, upper limit, by record")
     V.int(
         "sv.found_nolower",
         int((miss.loc[found, "size_min_um"] == 1).sum()),
@@ -1037,7 +1034,7 @@ def survey_values(V: Values, ref: str) -> None:
     V.float("sv.law14", series["Law et al. 2014"]["ratio_last_over_first"], 1, SV_P7)
     z = p7["P7_secondary_law2014_zone"]
     if not z["ratio_inside_zone"] < z["ratio_whole_series"]:
-        raise SystemExit(f"{SV_P7}: Law 2014 no longer rises less inside its zone; slide 7")
+        raise SystemExit(f"{SV_P7}: Law 2014 no longer rises less inside its zone; slide 8")
     V.float("sv.law14_zone", z["ratio_inside_zone"], 1, SV_P7 + ": secondary")
     V.pct("sv.zone_first", z["share_in_zone_first_third"], 0, SV_P7 + ": secondary")
     V.pct("sv.zone_last", z["share_in_zone_last_third"], 0, SV_P7 + ": secondary")
@@ -1058,17 +1055,22 @@ def survey_values(V: Values, ref: str) -> None:
 
     x = coloc["across_datasets_100km_any_year"]
     src = SV_COLOC + ": across_datasets_100km_any_year"
-    kept = [g for g in x["by_dataset_pair"] if g["decision"] != "refuse"]
-    refused = [g for g in x["by_dataset_pair"] if g["decision"] == "refuse"]
-    if len(kept) != 1 or len(refused) != 1:
-        raise SystemExit(f"{src}: slide 8 names one compared and one refused pair of databases")
+    groups = {(g["datasets"], g["decision"]): g for g in x["by_dataset_pair"]}
+    want = {("emodnet vs ncei", "caveat"), ("ncei vs pangaea_990052", "caveat"),
+            ("ncei vs pangaea_990052", "refuse")}  # fmt: skip
+    if set(groups) != want:
+        raise SystemExit(f"{src}: slide 9 names these database pairs: {sorted(want)}")
+    nets, pump = groups[("emodnet vs ncei", "caveat")], groups[("ncei vs pangaea_990052", "caveat")]
+    refused = groups[("ncei vs pangaea_990052", "refuse")]
     V.int("sv.x.km", x["km"], src)
-    V.int("sv.x.compared", x["compared"], src)
-    V.float("sv.x.median", x["median_fold"], 1, src)
-    V.float("sv.x.p90", x["p90_fold"], 0, src)
-    V.float("sv.x.years", kept[0]["median_years_apart"], 0, src + ", median years apart")
-    V.int("sv.x.refused", x["refused"], src)
-    V.float("sv.x.refused_fold", refused[0]["median_fold"], 0, src + ", the refused pair")
+    V.int("sv.x.compared", nets["pairs"], src + ", EMODnet against NCEI")
+    V.float("sv.x.median", nets["median_fold"], 1, src + ", EMODnet against NCEI")
+    V.float("sv.x.p90", nets["p90_fold"], 0, src + ", EMODnet against NCEI")
+    V.float("sv.x.years", nets["median_years_apart"], 0, src + ", median years apart")
+    V.int("sv.x.refused", refused["pairs"], src + ", the pump, refused")
+    V.float("sv.x.refused_fold", refused["median_fold"], 0, src + ", the pump, refused")
+    V.int("sv.x.cav", pump["pairs"], src + ", the pump, caveated")
+    V.float("sv.x.residual", pump["median_residual_fold"], 0, src + ", the pump, after the window")
     V.float("sv.x.raw_p90", x["unguarded"]["p90_fold"], 0, src + ", unguarded")
 
     dup = pd.read_csv(io.StringIO(show(ref, SV_DUP)))
@@ -1078,6 +1080,80 @@ def survey_values(V: Values, ref: str) -> None:
         dup.study_a.str.endswith("pone.0080466") & dup.study_b.str.endswith("pone.0111913")
     ]
     V.int("sv.dup.re_found", int(re_pair.records_a.iat[0]), SV_DUP + ": Reisser/Eriksen")
+
+
+AG = "out/tables/p2_aging.json"
+AG_PAIRS = "out/tables/p2_aging_pairs.csv"
+KIND_WORDS = {"photo": "light", "chemical": "oxidant"}
+
+
+def aging_values(V: Values, charts: dict, ref: str) -> None:
+    """Slide 14: an aged particle against its own virgin form, inside one paper (P11)."""
+    a = json.loads(show(ref, AG))
+    p = pd.read_csv(io.StringIO(show(ref, AG_PAIRS)))
+    V.int("ag.aged_rows", a["aged_rows"], AG)
+    V.int("ag.aged_papers", a["aged_papers"], AG)
+    V.int("ag.pairs", a["pairs"], AG)
+    V.int("ag.paired_papers", a["paired_papers"], AG)
+    p11a, p11b = a["P11a"], a["P11b"]
+    src = AG + ": P11a"
+    V.int("ag.a.papers", p11a["papers"], src)
+    V.int("ag.a.neg", p11a["papers_more_negative"], src)
+    V.int("ag.a.pos", p11a["papers_less_negative"], src)
+    V.float("ag.a.median", p11a["median_delta_mV"], 1, src)
+    V.float("ag.a.lo", p11a["ci95"][0], 1, src + ", 95 % interval")
+    V.float("ag.a.hi", p11a["ci95"][1], 1, src + ", 95 % interval")
+    V.float("ag.a.p", p11a["sign_test_p"], 2, src + ", sign test")
+    V.words("ag.a.verdict", p11a["verdict"], src)
+    src = AG + ": P11b"
+    V.float("ag.b.median", p11b["median_difference_mV"], 1, src)
+    V.float("ag.b.lo", p11b["ci95"][0], 1, src + ", 95 % interval")
+    V.float("ag.b.hi", p11b["ci95"][1], 1, src + ", 95 % interval")
+    V.float("ag.b.ratio", p11b["width_ratio_unpaired_over_paired"], 1, src)
+    V.words("ag.b.verdict", p11b["verdict"], src)
+    after = a["chosen_after_the_results"]
+    iqr = after["virgin_between_papers"]["PS"]["iqr_mV"]
+    V.float("ag.iqr.PS", iqr, 0, AG + ": virgin PS between papers, IQR (after the results)")
+    V.float("ag.scale", iqr / abs(p11a["median_delta_mV"]), 0, AG + ": that IQR over P11a's median")
+    swapped = after["papers_printing_swapped_values"]
+    if len(swapped) != 1:
+        raise SystemExit(f"{AG}: slide 14 names one paper that swaps its values; now {swapped}")
+    V.text("ag.swap", swapped[0], AG + ": papers printing swapped values")
+    ox = p[p.kind.isin(KIND_WORDS)]
+    rows = []
+    for _, g in ox.groupby("pmcid"):
+        rows.append(
+            {
+                "label": f"{'/'.join(sorted(set(g.polymer)))} · "
+                + " and ".join(KIND_WORDS[k] for k in sorted(set(g.kind), reverse=True)),
+                "med": float(g.delta_mV.median()),
+                "lo": float(g.delta_mV.min()),
+                "hi": float(g.delta_mV.max()),
+            }
+        )
+    if len(rows) != p11a["papers"]:
+        raise SystemExit(f"{AG_PAIRS}: {len(rows)} oxidative papers, P11a counts {p11a['papers']}")
+    rows.sort(key=lambda r: r["med"])
+    for i, r in enumerate(rows):
+        V.float(f"ag.paper.{i}", r["med"], 1, AG_PAIRS + ": a paper's median, oxidative pairs")
+    lo = math.floor(min(min(r["lo"] for r in rows), -iqr / 2) / 10) * 10
+    hi = math.ceil(max(max(r["hi"] for r in rows), iqr / 2) / 10) * 10
+    for i, x in enumerate(range(lo, hi + 1, 10)):
+        V.tick(f"aging.x.{i}", x, 0, "aging", "x")
+    charts["aging"] = {"x": [lo, hi], "rows": rows, "iqr": iqr}
+
+
+def prereg_tally(V: Values) -> None:
+    """Slide 20: every pre-registered prediction with a verdict, read from the values above."""
+    keys = ("p1.verdict", "p2t.verdict", "p3.verdict", "p4.verdict", "sv.p7a", "sv.p7b",
+            "hy.p8", "hy.p9", "ag.a.verdict", "ag.b.verdict")  # fmt: skip
+    verdicts = [V.v[k]["v"] for k in keys]
+    if set(verdicts) - {"supported", "partly", "refuted"}:
+        raise SystemExit(f"slide 20 counts three verdicts; found {sorted(set(verdicts))}")
+    src = "docs/PREREG_2026-10.md: P1-P4, P7a/b, P8, P9 (guard), P11a/b"
+    V.int("pv.n", len(verdicts), src)
+    for v in ("supported", "partly", "refuted"):
+        V.int(f"pv.{v}", verdicts.count(v), src + f", {v}")
 
 
 HY = "out/tables/hybrid_results.json"
@@ -1110,9 +1186,9 @@ def hybrid_values(V: Values, ref: str) -> None:
     for arm in ARM_KEYS:
         a, src = m["arms"][arm], f"{HY}: arms[{arm}]"
         V.pct(f"hy.{arm}.correct", a["correct"], 0, src + ", correct")
-        if arm in ("N0", "N2", "H"):  # slide 16 compares the arms on the traps
+        if arm in ("N0", "N2", "H"):  # slide 18 compares the arms on the traps
             V.pct(f"hy.{arm}.adv", a["correct_adversarial"], 0, src + ", correct on the traps")
-        if arm in ("H", "Hg", "Hng"):  # slide 17 splits the ablations by the flag needed
+        if arm in ("H", "Hg", "Hng"):  # slide 19 splits the ablations by the flag needed
             V.pct(f"hy.{arm}.flag", a["correct_flag_required"], 0, src + ", flag-required")
             V.pct(f"hy.{arm}.noflag", a["correct_no_flag"], 0, src + ", no flag needed")
         if a["ungrounded_numbers_per_answer"] is None:
@@ -1185,6 +1261,8 @@ def build(ref: str) -> dict:
     judge_values(V, ref)
     survey_values(V, ref)
     hybrid_values(V, ref)
+    aging_values(V, charts, ref)
+    prereg_tally(V)
     return {
         "ref": ref,
         "commit": base["commit"],
@@ -1729,7 +1807,7 @@ def chart_arch(values: dict, charts: dict) -> str:
 
 
 def chart_pol(values: dict, charts: dict) -> str:
-    """Slide 12: each polymer's 10th to 90th percentile of zeta, and its median."""
+    """Slide 13: each polymer's 10th to 90th percentile of zeta, and its median."""
     c = charts["pol"]
     W, x0, x1, top, row = 900, 120, 800, 16, 34
     H = top + row * len(c["rows"]) + 44
@@ -1766,8 +1844,43 @@ def chart_pol(values: dict, charts: dict) -> str:
     return svg(W, H, body, "Zeta potential by polymer: the spread and the median of each")
 
 
+def chart_aging(values: dict, charts: dict) -> str:
+    """Slide 14: per paper, oxidative pairs aged minus virgin, against the between-paper spread."""
+    c = charts["aging"]
+    W, x0, x1, top, row = 900, 210, 780, 12, 34
+    n = len(c["rows"])
+    H = top + row * (n + 1) + 52
+    sx = lambda v: x0 + (v - c["x"][0]) / (c["x"][1] - c["x"][0]) * (x1 - x0)  # noqa: E731
+    y0 = top + row * (n + 1)
+    body = []
+    for key in _ticks(values, "aging", "x"):
+        x = sx(values[key]["v"])
+        cls = "ax" if values[key]["v"] == 0 else "grid"
+        body += [
+            line(x, top, x, y0, cls),
+            T(x, y0 + 24, "{{" + key + "}}", values, "tick", "middle"),
+        ]
+    for i, r in enumerate(c["rows"]):
+        y = top + row * i + row / 2
+        body += [
+            T(x0 - 14, y + 6, r["label"], values, "row-l", "end"),
+            line(sx(r["lo"]), y, sx(r["hi"]), y, "gap"),
+            f'<circle cx="{sx(r["med"]):.1f}" cy="{y:.1f}" r="7" class="pt"/>',
+            T(x1 + 18, y + 6, "{{ag.paper." + str(i) + "}} mV", values, "val-s"),
+        ]
+    y = top + row * n + row / 2
+    body += [
+        T(x0 - 14, y + 6, "paper to paper, virgin PS", values, "row-l abs", "end"),
+        rect(sx(-c["iqr"] / 2), y - 7, sx(c["iqr"] / 2) - sx(-c["iqr"] / 2), 14, "seg-q", 3),
+        T(x1 + 18, y + 6, "{{ag.iqr.PS}} mV", values, "val-s"),
+        T(x1, H - 4, "aged minus virgin, mV: each paper’s pairs and their median; the band’s "
+          "width is the spread between papers", values, "ax-t", "end"),
+    ]  # fmt: skip
+    return svg(W, H, body, "Aged minus virgin zeta per paper, against the spread between papers")
+
+
 def chart_r2(values: dict, charts: dict) -> str:
-    """Slide 15: out-of-paper R² per feature set, and the same model on a leaky split."""
+    """Slide 17: out-of-paper R² per feature set, and the same model on a leaky split."""
     sets = charts["r2"]["sets"] + ["leak"]
     label = {
         "size": "size",
@@ -1806,6 +1919,7 @@ def chart_r2(values: dict, charts: dict) -> str:
 CHARTS = {
     "pol": chart_pol,
     "r2": chart_r2,
+    "aging": chart_aging,
     "c14": chart_c14,
     "c02": chart_c02,
     "layer": chart_layer,

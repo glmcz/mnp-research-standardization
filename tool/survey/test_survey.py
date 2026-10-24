@@ -173,6 +173,14 @@ def test_the_found_pangaea_datasets_arrive_whole_with_their_own_window(records) 
     # the windows the datasets' own methods state: 300 um meshes, a 10 um counting limit
     assert lower["pangaea_941076"] == 300 and lower["pangaea_990052"] == 10
     assert w.loc[w.dataset == "pangaea_928578", "flags"].str.contains("window_unreported").all()
+    # the reviewer's convention (2026-10-10, [32:03]): a stated lower limit implies 5 mm above;
+    # with no lower limit stated there is no window to complete
+    found = records[records["flags"].str.contains("found_by_search_agent", na=False)]
+    upper = found.groupby("dataset").size_max_um.agg(lambda s: set(s.dropna()))
+    assert upper["pangaea_990052"] == {5000.0} and upper["pangaea_941076"] == {5000.0}
+    assert upper["pangaea_928578"] == set() and upper["pangaea_882220"] == set()
+    conv = found[found.size_max_um.notna()]
+    assert conv["flags"].str.contains("upper_by_convention").all()
 
 
 def test_a_cross_dataset_ratio_is_taken_only_where_the_window_guard_allows_it() -> None:
@@ -195,3 +203,27 @@ def test_a_cross_dataset_ratio_is_taken_only_where_the_window_guard_allows_it() 
     assert by[("x vs z", "refuse")]["reason"] == "window_factor_too_uncertain"
     held = pd.DataFrame({"study_a": ["A"], "study_b": ["B"]})
     assert report.across_datasets(t, km=100, days=None, dup=held)["compared"] == 0
+
+
+def test_a_caveated_cross_dataset_pair_reports_the_gap_the_window_cannot_explain() -> None:
+    import report
+
+    # a 150 um net against a 10 um pump: the window predicts the pump counts lo..hi times more
+    lo, hi = v.window_factor((150.0, 5000.0), (10.0, 5000.0))
+    rows = [
+        ("A", "w", "2020-01-01", 0.0, 0.0, 1.0, "net", 2020),
+        ("B", "w", "2021-01-01", 0.0, 0.2, 500.0, "pump", 2021),  # far beyond hi
+        ("C", "w", "2021-01-01", 0.0, 0.3, 1.0, "net", 2021),  # dataset z, the same net
+    ]
+    t = _toy(rows).assign(
+        dataset=["x", "y", "z"], size_min_um=[150.0, 10.0, 150.0], size_max_um=5000.0
+    )
+    none = pd.DataFrame(columns=["study_a", "study_b"])
+    out = report.across_datasets(t, km=100, days=None, dup=none)
+    by = {r["datasets"]: r for r in out["by_dataset_pair"]}
+    assert by["x vs y"]["decision"] == "caveat"
+    assert by["x vs y"]["median_fold"] == 500.0
+    # what is left after the most generous conversion: 500 / hi, never 500 itself
+    assert by["x vs y"]["median_residual_fold"] == round(500.0 / hi, 2)
+    # a pair the window fully explains leaves nothing: the same net, the same count
+    assert by["x vs z"]["median_residual_fold"] == 1.0

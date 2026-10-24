@@ -63,7 +63,8 @@
     "pairs": 3,
     "median_years_apart": 0.0,
     "median_fold": 1.18,
-    "p90_fold": 1.5
+    "p90_fold": 1.5,
+    "median_residual_fold": 1.16
    }
   ]
  },
@@ -72,10 +73,10 @@
   "days": null,
   "pairs": 70,
   "excluded_held_twice": 0,
-  "compared": 57,
-  "refused": 13,
-  "median_fold": 1.52,
-  "p90_fold": 7.2,
+  "compared": 61,
+  "refused": 9,
+  "median_fold": 1.56,
+  "p90_fold": 52.5,
   "unguarded": {
    "median_fold": 1.71,
    "p90_fold": 29388.1
@@ -88,16 +89,27 @@
     "pairs": 57,
     "median_years_apart": 2.0,
     "median_fold": 1.52,
-    "p90_fold": 7.2
+    "p90_fold": 7.2,
+    "median_residual_fold": 1.53
+   },
+   {
+    "datasets": "ncei vs pangaea_990052",
+    "decision": "caveat",
+    "reason": "different_window",
+    "pairs": 4,
+    "median_years_apart": 6.0,
+    "median_fold": 574.43,
+    "p90_fold": 2281.4,
+    "median_residual_fold": 21.96
    },
    {
     "datasets": "ncei vs pangaea_990052",
     "decision": "refuse",
-    "reason": "window_unreported",
-    "pairs": 13,
+    "reason": "window_factor_too_uncertain",
+    "pairs": 9,
     "median_years_apart": 8.0,
-    "median_fold": 61943.83,
-    "p90_fold": 281014.7
+    "median_fold": 67895.45,
+    "p90_fold": 404542.0
    }
   ]
  }

@@ -53,11 +53,20 @@ def colocated_summary(t, km: float, days: int | None, same_method: bool, dup) ->
     }
 
 
+def _residual(va: float, vb: float, verdict) -> float:
+    """log10 of how far b/a lies outside the window factor's interval; 0 when it is inside."""
+    lo, hi = verdict.detail if verdict.decision == "caveat" else (1.0, 1.0)
+    r = np.log10(vb / va)
+    return float(max(0.0, r - np.log10(hi), np.log10(lo) - r))
+
+
 def across_datasets(t, km: float, days: int | None, dup) -> dict:
     """Records from two datasets near each other, judged by the window guard before any ratio.
 
     A pair the guard refuses is counted and shown with its fold, but never enters the summary
     fold: two windows no slope can convert between say nothing about each other's numbers.
+    A caveated pair also reports its residual: the fold left after the most generous window
+    conversion, which is the disagreement the size window cannot explain.
     """
     p = v.colocated(t, km=km, days=days, same_method=False)
     if not p.empty:
@@ -76,10 +85,14 @@ def across_datasets(t, km: float, days: int | None, dup) -> dict:
         decision=[x.decision for x in verdicts],
         reason=[x.reason for x in verdicts],
         years_apart=np.abs(a.year.to_numpy() - b.year.to_numpy()),
-    )
+        residual=[_residual(va, vb, x) for va, vb, x in zip(a.value, b.value, verdicts,
+                                                              strict=True)],
+    )  # fmt: skip
     groups = [
         {"datasets": d, "decision": dec, "reason": r, "pairs": int(len(g)),
-         "median_years_apart": float(np.nanmedian(g.years_apart)), **_folds(g.log10_ratio)}
+         "median_years_apart": float(np.nanmedian(g.years_apart)), **_folds(g.log10_ratio),
+         **({} if dec == "refuse" else
+            {"median_residual_fold": round(float(10 ** np.median(g.residual)), 2)})}
         for (d, dec, r), g in p.groupby(["datasets", "decision", "reason"])
     ]  # fmt: skip
     compared = p[p.decision != "refuse"]

@@ -333,11 +333,13 @@ def pangaea_found() -> pd.DataFrame:
                     "date": date.dt.date.astype(str).where(date.notna()),
                     "year": date.dt.year.astype(float),
                     "size_min_um": lower,
-                    "size_max_um": np.nan,
+                    # A study that states only a lower limit counts up to 5 mm, the field's
+                    # convention (the review call, 2026-10-10); NCEI applies the same rule.
+                    "size_max_um": 5000.0 if np.isfinite(lower) else np.nan,
                     "unit": spec["unit"],
                     "value": pd.to_numeric(d[conc], errors="coerce"),
                     "flags": "found_by_search_agent"
-                    + ("" if np.isfinite(lower) else ";window_unreported"),
+                    + (";upper_by_convention" if np.isfinite(lower) else ";window_unreported"),
                 }
             )
         )

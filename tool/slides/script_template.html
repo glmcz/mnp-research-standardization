@@ -150,7 +150,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
 
 <main>
   <header class="top">
-    <p class="eyebrow">Talk script · AI conference · rehearsal copy</p>
+    <p class="eyebrow">Talk script · PhD students and researchers · rehearsal copy</p>
     <h1>{{title:s1}}</h1>
     <p class="lede">{{msg:s1}}</p>
     <p class="facts"><span>Length <b>{{talk.total}}</b></span><span><b>Six acts</b>, twenty-two slides and sixteen in backup</span><span>Speaker: <b>{{author}}</b></span></p>
@@ -199,9 +199,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
     <section class="card" id="s1">
       <header><span class="idx">01</span><h3>{{title:s1}}</h3><p class="time"><b>{{t.s1}}</b> · ends at {{at.s1}}</p></header>
       <div class="say">
-        <p>Good morning. My name is {{author}}.</p>
-        <p>This talk is about one question that every AI system reading science will meet: <strong>what does your agent do when the paper says nothing?</strong></p>
-        <p>I will show you what Claude agents found when they read {{records}} papers on nanoplastics, and how we checked them.</p>
+        <p>Good morning. I am {{author}}, an AI engineer: I build agents, backends and embedded systems.</p>
+        <p>This talk is about one question every AI system reading science will meet: <strong>what does your agent do when the paper says nothing?</strong></p>
+        <p>I pointed Claude agents at {{records}} nanoplastics papers and {{sv.n.datasets}} datasets, and checked everything they said.</p>
       </div>
       <div class="cue">
         <p class="then"><span class="k">Then</span>First: why charge matters at all.</p>
@@ -211,7 +211,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         <div class="deep-body">
           <p><span class="k">What is really going on</span>Claude agents read the open-access full texts that one Europe PMC query returned and wrote down every zeta-potential and mobility measurement, together with the conditions it was measured under. Each value comes with a verbatim quote and the address of the line it sits on, and a condition the paper does not state is stored as “not reported”. The opening question is the whole talk in one sentence: a model has no signal for what is missing, so the system has to be built to notice it.</p>
           <p><span class="k">Where the numbers come from</span>{{papers_read}} full texts were fetched and vendored; {{records}} have an extraction record; {{row_papers}} papers hold at least one measurement, {{rows}} rows in all. The dataset is {{dataset}}, released under {{licence}}.</p>
-          <p><span class="k">If they push</span><b>Why nanoplastics, at an AI conference?</b> Because it is a clean case of a general problem: numbers that are only meaningful together with conditions the source leaves out. Surface charge decides whether particles clump, what sticks to them and how cells take them up, so the field needs these numbers to be comparable.</p>
+          <p><span class="k">If they push</span><b>Why nanoplastics, for a room that mostly does not measure plastic?</b> Because it is a clean case of a general problem: numbers that are only meaningful together with conditions the source leaves out. Surface charge decides whether particles clump, what sticks to them and how cells take them up, so the field needs these numbers to be comparable.</p>
         </div>
       </details>
     </section>
@@ -220,7 +220,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">02</span><h3>{{title:s2}}</h3><p class="time"><b>{{t.s2}}</b> · ends at {{at.s2}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s2}}</p>
       <div class="say">
-        <p>Why should an AI conference care about the charge of a plastic particle? <span class="pause">pause</span></p>
+        <p>Why should anyone outside toxicology care about the charge of a plastic particle? <span class="pause">pause</span></p>
         <p>Because the toxicology says it <strong>changes what the particle does</strong>. One review puts it simply: positively charged nanoplastics affect cells more than negative ones.</p>
         <p>And a systematic review adds the second half. The charge is one of the factors that decide the effect, but most studies <strong>never measured it in a comparable way</strong>.</p>
         <p>So the charge matters. Whether two charges can be compared is what this talk measures.</p>
@@ -245,7 +245,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <div class="say">
         <p>Each of these is one sentence of my abstract, made testable.</p>
         <p>The first is about what papers leave out. The next three are about what the numbers then say: about the particle, about the size window, about databases. The last is about the agents themselves.</p>
-        <p>For the new data I did one more thing. I wrote the predictions down from physics and published values, and <strong>committed them before running anything</strong>. <span class="pause">pause</span> So when I say pre-registered, it means I could have been wrong in public.</p>
+        <p>And I wrote the predictions down from physics and published values, and <strong>committed them before running anything</strong>. <span class="pause">pause</span> So when I say pre-registered, it means I could have been wrong in public.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the five rows, top to bottom, without reading them out.</p>
@@ -362,7 +362,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">08</span><h3>{{title:s8}}</h3><p class="time"><b>{{t.s8}}</b> · ends at {{at.s8}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s8}}</p>
       <div class="say">
-        <p>Pool NOAA’s ocean samples by period, and the median rises <strong>×{{sv.pooled}}</strong> from {{sv.y_from}} to {{sv.y_to}}. That is the headline a naive analysis writes. <span class="pause">pause</span></p>
+        <p>Pool NOAA’s ocean samples by period, and the median rises <strong>×{{sv.pooled}}</strong> from {{sv.y_from}} to {{sv.y_to}}. That is the headline a naive analysis writes. <span class="pause">pause</span> It is like asking whether a town grew taller by measuring different people each year.</p>
         <p>But {{sv.studies_from}} studies sampled then, and {{sv.studies_to}} now, in other seas, with other nets. Not one study is on both sides.</p>
         <p>So I predicted, before computing it, that inside one long series it is flat. Law and colleagues, {{sv.law_tows}} tows: <strong>flat</strong>, as they published. Two series do rise, one in the North Pacific gyre, where a rise is published. And the other rises half as much inside its own accumulation zone. Part of its rise is where the ship sailed.</p>
       </div>
@@ -429,7 +429,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">11</span><h3>{{title:s11}}</h3><p class="time"><b>{{t.s11}}</b> · ends at {{at.s11}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s11}}</p>
       <div class="say">
-        <p>Now the same story for counting particles in the environment. Here the missing condition is the <strong>size window</strong>: from which size up a method can see.</p>
+        <p>Now the same story for counting particles in the environment. Here the missing condition is the <strong>size window</strong>: from which size up a method can see. Think of fishing: a finer net catches more fish, so the count describes the net as much as the sea.</p>
         <p>One river, one study, two windows. The small particles outnumber the large ones by about five thousand. The textbook slope predicts about a dozen.</p>
         <p>Three pre-registered tests. In {{p1.studies}} soil studies, a finer limit means <strong>more plastic counted</strong>. Rescaling everything to one window does <strong>not</strong> settle the disagreement. And {{p3.outside}} of measured size distributions do not fit the slope the rescaling assumes.</p>
       </div>
@@ -544,8 +544,8 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <p class="screen"><span class="k">On screen</span>{{msg:s16}}</p>
       <div class="say">
         <p>Take every pair of rows that describe the same particle: the same quantity, polymer and surface. That is {{sp.pairs}} pairs.</p>
-        <p>Most of them, {{sp.cat_pct.stated_difference}}, differ in something the papers did state: another salt, another pH. That is real science.</p>
-        <p>But <strong>{{sp.cat.lost_to_absence}}</strong> pairs are blocked only by something that is missing. Nothing either paper says is different. We just cannot know. <span class="pause">pause</span> <strong>Not different. Just unreported.</strong></p>
+        <p>Most of them, {{sp.cat_pct.stated_difference}}, differ in something the papers did state: another salt, another pH.</p>
+        <p>But <strong>{{sp.cat.lost_to_absence}}</strong> pairs are blocked only by something that is missing. We just cannot know. <span class="pause">pause</span> <strong>Not different. Just unreported.</strong></p>
         <p>One honest caveat: this is a count, not a counterfactual. Reported, a pair becomes decidable, not automatically comparable.</p>
       </div>
       <div class="cue">
@@ -566,7 +566,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">17</span><h3>{{title:s17}}</h3><p class="time"><b>{{t.s17}}</b> · ends at {{at.s17}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s17}}</p>
       <div class="say">
-        <p>This one is for you, the AI people.</p>
+        <p>This one is for anyone who trains a model on published data.</p>
         <p>I trained a model to predict zeta from everything we know: size, plastic, surface, liquid, pH. Tested on papers it never saw, it scores {{p4.all}}. <strong>Worse than the average.</strong></p>
         <p>Now shuffle the rows across papers, the usual random split. Same model: {{p4.leak}}. <span class="pause">pause</span> It looks like it learned something.</p>
         <p>It did not. Rows from one paper are near-copies, one particle in several conditions. The random split lets the model <strong>look up the answer</strong>.</p>

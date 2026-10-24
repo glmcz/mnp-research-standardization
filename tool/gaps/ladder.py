@@ -36,11 +36,23 @@ LABELS = {
 }
 #: The published rows' labels, by a word of the scout's item name; the metric's short tag.
 PUBLISHED_LABELS = {
-    "SRM 1992": "another laboratory · a certified silica, the best case",
-    "NanoValid": "another laboratory · one batch of silica",
-    "Ciornii": "another laboratory · PET particles in one tablet",
-    "Erasmus": "another participant · spiked water, one protocol",
-    "pellet": "another laboratory · weighing the same pellets",
+    "SRM 1992": ("srm", "another laboratory · a certified silica, the best case"),
+    "NanoValid": ("nanovalid", "another laboratory · one batch of silica"),
+    "Ciornii": ("ciornii", "another laboratory · PET particles in one tablet"),
+    "Erasmus": ("erasmus", "another participant · spiked water, one protocol"),
+    "pellet": ("pellets", "another laboratory · weighing the same pellets"),
+}
+#: A stable name for each of this project's rows, by what differs.
+KEYS = {
+    "aged or not": "aging",
+    "the paper, the batch": "case14",
+    "the paper": "papers",
+    "the liquid": "liquid",
+    "the conversion, in one database": "tows",
+    "the database, the year": "databases",
+    "the study": "study",
+    "the method: a net or a pump": "pump",
+    "the size window": "window",
 }
 SHORT = {
     "median of papers": "median",
@@ -60,7 +72,8 @@ def own() -> list[dict]:
     rows = []
 
     def add(family, held, differs, value, metric, source, high=None):
-        rows.append({"family": family, "label": LABELS[differs], "held_same": held,
+        rows.append({"family": family, "key": KEYS[differs], "label": LABELS[differs],
+                     "held_same": held,
                      "differs": differs, "value": value,
                      "high": high, "metric": metric, "source": source,
                      "origin": "this project"})  # fmt: skip
@@ -165,10 +178,10 @@ def published() -> list[dict]:
     s = s[s.kept]
     rows = []
     for r in s.itertuples():
-        label = next(v for k, v in PUBLISHED_LABELS.items() if k in r.name)
+        key, label = next(v for k, v in PUBLISHED_LABELS.items() if k in r.name)
         metric = "range of laboratory means" if r.metric.startswith("range of") else r.metric
         rows.append(
-            {"family": "charge" if r.family == "A" else "count", "label": label,
+            {"family": "charge" if r.family == "A" else "count", "key": key, "label": label,
              "held_same": r.material, "differs": "the laboratory", "value": r.value,
              "high": None if pd.isna(r.high) or r.high == r.value else r.high,
              "metric": metric, "source": r.url, "origin": "published"}

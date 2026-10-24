@@ -975,7 +975,9 @@ DS_SEARCH = "out/tables/dataset_search.json"
 #: The survey's datasets by the key their slide values use; the search agent's PANGAEA finds are
 #: the pangaea_<id> datasets, shown as one row.
 SV_NAMES = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser",
-            "emodnet": "emodnet", "isobe2021": "isobe", "kiessling2021": "kiessling"}  # fmt: skip
+            "emodnet": "emodnet", "isobe2021": "isobe", "kiessling2021": "kiessling",
+            "durum": "durum", "rivm": "rivm", "valine2020": "valine", "moore_dw": "moore",
+            "sfbay": "sfbay"}  # fmt: skip
 #: The scout agent's finds, which joined the table (tool/survey/table.py).
 SCOUT_JOINED = ("isobe2021", "kiessling2021")
 DS_SCOUT = "out/tables/dataset_scout_verified.csv"
@@ -1013,6 +1015,11 @@ def survey_values(V: Values, ref: str) -> None:
     miss = pd.read_csv(io.StringIO(show(ref, SV_MISS))).set_index("dataset")
     V.pct("sv.miss.emodnet.mesh", miss.loc["emodnet", "size_min_um"], 0, SV_MISS + ": emodnet")
     V.pct("sv.miss.isobe.window", miss.loc["isobe2021", "size_min_um"], 0, SV_MISS + ": isobe2021")
+    for key, ds, field in (("durum.date", "durum", "date"), ("rivm.date", "rivm", "date"),
+                           ("moore.lat", "moore_dw", "lat"), ("valine.window", "valine2020",
+                                                              "size_min_um")):  # fmt: skip
+        V.pct(f"sv.miss.{key}", miss.loc[ds, field], 0, SV_MISS + f": {ds}, {field}")
+    V.int("sv.n.user", sum(k in recs for k in USER_SETS), SV_COLOC + ": the reference list's")
     V.pct("sv.miss.kiessling.window", miss.loc["kiessling2021", "size_min_um"], 0,
           SV_MISS + ": kiessling2021")  # fmt: skip
     V.int(
@@ -1111,6 +1118,18 @@ D1_CSV = "out/tables/d1_zeta_table.csv"
 EXTRACTIONS = "data/interim/extractions.jsonl"
 SV_STUDIES = "out/tables/survey_studies.csv"
 WIN_OCEAN = {"ncei": "ncei", "emodnet": "emodnet"}  # every other ocean-water dataset was found
+#: Datasets Martin fetched from his reference list (tool/survey/fetch_user.py).
+USER_SETS = ("durum", "rivm", "valine2020", "moore_dw", "sfbay")
+#: The window plot's panels: name, title, the settings and unit it draws.
+WIN_PANELS = (
+    ("win_ocean", "ocean water, pieces per m³", ("Ocean water",), "pieces/m3"),
+    ("win_river", "rivers, pieces per m³", ("river water",), "pieces/m3"),
+    ("win_storm", "stormwater, particles per L", ("stormwater runoff",), "particles/L"),
+    ("win_dw", "drinking water, particles per L",
+     ("drinking water, tap", "drinking water, bottled"), "particles/L"),
+    ("win_sed", "sediment, items per kg dry", ("sediment",), "microplastic/kg sediment dry wt."),
+    ("win_soil", "soil, items per kg", ("soil",), "items/kg"),
+)  # fmt: skip
 
 
 def parse_values(V: Values, ref: str) -> None:
@@ -1154,25 +1173,32 @@ def windows_values(V: Values, charts: dict, ref: str) -> None:
     """Slide 8: the reviewer's plot, every study as its size window by its concentration span."""
     s = pd.read_csv(io.StringIO(show(ref, SV_STUDIES)))
     ok = s.n_pos.gt(0) & s.size_min_um.notna() & s.size_max_um.notna() & s.p10.gt(0)
-    ocean = s[ok & s.setting.eq("Ocean water") & s.unit.eq("pieces/m3")]
-    soil = s[ok & s.setting.eq("soil")]
-    ocean = ocean.assign(g=ocean.dataset.map(WIN_OCEAN).fillna("found"))
+    s = s[ok].assign(
+        g=lambda d: d.dataset.map(WIN_OCEAN).where(
+            d.dataset.isin(WIN_OCEAN), np.where(d.dataset.isin(USER_SETS), "user", "found")
+        )
+    )
+    found = s.dataset.str.fullmatch(r"pangaea_\d+") | s.dataset.isin(("isobe2021", "kiessling2021"))
+    s.loc[~s.dataset.isin((*WIN_OCEAN, *USER_SETS)) & ~found, "g"] = "other"
+    ocean = s[s.setting.eq("Ocean water") & s.unit.eq("pieces/m3")]
     for g in ("ncei", "emodnet", "found"):
         V.int(f"win.{g}.n", int(ocean.g.eq(g).sum()), SV_STUDIES + f": ocean water, {g}")
-    V.int("win.soil.n", len(soil), SV_STUDIES + ": soil")
-    both = pd.concat([ocean, soil])
+    panels = {name: s[s.setting.isin(settings) & s.unit.eq(unit)]
+              for name, _, settings, unit in WIN_PANELS}  # fmt: skip
+    for name, d in panels.items():
+        V.int(f"win.{name[4:]}.n", len(d), SV_STUDIES + f": {name}")
+    both = pd.concat(panels.values())
     xs = _decades(both.size_min_um.min(), both.size_max_um.max())
-    for name, d in (("win_ocean", ocean), ("win_soil", soil)):
+    for name, title, _, _ in WIN_PANELS:
+        d = panels[name]
         ys = _decades(d.p10.min(), d.p90.max())
-        _log_ticks(V, name, "x", xs)
-        _log_ticks(V, name, "y", ys)
+        _log_ticks(V, name, "x", xs[::2])  # every other decade is labelled
+        _log_ticks(V, name, "y", ys[::2])
         charts[name] = {
+            "title": title,
             "x": [xs[0], xs[-1]],
             "y": [ys[0], ys[-1]],
-            "rects": [
-                (r.size_min_um, r.size_max_um, r.p10, r.p90, getattr(r, "g", "soil"))
-                for r in d.itertuples()
-            ],
+            "rects": [(r.size_min_um, r.size_max_um, r.p10, r.p90, r.g) for r in d.itertuples()],
         }
 
 
@@ -1184,6 +1210,8 @@ def map_values(V: Values, charts: dict, ref: str) -> None:
     s = pd.read_csv(io.StringIO(show(ref, SV_STUDIES)))
     ocean = s[s.setting.eq("Ocean water") & s.unit.eq("pieces/m3") & s.lat.notna() & s.p50.gt(0)]
     soil = s[s.setting.eq("soil") & s.lat.notna()]
+    fresh = s[s.setting.isin(("river water", "lake water", "stormwater runoff")) & s.lat.notna()]
+    V.int("map.fresh.n", len(fresh), SV_STUDIES + ": river, lake and stormwater with coordinates")
     V.int("map.ocean.n", len(ocean), SV_STUDIES + ": ocean water with coordinates")
     V.int("map.soil.n", len(soil), SV_STUDIES + ": soil with coordinates")
     edges = [0.01, 0.1, 1.0]
@@ -1197,6 +1225,7 @@ def map_values(V: Values, charts: dict, ref: str) -> None:
             for r in ocean.itertuples()
         ],  # fmt: skip
         "soil": [(r.lon, r.lat) for r in soil.itertuples()],
+        "fresh": [(r.lon, r.lat) for r in fresh.itertuples()],
     }
 
 
@@ -2109,36 +2138,38 @@ def chart_gaps(values: dict, charts: dict) -> str:
 
 def chart_windows(values: dict, charts: dict) -> str:
     """Slide 8: each study a rectangle, its size window by the span of its concentrations."""
-    W, H, top, bottom = 960, 446, 34, 330
-    panels = (("win_ocean", 70, 440, "ocean water, pieces per m³"),
-              ("win_soil", 560, 930, "soil, items per kg"))  # fmt: skip
-    cls = {"ncei": "win-n", "emodnet": "win-e", "found": "win-p", "soil": "win-s"}
-    order = {"soil": 0, "ncei": 0, "emodnet": 1, "found": 2}
+    W, H, pw, ph, gx, gy = 960, 560, 252, 170, 68, 78
+    cls = {"ncei": "win-n", "emodnet": "win-e", "found": "win-p", "user": "win-u", "other": "win-s"}
+    order = {"other": 0, "ncei": 0, "emodnet": 1, "user": 2, "found": 3}
     body = []
-    for name, x0, x1, title in panels:
+    for k, (name, *_rest) in enumerate(WIN_PANELS):
         c = charts[name]
+        x0 = 64 + (k % 3) * (pw + gx)
+        top = 30 + (k // 3) * (ph + gy)
+        x1, bottom = x0 + pw, top + ph
         lx = [math.log10(v) for v in c["x"]]
         ly = [math.log10(v) for v in c["y"]]
         sx = lambda v, a=x0, b=x1, e=lx: a + (math.log10(v) - e[0]) / (e[1] - e[0]) * (b - a)  # noqa: E731
-        sy = lambda v, e=ly: bottom - (math.log10(v) - e[0]) / (e[1] - e[0]) * (bottom - top)  # noqa: E731
+        sy = lambda v, t=top, u=bottom, e=ly: u - (math.log10(v) - e[0]) / (e[1] - e[0]) * (u - t)  # noqa: E731
         for key in _ticks(values, name, "x"):
             x = sx(values[key]["v"])
             body += [line(x, top, x, bottom, "grid"),
-                     T(x, bottom + 22, "{{" + key + "}}", values, "tick", "middle")]  # fmt: skip
+                     T(x, bottom + 18, "{{" + key + "}}", values, "tick", "middle")]  # fmt: skip
         for key in _ticks(values, name, "y"):
             y = sy(values[key]["v"])
             body += [line(x0, y, x1, y, "grid"),
-                     T(x0 - 8, y + 5, "{{" + key + "}}", values, "tick", "end")]  # fmt: skip
+                     T(x0 - 6, y + 5, "{{" + key + "}}", values, "tick", "end")]  # fmt: skip
         for a, b, lo, hi, g in sorted(c["rects"], key=lambda r: order[r[4]]):
             y0, y1 = sy(hi), sy(lo)
             body.append(rect(sx(a), y0, sx(b) - sx(a), max(2.0, y1 - y0), cls[g]))
-        body.append(T(x0, top - 12, title, values, "ax-t"))
-        body.append(T(x1, bottom + 46, "size window counted, µm", values, "ax-t", "end"))
+        body.append(T(x0, top - 10, c["title"], values, "ax-t"))
+    body.append(T(W - 10, H - 30, "x: size window counted, µm · y: concentration", values,
+                  "ax-t", "end"))  # fmt: skip
     lg = [("win-n", "NOAA, {{win.ncei.n}} studies"), ("win-e", "EMODnet, {{win.emodnet.n}}"),
-          ("win-p", "found by the search agent, {{win.found.n}}")]  # fmt: skip
-    for i, (k, label) in enumerate(lg):
-        x = 70 + i * 165
-        body += [rect(x, H - 22, 14, 12, k), T(x + 20, H - 11, label, values, "val-s")]
+          ("win-p", "found by the agents, {{win.found.n}} in ocean water"),
+          ("win-u", "from the reference list"), ("win-s", "other datasets")]  # fmt: skip
+    for x, (k, label) in zip((64, 236, 360, 668, 850), lg, strict=True):
+        body += [rect(x, H - 16, 14, 12, k), T(x + 20, H - 5, label, values, "val-s")]
     return svg(W, H, body, "Each study as its size window against its concentration span")
 
 
@@ -2161,16 +2192,18 @@ def chart_map(values: dict, charts: dict) -> str:
              for lon, lat in c["soil"]]  # fmt: skip
     body += [f'<circle cx="{px(lon):.1f}" cy="{py(lat):.1f}" r="5.5" class="mb{b}"/>'
              for lon, lat, b in c["ocean"]]  # fmt: skip
+    body += [f'<circle cx="{px(lon):.1f}" cy="{py(lat):.1f}" r="4.5" class="mf"/>'
+             for lon, lat in c["fresh"]]  # fmt: skip
     body.append("</g>")
     y = H - 14
     lg = [("mb0", "below {{map.c.0}}"), ("mb1", "{{map.c.0}} to {{map.c.1}}"),
           ("mb2", "{{map.c.1}} to {{map.c.2}}"), ("mb3", "{{map.c.2}} and above, pieces per m³"),
-          ("ms", "a soil study")]  # fmt: skip
+          ("ms", "a soil study"), ("mf", "fresh or storm water")]  # fmt: skip
     x = 10
     for cls_, label in lg:
         body += [f'<circle cx="{x + 6}" cy="{y - 5}" r="6" class="{cls_}"/>',
                  T(x + 18, y, label, values, "val-s")]  # fmt: skip
-        x += 150 if cls_ != "mb3" else 300
+        x += 150 if cls_ != "mb3" else 270
     return svg(W, H, body, "Where the studies sampled: ocean water by median count, and soil")
 
 

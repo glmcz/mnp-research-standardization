@@ -431,12 +431,15 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .jt tr.probe td { color: var(--muted); }
 .jt td:first-child { white-space: nowrap; }
 .jt.dec { font-size: 0.84em; }
+.jt.dense { font-size: 0.8em; }
+.jt.dense td { padding: 0.28em 0.9em 0.28em 0; }
 .chart .gap-own { fill: var(--quiet); }
 .chart .gap-pub { fill: var(--absent); }
 .chart .gap-hi { stroke: var(--ink-2); stroke-width: 1.5; }
 .chart .win-n { fill: var(--quiet); fill-opacity: 0.16; stroke: var(--muted); stroke-opacity: 0.55; stroke-width: 1; }
 .chart .win-e { fill: var(--ink); fill-opacity: 0.12; stroke: var(--ink); stroke-width: 1.2; }
 .chart .win-p { fill: var(--absent); fill-opacity: 0.32; stroke: var(--absent); stroke-width: 1.6; }
+.chart .win-u { fill: var(--ink); fill-opacity: 0.06; stroke: var(--ink); stroke-width: 1.4; stroke-dasharray: 3 2; }
 .chart .win-s { fill: var(--muted); fill-opacity: 0.07; stroke: var(--muted); stroke-opacity: 0.4; stroke-width: 0.8; }
 .chart .land { fill: var(--faint); stroke: var(--quiet); stroke-width: 0.6; vector-effect: non-scaling-stroke; }
 .chart .mb0 { fill: var(--absent-soft); fill-opacity: 0.55; }
@@ -444,6 +447,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 .chart .mb2 { fill: var(--absent); fill-opacity: 0.7; }
 .chart .mb3 { fill: var(--absent); }
 .chart .ms { fill: var(--muted); fill-opacity: 0.35; }
+.chart .mf { fill: none; stroke: var(--ink); stroke-width: 1.5; }
 .jt.dec td:first-child { white-space: normal; font-weight: 600; }
 .jt.dec td:last-child { font: 0.86em var(--mono); white-space: nowrap; color: var(--muted); }
 @media (min-width: 760px) { .rules.two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2em 2.4em; } }
@@ -603,12 +607,12 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">07</span><span>Act III · what the datasets say</span></p>
-    <h2>{{sv.n.datasets}} datasets in one table; two agents found {{found.total}} of them.</h2>
-    <p class="msg">One agent read the open catalogues, a second searched the web. Code opened every file they named and decided what joins: {{sv.total}} records in one table, and no gap is filled.</p>
+    <h2>{{sv.n.datasets}} datasets, one table, no gap filled.</h2>
+    <p class="msg">Two agents found {{found.total}} of them, a reference list {{sv.n.user}} more; code opened every file and decided what joins: {{sv.total}} records.</p>
   </header>
   <div class="body">
     <div class="jt-wrap">
-      <table class="jt">
+      <table class="jt dense">
         <thead><tr><th>Dataset</th><th>Records</th><th>Never gives</th></tr></thead>
         <tbody>
           <tr><td>NOAA NCEI, ocean water, beach, sediment</td><td>{{sv.n.ncei}}</td><td>its own upper size limit: one rule for all; mesh missing for {{sv.miss.ncei.mesh}}</td></tr>
@@ -619,6 +623,11 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
           <tr class="found"><td>PANGAEA sets the catalogue agent found</td><td>{{sv.n.found}}</td><td>an upper size limit: five millimetres by convention; a lower one in {{sv.found_nolower}} of {{ds.joined}} sets</td></tr>
           <tr><td>Isobe et al., found by the web scout</td><td>{{sv.n.isobe}}</td><td>a size window, for {{sv.miss.isobe.window}}; at least {{sv.dup.iso_records}} samples are NOAA’s own</td></tr>
           <tr><td>German rivers, Kiessling et al., the scout</td><td>{{sv.n.kiessling}}</td><td>a size window, for {{sv.miss.kiessling.window}}; mesoplastics counted with micro</td></tr>
+          <tr class="found"><td>Stormwater, DURUM</td><td>{{sv.n.durum}}</td><td>a single sampling date, for {{sv.miss.durum.date}}</td></tr>
+          <tr><td>Dutch rivers, RIVM</td><td>{{sv.n.rivm}}</td><td>a date, for {{sv.miss.rivm.date}}, some printed without their century</td></tr>
+          <tr><td>Drinking water, California portal</td><td>{{sv.n.moore}}</td><td>coordinates, for {{sv.miss.moore.lat}}: a country, not a place</td></tr>
+          <tr><td>San Francisco Bay, SFEI</td><td>{{sv.n.sfbay}}</td><td>which particles are plastic: most were never characterised</td></tr>
+          <tr><td>Oregon rivers, Valine et al.</td><td>{{sv.n.valine}}</td><td>a size window, for {{sv.miss.valine.window}}</td></tr>
         </tbody>
       </table>
     </div>
@@ -645,7 +654,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </header>
   <div class="body fill">
     <figure class="fig" style="margin:0">{{svg:windows}}</figure>
-    <p class="lead-in">Ocean water: {{win.ncei.n}} NOAA studies, {{win.emodnet.n}} EMODnet programmes and {{win.found.n}} sets the search agent found; most nets start near a third of a millimetre and still spread over decades. Soil: {{win.soil.n}} studies, and the finer the lower limit, the more plastic counted (ρ {{p1.rho}}, pre-registered).</p>
+    <p class="lead-in">Six matrices, {{win.ocean.n}} ocean, {{win.river.n}} river, {{win.storm.n}} stormwater, {{win.dw.n}} drinking-water, {{win.sed.n}} sediment and {{win.soil.n}} soil studies: wherever a study states its window, the same picture. Same width, a spread of decades; further left, more counted (soil ρ {{p1.rho}}, pre-registered).</p>
   </div>
   <p class="src">out/tables/survey_studies.csv · docs/2026-10-10-review-call.md, item on idea C</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
@@ -1008,7 +1017,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   <header>
     <p class="eyebrow"><span class="idx">25</span><span>Backup</span></p>
     <h2>Where the studies sampled, and where nobody did.</h2>
-    <p class="msg">{{map.ocean.n}} ocean-water studies, shaded by their median count, and {{map.soil.n}} soil studies. MP-SED gives no coordinates for {{sv.miss.mpsed.lat}} of its records, so its sediments cannot be placed.</p>
+    <p class="msg">{{map.ocean.n}} ocean-water studies, shaded by their median count, {{map.fresh.n}} river, lake and stormwater studies, and {{map.soil.n}} soil studies. MP-SED gives no coordinates for {{sv.miss.mpsed.lat}} of its records, so its sediments cannot be placed.</p>
   </header>
   <div class="body fill">
     <figure class="fig" style="margin:0">{{svg:map}}</figure>

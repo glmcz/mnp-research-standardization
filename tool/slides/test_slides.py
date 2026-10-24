@@ -642,7 +642,10 @@ def expected_findings(get=show) -> dict:
     # slides 7 to 11: the survey outputs, with the counts redone from their rows where they have any
     co = json.loads(get("out/tables/survey_colocated.json"))
     names = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser",
-             "emodnet": "emodnet", "isobe2021": "isobe", "kiessling2021": "kiessling"}  # fmt: skip
+             "emodnet": "emodnet", "isobe2021": "isobe", "kiessling2021": "kiessling",
+             "durum": "durum", "rivm": "rivm", "valine2020": "valine", "moore_dw": "moore",
+             "sfbay": "sfbay"}  # fmt: skip
+    user = ("durum", "rivm", "valine2020", "moore_dw", "sfbay")
     scout = ("isobe2021", "kiessling2021")
     found = [k for k in co["records"] if k not in names]
     assert all(k.startswith("pangaea_") and k[8:].isdigit() for k in found), found
@@ -676,6 +679,11 @@ def expected_findings(get=show) -> dict:
     E["sv.miss.emodnet.mesh"] = float(miss["emodnet"]["size_min_um"])
     E["sv.miss.isobe.window"] = float(miss["isobe2021"]["size_min_um"])
     E["sv.miss.kiessling.window"] = float(miss["kiessling2021"]["size_min_um"])
+    E["sv.miss.durum.date"] = float(miss["durum"]["date"])
+    E["sv.miss.rivm.date"] = float(miss["rivm"]["date"])
+    E["sv.miss.moore.lat"] = float(miss["moore_dw"]["lat"])
+    E["sv.miss.valine.window"] = float(miss["valine2020"]["size_min_um"])
+    E["sv.n.user"] = sum(k in co["records"] for k in user)
     E["sv.found_nolower"] = sum(float(miss[k]["size_min_um"]) == 1.0 for k in found)
     E["sv.miss.mpsed.lat"] = float(miss["mpsed"]["lat"])
     E["sv.miss.mpsed.year"] = float(miss["mpsed"]["year"])
@@ -866,7 +874,15 @@ def expected_findings(get=show) -> dict:
     E["win.ncei.n"] = sum(r["dataset"] == "ncei" for r in ocean)
     E["win.emodnet.n"] = sum(r["dataset"] == "emodnet" for r in ocean)
     E["win.found.n"] = sum(r["dataset"] not in ("ncei", "emodnet") for r in ocean)
-    E["win.soil.n"] = sum(r["setting"] == "soil" for r in drawn)
+    panels = {"ocean": (("Ocean water",), "pieces/m3"), "river": (("river water",), "pieces/m3"),
+              "storm": (("stormwater runoff",), "particles/L"),
+              "dw": (("drinking water, tap", "drinking water, bottled"), "particles/L"),
+              "sed": (("sediment",), "microplastic/kg sediment dry wt."),
+              "soil": (("soil",), "items/kg")}  # fmt: skip
+    for k, (settings, unit) in panels.items():
+        E[f"win.{k}.n"] = sum(r["setting"] in settings and r["unit"] == unit for r in drawn)
+    fresh = ("river water", "lake water", "stormwater runoff")
+    E["map.fresh.n"] = sum(r["setting"] in fresh and not math.isnan(num(r["lat"])) for r in st)
     E["map.ocean.n"] = sum(
         r["setting"] == "Ocean water" and r["unit"] == "pieces/m3"
         and not math.isnan(num(r["lat"])) and num(r["p50"]) > 0 for r in st
@@ -1098,6 +1114,10 @@ def test_every_axis_label_names_a_value_its_chart_reaches(deck) -> None:
         "r2",
         "aging",
         "win_ocean",
+        "win_river",
+        "win_storm",
+        "win_dw",
+        "win_sed",
         "win_soil",
         "map",
         "gaps_c",

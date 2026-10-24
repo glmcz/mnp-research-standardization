@@ -120,3 +120,20 @@ def test_only_items_whose_quote_code_found_reach_the_table() -> None:
     published = ladder.published()
     assert published and {r["source"] for r in published} <= kept
     assert len(published) == sum(r["kept"] == "True" for r in verified)
+
+
+def test_an_extra_quote_is_kept_only_if_the_page_prints_it(monkeypatch) -> None:
+    import json as js
+
+    import scout_check as sc
+
+    page = b"<p>Lab1 -20.5 and Lab2 -30.5 mV. The method is not recommended as reference.</p>"
+    monkeypatch.setattr(sc.catalog, "get", lambda url: page)
+    item = {"family": "A", "name": "t", "url": "u", "material": "silica", "unit": "mV",
+            "spread_kind": "per_lab", "spread": "Lab1 -20.5; Lab2 -30.5", "central": "",
+            "labs": "2", "quote": "Lab1 -20.5 and Lab2 -30.5 mV",
+            "extra_quotes": ["The method is not recommended as reference",
+                             "The method is recommended"]}  # fmt: skip
+    got = sc.check(item)
+    assert got["kept"] and got["value"] == 10.0
+    assert js.loads(got["extra_found"]) == ["The method is not recommended as reference"]

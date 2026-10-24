@@ -166,7 +166,10 @@ def check(item: dict) -> dict:
     if value is None:
         return row | {"kept": False, "why": metric}
     why = "quote found, values on the page" if labs else "quote found, number inside"
-    return row | {"kept": True, "why": why, "value": value, "high": high, "metric": metric}
+    # further sentences the agent quoted from the same page, each kept only if it is there
+    extra = [q for q in item.get("extra_quotes") or [] if skeleton(q) in skeleton(text)]
+    return row | {"kept": True, "why": why, "value": value, "high": high, "metric": metric,
+                  "extra_found": json.dumps(extra)}  # fmt: skip
 
 
 def merged(items: list[dict]) -> list[dict]:

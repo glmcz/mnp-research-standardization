@@ -255,7 +255,7 @@ def expected(get=show) -> dict:
     E["r3.example"] = one(rc10, r"Question: \"([^\"]+)\" was stored")[0]
     E["r3.ions"] = one(rc10, r"Why: ([^.]+ of ions)\.")[0]
 
-    # the liquids of slide 31, counted from the table's own rows rather than through pandas
+    # the liquids of slide 36, counted from the table's own rows rather than through pandas
     liquids: dict = {}
     for r in d1.values():
         c = liquids.setdefault(r["medium_class"], {"rows": 0, "mM": []})
@@ -273,8 +273,7 @@ def expected(get=show) -> dict:
     salt = liquids["salt_solution"]
     E["lab.salt.share"] = len(salt["mM"]) / salt["rows"]
 
-    # slide 27 (backup): the physics demo's figure defaults, and what README's demo notes say it
-    # reached
+    # slide 32 (backup): the physics demo's figure defaults
     from mnp.ek import constants as ek_constants
     from mnp.ek import hard as ek_hard
     from mnp.infer import figures
@@ -285,14 +284,6 @@ def expected(get=show) -> dict:
     radius = fig["hard_radius_nm"].default * 1e-9
     mu = float(ek_hard.mobility_hard(fig["hard_sigma_C_m2"].default, radius, salt, T_C=T))
     E["curve.zeta"] = Near(1e3 * ek_constants.viscosity(T) * mu / ek_constants.permittivity(T), 0.5)
-    readme = flat(get("README.md"))
-    E["d4.sims"] = n(one(readme, r"The final ([\d ]+)-sim run")[0])
-    ks = one(
-        readme,
-        r"KS p = ([\d.]+) / ([\d.]+) \(soft \|ZN\|, 1/λ\), ([\d.]+) / ([\d.]+) \(hard σ, a\)",
-    )
-    E["d4.sbc_params"], E["d4.ks_min"] = len(ks), Near(min(float(x) for x in ks), 0.005)
-    E["d4.measured"] = 0 if "No digitised CSVs yet" in readme else MISSING
 
     # one row and its line addresses
     row = d1[a_id]
@@ -428,7 +419,7 @@ def _quantile(xs: list[float], q: float) -> float:
 def expected_findings(get=show) -> dict:
     """The 2026-10-19 slides, each source read again with csv, statistics and plain regex."""
     E: dict = {}
-    # slide 2: the two review abstracts, as the sources note quotes them
+    # slide 4: the two review abstracts, as the sources note quotes them
     src = get("docs/2026-10-19-motivation-sources.md")
     quotes = [ln[2:] for ln in src.splitlines() if ln.startswith("> ")]
     shen = next(q for q in quotes if q.startswith("Positively charged"))
@@ -442,14 +433,43 @@ def expected_findings(get=show) -> dict:
     E["mot.shen.ref"] = f"Shen et al. {heads['Shen']}, Environ Pollut {journals['Environ Pollut']}"
     E["mot.xu.ref"] = f"Xu et al. {heads['Xu']}, Sci Total Environ {journals['Sci Total Environ']}"
 
-    # slide 13: the quantity and instrument columns of the table
+    # slides 2, 3 and 23: the standardisation note, its quoted lines split by hand
+    std = get("docs/2026-10-25-standardisation-sources.md")
+    said = [ln[2:] for ln in std.splitlines() if ln.startswith("> ")]
+
+    def line(start: str) -> str:
+        return next(q for q in said if q.startswith(start))
+
+    E["ab.objective"] = line("Thus, a key objective")[len("Thus, ") : -1]
+    E["ab.account"] = line("To ensure comparability")[:-1]
+    led = line("Accordingly, we led").split(" participating laboratories")[0]
+    E["mp.dfr.labs"] = int(led.rsplit(" ", 1)[1])
+    E["mp.dfr.floor"] = int(line("Participants demonstrated").split("greater than ")[1].split()[0])
+    E["mp.cow.n"] = int(line("This diverse group of").split()[4])
+    k19 = line("However, only").split()
+    E["mp.k19.pass"], E["mp.k19.n"] = k19[2], int(k19[5])
+    E["np.fda"] = line("While studies on microplastics").split("lack of ", 1)[1].rstrip(".")
+    E["np.fda2"] = line("This is particularly")[:-1]
+    E["np.gig"] = line("The term").split("debate, and ", 1)[1].rstrip(".")
+    for key, head, journal in (
+        ("mp.dfr.ref", "De Frond et al. 2022", "Chemosphere"),
+        ("mp.k20.ref", "Koelmans et al. 2020", "Environ Sci Technol"),
+        ("mp.cow.ref", "Cowger et al. 2020", "Appl Spectrosc"),
+        ("mp.k19.ref", "Koelmans et al. 2019", "Water Res"),
+        ("np.fda.ref", "Duncan et al. 2024", "Anal Chem"),
+        ("np.gig.ref", "Gigault et al. 2018", "Environ Pollut"),
+    ):
+        citation = flat(std.split(f"### {head}\n\n", 1)[1].split("\n\n", 1)[0])
+        E[key] = f"{head}, {journal} {citation.split(journal + ' ', 1)[1].split(':')[0]}"
+
+    # slide 11: the quantity and instrument columns of the table
     d1 = list(csv.DictReader(io.StringIO(get("out/tables/d1_zeta_table.csv"))))
     E["zb.zeta_rows"] = sum(r["quantity"] == "zeta_potential" for r in d1)
     E["zb.mob_rows"] = sum(r["quantity"] == "electrophoretic_mobility" for r in d1)
     named = [r["instrument"] for r in d1 if r["instrument"].strip()]
     E["zb.zetasizer"] = [sum("zetasizer" in s.lower() for s in named), len(named)]
 
-    # slide 16: ionic strength with the supplements, recounted from the table and the accepted rows
+    # slide 14: ionic strength with the supplements, recounted from the table and the accepted rows
     si_rows = set(json.loads(get("out/tables/si_rates.json"))["accepted_rows"])
     papers: dict[str, list[dict]] = {}
     for r in d1:
@@ -467,7 +487,7 @@ def expected_findings(get=show) -> dict:
         for rs in papers.values()
     )
 
-    # slide 3: the design's table, split on its cells
+    # slide 5: the design's table, split on its cells
     for line in get("docs/DESIGN_2026-10-18_hypotheses-method-evaluation.md").splitlines():
         cells = [c.strip() for c in line.split(" | ")]
         if line.startswith('| "') and len(cells) >= 2 and cells[1].startswith("**H"):
@@ -477,7 +497,7 @@ def expected_findings(get=show) -> dict:
     prereg = json.loads(get("out/tables/p2_prereg_results.json"))
     E["pr.commit"] = prereg["prereg_commit"]
 
-    # slide 14: the P2 table with csv and statistics
+    # slide 12: the P2 table with csv and statistics
     p2 = list(csv.DictReader(io.StringIO(get("out/tables/p2_zeta_size.csv"))))
     E["p2.rows"], E["p2.papers"] = len(p2), len({r["pmcid"] for r in p2})
     size = [math.log10(float(r["size_nm"])) for r in p2]
@@ -502,15 +522,7 @@ def expected_findings(get=show) -> dict:
     amine = [float(r["zeta_mV"]) for r in groups["PS"] if r["surface"] == "amine"]
     E["p2.amine_neg"], E["p2.amine_n"] = sum(z < 0 for z in amine), len(amine)
 
-    # slide 18: P4 and its secondary analysis, as the run wrote them
-    p4, sec = prereg["P4"], prereg["secondary"]
-    E["p4.rows"], E["p4.papers"], E["p4.verdict"] = p4["rows"], p4["papers"], p4["verdict"]
-    for k, v in p4["feature_sets"].items():
-        E[f"p4.{k}"] = v["r2"]
-    E["p4.leak"] = sec["P4_random_split_r2_all"]
-    E["p4.paper_only"] = sec["P4_random_split_r2_paper_mean_only"]
-
-    # slide 12: the Weser fractions with csv, the power law solved by bisection on its own formula
+    # slide 21: the Weser fractions with csv, the power law solved by bisection on its own formula
     w = list(csv.DictReader(io.StringIO(get("out/tables/p2_weser_pairs.csv"))))
     small = (float(w[0]["small_lo_um"]), float(w[0]["small_hi_um"]))
     large = (float(w[0]["large_lo_um"]), float(w[0]["large_hi_um"]))
@@ -545,6 +557,7 @@ def expected_findings(get=show) -> dict:
         p2t["median_reduction"],
         p2t["verdict"],
     )
+    sec = prereg["secondary"]
     diff = sec["P2_cells_with_different_windows"]
     E["p2t.diff_cells"], E["p2t.wider"] = diff["cells"], diff["share_wider_after"]
     E["p3.n"], E["p3.median"], E["p3.verdict"] = (
@@ -556,7 +569,7 @@ def expected_findings(get=show) -> dict:
     E["p3.lod_median"] = sec["P3_lod_filtered"]["median_alpha"]
     E["p3.band_lo"], E["p3.band_hi"] = prereg["alpha_band"]
 
-    # slide 33 (backup): the tow table with csv, the README's own sentences
+    # slide 38 (backup): the tow table with csv, the README's own sentences
     tows = list(
         csv.DictReader(
             io.StringIO(get("tool/colocation/reisser_eriksen/out_2026-10-12/tow_identity_R_E.csv"))
@@ -575,7 +588,7 @@ def expected_findings(get=show) -> dict:
     E["re.trap"] = float(one(readme, r"own wind-mixing median of ([\d.]+) is a coincidence")[0])
     E["re.same"] = int(one(readme, r"within 0\.1 % for (\d+) of the")[0])
 
-    # slide 36 (backup): the validation metrics, the labelling page's sample size, the results note
+    # slide 40 (backup): the validation metrics, the labelling page's sample size, the results note
     vm = json.loads(get("out/tables/validate_sign_metrics.json"))
     E["v.cands"], E["v.papers"] = vm["candidates"], vm["papers"]
     E["v.v0"] = vm["candidates"] - vm["V0"]["abstained"]
@@ -591,7 +604,7 @@ def expected_findings(get=show) -> dict:
     E["v.first_rej"] = int(one(notes, r"rejected (\d+) reader answers")[0])
     E["v.guard"] = int(one(notes, r"(\d+) of them were \"corona\" answers")[0])
 
-    # slide 37 (backup): the judges, recounted from the raw judge records, not the metrics file
+    # slide 41 (backup): the judges, recounted from the raw judge records, not the metrics file
     jm = json.loads(get("out/tables/validate_judge_metrics.json"))
     last = {}
     for text in get("data/interim/validate/sign/judge_items.jsonl").splitlines():
@@ -639,7 +652,7 @@ def expected_findings(get=show) -> dict:
     top = max(rates, key=rates.get)
     E["j.decoy_top.name"], E["j.decoy_top"] = name(top), Near(rates[top], 5e-4)
 
-    # slides 7 to 11: the survey outputs, with the counts redone from their rows where they have any
+    # slides 16 to 20: the survey outputs, the counts redone from their rows where they have any
     co = json.loads(get("out/tables/survey_colocated.json"))
     names = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser",
              "emodnet": "emodnet", "isobe2021": "isobe", "kiessling2021": "kiessling",
@@ -763,7 +776,7 @@ def expected_findings(get=show) -> dict:
         if r["study_a"].endswith("pone.0080466") and r["study_b"].endswith("pone.0111913")
     )
 
-    # slides 19 and 20: every arm recounted from the per-question rows, not the summary fields
+    # slides 29 and 30: every arm recounted from the per-question rows, not the summary fields
     hy = json.loads(get("out/tables/hybrid_results.json"))
     hq = [json.loads(x) for x in get("queries/hybrid_questions.jsonl").splitlines() if x.strip()]
     E["hy.q"], E["hy.adv"] = len(hq), sum(q["adversarial"] for q in hq)
@@ -804,7 +817,7 @@ def expected_findings(get=show) -> dict:
     E["hy.p9"] = ("supported" if drop >= E["hy.p9_min"]
                   else ("refuted" if drop < 0.1 else "partly"))  # fmt: skip
 
-    # slide 15: P11 recounted from the pairs, the sign test from the binomial by hand
+    # slide 13: P11 recounted from the pairs, the sign test from the binomial by hand
     ag = json.loads(get("out/tables/p2_aging.json"))
     pairs = list(csv.DictReader(io.StringIO(get("out/tables/p2_aging_pairs.csv"))))
     per: dict[str, list[float]] = {}
@@ -836,7 +849,7 @@ def expected_findings(get=show) -> dict:
     seen = {(r["pmcid"], r["aged_mV"], r["virgin_median_mV"]) for r in pairs}
     E["ag.swap"] = next(pm for pm, a, v in seen if a != v and (pm, v, a) in seen)
 
-    # slide 5: the flags and sources recounted with csv, the scanner's coverage with json
+    # slide 7: the flags and sources recounted with csv, the scanner's coverage with json
     rows = list(csv.DictReader(io.StringIO(get("out/tables/d1_zeta_table.csv"))))
     fl = [{x.strip() for x in r["flags"].split(";")} for r in rows]
 
@@ -860,7 +873,7 @@ def expected_findings(get=show) -> dict:
     E["cov.matched"] = sum(r.get("n_candidates_matched") or 0 for r in last.values())
     assert E["cov.matched"] <= E["cov.cand"]
 
-    # slide 8 and backup slide 25: the per-study table, counted with csv
+    # slide 17 and backup slide 31: the per-study table, counted with csv
     st = list(csv.DictReader(io.StringIO(get("out/tables/survey_studies.csv"))))
 
     def num(x):
@@ -889,7 +902,7 @@ def expected_findings(get=show) -> dict:
     )  # fmt: skip
     E["map.soil.n"] = sum(r["setting"] == "soil" and not math.isnan(num(r["lat"])) for r in st)
 
-    # slide 21: the gap table read with csv; case 14's row must be the case 14 the deck shows
+    # slide 22: the gap table read with csv; case 14's row must be the case 14 the deck shows
     for r in csv.DictReader(io.StringIO(get("out/tables/gap_ladder.csv"))):
         E[f"gap.{r['key']}"] = float(r["value"])
         if r["high"]:
@@ -906,7 +919,7 @@ def expected_findings(get=show) -> dict:
     assert said in json.loads(nano["extra_found"])[0]
     E["gap.nanovalid.said"] = said
 
-    # slide 22: every verdict, read from its own results file
+    # slide 24: every verdict, read from its own results file
     pre = json.loads(get("out/tables/p2_prereg_results.json"))
     verdicts = [pre[k]["verdict"] for k in ("P1", "P2", "P3", "P4")]
     verdicts += [E["sv.p7a"], E["sv.p7b"], E["hy.p8"], E["hy.p9"]]
@@ -1111,7 +1124,6 @@ def test_every_axis_label_names_a_value_its_chart_reaches(deck) -> None:
         "lab",
         "curve",
         "pol",
-        "r2",
         "aging",
         "win_ocean",
         "win_river",
@@ -1325,9 +1337,9 @@ def test_every_slide_has_a_title_a_message_and_notes(page) -> None:
         page,
         re.S,
     )
-    assert [s for s, _ in slides] == [f"s{i}" for i in range(1, 43)]
+    assert [s for s, _ in slides] == [f"s{i}" for i in range(1, 45)]
     backup = re.findall(r'<section class="slide backup" id="(s\d+)"', page)
-    assert backup == [f"s{i}" for i in range(25, 43)]
+    assert backup == [f"s{i}" for i in range(26, 45)]
     for sid, body in slides:
         assert re.search(r"<h[12]>", body), sid
         assert sid == "s1" or 'class="msg"' in body, sid
@@ -1354,7 +1366,7 @@ def test_the_standalone_page_opens_from_a_file(bs, page) -> None:
 
 
 def test_the_hybrid_slides_say_what_the_runs_did(deck) -> None:
-    # slide 19's notes: pasted-data Claude misses traps; slide 20: unguarded Claude over-flags,
+    # slide 29's notes: pasted-data Claude misses traps; slide 30: unguarded Claude over-flags,
     # it never misses a needed flag, and loses on the questions that need a plain answer.
     V = {k: v["v"] for k, v in deck["values"].items()}
     assert V["hy.N2.adv"] < V["hy.H.adv"] and V["hy.N0.correct"] < V["hy.N2.correct"]
@@ -1417,13 +1429,14 @@ def script_scan(script_page):
 
 
 def test_the_time_plan_fills_twenty_minutes_over_five_acts(sc) -> None:
-    # The design's talk order (DESIGN_2026-10-18 §6): twenty minutes, the backup slides untimed.
+    # The order of 2026-10-25: why standardise, the engineering, the papers, the datasets, the way
+    # forward. Twenty minutes; the backup slides untimed.
     assert [s for _, _, slides in sc.ACTS for s in slides] == list(sc.PLAN)
-    assert list(sc.PLAN) == [f"s{i}" for i in range(1, 25)]
-    assert sc.BACKUP == tuple(f"s{i}" for i in range(25, 43))
+    assert list(sc.PLAN) == [f"s{i}" for i in range(1, 26)]
+    assert sc.BACKUP == tuple(f"s{i}" for i in range(26, 45))
     acts = {name: sum(sc.PLAN[s] for s in slides) for name, _, slides in sc.ACTS}
-    assert acts == {"I": 115, "II": 180, "III": 350, "IV": 265, "V": 100, "VI": 190}
-    assert sc.timing_values()["at.s24"]["text"] == "20:00"
+    assert acts == {"I": 185, "II": 250, "III": 220, "IV": 320, "V": 225}
+    assert sc.timing_values()["at.s25"]["text"] == "20:00"
 
 
 def test_no_card_asks_for_more_than_130_words_a_minute(sc, script_page) -> None:
@@ -1438,7 +1451,7 @@ def test_no_card_asks_for_more_than_130_words_a_minute(sc, script_page) -> None:
 
 def test_the_script_has_one_card_per_slide_under_the_decks_title(script_page, page) -> None:
     cards = re.findall(r'<section class="card" id="(s\d+)">(.*?)</section>', script_page, re.S)
-    assert [sid for sid, _ in cards] == [f"s{i}" for i in range(1, 43)]
+    assert [sid for sid, _ in cards] == [f"s{i}" for i in range(1, 45)]
     titles = {
         sid: re.search(r"<h([12])[^>]*>(.*?)</h\1>", body, re.S).group(2)
         for sid, body in re.findall(

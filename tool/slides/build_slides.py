@@ -27,7 +27,6 @@ import io
 import json
 import math
 import re
-import subprocess
 from collections import Counter
 from pathlib import Path
 
@@ -57,7 +56,7 @@ show = build_data.show
 
 # The grid runs are the ones REVIEW.md C9 reports at the same ref (build_data.grid_runs), so
 # the deck and the guide can never show two different grids.
-# The cited-value example (slide 38): the paper, and the commit at which its recorded row was the
+# The cited-value example (slide 42): the paper, and the commit at which its recorded row was the
 # value another study measured (EX-09's re-read control was committed there).
 CITED_PMCID = "PMC12280233"
 CITED_BEFORE = "09c11cd"
@@ -79,7 +78,7 @@ METHOD_ROWS = {
     "temperature_reported": "temperature (°C)",
     "instrument_reported": "instrument",
 }
-# The liquids of slide 31, as `medium_class` names them.
+# The liquids of slide 36, as `medium_class` names them.
 MEDIUM_WORDS = {
     "DI_water": "DI water",
     "unreported": "liquid not named",
@@ -270,11 +269,11 @@ def case02(V: Values, charts: dict, table: pd.DataFrame) -> None:
 
 
 def si_values(V: Values, ref: str, base: dict) -> None:
-    """Slide 16: ionic strength once the supplements are read too (the 2026-10-12 SI census)."""
+    """Slide 14: ionic strength once the supplements are read too (the 2026-10-12 SI census)."""
     si = json.loads(show(ref, SI_RATES))
     main = next(p for p in base["five"]["params"] if p["key"] == "ionic_strength_reported")
     if abs(si["main_text"]["paper_mean_pct"] / 100 - main["paper_mean_share"]) > 5e-4:
-        raise SystemExit(f"{SI_RATES} counted a different main text than slide 16's bar")
+        raise SystemExit(f"{SI_RATES} counted a different main text than slide 14's bar")
     V.pct("si.mean", si["main_plus_si"]["paper_mean_pct"] / 100, 1, SI_RATES + ": main_plus_si")
     V.int("si.new", si["accepted_papers_new"], SI_RATES + ": accepted_papers_new")
 
@@ -356,14 +355,14 @@ def _mM(V: Values, key: str, x: float, src: str) -> None:
 
 
 def lab_values(V: Values, charts: dict, table: pd.DataFrame) -> None:
-    """Slide 31: whether a row states its ionic strength depends on the liquid, and where it is
+    """Slide 36: whether a row states its ionic strength depends on the liquid, and where it is
     stated it runs over decades, so "a lab uses water" is not one value to fill in."""
     src = "out/tables/d1_zeta_table.csv: medium_class, ionic_strength_reported, ionic_strength_mM"
     stated = table[table["ionic_strength_reported"].astype(bool)]
     order = table["medium_class"].value_counts().index.tolist()
     unknown = set(order) - set(MEDIUM_WORDS)
     if unknown:
-        raise SystemExit(f"slide 31 has no words for medium_class {sorted(unknown)}")
+        raise SystemExit(f"slide 36 has no words for medium_class {sorted(unknown)}")
     points = {}
     for c in order:
         mM = stated.loc[stated["medium_class"] == c, "ionic_strength_mM"].astype(float)
@@ -394,7 +393,7 @@ def lab_values(V: Values, charts: dict, table: pd.DataFrame) -> None:
 
 
 def curve_values(V: Values, charts: dict) -> None:
-    """Slide 27 (backup): the method the talk started from. One hard and two soft particles,
+    """Slide 32 (backup): the method the talk started from. One hard and two soft particles,
     matched to the same mobility at one ionic strength by the physics demo's own figure function,
     so one zeta cannot tell them apart while the curves across salt can."""
     from mnp.infer import figures
@@ -421,7 +420,7 @@ def curve_values(V: Values, charts: dict) -> None:
         softs.append({"lambda_inv_nm": lam, "mu": mu.tolist(), "plateau": plateau})
     hard_mu = (hard.mobility_hard(p["hard_sigma_C_m2"], radius_m, grid, T_C=T) / MU_UNIT).tolist()
     if not all(abs(hard_mu[-1]) < abs(s["plateau"]) for s in softs):
-        raise SystemExit("the hard particle no longer falls below the soft plateaus: slide 27")
+        raise SystemExit("the hard particle no longer falls below the soft plateaus: slide 32")
     e0, e1 = round(math.log10(grid[0])), round(math.log10(grid[-1]))
     for i, e in enumerate(range(e0, e1 + 1)):
         V.tick(f"curve.x.{i}", 10.0**e, max(0, -e), "curve", "x")
@@ -432,37 +431,6 @@ def curve_values(V: Values, charts: dict) -> None:
         "soft": softs,
         "match": [salt, match],
     }
-
-
-def d4_values(V: Values, ref: str) -> None:
-    """Slide 27 (backup): what of the curve method is built, and that no measured curve met it."""
-    log = flat(show(ref, "CHANGELOG.md"))
-    sims = find("CHANGELOG.md", log, r"trained at ([\d,]+) simulations")[0]
-    V.int("d4.sims", int(sims.replace(",", "")), "CHANGELOG.md, the physics demo")
-    sbc = list(csv.DictReader(io.StringIO(show(ref, "out/tables/d4_sbc.csv"))))
-    if not all(r["pass"] == "True" for r in sbc):
-        raise SystemExit("out/tables/d4_sbc.csv: a calibration no longer passes; slide 27")
-    V.int("d4.sbc_params", len(sbc), "out/tables/d4_sbc.csv")
-    V.float("d4.ks_min", min(float(r["ks_pvalue"]) for r in sbc), 2, "out/tables/d4_sbc.csv")
-    tree = subprocess.run(
-        [
-            "git",
-            "-C",
-            str(HERE.parents[1]),
-            "ls-tree",
-            "-r",
-            "--name-only",
-            ref,
-            "data/raw/digitised/",
-        ],
-        capture_output=True,
-        text=True,
-        check=True,
-    ).stdout.split()
-    measured = [f for f in tree if f.endswith(".csv") and not f.endswith("/printed_params.csv")]
-    V.int(
-        "d4.measured", len(measured), "data/raw/digitised/: curve files beside printed_params.csv"
-    )
 
 
 def line_values(V: Values, d1: dict, table: pd.DataFrame) -> None:
@@ -677,11 +645,11 @@ def scope_values(V: Values, base: dict) -> None:
 
 
 def audit_state(ref: str) -> None:
-    """Slide 42 says no person has checked a row. Stop if the audit sheet holds a verdict."""
+    """Slide 44 says no person has checked a row. Stop if the audit sheet holds a verdict."""
     rows = build_data.read_csv(ref, "out/review/audit_sample.csv")
     filled = [r["row_id"] for r in rows for k, v in r.items() if k.endswith("_ok") and v.strip()]
     if filled:
-        raise SystemExit(f"audit_sample.csv holds verdicts ({filled[:3]}): slide 42 must change")
+        raise SystemExit(f"audit_sample.csv holds verdicts ({filled[:3]}): slide 44 must change")
 
 
 # ---- the hypotheses and their tests (2026-10-19) ----------------------------------------------
@@ -702,7 +670,7 @@ POLYMER_MIN_ROWS = 10
 
 
 def motivation_values(V: Values, ref: str) -> None:
-    """Slide 2: two reviews say, in their own abstracts, that surface charge decides the effect."""
+    """Slide 4: two reviews say, in their own abstracts, that surface charge decides the effect."""
     text = flat(show(ref, MOTIVATION))
     shen = find(
         MOTIVATION,
@@ -724,8 +692,47 @@ def motivation_values(V: Values, ref: str) -> None:
     V.words("mot.xu.ref", f"Xu et al. {x_year}, {x_jr}", MOTIVATION)
 
 
+STANDARD = "docs/2026-10-25-standardisation-sources.md"
+#: Each source's reference on the slides: the note's heading, and the journal its citation names.
+STANDARD_REFS = {
+    "mp.dfr.ref": ("De Frond et al. 2022", "Chemosphere"),
+    "mp.k20.ref": ("Koelmans et al. 2020", "Environ Sci Technol"),
+    "mp.cow.ref": ("Cowger et al. 2020", "Appl Spectrosc"),
+    "mp.k19.ref": ("Koelmans et al. 2019", "Water Res"),
+    "np.fda.ref": ("Duncan et al. 2024", "Anal Chem"),
+    "np.gig.ref": ("Gigault et al. 2018", "Environ Pollut"),
+}
+
+
+def standardisation_values(V: Values, ref: str) -> None:
+    """Slides 2, 3 and 23: the abstract's aim, the steps microplastics took, and what a regulator's
+    review says nanoplastics still lack, each a sentence the sources note quotes verbatim."""
+    text = flat(show(ref, STANDARD))
+
+    def quote(key: str, pattern: str, who: str) -> None:
+        V.words(key, find(STANDARD, text, pattern)[0], f"{STANDARD}, {who}")
+
+    def count(key: str, pattern: str, who: str) -> None:
+        V.int(key, int(find(STANDARD, text, pattern)[0]), f"{STANDARD}, {who}")
+
+    quote("ab.objective", r"> Thus, (a key objective is .+? of particles)\.", "abstract")
+    quote("ab.account", r"> (To ensure comparability .+? environmental parameters)\.", "abstract")
+    count("mp.dfr.labs", r"with (\d+) participating laboratories", "De Frond et al.")
+    count("mp.dfr.floor", r"for particles greater than (\d+) μm", "De Frond et al.")
+    count("mp.cow.n", r"This diverse group of (\d+) researchers", "Cowger et al.")
+    passed, of = find(STANDARD, text, r"only (\w+) out of (\d+) studies received positive scores")
+    V.words("mp.k19.pass", passed, STANDARD + ", Koelmans et al. 2019")
+    V.int("mp.k19.n", int(of), STANDARD + ", Koelmans et al. 2019")
+    quote("np.fda", r"a continued lack of (standardized .+? quality controls)\.", "Duncan et al.")
+    quote("np.fda2", r"> (This is particularly the case for nanoplastics)\.", "Duncan et al.")
+    quote("np.gig", r"and (different studies have set the upper .+? nm)\.", "Gigault et al.")
+    for key, (who, journal) in STANDARD_REFS.items():
+        vol = find(STANDARD, text, rf"### {re.escape(who)} .+? {re.escape(journal)} (\d+):")[0]
+        V.words(key, f"{who}, {journal} {vol}", STANDARD)
+
+
 def basics_values(V: Values, table: pd.DataFrame) -> None:
-    """Slide 13: the instrument measures mobility; papers print the zeta computed from it."""
+    """Slide 11: the instrument measures mobility; papers print the zeta computed from it."""
     q = table["quantity"].value_counts()
     src = "out/tables/d1_zeta_table.csv: quantity"
     V.int("zb.zeta_rows", int(q["zeta_potential"]), src)
@@ -740,7 +747,7 @@ def basics_values(V: Values, table: pd.DataFrame) -> None:
 
 
 def hypotheses_values(V: Values, ref: str) -> None:
-    """Slide 3: the five hypotheses, each an abstract sentence as the design doc quotes it."""
+    """Slide 5: the five hypotheses, each an abstract sentence as the design doc quotes it."""
     design = show(ref, DESIGN)
     for n, (quote, name) in enumerate(
         re.findall(r'^\| "(.+?)" \| \*\*H\d ([^.*]+)\.\*\*', design, re.M), start=1
@@ -752,7 +759,7 @@ def hypotheses_values(V: Values, ref: str) -> None:
 
 
 def p2_values(V: Values, charts: dict, ref: str) -> None:
-    """Slide 14: zeta against size, polymer and surface label, from the P2 table."""
+    """Slide 12: zeta against size, polymer and surface label, from the P2 table."""
     from scipy.stats import spearmanr
 
     t = pd.read_csv(io.StringIO(show(ref, P2Z)))
@@ -791,7 +798,7 @@ def p2_values(V: Values, charts: dict, ref: str) -> None:
     V.float("p2.neg_lo", min(r["med"] for r in neg), 1, src)
     V.float("p2.neg_hi", max(r["med"] for r in neg), 1, src)
     if len(pos) != 1:
-        raise SystemExit(f"slide 14 names one exception; the table now has {len(pos)}")
+        raise SystemExit(f"slide 12 names one exception; the table now has {len(pos)}")
     e = pos[0]
     V.words("p2.exc", e["g"], src)
     V.int("p2.exc_papers", e["papers"], src)
@@ -807,26 +814,6 @@ def p2_values(V: Values, charts: dict, ref: str) -> None:
     charts["pol"] = {"x": [lo, hi], "rows": rows}
 
 
-def p4_values(V: Values, charts: dict, ref: str) -> None:
-    """Slide 18: the pre-registered zeta model, out of paper, against the leaky split."""
-    r = json.loads(show(ref, PREREG))
-    p4, sec = r["P4"], r["secondary"]
-    src = PREREG + ": P4"
-    V.int("p4.rows", p4["rows"], src)
-    V.int("p4.papers", p4["papers"], src)
-    for k, v in p4["feature_sets"].items():
-        V.float(f"p4.{k}", v["r2"], 2, src + f", {k}")
-    V.float("p4.leak", sec["P4_random_split_r2_all"], 2, PREREG + ": secondary")
-    V.float("p4.paper_only", sec["P4_random_split_r2_paper_mean_only"], 2, PREREG + ": secondary")
-    V.words("p4.verdict", p4["verdict"], src)
-    V.tick("r2.x.0", 0.0, 0, "r2", "x")
-    charts["r2"] = {
-        "x": [-0.4, 0.4],
-        "sets": list(p4["feature_sets"]),
-        "ci": {k: v["r2_ci95"] for k, v in p4["feature_sets"].items()},
-    }
-
-
 def window_ratio(alpha: float, small: tuple[float, float], large: tuple[float, float]) -> float:
     """Power-law count in `small` over the count in `large`, for n(d) ∝ d^−α (α ≠ 1)."""
     return (small[0] ** (1 - alpha) - small[1] ** (1 - alpha)) / (
@@ -835,7 +822,7 @@ def window_ratio(alpha: float, small: tuple[float, float], large: tuple[float, f
 
 
 def window_values(V: Values, ref: str) -> None:
-    """Slide 12: one river's two size windows, then the three pre-registered tests."""
+    """Slide 21: one river's two size windows, then the three pre-registered tests."""
     w = pd.read_csv(io.StringIO(show(ref, WESER)))
     small = (float(w["small_lo_um"].iat[0]), float(w["small_hi_um"].iat[0]))
     large = (float(w["large_lo_um"].iat[0]), float(w["large_hi_um"].iat[0]))
@@ -882,7 +869,7 @@ def window_values(V: Values, ref: str) -> None:
 
 
 def reisser_values(V: Values, ref: str) -> None:
-    """Slide 33 (backup): the same tows twice in one database, and a coincidence like a cause."""
+    """Slide 38 (backup): the same tows twice in one database, and a coincidence like a cause."""
     t = pd.read_csv(io.StringIO(show(ref, TOWS)))
     both = t[(t["value_R"] > 0) & (t["value_E"] > 0)]
     ratio = both["value_R"] / both["value_E"]
@@ -906,7 +893,7 @@ def reisser_values(V: Values, ref: str) -> None:
 
 
 def validation_values(V: Values, ref: str) -> None:
-    """Slide 36 (backup): the validation ladder on Q2, and the guard wrong on the first run."""
+    """Slide 40 (backup): the validation ladder on Q2, and the guard wrong on the first run."""
     m = json.loads(show(ref, VSIGN))
     src = VSIGN
     V.int("v.cands", m["candidates"], src)
@@ -925,7 +912,7 @@ def validation_values(V: Values, ref: str) -> None:
     builder = show(ref, "tool/validate/build_labels.py")
     target = int(find("tool/validate/build_labels.py", builder, r"\nN = (\d+)")[0])
     if m["labelled"] >= target:
-        raise SystemExit("every blind label is in: slide 36 and its card must report accuracy")
+        raise SystemExit("every blind label is in: slide 40 and its card must report accuracy")
     V.int("v.label_target", target, "tool/validate/build_labels.py: N")
     notes = flat(show(ref, VRESULTS))
     first, a, b = find(
@@ -946,7 +933,7 @@ def judge_name(model: str) -> str:
 
 
 def judge_values(V: Values, ref: str) -> None:
-    """Slide 37 (backup): three judges from other families, and Claude judging its own reader."""
+    """Slide 41 (backup): three judges from other families, and Claude judging its own reader."""
     m = json.loads(show(ref, VJUDGE))
     cands = json.loads(show(ref, VSIGN))["candidates"]
     per = m["per_judge"]
@@ -989,7 +976,7 @@ def survey_values(V: Values, ref: str) -> None:
     recs = coloc["records"]
     found = sorted(k for k in recs if re.fullmatch(r"pangaea_\d+", k))
     if set(recs) != set(SV_NAMES) | set(found):
-        raise SystemExit(f"{SV_COLOC}: a dataset has no row on slide 7: {sorted(recs)}")
+        raise SystemExit(f"{SV_COLOC}: a dataset has no row on slide 16: {sorted(recs)}")
     for ds, key in SV_NAMES.items():
         V.int(f"sv.n.{key}", recs[ds], SV_COLOC + ": records")
     V.int("sv.n.found", sum(recs[k] for k in found), SV_COLOC + ": records, pangaea_<id>")
@@ -1054,7 +1041,7 @@ def survey_values(V: Values, ref: str) -> None:
     V.float("sv.law14", series["Law et al. 2014"]["ratio_last_over_first"], 1, SV_P7)
     z = p7["P7_secondary_law2014_zone"]
     if not z["ratio_inside_zone"] < z["ratio_whole_series"]:
-        raise SystemExit(f"{SV_P7}: Law 2014 no longer rises less inside its zone; slide 9")
+        raise SystemExit(f"{SV_P7}: Law 2014 no longer rises less inside its zone; slide 18")
     V.float("sv.law14_zone", z["ratio_inside_zone"], 1, SV_P7 + ": secondary")
     V.pct("sv.zone_first", z["share_in_zone_first_third"], 0, SV_P7 + ": secondary")
     V.pct("sv.zone_last", z["share_in_zone_last_third"], 0, SV_P7 + ": secondary")
@@ -1079,7 +1066,7 @@ def survey_values(V: Values, ref: str) -> None:
     want = {("emodnet vs ncei", "caveat"), ("ncei vs pangaea_990052", "caveat"),
             ("ncei vs pangaea_990052", "refuse"), ("isobe2021 vs ncei", "refuse")}  # fmt: skip
     if not want <= set(groups):
-        raise SystemExit(f"{src}: slide 10 names these database pairs: {sorted(want)}")
+        raise SystemExit(f"{src}: slide 19 names these database pairs: {sorted(want)}")
     V.int("sv.x.iso", groups[("isobe2021 vs ncei", "refuse")]["pairs"], src + ", Isobe and NCEI")
     nets, pump = groups[("emodnet vs ncei", "caveat")], groups[("ncei vs pangaea_990052", "caveat")]
     refused = groups[("ncei vs pangaea_990052", "refuse")]
@@ -1133,7 +1120,7 @@ WIN_PANELS = (
 
 
 def parse_values(V: Values, ref: str) -> None:
-    """Slide 5: what code does to each number a model proposes, counted on the table itself."""
+    """Slide 7: what code does to each number a model proposes, counted on the table itself."""
     t = pd.read_csv(io.StringIO(show(ref, D1_CSV)), dtype=str, keep_default_na=False)
     flags = t["flags"].map(lambda f: {x.strip() for x in f.split(";") if x.strip()})
 
@@ -1170,7 +1157,7 @@ def _log_ticks(V: Values, chart: str, axis: str, ds: list[float]) -> None:
 
 
 def windows_values(V: Values, charts: dict, ref: str) -> None:
-    """Slide 8: the reviewer's plot, every study as its size window by its concentration span."""
+    """Slide 17: the reviewer's plot, every study as its size window by its concentration span."""
     s = pd.read_csv(io.StringIO(show(ref, SV_STUDIES)))
     ok = s.n_pos.gt(0) & s.size_min_um.notna() & s.size_max_um.notna() & s.p10.gt(0)
     s = s[ok].assign(
@@ -1203,7 +1190,7 @@ def windows_values(V: Values, charts: dict, ref: str) -> None:
 
 
 def map_values(V: Values, charts: dict, ref: str) -> None:
-    """Backup slide 25: where the studies sampled, ocean water shaded by its median count."""
+    """Backup slide 31: where the studies sampled, ocean water shaded by its median count."""
     spec = importlib.util.spec_from_file_location("p2build", HERE.parent / "p2" / "build.py")
     p2b = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(p2b)
@@ -1234,7 +1221,7 @@ GAP_SCOUT = "out/tables/gap_scout_verified.csv"
 
 
 def gap_values(V: Values, charts: dict, ref: str) -> None:
-    """Slide 21: every gap, this project's and the published interlaboratory ones, by key."""
+    """Slide 22: every gap, this project's and the published interlaboratory ones, by key."""
     g = pd.read_csv(io.StringIO(show(ref, GAPS)))
     for r in g.itertuples():
         d = 1 if r.family == "charge" else (2 if r.value < 2 else 1 if r.value < 100 else 0)
@@ -1247,7 +1234,7 @@ def gap_values(V: Values, charts: dict, ref: str) -> None:
     said = json.loads(sc[sc.name.str.startswith("NanoValid") & sc.kept].extra_found.iat[0])[0]
     m = re.search(r"the zeta potential method is not recommended as reference", said)
     if not m:
-        raise SystemExit(f"{GAP_SCOUT}: slide 21 quotes NanoValid's conclusion; it changed")
+        raise SystemExit(f"{GAP_SCOUT}: slide 22 quotes NanoValid's conclusion; it changed")
     V.text("gap.nanovalid.said", m.group(0), GAP_SCOUT + ": NanoValid, a quote found on its page")
     charge = g[g.family == "charge"].sort_values("value")
     count = g[g.family == "count"].sort_values("value")
@@ -1268,7 +1255,7 @@ KIND_WORDS = {"photo": "light", "chemical": "oxidant"}
 
 
 def aging_values(V: Values, charts: dict, ref: str) -> None:
-    """Slide 15: an aged particle against its own virgin form, inside one paper (P11)."""
+    """Slide 13: an aged particle against its own virgin form, inside one paper (P11)."""
     a = json.loads(show(ref, AG))
     p = pd.read_csv(io.StringIO(show(ref, AG_PAIRS)))
     V.int("ag.aged_rows", a["aged_rows"], AG)
@@ -1297,7 +1284,7 @@ def aging_values(V: Values, charts: dict, ref: str) -> None:
     V.float("ag.scale", iqr / abs(p11a["median_delta_mV"]), 0, AG + ": that IQR over P11a's median")
     swapped = after["papers_printing_swapped_values"]
     if len(swapped) != 1:
-        raise SystemExit(f"{AG}: slide 15 names one paper that swaps its values; now {swapped}")
+        raise SystemExit(f"{AG}: slide 13 names one paper that swaps its values; now {swapped}")
     V.text("ag.swap", swapped[0], AG + ": papers printing swapped values")
     ox = p[p.kind.isin(KIND_WORDS)]
     rows = []
@@ -1323,13 +1310,15 @@ def aging_values(V: Values, charts: dict, ref: str) -> None:
     charts["aging"] = {"x": [lo, hi], "rows": rows, "iqr": iqr}
 
 
-def prereg_tally(V: Values) -> None:
-    """Slide 22: every pre-registered prediction with a verdict, read from the values above."""
-    keys = ("p1.verdict", "p2t.verdict", "p3.verdict", "p4.verdict", "sv.p7a", "sv.p7b",
+def prereg_tally(V: Values, ref: str) -> None:
+    """Slide 24: every pre-registered prediction with a verdict, read from the values above. P4,
+    the zeta model, left the deck on 2026-10-25 and is still counted: dropping a committed
+    prediction from the tally would be selective reporting."""
+    keys = ("p1.verdict", "p2t.verdict", "p3.verdict", "sv.p7a", "sv.p7b",
             "hy.p8", "hy.p9", "ag.a.verdict", "ag.b.verdict")  # fmt: skip
-    verdicts = [V.v[k]["v"] for k in keys]
+    verdicts = [V.v[k]["v"] for k in keys] + [json.loads(show(ref, PREREG))["P4"]["verdict"]]
     if set(verdicts) - {"supported", "partly", "refuted"}:
-        raise SystemExit(f"slide 22 counts three verdicts; found {sorted(set(verdicts))}")
+        raise SystemExit(f"slide 24 counts three verdicts; found {sorted(set(verdicts))}")
     src = "docs/PREREG_2026-10.md: P1-P4, P7a/b, P8, P9 (guard), P11a/b"
     V.int("pv.n", len(verdicts), src)
     for v in ("supported", "partly", "refuted"):
@@ -1366,9 +1355,9 @@ def hybrid_values(V: Values, ref: str) -> None:
     for arm in ARM_KEYS:
         a, src = m["arms"][arm], f"{HY}: arms[{arm}]"
         V.pct(f"hy.{arm}.correct", a["correct"], 0, src + ", correct")
-        if arm in ("N0", "N2", "H"):  # slide 19 compares the arms on the traps
+        if arm in ("N0", "N2", "H"):  # slide 29 compares the arms on the traps
             V.pct(f"hy.{arm}.adv", a["correct_adversarial"], 0, src + ", correct on the traps")
-        if arm in ("H", "Hg", "Hng"):  # slide 20 splits the ablations by the flag needed
+        if arm in ("H", "Hg", "Hng"):  # slide 30 splits the ablations by the flag needed
             V.pct(f"hy.{arm}.flag", a["correct_flag_required"], 0, src + ", flag-required")
             V.pct(f"hy.{arm}.noflag", a["correct_no_flag"], 0, src + ", no flag needed")
         if a["ungrounded_numbers_per_answer"] is None:
@@ -1423,7 +1412,6 @@ def build(ref: str) -> dict:
     rules_values(V, ref)
     lab_values(V, charts, table)
     curve_values(V, charts)
-    d4_values(V, ref)
     line_values(V, d1, table)
     henry_values(V, charts, list(harm.values()), base, d1)
     reread_values(V, ref)
@@ -1431,10 +1419,10 @@ def build(ref: str) -> dict:
     grid_values(V, ref)
     scope_values(V, base)
     motivation_values(V, ref)
+    standardisation_values(V, ref)
     basics_values(V, table)
     hypotheses_values(V, ref)
     p2_values(V, charts, ref)
-    p4_values(V, charts, ref)
     window_values(V, ref)
     reisser_values(V, ref)
     validation_values(V, ref)
@@ -1442,7 +1430,7 @@ def build(ref: str) -> dict:
     survey_values(V, ref)
     hybrid_values(V, ref)
     aging_values(V, charts, ref)
-    prereg_tally(V)
+    prereg_tally(V, ref)
     parse_values(V, ref)
     windows_values(V, charts, ref)
     map_values(V, charts, ref)
@@ -1991,7 +1979,7 @@ def chart_arch(values: dict, charts: dict) -> str:
 
 
 def chart_pol(values: dict, charts: dict) -> str:
-    """Slide 14: each polymer's 10th to 90th percentile of zeta, and its median."""
+    """Slide 12: each polymer's 10th to 90th percentile of zeta, and its median."""
     c = charts["pol"]
     W, x0, x1, top, row = 900, 120, 800, 16, 34
     H = top + row * len(c["rows"]) + 44
@@ -2029,7 +2017,7 @@ def chart_pol(values: dict, charts: dict) -> str:
 
 
 def chart_parse(values: dict, charts: dict) -> str:
-    """Slide 5: the paper, the model and the code, each check a box."""
+    """Slide 7: the paper, the model and the code, each check a box."""
     W, H, bh = 960, 430, 92
     lanes = [
         (24, [("full text", "{{papers_read}} papers,", "pinned by checksum", "box"),
@@ -2089,7 +2077,7 @@ def chart_parse(values: dict, charts: dict) -> str:
 
 
 def chart_gaps(values: dict, charts: dict) -> str:
-    """Slide 21: how far apart two numbers land, by what differs; charge in mV, counts in folds."""
+    """Slide 22: how far apart two numbers land, by what differs; charge in mV, counts in folds."""
     W, x0, x1, row = 960, 430, 790, 25
     body, y = [], 22
     panels = (("gaps_c", "charge, mV apart", False), ("gaps_n", "counts, fold apart", True))
@@ -2137,7 +2125,7 @@ def chart_gaps(values: dict, charts: dict) -> str:
 
 
 def chart_windows(values: dict, charts: dict) -> str:
-    """Slide 8: each study a rectangle, its size window by the span of its concentrations."""
+    """Slide 17: each study a rectangle, its size window by the span of its concentrations."""
     W, H, pw, ph, gx, gy = 960, 560, 252, 170, 68, 78
     cls = {"ncei": "win-n", "emodnet": "win-e", "found": "win-p", "user": "win-u", "other": "win-s"}
     order = {"other": 0, "ncei": 0, "emodnet": 1, "user": 2, "found": 3}
@@ -2174,7 +2162,7 @@ def chart_windows(values: dict, charts: dict) -> str:
 
 
 def chart_map(values: dict, charts: dict) -> str:
-    """Backup slide 25: the studies' median positions; ocean water shaded by its median count."""
+    """Backup slide 31: the studies' median positions; ocean water shaded by its median count."""
     c = charts["map"]
     k, lat_top, lat_bot = 960 / 360, 85, -60
     MH = round((lat_top - lat_bot) * k)
@@ -2208,7 +2196,7 @@ def chart_map(values: dict, charts: dict) -> str:
 
 
 def chart_aging(values: dict, charts: dict) -> str:
-    """Slide 15: per paper, oxidative pairs aged minus virgin, against the between-paper spread."""
+    """Slide 13: per paper, oxidative pairs aged minus virgin, against the between-paper spread."""
     c = charts["aging"]
     W, x0, x1, top, row = 900, 210, 780, 12, 34
     n = len(c["rows"])
@@ -2242,46 +2230,8 @@ def chart_aging(values: dict, charts: dict) -> str:
     return svg(W, H, body, "Aged minus virgin zeta per paper, against the spread between papers")
 
 
-def chart_r2(values: dict, charts: dict) -> str:
-    """Slide 18: out-of-paper R² per feature set, and the same model on a leaky split."""
-    sets = charts["r2"]["sets"] + ["leak"]
-    label = {
-        "size": "size",
-        "polymer": "polymer",
-        "surface": "surface",
-        "liquid_pH": "liquid and pH",
-        "all": "all of them",
-        "leak": "all, rows shuffled",
-    }
-    W, x0, x1, top, row = 900, 250, 800, 12, 40
-    H = top + row * len(sets) + 44
-    lo, hi = charts["r2"]["x"]
-    sx = lambda v: x0 + (max(lo, min(hi, v)) - lo) / (hi - lo) * (x1 - x0)  # noqa: E731
-    y0 = top + row * len(sets)
-    body = [line(sx(0), top, sx(0), y0, "ax")]
-    for i, k in enumerate(sets):
-        y = top + row * i + row / 2
-        v = values[f"p4.{k}"]["v"]
-        cls = "bar-a" if k == "leak" else "seg-i"
-        a, b = sorted((sx(0), sx(v)))
-        body += [
-            T(x0 - 14, y + 6, label[k], values, "row-l abs" if k == "leak" else "row-l", "end"),
-            rect(a, y - 9, max(2, b - a), 18, cls, 3),
-            T(x1 + 18, y + 6, "{{p4." + k + "}}", values, "val-s"),
-        ]
-        ci = charts["r2"]["ci"].get(k)
-        if ci:
-            body.append(line(sx(ci[0]), y, sx(ci[1]), y, "gap"))
-    body += [
-        T(sx(0), y0 + 24, "{{r2.x.0}}", values, "tick", "middle"),
-        T(x1, H - 4, "R², predicting zeta for papers the model never saw", values, "ax-t", "end"),
-    ]
-    return svg(W, H, body, "R squared per feature set, grouped by paper, against a shuffled split")
-
-
 CHARTS = {
     "pol": chart_pol,
-    "r2": chart_r2,
     "aging": chart_aging,
     "parse": chart_parse,
     "windows": chart_windows,

@@ -4,8 +4,8 @@ The script is the deck's rehearsal companion. It speaks the deck's own values (`
 at the same ref), so every number said aloud is the number on the slide, and it copies each
 slide's title and message out of the rendered deck instead of retyping them. `script_template.html`
 holds the words. The only numbers typed here are the time plan: twenty minutes over five acts,
-motivation first (the plan of 2026-10-25: why standardise, the engineering, what the papers say,
-what the datasets say, the way forward). Backup slides have a card but no time.
+motivation first (the plan of 2026-10-25: why standardise, the engineering, what the datasets
+say, what the papers say, the way forward). Backup slides have a card but no time.
 
     unset VIRTUAL_ENV
     uv run python tool/slides/build_script.py [--ref HEAD] [--out tool/slides/script.html]
@@ -26,21 +26,21 @@ _spec.loader.exec_module(bs)
 
 # Seconds on each timed slide, at about a hundred spoken words a minute.
 PLAN = {
-    "s1": 30, "s2": 35, "s3": 65, "s4": 30, "s5": 25,
-    "s6": 40, "s7": 65, "s8": 45, "s9": 55, "s10": 45,
-    "s11": 40, "s12": 50, "s13": 45, "s14": 45, "s15": 40,
-    "s16": 50, "s17": 50, "s18": 70, "s19": 55, "s20": 40, "s21": 55,
-    "s22": 50, "s23": 75, "s24": 40, "s25": 60,
+    "s1": 30, "s2": 35, "s3": 60, "s4": 30, "s5": 40, "s6": 25,
+    "s7": 40, "s8": 60, "s9": 45, "s10": 55, "s11": 45,
+    "s12": 45, "s13": 45, "s14": 60, "s15": 50, "s16": 40, "s17": 55,
+    "s18": 50, "s19": 45, "s20": 45, "s21": 40, "s22": 40,
+    "s23": 50, "s24": 70, "s25": 40, "s26": 60,
 }  # fmt: skip
 ACTS = (
-    ("I", "why standardise", ("s1", "s2", "s3", "s4", "s5")),
-    ("II", "the engineering", ("s6", "s7", "s8", "s9", "s10")),
-    ("III", "what the papers say", ("s11", "s12", "s13", "s14", "s15")),
-    ("IV", "what the datasets say", ("s16", "s17", "s18", "s19", "s20", "s21")),
-    ("V", "the way forward", ("s22", "s23", "s24", "s25")),
+    ("I", "why standardise", ("s1", "s2", "s3", "s4", "s5", "s6")),
+    ("II", "the engineering", ("s7", "s8", "s9", "s10", "s11")),
+    ("III", "what the datasets say", ("s12", "s13", "s14", "s15", "s16", "s17")),
+    ("IV", "what the papers say", ("s18", "s19", "s20", "s21", "s22")),
+    ("V", "the way forward", ("s23", "s24", "s25", "s26")),
 )
 #: Slides kept for questions: a card each, no time.
-BACKUP = tuple(f"s{i}" for i in range(26, 45))
+BACKUP = tuple(f"s{i}" for i in range(27, 46))
 TOTAL = sum(PLAN.values())
 SRC = "tool/slides/build_script.py PLAN"
 

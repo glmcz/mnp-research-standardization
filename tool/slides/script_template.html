@@ -430,8 +430,8 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">11</span><h3>{{title:s11}}</h3><p class="time"><b>{{t.s11}}</b> · ends at {{at.s11}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s11}}</p>
       <div class="say">
-        <p>Now the datasets: the abstract’s first paragraph. NOAA’s database is one source, so I built two agents to find others: one read {{ds.on_topic}} catalogue records, one searched the web. <strong>Code opened every file they named.</strong> The web agent’s claims held in {{sc.held}} of {{sc.tested}} cases.</p>
-        <p>A reference list gave {{sv.n.user}} more. {{sv.n.datasets}} datasets, {{sv.total}} records. Look at the last column: the sediment database has <strong>no coordinates at all</strong>, the drinking water only a country.</p>
+        <p>Now the datasets: the abstract’s first paragraph. NOAA’s database is one source, so I built two agents to find others: one read {{ds.on_topic}} catalogue records, one searched the web. <strong>Code opened every file they named</strong> and checked each claim against it.</p>
+        <p>A reference list gave {{sv.n.user}} more, among them Japan’s ocean atlas. A dataset stays only if it shares a place with another study. {{sv.n.datasets}} datasets, {{sv.total}} records. Look at the last column: the sediment database has <strong>no coordinates at all</strong>.</p>
         <p>None of it is filled in; a check that needs it refuses.</p>
       </div>
       <div class="cue">
@@ -498,7 +498,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <div class="say">
         <p>The cross-check a reviewer asked for: two independent studies, the same sea, within a year, the same kind of net.</p>
         <p>Their values differ by a median <strong>×{{sv.co.median}}</strong>; one pair in ten by ×{{sv.co.p90}} or more. And code first takes out {{sv.co.excluded}} pairs that are not independent at all; left in, they would look like agreement.</p>
-        <p>Two databases, the same sea: EMODnet and NOAA nets sit a median <strong>×{{sv.x.median}}</strong> apart. Against a pump that counts far smaller particles, convert for the window first: <strong>×{{sv.x.residual}}</strong> is left. The window is not the explanation.</p>
+        <p>Two databases, Japan’s atlas and NOAA, the same window: <strong>×{{sv.x.median}}</strong>. But only after code drops {{sv.x.held}} pairs where both databases hold <strong>the same samples</strong>.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the first number, then the last sentence.</p>
@@ -509,7 +509,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         <div class="deep-body">
           <p><span class="k">What is really going on</span>A pair is two records from different studies within {{sv.co.km}} km and {{sv.co.days}} days, both positive. Pairs between studies that hold the same samples are removed first. Real patchiness explains part of the spread: plastic at the surface is clumped over tens of kilometres, and wind mixes it down.</p>
           <p><span class="k">Where the numbers come from</span>Same method: {{sv.co.pairs}} record pairs from {{sv.co.studypairs}} study pairs, median ×{{sv.co.median}}, one in ten ×{{sv.co.p90}}. Any method: ×{{sv.co.any_median}}, one in ten ×{{sv.co.any_p90}}. Mediterranean, same method: ×{{sv.co.med_median}} over {{sv.co.med_studypairs}} study pairs.</p>
-          <p><span class="k">If they push</span><b>Isn’t threefold just the ocean being patchy?</b> Partly. That is the point for an agent: two such numbers do not disagree, and they do not confirm each other either. <b>Only one pair of databases?</b> Yes: within {{sv.x.km}} km, any year, only EMODnet against NOAA ({{sv.x.compared}} pairs, a median {{sv.x.years}} years apart, ×{{sv.x.p90}} for one in ten) and NOAA against one Pacific pump survey. Of those, {{sv.x.refused}} pairs (×{{sv.x.refused_fold}}) are refused because the window conversion is too uncertain; {{sv.x.cav}} are caveated and stay ×{{sv.x.residual}} apart after the most generous conversion. Dropping them would bias the comparison toward agreement, so they are reported, not removed.</p>
+          <p><span class="k">If they push</span><b>Isn’t threefold just the ocean being patchy?</b> Partly. That is the point for an agent: two such numbers do not disagree, and they do not confirm each other either. <b>Why trust the database comparison?</b> Within {{sv.x.km}} km and {{sv.x.days}} days, {{sv.x.held}} record pairs are dropped first because the two databases hold the same samples. Of the rest, {{sv.x.compared}} AOMI–NOAA pairs share a window (×{{sv.x.median}}, one in ten ×{{sv.x.p90}}); {{sv.x.cav}} differ in window and stay ×{{sv.x.residual}} apart after the most generous conversion; {{sv.x.refused}} are refused because no window conversion is safe.</p>
         </div>
       </details>
     </section>
@@ -519,7 +519,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <p class="screen"><span class="k">On screen</span>{{msg:s15}}</p>
       <div class="say">
         <p>Agents will read harmonised databases first. So I ran a duplicate check over all of them, blind: same day, a few hundred metres apart, another study.</p>
-        <p>It flags {{sv.dup.n}} pairs of studies, including a case I knew from two papers: {{re.tows}} tows held twice, converted two ways. And the web agent’s best find? At least {{sv.dup.iso_records}} of its samples are <strong>NOAA’s own tows</strong>.</p>
+        <p>It flags {{sv.dup.n}} pairs of studies, including a case I knew from two papers: {{re.tows}} tows held twice, converted two ways. And Japan’s atlas? At least {{sv.dup.aomi_records}} of its samples are held by another database too, <strong>mostly NOAA’s own tows</strong>.</p>
         <p>The trap at the bottom is a coincidence that only arithmetic exposes.</p>
       </div>
       <div class="cue">
@@ -531,7 +531,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         <div class="deep-body">
           <p><span class="k">What is really going on</span>A pair of studies is flagged when at least ten records on each side share a day and lie within two kilometres. The known case was matched tow by tow from the papers’ own tables; the database converted one copy with half the net depth the paper states and kept only small particles for the other.</p>
           <p><span class="k">Where the numbers come from</span>The check finds {{sv.dup.re_found}} of the {{re.tows}} known tows. Manta tows differ ×{{re.manta}} between the two copies, Neuston tows ×{{re.neuston}}.</p>
-          <p><span class="k">If they push</span><b>Are they really duplicates?</b> The check says they share samples: {{sv.dup.ncei}} pairs inside NOAA and {{sv.dup.iso}} between NOAA and the compilation, {{sv.dup.identical}} of all pairs with values within one percent. Whether each is one survey published twice is for the maintainers to confirm. I have not asked them yet.</p>
+          <p><span class="k">If they push</span><b>Are they really duplicates?</b> The check says they share samples: {{sv.dup.ncei}} pairs inside NOAA, {{sv.dup.aomi}} between AOMI and another database, {{sv.dup.aomi_self}} inside AOMI; {{sv.dup.identical}} of all pairs with values within one percent. Whether each is one survey published twice is for the maintainers to confirm. I have not asked them yet.</p>
         </div>
       </details>
     </section>

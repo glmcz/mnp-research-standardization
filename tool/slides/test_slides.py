@@ -676,11 +676,10 @@ def expected_findings(get=show) -> dict:
     # slides 11 to 15: the survey outputs, the counts redone from their rows where they have any
     co = json.loads(get("out/tables/survey_colocated.json"))
     names = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser",
-             "emodnet": "emodnet", "isobe2021": "isobe", "kiessling2021": "kiessling",
-             "durum": "durum", "rivm": "rivm", "valine2020": "valine", "moore_dw": "moore",
-             "sfbay": "sfbay"}  # fmt: skip
-    user = ("durum", "rivm", "valine2020", "moore_dw", "sfbay")
-    scout = ("isobe2021", "kiessling2021")
+             "emodnet": "emodnet", "kiessling2021": "kiessling", "durum": "durum",
+             "rivm": "rivm", "sfbay": "sfbay", "aomi": "aomi"}  # fmt: skip
+    user = ("durum", "rivm", "sfbay", "aomi")
+    scout = ("kiessling2021",)
     found = [k for k in co["records"] if k not in names]
     assert all(k.startswith("pangaea_") and k[8:].isdigit() for k in found), found
     for ds, n_ in co["records"].items():
@@ -711,12 +710,10 @@ def expected_findings(get=show) -> dict:
         for r in csv.DictReader(io.StringIO(get("out/tables/survey_completeness.csv")))
     }
     E["sv.miss.emodnet.mesh"] = float(miss["emodnet"]["size_min_um"])
-    E["sv.miss.isobe.window"] = float(miss["isobe2021"]["size_min_um"])
     E["sv.miss.kiessling.window"] = float(miss["kiessling2021"]["size_min_um"])
     E["sv.miss.durum.date"] = float(miss["durum"]["date"])
     E["sv.miss.rivm.date"] = float(miss["rivm"]["date"])
-    E["sv.miss.moore.lat"] = float(miss["moore_dw"]["lat"])
-    E["sv.miss.valine.window"] = float(miss["valine2020"]["size_min_um"])
+    E["sv.miss.aomi.mesh"] = float(miss["aomi"]["size_min_um"])
     E["sv.n.user"] = sum(k in co["records"] for k in user)
     E["sv.found_nolower"] = sum(float(miss[k]["size_min_um"]) == 1.0 for k in found)
     E["sv.miss.mpsed.lat"] = float(miss["mpsed"]["lat"])
@@ -750,29 +747,18 @@ def expected_findings(get=show) -> dict:
     E["sv.co.excluded"] = same["excluded_held_twice"]
     E["sv.co.any_median"], E["sv.co.any_p90"] = anym["median_fold"], anym["p90_fold"]
     E["sv.co.med_median"], E["sv.co.med_studypairs"] = med["median_fold"], med["study_pairs"]
-    # across databases: the groups add up to the totals, and what is left after the window
-    # conversion is less than the raw gap and still far beyond patchiness
-    x = co["across_datasets_100km_any_year"]
+    # across databases: the groups add up to the totals; AOMI against NOAA with one window is the
+    # same-place check, after the pairs whose studies hold the same samples are gone
+    x = co["across_datasets"]
     groups = {(g["datasets"], g["decision"]): g for g in x["by_dataset_pair"]}
-    nets = groups[("emodnet vs ncei", "caveat")]
-    pump = groups[("ncei vs pangaea_990052", "caveat")]
-    gone = groups[("ncei vs pangaea_990052", "refuse")]
     kept = sum(g["pairs"] for (_, dec), g in groups.items() if dec != "refuse")
-    assert nets["pairs"] + pump["pairs"] == kept == x["compared"]
-    assert sum(g["pairs"] for (_, dec), g in groups.items() if dec == "refuse") == x["refused"]
-    assert 10 < pump["median_residual_fold"] < pump["median_fold"]
-    E["sv.x.km"] = x["km"]
-    E["sv.x.compared"], E["sv.x.refused"], E["sv.x.cav"] = (
-        nets["pairs"],
-        gone["pairs"],
-        pump["pairs"],
-    )
-    E["sv.x.median"], E["sv.x.p90"] = nets["median_fold"], nets["p90_fold"]
-    E["sv.x.years"] = nets["median_years_apart"]
-    E["sv.x.refused_fold"] = gone["median_fold"]
-    E["sv.x.residual"] = pump["median_residual_fold"]
-    E["sv.x.raw_p90"] = x["unguarded"]["p90_fold"]
-    E["sv.x.iso"] = groups[("isobe2021 vs ncei", "refuse")]["pairs"]
+    assert kept == x["compared"] and kept + x["refused"] == x["pairs"]
+    same, wider = groups[("aomi vs ncei", "allow")], groups[("aomi vs ncei", "caveat")]
+    E["sv.x.km"], E["sv.x.days"], E["sv.x.held"] = x["km"], x["days"], x["excluded_held_twice"]
+    E["sv.x.compared"], E["sv.x.cav"] = same["pairs"], wider["pairs"]
+    E["sv.x.refused"] = x["refused"]
+    E["sv.x.median"], E["sv.x.p90"] = same["median_fold"], same["p90_fold"]
+    E["sv.x.residual"] = wider["median_residual_fold"]
     dup = list(csv.DictReader(io.StringIO(get("out/tables/survey_duplicates.csv"))))
     E["sv.dup.n"] = len(dup)
     # a pair with a zero on one side has no ratio, so it cannot be identical
@@ -780,17 +766,16 @@ def expected_findings(get=show) -> dict:
         r["median_ratio_a_over_b"] != "" and abs(float(r["median_ratio_a_over_b"]) - 1) < 0.01
         for r in dup
     )
-    isa = [(r["study_a"].startswith("isobe2021"), r["study_b"].startswith("isobe2021"))
-           for r in dup]  # fmt: skip
-    E["sv.dup.ncei"] = sum(not a and not b for a, b in isa)
-    E["sv.dup.iso"] = sum(a != b for a, b in isa)
-    E["sv.dup.iso_self"] = sum(a and b for a, b in isa)
+    side = [(r["study_a"].startswith("aomi:"), r["study_b"].startswith("aomi:")) for r in dup]
+    E["sv.dup.ncei"] = sum(not a and not b for a, b in side)
+    E["sv.dup.aomi"] = sum(a != b for a, b in side)
+    E["sv.dup.aomi_self"] = sum(a and b for a, b in side)
     shared: dict[str, int] = {}
-    for r, (a, b) in zip(dup, isa, strict=True):
+    for r, (a, b) in zip(dup, side, strict=True):
         if a != b:
             st, n = (r["study_b"], r["records_b"]) if b else (r["study_a"], r["records_a"])
             shared[st] = max(shared.get(st, 0), int(n))
-    E["sv.dup.iso_records"] = sum(shared.values())
+    E["sv.dup.aomi_records"] = sum(shared.values())
     E["sv.dup.re_found"] = next(
         int(r["records_a"])
         for r in dup
@@ -907,10 +892,10 @@ def expected_findings(get=show) -> dict:
     ocean = [r for r in drawn if r["setting"] == "Ocean water" and r["unit"] == "pieces/m3"]
     E["win.ncei.n"] = sum(r["dataset"] == "ncei" for r in ocean)
     E["win.emodnet.n"] = sum(r["dataset"] == "emodnet" for r in ocean)
-    E["win.found.n"] = sum(r["dataset"] not in ("ncei", "emodnet") for r in ocean)
+    # the agents' ocean finds are the PANGAEA sets; AOMI came from the reference list
+    E["win.found.n"] = sum(r["dataset"].startswith("pangaea_") for r in ocean)
     panels = {"ocean": (("Ocean water",), "pieces/m3"), "river": (("river water",), "pieces/m3"),
               "storm": (("stormwater runoff",), "particles/L"),
-              "dw": (("drinking water, tap", "drinking water, bottled"), "particles/L"),
               "sed": (("sediment",), "microplastic/kg sediment dry wt."),
               "soil": (("soil",), "items/kg")}  # fmt: skip
     for k, (settings, unit) in panels.items():
@@ -1149,7 +1134,6 @@ def test_every_axis_label_names_a_value_its_chart_reaches(deck) -> None:
         "win_ocean",
         "win_river",
         "win_storm",
-        "win_dw",
         "win_sed",
         "win_soil",
         "map",

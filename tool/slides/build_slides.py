@@ -992,11 +992,10 @@ DS_SEARCH = "out/tables/dataset_search.json"
 #: The survey's datasets by the key their slide values use; the search agent's PANGAEA finds are
 #: the pangaea_<id> datasets, shown as one row.
 SV_NAMES = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser",
-            "emodnet": "emodnet", "isobe2021": "isobe", "kiessling2021": "kiessling",
-            "durum": "durum", "rivm": "rivm", "valine2020": "valine", "moore_dw": "moore",
-            "sfbay": "sfbay"}  # fmt: skip
-#: The scout agent's finds, which joined the table (tool/survey/table.py).
-SCOUT_JOINED = ("isobe2021", "kiessling2021")
+            "emodnet": "emodnet", "kiessling2021": "kiessling", "durum": "durum", "rivm": "rivm",
+            "sfbay": "sfbay", "aomi": "aomi"}  # fmt: skip
+#: The scout agent's finds still in the table; its Isobe compilation gave way to AOMI.
+SCOUT_JOINED = ("kiessling2021",)
 DS_SCOUT = "out/tables/dataset_scout_verified.csv"
 
 
@@ -1031,10 +1030,8 @@ def survey_values(V: Values, ref: str) -> None:
 
     miss = pd.read_csv(io.StringIO(show(ref, SV_MISS))).set_index("dataset")
     V.pct("sv.miss.emodnet.mesh", miss.loc["emodnet", "size_min_um"], 0, SV_MISS + ": emodnet")
-    V.pct("sv.miss.isobe.window", miss.loc["isobe2021", "size_min_um"], 0, SV_MISS + ": isobe2021")
     for key, ds, field in (("durum.date", "durum", "date"), ("rivm.date", "rivm", "date"),
-                           ("moore.lat", "moore_dw", "lat"), ("valine.window", "valine2020",
-                                                              "size_min_um")):  # fmt: skip
+                           ("aomi.mesh", "aomi", "size_min_um")):  # fmt: skip
         V.pct(f"sv.miss.{key}", miss.loc[ds, field], 0, SV_MISS + f": {ds}, {field}")
     V.int("sv.n.user", sum(k in recs for k in USER_SETS), SV_COLOC + ": the reference list's")
     V.pct("sv.miss.kiessling.window", miss.loc["kiessling2021", "size_min_um"], 0,
@@ -1090,41 +1087,36 @@ def survey_values(V: Values, ref: str) -> None:
     V.float("sv.co.med_median", med["median_fold"], 1, SV_COLOC + ": Mediterranean")
     V.int("sv.co.med_studypairs", med["study_pairs"], SV_COLOC + ": Mediterranean")
 
-    x = coloc["across_datasets_100km_any_year"]
-    src = SV_COLOC + ": across_datasets_100km_any_year"
+    x = coloc["across_datasets"]
+    src = SV_COLOC + ": across_datasets"
     groups = {(g["datasets"], g["decision"]): g for g in x["by_dataset_pair"]}
-    want = {("emodnet vs ncei", "caveat"), ("ncei vs pangaea_990052", "caveat"),
-            ("ncei vs pangaea_990052", "refuse"), ("isobe2021 vs ncei", "refuse")}  # fmt: skip
-    if not want <= set(groups):
-        raise SystemExit(f"{src}: slide 14 names these database pairs: {sorted(want)}")
-    V.int("sv.x.iso", groups[("isobe2021 vs ncei", "refuse")]["pairs"], src + ", Isobe and NCEI")
-    nets, pump = groups[("emodnet vs ncei", "caveat")], groups[("ncei vs pangaea_990052", "caveat")]
-    refused = groups[("ncei vs pangaea_990052", "refuse")]
+    if not {("aomi vs ncei", "allow"), ("aomi vs ncei", "caveat")} <= set(groups):
+        raise SystemExit(f"{src}: slide 14 compares AOMI and NOAA; the pairs are gone")
+    same, wider = groups[("aomi vs ncei", "allow")], groups[("aomi vs ncei", "caveat")]
     V.int("sv.x.km", x["km"], src)
-    V.int("sv.x.compared", nets["pairs"], src + ", EMODnet against NCEI")
-    V.float("sv.x.median", nets["median_fold"], 1, src + ", EMODnet against NCEI")
-    V.float("sv.x.p90", nets["p90_fold"], 0, src + ", EMODnet against NCEI")
-    V.float("sv.x.years", nets["median_years_apart"], 0, src + ", median years apart")
-    V.int("sv.x.refused", refused["pairs"], src + ", the pump, refused")
-    V.float("sv.x.refused_fold", refused["median_fold"], 0, src + ", the pump, refused")
-    V.int("sv.x.cav", pump["pairs"], src + ", the pump, caveated")
-    V.float("sv.x.residual", pump["median_residual_fold"], 0, src + ", the pump, after the window")
-    V.float("sv.x.raw_p90", x["unguarded"]["p90_fold"], 0, src + ", unguarded")
+    V.int("sv.x.days", x["days"], src)
+    V.int("sv.x.held", x["excluded_held_twice"], src + ": pairs of studies holding one sample")
+    V.int("sv.x.compared", same["pairs"], src + ", AOMI and NCEI, same window")
+    V.float("sv.x.median", same["median_fold"], 1, src + ", AOMI and NCEI, same window")
+    V.float("sv.x.p90", same["p90_fold"], 0, src + ", AOMI and NCEI, same window")
+    V.int("sv.x.cav", wider["pairs"], src + ", AOMI and NCEI, different windows")
+    V.float("sv.x.residual", wider["median_residual_fold"], 1, src + ", after the window")
+    V.int("sv.x.refused", x["refused"], src + ": refused by the window guard")
 
     dup = pd.read_csv(io.StringIO(show(ref, SV_DUP)))
     V.int("sv.dup.n", len(dup), SV_DUP)
     V.int("sv.dup.identical", int((dup.median_ratio_a_over_b - 1).abs().lt(0.01).sum()), SV_DUP)
-    ia, ib = dup.study_a.str.startswith("isobe2021"), dup.study_b.str.startswith("isobe2021")
-    iso = ia ^ ib
-    V.int("sv.dup.ncei", int((~ia & ~ib).sum()), SV_DUP + ": both studies in NCEI")
-    V.int("sv.dup.iso", int(iso.sum()), SV_DUP + ": one study in NCEI, one in Isobe's compilation")
-    V.int("sv.dup.iso_self", int((ia & ib).sum()), SV_DUP + ": both in Isobe's compilation")
-    side = dup[iso].assign(
-        study=lambda d: d.study_b.where(d.study_b.str.startswith("isobe2021"), d.study_a),
-        n=lambda d: d.records_b.where(d.study_b.str.startswith("isobe2021"), d.records_a),
+    ia, ib = dup.study_a.str.startswith("aomi:"), dup.study_b.str.startswith("aomi:")
+    cross = ia ^ ib
+    V.int("sv.dup.ncei", int((~ia & ~ib).sum()), SV_DUP + ": neither study in AOMI")
+    V.int("sv.dup.aomi", int(cross.sum()), SV_DUP + ": one study in AOMI, one elsewhere")
+    V.int("sv.dup.aomi_self", int((ia & ib).sum()), SV_DUP + ": both studies in AOMI")
+    side = dup[cross].assign(
+        study=lambda d: d.study_b.where(d.study_b.str.startswith("aomi:"), d.study_a),
+        n=lambda d: d.records_b.where(d.study_b.str.startswith("aomi:"), d.records_a),
     )
-    # an Isobe study may twin two NCEI studies (which twin each other): count it once, at least
-    V.int("sv.dup.iso_records", int(side.groupby("study").n.max().sum()), SV_DUP + ", at least")
+    # an AOMI study may twin two other studies (which twin each other): count it once, at least
+    V.int("sv.dup.aomi_records", int(side.groupby("study").n.max().sum()), SV_DUP + ", at least")
     re_pair = dup[
         dup.study_a.str.endswith("pone.0080466") & dup.study_b.str.endswith("pone.0111913")
     ]
@@ -1136,14 +1128,12 @@ EXTRACTIONS = "data/interim/extractions.jsonl"
 SV_STUDIES = "out/tables/survey_studies.csv"
 WIN_OCEAN = {"ncei": "ncei", "emodnet": "emodnet"}  # every other ocean-water dataset was found
 #: Datasets Martin fetched from his reference list (tool/survey/fetch_user.py).
-USER_SETS = ("durum", "rivm", "valine2020", "moore_dw", "sfbay")
+USER_SETS = ("durum", "rivm", "sfbay", "aomi")
 #: The window plot's panels: name, title, the settings and unit it draws.
 WIN_PANELS = (
     ("win_ocean", "ocean water, pieces per m³", ("Ocean water",), "pieces/m3"),
     ("win_river", "rivers, pieces per m³", ("river water",), "pieces/m3"),
     ("win_storm", "stormwater, particles per L", ("stormwater runoff",), "particles/L"),
-    ("win_dw", "drinking water, particles per L",
-     ("drinking water, tap", "drinking water, bottled"), "particles/L"),
     ("win_sed", "sediment, items per kg dry", ("sediment",), "microplastic/kg sediment dry wt."),
     ("win_soil", "soil, items per kg", ("soil",), "items/kg"),
 )  # fmt: skip
@@ -1195,7 +1185,7 @@ def windows_values(V: Values, charts: dict, ref: str) -> None:
             d.dataset.isin(WIN_OCEAN), np.where(d.dataset.isin(USER_SETS), "user", "found")
         )
     )
-    found = s.dataset.str.fullmatch(r"pangaea_\d+") | s.dataset.isin(("isobe2021", "kiessling2021"))
+    found = s.dataset.str.fullmatch(r"pangaea_\d+") | s.dataset.isin(SCOUT_JOINED)
     s.loc[~s.dataset.isin((*WIN_OCEAN, *USER_SETS)) & ~found, "g"] = "other"
     ocean = s[s.setting.eq("Ocean water") & s.unit.eq("pieces/m3")]
     for g in ("ncei", "emodnet", "found"):

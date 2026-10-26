@@ -738,13 +738,11 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
           <tr><td>Weser estuary, PANGAEA</td><td>{{sv.n.weser}}</td><td>one size window: two fractions at the same stations</td></tr>
           <tr><td>EMODnet trawls, Baltic</td><td>{{sv.n.emodnet}}</td><td>a mesh size, for {{sv.miss.emodnet.mesh}}</td></tr>
           <tr class="found"><td>PANGAEA sets the catalogue agent found</td><td>{{sv.n.found}}</td><td>an upper size limit: five millimetres by convention; a lower one in {{sv.found_nolower}} of {{ds.joined}} sets</td></tr>
-          <tr><td>Isobe et al., found by the web scout</td><td>{{sv.n.isobe}}</td><td>a size window, for {{sv.miss.isobe.window}}; at least {{sv.dup.iso_records}} samples are NOAA’s own</td></tr>
           <tr><td>German rivers, Kiessling et al., the scout</td><td>{{sv.n.kiessling}}</td><td>a size window, for {{sv.miss.kiessling.window}}; mesoplastics counted with micro</td></tr>
           <tr class="found"><td>Stormwater, DURUM</td><td>{{sv.n.durum}}</td><td>a single sampling date, for {{sv.miss.durum.date}}</td></tr>
           <tr><td>Dutch rivers, RIVM</td><td>{{sv.n.rivm}}</td><td>a date, for {{sv.miss.rivm.date}}, some printed without their century</td></tr>
-          <tr><td>Drinking water, California portal</td><td>{{sv.n.moore}}</td><td>coordinates, for {{sv.miss.moore.lat}}: a country, not a place</td></tr>
           <tr><td>San Francisco Bay, SFEI</td><td>{{sv.n.sfbay}}</td><td>which particles are plastic: most were never characterised</td></tr>
-          <tr><td>Oregon rivers, Valine et al.</td><td>{{sv.n.valine}}</td><td>a size window, for {{sv.miss.valine.window}}</td></tr>
+          <tr><td>AOMI atlas, Japan’s environment ministry</td><td>{{sv.n.aomi}}</td><td>a mesh, for {{sv.miss.aomi.mesh}}; at least {{sv.dup.aomi_records}} samples held by another database too</td></tr>
         </tbody>
       </table>
     </div>
@@ -757,7 +755,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </div>
   <p class="src">out/tables/survey_colocated.json · out/tables/survey_completeness.csv · out/tables/dataset_search.json · out/tables/dataset_scout_verified.csv · .claude/agents/mnp-dataset-scout.md</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>NOAA’s database is one source, so two agents looked for more: one read the catalogue records, a second searched the web like a person would. Code opened every file either named and checked each claim against it; most claims that failed were the agent reporting a web page, not the file. Another {{ds.partial}} catalogue finds hold a concentration without a place or a date, and {{ds.not_verifiable}} had no public file to open. On the joined table a model only picks an operation; code computes it, and a guard allows, caveats or refuses the comparison.</p>
+    <p>NOAA’s database is one source, so two agents looked for more and a reference list added the Japanese ministry’s atlas; a dataset stays only if its records share a place with another study. Code opened every file the agents named and checked each claim against it; most failed claims were the agent reporting a web page, not the file. Another {{ds.partial}} catalogue finds hold a concentration without a place or a date, and {{ds.not_verifiable}} had no public file to open. On the joined table a model only picks an operation; code computes it, and a guard allows, caveats or refuses the comparison.</p>
   </aside>
 </div>
 </section>
@@ -771,7 +769,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </header>
   <div class="body fill">
     <figure class="fig" style="margin:0">{{svg:windows}}</figure>
-    <p class="lead-in">Six matrices, {{win.ocean.n}} ocean, {{win.river.n}} river, {{win.storm.n}} stormwater, {{win.dw.n}} drinking-water, {{win.sed.n}} sediment and {{win.soil.n}} soil studies: wherever a study states its window, the same picture. Same width, a spread of decades; further left, more counted (soil ρ {{p1.rho}}, pre-registered).</p>
+    <p class="lead-in">Five matrices, {{win.ocean.n}} ocean, {{win.river.n}} river, {{win.storm.n}} stormwater, {{win.sed.n}} sediment and {{win.soil.n}} soil studies: wherever a study states its window, the same picture. Same width, a spread of decades; further left, more counted (soil ρ {{p1.rho}}, pre-registered).</p>
   </div>
   <p class="src">out/tables/survey_studies.csv · docs/2026-10-10-review-call.md, item on idea C</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
@@ -814,13 +812,13 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
       <div class="stat"><span class="label">Same method</span><span class="big">×{{sv.co.median}}</span><span class="small">{{sv.co.pairs}} record pairs from {{sv.co.studypairs}} pairs of studies</span></div>
       <div class="stat"><span class="label">Any method</span><span class="big">×{{sv.co.any_median}}</span><span class="small">one pair in ten differs by ×{{sv.co.any_p90}} or more</span></div>
       <div class="stat"><span class="label">Mediterranean, same method</span><span class="big">×{{sv.co.med_median}}</span><span class="small">{{sv.co.med_studypairs}} pairs of studies, the best-sampled sea</span></div>
-      <div class="stat"><span class="label">Across two databases · window guard</span><span class="big">×{{sv.x.median}}</span><span class="small">{{sv.x.compared}} EMODnet–NOAA pairs within {{sv.x.km}} km, any year. Against a pump that counts far smaller particles: {{sv.x.refused}} pairs refused (×{{sv.x.refused_fold}} apart), {{sv.x.cav}} caveated and still ×{{sv.x.residual}} beyond what the window explains</span></div>
+      <div class="stat"><span class="label">Two databases, same window · AOMI and NOAA</span><span class="big">×{{sv.x.median}}</span><span class="small">{{sv.x.compared}} record pairs from independent studies within {{sv.x.km}} km and {{sv.x.days}} days; one pair in ten ×{{sv.x.p90}}. {{sv.x.cav}} pairs with different windows: ×{{sv.x.residual}} left after converting</span></div>
     </div>
     <p class="lead-in">Before agreement is measured, {{sv.co.excluded}} record pairs are taken out: they are the same samples held under two studies. Left in, they would make the studies look like they agree.</p>
   </div>
   <p class="src">out/tables/survey_colocated.json · tool/survey/validators.py</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. Independent studies still differ about threefold, one pair in ten by more than an order of magnitude, and a naive check would have counted duplicated samples as agreement. Across two databases the window guard decides first: EMODnet and NOAA nets sit a median ×{{sv.x.median}} apart, one pair in ten ×{{sv.x.p90}}, a median {{sv.x.years}} years apart. Against a fine-filter pump, converting for the window still leaves ×{{sv.x.residual}}, so the window is not the explanation; pooled raw, one pair in ten would be ×{{sv.x.raw_p90}} apart, and the scout’s compilation adds {{sv.x.iso}} more pairs with NOAA, all refused for want of a stated window.</p>
+    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. Independent studies still differ about threefold, one pair in ten by more than an order of magnitude, and a naive check would have counted duplicated samples as agreement. Across two databases the same holds: before any ratio, {{sv.x.held}} record pairs are dropped because AOMI and NOAA hold the same samples, and the window guard refuses {{sv.x.refused}} more; what is left, AOMI against NOAA with the same window, is ×{{sv.x.median}} apart, as far as two studies inside NOAA.</p>
   </aside>
 </div>
 </section>
@@ -830,19 +828,19 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   <header>
     <p class="eyebrow"><span class="idx">15</span><span>Act III · what the datasets say</span></p>
     <h2>The same samples, held twice.</h2>
-    <p class="msg">Run blind over every database, the duplicate check flags {{sv.dup.n}} pairs of studies with same-day samples a few hundred metres apart: {{sv.dup.ncei}} inside NOAA, {{sv.dup.iso}} between NOAA and the compilation the scout found, {{sv.dup.iso_self}} inside that compilation.</p>
+    <p class="msg">Run blind over every database, the duplicate check flags {{sv.dup.n}} pairs of studies with same-day samples a few hundred metres apart: {{sv.dup.ncei}} inside NOAA, {{sv.dup.aomi}} between AOMI and another database, {{sv.dup.aomi_self}} inside AOMI.</p>
   </header>
   <div class="body">
     <div class="tests">
       <div class="stat"><span class="label">Found blind</span><span class="big">{{sv.dup.re_found}}</span><span class="small">of the {{re.tows}} tows two papers share, matched by date and position alone</span></div>
-      <div class="stat"><span class="label">Across databases</span><span class="big">{{sv.dup.iso_records}}</span><span class="small">samples, at least, that the scout’s compilation holds and NOAA holds too; {{sv.dup.identical}} flagged pairs agree within one percent</span></div>
+      <div class="stat"><span class="label">Across databases</span><span class="big">{{sv.dup.aomi_records}}</span><span class="small">samples, at least, that AOMI holds and another database holds too; {{sv.dup.identical}} flagged pairs agree within one percent</span></div>
       <div class="stat"><span class="label">Converted twice</span><span class="big">×{{re.manta}}</span><span class="small">the same Manta tows, converted with two net depths; Neuston tows ×{{re.neuston}}</span></div>
     </div>
     <p class="lead-in">The trap: a careless pairing gave a ratio of {{re.trap}}, and the paper’s own wind-mixing correction has a median of {{re.trap}}. A model would explain one with the other. Only the arithmetic, tow by tow, shows it is a coincidence.</p>
   </div>
   <p class="src">out/tables/survey_duplicates.csv · tool/colocation/reisser_eriksen/README.md</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Harmonised databases are where agents will look first, and they hold the same samples twice, under different studies and in different databases. The check found the case we knew from reading the papers, and the scout’s best find turned out to be largely NOAA’s own tows. Whether each pair is one survey published twice is for the maintainers to confirm.</p>
+    <p>Harmonised databases are where agents will look first, and they hold the same samples twice, under different studies and in different databases. The check found the case we knew from reading the papers, and the Japanese atlas turned out to hold largely NOAA’s own tows, under other names. Whether each pair is one survey published twice is for the maintainers to confirm.</p>
   </aside>
 </div>
 </section>

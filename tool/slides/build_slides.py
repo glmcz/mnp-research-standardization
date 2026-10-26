@@ -273,7 +273,7 @@ def si_values(V: Values, ref: str, base: dict) -> None:
     si = json.loads(show(ref, SI_RATES))
     main = next(p for p in base["five"]["params"] if p["key"] == "ionic_strength_reported")
     if abs(si["main_text"]["paper_mean_pct"] / 100 - main["paper_mean_share"]) > 5e-4:
-        raise SystemExit(f"{SI_RATES} counted a different main text than slide 19's bar")
+        raise SystemExit(f"{SI_RATES} counted a different main text than slide 17's bar")
     V.pct("si.mean", si["main_plus_si"]["paper_mean_pct"] / 100, 1, SI_RATES + ": main_plus_si")
     V.int("si.new", si["accepted_papers_new"], SI_RATES + ": accepted_papers_new")
 
@@ -304,7 +304,7 @@ COND_WORDS = {
     "temperature_reported": "temperature",
     "instrument_reported": "instrument",
 }
-#: Reporting habits drawn on a row of their own on slide 20; the rest share one row.
+#: Reporting habits drawn on a row of their own on slide 18; the rest share one row.
 HABIT_ROWS = 9
 
 
@@ -741,7 +741,7 @@ STANDARD_REFS = {
 }
 
 
-def standardisation_values(V: Values, ref: str) -> None:
+def standardisation_values(V: Values, charts: dict, ref: str) -> None:
     """Slides 1, 3 and 23: the abstract's title, the steps microplastics took, and what a
     regulator's review says nanoplastics still lack, each a sentence the sources note quotes."""
     text = flat(show(ref, STANDARD))
@@ -762,9 +762,18 @@ def standardisation_values(V: Values, ref: str) -> None:
     quote("np.fda", r"a continued lack of (standardized .+? quality controls)\.", "Duncan et al.")
     quote("np.fda2", r"> (This is particularly the case for nanoplastics)\.", "Duncan et al.")
     quote("np.gig", r"and (different studies have set the upper .+? nm)\.", "Gigault et al.")
+    years = {}
     for key, (who, journal) in STANDARD_REFS.items():
         vol = find(STANDARD, text, rf"### {re.escape(who)} .+? {re.escape(journal)} (\d+):")[0]
         V.words(key, f"{who}, {journal} {vol}", STANDARD)
+        years[key.removesuffix(".ref")] = int(who[-4:])
+    # the timeline labels each year once, by the first source of that year
+    labelled = set()
+    for key, year in sorted(years.items(), key=lambda kv: kv[1]):
+        if year not in labelled:
+            labelled.add(year)
+            V.year(key + ".year", year, STANDARD + ": " + key)
+    charts["timeline"] = years
 
 
 def basics_values(V: Values, table: pd.DataFrame) -> None:
@@ -828,7 +837,7 @@ def p2_values(V: Values, charts: dict, ref: str) -> None:
     V.float("p2.neg_lo", min(r["med"] for r in neg), 1, src)
     V.float("p2.neg_hi", max(r["med"] for r in neg), 1, src)
     if len(pos) != 1:
-        raise SystemExit(f"slide 17 names one exception; the table now has {len(pos)}")
+        raise SystemExit(f"slide 19 names one exception; the table now has {len(pos)}")
     e = pos[0]
     V.words("p2.exc", e["g"], src)
     V.int("p2.exc_papers", e["papers"], src)
@@ -842,6 +851,21 @@ def p2_values(V: Values, charts: dict, ref: str) -> None:
     for i, x in enumerate(range(lo, hi + 1, 20)):
         V.tick(f"pol.x.{i}", x, 0, "pol", "x")
     charts["pol"] = {"x": [lo, hi], "rows": rows}
+
+
+def rise_values(V: Values, charts: dict, ref: str) -> None:
+    """Slide 12: NOAA's pooled median per five-year period, and how many studies stand behind it."""
+    periods = json.loads(show(ref, SV_P7))["P7c"]["periods"]
+    for i, p in enumerate(periods):
+        V.year(f"rise.p.{i}", int(p["period"]), SV_P7 + ": P7c, a five-year period")
+        V.int(f"rise.n.{i}", p["studies"], SV_P7 + ": P7c, studies in the period")
+    for i, e in enumerate((-3, -2, -1)):
+        V.tick(f"rise.y.{i}", 10.0**e, max(0, -e), "rise", "y")
+    charts["rise"] = {
+        "y": [1e-3, 1.0],
+        "median": [p["median_per_record"] for p in periods],
+        "marked": [int(p["period"]) in (2000, 2020) for p in periods],
+    }
 
 
 def window_ratio(alpha: float, small: tuple[float, float], large: tuple[float, float]) -> float:
@@ -1085,6 +1109,11 @@ def survey_values(V: Values, ref: str) -> None:
     V.float("sv.co.any_median", anym["median_fold"], 1, SV_COLOC + ": any method")
     V.float("sv.co.any_p90", anym["p90_fold"], 0, SV_COLOC + ": any method")
     V.float("sv.co.med_median", med["median_fold"], 1, SV_COLOC + ": Mediterranean")
+    within = coloc["within_study_50km_365d"]
+    V.float("sv.co.within", within["median_fold"], 1, SV_COLOC + ": one study against itself")
+    V.float("sv.co.within_p90", within["p90_fold"], 0, SV_COLOC + ": one study against itself")
+    V.int("sv.co.within_pairs", within["pairs"], SV_COLOC + ": one study against itself")
+    V.int("sv.co.within_studies", within["studies"], SV_COLOC + ": one study against itself")
     V.int("sv.co.med_studypairs", med["study_pairs"], SV_COLOC + ": Mediterranean")
 
     x = coloc["across_datasets"]
@@ -1117,8 +1146,10 @@ def survey_values(V: Values, ref: str) -> None:
     )
     # an AOMI study may twin two other studies (which twin each other): count it once, at least
     V.int("sv.dup.aomi_records", int(side.groupby("study").n.max().sum()), SV_DUP + ", at least")
+    # NOAA's own pair: AOMI holds both studies too, under "aomi:" ids ending the same way
     re_pair = dup[
-        dup.study_a.str.endswith("pone.0080466") & dup.study_b.str.endswith("pone.0111913")
+        (dup.study_a == "https://doi.org/10.1371/journal.pone.0080466")
+        & (dup.study_b == "https://doi.org/10.1371/journal.pone.0111913")
     ]
     V.int("sv.dup.re_found", int(re_pair.records_a.iat[0]), SV_DUP + ": Reisser/Eriksen")
 
@@ -1254,7 +1285,7 @@ def gap_values(V: Values, charts: dict, ref: str) -> None:
     said = json.loads(sc[sc.name.str.startswith("NanoValid") & sc.kept].extra_found.iat[0])[0]
     m = re.search(r"the zeta potential method is not recommended as reference", said)
     if not m:
-        raise SystemExit(f"{GAP_SCOUT}: slide 22 quotes NanoValid's conclusion; it changed")
+        raise SystemExit(f"{GAP_SCOUT}: slide 23 quotes NanoValid's conclusion; it changed")
     V.text("gap.nanovalid.said", m.group(0), GAP_SCOUT + ": NanoValid, a quote found on its page")
     charge = g[g.family == "charge"].sort_values("value")
     count = g[g.family == "count"].sort_values("value")
@@ -1304,7 +1335,7 @@ def aging_values(V: Values, charts: dict, ref: str) -> None:
     V.float("ag.scale", iqr / abs(p11a["median_delta_mV"]), 0, AG + ": that IQR over P11a's median")
     swapped = after["papers_printing_swapped_values"]
     if len(swapped) != 1:
-        raise SystemExit(f"{AG}: slide 18 names one paper that swaps its values; now {swapped}")
+        raise SystemExit(f"{AG}: slide 20 names one paper that swaps its values; now {swapped}")
     V.text("ag.swap", swapped[0], AG + ": papers printing swapped values")
     ox = p[p.kind.isin(KIND_WORDS)]
     rows = []
@@ -1440,7 +1471,7 @@ def build(ref: str) -> dict:
     grid_values(V, ref)
     scope_values(V, base)
     motivation_values(V, ref)
-    standardisation_values(V, ref)
+    standardisation_values(V, charts, ref)
     basics_values(V, table)
     prereg_values(V, ref)
     p2_values(V, charts, ref)
@@ -1449,6 +1480,7 @@ def build(ref: str) -> dict:
     validation_values(V, ref)
     judge_values(V, ref)
     survey_values(V, ref)
+    rise_values(V, charts, ref)
     hybrid_values(V, ref)
     aging_values(V, charts, ref)
     prereg_tally(V, ref)
@@ -1957,7 +1989,7 @@ def chart_arch(values: dict, charts: dict) -> str:
         ("“not reported”", "stored as", "a value", "box-a"),
         ("table", "{{rows}} rows,", "{{row_papers}} papers", "box"),
         ("comparability", "and the census,", "decided in code", "box"),
-        ("rebuild", "report reproduce,", "byte for byte", "box"),
+        ("rebuild", "from the cached reading,", "byte for byte", "box"),
     ]
     body = [
         '<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" '
@@ -2097,8 +2129,162 @@ def chart_parse(values: dict, charts: dict) -> str:
     return svg(W, H, body, "From paper to table: what code checks on every number", "chart arch")
 
 
+def _boxes(items, values: dict) -> list[str]:
+    """Labelled boxes: (x, y, w, h, class, title, line, line)."""
+    out = []
+    for x, y, w, h, cls, title, a, b in items:
+        head = "box-t abs" if cls == "box-a" else "box-t"
+        out += [rect(x, y, w, h, cls, 3), T(x + 12, y + 28, title, values, head)]
+        out += [T(x + 12, y + 52, a, values, "box-s")] if a else []
+        out += [T(x + 12, y + 72, b, values, "box-s")] if b else []
+    return out
+
+
+_ARROW = (
+    '<defs><marker id="{id}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" '
+    'markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" '
+    'class="arrowhead"/></marker></defs>'
+)
+
+
+def chart_rise(values: dict, charts: dict) -> str:
+    """Slide 12: the pooled median per period on a log axis; below, the studies behind each."""
+    c = charts["rise"]
+    n = len(c["median"])
+    W, H, x0, x1, top, mid, base = 960, 214, 90, 930, 10, 104, 186
+    step = (x1 - x0) / n
+    lo, hi = (math.log10(v) for v in c["y"])
+    sy = lambda v: mid - (math.log10(v) - lo) / (hi - lo) * (mid - top)  # noqa: E731
+    peak = max(values[f"rise.n.{i}"]["v"] for i in range(n))
+    body = [T(x0, top + 4, "NOAA’s median, pieces/m³", values, "ax-t")]
+    for key in _ticks(values, "rise", "y"):
+        y = sy(values[key]["v"])
+        tick = T(x0 - 8, y + 5, "{{" + key + "}}", values, "tick", "end")
+        body += [line(x0, y, x1, y, "grid"), tick]
+    pts = [(x0 + step * (i + 0.5), sy(m)) for i, m in enumerate(c["median"])]
+    body.append('<polyline points="' + " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+                + '" class="gap"/>')  # fmt: skip
+    for i, (x, y) in enumerate(pts):
+        cls = "abs" if c["marked"][i] else "pt"
+        body.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="6" class="{cls}"/>')
+        h = (base - mid - 28) * values[f"rise.n.{i}"]["v"] / peak
+        body += [
+            rect(
+                x - step * 0.3,
+                base - h,
+                step * 0.6,
+                max(2.0, h),
+                "bar-a" if cls == "abs" else "seg-q",
+                2,
+            ),
+            T(x, base - h - 5, "{{rise.n." + str(i) + "}}", values, "val-s", "middle"),
+            T(x, base + 22, "{{rise.p." + str(i) + "}}", values, "tick", "middle"),
+        ]
+    body.append(T(x0 - 76, base - 4, "studies", values, "ax-t"))
+    return svg(W, H, body, "NOAA's median count per five-year period, and the studies behind each")
+
+
+def chart_loop(values: dict, charts: dict) -> str:
+    """Slide 8: how a wrong check pushes a correct value toward "not reported"."""
+    W, H, y, w, h, gap = 960, 200, 20, 210, 92, 40
+    items = [
+        (0, y, w, h, "box", "the paper prints", "“{{gd.molar}}”", ""),
+        (w + gap, y, w, h, "box", "the check looks for", "“{{gd.looked1}}”: no match", ""),
+        (2 * (w + gap), y, w, h, "box-m", "a flag", "the worker is told", "to clear it"),
+        (
+            3 * (w + gap) - 10,
+            y,
+            w + 10,
+            h,
+            "box-a",
+            "“not reported”",
+            "the correct value",
+            "is deleted",
+        ),
+    ]
+    mk = 'style="marker-end:url(#ah4)"'
+    body = [_ARROW.format(id="ah4"), *_boxes(items, values)]
+    for k in range(3):
+        xa = k * (w + gap) + w + 3
+        mid = y + h / 2
+        body.append(
+            f'<line x1="{xa}" y1="{mid}" x2="{xa + gap - 6}" y2="{mid}" class="arrow" {mk}/>'
+        )
+    xr, xl = 3 * (w + gap) + w / 2, w / 2
+    body += [
+        f'<polyline points="{xr},{y + h + 2} {xr},{y + h + 44} {xl},{y + h + 44} {xl},{y + h + 6}" '
+        f'class="arrow" {mk}/>',
+        T(W / 2, y + h + 38, "the census counts it as absence: the very thing it measures",
+          values, "box-s", "middle"),
+    ]  # fmt: skip
+    return svg(W, H, body, "A false flag makes the worker delete a correct value", "chart arch")
+
+
+def chart_timeline(values: dict, charts: dict) -> str:
+    """Slide 3: what microplastics did, year by year, against what nanoplastics still lack."""
+    W, H, x0, x1, ym, yn = 960, 206, 150, 930, 50, 146
+    when = charts["timeline"]
+    lo, hi = min(when.values()) - 0.5, max(when.values()) + 0.5
+    sx = lambda v: x0 + (v - lo) / (hi - lo) * (x1 - x0)  # noqa: E731
+    body = [
+        T(0, ym + 5, "microplastics", values, "row-l"),
+        T(0, yn + 5, "nanoplastics", values, "row-l abs"),
+        line(x0, ym, x1, ym, "grid"),
+        line(x0, yn, x1, yn, "grid"),
+    ]
+    marks = [
+        ("mp.k19", ym, -1, "a quality score:", "{{mp.k19.pass}} of {{mp.k19.n}} pass", "end"),
+        ("mp.k20", ym, 1, "one size window,", "by rescaling", "middle"),
+        ("mp.cow", ym, -1, "{{mp.cow.n}} researchers:", "reporting guidelines", "start"),
+        ("mp.dfr", ym, 1, "{{mp.dfr.labs}} labs, one spiked water:",
+         "good above {{mp.dfr.floor}} µm", "middle"),
+        ("np.gig", yn, -1, "no agreed size limit", "", "start"),
+        ("np.fda", yn, -1, "still lacking: definitions,", "reference materials, methods", "end"),
+    ]  # fmt: skip
+    used = {}
+    for key, y, side, a, b, anchor in marks:
+        yr = when[key]
+        x = sx(yr)
+        k = used.get((yr, y), 0)
+        used[(yr, y)] = k + 1
+        x += 14 * k  # two marks in one year sit side by side
+        dy = -16 if side < 0 else 30
+        body += [
+            f'<circle cx="{x:.1f}" cy="{y}" r="7" class="{"abs" if y == yn else "pt"}"/>',
+            T(x, y + dy - (18 if side < 0 else 0), a, values, "box-s", anchor),
+            T(x, y + dy + (0 if side < 0 else 18), b, values, "box-s", anchor) if b else "",
+        ]
+        if key + ".year" in values:
+            body.append(T(sx(yr), H - 4, "{{" + key + ".year}}", values, "tick", "middle"))
+    return svg(W, H, body, "Microplastic steps by year, against what nanoplastics still lack")
+
+
+def chart_stairs(values: dict, charts: dict) -> str:
+    """Slide 26: each piece of equipment, by cost, and the absence it removes."""
+    W, H, w, rise = 960, 200, 228, 32
+    steps = [
+        ("nothing but code", "audit “not reported”", "against the papers"),
+        ("a day on an analyser", "one bead across salt;", "aging by design"),
+        ("the instrument’s record", "conductivity, temperature", "and a pH probe"),
+        ("a microscope", "measured size slopes", "for microplastic counts"),
+    ]
+    body = []
+    for i, (title, a, b) in enumerate(steps):
+        x, top = i * (w + 16), 100 - i * rise
+        cls = "box-a" if i == 2 else "box"
+        body += [
+            rect(x, top, w, H - 8 - top, cls, 3),
+            T(x + 12, top + 28, title, values, "box-t abs" if i == 2 else "box-t"),
+            T(x + 12, top + 54, a, values, "box-s"),
+            T(x + 12, top + 74, b, values, "box-s"),
+        ]
+    return svg(
+        W, H, body, "Four steps of equipment, each removing one kind of absence", "chart arch"
+    )
+
+
 def chart_instr(values: dict, charts: dict) -> str:
-    """Slide 5: what the instrument does. A field pulls a charged bead through the liquid and laser
+    """Slide 16: what the instrument does. A field pulls a charged bead through the liquid and laser
     light clocks its speed; zeta is computed from that speed with a model that needs the salt."""
     W, H = 1000, 240
     mk = 'style="marker-end:url(#ah3)"'
@@ -2131,8 +2317,8 @@ def chart_instr(values: dict, charts: dict) -> str:
         f'<line x1="875" y1="110" x2="875" y2="128" class="arrow" {mk}/>',
         rect(770, 132, 210, 86, "box-a", 3),
         T(782, 162, "zeta", values, "box-t abs"),
-        T(782, 188, "computed with a model", values, "box-s"),
-        T(782, 208, "that needs the salt", values, "box-s"),
+        T(782, 188, "calculated by a formula", values, "box-s"),
+        T(782, 208, "the salt decides which", values, "box-s"),
     ]
     return svg(W, H, body, "How the instrument measures: a field, a bead, a laser", "chart arch")
 
@@ -2331,6 +2517,10 @@ def chart_aging(values: dict, charts: dict) -> str:
 
 
 CHARTS = {
+    "rise": chart_rise,
+    "loop": chart_loop,
+    "timeline": chart_timeline,
+    "stairs": chart_stairs,
     "pol": chart_pol,
     "pp": chart_pp,
     "instr": chart_instr,

@@ -460,8 +460,9 @@ def expected_findings(get=show) -> dict:
     ):
         citation = flat(std.split(f"### {head}\n\n", 1)[1].split("\n\n", 1)[0])
         E[key] = f"{head}, {journal} {citation.split(journal + ' ', 1)[1].split(':')[0]}"
+        E[key.replace(".ref", ".year")] = int(head.rsplit(" ", 1)[1])
 
-    # slide 20: each paper's reporting habit, recounted with csv and plain sets
+    # slide 18: each paper's reporting habit, recounted with csv and plain sets
     per = list(csv.DictReader(io.StringIO(get("out/review/conditions_per_paper.csv"))))
     conds = {
         "medium": "medium",
@@ -496,7 +497,7 @@ def expected_findings(get=show) -> dict:
     named = [r["instrument"] for r in d1 if r["instrument"].strip()]
     E["zb.zetasizer"] = [sum("zetasizer" in s.lower() for s in named), len(named)]
 
-    # slide 19: ionic strength with the supplements, recounted from the table and the accepted rows
+    # slide 17: ionic strength with the supplements, recounted from the table and the accepted rows
     si_rows = set(json.loads(get("out/tables/si_rates.json"))["accepted_rows"])
     papers: dict[str, list[dict]] = {}
     for r in d1:
@@ -518,7 +519,7 @@ def expected_findings(get=show) -> dict:
     prereg = json.loads(get("out/tables/p2_prereg_results.json"))
     E["pr.commit"] = prereg["prereg_commit"]
 
-    # slide 17: the P2 table with csv and statistics
+    # slide 19: the P2 table with csv and statistics
     p2 = list(csv.DictReader(io.StringIO(get("out/tables/p2_zeta_size.csv"))))
     E["p2.rows"], E["p2.papers"] = len(p2), len({r["pmcid"] for r in p2})
     size = [math.log10(float(r["size_nm"])) for r in p2]
@@ -543,7 +544,7 @@ def expected_findings(get=show) -> dict:
     amine = [float(r["zeta_mV"]) for r in groups["PS"] if r["surface"] == "amine"]
     E["p2.amine_neg"], E["p2.amine_n"] = sum(z < 0 for z in amine), len(amine)
 
-    # slide 16: the Weser fractions with csv, the power law solved by bisection on its own formula
+    # slide 15: the Weser fractions with csv, the power law solved by bisection on its own formula
     w = list(csv.DictReader(io.StringIO(get("out/tables/p2_weser_pairs.csv"))))
     small = (float(w[0]["small_lo_um"]), float(w[0]["small_hi_um"]))
     large = (float(w[0]["large_lo_um"]), float(w[0]["large_hi_um"]))
@@ -735,6 +736,8 @@ def expected_findings(get=show) -> dict:
     ser = {x["series"]: x for x in p7["P7b"]["series"]}
     E["sv.goldstein"] = ser["Goldstein et al. 2013"]["ratio_last_over_first"]
     E["sv.law14"] = ser["Law et al. 2014"]["ratio_last_over_first"]
+    for i, x in enumerate(p7["P7c"]["periods"]):
+        E[f"rise.p.{i}"], E[f"rise.n.{i}"] = int(x["period"]), x["studies"]
     zone = p7["P7_secondary_law2014_zone"]
     E["sv.law14_zone"] = zone["ratio_inside_zone"]
     E["sv.zone_first"] = zone["share_in_zone_first_third"]
@@ -747,6 +750,11 @@ def expected_findings(get=show) -> dict:
     E["sv.co.excluded"] = same["excluded_held_twice"]
     E["sv.co.any_median"], E["sv.co.any_p90"] = anym["median_fold"], anym["p90_fold"]
     E["sv.co.med_median"], E["sv.co.med_studypairs"] = med["median_fold"], med["study_pairs"]
+    within = co["within_study_50km_365d"]
+    E["sv.co.within"], E["sv.co.within_p90"] = within["median_fold"], within["p90_fold"]
+    E["sv.co.within_pairs"], E["sv.co.within_studies"] = within["pairs"], within["studies"]
+    # the floor must sit below the gap it is a floor for
+    assert within["median_fold"] < same["median_fold"]
     # across databases: the groups add up to the totals; AOMI against NOAA with one window is the
     # same-place check, after the pairs whose studies hold the same samples are gone
     x = co["across_datasets"]
@@ -776,10 +784,15 @@ def expected_findings(get=show) -> dict:
             st, n = (r["study_b"], r["records_b"]) if b else (r["study_a"], r["records_a"])
             shared[st] = max(shared.get(st, 0), int(n))
     E["sv.dup.aomi_records"] = sum(shared.values())
+    # NOAA's own pair, not AOMI's copies of the same two studies
     E["sv.dup.re_found"] = next(
         int(r["records_a"])
         for r in dup
-        if r["study_a"].endswith("pone.0080466") and r["study_b"].endswith("pone.0111913")
+        if (r["study_a"], r["study_b"])
+        == (
+            "https://doi.org/10.1371/journal.pone.0080466",
+            "https://doi.org/10.1371/journal.pone.0111913",
+        )
     )
 
     # slides 29 and 30: every arm recounted from the per-question rows, not the summary fields
@@ -823,7 +836,7 @@ def expected_findings(get=show) -> dict:
     E["hy.p9"] = ("supported" if drop >= E["hy.p9_min"]
                   else ("refuted" if drop < 0.1 else "partly"))  # fmt: skip
 
-    # slide 18: P11 recounted from the pairs, the sign test from the binomial by hand
+    # slide 20: P11 recounted from the pairs, the sign test from the binomial by hand
     ag = json.loads(get("out/tables/p2_aging.json"))
     pairs = list(csv.DictReader(io.StringIO(get("out/tables/p2_aging_pairs.csv"))))
     per: dict[str, list[float]] = {}
@@ -908,7 +921,7 @@ def expected_findings(get=show) -> dict:
     )  # fmt: skip
     E["map.soil.n"] = sum(r["setting"] == "soil" and not math.isnan(num(r["lat"])) for r in st)
 
-    # slide 22: the gap table read with csv; case 14's row must be the case 14 the deck shows
+    # slide 23: the gap table read with csv; case 14's row must be the case 14 the deck shows
     for r in csv.DictReader(io.StringIO(get("out/tables/gap_ladder.csv"))):
         E[f"gap.{r['key']}"] = float(r["value"])
         if r["high"]:
@@ -1130,6 +1143,7 @@ def test_every_axis_label_names_a_value_its_chart_reaches(deck) -> None:
         "lab",
         "curve",
         "pol",
+        "rise",
         "aging",
         "win_ocean",
         "win_river",
@@ -1344,7 +1358,7 @@ def test_every_slide_has_a_title_a_message_and_notes(page) -> None:
     )
     assert [s for s, _ in slides] == [f"s{i}" for i in range(1, 45)]
     backup = re.findall(r'<section class="slide backup" id="(s\d+)"', page)
-    assert backup == [f"s{i}" for i in range(26, 45)]
+    assert backup == [f"s{i}" for i in range(27, 45)]
     for sid, body in slides:
         assert re.search(r"<h[12]>", body), sid
         assert sid == "s1" or 'class="msg"' in body, sid
@@ -1437,11 +1451,11 @@ def test_the_time_plan_fills_twenty_minutes_over_five_acts(sc) -> None:
     # The order of 2026-10-25: why standardise, the engineering, the datasets, the papers, the way
     # forward. Twenty minutes; the backup slides untimed.
     assert [s for _, _, slides in sc.ACTS for s in slides] == list(sc.PLAN)
-    assert list(sc.PLAN) == [f"s{i}" for i in range(1, 26)]
-    assert sc.BACKUP == tuple(f"s{i}" for i in range(26, 45))
+    assert list(sc.PLAN) == [f"s{i}" for i in range(1, 27)]
+    assert sc.BACKUP == tuple(f"s{i}" for i in range(27, 45))
     acts = {name: sum(sc.PLAN[s] for s in slides) for name, _, slides in sc.ACTS}
-    assert acts == {"I": 210, "II": 245, "III": 300, "IV": 225, "V": 220}
-    assert sc.timing_values()["at.s25"]["text"] == "20:00"
+    assert acts == {"I": 160, "II": 235, "III": 295, "IV": 305, "V": 205}
+    assert sc.timing_values()["at.s26"]["text"] == "20:00"
 
 
 def test_no_card_asks_for_more_than_130_words_a_minute(sc, script_page) -> None:

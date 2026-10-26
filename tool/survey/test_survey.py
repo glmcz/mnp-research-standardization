@@ -134,6 +134,17 @@ def test_colocated_pairs_cross_studies_within_distance_and_time() -> None:
     assert len(p) == 2 and np.allclose(sorted(p.log10_ratio), sorted([np.log10(4), np.log10(2)]))
 
 
+def test_within_a_study_only_its_own_records_pair() -> None:
+    # the patchiness baseline: A against itself, never A against B
+    rows = [
+        ("A", "w", "2020-01-01", 0.0, 0.0, 1.0, "net", 2020),
+        ("A", "w", "2020-02-01", 0.0, 0.2, 3.0, "net", 2020),
+        ("B", "w", "2020-01-01", 0.0, 0.1, 9.0, "net", 2020),
+    ]
+    p = v.colocated(_toy(rows), km=50, days=365, same_method=True, same_study=True)
+    assert len(p) == 1 and np.isclose(p.log10_ratio.iat[0], np.log10(3))
+
+
 def test_series_change_compares_the_first_and_last_third_of_years() -> None:
     flat = [("S", "w", None, 0, 0, 1.0, "net", y) for y in range(2000, 2009)]
     up = [("U", "w", None, 0, 0, 10.0 if y >= 2006 else 1.0, "net", y) for y in range(2000, 2009)]

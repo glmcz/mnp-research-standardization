@@ -24,6 +24,14 @@
   "median_fold": 3.27,
   "p90_fold": 17.7
  },
+ "within_study_50km_365d": {
+  "km": 50,
+  "days": 365,
+  "pairs": 36775,
+  "studies": 67,
+  "median_fold": 2.11,
+  "p90_fold": 10.0
+ },
  "any_method_50km_365d": {
   "km": 50,
   "days": 365,

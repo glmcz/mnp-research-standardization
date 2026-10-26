@@ -53,8 +53,9 @@ def haversine(lat1, lon1, lat2, lon2):
     return 2 * EARTH_KM * np.arcsin(np.sqrt(a))
 
 
-def _pairs_within(t: pd.DataFrame, km: float) -> pd.DataFrame:
-    """Index pairs (i < j) of records with coordinates closer than `km`, from different studies."""
+def _pairs_within(t: pd.DataFrame, km: float, same_study: bool = False) -> pd.DataFrame:
+    """Index pairs (i < j) of records with coordinates closer than `km`, from different studies,
+    or, with `same_study`, from one study: the patchiness any two studies have to beat."""
     t = t[t.lat.notna() & t.lon.notna()]
     if len(t) < 2:
         return pd.DataFrame(columns=["i", "j", "km"])
@@ -63,7 +64,7 @@ def _pairs_within(t: pd.DataFrame, km: float) -> pd.DataFrame:
     if len(p) == 0:
         return pd.DataFrame(columns=["i", "j", "km"])
     i, j = t.index.to_numpy()[p[:, 0]], t.index.to_numpy()[p[:, 1]]
-    keep = t.loc[i, "study"].to_numpy() != t.loc[j, "study"].to_numpy()
+    keep = (t.loc[i, "study"].to_numpy() == t.loc[j, "study"].to_numpy()) == same_study
     i, j = i[keep], j[keep]
     d = haversine(t.loc[i, "lat"].to_numpy(), t.loc[i, "lon"].to_numpy(),
                   t.loc[j, "lat"].to_numpy(), t.loc[j, "lon"].to_numpy())  # fmt: skip
@@ -148,12 +149,17 @@ def unit_verdict(a: str | None, b: str | None) -> Verdict:
 
 
 def colocated(
-    t: pd.DataFrame, km: float = 50.0, days: int | None = 365, same_method: bool = True
+    t: pd.DataFrame,
+    km: float = 50.0,
+    days: int | None = 365,
+    same_method: bool = True,
+    same_study: bool = False,
 ) -> pd.DataFrame:
-    """Record pairs from different studies within `km` and `days`, one setting, both positive."""
+    """Record pairs from different studies (or one, with `same_study`) within `km` and `days`,
+    one setting, both positive."""
     out = []
     for setting, g in t[t.lat.notna()].groupby("setting"):
-        p = _pairs_within(g, km)
+        p = _pairs_within(g, km, same_study)
         if p.empty:
             continue
         if days is not None:

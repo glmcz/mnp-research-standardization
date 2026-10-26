@@ -55,6 +55,21 @@ def colocated_summary(t, km: float, days: int | None, same_method: bool, dup) ->
     }
 
 
+def within_study_summary(t, km: float, days: int | None) -> dict:
+    """The same check inside one study: two of its own records this close, same method. It is the
+    patchiness and replicate spread that a disagreement between studies has to exceed."""
+    p = v.colocated(t, km=km, days=days, same_method=True, same_study=True)
+    if p.empty:
+        return {"pairs": 0}
+    return {
+        "km": km,
+        "days": days,
+        "pairs": int(len(p)),
+        "studies": int(t.loc[p.i, "study"].nunique()),
+        **_folds(p.log10_ratio),
+    }
+
+
 def _residual(va: float, vb: float, verdict) -> float:
     """log10 of how far b/a lies outside the window factor's interval; 0 when it is inside."""
     lo, hi = verdict.detail if verdict.decision == "caveat" else (1.0, 1.0)
@@ -152,6 +167,7 @@ def main() -> None:
     out = {
         "records": {k: int(n) for k, n in t.groupby("dataset").size().items()},
         "same_method_50km_365d": colocated_summary(ncei, 50, 365, True, dup),
+        "within_study_50km_365d": within_study_summary(ncei, 50, 365),
         "any_method_50km_365d": colocated_summary(ncei, 50, 365, False, dup),
         "mediterranean_same_method_50km_365d": colocated_summary(
             ncei[ncei.region == "Mediterranean Sea"], 50, 365, True, dup

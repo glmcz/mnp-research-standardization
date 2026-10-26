@@ -171,13 +171,14 @@ def test_the_found_pangaea_datasets_arrive_whole_with_their_own_window(records) 
     lower = w.groupby("dataset").size_min_um.first()
     # the windows the datasets' own methods state: 300 um meshes, a 10 um counting limit
     assert lower["pangaea_941076"] == 300 and lower["pangaea_990052"] == 10
-    assert w.loc[w.dataset == "pangaea_928578", "flags"].str.contains("window_unreported").all()
+    beach = records[records.dataset == "pangaea_882220"]
+    assert beach["flags"].str.contains("window_unreported").all()
     # the reviewer's convention (2026-10-10, [32:03]): a stated lower limit implies 5 mm above;
     # with no lower limit stated there is no window to complete
     found = records[records["flags"].str.contains("found_by_search_agent", na=False)]
     upper = found.groupby("dataset").size_max_um.agg(lambda s: set(s.dropna()))
     assert upper["pangaea_990052"] == {5000.0} and upper["pangaea_941076"] == {5000.0}
-    assert upper["pangaea_928578"] == set() and upper["pangaea_882220"] == set()
+    assert upper["pangaea_882220"] == set()
     conv = found[found.size_max_um.notna()]
     assert conv["flags"].str.contains("upper_by_convention").all()
 
@@ -244,21 +245,12 @@ def test_a_study_summary_is_its_records_quantiles_and_its_stated_window(records)
 
 def test_the_scouts_datasets_arrive_whole_and_keep_their_gaps(records) -> None:
     import io
-    import zipfile
 
-    raw = zipfile.ZipFile(table.ISOBE).read("Level012R1.csv").decode()
-    lines = [ln for ln in raw.splitlines()[2:] if ln.strip()]  # a header, then a "-999" note
-    i = records[records.dataset == "isobe2021"]
-    assert len(i) == len(lines)
-    # the Laurentian Great Lakes are fresh water, not ocean
-    lakes = i[i.setting == "lake water"]
-    assert len(lakes) and lakes.lon.between(-93, -75.5).all() and lakes.lat.between(41, 49.5).all()
     k = records[records.dataset == "kiessling2021"]
     sheet = pd.read_excel(io.BytesIO(table.KIESSLING.read_bytes()), "SamplingSites_and_LitterData")
     assert len(k) == len(sheet) and k.setting.eq("river water").all()
-    # neither file states the size window it counted; the table does not invent one
-    assert i.size_min_um.isna().all() and k.size_min_um.isna().all()
-    assert i["flags"].str.contains("window_unreported").all()
+    # the file does not state the size window it counted; the table does not invent one
+    assert k.size_min_um.isna().all() and k["flags"].str.contains("window_unreported").all()
 
 
 def test_martins_datasets_arrive_whole_with_what_they_state(records) -> None:
@@ -275,27 +267,57 @@ def test_martins_datasets_arrive_whole_with_what_they_state(records) -> None:
     broken = rivm.sampling_date.astype(str).str.startswith("00").to_numpy()
     assert r.year[broken].isna().all() and r.date[broken].isna().all()
     assert r["flags"][broken].str.contains("date_without_century").all()
-    v = records[records.dataset == "valine2020"]
-    assert len(v) == len(pd.read_excel(table.VALINE)) and v.size_min_um.isna().all()
 
 
-def test_drinking_water_units_are_converted_only_between_volumes(records) -> None:
-    m = records[records.dataset == "moore_dw"]
-    raw = pd.read_excel(table.MOORE_SAMPLES)
-    assert len(m) == len(raw)
-    m = m.reset_index(drop=True)  # the loader keeps the sheet's row order
-    for unit, factor in (
-        ("particles/mL", 1000),
-        ("particles/m3", 0.001),
-        ("particles/50 L", 1 / 50),
-    ):
-        at = (raw.Concentration_Units == unit).to_numpy()
-        want = pd.to_numeric(raw.Concentration[at], errors="coerce").to_numpy() * factor
-        assert np.allclose(m.value[at].to_numpy(), want, equal_nan=True), unit
-        assert m.unit[at].eq("particles/L").all()
-    # a count per bottle or a mass has no volume to convert by: it keeps its own unit
-    assert set(m.unit) >= {"particles/L", "particles/bottle"}
-    assert not m.unit.str.contains("ug").any() or m[m.unit.str.contains("ug")].value.notna().any()
+def _held(x: pd.DataFrame, y: pd.DataFrame, km: float = 2.0) -> float:
+    """The share of x's placed records with a y record on the same day within km."""
+    x, y = x[x.lat.notna() & x.date.notna()], y[y.lat.notna() & y.date.notna()]
+    by_day = dict(list(y.groupby("date")))
+    hit = 0
+    for day, g in x.groupby("date"):
+        h = by_day.get(day)
+        if h is None:
+            continue
+        la1, lo1 = np.radians(g.lat.to_numpy())[:, None], np.radians(g.lon.to_numpy())[:, None]
+        la2, lo2 = np.radians(h.lat.to_numpy())[None], np.radians(h.lon.to_numpy())[None]
+        dlat, dlon = (la2 - la1) / 2, (lo2 - lo1) / 2
+        hav = np.sin(dlat) ** 2 + np.cos(la1) * np.cos(la2) * np.sin(dlon) ** 2
+        hit += int(((6371 * 2 * np.arcsin(np.sqrt(hav))).min(axis=1) <= km).sum())
+    return hit / len(x)
+
+
+def test_the_atlas_arrives_whole_with_its_mesh_and_without_its_pole_placeholder(records) -> None:
+    with open(table.AOMI, newline="", encoding="utf-8-sig") as f:
+        rows = list(csv.DictReader(f))
+    a = records[records.dataset == "aomi"].reset_index(drop=True)
+    assert len(a) == len(rows) and a.study.str.startswith("aomi:").all()
+    mesh = [float(r["D01_0070"]) * 1000 if r["D01_0070"] else np.nan for r in rows]
+    assert np.allclose(a.size_min_um, mesh, equal_nan=True) and a.size_max_um.eq(5000).all()
+    value = [float(r["D01_0192"]) if r["D01_0192"] else np.nan for r in rows]
+    assert np.allclose(a.value, value, equal_nan=True)
+    # a latitude of 90 is the atlas's placeholder for a missing position, not the North Pole
+    pole = np.array([abs(float(r["latitude"])) >= 89.9 for r in rows])
+    assert pole.any() and a.lat[pole].isna().all() and a.lat[~pole].notna().all()
+
+
+def test_the_atlas_holds_noaas_own_tows_and_isobes_samples(records) -> None:
+    with open(table.AOMI, newline="", encoding="utf-8-sig") as f:
+        noaa = {"aomi:" + r["D01_0001"] for r in csv.DictReader(f)
+                if r["D01_0004"].startswith("NOAA Marine Microplastics")}  # fmt: skip
+    a = records[records.dataset == "aomi"]
+    ncei = records[(records.dataset == "ncei") & (records.setting == "Ocean water")]
+    # the rows AOMI credits to NOAA's database are NOAA's own records: same day, same place
+    assert _held(a[a.record_id.isin(noaa)], ncei) > 0.9
+    assert _held(ncei, a) > 0.7
+
+
+def test_every_dataset_shares_a_place_with_another_study(records) -> None:
+    # Martin, 2026-10-26: a dataset whose records share no place with any other study compares
+    # nothing. MP-SED places a record by water body, not coordinates; the Weser fractions compare
+    # two size windows at the same stations within one study.
+    p = v.colocated(records, km=50, days=None, same_method=False)
+    seen = set(records.loc[p.i, "dataset"]) | set(records.loc[p.j, "dataset"])
+    assert set(records.dataset) - seen == {"mpsed", "pangaea_weser"}
 
 
 def test_sf_bay_counts_are_microparticles_and_never_called_plastic(records) -> None:

@@ -4,8 +4,10 @@ NCEI (marine water, beach, sediment), MP-SED (sediment), the soil compilation of
 two PANGAEA Weser fractions are read through the pinned loaders of tool/p2. Datasets added after
 P2 (EMODnet's European floating-microlitter monitoring, and the PANGAEA sets the dataset search
 found) are pinned here. Air is not a survey matrix: an atmospheric compilation of one value per
-study was read on 2026-10-23 and removed on 2026-10-24. A field the source does not give stays
-null and is never filled;
+study was read on 2026-10-23 and removed on 2026-10-24. On 2026-10-26 the Japanese ministry's
+atlas (AOMI) replaced Isobe et al. 2021, 93 % of whose samples it holds, and two local datasets
+whose records share no place with any other study left (Oregon rivers, California drinking
+water). A field the source does not give stays null and is never filled;
 `flags` says why a field is what it is (NCEI's 5 mm upper bound is the database's rule, MP-SED's
 lower limit 99999 means unreported).
 
@@ -43,29 +45,20 @@ DISCOVERED = ROOT / "data/raw/discover/files"
 # (tool/discover/scout.py). Isobe et al. 2021, Microplastics and Nanoplastics 1:16: Level 0
 # pieces/m3 per pelagic sample. Kiessling et al. 2021, Sci Total Environ 789:147849, supplement S4:
 # German rivers sampled by school classes, meso- and microplastics per m3.
-ISOBE = DISCOVERED / "10.1186_s43591-021-00013-z" / "scout_1.zip"
 KIESSLING = DISCOVERED / "10.5281_zenodo.4600790" / "scout_1.xlsx"
-PINS[ISOBE] = "a0a747a9b96b617f6716bca8e2dc2afa0df929ad966d0edd55cbb356b189080e"
 # Fetched by Martin from his reference list on 2026-10-24 (tool/survey/fetch_user.py copies them
 # here; RIVM's Git LFS files are fetched from GitHub there).
 USER = ROOT / "data/raw/datasets_user"
 DURUM = USER / "durum.xlsx"  # Database of Urban RUnoff Microplastics, 2018-2024
 RIVM_TOTAL = USER / "rivm/Output/Data/2026-07-07Particle_concentrations_total.rds"
-VALINE = USER / "valine_oregon.xlsx"  # Valine et al., Oregon rivers, Zenodo 3901297
-MOORE_SAMPLES = USER / "moore_dw_samples.xlsx"  # California Microplastics Data Portal
-MOORE_MANUSCRIPTS = USER / "moore_dw_manuscripts.xlsx"
 SFBAY = USER / "sfbay_microparticledata.xlsx"  # SFEI San Francisco Bay microparticle data
+AOMI = USER / "aomi.csv"  # Atlas of Ocean Microplastics, Japan MOE, open-data layer (2026-10-26)
 PINS |= {
     DURUM: "fb58bf5556284abd52dda126e5dd861e07b3c1ec47d9ffd10260ab48497aad72",
     RIVM_TOTAL: "c85e10a974515d797d1b91d7daead98217d3fe44ebe60d711b86db119c8a23bb",
-    VALINE: "b899398bb7bd2aa110b2287cd56b59a33716688ef8e73e2e91c79952d22a0afb",
-    MOORE_SAMPLES: "75976098a154662be6d9b05aab8c06dd7d36a87ab474557f9dffa0d2a10d269f",
-    MOORE_MANUSCRIPTS: "3b5fd984639c79ec517255bbda8385c5f1237739db905c5013da9c3594c9271e",
     SFBAY: "8fc7c636413e8030d9648d295c3263fe3dbf30a04c64c765e267cb71611d2684",
+    AOMI: "7aac3317b484c7db8bf637154a720d1453492896e1b9a5414862ae9651969d0d",
 }
-#: A count per volume converts to particles per litre; anything else keeps its printed unit.
-PER_LITRE = {"particles/L": 1.0, "particles/mL": 1000.0, "particles/m3": 0.001,
-             "particles/50 L": 1 / 50, "particles/0.33 L": 1 / 0.33}  # fmt: skip
 PINS[KIESSLING] = "5dea40db7cd2f90bce7dff97cbf26c647893ba4a0f2eb0bccb22ee1e12c1450a"
 #: PANGAEA datasets the search agent found usable (tool/discover, 2026-10-23), each read with its
 #: own concentration column. The size window is read from the dataset's own methods text.
@@ -77,26 +70,12 @@ PANGAEA_FOUND = {
         "unit": "pieces/m3",
         "sha": "d255ac95cc51631545d5162288cccd7d18b13f3622b80a8789ae4017e8b66adf",
     },
-    941107: {
-        "setting": "Ocean water, subsurface",
-        "method": "pump",
-        "conc": "Microplastic [#/m**3]",
-        "unit": "pieces/m3",
-        "sha": "655b03cc13c8ebc02abbcc6ca3934ef1c0b3c194996e494e564b87acb03e1da9",
-    },
     990052: {
         "setting": "Ocean water",
         "method": "pump",
         "conc": "Microplastic [#/m**3] (Fourier-transform infrared",
         "unit": "pieces/m3",
         "sha": "05fa0268ca424653f6c918a12c2c84e199a3e422d6918046710255912a19bad6",
-    },
-    928578: {
-        "setting": "Ocean sediment",
-        "method": "corer",
-        "conc": "Microplastic [#/kg]",
-        "unit": "pieces/kg",
-        "sha": "7ac104dd4bc14a3acd5437b29bff6e3bc64750273cc23a1d79a5a48e8baca870",
     },
     882220: {
         "setting": "Beach",
@@ -106,6 +85,8 @@ PANGAEA_FOUND = {
         "sha": "14a6e5c9d9d6cf9d67105eb6134320d7ea2e4949f8a697c0e5b75f2c8f15fa0f",
     },
 }
+# Left out on 2026-10-26: PANGAEA 941107 (subsurface pump) and 928578 (sediment cores) are single
+# cruises whose records share no place with any other study, so they compare nothing.
 # Left out, though verified usable: PANGAEA 986752 (Eastern Tropical Pacific) holds one row per
 # particle, and its per-sample abundance differs within one site and month, so no single value per
 # sample can be read without guessing. A lead for its author.
@@ -345,38 +326,6 @@ def pangaea_found() -> pd.DataFrame:
     return pd.concat(parts, ignore_index=True)
 
 
-def isobe2021() -> pd.DataFrame:
-    """One row per pelagic sample, Level 0 as measured; the Great Lakes rows are lake water."""
-    raw = zipfile.ZipFile(ISOBE).read("Level012R1.csv").decode("utf-8")
-    d = pd.read_csv(io.StringIO(raw), skiprows=[1])  # the second line is a "-999: No data" note
-    lon = pd.to_numeric(d["longitude (degree: E+, W-)"], errors="coerce")
-    lat = pd.to_numeric(d["latitude (degree: N+, S-)"], errors="coerce")
-    date = pd.to_datetime(dict(year=d["year"], month=d["month"], day=d["date"]), errors="coerce")
-    lakes = lon.between(-93, -75.5) & lat.between(41, 49.5)
-    value = pd.to_numeric(d["Level 0 (pieces/m3)"], errors="coerce")
-    return pd.DataFrame(
-        {
-            "dataset": "isobe2021",
-            "record_id": "isobe2021:" + d.index.astype(str),
-            # a sample's source study is its row in the paper's Table 1
-            "study": "isobe2021:" + d["No. in Table 1"].astype("Int64").astype(str),
-            "org": None,
-            "setting": np.where(lakes, "lake water", "Ocean water"),
-            "method": None,
-            "region": None,
-            "lat": lat,
-            "lon": lon,
-            "date": date.dt.date.astype(str).where(date.notna()),
-            "year": date.dt.year.astype(float),
-            "size_min_um": np.nan,
-            "size_max_um": np.nan,
-            "unit": "pieces/m3",
-            "value": value.where(value >= 0),
-            "flags": "found_by_scout;window_unreported",
-        }
-    )
-
-
 def kiessling2021() -> pd.DataFrame:
     """Rivers sampled by school classes: meso- and microplastics together, per m3."""
     d = pd.read_excel(KIESSLING, sheet_name="SamplingSites_and_LitterData")
@@ -467,75 +416,6 @@ def rivm() -> pd.DataFrame:
     )  # fmt: skip
 
 
-def valine2020() -> pd.DataFrame:
-    """Oregon rivers: particles confirmed with Nile Red over the volume filtered."""
-    d = pd.read_excel(VALINE)
-    d = d[d["Site Name"].notna()]
-    ll = d["Site Coordinates (latitude, longitude in DD)"].astype(str).str.split(",", expand=True)
-    count = d["Number of Fibers after Nile Red dye"] + d["Number of Particles after Nile Red dye"]
-    date = pd.to_datetime(d["Sample Date (month/day/year)"], errors="coerce")
-    return pd.DataFrame(
-        {
-            "dataset": "valine2020",
-            "record_id": "valine2020:" + d.index.astype(str),
-            "study": "zenodo.3901297",
-            "org": None,
-            "setting": "river water",
-            "method": "net",
-            "region": d["Site Name"],
-            "lat": pd.to_numeric(ll[0], errors="coerce"),
-            "lon": pd.to_numeric(ll[1], errors="coerce"),
-            "date": date.dt.date.astype(str).where(date.notna()),
-            "year": date.dt.year.astype(float),
-            "size_min_um": np.nan,
-            "size_max_um": np.nan,
-            "unit": "pieces/m3",
-            "value": count / pd.to_numeric(d["Cubic Meters of Water"], errors="coerce"),
-            "flags": "provided_by_martin;computed_from_counts;contamination_not_subtracted;"
-            "window_unreported",
-        }
-    )
-
-
-def _finest_filter_um(text) -> float:
-    sizes = [float(x) for x in re.findall(r"(\d+(?:\.\d+)?)\s*um", str(text))]
-    return min(sizes) if sizes else np.nan
-
-
-def moore_dw() -> pd.DataFrame:
-    """Drinking water from the California portal: bottled and tap, per sample, by country."""
-    d = pd.read_excel(MOORE_SAMPLES)
-    filt = pd.read_excel(MOORE_MANUSCRIPTS).set_index("DOI")["Filter_Size"].map(_finest_filter_um)
-    lower = d["DOI"].map(filt.groupby(level=0).min())
-    unit = d["Concentration_Units"].astype(str)
-    factor = unit.map(PER_LITRE)
-    value = pd.to_numeric(d["Concentration"], errors="coerce")
-    date = pd.to_datetime(d["Date"], errors="coerce")
-    return pd.DataFrame(
-        {
-            "dataset": "moore_dw",
-            "record_id": "moore_dw:" + d.index.astype(str),
-            "study": d["DOI"].astype(str),
-            "org": None,
-            "setting": "drinking water, " + d["Source"].astype(str).str.replace(" water", ""),
-            "method": None,
-            "region": d["Location"],
-            "lat": np.nan,
-            "lon": np.nan,
-            "date": date.dt.date.astype(str).where(date.notna()),
-            "year": date.dt.year.astype(float),
-            "size_min_um": lower,
-            # the finest filter is the lower limit; above it, the field's 5 mm convention
-            "size_max_um": np.where(lower.notna(), 5000.0, np.nan),
-            "unit": np.where(factor.notna(), "particles/L", unit),
-            "value": np.where(factor.notna(), value * factor, value),
-            "flags": "provided_by_martin;country_only"
-            + np.where(factor.notna() & unit.ne("particles/L"), ";unit_converted", "")
-            + np.where(lower.notna(), ";upper_by_convention", ";window_unreported"),
-        }
-    )
-
-
 def sfbay() -> pd.DataFrame:
     """San Francisco Bay: manta tows per m3 and sediment per gram, as microparticles.
 
@@ -575,6 +455,42 @@ def sfbay() -> pd.DataFrame:
     return pd.concat(parts, ignore_index=True)
 
 
+def aomi() -> pd.DataFrame:
+    """AOMI, the Japanese environment ministry's atlas: surface tows from many contributors,
+    NOAA's among them. Particles per m3 under 5 mm; the net's mesh is the lower limit.
+
+    A study is its DOI, else its reference, else its organisation, prefixed so that the same
+    paper held by AOMI and by NCEI counts as two holdings, which the duplicate check then finds.
+    """
+    d = pd.read_csv(AOMI, dtype=str, keep_default_na=False, encoding="utf-8-sig")
+    lat = pd.to_numeric(d["latitude"], errors="coerce")
+    lat = lat.where(lat.abs() < 89.9)  # a pole is the atlas's placeholder for a missing position
+    date = pd.to_datetime(pd.to_numeric(d["D01_0033"], errors="coerce"), unit="ms")
+    study = _blank(d["D01_0016"]).fillna(_blank(d["D01_0014"])).fillna(_blank(d["D01_0009"]))
+    mesh_um = pd.to_numeric(d["D01_0070"], errors="coerce") * 1000
+    return pd.DataFrame(
+        {
+            "dataset": "aomi",
+            "record_id": "aomi:" + d["D01_0001"],
+            "study": "aomi:" + study,
+            "org": _blank(d["D01_0009"]),
+            "setting": "Ocean water",
+            "method": _blank(d["D01_0056"]),
+            "region": None,
+            "lat": lat,
+            "lon": pd.to_numeric(d["longitude"], errors="coerce").where(lat.notna()),
+            "date": date.dt.date.astype(str).where(date.notna()),
+            "year": date.dt.year.astype(float),
+            "size_min_um": mesh_um,
+            "size_max_um": 5000.0,
+            "unit": "pieces/m3",
+            "value": pd.to_numeric(d["D01_0192"], errors="coerce"),
+            "flags": "provided_by_martin;upper_by_layer"
+            + np.where(mesh_um.isna(), ";window_unreported", ""),
+        }
+    )
+
+
 def check_pins() -> None:
     for pid, spec in PANGAEA_FOUND.items():
         got = hashlib.sha256(_pangaea_path(pid).read_bytes()).hexdigest()
@@ -590,8 +506,8 @@ def build() -> pd.DataFrame:
     p2.check_pins()
     ext.check_pins()
     check_pins()
-    parts = [ncei(), mpsed(), soil(), weser(), emodnet(), pangaea_found(), isobe2021(),
-             kiessling2021(), durum(), rivm(), valine2020(), moore_dw(), sfbay()]  # fmt: skip
+    parts = [ncei(), mpsed(), soil(), weser(), emodnet(), pangaea_found(), aomi(),
+             kiessling2021(), durum(), rivm(), sfbay()]  # fmt: skip
     t = pd.concat(parts, ignore_index=True)
     return t.loc[:, list(COLUMNS)]
 

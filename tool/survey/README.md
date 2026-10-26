@@ -1,15 +1,15 @@
 # Survey datasets, validated by code
 
-One table of concentration records from seventeen datasets (water, sediment, beach, soil), and the checks that decide whether two of
+One table of concentration records from thirteen datasets (water, sediment, beach, soil), and the checks that decide whether two of
 those numbers may be compared. Findings: `docs/2026-10-23-dataset-validation.md`; the
 pre-registered timeline test: `docs/PREREG_2026-10.md`, P7.
 
 ```
 unset VIRTUAL_ENV
-uv run --with openpyxl python tool/survey/table.py    # data/interim/survey/records.csv.gz (gitignored)
-uv run --with openpyxl python tool/survey/report.py   # out/tables/survey_{duplicates,completeness}.csv, survey_colocated.json
-uv run --with openpyxl python tool/survey/p7.py       # out/tables/survey_p7.json
-uv run --with openpyxl python -m pytest -q -p no:cacheprovider tool/survey
+uv run --with openpyxl --with pyreadr python tool/survey/table.py    # data/interim/survey/records.csv.gz (gitignored)
+uv run --with openpyxl --with pyreadr python tool/survey/report.py   # out/tables/survey_{duplicates,completeness}.csv, survey_colocated.json
+uv run --with openpyxl --with pyreadr python tool/survey/p7.py       # out/tables/survey_p7.json
+uv run --with openpyxl --with pyreadr python -m pytest -q -p no:cacheprovider tool/survey
 ```
 
 - `table.py` reads NCEI, MP-SED, the soil compilation (Wu et al.) and the PANGAEA Weser
@@ -18,10 +18,19 @@ uv run --with openpyxl python -m pytest -q -p no:cacheprovider tool/survey
     300–333 µm mesh. The tow line is binary geometry and is placed at its midpoint.
   - Five PANGAEA sets the search agent (`tool/discover/`) verified (`PANGAEA_FOUND`): each pinned
     by sha256 with its own setting, method, concentration column and lower size limit.
-- Martin's datasets, fetched on 2026-10-24 (`docs/2026-10-24-dataset-reference-list.md`,
-  `fetch_user.py`): DURUM stormwater, RIVM's Dutch surface waters, Valine's Oregon rivers, the
-  California drinking-water portal, and SFEI's San Francisco Bay, where counts are microparticles
-  and blanks are left out.
+- Martin's datasets, fetched on 2026-10-24 and 2026-10-26 (`docs/2026-10-24-dataset-reference-list.md`,
+  `fetch_user.py`): DURUM stormwater, RIVM's Dutch surface waters, SFEI's San Francisco Bay (counts
+  are microparticles; blanks left out), and AOMI, the Japanese environment ministry's atlas of
+  ocean-surface tows (particles/m³ under 5 mm, the mesh as the lower limit). AOMI holds 93 % of
+  Isobe et al. 2021's samples, so it replaced that compilation, and about three in four of NOAA's
+  ocean-water records, which the duplicate check finds before any comparison.
+- Same place or out (Martin, 2026-10-26): a dataset whose records share no place with another
+  study compares nothing, so Valine's Oregon rivers, the California drinking-water portal (a
+  country, no place) and two single-cruise PANGAEA sets (941107, 928578) left the table. Two exceptions
+  by design: MP-SED places by water body, and the Weser fractions compare two windows at the same
+  stations. `test_every_dataset_shares_a_place_with_another_study` holds the rule.
+- EMODnet's pan-European aggregate (2021) is not read: it gives a filtered volume only for 121
+  Baltic samples and a tow length for the rest, so a value per m³ would need an assumed net depth.
 - A field a source lacks stays null.
 - An EMODnet study is its organisation: a monitoring programme's cruises are one series, not
   independent studies, as an NCEI DOI is.

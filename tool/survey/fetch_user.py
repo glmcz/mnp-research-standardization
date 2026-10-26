@@ -22,11 +22,7 @@ DEST = ROOT / "data/raw/datasets_user"
 COPY = {
     "durum.xlsx": "02_freshwater/DURUM_Urban_Stormwater/data/"
     "Urban_Runoff_MP_Database (2018-2024).xlsx",
-    "valine_oregon.xlsx": "02_freshwater/Zenodo_Oregon_Rivers/Valine_et_al_Data_Final27.xlsx",
-    "moore_dw_samples.xlsx": "03_drinking_water/CA_Moore_Institute_Microplastic_Portal/data/"
-    "drinking_water_data/clean_drinking_water_data/Samples_Merged.xlsx",
-    "moore_dw_manuscripts.xlsx": "03_drinking_water/CA_Moore_Institute_Microplastic_Portal/data/"
-    "drinking_water_data/clean_drinking_water_data/Manuscripts.xlsx",
+    "aomi.csv": "01_marine_ocean/AOMI_Atlas_Ocean_Microplastics/AOMI_Atlas_Ocean_Microplastics.csv",
 }
 # Python's client is refused by this host; a curl download (2026-10-24) is copied in by hand:
 # data.cnra.ca.gov/dataset/78ac95ac-9665-4e53-aea6-ad0762055cce -> sfbay_microparticledata.xlsx

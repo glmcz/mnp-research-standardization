@@ -509,20 +509,20 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">14</span><h3>{{title:s14}}</h3><p class="time"><b>{{t.s14}}</b> · ends at {{at.s14}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s14}}</p>
       <div class="say">
-        <p>Databases are compilations of published surveys. So one net tow can sit in NOAA and in Japan’s atlas, or twice in NOAA under two papers, and <strong>no field marks the copy</strong>.</p>
-        <p>Pooled, that tow counts twice. Compared, it agrees with itself: that is why the last slide took such pairs out. Found blind, by date and position: {{sv.dup.n}} pairs of studies; at least {{sv.dup.aomi_records}} atlas samples, mostly NOAA’s own tows.</p>
-        <p>Where two copies disagree, ×{{re.manta}}, that is the conversion, not the sea.</p>
+        <p>Databases compile published surveys. One tow can sit in NOAA and in Japan’s atlas, or twice in NOAA under two papers, and <strong>no field marks the copy</strong>.</p>
+        <p>Pooled, that tow counts twice; compared, it agrees with itself, so the last slide took such pairs out. Found blind: {{sv.dup.n}} pairs of studies.</p>
+        <p>And a copy can hide a number nobody stated. NOAA’s Manta values imply a net depth of {{re.d.ncei}} metres that <strong>no field holds</strong>. The paper says {{re.d.paper}} metres. I use the paper’s.</p>
       </div>
       <div class="cue">
-        <p><span class="k">Point at</span>the three numbers, then the trap sentence.</p>
+        <p><span class="k">Point at</span>the three numbers; stay on the last one.</p>
         <p class="then"><span class="k">Then</span>One more reason two counts differ: the size window.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
           <p><span class="k">What is really going on</span>A pair of studies is flagged when at least ten records on each side share a day and lie within two kilometres. The known case was matched tow by tow from the papers’ own tables; the database converted one copy with half the net depth the paper states and kept only small particles for the other.</p>
-          <p><span class="k">Where the numbers come from</span>The check finds {{sv.dup.re_found}} of the {{re.tows}} known tows. Manta tows differ ×{{re.manta}} between the two copies, Neuston tows ×{{re.neuston}}.</p>
-          <p><span class="k">If they push</span><b>Are they really duplicates?</b> The check says they share samples: {{sv.dup.ncei}} pairs inside NOAA, {{sv.dup.aomi}} between AOMI and another database, {{sv.dup.aomi_self}} inside AOMI; {{sv.dup.identical}} of all pairs with values within one percent. Whether each is one survey published twice is for the maintainers to confirm. I have not asked them yet.</p>
+          <p><span class="k">Where the numbers come from</span>The check finds {{sv.dup.re_found}} of the {{re.tows}} known tows; at least {{sv.dup.aomi_records}} atlas samples are held by another database too. Manta tows differ ×{{re.manta}} between NOAA’s two copies, Neuston tows ×{{re.neuston}}. NOAA’s values for Reisser’s {{re.d.n}} Manta tows equal the paper’s count per square kilometre over {{re.d.ncei}} metres, tow by tow. No NOAA field holds that number: the public table’s sample depth is zero, the sheet NOAA keyed from the paper holds only the result, and the metadata calls it measured. Reisser’s Methods give {{re.d.paper}} metres, full immersion of the net frame, so the survey uses the paper’s depth in NOAA and in the atlas, which holds NOAA’s values, and flags those records.</p>
+          <p><span class="k">If they push</span><b>Isn’t a factor of two within tolerance?</b> No. A tolerance is for measurement noise; this is a sampling parameter a factor of two apart, a metadata question. The paper’s geometry stands until a record says what the smaller depth means. <b>Are they really duplicates?</b> The check says they share samples: {{sv.dup.ncei}} pairs inside NOAA, {{sv.dup.aomi}} between AOMI and another database, {{sv.dup.aomi_self}} inside AOMI; {{sv.dup.identical}} of all pairs with values within one percent. Whether each is one survey published twice is for the maintainers to confirm. I have not asked them yet.</p>
         </div>
       </details>
     </section>
@@ -1046,7 +1046,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         <div class="deep-body">
           <p><span class="k">What is really going on</span>The database converts each paper’s pieces per square kilometre into pieces per cubic metre by dividing by a net depth. It used different depths for the two copies and kept only particles under five millimetres for one of them. Same tow, different arithmetic.</p>
           <p><span class="k">Where the numbers come from</span>The tow-by-tow table: {{re.tows}} tows matched, the same published value for {{re.same}}. Median ratio of the two copies: ×{{re.manta}} for Manta tows, ×{{re.neuston}} for Neuston tows; {{re.zero}} tows zero in one copy and positive in the other.</p>
-          <p><span class="k">If they push</span><b>Is the database wrong?</b> I have not asked them yet, so I say it differs from the paper’s stated net depth. What matters here is that an agent reading the database cannot see it, and an agent reading the papers and doing the arithmetic can.</p>
+          <p><span class="k">If they push</span><b>Is the database wrong?</b> I have not asked them yet, so I say it differs from the paper’s stated net depth, {{re.d.paper}} metres, and that no field holds the {{re.d.ncei}} metres its values imply. What matters here is that an agent reading the database cannot see it, and an agent reading the papers and doing the arithmetic can.</p>
         </div>
       </details>
     </section>
@@ -1215,7 +1215,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <details><summary>Monitoring: is ×{{sv.co.median}} between studies more than patchiness?</summary><p>Partly patchiness: one study against itself, the same distance apart, already differs by ×{{sv.co.within}}. The study adds the rest, about ×{{sv.co.median}} against ×{{sv.co.within}}.</p></details>
       <details><summary>Monitoring: did you use compartment-specific size slopes?</summary><p>No. The pre-registered test used the single slope the rescaling literature defaults to. Kooi and colleagues give compartment-specific slopes, steeper in surface water than the default; the river on slide fifteen needs a steeper one too. Not tested.</p></details>
       <details><summary>Monitoring: what does any of this say about nanoplastics?</summary><p>Directly, nothing: every dataset here counts microplastics. The window logic extends downward, and nanoplastics are its extreme case.</p></details>
-      <details><summary>Monitoring: have you told NOAA about the shared tows?</summary><p>Not yet. The check shows shared samples; whether each is one survey published twice is for the maintainers. I will ask about the net depth of Reisser’s tows first.</p></details>
+      <details><summary>Monitoring: have you told NOAA about the shared tows?</summary><p>Not yet. The check shows shared samples; whether each is one survey published twice is for the maintainers. Two questions go first: which field, if any, holds the {{re.d.ncei}} metres behind Reisser’s Manta values, and what it means; and why the same tows under Eriksen are all labelled Neuston nets. Until a record answers, the paper’s {{re.d.paper}} metres stands.</p></details>
       <details><summary>AI: precision and recall against human labels?</summary><p>Not yet measured: the gold set was annotated by a model, and the human audit has not run. Say this first. What is measured: two blind readings agree on the condition flags, ionic strength {{rr.agree.ionic_strength_reported}}, and differ on which rows exist.</p></details>
       <details><summary>AI: is the reading reproducible?</summary><p>The reading is not: two readings found the same number of rows in {{rr.same_count}} of {{rr.papers}} papers. What reproduces byte for byte is everything after the cached reading.</p></details>
       <details><summary>AI: “absence as a value” is just a nullable column.</summary><p>Yes. What is new is counting it, showing it is missing not at random, and showing that validators push data toward it.</p></details>

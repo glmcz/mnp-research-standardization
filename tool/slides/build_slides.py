@@ -923,8 +923,18 @@ def window_values(V: Values, ref: str) -> None:
 
 
 def reisser_values(V: Values, ref: str) -> None:
-    """Slide 38 (backup): the same tows twice in one database, and a coincidence like a cause."""
+    """Slides 14 and 38: the same tows twice in one database, a net depth no field holds, and a
+    coincidence like a cause."""
     t = pd.read_csv(io.StringIO(show(ref, TOWS)))
+    (fix,) = json.loads(show(ref, SV_COLOC))["net_depth_from_paper"]
+    manta = t[(t["Sampling Method"] == "Manta net") & (t["value_R"] > 0)]
+    implied = float((manta["Cs"] / 1e6 / manta["value_R"]).median())
+    if abs(implied - fix["implied_m"]) > 1e-3:
+        raise SystemExit(f"{SV_COLOC}: NCEI's Manta values imply {implied:.4f} m, not the table's")
+    V.float("re.d.ncei", fix["implied_m"], 3, SV_COLOC + ": net_depth_from_paper, implied_m")
+    V.float("re.d.paper", fix["paper_m"], 2, SV_COLOC + ": net_depth_from_paper, paper_m")
+    V.int("re.d.x", round(fix["paper_m"] / fix["implied_m"]), SV_COLOC + ": paper over implied")
+    V.int("re.d.n", fix["records"]["ncei"], SV_COLOC + ": NCEI records put to the paper's depth")
     both = t[(t["value_R"] > 0) & (t["value_E"] > 0)]
     ratio = both["value_R"] / both["value_E"]
     by = ratio.groupby(both["Sampling Method"]).median()

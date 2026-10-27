@@ -609,6 +609,16 @@ def expected_findings(get=show) -> dict:
     readme = flat(get("tool/colocation/reisser_eriksen/README.md"))
     E["re.trap"] = float(one(readme, r"own wind-mixing median of ([\d.]+) is a coincidence")[0])
     E["re.same"] = int(one(readme, r"within 0\.1 % for (\d+) of the")[0])
+    # the depth NCEI's Reisser Manta values imply, tow by tow, against the depth the paper states
+    manta = [t for t in tows if t["Sampling Method"] == "Manta net"]
+    depth = statistics.median(
+        float(t["Cs"]) / 1e6 / float(t["value_R"]) for t in manta if float(t["value_R"]) > 0
+    )
+    paper = float(one(readme, r"Reisser's Methods state ([\d.]+) m for Manta")[0])
+    E["re.d.ncei"] = Near(depth, 1e-3)
+    E["re.d.paper"] = paper
+    E["re.d.x"] = round(paper / depth)
+    E["re.d.n"] = len(manta)
 
     # slide 40 (backup): the validation metrics, the labelling page's sample size, the results note
     vm = json.loads(get("out/tables/validate_sign_metrics.json"))

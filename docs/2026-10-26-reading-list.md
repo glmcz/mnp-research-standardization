@@ -17,7 +17,7 @@ reviewer named but that was not looked up here, so verify it before quoting it.
 | Cowger et al. 2020, Appl Spectrosc 74:1066; Koelmans et al. 2019, Water Res 155:410 | slide 3 |
 | Duncan et al. 2024, Anal Chem 96:4343; Gigault et al. 2018, Environ Pollut 235:1030; Faria et al. 2018, Nat Nanotechnol 13:777 | slides 3, 24 and the Q&A |
 | Shen et al. 2019, Environ Pollut 252; Xu et al. 2022, Sci Total Environ 851 | slide 4 |
-| Reisser 2013 and Eriksen 2014: the shared tows | slide 14 |
+| Reisser 2013 and Eriksen 2014: the shared tows, and the net depth NOAA's values imply (0.085 m, held in no field) against the paper's 0.17 m | slides 14, 38 |
 | Case 14 and case 02 numbers; the certified silica and the eight-laboratory silica study behind the gap ladder (`out/tables/gap_scout_verified.csv`) | slides 22, 23 |
 
 ## Background to re-read (not in the material)
@@ -80,12 +80,19 @@ zeta measurement must report, so expect "what is new?")**
 
 ## Prepare before the talk (questions the material cannot answer yet)
 
-- The comparability tolerances behind "two pairs comparable" (pH, temperature, ionic strength).
+- The zeta tolerances behind slide 21's "two pairs comparable" (pH, temperature, ionic strength).
+  They apply to zeta rows only. No tolerance touches the tows: the net-depth gap below is a
+  metadata question.
 - What the printed zeta values the scanner found but no row covers are: cited values, model
   inputs or real misses.
 - The total cost of the extraction, not only the evaluation runs.
-- NOAA: why its copy of Reisser's Manta tows uses a net depth of 0.085 m where the paper states
-  0.17 m.
+- NOAA, as a metadata question and not a tolerance: no NCEI field holds the 0.085 m its Reisser
+  Manta values imply. `Water Sample Depth (m)` is 0; the submission sheet NCEI keyed from the paper
+  holds only the result; the ISO record calls it "measured". Reisser's Methods give a 1 × 0.17 m
+  mouth, 333 µm mesh, and d = 0.17 m, "full immersion of the net frame". The survey uses 0.17 m in
+  NCEI and in AOMI (`tool/survey/table.py`, `NET_DEPTH`) until a record defines 0.085 m. Ask
+  which field holds it and what it means, and why the same tows under Eriksen 2014 are all
+  "Neuston net", 0.33 mm, implying 0.08 m. Evidence: `tool/colocation/reisser_eriksen/README.md`.
 - A public timestamp for the pre-registration (Zenodo or OSF): a private repository's commits
   cannot show they came first.
 - Whether "on request" stands for the code (OD-20), and one sentence on affiliation and funding.

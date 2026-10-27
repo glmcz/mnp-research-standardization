@@ -800,13 +800,12 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
     <div class="tests">
       <div class="stat"><span class="label">Found blind</span><span class="big">{{sv.dup.re_found}}</span><span class="small">of the {{re.tows}} tows two papers share, matched by date and position alone</span></div>
       <div class="stat"><span class="label">Across databases</span><span class="big">{{sv.dup.aomi_records}}</span><span class="small">samples, at least, that AOMI holds and another database holds too; {{sv.dup.identical}} flagged pairs agree within one percent</span></div>
-      <div class="stat"><span class="label">Converted twice</span><span class="big">×{{re.manta}}</span><span class="small">the same Manta tows, converted with two net depths; Neuston tows ×{{re.neuston}}</span></div>
+      <div class="stat"><span class="label">A depth no field holds</span><span class="big">×{{re.d.x}}</span><span class="small">NOAA’s values for {{re.d.n}} Manta tows divide by a {{re.d.ncei}} m net depth; the paper states {{re.d.paper}} m, and that is used here</span></div>
     </div>
-    <p class="lead-in">The trap: a careless pairing gave a ratio of {{re.trap}}, and the paper’s own wind-mixing correction has a median of {{re.trap}}. A plausible story would explain one with the other. Only the arithmetic, tow by tow, shows it is a coincidence.</p>
   </div>
-  <p class="src">out/tables/survey_duplicates.csv · tool/colocation/reisser_eriksen/README.md</p>
+  <p class="src">out/tables/survey_duplicates.csv · tool/colocation/reisser_eriksen/README.md · tool/survey/table.py, NET_DEPTH</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Harmonised databases are where agents look first, and they are compilations: the Japanese atlas holds largely NOAA’s own tows under other names, and no field links a copy to its original. Pooled, a copy counts twice; compared, it agrees with itself, which is why slide thirteen takes such pairs out before measuring agreement. Where two copies disagree, the difference is the conversion, not the sea. Whether each pair is one survey published twice is for the maintainers to confirm.</p>
+    <p>Harmonised databases are where agents look first, and they are compilations: the Japanese atlas holds largely NOAA’s own tows under other names, and no field links a copy to its original. Pooled, a copy counts twice; compared, it agrees with itself, which is why slide thirteen takes such pairs out before measuring agreement. Where copies disagree, look at the conversion: NOAA’s values for these Manta tows imply a net depth of {{re.d.ncei}} m that no field defines, while the paper states {{re.d.paper}} m, so the paper’s depth is used and the question goes to NOAA. Whether each pair is one survey published twice is for the maintainers to confirm.</p>
   </aside>
 </div>
 </section>
@@ -1335,7 +1334,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </header>
   <div class="body">
     <div class="tests">
-      <div class="stat"><span class="label">Manta tows</span><span class="big">×{{re.manta}}</span><span class="small">median ratio of the two copies of one tow</span></div>
+      <div class="stat"><span class="label">Manta tows</span><span class="big">×{{re.manta}}</span><span class="small">median ratio of NOAA’s two copies of one tow; neither uses the paper’s {{re.d.paper}} m</span></div>
       <div class="stat"><span class="label">Neuston tows</span><span class="big">×{{re.neuston}}</span><span class="small">the other net, the other direction</span></div>
       <div class="stat"><span class="label">Zero against positive</span><span class="big">{{re.zero}}</span><span class="small">tows that are zero in one copy and positive in the other</span></div>
     </div>
@@ -1343,7 +1342,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </div>
   <p class="src">tool/colocation/reisser_eriksen/README.md · tow_identity_R_E.csv (NOAA NCEI; Reisser and Eriksen)</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Harmonised databases are where agents will look first, so this one matters. The same tows sit in a global database twice, converted with different net depths and size cuts, so one physical sample carries two values. And the first explanation a model would reach for is a coincidence that only arithmetic exposes.</p>
+    <p>Harmonised databases are where agents will look first, so this one matters. The same tows sit in a global database twice, converted with different net depths, neither the one the paper states, and different size cuts, so one physical sample carries two values. And the first explanation a model would reach for is a coincidence that only arithmetic exposes.</p>
   </aside>
 </div>
 </section>

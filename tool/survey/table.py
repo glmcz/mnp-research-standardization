@@ -7,7 +7,9 @@ found) are pinned here. Air is not a survey matrix: an atmospheric compilation o
 study was read on 2026-10-23 and removed on 2026-10-24. On 2026-10-26 the Japanese ministry's
 atlas (AOMI) replaced Isobe et al. 2021, 93 % of whose samples it holds, and two local datasets
 whose records share no place with any other study left (Oregon rivers, California drinking
-water). A field the source does not give stays null and is never filled;
+water). A field the source does not give stays null and is never filled. One value is not as the
+database has it: where a database divides a tow's count by a net depth the paper contradicts, the
+paper's depth is used (NET_DEPTH, flagged);
 `flags` says why a field is what it is (NCEI's 5 mm upper bound is the database's rule, MP-SED's
 lower limit 99999 means unreported).
 
@@ -90,6 +92,15 @@ PANGAEA_FOUND = {
 # Left out, though verified usable: PANGAEA 986752 (Eastern Tropical Pacific) holds one row per
 # particle, and its per-sample abundance differs within one site and month, so no single value per
 # sample can be read without guessing. A lead for its author.
+#: A database's pieces/m3 from a surface tow is the paper's pieces/km2 over a net depth the database
+#: does not store. Where the paper states that depth and the database's values imply another, the
+#: paper's stands. NCEI's Reisser 2013 Manta values equal Table S1's Cs / 1e6 / 0.085 for every
+#: tow, yet no NCEI field holds 0.085 (Water Sample Depth is 0, and the submission sheet NCEI keyed
+#: from the paper holds only the result); Reisser's Methods give 0.17 m, "full immersion of the net
+#: frame". AOMI holds NCEI's values for the same tows. (study, method): (paper's m, implied m).
+NET_DEPTH = {
+    ("https://doi.org/10.1371/journal.pone.0080466", "Manta net"): (0.17, 0.085),
+}
 _WINDOW = (r"(\d+)\s*[µμ]m mesh", r"lower microplastic size limit was set to (\d+)\s*[µμ]m")
 COLUMNS = (
     "dataset",
@@ -509,7 +520,17 @@ def build() -> pd.DataFrame:
     parts = [ncei(), mpsed(), soil(), weser(), emodnet(), pangaea_found(), aomi(),
              kiessling2021(), durum(), rivm(), sfbay()]  # fmt: skip
     t = pd.concat(parts, ignore_index=True)
-    return t.loc[:, list(COLUMNS)]
+    return paper_depth(t).loc[:, list(COLUMNS)]
+
+
+def paper_depth(t: pd.DataFrame) -> pd.DataFrame:
+    """Rescale each NET_DEPTH study's tows to the paper's depth, in every database holding them."""
+    study = t.study.str.removeprefix("aomi:")
+    for (doi, method), (paper, implied) in NET_DEPTH.items():
+        m = (study == doi) & (t.method == method)
+        t.loc[m, "value"] = t.loc[m, "value"] * implied / paper
+        t.loc[m, "flags"] = t.loc[m, "flags"] + f";depth_from_paper_{paper}m_not_{implied}m"
+    return t
 
 
 def load() -> pd.DataFrame:

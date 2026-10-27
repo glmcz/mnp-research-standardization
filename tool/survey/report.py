@@ -175,6 +175,20 @@ def main() -> None:
         "across_datasets": across_datasets(water, 50, 365, dup),
         # the same area in another dataset, in any year: descriptive, place held, time not
         "across_datasets_100km_any_year": across_datasets(water, 100, None, dup),
+        "net_depth_from_paper": [
+            {
+                "study": doi,
+                "method": method,
+                "paper_m": paper,
+                "implied_m": implied,
+                "records": t[t["flags"].str.contains(f"depth_from_paper_{paper}m", na=False)]
+                .groupby("dataset")
+                .size()
+                .astype(int)
+                .to_dict(),
+            }
+            for (doi, method), (paper, implied) in table.NET_DEPTH.items()
+        ],
     }
     (TABLES / "survey_colocated.json").write_text(json.dumps(out, indent=1) + "\n")
     print(dup.to_string())

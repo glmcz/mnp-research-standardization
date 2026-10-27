@@ -32,6 +32,15 @@ uv run --with openpyxl --with pyreadr python -m pytest -q -p no:cacheprovider to
 - EMODnet's pan-European aggregate (2021) is not read: it gives a filtered volume only for 121
   Baltic samples and a tow length for the rest, so a value per m³ would need an assumed net depth.
 - A field a source lacks stays null.
+- One value is not as the database has it (`NET_DEPTH`, Martin, 2026-10-27). A surface tow's
+  particles/m³ is the paper's particles/km² over a net depth; where the paper states that depth and
+  the database's values imply another, the paper's is used and the record is flagged
+  `depth_from_paper_…`. NCEI's Reisser 2013 Manta tows imply 0.085 m, which no NCEI field holds;
+  Reisser's Methods give 0.17 m. AOMI holds NCEI's values for the same tows, so both copies (129 and
+  140 records) are halved; the counts land in `survey_colocated.json`, `net_depth_from_paper`. The
+  same tows under Eriksen 2014 imply 0.08 m and are all labelled Neuston net; Eriksen prints no net
+  dimensions, so they keep the database's value, and the duplicate check keeps them out of every
+  comparison.
 - An EMODnet study is its organisation: a monitoring programme's cruises are one series, not
   independent studies, as an NCEI DOI is.
 - `validators.py` holds the checks:

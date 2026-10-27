@@ -62,7 +62,10 @@ def test_a_field_the_source_lacks_stays_empty(records) -> None:
     coded = m["flags"].str.contains("lower_unreported_code")
     assert coded.sum() > 0 and m.loc[coded, "size_min_um"].isna().all()
     n = records[records.dataset == "ncei"]
-    assert n.size_max_um.eq(5000).all() and n["flags"].eq("upper_by_database_rule").all()
+    assert (
+        n.size_max_um.eq(5000).all() and n["flags"].str.startswith("upper_by_database_rule").all()
+    )
+    assert n["flags"].ne("upper_by_database_rule").sum() == 129  # Reisser's Manta tows, below
 
 
 import pandas as pd  # noqa: E402
@@ -83,6 +86,32 @@ def test_the_known_twice_held_tows_are_found_blind(records) -> None:
     )
     assert pair.records_a.iat[0] >= 0.95 * len(known)
     assert pair.median_km.iat[0] < 2
+
+
+def test_reissers_manta_tows_use_the_net_depth_reisser_states(records) -> None:
+    # Martin, 2026-10-27: NCEI's Reisser Manta values are Table S1's pieces/km2 over 0.085 m, a
+    # depth no NCEI field holds; Reisser's Methods give 0.17 m, "full immersion of the net frame".
+    # The paper's geometry stands until a record shows what 0.085 m means.
+    with open(ROOT / "data/raw/ncei/ncei_hub_microplastics.csv", encoding="utf-8-sig") as f:
+        raw = [r for r in csv.DictReader(f) if r["DOI"] == REISSER]
+    assert {r["Water Sample Depth (m)"] for r in raw} == {"0"}
+    tows = pd.read_csv(
+        ROOT / "tool/colocation/reisser_eriksen/out_2026-10-12" / "tow_identity_R_E.csv",
+        dtype={"Unique ID_R": str},
+    )
+    n = records[records.study == REISSER].set_index("record_id")
+    assert len(n) == len(tows)
+    got = n.loc["ncei:" + tows["Unique ID_R"], "value"].to_numpy()
+    depth = np.where(tows["Sampling Method"] == "Manta net", 0.17, 0.3)
+    assert np.allclose(got, tows["Cs"] / 1e6 / depth, rtol=1e-3)
+    # AOMI holds NCEI's values for the same tows, so their depth is put right there too
+    a = records[records.study == "aomi:" + REISSER]
+    manta = (a.method == "Manta net").to_numpy()
+    assert a["flags"].str.contains("depth_from_paper").to_numpy().tolist() == manta.tolist()
+    assert manta.sum() > 100
+    # nothing else moves: no other study carries the flag
+    flagged = records[records["flags"].str.contains("depth_from_paper", na=False)]
+    assert set(flagged.study) == {REISSER, "aomi:" + REISSER}
 
 
 def _toy(rows):
@@ -304,8 +333,9 @@ def test_the_atlas_arrives_whole_with_its_mesh_and_without_its_pole_placeholder(
     assert len(a) == len(rows) and a.study.str.startswith("aomi:").all()
     mesh = [float(r["D01_0070"]) * 1000 if r["D01_0070"] else np.nan for r in rows]
     assert np.allclose(a.size_min_um, mesh, equal_nan=True) and a.size_max_um.eq(5000).all()
-    value = [float(r["D01_0192"]) if r["D01_0192"] else np.nan for r in rows]
-    assert np.allclose(a.value, value, equal_nan=True)
+    value = np.array([float(r["D01_0192"]) if r["D01_0192"] else np.nan for r in rows])
+    depth = a["flags"].str.contains("depth_from_paper").to_numpy()
+    assert np.allclose(a.value, np.where(depth, value * 0.085 / 0.17, value), equal_nan=True)
     # a latitude of 90 is the atlas's placeholder for a missing position, not the North Pole
     pole = np.array([abs(float(r["latitude"])) >= 89.9 for r in rows])
     assert pole.any() and a.lat[pole].isna().all() and a.lat[~pole].notna().all()

@@ -176,7 +176,7 @@
     "reason": "window_factor_too_uncertain",
     "pairs": 7840,
     "median_years_apart": 9.0,
-    "median_fold": 7.78,
+    "median_fold": 7.72,
     "p90_fold": 212.0
    },
    {
@@ -255,5 +255,17 @@
     "p90_fold": 3065.3
    }
   ]
- }
+ },
+ "net_depth_from_paper": [
+  {
+   "study": "https://doi.org/10.1371/journal.pone.0080466",
+   "method": "Manta net",
+   "paper_m": 0.17,
+   "implied_m": 0.085,
+   "records": {
+    "aomi": 140,
+    "ncei": 129
+   }
+  }
+ ]
 }

@@ -17,7 +17,20 @@ of that run are in `out_2026-10-12/`.
     - Reisser rows use Cs / 1e6 / d, with d = 0.085 m for Manta and 0.300 m for Neuston.
     - Reisser's Methods state 0.17 m for Manta (full immersion) and 0.3 m for Neuston.
     - Eriksen rows use d = 0.08 m for all 680 tows; Eriksen 2014 prints no net dimensions.
-    - Why NCEI used 0.085 m is not confirmed: half the mouth height is an inference.
+    - No NCEI field holds 0.085 m (checked 2026-10-27). The public table's `Water Sample Depth (m)`
+      is 0 for all 851 rows of both papers, and it has no net-dimension field. The submission sheet
+      NCEI staff keyed from the paper (`R_MP_data_S2N.xlsx`) holds only the pieces/m³ result, its
+      data dictionary calls it a "density", and the ISO record lists it as "MICROPLASTIC
+      CONCENTRATION (measured)". So 0.085 m has no semantic definition anywhere: it is a divisor
+      implied by NCEI's arithmetic.
+    - Pattern, not proof: NCEI's divisor is half the mouth height for both nets (Neuston 0.6 m →
+      0.3, Manta 0.17 m → 0.085). Reisser states half immersion for the Neuston net and full
+      immersion for the Manta net, so the two agree for Neuston and disagree for Manta.
+    - The survey table uses Reisser's 0.17 m for these tows, in NCEI and in AOMI, which holds
+      NCEI's values (`tool/survey/table.py`, `NET_DEPTH`). Not a tolerance: a sampling parameter a
+      factor of two apart is a metadata question for NCEI.
+    - The same tows under Eriksen's DOI are all labelled "Neuston net", 0.33 mm mesh, and imply
+      0.08 m; 129 of them are Reisser's Manta tows.
   - **Size range:** Eriksen rows keep CD1 + CD2 (0.33–4.75 mm). Reisser rows keep Cs, which
     covers all sizes up to 82.6 mm. So 17 tows are zero under Eriksen and positive under
     Reisser.

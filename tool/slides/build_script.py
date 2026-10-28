@@ -4,8 +4,9 @@ The script is the deck's rehearsal companion. It speaks the deck's own values (`
 at the same ref), so every number said aloud is the number on the slide, and it copies each
 slide's title and message out of the rendered deck instead of retyping them. `script_template.html`
 holds the words. The only numbers typed here are the time plan: twenty minutes over five acts,
-motivation first (the plan of 2026-10-25: why standardise, the engineering, what the datasets
-say, what the papers say, the way forward). Backup slides have a card but no time.
+motivation first (the plan of 2026-10-25: why standardise, the engineering, the datasets, the
+papers, the way forward; on 2026-10-28 the datasets became microplastics and the papers
+nanoplastics). Backup slides have a card but no time.
 
     unset VIRTUAL_ENV
     uv run python tool/slides/build_script.py [--ref HEAD] [--out tool/slides/script.html]
@@ -28,19 +29,20 @@ _spec.loader.exec_module(bs)
 PLAN = {
     "s1": 30, "s2": 45, "s3": 55, "s4": 30,
     "s5": 40, "s6": 55, "s7": 45, "s8": 55, "s9": 40,
-    "s10": 45, "s11": 45, "s12": 55, "s13": 55, "s14": 40, "s15": 55,
-    "s16": 40, "s17": 45, "s18": 45, "s19": 50, "s20": 45, "s21": 40, "s22": 40,
-    "s23": 50, "s24": 60, "s25": 40, "s26": 55,
+    "s10": 45, "s11": 45, "s12": 65, "s13": 65, "s14": 70,
+    "s15": 40, "s16": 60, "s17": 45, "s18": 50, "s19": 45, "s20": 40, "s21": 40,
+    "s22": 65, "s23": 60, "s24": 70,
 }  # fmt: skip
 ACTS = (
     ("I", "why standardise", ("s1", "s2", "s3", "s4")),
     ("II", "the engineering", ("s5", "s6", "s7", "s8", "s9")),
-    ("III", "what the datasets say", ("s10", "s11", "s12", "s13", "s14", "s15")),
-    ("IV", "what the papers say", ("s16", "s17", "s18", "s19", "s20", "s21", "s22")),
-    ("V", "the way forward", ("s23", "s24", "s25", "s26")),
-)
+    ("III", "microplastics: what the datasets count", ("s10", "s11", "s12", "s13", "s14")),
+    ("IV", "nanoplastics: what the papers measure",
+     ("s15", "s16", "s17", "s18", "s19", "s20", "s21")),
+    ("V", "the way forward", ("s22", "s23", "s24")),
+)  # fmt: skip
 #: Slides kept for questions: a card each, no time.
-BACKUP = tuple(f"s{i}" for i in range(27, 45))
+BACKUP = tuple(f"s{i}" for i in range(25, 45))
 TOTAL = sum(PLAN.values())
 SRC = "tool/slides/build_script.py PLAN"
 

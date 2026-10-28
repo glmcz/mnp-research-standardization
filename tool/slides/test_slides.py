@@ -463,7 +463,7 @@ def expected_findings(get=show) -> dict:
         E[key] = f"{head}, {journal} {citation.split(journal + ' ', 1)[1].split(':')[0]}"
         E[key.replace(".ref", ".year")] = int(head.rsplit(" ", 1)[1])
 
-    # slide 18: each paper's reporting habit, recounted with csv and plain sets
+    # slide 17: each paper's reporting habit, recounted with csv and plain sets
     per = list(csv.DictReader(io.StringIO(get("out/review/conditions_per_paper.csv"))))
     conds = {
         "medium": "medium",
@@ -498,7 +498,7 @@ def expected_findings(get=show) -> dict:
     named = [r["instrument"] for r in d1 if r["instrument"].strip()]
     E["zb.zetasizer"] = [sum("zetasizer" in s.lower() for s in named), len(named)]
 
-    # slide 17: ionic strength with the supplements, recounted from the table and the accepted rows
+    # slide 16: ionic strength with the supplements, recounted from the table and the accepted rows
     si_rows = set(json.loads(get("out/tables/si_rates.json"))["accepted_rows"])
     papers: dict[str, list[dict]] = {}
     for r in d1:
@@ -520,7 +520,7 @@ def expected_findings(get=show) -> dict:
     prereg = json.loads(get("out/tables/p2_prereg_results.json"))
     E["pr.commit"] = prereg["prereg_commit"]
 
-    # slide 19: the P2 table with csv and statistics
+    # slide 18: the P2 table with csv and statistics
     p2 = list(csv.DictReader(io.StringIO(get("out/tables/p2_zeta_size.csv"))))
     E["p2.rows"], E["p2.papers"] = len(p2), len({r["pmcid"] for r in p2})
     size = [math.log10(float(r["size_nm"])) for r in p2]
@@ -545,7 +545,7 @@ def expected_findings(get=show) -> dict:
     amine = [float(r["zeta_mV"]) for r in groups["PS"] if r["surface"] == "amine"]
     E["p2.amine_neg"], E["p2.amine_n"] = sum(z < 0 for z in amine), len(amine)
 
-    # slide 15: the Weser fractions with csv, the power law solved by bisection on its own formula
+    # slide 14: the Weser fractions with csv, the power law solved by bisection on its own formula
     w = list(csv.DictReader(io.StringIO(get("out/tables/p2_weser_pairs.csv"))))
     small = (float(w[0]["small_lo_um"]), float(w[0]["small_hi_um"]))
     large = (float(w[0]["large_lo_um"]), float(w[0]["large_hi_um"]))
@@ -854,7 +854,7 @@ def expected_findings(get=show) -> dict:
     E["hy.p9"] = ("supported" if drop >= E["hy.p9_min"]
                   else ("refuted" if drop < 0.1 else "partly"))  # fmt: skip
 
-    # slide 20: P11 recounted from the pairs, the sign test from the binomial by hand
+    # slide 19: P11 recounted from the pairs, the sign test from the binomial by hand
     ag = json.loads(get("out/tables/p2_aging.json"))
     pairs = list(csv.DictReader(io.StringIO(get("out/tables/p2_aging_pairs.csv"))))
     per: dict[str, list[float]] = {}
@@ -939,7 +939,7 @@ def expected_findings(get=show) -> dict:
     )  # fmt: skip
     E["map.soil.n"] = sum(r["setting"] == "soil" and not math.isnan(num(r["lat"])) for r in st)
 
-    # slide 23: the gap table read with csv; case 14's row must be the case 14 the deck shows
+    # slide 22: the gap table read with csv; case 14's row must be the case 14 the deck shows
     for r in csv.DictReader(io.StringIO(get("out/tables/gap_ladder.csv"))):
         E[f"gap.{r['key']}"] = float(r["value"])
         if r["high"]:
@@ -956,7 +956,7 @@ def expected_findings(get=show) -> dict:
     assert said in json.loads(nano["extra_found"])[0]
     E["gap.nanovalid.said"] = said
 
-    # slide 24: every verdict, read from its own results file
+    # slide 23: every verdict, read from its own results file
     pre = json.loads(get("out/tables/p2_prereg_results.json"))
     verdicts = [pre[k]["verdict"] for k in ("P1", "P2", "P3", "P4")]
     verdicts += [E["sv.p7a"], E["sv.p7b"], E["hy.p8"], E["hy.p9"]]
@@ -1376,7 +1376,7 @@ def test_every_slide_has_a_title_a_message_and_notes(page) -> None:
     )
     assert [s for s, _ in slides] == [f"s{i}" for i in range(1, 45)]
     backup = re.findall(r'<section class="slide backup" id="(s\d+)"', page)
-    assert backup == [f"s{i}" for i in range(27, 45)]
+    assert backup == [f"s{i}" for i in range(25, 45)]
     for sid, body in slides:
         assert re.search(r"<h[12]>", body), sid
         assert sid == "s1" or 'class="msg"' in body, sid
@@ -1469,11 +1469,11 @@ def test_the_time_plan_fills_twenty_minutes_over_five_acts(sc) -> None:
     # The order of 2026-10-25: why standardise, the engineering, the datasets, the papers, the way
     # forward. Twenty minutes; the backup slides untimed.
     assert [s for _, _, slides in sc.ACTS for s in slides] == list(sc.PLAN)
-    assert list(sc.PLAN) == [f"s{i}" for i in range(1, 27)]
-    assert sc.BACKUP == tuple(f"s{i}" for i in range(27, 45))
+    assert list(sc.PLAN) == [f"s{i}" for i in range(1, 25)]
+    assert sc.BACKUP == tuple(f"s{i}" for i in range(25, 45))
     acts = {name: sum(sc.PLAN[s] for s in slides) for name, _, slides in sc.ACTS}
-    assert acts == {"I": 160, "II": 235, "III": 295, "IV": 305, "V": 205}
-    assert sc.timing_values()["at.s26"]["text"] == "20:00"
+    assert acts == {"I": 160, "II": 235, "III": 290, "IV": 320, "V": 195}
+    assert sc.timing_values()["at.s24"]["text"] == "20:00"
 
 
 def test_no_card_asks_for_more_than_130_words_a_minute(sc, script_page) -> None:

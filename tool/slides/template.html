@@ -688,7 +688,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <section class="slide" id="s10" aria-label="Slide 10: the datasets, and the agents that found more">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">10</span><span>Act III · what the datasets say</span></p>
+    <p class="eyebrow"><span class="idx">10</span><span>Act III · microplastics: what the datasets count</span></p>
     <h2>Every dataset leaves out a field a comparison needs.</h2>
     <p class="msg">{{sv.n.datasets}} microplastic datasets, {{sv.total}} records, no gap filled: two agents found {{found.total}} of them, a reference list {{sv.n.user}}, and code opened every file.</p>
   </header>
@@ -728,7 +728,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <section class="slide" id="s11" aria-label="Slide 11: every study, its window and its numbers">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">11</span><span>Act III · what the datasets say</span></p>
+    <p class="eyebrow"><span class="idx">11</span><span>Act III · microplastics: what the datasets count</span></p>
     <h2>Studies with the same size window still spread over orders of magnitude.</h2>
     <p class="msg">Each rectangle is one study: as wide as the particle sizes its method could count, as tall as the concentrations it reports.</p>
   </header>
@@ -746,7 +746,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <section class="slide" id="s12" aria-label="Slide 12: a rise that is several things">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">12</span><span>Act III · what the datasets say</span></p>
+    <p class="eyebrow"><span class="idx">12</span><span>Act III · microplastics: what the datasets count</span></p>
     <h2>The ×{{sv.pooled}} rise compares different studies.</h2>
     <p class="msg">NOAA’s median ocean-water count rises ×{{sv.pooled}} from {{sv.y_from}}–{{sv.y_from_end}} to {{sv.y_to}}–{{sv.y_to_end}}, but no study sampled in both: {{sv.studies_from}} open-ocean surveys then, {{sv.studies_to}} other studies now, from the Mediterranean to India. All count microplastics, the median from {{sv.min_from}} µm then and {{sv.min_to}} µm now: no nanoplastics.</p>
   </header>
@@ -768,7 +768,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <section class="slide" id="s13" aria-label="Slide 13: same sea, different numbers">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">13</span><span>Act III · what the datasets say</span></p>
+    <p class="eyebrow"><span class="idx">13</span><span>Act III · microplastics: what the datasets count</span></p>
     <h2>Two studies of one sea differ ×{{sv.co.median}}; one study differs from itself ×{{sv.co.within}}.</h2>
     <p class="msg">Records within {{sv.co.km}} km and {{sv.co.days}} days, same sampling method. The sea itself is patchy; the study adds the rest. One pair of studies in ten differs by ×{{sv.co.p90}} or more.</p>
   </header>
@@ -788,31 +788,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s14" aria-label="Slide 14: the same samples held twice">
+<section class="slide" id="s14" aria-label="Slide 14: the window decides the count">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">14</span><span>Act III · what the datasets say</span></p>
-    <h2>Databases copy the same surveys, and no field marks the copy.</h2>
-    <p class="msg">NOAA and Japan’s atlas both compile published surveys, so one tow can sit in both, or twice in one under two papers. Found blind by date and position: {{sv.dup.n}} pairs of studies, {{sv.dup.ncei}} inside NOAA, {{sv.dup.aomi}} between AOMI and another database, {{sv.dup.aomi_self}} inside AOMI.</p>
-  </header>
-  <div class="body">
-    <div class="tests">
-      <div class="stat"><span class="label">Found blind</span><span class="big">{{sv.dup.re_found}}</span><span class="small">of the {{re.tows}} tows two papers share, matched by date and position alone</span></div>
-      <div class="stat"><span class="label">Across databases</span><span class="big">{{sv.dup.aomi_records}}</span><span class="small">samples, at least, that AOMI holds and another database holds too; {{sv.dup.identical}} flagged pairs agree within one percent</span></div>
-      <div class="stat"><span class="label">A depth no field holds</span><span class="big">×{{re.d.x}}</span><span class="small">NOAA’s values for {{re.d.n}} Manta tows divide by a {{re.d.ncei}} m net depth; the paper states {{re.d.paper}} m, and that is used here</span></div>
-    </div>
-  </div>
-  <p class="src">out/tables/survey_duplicates.csv · tool/colocation/reisser_eriksen/README.md · tool/survey/table.py, NET_DEPTH</p>
-  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Harmonised databases are where agents look first, and they are compilations: the Japanese atlas holds largely NOAA’s own tows under other names, and no field links a copy to its original. Pooled, a copy counts twice; compared, it agrees with itself, which is why slide thirteen takes such pairs out before measuring agreement. Where copies disagree, look at the conversion: NOAA’s values for these Manta tows imply a net depth of {{re.d.ncei}} m that no field defines, while the paper states {{re.d.paper}} m, so the paper’s depth is used and the question goes to NOAA. Whether each pair is one survey published twice is for the maintainers to confirm.</p>
-  </aside>
-</div>
-</section>
-
-<section class="slide" id="s15" aria-label="Slide 15: the window decides the count">
-<div class="frame">
-  <header>
-    <p class="eyebrow"><span class="idx">15</span><span>Act III · what the datasets say</span></p>
+    <p class="eyebrow"><span class="idx">14</span><span>Act III · microplastics: what the datasets count</span></p>
     <h2>A finer sieve counts more: ×{{w.ratio}} in the Weser estuary, where the standard slope predicts ×{{w.pred}}.</h2>
     <p class="msg">Roscher et al. sampled {{w.stations}} stations of the Weser estuary and Jade Bay twice: a pump for {{w.small.lo}}–{{w.small.hi}} µm, a net for {{w.large.lo}}–{{w.large.hi}} µm. The median station holds ×{{w.ratio}} more small particles than large. Converting between windows assumes one slope, α {{w.alpha0}}; this estuary needs α {{w.alpha}}.</p>
   </header>
@@ -831,10 +810,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s16" aria-label="Slide 16: what zeta is">
+<section class="slide" id="s15" aria-label="Slide 15: what zeta is">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">16</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">15</span><span>Act IV · nanoplastics: what the papers measure</span></p>
     <h2>Zeta is not measured directly: it is computed from a drift speed.</h2>
     <p class="msg">The instrument measures how fast a particle drifts in an electric field: its mobility. Zeta is calculated from that speed with a formula, and which formula is right depends on how much salt the liquid holds.</p>
   </header>
@@ -853,10 +832,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s17" aria-label="Slide 17: five conditions">
+<section class="slide" id="s16" aria-label="Slide 16: five conditions">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">17</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">16</span><span>Act IV · nanoplastics: what the papers measure</span></p>
     <h2>Only {{five.complete_papers}} of {{pp.n}} papers state all five conditions for one zeta value.</h2>
     <p class="msg">The formula that turns a drift speed into zeta takes the liquid, its salt and its temperature; the pH sets the charge itself; the instrument picks the formula. Those five are the measurement conditions for zeta. Ionic strength, the one the formula needs most, is stated by the fewest papers.</p>
   </header>
@@ -878,10 +857,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s18" aria-label="Slide 18: every paper by the five conditions it states">
+<section class="slide" id="s17" aria-label="Slide 17: every paper by the five conditions it states">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">18</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">17</span><span>Act IV · nanoplastics: what the papers measure</span></p>
     <h2>The commonest habit: {{pp.top}}, nothing else.</h2>
     <p class="msg">Every paper sorted by which of the five conditions it states anywhere: {{pp.h.0}} of {{pp.n}} papers have that habit, {{pp.none}} state none of the five, {{pp.all}} all five.</p>
   </header>
@@ -896,10 +875,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s19" aria-label="Slide 19: zeta tells neither size, plastic nor label">
+<section class="slide" id="s18" aria-label="Slide 18: zeta tells neither size, plastic nor label">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">19</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">18</span><span>Act IV · nanoplastics: what the papers measure</span></p>
     <h2>Pooled, zeta cannot tell plastics apart: {{p2.neg_n}} of {{p2.named_n}} sit between {{p2.neg_lo}} and {{p2.neg_hi}} mV.</h2>
     <p class="msg">Across {{p2.rows}} values from {{p2.papers}} papers, size and zeta are unrelated (ρ {{p2.rho}}), and {{p2.amine_neg}} of {{p2.amine_n}} amine-coated beads, sold as positive, are reported negative.</p>
   </header>
@@ -914,10 +893,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s20" aria-label="Slide 20: age the bead, measure it again">
+<section class="slide" id="s19" aria-label="Slide 19: age the bead, measure it again">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">20</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">19</span><span>Act IV · nanoplastics: what the papers measure</span></p>
     <h2>Inside one paper the missing conditions cancel; the {{ag.a.papers}} papers that pair aging cannot resolve it.</h2>
     <p class="msg">{{ag.aged_rows}} aged values in {{ag.aged_papers}} papers, but only {{ag.a.papers}} compare an oxidised particle with its own virgin form in the same liquid: {{ag.a.neg}} turn more negative, {{ag.a.pos}} less, a median {{ag.a.median}} mV.</p>
   </header>
@@ -933,10 +912,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s21" aria-label="Slide 21: not different, just unreported">
+<section class="slide" id="s20" aria-label="Slide 20: not different, just unreported">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">21</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">20</span><span>Act IV · nanoplastics: what the papers measure</span></p>
     <h2>“Not different, just unreported.”</h2>
     <p class="msg">{{sp.cat.lost_to_absence}} comparisons of one particle type are blocked by a missing number, not by a stated difference.</p>
   </header>
@@ -952,10 +931,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s22" aria-label="Slide 22: the best case fails">
+<section class="slide" id="s21" aria-label="Slide 21: the best case fails">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">22</span><span>Act IV · what the papers say</span></p>
+    <p class="eyebrow"><span class="idx">21</span><span>Act IV · nanoplastics: what the papers measure</span></p>
     <h2>The one comparable pair across two papers sits {{c14.gap}} mV apart.</h2>
     <p class="msg">One lab, the same {{c14.size_nominal}} nm polystyrene, the same five conditions, two papers {{c14.years}} years apart: {{c14.a.value}} against {{c14.b.value}} mV.</p>
   </header>
@@ -986,12 +965,12 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 </div>
 </section>
 
-<section class="slide" id="s23" aria-label="Slide 23: how far apart two numbers land">
+<section class="slide" id="s22" aria-label="Slide 22: how far apart two numbers land">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">23</span><span>Act V · the way forward</span></p>
-    <h2>Conditions nobody held fixed move zeta further than a second laboratory does.</h2>
-    <p class="msg">Each bar is two measurements that share everything but the condition named first. Blue: laboratories measuring the same material. Grey: this dataset.</p>
+    <p class="eyebrow"><span class="idx">22</span><span>Act V · the way forward</span></p>
+    <h2>The liquid, the batch and the size window move a number further than a second laboratory does.</h2>
+    <p class="msg">Each bar is two measurements that differ in one thing, named first. Blue: published round robins, one material sent to several laboratories. Grey: what we found, in the papers for charge and in the public microplastic datasets for counts.</p>
   </header>
   <div class="body fill">
     <figure class="fig" style="margin:0">{{svg:gaps}}</figure>
@@ -999,47 +978,85 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </div>
   <p class="src">out/tables/gap_ladder.csv · out/tables/gap_scout_verified.csv · .claude/agents/mnp-gap-scout.md</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>The blue bars are interlaboratory studies a second scout agent found; code fetched each page and kept a number only where the quote that holds it was there. They are the floor: good laboratories measuring the same bottle still differ by a few millivolts, or a fraction for counts. The grey bars are this talk, and each one is a condition somebody did not hold fixed or did not write down.</p>
+    <p>The blue bars are interlaboratory studies a second scout agent found; code fetched each page and kept a number only where the quote that holds it was there. They are the floor: good laboratories measuring the same bottle still differ by a few millivolts, or a fraction for counts. The grey bars come from what we read: the zeta papers for charge, NOAA, AOMI and the other public datasets for counts. Each is a thing a study did not hold fixed or did not write down, and each moves the number more than a second laboratory does; that is why a standard must fix the conditions, not only test the laboratories.</p>
   </aside>
 </div>
 </section>
 
-<section class="slide" id="s24" aria-label="Slide 24: the same steps, for nanoplastics">
+<section class="slide" id="s23" aria-label="Slide 23: the same steps, for nanoplastics">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">24</span><span>Act V · the way forward</span></p>
-    <h2>Nanoplastics need the microplastic steps, and two of their own.</h2>
-    <p class="msg">For each step, what the numbers here say a nanoplastic version must hold. The curve, because a charge belongs to its liquid; one record per sample, because databases hold samples twice.</p>
+    <p class="eyebrow"><span class="idx">23</span><span>Act V · the way forward</span></p>
+    <h2>Microplastics need their counts reported; nanoplastics first need a way to count them.</h2>
+    <p class="msg">Nets, filters and spectroscopy count microplastics, and the gaps are in what gets reported. No routine method counts nanoplastics in real water yet, so what is published about them is lab particles, measured for charge, and even those lack their conditions.</p>
   </header>
   <div class="body">
     <div class="jt-wrap">
       <table class="jt way">
-        <thead><tr><th>Step</th><th>Microplastics</th><th>Nanoplastics: what the numbers here say it must hold</th></tr></thead>
+        <thead><tr><th>Step</th><th>Microplastics: the datasets</th><th>Nanoplastics: the papers</th></tr></thead>
         <tbody>
-          <tr><td>A known truth, sent to many labs</td><td>spiked water, {{mp.dfr.labs}} laboratories</td><td>one bead suspension; every lab reports the mobility and the five conditions. One batch of silica already spreads {{gap.nanovalid}} mV across eight labs</td></tr>
-          <tr><td>One size window</td><td>a rescaling to one size range</td><td>the window and the method’s floor stated on every count; rescaling soil studies with one slope narrowed their disagreement by {{p2t.reduction}}</td></tr>
+          <tr><td>Count them at all</td><td>nets, pumps and infrared spectroscopy, from about a third of a millimetre</td><td>no routine method in real water; the steps below apply to lab particles until one exists</td></tr>
+          <tr><td>A known truth, sent to many labs</td><td>spiked water, {{mp.dfr.labs}} laboratories</td><td>one bead suspension, every lab reporting the mobility and the five conditions; one batch of silica already spreads {{gap.nanovalid}} mV across eight labs</td></tr>
+          <tr><td>One size window</td><td>a rescaling to one window, proposed; with one slope it narrowed soil studies’ disagreement by {{p2t.reduction}}</td><td>not even the upper size limit is agreed</td></tr>
           <tr><td>One way to report</td><td>guidelines for every step</td><td>the five conditions as numbers, all five today in {{five.complete_papers}} of {{pp.n}} papers; the conversion model; supplier and lot: one label, two papers, {{c14.gap}} mV</td></tr>
           <tr><td>A quality score</td><td>{{mp.k19.pass}} of {{mp.k19.n}} studies passed</td><td>each value scored by the conditions it states, so a reader sees which numbers to trust</td></tr>
+          <tr><td>Keep each sample once</td><td>a database record per sample, with its window: today {{sv.dup.n}} pairs of studies share samples</td><td>—</td></tr>
           <tr class="found"><td>Publish the curve</td><td>—</td><td>mobility at two or more salt levels, so a hard bead can be told from a soft, coated one</td></tr>
-          <tr><td>Keep each sample once</td><td>—</td><td>a database record per sample, with its window: today {{sv.dup.n}} pairs of studies share samples</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="lead-in">Reporting needs no new instrument, only what is measured, written down, so an agent can compare it and code can check it. What the literature cannot answer at all needs instruments.</p>
   </div>
   <p class="src">docs/2026-10-25-standardisation-sources.md · out/tables/gap_ladder.csv · out/tables/p2_prereg_results.json, P2 · out/tables/survey_duplicates.csv</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>These are the four steps from the opening, each with what this talk measured for nanoplastics. The last two are new: the curve, because a charge belongs to its liquid, and one record per sample, because databases hold samples twice. None of it needs a new instrument, only that what is measured gets written down.</p>
+    <p>The two halves of the talk, as two columns. For microplastics the instruments exist, and what is missing is the window, the method and one record per sample. For nanoplastics a precise way to count them in real water does not exist yet, so their evidence is lab particles measured for charge; reporting is necessary there, but not enough, and the next slide is about instruments.</p>
   </aside>
 </div>
 </section>
 
-<section class="slide" id="s25" aria-label="Slide 25: what to take home">
+<section class="slide" id="s24" aria-label="Slide 24: next, by instrument">
 <div class="frame">
   <header>
-    <p class="eyebrow"><span class="idx">25</span><span>Act V · the way forward</span></p>
+    <p class="eyebrow"><span class="idx">24</span><span>Act V · the way forward</span></p>
+    <h2>Each instrument removes one kind of absence at its source.</h2>
+    <p class="msg">The literature cannot give a curve or a clean aging effect. A measurement designed for the question can, and each step needs one more piece of equipment.</p>
+  </header>
+  <div class="body">
+    <figure class="fig" style="margin:0">{{svg:stairs}}</figure>
+  </div>
+  <p class="src">docs/2026-10-10-review-call.md · docs/DECISIONS.md, OD-03</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Each step removes one kind of absence at its source. The analyser turns the reviewer’s objection into an experiment, and the logger is an embedded job: the condition travels with the number, so no reader has to guess it. Leave this slide up for questions.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide backup" id="s25" aria-label="Slide 25: the same samples held twice">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">25</span><span>Backup</span></p>
+    <h2>Databases copy the same surveys, and no field marks the copy.</h2>
+    <p class="msg">NOAA and Japan’s atlas both compile published surveys, so one tow can sit in both, or twice in one under two papers. Found blind by date and position: {{sv.dup.n}} pairs of studies, {{sv.dup.ncei}} inside NOAA, {{sv.dup.aomi}} between AOMI and another database, {{sv.dup.aomi_self}} inside AOMI.</p>
+  </header>
+  <div class="body">
+    <div class="tests">
+      <div class="stat"><span class="label">Found blind</span><span class="big">{{sv.dup.re_found}}</span><span class="small">of the {{re.tows}} tows two papers share, matched by date and position alone</span></div>
+      <div class="stat"><span class="label">Across databases</span><span class="big">{{sv.dup.aomi_records}}</span><span class="small">samples, at least, that AOMI holds and another database holds too; {{sv.dup.identical}} flagged pairs agree within one percent</span></div>
+      <div class="stat"><span class="label">A depth no field holds</span><span class="big">×{{re.d.x}}</span><span class="small">NOAA’s values for {{re.d.n}} Manta tows divide by a {{re.d.ncei}} m net depth; the paper states {{re.d.paper}} m, and that is used here</span></div>
+    </div>
+  </div>
+  <p class="src">out/tables/survey_duplicates.csv · tool/colocation/reisser_eriksen/README.md · tool/survey/table.py, NET_DEPTH</p>
+  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
+    <p>Harmonised databases are where agents look first, and they are compilations: the Japanese atlas holds largely NOAA’s own tows under other names, and no field links a copy to its original. Pooled, a copy counts twice; compared, it agrees with itself, which is why slide thirteen takes such pairs out before measuring agreement. Where copies disagree, look at the conversion: NOAA’s values for these Manta tows imply a net depth of {{re.d.ncei}} m that no field defines, while the paper states {{re.d.paper}} m, so the paper’s depth is used and the question goes to NOAA. Whether each pair is one survey published twice is for the maintainers to confirm.</p>
+  </aside>
+</div>
+</section>
+
+<section class="slide backup" id="s26" aria-label="Slide 26: what to take home">
+<div class="frame">
+  <header>
+    <p class="eyebrow"><span class="idx">26</span><span>Backup</span></p>
     <h2>Four rules that hold beyond plastic.</h2>
-    <p class="msg">Each comes from a number in this dataset, and each applies to any field that compares measurements.</p>
+    <p class="msg">Each comes from a number found here, and each applies to any field that compares measurements.</p>
   </header>
   <div class="body">
     <div class="rules two">
@@ -1052,24 +1069,6 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   <p class="src">docs/PREREG_2026-10.md · out/tables/p2_aging.json · out/tables/hybrid_results.json · REVIEW.md §5.1</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
     <p>These are the four lessons that travel to any field. A missing condition is information if you store it; a comparison is clean when the two sides share everything but the thing you vary; models read and code decides; and a prediction is only worth something if it could have failed.</p>
-  </aside>
-</div>
-</section>
-
-<section class="slide" id="s26" aria-label="Slide 26: next, by instrument">
-<div class="frame">
-  <header>
-    <p class="eyebrow"><span class="idx">26</span><span>Act V · the way forward</span></p>
-    <h2>Each instrument removes one kind of absence at its source.</h2>
-    <p class="msg">The literature cannot give a curve or a clean aging effect. A measurement designed for the question can, and each step needs one more piece of equipment.</p>
-  </header>
-  <div class="body">
-    <figure class="fig" style="margin:0">{{svg:stairs}}</figure>
-    <p class="lead-in">The dataset {{dataset}} is released under {{licence}}; the code and the register of decisions, on request. Every field has its ionic strength. Build your agents so that silence stays silent.</p>
-  </div>
-  <p class="src">docs/2026-10-10-review-call.md · docs/DECISIONS.md, OD-03</p>
-  <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Each step removes one kind of absence at its source. The analyser turns the reviewer’s objection into an experiment, and the logger is an embedded job: the condition travels with the number, so no reader has to guess it. Leave this slide up for questions.</p>
   </aside>
 </div>
 </section>

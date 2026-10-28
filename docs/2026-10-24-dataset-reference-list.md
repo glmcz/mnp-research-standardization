@@ -24,6 +24,7 @@ as 130-byte pointers.
 | Koelmans et al. 2019 | PMC6449537 | Already used as D3; a compilation of study means. |
 | SIPIBEL | PMC8713128 | Data behind Data in Brief / Mendeley; not fetched. |
 | SCCWRP WWTP report | sccwrp.org | PDF tables only; not parsed. |
-| SF Bay (SFEI) | data.cnra.ca.gov | **In**: 65 manta tows and 22 sediment grabs (blanks left out). Counts are microparticles, mostly not characterised, so the unit says microparticles. Python's client is refused; a curl download worked. |
+| SF Bay (SFEI) | data.cnra.ca.gov | Out since 2026-10-28. Its 65 manta tows and 22 sediment grabs count microparticles, mostly never characterised, so they share a place with other studies only in a unit no other study counts in. AOMI holds the same tows (doi 10.1021/acsestwater.0c00292) as plastic pieces per m³. |
+| GeoPlasticoBR (Brazil) | Martin, 2026-10-27 | **In** since 2026-10-28: 692 water, sediment and soil rows of 1 183; bivalves, corals and echinoderms are body burdens and stay out. No sampling date (the year is the paper's) and no size window, so it joins only the any-year comparison. Its DOI column was filled down: inside one study the DOI counts up into other papers' (Water Research 119707 is the Amazon study, 119708 on steel corrosion; PubMed), so a study keeps its first DOI and 385 rows are flagged; 26 rows are entered twice. One paper, doi 10.1016/j.marpolbul.2019.110705, is also in NOAA or AOMI. Submitters' names and institutions are in the file and are not read. |
 | ToMEx 2.0 | microplastics.sccwrp.org | Toxicity, not environmental concentrations; out of scope. |
 | Directories (Plastiverse, DOER, IWP, data.gov) | various | Indexes for the scout agents, not datasets. |

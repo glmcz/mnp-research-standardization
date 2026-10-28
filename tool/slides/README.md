@@ -30,3 +30,5 @@ uv run python tool/slides/build_script.py [--ref HEAD] [--out tool/slides/script
 `shots.py` screenshots chosen slides at desktop size or phone width (`--phone`), to look at before publishing; it needs Google Chrome.
 
 `export.py OUT_DIR` writes `talk_deck.pdf` and `talk_deck.pptx` from the built `slides.html`: each slide a picture of the page as presented (so the text is not editable), the speaker notes in PowerPoint's notes pane and each slide's title as its picture's alt text. Run it with `uv run --with playwright --with pillow --with python-pptx`; it needs Google Chrome too.
+
+`export_text.py OUT_DIR` writes `talk_text.docx`: every slide's title, message, other text, figure labels, speaker notes, and for timed slides the spoken script and the bridge to the next, under a short brief for whoever rewrites it (numbers stay as they are). Run it with `uv run --with beautifulsoup4 --with python-docx`. A rewrite comes back into `template.html` and `script_template.html` by hand, keeping each `{{key}}`.

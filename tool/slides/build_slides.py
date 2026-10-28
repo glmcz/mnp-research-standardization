@@ -1083,12 +1083,15 @@ def survey_values(V: Values, ref: str) -> None:
     p7 = json.loads(show(ref, SV_P7))
     periods = {int(p["period"]): p for p in p7["P7c"]["periods"]}
     V.float("sv.pooled", p7["P7c"]["pooled_ratio_last_over_2000s_per_record"], 0, SV_P7 + ": P7c")
-    for key, start in (("from", 2000), ("to", 2020), ("peak", 2015)):
+    for key, start in (("from", 2000), ("to", 2020)):
         V.year(f"sv.y_{key}", start, SV_P7 + ": P7c, a five-year period")
         V.year(f"sv.y_{key}_end", start + 4, SV_P7 + ": P7c, a five-year period")
     V.int("sv.studies_from", periods[2000]["studies"], SV_P7 + ": P7c, 2000-2004")
     V.int("sv.studies_to", periods[2020]["studies"], SV_P7 + ": P7c, 2020-2024")
-    V.int("sv.studies_peak", periods[2015]["studies"], SV_P7 + ": P7c, 2015-2019")
+    V.int("sv.min_from", periods[2000]["median_size_min_um"], SV_P7 + ": P7c, median size_min_um")
+    V.int("sv.min_to", periods[2020]["median_size_min_um"], SV_P7 + ": P7c, median size_min_um")
+    low = min(periods[y]["smallest_size_min_um"] for y in (2000, 2020))
+    V.int("sv.min_low", low, SV_P7 + ": P7c, smallest size_min_um at either end")
     a = p7["P7a"]
     V.float("sv.law_rho", a["spearman_rho"], 2, SV_P7 + ": P7a")
     V.int("sv.law_tows", a["tows"], SV_P7 + ": P7a")

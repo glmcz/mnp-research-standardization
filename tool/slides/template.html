@@ -747,8 +747,8 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">12</span><span>Act III · what the datasets say</span></p>
-    <h2>A rise of ×{{sv.pooled}} that is several things.</h2>
-    <p class="msg">NOAA’s median ocean-water count rises ×{{sv.pooled}} from {{sv.y_from}}–{{sv.y_from_end}} to {{sv.y_to}}–{{sv.y_to_end}}. But {{sv.studies_from}} studies sampled then and {{sv.studies_to}} now, after a peak of {{sv.studies_peak}} in {{sv.y_peak}}–{{sv.y_peak_end}}: other seas, other nets.</p>
+    <h2>The ×{{sv.pooled}} rise compares different studies.</h2>
+    <p class="msg">NOAA’s median ocean-water count rises ×{{sv.pooled}} from {{sv.y_from}}–{{sv.y_from_end}} to {{sv.y_to}}–{{sv.y_to_end}}, but no study sampled in both: {{sv.studies_from}} open-ocean surveys then, {{sv.studies_to}} other studies now, from the Mediterranean to India. All count microplastics, the median from {{sv.min_from}} µm then and {{sv.min_to}} µm now: no nanoplastics.</p>
   </header>
   <div class="body">
     <figure class="fig" style="margin:0">{{svg:rise}}</figure>
@@ -757,11 +757,10 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
       <div class="stat"><span class="label">Predicted: no series rises tenfold · {{sv.p7b}}</span><span class="big">×{{sv.goldstein}}</span><span class="small">the North Pacific gyre, where a rise is published; another Pacific series ×{{sv.law14}}</span></div>
       <div class="stat"><span class="label">…partly by moving · chosen after the results</span><span class="big">×{{sv.law14_zone}}</span><span class="small">that series inside its own accumulation zone, where its share of tows grew from {{sv.zone_first}} to {{sv.zone_last}}</span></div>
     </div>
-    <p class="lead-in">A trend across studies cannot be read off a database without holding place and method fixed. The guard caveats exactly this comparison; a naive analysis reports the ×{{sv.pooled}}.</p>
   </div>
   <p class="src">out/tables/survey_p7.json · docs/PREREG_2026-10.md, P7</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Pooled, NOAA’s data say microplastic rose about a hundredfold, but the studies on either side of that comparison are different studies in different seas. Inside the longest single series it is flat, as its authors reported; two series do rise, one of them partly because its cruises moved into the garbage patch.</p>
+    <p>Pooled, NOAA’s data say microplastic rose about a hundredfold, but the studies on either side of that comparison are different studies in different seas. And these are microplastic counts: half the records start at a third of a millimetre, none in either period below {{sv.min_low}} µm, so nanoplastics are not in it. Inside the longest single series it is flat, as its authors reported; two series do rise, one of them partly because its cruises moved into the garbage patch.</p>
   </aside>
 </div>
 </section>

@@ -465,8 +465,8 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">12</span><h3>{{title:s12}}</h3><p class="time"><b>{{t.s12}}</b> · ends at {{at.s12}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s12}}</p>
       <div class="say">
-        <p>Pool NOAA’s ocean samples by period, and the median rises <strong>×{{sv.pooled}}</strong> from {{sv.y_from}} to {{sv.y_to}}. That is the headline a naive analysis writes. <span class="pause">pause</span> It is like asking whether a town grew taller by measuring different people each year.</p>
-        <p>Look at the bars: {{sv.studies_from}} studies sampled then, {{sv.studies_to}} now, in other seas, with other nets. Not one study is on both sides.</p>
+        <p>Pool NOAA’s ocean samples by period, and the median rises <strong>×{{sv.pooled}}</strong> from {{sv.y_from}} to {{sv.y_to}}. <span class="pause">pause</span> It is like asking whether a town grew taller by measuring different people each year.</p>
+        <p>Look at the bars: {{sv.studies_from}} studies sampled then, {{sv.studies_to}} now, in other seas, with other nets. Not one study is on both sides. All of it is microplastic, from a third of a millimetre up; no nanoplastics.</p>
         <p>So I predicted, before computing it, that inside one long series it is flat. Law and colleagues, {{sv.law_tows}} tows: <strong>flat</strong>, as they published. Two series do rise, one in the North Pacific gyre; part of the other’s rise is where the ship sailed.</p>
       </div>
       <div class="cue">
@@ -477,7 +477,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         <summary>In depth</summary>
         <div class="deep-body">
           <p><span class="k">What is really going on</span>This is confounding by composition, a Simpson-like effect: the pooled trend is mostly a change in who was sampling where. The authors of the eastern Pacific series say the same in their own abstract: no robust trend, perhaps because space and time are confounded. The pre-registration was mixed, and I report it as it fell: inside the original series there is no trend (ρ {{sv.law_rho}}, {{sv.p7a}}); the prediction that no long series rises tenfold was {{sv.p7b}}, by the North Pacific gyre (×{{sv.goldstein}}) and an eastern Pacific series (×{{sv.law14}}).</p>
-          <p><span class="k">Where the numbers come from</span>NCEI ocean water by five-year period; {{sv.studies_peak}} studies at the peak, in {{sv.y_peak}}–{{sv.y_peak_end}}. The eastern Pacific series’ share of tows inside its accumulation zone grew from {{sv.zone_first}} to {{sv.zone_last}}; inside the zone it rises ×{{sv.law14_zone}}. That last analysis was chosen after the results and is labelled so.</p>
+          <p><span class="k">Where the numbers come from</span>NCEI ocean water by five-year period; the bars carry each period’s count of studies. The median lower size limit is a net’s mesh, {{sv.min_from}} µm then and {{sv.min_to}} µm now; the smallest at either end is {{sv.min_low}} µm. Studies that filtered water through sub-micron pores sampled in between, inside neither period, and a filter’s pore is not the smallest particle anyone identified. The eastern Pacific series’ share of tows inside its accumulation zone grew from {{sv.zone_first}} to {{sv.zone_last}}; inside the zone it rises ×{{sv.law14_zone}}. That last analysis was chosen after the results and is labelled so.</p>
           <p><span class="k">If they push</span><b>So is ocean microplastic rising or not?</b> In the North Pacific gyre, a published series says yes. This database, pooled, cannot answer it, and an agent should say so instead of reporting the pooled ratio.</p>
         </div>
       </details>

@@ -735,11 +735,15 @@ def expected_findings(get=show) -> dict:
     p7 = json.loads(get("out/tables/survey_p7.json"))
     per = {int(x["period"]): x for x in p7["P7c"]["periods"]}
     E["sv.pooled"] = Near(per[2020]["median_per_record"] / per[2000]["median_per_record"], 0.06)
-    for key, start in (("from", 2000), ("to", 2020), ("peak", 2015)):
+    for key, start in (("from", 2000), ("to", 2020)):
         assert start in per, start
         E[f"sv.y_{key}"], E[f"sv.y_{key}_end"] = start, start + 4
     E["sv.studies_from"], E["sv.studies_to"] = per[2000]["studies"], per[2020]["studies"]
-    E["sv.studies_peak"] = per[2015]["studies"]
+    E["sv.min_from"], E["sv.min_to"] = (
+        per[2000]["median_size_min_um"],
+        per[2020]["median_size_min_um"],
+    )
+    E["sv.min_low"] = min(per[2000]["smallest_size_min_um"], per[2020]["smallest_size_min_um"])
     E["sv.law_rho"], E["sv.law_tows"] = p7["P7a"]["spearman_rho"], p7["P7a"]["tows"]
     E["sv.law_y0"], E["sv.law_y1"] = p7["P7a"]["years"]
     E["sv.p7a"], E["sv.p7b"] = p7["P7a"]["verdict"], p7["P7b"]["verdict"]

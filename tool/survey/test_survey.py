@@ -116,7 +116,7 @@ def test_reissers_manta_tows_use_the_net_depth_reisser_states(records) -> None:
 
 def _toy(rows):
     cols = ["study", "setting", "date", "lat", "lon", "value", "method", "year"]
-    return pd.DataFrame(rows, columns=cols).assign(unit="pieces/m3")
+    return pd.DataFrame(rows, columns=cols).assign(unit="pieces/m3", size_min_um=float("nan"))
 
 
 def test_records_in_different_units_never_pair() -> None:
@@ -202,6 +202,15 @@ def test_pooled_periods_count_each_study_once_in_the_second_median() -> None:
     rows = big + [("small", "w", None, 0, 0, 9.0, "net", 2002)]
     p = v.pooled_periods(_toy(rows)).iloc[0]
     assert p.median_per_record == 1.0 and p.median_per_study == 5.0
+
+
+def test_pooled_periods_say_how_small_a_particle_was_counted() -> None:
+    # A rise in counts of net-caught pieces is a rise in microplastics only. The period's median
+    # lower size limit says so, and shows whether the window changed between periods.
+    rows = [("A", "w", None, 0, 0, 1.0, "net", 2001)] * 2
+    rows += [("B", "w", None, 0, 0, 2.0, "pump", 2002)]
+    p = v.pooled_periods(_toy(rows).assign(size_min_um=[333.0, 333.0, 0.45])).iloc[0]
+    assert p.median_size_min_um == 333.0
 
 
 def test_completeness_reports_what_a_dataset_never_gives(records) -> None:

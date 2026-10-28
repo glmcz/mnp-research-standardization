@@ -212,11 +212,13 @@ def series_change(t: pd.DataFrame, key: str = "study") -> pd.DataFrame:
 
 
 def pooled_periods(t: pd.DataFrame, width: int = 5) -> pd.DataFrame:
-    """Period medians two ways: one value per record, and one value per study (its median)."""
+    """Period medians two ways: one value per record, and one value per study (its median).
+    The median lower size limit says how small a counted particle could be."""
     t = t[t.year.notna() & t.value.notna()].assign(period=lambda d: (d.year // width) * width)
     per_study = t.groupby(["period", "study"]).value.median().reset_index()
     a = t.groupby("period").agg(records=("value", "size"), studies=("study", "nunique"),
-                                median_per_record=("value", "median"))  # fmt: skip
+                                median_per_record=("value", "median"),
+                                median_size_min_um=("size_min_um", "median"))  # fmt: skip
     b = per_study.groupby("period").value.median().rename("median_per_study")
     return a.join(b).reset_index()
 

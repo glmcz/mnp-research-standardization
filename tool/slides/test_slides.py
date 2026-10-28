@@ -208,9 +208,10 @@ def expected(get=show) -> dict:
         E[f"five.{flag}"] = sum(float(p[f"{flag}_share"]) for p in per_paper) / len(per_paper)
         E[f"five.why.{flag}"] = cells[name].replace("**", "")
     E["five.complete"] = n(one(review, r"#### C1\. [^#]*?\*\*Number\.\*\* ([\d ]+) / ")[0])
-    E["five.complete_paper"] = sum(float(p["conditions_complete_share"]) for p in per_paper) / len(
-        per_paper
-    )
+    E["five.complete_papers"] = sum(float(p["conditions_complete_share"]) > 0 for p in per_paper)
+    for flag in names:
+        stated = sum(float(p[f"{flag}_share"]) > 0 for p in per_paper)
+        E[f"five.any.{flag}"] = stated / len(per_paper)
 
     # the same-particle census, as REVIEW.md prints it (C12, §5.7)
     total, absence, absence_pct, cross, _same, stated, undecidable, conditional, comparable = one(

@@ -233,7 +233,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <p class="screen"><span class="k">On screen</span>{{msg:s2}}</p>
       <div class="say">
         <p>What makes two nanoplastic numbers comparable? <strong>Four things, stated with the number.</strong> <span class="pause">pause</span></p>
-        <p>The size range the method can see: in one river, two windows differ by {{w.ratio}}. The surface: one label, two papers, {{c14.gap}} millivolts apart. The measurement conditions: all five together on {{five.complete}} of {{rows}} rows. Where and when: a sediment database with no coordinates at all.</p>
+        <p>The size range the method can see: in one river, two windows differ by {{w.ratio}}. The surface: one label, two papers, {{c14.gap}} millivolts apart. The measurement conditions, for a zeta value five of them: all five for one value in {{five.complete_papers}} of {{pp.n}} papers. Where and when: a sediment database with no coordinates at all.</p>
         <p>Each of these comes back with its evidence. And microplastics have already started on them.</p>
       </div>
       <div class="cue">
@@ -532,13 +532,13 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <p class="screen"><span class="k">On screen</span>{{msg:s15}}</p>
       <div class="say">
         <p>The missing condition for counts is the <strong>size window</strong>: from which size up a method can see. Think of fishing: a finer net catches more fish, so the count describes the net as much as the sea.</p>
-        <p>One river, one study, two windows. The small particles outnumber the large ones by about five thousand. The textbook slope predicts about a dozen.</p>
+        <p>The Weser estuary in Germany: one study, the same stations, a pump for small particles and a net for large ones. At the median station the small outnumber the large about five thousand times. The textbook slope predicts about a dozen.</p>
         <p>Three pre-registered tests. In {{p1.studies}} soil studies, a finer limit means <strong>more plastic counted</strong>. Rescaling everything to one window does <strong>not</strong> settle the disagreement. And {{p3.outside}} of measured size distributions do not fit the slope the rescaling assumes.</p>
       </div>
       <div class="cue">
         <p><span class="k">Check</span>the clock should say {{act.III.end}}.</p>
         <p><span class="k">Point at</span>the title’s two numbers, then the three cards.</p>
-        <p class="then"><span class="k">Then</span>For a count, the missing condition is the window. For a nanoplastic, the number people measure is a charge, and its missing condition is the liquid. Here is why.</p>
+        <p class="then"><span class="k">Then</span>For a count, the missing condition is the window: size, the first thing on the opening slide. For a nanoplastic, the number people measure is a charge, and its missing condition is the liquid. Here is why.</p>
       </div>
       <details class="deep">
         <summary>In depth</summary>
@@ -581,15 +581,15 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">17</span><h3>{{title:s17}}</h3><p class="time"><b>{{t.s17}}</b> · ends at {{at.s17}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s17}}</p>
       <div class="say">
-        <p>The salt is one of five conditions that change the number the instrument prints: the medium, the ionic strength, the pH, the temperature and the instrument. Each bar is per paper, so a big paper cannot outvote a small one.</p>
-        <p>Medium and instrument are usually there. Ionic strength, the one the conversion needs most: on average <strong>{{five.ionic_strength_reported}}</strong> of a paper’s rows. All five on one row: {{five.complete}} rows out of {{rows}}. We read the supplements too: ionic strength reaches only {{si.mean}}.</p>
+        <p>Why five? The formula from the last slide needs the liquid, its salt and its temperature; the pH sets the charge itself; the instrument picks the formula. That is what “conditions” on the opening slide means for zeta.</p>
+        <p>Medium and instrument, most papers state. Ionic strength, the one the formula needs most: <strong>{{five.any.ionic_strength_reported}}</strong> of papers, even once. All five for one value: <strong>{{five.complete_papers}} papers of {{pp.n}}</strong>.</p>
       </div>
       <div class="cue"><p class="then"><span class="k">Then</span>So which papers state what? Every paper, sorted.</p></div>
       <details class="deep">
         <summary>In depth</summary>
         <div class="deep-body">
           <p><span class="k">What is really going on</span>Each of the five conditions changes the printed number: the medium because zeta belongs to the particle in its liquid; ionic strength because it sets the Debye length; pH because it switches surface groups on and off; temperature because it enters every conversion; the instrument because instruments convert mobility to zeta differently. Reporting is a habit of the paper, not of the row: a paper tends to report a condition for all its rows or for none.</p>
-          <p><span class="k">Where the numbers come from</span>Each bar is a mean over papers of the share of that paper’s rows reporting the condition, so a paper with many rows does not outvote one with few: medium {{five.medium_reported}}, ionic strength {{five.ionic_strength_reported}}, pH {{five.pH_reported}}, temperature {{five.temperature_reported}}, instrument {{five.instrument_reported}}. All five on one row: {{five.complete}} of {{rows}} rows, a paper mean of {{five.complete_paper}}. Soft forms count as reported, so every bar is an upper bound.</p>
+          <p><span class="k">Where the numbers come from</span>Each bar is the share of the {{pp.n}} papers that state the condition at least once. Per row it is thinner: the average paper states medium for {{five.medium_reported}} of its rows, ionic strength {{five.ionic_strength_reported}} ({{si.mean}} with the supplements read, {{si.new}} more papers), pH {{five.pH_reported}}, temperature {{five.temperature_reported}}, instrument {{five.instrument_reported}}; all five on one row: {{five.complete}} of {{rows}} rows. Soft forms count as reported, so every bar is an upper bound. Which conditions to require was set at the start and its reason never written down (RC-01); the physics above is why each one belongs.</p>
           <p><span class="k">If they push</span><b>Does the instrument really matter?</b> Yes. The instrument measures mobility, and the software converts it to zeta with an assumed model. Two instruments, or two settings, can print different zeta for the same mobility.</p>
         </div>
       </details>
@@ -655,7 +655,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         <summary>In depth</summary>
         <div class="deep-body">
           <p><span class="k">What is really going on</span>A pair is an aged row and the virgin rows of the same paper, polymer, liquid as written, ionic strength, pH, nominal size and additives. Both sides share the lab and the liquid, so the five conditions cancel; that is the only way a few millivolts can be seen in a literature where one plastic moves {{ag.iqr.PS}} mV from paper to paper. Reading the pairs found two coding defects, fixed test-first; the verdicts did not change. One paper, {{ag.swap}}, prints its aged and virgin values swapped between Methods and Discussion.</p>
-          <p><span class="k">Where the numbers come from</span>{{ag.aged_rows}} aged rows in {{ag.aged_papers}} papers; {{ag.pairs}} pairs in {{ag.paired_papers}} papers. P11, paired: {{ag.a.neg}} of {{ag.a.papers}} papers more negative, {{ag.a.pos}} less, median {{ag.a.median}} mV, interval {{ag.a.lo}} to {{ag.a.hi}} mV, sign test p {{ag.a.p}}: {{ag.a.verdict}}. P11, unpaired: {{ag.b.median}} mV, interval {{ag.b.lo}} to {{ag.b.hi}} mV, ×{{ag.b.ratio}} as wide: {{ag.b.verdict}}.</p>
+          <p><span class="k">Where the numbers come from</span>{{ag.aged_rows}} aged rows in {{ag.aged_papers}} papers; {{ag.pairs}} pairs in {{ag.paired_papers}} papers. P11, paired: {{ag.a.neg}} of {{ag.a.papers}} papers more negative, {{ag.a.pos}} less, median {{ag.a.median}} mV, interval {{ag.a.lo}} to {{ag.a.hi}} mV, sign test p {{ag.a.p}}, so no effect is shown. P11, unpaired: {{ag.b.median}} mV, interval {{ag.b.lo}} to {{ag.b.hi}} mV, ×{{ag.b.ratio}} as wide.</p>
           <p><span class="k">If they push</span><b>A handful of papers is nothing.</b> Exactly, and that is the finding: the literature holds {{ag.aged_rows}} aged values but few designed comparisons. One day on an instrument would give more than the whole corpus; that is the last slide.</p>
         </div>
       </details>
@@ -740,7 +740,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <div class="say">
         <p>So here are the same steps, taken for nanoplastics.</p>
         <p>A known truth: one bead suspension sent to many labs, each reporting mobility and the five conditions. One batch of silica already spreads {{gap.nanovalid}} millivolts across eight labs.</p>
-        <p>One size window, stated on every count. One way to report: the five conditions as numbers, the conversion model, the supplier and the lot. Today all five stand together on {{five.complete}} of {{rows}} rows.</p>
+        <p>One size window, stated on every count. One way to report: the five conditions as numbers, the conversion model, the supplier and the lot. Today all five stand together in {{five.complete_papers}} of {{pp.n}} papers.</p>
         <p>And two steps microplastics did not need: <strong>publish the curve</strong>, mobility at two or more salt levels, and <strong>keep each sample once</strong> in a database.</p>
         <p><strong>None of this needs a new instrument</strong>, only what is measured, written down. Then the AI the abstract hopes for has data to learn from.</p>
       </div>
@@ -1219,7 +1219,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <details><summary>AI: precision and recall against human labels?</summary><p>Not yet measured: the gold set was annotated by a model, and the human audit has not run. Say this first. What is measured: two blind readings agree on the condition flags, ionic strength {{rr.agree.ionic_strength_reported}}, and differ on which rows exist.</p></details>
       <details><summary>AI: is the reading reproducible?</summary><p>The reading is not: two readings found the same number of rows in {{rr.same_count}} of {{rr.papers}} papers. What reproduces byte for byte is everything after the cached reading.</p></details>
       <details><summary>AI: “absence as a value” is just a nullable column.</summary><p>Yes. What is new is counting it, showing it is missing not at random, and showing that validators push data toward it.</p></details>
-      <details><summary>Sceptic: what is new over the IUPAC report and the nanoEHS zeta guidance?</summary><p>The checklists exist; cite them. New is the measured adherence across a whole literature, {{five.complete}} of {{rows}} rows with all five, and which missing field blocks the most comparisons: ionic strength.</p></details>
+      <details><summary>Sceptic: what is new over the IUPAC report and the nanoEHS zeta guidance?</summary><p>The checklists exist; cite them. New is the measured adherence across a whole literature, {{five.complete_papers}} of {{pp.n}} papers with all five for one value, and which missing field blocks the most comparisons: ionic strength.</p></details>
       <details><summary>Sceptic: the pre-registration sits in a private repository.</summary><p>True, and a private commit cannot prove it came first. Before the talk, deposit it with a public timestamp; until then, say so.</p></details>
       <details><summary>Can I use it?</summary><p>The dataset is {{dataset}} under {{licence}}, with a review guide. The code and the register of decisions are on request while the repository is private (OD-20).</p></details>
     </div>

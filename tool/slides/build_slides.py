@@ -287,12 +287,12 @@ def five_values(V: Values, ref: str, base: dict) -> None:
         why = find("out/demo/METHOD.md", method, rf"(?m)^\| {cell} \| ([^|]+) \|")[0]
         V.words(f"five.why.{flag}", why.replace("**", "").strip(), "out/demo/METHOD.md")
     V.int("five.complete", base["five"]["complete_rows"], "out/tables/d1_zeta_table.csv")
-    V.pct(
-        "five.complete_paper",
-        base["five"]["complete_paper_mean"],
-        1,
-        "out/review/conditions_per_paper.csv",
-    )
+    papers = list(csv.DictReader(io.StringIO(show(ref, PER_PAPER))))
+    complete = sum(int(p["conditions_complete_rows"]) > 0 for p in papers)
+    V.int("five.complete_papers", complete, PER_PAPER + ": conditions_complete_rows > 0")
+    for p in base["five"]["params"]:
+        share = p["papers_any"] / len(papers)
+        V.pct(f"five.any.{p['key']}", share, 0, f"{PER_PAPER}: {p['key']}_rows > 0, of all papers")
 
 
 PER_PAPER = "out/review/conditions_per_paper.csv"

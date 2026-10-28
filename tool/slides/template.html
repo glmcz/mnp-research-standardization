@@ -518,7 +518,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
     <div class="rules two">
       <div class="rule"><span class="rid">I</span><h3>Size range and method limit.</h3><p>One river, two size windows: the small fraction outnumbers the large by {{w.ratio}}.</p></div>
       <div class="rule"><span class="rid">II</span><h3>Surface.</h3><p>One polystyrene label, two papers, every stated condition matched: {{c14.gap}} mV apart.</p></div>
-      <div class="rule"><span class="rid">III</span><h3>Measurement conditions.</h3><p>All five stated together for {{five.complete}} of {{rows}} zeta measurements.</p></div>
+      <div class="rule"><span class="rid">III</span><h3>Measurement conditions.</h3><p>For a zeta value, five: the liquid, its salt, its pH, the temperature, the instrument. All five for one value in {{five.complete_papers}} of {{pp.n}} papers.</p></div>
       <div class="rule"><span class="rid">IV</span><h3>Where and when.</h3><p>A sediment database without coordinates for {{sv.miss.mpsed.lat}} of its records.</p></div>
     </div>
   </div>
@@ -813,8 +813,8 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">15</span><span>Act III · what the datasets say</span></p>
-    <h2>Window and method move a count ×{{w.ratio}}; the assumed slope predicts ×{{w.pred}}.</h2>
-    <p class="msg">In one river, particles of {{w.small.lo}}–{{w.small.hi}} µm outnumber those of {{w.large.lo}}–{{w.large.hi}} µm over {{w.stations}} stations. Rescaling assumes counts fall with size at one fixed slope, α {{w.alpha0}}.</p>
+    <h2>A finer sieve counts more: ×{{w.ratio}} in the Weser estuary, where the standard slope predicts ×{{w.pred}}.</h2>
+    <p class="msg">Roscher et al. sampled {{w.stations}} stations of the Weser estuary and Jade Bay twice: a pump for {{w.small.lo}}–{{w.small.hi}} µm, a net for {{w.large.lo}}–{{w.large.hi}} µm. The median station holds ×{{w.ratio}} more small particles than large. Converting between windows assumes one slope, α {{w.alpha0}}; this estuary needs α {{w.alpha}}.</p>
   </header>
   <div class="body">
     <div class="tests">
@@ -822,11 +822,11 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
       <div class="stat"><span class="label">Predicted: rescaling {{p2t.cells}} places does not settle it · {{p2t.verdict}}</span><span class="big">{{p2t.reduction}}</span><span class="small">median narrowing of disagreement; where the windows differed, wider in {{p2t.wider}} of {{p2t.diff_cells}} places.</span></div>
       <div class="stat"><span class="label">{{p3.n}} measured size distributions · pre-registered, {{p3.verdict}}</span><span class="big">{{p3.outside}}</span><span class="small">outside α {{p3.band_lo}}–{{p3.band_hi}}; median {{p3.median}} on all bins, {{p3.lod_median}} without the bins near the detection limit.</span></div>
     </div>
-    <p class="lead-in">Matching the river needs α {{w.alpha}}. The slope everyone assumes is right on average and wrong for most single studies, so two counts with different windows are not two measurements of the same thing.</p>
+    <p class="lead-in">The assumed slope is right on average and wrong for most single studies, so two counts with different windows are not two measurements of the same thing.</p>
   </div>
   <p class="src">out/tables/p2_weser_pairs.csv (PANGAEA, Weser estuary) · out/tables/p2_prereg_results.json, P1 to P3 · docs/PREREG_2026-10.md</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>The same absence story holds for concentrations, with the size window in place of the liquid. In one river the small fraction outnumbers the large by thousands, where the textbook slope predicts about a dozen. Across soil studies a finer limit means more plastic, and rescaling everything to one window does not settle the disagreement.</p>
+    <p>The same absence story holds for concentrations, with the size window in place of the liquid. In the Weser estuary one study pumped water through a fine filter and towed a net at the same stations; the small fraction outnumbers the large by thousands, where the textbook slope predicts about a dozen. Across soil studies a finer limit means more plastic, and rescaling everything to one window does not settle the disagreement.</p>
   </aside>
 </div>
 </section>
@@ -857,23 +857,23 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">17</span><span>Act IV · what the papers say</span></p>
-    <h2>All five conditions stand together on {{five.complete}} of {{rows}} rows.</h2>
-    <p class="msg">The salt is one of five conditions that change the zeta a measurement prints: medium, ionic strength, pH, temperature, instrument. Ionic strength, the one the conversion needs most, is the rarest.</p>
+    <h2>Only {{five.complete_papers}} of {{pp.n}} papers state all five conditions for one zeta value.</h2>
+    <p class="msg">The formula that turns a drift speed into zeta takes the liquid, its salt and its temperature; the pH sets the charge itself; the instrument picks the formula. Those five are the measurement conditions for zeta. Ionic strength, the one the formula needs most, is stated by the fewest papers.</p>
   </header>
   <div class="body">
     <div class="conds">
-      <div class="cond head"><span>condition</span><span>why it changes the printed number</span><span>reported: a paper’s mean share of rows</span><span></span></div>
-      <div class="cond"><span class="name">Medium</span><span class="why">{{five.why.medium_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.medium_reported}}"></span></span><span class="v">{{five.medium_reported}}</span></div>
-      <div class="cond key"><span class="name">Ionic strength</span><span class="why">{{five.why.ionic_strength_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.ionic_strength_reported}}"></span></span><span class="v">{{five.ionic_strength_reported}}</span></div>
-      <div class="cond"><span class="name">pH</span><span class="why">{{five.why.pH_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.pH_reported}}"></span></span><span class="v">{{five.pH_reported}}</span></div>
-      <div class="cond"><span class="name">Temperature</span><span class="why">{{five.why.temperature_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.temperature_reported}}"></span></span><span class="v">{{five.temperature_reported}}</span></div>
-      <div class="cond"><span class="name">Instrument</span><span class="why">{{five.why.instrument_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.instrument_reported}}"></span></span><span class="v">{{five.instrument_reported}}</span></div>
+      <div class="cond head"><span>condition</span><span>why it changes the printed number</span><span>papers that state it at least once</span><span></span></div>
+      <div class="cond"><span class="name">Medium</span><span class="why">{{five.why.medium_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.any.medium_reported}}"></span></span><span class="v">{{five.any.medium_reported}}</span></div>
+      <div class="cond key"><span class="name">Ionic strength</span><span class="why">{{five.why.ionic_strength_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.any.ionic_strength_reported}}"></span></span><span class="v">{{five.any.ionic_strength_reported}}</span></div>
+      <div class="cond"><span class="name">pH</span><span class="why">{{five.why.pH_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.any.pH_reported}}"></span></span><span class="v">{{five.any.pH_reported}}</span></div>
+      <div class="cond"><span class="name">Temperature</span><span class="why">{{five.why.temperature_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.any.temperature_reported}}"></span></span><span class="v">{{five.any.temperature_reported}}</span></div>
+      <div class="cond"><span class="name">Instrument</span><span class="why">{{five.why.instrument_reported}}</span><span class="track"><span class="fill" style="width:{{w:five.any.instrument_reported}}"></span></span><span class="v">{{five.any.instrument_reported}}</span></div>
     </div>
-    <p class="legend"><span><i class="k-ink"></i>reported</span><span><i class="k-abs"></i>not reported</span><span>All five on one row, per paper: a mean of {{five.complete_paper}}.</span><span>With the supplements read too, ionic strength reaches only {{si.mean}}: {{si.new}} more papers state it.</span></p>
+    <p class="legend"><span><i class="k-ink"></i>reported</span><span><i class="k-abs"></i>not reported</span><span>With the supplements read too, {{si.new}} more papers state ionic strength.</span></p>
   </div>
   <p class="src">out/review/conditions_per_paper.csv (REVIEW.md §5.1) · reasons: out/demo/METHOD.md · supplements: out/tables/si_rates.json (docs/2026-10-12-si-ionic-strength.md)</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>These are the five conditions without which a zeta value cannot be interpreted. Each bar is per paper: the average share of a paper’s rows that report the condition, so a paper with many rows does not outvote one with few. Only {{five.complete}} of {{rows}} rows carry all five. And “reported” is generous here: a pH range, “room temperature” and an instrument family all count, so every figure is an upper bound.</p>
+    <p>Why five and not one word, conditions: these are exactly what the conversion on the last slide takes, plus the pH that sets the charge. A bar counts a paper if it states the condition once, anywhere, even as a pH range, “room temperature” or an instrument family, so every bar is an upper bound. Per measurement it is thinner: all five on {{five.complete}} of {{rows}} rows, and the average paper states medium for {{five.medium_reported}} of its rows, ionic strength {{five.ionic_strength_reported}} ({{si.mean}} with supplements), pH {{five.pH_reported}}, temperature {{five.temperature_reported}}, instrument {{five.instrument_reported}}.</p>
   </aside>
 </div>
 </section>
@@ -923,12 +923,12 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </header>
   <div class="body fill">
     <figure class="fig" style="margin:0">{{svg:aging}}</figure>
-    <p class="lead-in">Inside one paper the lab, the instrument and the liquid cancel, even where they are unreported. Between papers, virgin polystyrene alone spreads {{ag.iqr.PS}} mV, ×{{ag.scale}} the aging effect, and the unpaired comparison runs from {{ag.b.lo}} to {{ag.b.hi}} mV. Pre-registered: paired, {{ag.a.verdict}}; unpaired, {{ag.b.verdict}}.</p>
+    <p class="lead-in">Inside one paper the lab, the instrument and the liquid cancel, even where they are unreported. Between papers, virgin polystyrene alone spreads {{ag.iqr.PS}} mV, ×{{ag.scale}} the aging effect, and the unpaired comparison runs from {{ag.b.lo}} to {{ag.b.hi}} mV.</p>
     <p class="small">{{ag.pairs}} pairs in {{ag.paired_papers}} papers, {{ag.a.papers}} of them with light or an oxidant: interval {{ag.a.lo}} to {{ag.a.hi}} mV, sign test p {{ag.a.p}}, so no effect is shown. Unpaired: {{ag.b.median}} mV, an interval ×{{ag.b.ratio}} as wide.</p>
   </div>
   <p class="src">out/tables/p2_aging_pairs.csv · out/tables/p2_aging.json · docs/PREREG_2026-10.md, P11</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>The one way around missing conditions is a comparison inside one paper: measure the same bead before and after aging, and everything the two measurements share cancels. Few papers did, and the effect is a few millivolts, too small to see across papers. One paper, {{ag.swap}}, prints its aged and virgin values the other way round in two sentences, so the sign of its pair depends on which sentence you read.</p>
+    <p>The one way around missing conditions is a comparison inside one paper: measure the same bead before and after aging, and everything the two measurements share cancels. Few papers did, and the effect is a few millivolts, too small to see across papers. One paper, {{ag.swap}}, prints its aged and virgin values the other way round in two sentences, so the sign of its pair depends on which sentence you read. Both aging predictions held only in part: paired, {{ag.a.verdict}}; unpaired, {{ag.b.verdict}}.</p>
   </aside>
 </div>
 </section>
@@ -1018,7 +1018,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
         <tbody>
           <tr><td>A known truth, sent to many labs</td><td>spiked water, {{mp.dfr.labs}} laboratories</td><td>one bead suspension; every lab reports the mobility and the five conditions. One batch of silica already spreads {{gap.nanovalid}} mV across eight labs</td></tr>
           <tr><td>One size window</td><td>a rescaling to one size range</td><td>the window and the method’s floor stated on every count; rescaling soil studies with one slope narrowed their disagreement by {{p2t.reduction}}</td></tr>
-          <tr><td>One way to report</td><td>guidelines for every step</td><td>the five conditions as numbers, all five today on {{five.complete}} of {{rows}} rows; the conversion model; supplier and lot: one label, two papers, {{c14.gap}} mV</td></tr>
+          <tr><td>One way to report</td><td>guidelines for every step</td><td>the five conditions as numbers, all five today in {{five.complete_papers}} of {{pp.n}} papers; the conversion model; supplier and lot: one label, two papers, {{c14.gap}} mV</td></tr>
           <tr><td>A quality score</td><td>{{mp.k19.pass}} of {{mp.k19.n}} studies passed</td><td>each value scored by the conditions it states, so a reader sees which numbers to trust</td></tr>
           <tr class="found"><td>Publish the curve</td><td>—</td><td>mobility at two or more salt levels, so a hard bead can be told from a soft, coated one</td></tr>
           <tr><td>Keep each sample once</td><td>—</td><td>a database record per sample, with its window: today {{sv.dup.n}} pairs of studies share samples</td></tr>
@@ -1043,7 +1043,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </header>
   <div class="body">
     <div class="rules two">
-      <div class="rule"><span class="rid">I</span><h3>A number without its conditions is not a measurement.</h3><p>All five conditions stand on one row in {{five.complete}} of {{rows}} rows. Store the absence as a value, and count it.</p></div>
+      <div class="rule"><span class="rid">I</span><h3>A number without its conditions is not a measurement.</h3><p>All five conditions for one value in {{five.complete_papers}} of {{pp.n}} papers. Store the absence as a value, and count it.</p></div>
       <div class="rule"><span class="rid">II</span><h3>Compare a thing with itself.</h3><p>Inside one paper the unreported conditions cancel; between papers one plastic spreads {{ag.iqr.PS}} mV. Pair what you compare.</p></div>
       <div class="rule"><span class="rid">III</span><h3>Let the model read. Let code decide.</h3><p>The same model on {{hy.q}} dataset questions written for the system’s operations: {{hy.N2.correct}} correct with the data pasted, {{hy.H.correct}} inside the system.</p></div>
       <div class="rule"><span class="rid">IV</span><h3>Write the prediction down first, and keep the failures.</h3><p>{{pv.n}} predictions committed before their data: {{pv.supported}} held, {{pv.partly}} held in part, {{pv.refuted}} failed. The failures taught the most.</p></div>

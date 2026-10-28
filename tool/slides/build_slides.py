@@ -2346,6 +2346,44 @@ def chart_instr(values: dict, charts: dict) -> str:
     return svg(W, H, body, "How the instrument measures: a field, a bead, a laser", "chart arch")
 
 
+def chart_charge(values: dict, charts: dict) -> str:
+    """Slide 4, a schematic: a negatively charged membrane draws a positive bead in and pushes a
+    negative one away; in a real liquid a protein coat is what the cell meets."""
+    W, H = 1000, 190
+    mk = 'style="marker-end:url(#ah4)"'
+    body = [
+        '<defs><marker id="ah4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" '
+        'markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" '
+        'class="arrowhead"/></marker></defs>',
+        T(20, 14, "schematic, in clean water", values, "lane"),
+        rect(20, 140, 620, 44, "cell", 10),
+        *(T(x, 160, MINUS, values, "box-t", "middle") for x in range(50, 620, 45)),
+        T(330, 178, "cell membrane, negatively charged", values, "box-s", "middle"),
+        '<circle cx="170" cy="70" r="26" class="halo"/>',
+        '<circle cx="170" cy="70" r="11" class="pt"/>',
+        f'<line x1="170" y1="84" x2="170" y2="134" class="arrow" {mk}/>',
+        T(210, 64, "+ positive bead", values, "box-t"),
+        T(210, 88, "drawn in, taken up", values, "box-s"),
+        '<circle cx="470" cy="80" r="11" class="pt"/>',
+        f'<line x1="480" y1="70" x2="530" y2="28" class="arrow" {mk}/>',
+        T(490, 104, MINUS + " negative bead", values, "box-t"),
+        T(540, 34, "pushed away", values, "box-s"),
+        rect(680, 10, 300, 174, "box-a", 3),
+        T(694, 42, "in real liquids", values, "box-t abs"),
+        T(694, 72, "proteins coat the bead in seconds;", values, "box-s"),
+        T(694, 96, "the coat, not the bead’s surface,", values, "box-s"),
+        T(694, 120, "is what the cell meets, so the", values, "box-s"),
+        T(694, 144, "charge depends on the liquid", values, "box-s"),
+    ]
+    return svg(
+        W,
+        H,
+        body,
+        "A charged cell surface draws a positive bead in and pushes a negative one away",
+        "chart arch",
+    )
+
+
 def chart_pp(values: dict, charts: dict) -> str:
     """Slide 20: one row per reporting habit, the conditions it states as joined dots, and its
     papers as a bar; the habits beyond the first few share the last row."""
@@ -2547,6 +2585,7 @@ CHARTS = {
     "pol": chart_pol,
     "pp": chart_pp,
     "instr": chart_instr,
+    "charge": chart_charge,
     "aging": chart_aging,
     "parse": chart_parse,
     "windows": chart_windows,

@@ -212,8 +212,8 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">01</span><h3>{{title:s1}}</h3><p class="time"><b>{{t.s1}}</b> · ends at {{at.s1}}</p></header>
       <div class="say">
         <p>Good morning. I am {{author}}, an AI engineer: I build agents, backends and embedded systems.</p>
-        <p>Nanoplastic measurements need a <strong>standard</strong>. To propose one, I first had Claude agents read what the field reports: {{records}} papers and {{sv.n.datasets}} datasets.</p>
-        <p>And one question kept coming back: <strong>what does your agent do when the paper says nothing?</strong></p>
+        <p>I started with a simple question: what would a <strong>standard</strong> for nanoplastic measurements actually need? So I had Claude agents read {{records}} papers and {{sv.n.datasets}} datasets, and code checked every number they returned.</p>
+        <p>The uncomfortable question: <strong>what does your agent do when the paper says nothing?</strong></p>
       </div>
       <div class="cue">
         <p class="then"><span class="k">Then</span>First, what makes a number comparable.</p>
@@ -232,8 +232,8 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">02</span><h3>{{title:s2}}</h3><p class="time"><b>{{t.s2}}</b> · ends at {{at.s2}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s2}}</p>
       <div class="say">
-        <p>What makes two nanoplastic numbers comparable? <strong>Four things, stated with the number.</strong> <span class="pause">pause</span></p>
-        <p>The size range the method can see: in one river, two windows differ by {{w.ratio}}. The surface: one label, two papers, {{c14.gap}} millivolts apart. The measurement conditions, for a zeta value five of them: all five for one value in {{five.complete_papers}} of {{pp.n}} papers. Where and when: a sediment database with no coordinates at all.</p>
+        <p>What makes two measurements comparable? <strong>Four things have to travel with the number.</strong> <span class="pause">pause</span></p>
+        <p>First, the size range the method can see: in one river, two windows differ {{w.ratio}} times. Second, the surface: one label, two papers, {{c14.gap}} millivolts apart. Third, the measurement conditions: for a zeta value, all five appear for one value in only {{five.complete_papers}} of {{pp.n}} papers. Fourth, where and when: a sediment database with no coordinates at all.</p>
         <p>Each of these comes back with its evidence. And microplastics have already started on them.</p>
       </div>
       <div class="cue">
@@ -257,7 +257,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         <p>For microplastics, the field has taken four steps.</p>
         <p>One: send a <strong>known truth</strong> to many labs. {{mp.dfr.labs}} laboratories got the same spiked water, and above {{mp.dfr.floor}} micrometres they found and identified the particles well.</p>
         <p>Two: rescale counts to <strong>one size window</strong>. Three: <strong>agree what to report</strong>; {{mp.cow.n}} researchers wrote the guidelines. Four: <strong>score the quality</strong>; of {{mp.k19.n}} studies, {{mp.k19.pass}} passed every criterion.</p>
-        <p>For nanoplastics, the US food regulator writes that definitions, reference materials, methods and quality controls are still missing, <strong>particularly for nanoplastics</strong>. <span class="pause">pause</span> Even the upper size limit is not agreed: a thousand or a hundred nanometres.</p>
+        <p>For nanoplastics, the US food regulator writes that definitions, reference materials, methods and quality controls are still missing, <strong>particularly for nanoplastics</strong>. <span class="pause">pause</span> Even the upper size limit is not agreed: a thousand or a hundred nanometres. So the gap is not only detection. It is <strong>comparability</strong>.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the upper lane, left to right, then the empty lower lane.</p>
@@ -305,7 +305,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">05</span><h3>{{title:s5}}</h3><p class="time"><b>{{t.s5}}</b> · ends at {{at.s5}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s5}}</p>
       <div class="say">
-        <p>Here is the whole program, and the part I am proudest of is not the model. <span class="pause">pause</span></p>
+        <p>Here is the engineering principle: <strong>the model reads, code decides.</strong> <span class="pause">pause</span></p>
         <p>Think of customs. A Claude agent is the traveller: it reads the paper and declares a number, its conditions, a verbatim quote and the address of its line. That is the <strong>only step with judgement</strong>. <strong>Code opens the suitcase.</strong></p>
         <p>It parses every number by rule, checks the quote is in the paper word for word and the value sits in the line it cites; the paper’s printed unit wins. A regex that knows nothing about plastic finds every printed zeta value, so a number the model skipped still shows up.</p>
         <p>Everything after is code, down to a rebuild that reproduces every table byte for byte. <strong>Agents never write to the table directly.</strong></p>
@@ -352,7 +352,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <div class="say">
         <p>Our verifier flags any value it cannot find in the text, and the workers were told to act on flags. Some of our guards were simply wrong.</p>
         <p>Follow the arrows. The paper prints an ionic strength in molar. The check looks for millimolar, finds nothing, and flags it. The worker clears the flag the cheapest way: it <strong>deletes a correct value</strong>. And the census counts it as absence, <strong>the very thing we measure</strong>. <span class="pause">pause</span></p>
-        <p>The lesson for anyone with validators in an agent loop: <strong>a false flag is not neutral. It is pressure.</strong> A flag may add doubt. It may never remove a printed value.</p>
+        <p>The lesson for anyone with validators in an agent loop: <strong>a false flag is not neutral. It is pressure.</strong> A flag may add doubt. It may never remove a printed value. That distinction matters whenever an AI works on scientific evidence.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the four boxes left to right, then the arrow back.</p>
@@ -374,8 +374,8 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <div class="say">
         <p>Richard Feynman told students: <strong>the first principle is that you must not fool yourself, and you are the easiest person to fool.</strong> <span class="pause">pause</span></p>
         <p>An agent pipeline fools you quietly.</p>
-        <p>So the model never computes. A missing condition stays missing. Inputs are pinned, and the slides are built only from committed files. Predictions come before the run. Every number is recomputed a second way. And one pinned model, so any run can be replayed.</p>
-        <p>The same check now runs in the Rust service behind our app.</p>
+        <p>So the model never computes. A missing condition stays missing. Every input is pinned by checksum. Predictions come before the run. Every number is recomputed a second way. And one pinned model, so any run can be replayed.</p>
+        <p>The point is reproducibility, not model cleverness. The same check now runs in the Rust service behind our app.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the column “Instead of”, row by row.</p>
@@ -402,7 +402,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <div class="say">
         <p>Now the datasets: the abstract’s first paragraph. NOAA’s database is one source, so I built two agents to find others: one read {{ds.on_topic}} catalogue records, one searched the web. <strong>Code opened every file they named</strong> and checked each claim against it.</p>
         <p>A reference list gave {{sv.n.user}} more, among them Japan’s ocean atlas. A dataset stays only if it shares a place with another study. {{sv.n.datasets}} datasets, {{sv.total}} records. Look at the last column: the sediment database has <strong>no coordinates at all</strong>.</p>
-        <p>None of it is filled in; a check that needs it refuses.</p>
+        <p>Nothing is filled in: if a comparison needs a missing field, <strong>code refuses</strong>.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the funnel, then the column “Never gives”.</p>
@@ -424,7 +424,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <div class="say">
         <p>The reviewer’s picture. <strong>Each rectangle is one study</strong>: as wide as the particle sizes its method could count, as tall as the concentrations it reports.</p>
         <p>Top left, ocean water: most nets start near a third of a millimetre, stack at the same width, and still spread over <strong>orders of magnitude</strong>.</p>
-        <p>Six matrices, the same picture: the further left a study starts, the more it reports. <span class="pause">pause</span> The window is part of the number.</p>
+        <p>Five matrices, the same picture: the further left a study starts, the more it reports. <span class="pause">pause</span> The window is not metadata around the number. <strong>It is part of the number.</strong></p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the stack of grey rectangles, then the blue ones.</p>
@@ -447,6 +447,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         <p>Pool NOAA’s ocean samples by period, and the median rises <strong>{{sv.pooled}} times</strong> from {{sv.y_from}} to {{sv.y_to}}. <span class="pause">pause</span> It is like asking whether a town grew taller by measuring different people each year.</p>
         <p>Look at the bars: {{sv.studies_from}} studies sampled then, {{sv.studies_to}} now, in other seas, with other nets. Not one study is on both sides. All of it is microplastic, from a third of a millimetre up; no nanoplastics.</p>
         <p>So I predicted, before computing it, that inside one long series it is flat. Law and colleagues, {{sv.law_tows}} tows: <strong>flat</strong>, as they published. Two series do rise, one in the North Pacific gyre; part of the other’s rise is where the ship sailed.</p>
+        <p>So the rise is real as a database statistic, but <strong>not evidence that the ocean changed {{sv.pooled}} times</strong>.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the two blue dots, then the bars below them.</p>
@@ -468,7 +469,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <div class="say">
         <p>The cross-check a reviewer asked for: two independent studies, the same sea, within a year, the same kind of net. Typically one reports <strong>{{sv.co.median}} times</strong> what the other does.</p>
         <p>Is that just the sea? Compare one study with itself: two of its own tows, the same distance apart, differ <strong>{{sv.co.within}} times</strong>. The sea is patchy; the study adds the rest.</p>
-        <p>Two databases, Japan’s atlas and NOAA, the same window: {{sv.x.median}} times. But only after code drops {{sv.x.held}} pairs where both databases hold <strong>the same paper</strong>.</p>
+        <p>Two databases, Japan’s atlas and NOAA, the same window: {{sv.x.median}} times. But only after code drops {{sv.x.held}} pairs where both databases hold <strong>the same paper</strong>. Agreement has to be measured after the duplicates are removed.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the first two numbers, side by side.</p>
@@ -491,7 +492,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <div class="say">
         <p>The missing condition for counts is the <strong>size window</strong>: from which size up a method can see. Think of fishing: a finer net catches more fish, so the count describes the net as much as the sea.</p>
         <p>The Weser estuary in Germany: one study, the same stations, a pump for small particles and a net for large ones. At the median station the small outnumber the large about five thousand times. The textbook slope predicts about a dozen.</p>
-        <p>Three pre-registered tests. In {{p1.studies}} soil studies, a finer limit means <strong>more plastic counted</strong>. Rescaling everything to one window does <strong>not</strong> settle the disagreement. And {{p3.outside}} of measured size distributions do not fit the slope the rescaling assumes.</p>
+        <p>Three pre-registered tests. In {{p1.studies}} soil studies, a finer limit means <strong>more plastic counted</strong>. Rescaling everything to one window does <strong>not</strong> settle the disagreement. And {{p3.outside}} of measured size distributions do not fit the slope the rescaling assumes. <strong>A single slope is not a universal conversion.</strong></p>
       </div>
       <div class="cue">
         <p><span class="k">Check</span>the clock should say {{act.III.end}}.</p>
@@ -516,7 +517,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">14</span><h3>{{title:s14}}</h3><p class="time"><b>{{t.s14}}</b> · ends at {{at.s14}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s14}}</p>
       <div class="say">
-        <p>Zeta is <strong>not measured directly</strong>. It is computed.</p>
+        <p>For nanoplastics, the number papers report is zeta potential. And zeta is <strong>not measured directly</strong>. It is computed.</p>
         <p>Picture a bead in water with an electric field across it. It drifts, and laser light clocks its speed. That speed, the mobility, is what the instrument measures.</p>
         <p>A formula turns that speed into a potential, and <strong>which formula is right depends on the salt in the liquid</strong>.</p>
         <p>Papers print the computed number: zeta in {{zb.zeta_rows}} rows, the measured speed in only {{zb.mob_rows}}.</p>
@@ -559,6 +560,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <div class="say">
         <p>Here is every paper, sorted by which of the five it states. Each row is a habit: the dots are the conditions, the bar is how many papers share it.</p>
         <p>The commonest habit, in {{pp.h.0}} papers: name {{pp.top}}, and stop. Ionic strength, the one the conversion needs most, sits in few rows. {{pp.none}} papers state nothing at all; <strong>{{pp.all}} state all five</strong>.</p>
+        <p>This is not formatting: these flags decide whether a number can enter a comparison at all.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the top bar, then the blue one.</p>
@@ -581,7 +583,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
         <p>Why zeta? It is the surface charge from slide four, and the one surface number most of these papers report. People read it as a description of the particle. My abstract says one value cannot be.</p>
         <p>The test needs no ground truth. Each bar is one plastic, everything papers report for it. If zeta described the plastic, the bars would sit apart. <span class="pause">pause</span> They overlap.</p>
         <p>Polyethylene, PET, PMMA: <strong>the same band</strong>.</p>
-        <p>The amine beads: the maker’s label says positive. In the liquids people actually used, {{p2.amine_neg}} of {{p2.amine_n}} are reported <strong>negative</strong>. So one zeta value does not say which plastic it is.</p>
+        <p>The amine beads: the maker’s label says positive. In the liquids people actually used, {{p2.amine_neg}} of {{p2.amine_n}} are reported <strong>negative</strong>. So zeta describes <strong>the particle in its liquid</strong>, not the plastic alone.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the column of medians; if asked, the one cobalt row is a lead from one paper.</p>

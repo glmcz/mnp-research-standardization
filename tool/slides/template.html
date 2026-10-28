@@ -576,15 +576,15 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   <header>
     <p class="eyebrow"><span class="idx">05</span><span>Act II · the engineering</span></p>
     <h2>AI reads the papers. Code checks every number.</h2>
-    <p class="msg">One step has judgement: a Claude agent reading a paper and proposing rows. Code finds each quote in the paper and its value in the cited line, checks the unit, counts the printed values no row covers, and stores what is missing as a value.</p>
+    <p class="msg">One step has judgement: a Claude agent reading a paper and proposing values. Code finds each quote in the paper and its value in the cited line, checks the unit, counts the printed values the agent missed, and stores what is missing as a value.</p>
   </header>
   <div class="body fill">
     <figure class="fig" style="margin:0">{{svg:parse}}</figure>
-    <p class="lead-in">Quotes found verbatim in their paper: {{arch.verified}}. Flagged, never silently fixed: {{fl.unit_assumed}} units assumed, {{fl.not_printed}} figure-only rows kept as “not printed”.</p>
+    <p class="lead-in">Claude agents read {{records}} papers; {{row_papers}} report a zeta value. Every quote was found word for word in its paper: {{arch.papers_verified}} papers.</p>
   </div>
   <p class="src">src/mnp/extract/coerce.py · src/mnp/extract/zeta.py: verify_row, check_units, find_candidates · out/tables/d1_zeta_table.csv · data/interim/extractions.jsonl</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Think of customs: the model declares what is in the suitcase, and code opens it; agents never write to the table directly, and everything after the reading, down to a rebuild that reproduces every table byte for byte, is code. The scanner is the second opinion: a regex that knows nothing about plastic, so a value the model skipped still shows up. Also flagged: {{fl.range}} ranges kept as text, {{fl.converted}} units converted, {{fl.not_in_quote}} values not found in their quote. Ionic strength: printed in {{is.reported}} rows, computed from a named salt in {{is.salt}}, not reported in {{is.unreported}}.</p>
+    <p>Think of customs: the model declares what is in the suitcase, and code opens it; agents never write to the table directly, and everything after the reading, down to a rebuild that reproduces every table byte for byte, is code. The scanner is the second opinion: a regex that knows nothing about plastic, so a value the model skipped still shows up. Flagged, never silently fixed, per value: {{fl.unit_assumed}} units assumed, {{fl.not_printed}} figure-only values kept as “not printed”, {{fl.range}} ranges kept as text, {{fl.converted}} units converted, {{fl.not_in_quote}} values not found in their quote. Ionic strength: printed in {{is.reported}} rows, computed from a named salt in {{is.salt}}, not reported in {{is.unreported}}.</p>
   </aside>
 </div>
 </section>

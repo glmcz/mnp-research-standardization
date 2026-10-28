@@ -293,6 +293,10 @@ def expected(get=show) -> dict:
     E["arch.lines"], E["arch.location"] = row["evidence_line_ids"], row["evidence_location"]
     verified, of = one(review, r"#### C10\. [^#]*?\*\*Number\.\*\* ([\d ]+) / ([\d ]+) \(")
     E["arch.verified"] = [n(verified), n(of)]
+    papers: dict[str, bool] = {}
+    for r in d1.values():
+        papers[r["pmcid"]] = papers.get(r["pmcid"], True) and r["evidence_verified"] == "True"
+    E["arch.papers_verified"] = [sum(papers.values()), len(papers)]
 
     # Henry's function, from the formulas REVIEW.md §5.4 prints, and the cases of §5.5
     debye = float(one(review, r"κ⁻¹ = (0\.\d+) / √\(I\[M\]\) nm")[0])

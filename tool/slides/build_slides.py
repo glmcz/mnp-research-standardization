@@ -481,6 +481,13 @@ def line_values(V: Values, d1: dict, table: pd.DataFrame) -> None:
     V.text("arch.location", row["evidence_location"], src + ": evidence_location")
     verified = int(table["evidence_verified"].sum())
     V.frac("arch.verified", verified, len(table), "out/tables/d1_zeta_table.csv: evidence_verified")
+    per_paper = table.groupby("pmcid")["evidence_verified"].all()
+    V.frac(
+        "arch.papers_verified",
+        int(per_paper.sum()),
+        len(per_paper),
+        "out/tables/d1_zeta_table.csv: papers whose every row has evidence_verified",
+    )
 
 
 def henry_values(V: Values, charts: dict, harm_rows: list[dict], base: dict, d1: dict) -> None:
@@ -2092,12 +2099,12 @@ def chart_parse(values: dict, charts: dict) -> str:
         (24, [("full text", "{{papers_read}} papers,", "pinned by checksum", "box"),
               ("lines", "each paragraph gets", "a hashed id", "box"),
               ("scanner", "a regex finds every", "printed zeta value", "box")]),
-        (156, [("Claude worker", "proposes rows: a quote", "and its line ids", "box-m")]),
+        (156, [("Claude worker", "proposes values: a quote", "and its line ids", "box-m")]),
         (290, [("parse", "by rule: commas, ±,", "ranges, kelvin, units", "box"),
                ("verify", "quote in the paper,", "value in its line", "box"),
                ("unit", "the paper’s printed", "unit wins", "box"),
                ("coverage", "{{cov.matched}} of {{cov.cand}}", "printed values matched", "box"),
-               ("table", "{{rows}} rows; absence", "is stored as a value", "box-a")]),
+               ("table", "{{row_papers}} papers;", "gaps kept as values", "box-a")]),
     ]  # fmt: skip
     body = [
         '<defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" '

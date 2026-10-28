@@ -856,16 +856,16 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">17</span><span>Act IV · nanoplastics: what the papers measure</span></p>
-    <h2>Pooled across papers, zeta cannot tell one plastic from another.</h2>
-    <p class="msg">Across {{p2.rows}} values from {{p2.papers}} papers, size and zeta are unrelated (ρ {{p2.rho}}), and {{p2.amine_neg}} of {{p2.amine_n}} amine-coated beads, sold as positive, are reported negative.</p>
+    <h2>A single zeta value can’t tell one plastic from another.</h2>
+    <p class="msg">Zeta is the surface number nanoplastic papers report, {{row_papers}} of the {{records}} read, often as if it described the particle. If it did, it would follow size and plastic. Across {{p2.rows}} values from {{p2.papers}} papers it follows neither (ρ {{p2.rho}}), and {{p2.amine_neg}} of {{p2.amine_n}} amine beads sold as positive are reported negative.</p>
   </header>
   <div class="body fill">
     <figure class="fig" style="margin:0">{{svg:pol}}</figure>
-    <p class="lead-in">The exception, {{p2.exc}}, rests on {{p2.exc_papers}} papers, {{p2.exc_top}} of its {{p2.exc_n}} values from a single one: a lead to check, not a finding. Pooled values mix the plastic with the liquid it sat in; only a comparison inside one paper separates the two.</p>
+    <p class="lead-in">A pooled value describes the plastic in the liquid it sat in, not the plastic alone. Only a comparison inside one paper separates the two.</p>
   </div>
   <p class="src">out/tables/p2_zeta_size.csv · tool/p2/build.py</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>Pool the values anyway, conditions missing, and ask what a database would ask: which plastic is this? If zeta were a property of the particle, it should follow its size or its polymer, and it follows neither: polyethylene with no charged groups and PET with esters land in the same band. And an amine bead, positive in clean water, is reported negative in most of the liquids people actually used. Of the {{p2.named_n}} plastics with enough values, {{p2.neg_n}} have a median between {{p2.neg_lo}} and {{p2.neg_hi}} mV.</p>
+    <p>Why zeta: it is the surface charge that matters to cells, the one surface number most of these papers report, and the abstract’s claim is that a single value cannot characterise a particle. So pool the values, as a database would, and ask which plastic this is: polyethylene with no charged groups and PET with esters land in the same band, {{p2.neg_n}} of {{p2.named_n}} plastics with a median between {{p2.neg_lo}} and {{p2.neg_hi}} mV. An amine bead, positive in clean water, is reported negative in most of the liquids people actually used. The exception, {{p2.exc}}, rests on {{p2.exc_papers}} papers, {{p2.exc_top}} of its {{p2.exc_n}} values from a single one: a lead to check, not a finding.</p>
   </aside>
 </div>
 </section>

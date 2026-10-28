@@ -23,14 +23,27 @@ import validators as v  # noqa: E402
 TABLES = ROOT / "out/tables"
 
 
+def _paper(study: pd.Series) -> pd.Series:
+    """The DOI link a study id ends in, whichever database holds it ("aomi:https://doi.org/..."
+    and "https://doi.org/..." are one paper); missing for an id that names no DOI."""
+    return study.str.extract(r"(https://doi\.org/\S+)$", expand=False)
+
+
 def _independent(t, p, dup):
-    """Drop record pairs whose two studies hold the same samples (the duplicates table)."""
-    held_twice = {frozenset((a, b)) for a, b in zip(dup.study_a, dup.study_b, strict=True)}
+    """Drop record pairs whose two studies are one paper held by two databases, or hold the same
+    samples (the duplicates table, found by date and place)."""
+    held_twice = (
+        {frozenset(x) for x in zip(dup.study_a, dup.study_b, strict=True)} if len(dup) else set()
+    )
     pair = [
         frozenset((a, b)) for a, b in zip(t.loc[p.i, "study"], t.loc[p.j, "study"], strict=True)
     ]
-    keep = np.array([s not in held_twice for s in pair], dtype=bool)
-    return p[keep], [s for s, k in zip(pair, keep, strict=True) if k], int((~keep).sum())
+    pa, pb = _paper(t.loc[p.i, "study"]).to_numpy(), _paper(t.loc[p.j, "study"]).to_numpy()
+    same = pd.notna(pa) & (pa == pb)
+    twice = np.array([s in held_twice for s in pair], dtype=bool) & ~same
+    keep = ~(same | twice)
+    excluded = {"excluded_held_twice": int(twice.sum()), "excluded_same_paper": int(same.sum())}
+    return p[keep], [s for s, k in zip(pair, keep, strict=True) if k], excluded
 
 
 def _folds(log10_ratio) -> dict:
@@ -49,7 +62,7 @@ def colocated_summary(t, km: float, days: int | None, same_method: bool, dup) ->
         "days": days,
         "same_method": same_method,
         "pairs": int(len(p)),
-        "excluded_held_twice": excluded,
+        **excluded,
         "study_pairs": len(set(pair)),
         **_folds(p.log10_ratio),
     }
@@ -91,6 +104,8 @@ def across_datasets(t, km: float, days: int | None, dup) -> dict:
     if p.empty:
         return {"km": km, "days": days, "pairs": 0}
     p, _, excluded = _independent(t, p, dup)
+    if p.empty:
+        return {"km": km, "days": days, "pairs": 0, **excluded}
     a, b = t.loc[p.i], t.loc[p.j]
     verdicts = [
         v.window_verdict((a0, a1), (b0, b1))
@@ -117,7 +132,7 @@ def across_datasets(t, km: float, days: int | None, dup) -> dict:
         "km": km,
         "days": days,
         "pairs": int(len(p)),
-        "excluded_held_twice": excluded,
+        **excluded,
         "compared": int(len(compared)),
         "refused": int(len(p) - len(compared)),
         **(_folds(compared.log10_ratio) if len(compared) else {}),

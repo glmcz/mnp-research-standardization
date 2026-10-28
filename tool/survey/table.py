@@ -55,10 +55,12 @@ USER = ROOT / "data/raw/datasets_user"
 DURUM = USER / "durum.xlsx"  # Database of Urban RUnoff Microplastics, 2018-2024
 RIVM_TOTAL = USER / "rivm/Output/Data/2026-07-07Particle_concentrations_total.rds"
 AOMI = USER / "aomi.csv"  # Atlas of Ocean Microplastics, Japan MOE, open-data layer (2026-10-26)
+GEOPLASTICO = USER / "geoplasticobr.csv"  # GeoPlasticoBR, Brazilian studies on one map (2026-10-27)
 PINS |= {
     DURUM: "fb58bf5556284abd52dda126e5dd861e07b3c1ec47d9ffd10260ab48497aad72",
     RIVM_TOTAL: "c85e10a974515d797d1b91d7daead98217d3fe44ebe60d711b86db119c8a23bb",
     AOMI: "7aac3317b484c7db8bf637154a720d1453492896e1b9a5414862ae9651969d0d",
+    GEOPLASTICO: "76ff7541ada556b4c573970d5fafb7be47e0d3cd364013c835775cc070b50ec1",
 }
 PINS[KIESSLING] = "5dea40db7cd2f90bce7dff97cbf26c647893ba4a0f2eb0bccb22ee1e12c1450a"
 #: PANGAEA datasets the search agent found usable (tool/discover, 2026-10-23), each read with its
@@ -121,6 +123,13 @@ def _blank(s: pd.Series) -> pd.Series:
     return s.astype(str).str.strip().replace({"": None, "nan": None})
 
 
+def _doi_link(s: pd.Series) -> pd.Series:
+    """A DOI however it is written (bare, as a link, in a reference, in any case) as one lower-case
+    link, so one paper is one study in every database; a study id with no DOI stays as it is."""
+    doi = s.str.extract(r"(10\.\d{4,9}/\S+)", expand=False).str.rstrip(".").str.lower()
+    return ("https://doi.org/" + doi).where(doi.notna(), s)
+
+
 def ncei() -> pd.DataFrame:
     """Every NCEI record in the three settings that count particles in a volume or a mass."""
     d = pd.read_csv(p2.NCEI, encoding="utf-8-sig", dtype=str, keep_default_na=False)
@@ -130,7 +139,7 @@ def ncei() -> pd.DataFrame:
         {
             "dataset": "ncei",
             "record_id": "ncei:" + d["Unique ID"],
-            "study": _blank(d["DOI"]),
+            "study": _doi_link(_blank(d["DOI"])),
             "org": _blank(d["Organization"]),
             "setting": d["Marine Setting"],
             "method": _blank(d["Sampling Method"]),
@@ -157,7 +166,7 @@ def mpsed() -> pd.DataFrame:
         {
             "dataset": "mpsed",
             "record_id": "mpsed:" + d["mpID"].astype(str),
-            "study": _blank(d["DOI"]),
+            "study": _doi_link(_blank(d["DOI"])),
             "org": None,
             "setting": "sediment",
             "method": _blank(d["SampleMeth"]),
@@ -309,7 +318,7 @@ def pangaea_found() -> pd.DataFrame:
                 {
                     "dataset": f"pangaea_{pid}",
                     "record_id": f"pangaea:{pid}:" + d.index.astype(str),
-                    "study": f"10.1594/pangaea.{pid}",
+                    "study": f"https://doi.org/10.1594/pangaea.{pid}",
                     "org": None,
                     "setting": spec["setting"],
                     "method": spec["method"],
@@ -340,7 +349,7 @@ def kiessling2021() -> pd.DataFrame:
         {
             "dataset": "kiessling2021",
             "record_id": "kiessling2021:" + d["Dataset_number"].astype(str),
-            "study": "10.1016/j.scitotenv.2021.147849",
+            "study": "https://doi.org/10.1016/j.scitotenv.2021.147849",
             "org": None,
             "setting": "river water",
             "method": "net",
@@ -372,7 +381,7 @@ def durum() -> pd.DataFrame:
         {
             "dataset": "durum",
             "record_id": "durum:" + d["ID"].astype(str),
-            "study": d["DOI"].astype(str),
+            "study": _doi_link(d["DOI"].astype(str)),
             "org": None,
             "setting": "stormwater runoff",
             "method": d["Sampling method (standardized)"],
@@ -403,7 +412,7 @@ def rivm() -> pd.DataFrame:
         {
             "dataset": "rivm",
             "record_id": "rivm:" + d["Sample_ID"].astype(str),
-            "study": d["DOI"].fillna(d["Data_source"]).astype(str),
+            "study": _doi_link(d["DOI"].fillna(d["Data_source"]).astype(str)),
             "org": None,
             "setting": "river water",
             "method": d["Sampling_method"],
@@ -433,7 +442,8 @@ def aomi() -> pd.DataFrame:
     lat = pd.to_numeric(d["latitude"], errors="coerce")
     lat = lat.where(lat.abs() < 89.9)  # a pole is the atlas's placeholder for a missing position
     date = pd.to_datetime(pd.to_numeric(d["D01_0033"], errors="coerce"), unit="ms")
-    study = _blank(d["D01_0016"]).fillna(_blank(d["D01_0014"])).fillna(_blank(d["D01_0009"]))
+    study = _blank(d["D01_0016"]).fillna(_blank(d["D01_0014"]))
+    study = _doi_link(study).fillna(_blank(d["D01_0009"]))
     mesh_um = pd.to_numeric(d["D01_0070"], errors="coerce") * 1000
     return pd.DataFrame(
         {
@@ -458,6 +468,76 @@ def aomi() -> pd.DataFrame:
     )
 
 
+#: GeoPlasticoBR's ecosystem for a water sample, as the survey's setting
+_BR_WATER = {"ocean": "Ocean water", "coastal": "Ocean water", "island": "Ocean water",
+             "estuary": "Ocean water", "beach": "Ocean water", "river": "river water",
+             "stream": "river water", "basin": "river water", "lake": "lake water"}  # fmt: skip
+
+
+def _utf8(text: str) -> str:
+    """Undo text that was UTF-8 read as Latin-1 ("GuaÃ­ba" for "Guaíba"); leave the rest."""
+    try:
+        return text.encode("latin-1").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return text
+
+
+def geoplasticobr() -> pd.DataFrame:
+    """GeoPlasticoBR: Brazilian studies placed on one map, a row per sample or site.
+
+    Water, sediment and soil only: a mussel's count is a body burden, not a concentration in the
+    environment. No row gives a sampling date (its year is the paper's) or a size window. Its DOI
+    column was filled down: inside one study the DOI counts up row by row into other papers'
+    (Water Research 119707 is the Amazon study, 119708 is on steel corrosion), so a study is the
+    first DOI its title carries, in the order the rows were entered. Some rows are entered twice.
+    """
+    d = pd.read_csv(GEOPLASTICO, dtype=str, keep_default_na=False, encoding="utf-8")
+    d = d[d["category_type"] == "abiotico"].copy()
+    d = d.iloc[np.argsort(pd.to_numeric(d["id"]).to_numpy(), kind="stable")]
+    title = d["title"].map(_utf8).str.split().str.join(" ")
+    own = _doi_link(_blank(d["doi"]))
+    paper = own.groupby(title).transform(lambda x: x.dropna().iloc[0] if x.notna().any() else None)
+    eco, kind = d["ecossistema"].str.strip(), d["category_name"].map(_utf8)
+    setting = np.select(
+        [kind == "Água", (kind == "Sedimento") & (eco == "beach"),
+         (kind == "Sedimento") & eco.isin(["estuary", "island", "mangrove"]), kind == "Sedimento",
+         kind == "Solo"],
+        [eco.map(_BR_WATER), "Beach", "Ocean sediment", "sediment", "soil"],
+        default=None,
+    )  # fmt: skip
+    setting = pd.Series(setting, index=d.index).where(lambda x: x.notna(), None)
+    unit = d["unidade"].str.replace("particles_", "pieces/", regex=False).replace({"": None})
+    again = d.duplicated(["title", "latitude", "longitude", "concentration_value", "unidade",
+                          "sampling_point"])  # fmt: skip
+    flags = (
+        "provided_by_martin;sampling_date_unreported;window_unreported"
+        + np.where(own.notna() & (own != paper), ";doi_filled_down", "")
+        + np.where(setting.isna(), ";setting_unreported", "")
+        + np.where(unit.isin(["pieces/kg", "pieces/g"]), ";mass_basis_unstated", "")
+        + np.where(again, ";repeats_row", "")
+    )
+    return pd.DataFrame(
+        {
+            "dataset": "geoplasticobr",
+            "record_id": "geoplasticobr:" + d["id"],
+            "study": "geoplasticobr:" + paper.fillna(title),
+            "org": None,
+            "setting": setting,
+            "method": None,
+            "region": None,
+            "lat": pd.to_numeric(d["latitude"], errors="coerce"),
+            "lon": pd.to_numeric(d["longitude"], errors="coerce"),
+            "date": None,
+            "year": np.nan,
+            "size_min_um": np.nan,
+            "size_max_um": np.nan,
+            "unit": unit,
+            "value": pd.to_numeric(d["concentration_value"], errors="coerce"),
+            "flags": flags,
+        }
+    )
+
+
 def check_pins() -> None:
     for pid, spec in PANGAEA_FOUND.items():
         got = hashlib.sha256(_pangaea_path(pid).read_bytes()).hexdigest()
@@ -474,7 +554,7 @@ def build() -> pd.DataFrame:
     ext.check_pins()
     check_pins()
     parts = [ncei(), mpsed(), soil(), weser(), emodnet(), pangaea_found(), aomi(),
-             kiessling2021(), durum(), rivm()]  # fmt: skip
+             kiessling2021(), durum(), rivm(), geoplasticobr()]  # fmt: skip
     t = pd.concat(parts, ignore_index=True)
     return paper_depth(t).loc[:, list(COLUMNS)]
 

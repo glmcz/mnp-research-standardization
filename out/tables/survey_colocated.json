@@ -3,6 +3,7 @@
   "aomi": 18860,
   "durum": 180,
   "emodnet": 217,
+  "geoplasticobr": 692,
   "kiessling2021": 301,
   "mpsed": 1064,
   "ncei": 18461,
@@ -18,6 +19,7 @@
   "same_method": true,
   "pairs": 981,
   "excluded_held_twice": 258,
+  "excluded_same_paper": 0,
   "study_pairs": 18,
   "median_fold": 3.27,
   "p90_fold": 17.7
@@ -36,6 +38,7 @@
   "same_method": false,
   "pairs": 1230,
   "excluded_held_twice": 636,
+  "excluded_same_paper": 0,
   "study_pairs": 35,
   "median_fold": 3.76,
   "p90_fold": 50.1
@@ -46,6 +49,7 @@
   "same_method": true,
   "pairs": 550,
   "excluded_held_twice": 0,
+  "excluded_same_paper": 0,
   "study_pairs": 13,
   "median_fold": 3.92,
   "p90_fold": 21.4
@@ -53,15 +57,16 @@
  "across_datasets": {
   "km": 50,
   "days": 365,
-  "pairs": 3379,
-  "excluded_held_twice": 63245,
-  "compared": 3094,
+  "pairs": 2217,
+  "excluded_held_twice": 2632,
+  "excluded_same_paper": 61775,
+  "compared": 1932,
   "refused": 285,
-  "median_fold": 3.27,
-  "p90_fold": 20.5,
+  "median_fold": 4.1,
+  "p90_fold": 31.6,
   "unguarded": {
-   "median_fold": 3.64,
-   "p90_fold": 38.6
+   "median_fold": 5.18,
+   "p90_fold": 73.1
   },
   "by_dataset_pair": [
    {
@@ -78,11 +83,11 @@
     "datasets": "aomi vs ncei",
     "decision": "allow",
     "reason": "same_window",
-    "pairs": 1948,
-    "median_years_apart": 0.0,
-    "median_fold": 2.7,
-    "p90_fold": 11.4,
-    "median_residual_fold": 2.7
+    "pairs": 786,
+    "median_years_apart": 1.0,
+    "median_fold": 3.25,
+    "p90_fold": 15.0,
+    "median_residual_fold": 3.25
    },
    {
     "datasets": "aomi vs ncei",
@@ -127,15 +132,16 @@
  "across_datasets_100km_any_year": {
   "km": 100,
   "days": null,
-  "pairs": 63644,
-  "excluded_held_twice": 256327,
-  "compared": 49100,
-  "refused": 14544,
-  "median_fold": 5.62,
-  "p90_fold": 100.1,
+  "pairs": 60670,
+  "excluded_held_twice": 10147,
+  "excluded_same_paper": 249368,
+  "compared": 46000,
+  "refused": 14670,
+  "median_fold": 6.09,
+  "p90_fold": 111.1,
   "unguarded": {
-   "median_fold": 6.17,
-   "p90_fold": 127.2
+   "median_fold": 6.61,
+   "p90_fold": 138.9
   },
   "by_dataset_pair": [
    {
@@ -149,14 +155,23 @@
     "median_residual_fold": 2.77
    },
    {
+    "datasets": "aomi vs geoplasticobr",
+    "decision": "refuse",
+    "reason": "window_unreported",
+    "pairs": 60,
+    "median_years_apart": NaN,
+    "median_fold": 3.89,
+    "p90_fold": 41.7
+   },
+   {
     "datasets": "aomi vs ncei",
     "decision": "allow",
     "reason": "same_window",
-    "pairs": 16412,
-    "median_years_apart": 3.0,
-    "median_fold": 4.87,
-    "p90_fold": 95.7,
-    "median_residual_fold": 4.87
+    "pairs": 13312,
+    "median_years_apart": 5.0,
+    "median_fold": 6.33,
+    "p90_fold": 139.8,
+    "median_residual_fold": 6.33
    },
    {
     "datasets": "aomi vs ncei",
@@ -214,6 +229,15 @@
     "median_fold": 1.52,
     "p90_fold": 7.2,
     "median_residual_fold": 1.53
+   },
+   {
+    "datasets": "geoplasticobr vs ncei",
+    "decision": "refuse",
+    "reason": "window_unreported",
+    "pairs": 66,
+    "median_years_apart": NaN,
+    "median_fold": 3.92,
+    "p90_fold": 43.3
    },
    {
     "datasets": "ncei vs pangaea_990052",

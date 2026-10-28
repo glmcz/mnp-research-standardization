@@ -1,7 +1,4 @@
 dataset,study,setting,unit,n,n_pos,p10,p50,p90,size_min_um,size_max_um,lat,lon,year_first,year_last
-aomi,aomi:10.1021/acs.est.8b05458,Ocean water,pieces/m3,28,0,,,,300.0,5000.0,26.6,-59.48,2015.0,2015.0
-aomi,aomi:10.1088/1748-9326/abbb4f,Ocean water,pieces/m3,650,0,,,,300.0,5000.0,31.89,-142.8498,2015.0,2021.0
-aomi,aomi:10.3389/fmars.2023.1288301,Ocean water,pieces/m3,30,25,0.00408,0.0082,0.0166,300.0,5000.0,71.3325,-159.785,2020.0,2022.0
 aomi,aomi:EMODEnet,Ocean water,pieces/m3,171,171,0.13931,0.44225,1.125793,330.0,5000.0,59.451302,24.6607,2016.0,2023.0
 aomi,"aomi:Gilfillan, L. (2009). Occurrence of plastic micro-debris in the California current system.",Ocean water,pieces/m3,192,121,0.0138,0.0505,0.4066,505.0,5000.0,32.989,-120.7775,1984.0,2007.0
 aomi,aomi:MSFD National Data (Not published),Ocean water,pieces/m3,256,246,0.014,0.0945,1.0385,300.0,5000.0,43.6499,1.04775,2013.0,2018.0
@@ -23,10 +20,6 @@ aomi,"aomi:Tokyo University of Marine Science and Technology (2018), FY2017 Repo
 aomi,"aomi:Tokyo University of Marine Science and Technology (2019), FY2018 Report of Study on the Distribution of Ocean Surface and Bottom Litter in Offshore.",Ocean water,pieces/m3,175,174,0.03043,0.4165,4.7254,350.0,5000.0,33.5647,136.8345,2018.0,2019.0
 aomi,"aomi:Universe Co.,Ltd. (2016), 2015 Research report on marine debris floating on the ocean surface and settled on the sea bed in coastal areas around Japan",Ocean water,pieces/m3,20,20,0.18546,0.61185,2.2021,350.0,5000.0,34.9719,137.9674,2017.0,2017.0
 aomi,aomi:Unpublished,Ocean water,pieces/m3,73,72,0.025407,0.1695,0.899634,350.0,5000.0,31.50172,137.525525,2015.0,2021.0
-aomi,aomi:doi.org/10.1186/s43591-026-00179-4,Ocean water,pieces/m3,28,27,0.00472,0.0136,0.1517,330.0,5000.0,-30.0697,-90.0045,2019.0,2019.0
-aomi,aomi:http://dx.doi.org/10.1016/j.marpolbul.2013.11.023,Ocean water,pieces/m3,37,27,0.02,0.08,0.668,200.0,5000.0,42.5855,8.7295,2011.0,2012.0
-aomi,aomi:http://dx.doi.org/10.1016/j.scitotenv.2022.155958,Ocean water,pieces/m3,124,124,0.115523,0.835916,3.507595,333.0,5000.0,39.00505,10.00805,2014.0,2014.0
-aomi,aomi:http://dx.doi.org/10.12681/mms.24899,Ocean water,pieces/m3,24,24,0.191919,0.802284,1.46419,330.0,5000.0,36.746261,2.798241,2018.0,2018.0
 aomi,aomi:https://doi.org/10.1007/s00128-022-03620-5,Ocean water,pieces/m3,8,8,0.136,0.605,1.716,300.0,5000.0,-6.475,39.213334,2019.0,2019.0
 aomi,aomi:https://doi.org/10.1007/s11356-022-24998-z,Ocean water,pieces/m3,45,45,0.6875,1.729167,2.845833,300.0,5000.0,22.36101,91.874887,2019.0,2020.0
 aomi,aomi:https://doi.org/10.1007/s43217-023-00131-z,Ocean water,pieces/m3,18,18,0.2125,0.2625,0.3375,300.0,5000.0,21.483056,91.96,2019.0,2020.0
@@ -42,6 +35,7 @@ aomi,aomi:https://doi.org/10.1016/j.marenvres.2010.10.001,Ocean water,pieces/m3,
 aomi,aomi:https://doi.org/10.1016/j.marenvres.2014.03.017,Ocean water,pieces/m3,10,10,0.019,0.18,0.26,500.0,5000.0,39.8687,8.4497,2012.0,2013.0
 aomi,aomi:https://doi.org/10.1016/j.marenvres.2016.05.009,Ocean water,pieces/m3,24,22,0.191,0.635,2.519,200.0,5000.0,40.1851,41.25055,2014.0,2015.0
 aomi,aomi:https://doi.org/10.1016/j.marpolbul.2006.11.012,Ocean water,pieces/m3,76,51,0.0086,0.0904,0.952,330.0,5000.0,33.035,136.355,2000.0,2001.0
+aomi,aomi:https://doi.org/10.1016/j.marpolbul.2013.11.023,Ocean water,pieces/m3,37,27,0.02,0.08,0.668,200.0,5000.0,42.5855,8.7295,2011.0,2012.0
 aomi,aomi:https://doi.org/10.1016/j.marpolbul.2014.06.032,Ocean water,pieces/m3,15,15,0.05058,0.111,0.3702,333.0,5000.0,30.9856,122.7553,2013.0,2013.0
 aomi,aomi:https://doi.org/10.1016/j.marpolbul.2014.08.023,Ocean water,pieces/m3,651,647,2.0,6.5,45.6,,5000.0,53.2447,-8.9479,2013.0,2013.0
 aomi,aomi:https://doi.org/10.1016/j.marpolbul.2016.10.031,Ocean water,pieces/m3,17,17,0.324,2.01,15.85,300.0,5000.0,45.5684,13.6155,2012.0,2014.0
@@ -65,6 +59,8 @@ aomi,aomi:https://doi.org/10.1016/j.marpolbul.2023.115109,Ocean water,pieces/m3,
 aomi,aomi:https://doi.org/10.1016/j.marpolbul.2024.116153,Ocean water,pieces/m3,11,11,0.96,1.4,1.79,300.0,5000.0,53.14821,-9.31032,2019.0,2019.0
 aomi,aomi:https://doi.org/10.1016/j.scitotenv.2018.09.244,Ocean water,pieces/m3,18,18,0.003277,0.011485,0.1494,330.0,5000.0,24.00945,146.4747,2017.0,2017.0
 aomi,aomi:https://doi.org/10.1016/j.scitotenv.2019.01.319,Ocean water,pieces/m3,32,31,0.11,0.62,1.58,335.0,5000.0,17.9464,-76.825845,2017.0,2017.0
+aomi,aomi:https://doi.org/10.1016/j.scitotenv.2022.155958,Ocean water,pieces/m3,124,124,0.115523,0.835916,3.507595,333.0,5000.0,39.00505,10.00805,2014.0,2014.0
+aomi,aomi:https://doi.org/10.1021/acs.est.8b05458,Ocean water,pieces/m3,28,0,,,,300.0,5000.0,26.6,-59.48,2015.0,2015.0
 aomi,aomi:https://doi.org/10.1021/acsestwater.0c00292,Ocean water,pieces/m3,56,55,0.038,0.181,2.1142,333.0,5000.0,37.795,-122.415,2017.0,2018.0
 aomi,aomi:https://doi.org/10.1021/es4053076,Ocean water,pieces/m3,4657,1899,0.0012,0.0084,0.326132,335.0,5000.0,20.27,-146.49,2001.0,2012.0
 aomi,aomi:https://doi.org/10.1038/s41598-020-64465-8,Ocean water,pieces/m3,16,15,0.686239,3.656354,20.709158,333.0,5000.0,30.5692,-140.7533,2018.0,2018.0
@@ -73,26 +69,27 @@ aomi,aomi:https://doi.org/10.1038/s43247-021-00091-0,Ocean water,pieces/m3,48,12
 aomi,aomi:https://doi.org/10.1038/srep14947,Ocean water,pieces/m3,22,9,0.010204,0.0426,0.2968,333.0,5000.0,76.44655,13.40825,2014.0,2014.0
 aomi,aomi:https://doi.org/10.1038/srep37551,Ocean water,pieces/m3,74,74,0.555,1.69,6.144,200.0,5000.0,39.8007,11.838,2013.0,2013.0
 aomi,aomi:https://doi.org/10.1073/pnas.1314705111,Ocean water,pieces/m3,194,159,0.00576,0.032,0.282,200.0,5000.0,-5.265,-36.095,2009.0,2013.0
-aomi,aomi:https://doi.org/10.1088/1748-9326/abbb4f,Ocean water,pieces/m3,620,601,0.239722,1.688752,6.958142,333.0,5000.0,32.000567,-140.61325,2015.0,2019.0
+aomi,aomi:https://doi.org/10.1088/1748-9326/abbb4f,Ocean water,pieces/m3,1270,601,0.239722,1.688752,6.958142,300.0,5000.0,31.994246,-141.77575,2015.0,2021.0
 aomi,aomi:https://doi.org/10.1088/1748-9326/ac5df1,Ocean water,pieces/m3,124,124,0.192067,1.021666,6.341667,333.0,5000.0,41.397303,2.21315,2020.0,2021.0
 aomi,aomi:https://doi.org/10.1126/sciadv.1600582,Ocean water,pieces/m3,43,28,0.01698,0.0846,1.0984,330.0,5000.0,72.675,38.6913,2011.0,2013.0
 aomi,aomi:https://doi.org/10.1126/science.1192321,Ocean water,pieces/m3,5809,3766,0.0022,0.013,0.0972,335.0,5000.0,25.8,-69.05,1986.0,2008.0
 aomi,aomi:https://doi.org/10.1186/s43591-021-00013-z,Ocean water,pieces/m3,234,233,0.01384,0.21,3.96,350.0,5000.0,25.58505,133.8961,2016.0,2019.0
+aomi,aomi:https://doi.org/10.1186/s43591-026-00179-4,Ocean water,pieces/m3,28,27,0.00472,0.0136,0.1517,330.0,5000.0,-30.0697,-90.0045,2019.0,2019.0
+aomi,aomi:https://doi.org/10.12681/mms.24899,Ocean water,pieces/m3,24,24,0.191919,0.802284,1.46419,330.0,5000.0,36.746261,2.798241,2018.0,2018.0
 aomi,aomi:https://doi.org/10.1371/journal.pone.0080020,Ocean water,pieces/m3,236,201,0.009,0.462,7.25,333.0,5000.0,32.36965,-137.9232,1972.0,2010.0
 aomi,aomi:https://doi.org/10.1371/journal.pone.0080466,Ocean water,pieces/m3,183,153,0.002864,0.010705,0.051336,333.0,5000.0,-25.08907,148.4482,2011.0,2012.0
 aomi,aomi:https://doi.org/10.1371/journal.pone.0111913,Ocean water,pieces/m3,699,625,0.002328,0.039,0.382,330.0,5000.0,-13.7361,-22.5333,2007.0,2013.0
 aomi,aomi:https://doi.org/10.1371/journal.pone.0121762,Ocean water,pieces/m3,39,39,0.04984,0.464,2.662,200.0,5000.0,37.4856,12.5348,2013.0,2013.0
 aomi,aomi:https://doi.org/10.1371/journal.pone.0161581,Ocean water,pieces/m3,33,33,0.1964,0.397,1.416,333.0,5000.0,43.5347,7.2742,2013.0,2013.0
-aomi,aomi:https://doi.org/10.2989/1814232X.2018.1492969,Ocean water,pieces/m3,11,11,33.0,83.0,183.0,250.0,5000.0,-3.1365,42.0918,2017.0,2017.0
+aomi,aomi:https://doi.org/10.2989/1814232x.2018.1492969,Ocean water,pieces/m3,11,11,33.0,83.0,183.0,250.0,5000.0,-3.1365,42.0918,2017.0,2017.0
 aomi,aomi:https://doi.org/10.3389/fenvs.2020.582217,Ocean water,pieces/m3,36,36,0.069879,0.2837,1.273892,335.0,5000.0,38.45388,-9.01787,2018.0,2019.0
 aomi,aomi:https://doi.org/10.3389/fmars.2021.626026,Ocean water,pieces/m3,57,56,0.008,0.2201,2.083,500.0,5000.0,33.7397,-140.4958,2015.0,2019.0
 aomi,aomi:https://doi.org/10.3389/fmars.2021.699000,Ocean water,pieces/m3,88,88,0.06,0.424,1.8235,330.0,5000.0,37.907,23.6205,2014.0,2020.0
 aomi,aomi:https://doi.org/10.3389/fmars.2022.784937,Ocean water,pieces/m3,34,34,0.026803,0.084992,0.246289,330.0,5000.0,43.2465,5.361748,2018.0,2019.0
+aomi,aomi:https://doi.org/10.3389/fmars.2023.1288301,Ocean water,pieces/m3,30,25,0.00408,0.0082,0.0166,300.0,5000.0,71.3325,-159.785,2020.0,2022.0
 aomi,aomi:https://hdl.handle.net/10037/36077,Ocean water,pieces/m3,8,8,0.08465,0.3194,19.84479,300.0,5000.0,59.68295,10.73095,2024.0,2024.0
 aomi,"aomi:https://www.oca.gov.tw/ch/home.jsp?id=654&parentpath=0,299,652&mcustomize=research_view.jsp&dataserno=202501220005",Ocean water,pieces/m3,16,15,0.0829,0.4622,3.13258,350.0,5000.0,24.41105,120.7558,2024.0,2024.0
 aomi,aomi:unpublished,Ocean water,pieces/m3,16,16,0.822,1.08,1.3185,215.0,5000.0,-6.0695,106.788,2019.0,2019.0
-durum,http://dx.doi.org/10.1016/j.scitotenv.2022.160148,stormwater runoff,particles/L,4,4,530.31,2074.55,3585.54,40.0,5000.0,31.241666,121.408334,2020.0,2020.0
-durum,http://dx.doi.org/10.1016/j.scitotenv.2022.161318,stormwater runoff,particles/L,6,6,96.0,169.5,300.5,20.0,5000.0,36.137175,128.429372,2021.0,2021.0
 durum,https://doi.org/10.1016/j.chemosphere.2021.129886,stormwater runoff,particles/L,3,3,0.6,0.6,0.6,500.0,2000.0,40.4862,-74.4518,2019.0,2019.0
 durum,https://doi.org/10.1016/j.envpol.2021.117352,stormwater runoff,particles/L,4,4,58.8,188.5,248.9,25.0,5000.0,48.769722,2.522778,2018.0,2019.0
 durum,https://doi.org/10.1016/j.envpol.2023.121698,stormwater runoff,particles/L,4,4,3.1,4.65,7.81,300.0,5000.0,14.075821,100.616311,2021.0,2021.0
@@ -107,6 +104,8 @@ durum,https://doi.org/10.1016/j.scitotenv.2021.148939,stormwater runoff,particle
 durum,https://doi.org/10.1016/j.scitotenv.2021.150559,stormwater runoff,particles/L,8,8,1.86,1.86,1.86,50.0,5000.0,28.948,50.8405,2019.0,2026.0
 durum,https://doi.org/10.1016/j.scitotenv.2021.151104,stormwater runoff,particles/L,3,3,0.314,0.37,0.714,250.0,2000.0,40.5548,-74.4621,2020.0,2020.0
 durum,https://doi.org/10.1016/j.scitotenv.2021.151151,stormwater runoff,particles/L,9,9,51.6,230.0,2244.8,20.0,100.0,62.3908,17.3069,2019.0,2020.0
+durum,https://doi.org/10.1016/j.scitotenv.2022.160148,stormwater runoff,particles/L,4,4,530.31,2074.55,3585.54,40.0,5000.0,31.241666,121.408334,2020.0,2020.0
+durum,https://doi.org/10.1016/j.scitotenv.2022.161318,stormwater runoff,particles/L,6,6,96.0,169.5,300.5,20.0,5000.0,36.137175,128.429372,2021.0,2021.0
 durum,https://doi.org/10.1016/j.scitotenv.2023.166685,stormwater runoff,particles/L,6,6,23.0,67.75,168.75,1.0,5000.0,40.747834,-74.174347,2023.0,2023.0
 durum,https://doi.org/10.1016/j.scitotenv.2024.172485,stormwater runoff,particles/L,12,12,0.853,2.12,7.434,500.0,5000.0,40.503653,-74.458125,2021.0,2022.0
 durum,https://doi.org/10.1016/j.watres.2020.115623,stormwater runoff,particles/L,6,6,0.6,6.45,17.4,125.0,5000.0,43.641111,-80.589522,2015.0,2015.0
@@ -116,13 +115,91 @@ durum,https://doi.org/10.1021/acs.estlett.8b00446,stormwater runoff,particles/L,
 durum,https://doi.org/10.1021/acsestwater.0c00292,stormwater runoff,particles/L,12,12,1.632,6.415,23.205,106.0,5000.0,37.7545,-122.234,2016.0,2016.0
 durum,https://doi.org/10.1021/acsestwater.1c00017,stormwater runoff,particles/L,12,12,1.8,6.5,17.45,125.0,5000.0,37.75,-122.347361,2016.0,2018.0
 durum,https://doi.org/10.1021/acsestwater.4c00037,stormwater runoff,particles/L,18,12,131.1,346.5,900.1,25.0,1300.0,43.8262,-79.5562,2018.0,2019.0
-durum,https://doi.org/10.1061/JSWBAY.0000883,stormwater runoff,particles/L,2,2,0.304,0.88,1.456,125.0,5000.0,76.241721,-45.729375,2017.0,2017.0
+durum,https://doi.org/10.1061/jswbay.0000883,stormwater runoff,particles/L,2,2,0.304,0.88,1.456,125.0,5000.0,76.241721,-45.729375,2017.0,2017.0
 durum,https://doi.org/10.3389/fenvs.2023.1090267,stormwater runoff,particles/L,15,14,98.26,192.75,580.09,37.0,5000.0,51.001556,-114.094611,1970.0,2016.0
 durum,https://doi.org/10.5985/emcr.20200006,stormwater runoff,particles/L,2,2,102.1,186.5,270.9,10.0,5000.0,3.850504,146.468107,2019.0,2019.0
 emodnet,EMODnet | Department of Marine Systems at Tallinn University of Technology (713),Ocean water,pieces/m3,171,171,0.267407,0.833076,3.439607,333.0,5000.0,59.457699,24.648999,2016.0,2023.0
 emodnet,EMODnet | Finnish Environment Institute (1104),Ocean water,pieces/m3,16,12,0.042873,0.5558,2.692944,300.0,5000.0,60.197824,24.908119,2020.0,2020.0
 emodnet,EMODnet | Kristineberg Marine Research Station (617),Ocean water,pieces/m3,30,15,33.333334,2323.780015,8516.648206,300.0,5000.0,59.038835,17.6672,2017.0,2017.0
-kiessling2021,10.1016/j.scitotenv.2021.147849,river water,pieces/m3,301,68,0.019385,0.087098,0.566152,,,51.160278,9.274444,2016.0,2017.0
+geoplasticobr,geoplasticobr:Atibaia River,river water,pieces/m3,1,1,188.0,188.0,188.0,,,-22.927607,-46.905253,,
+geoplasticobr,geoplasticobr:Corvina beach,Beach,pieces/m3,1,1,492.5,492.5,492.5,,,-0.60361,-47.37583,,
+geoplasticobr,geoplasticobr:Goiana Estuary,Ocean sediment,pieces/m3,1,1,59.0,59.0,59.0,,,-7.54167,-34.85,,
+geoplasticobr,geoplasticobr:Santos beach,Beach,pieces/m3,1,1,29.0,29.0,29.0,,,-23.94083,-45.33,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1007/s10661-009-1113-4,Beach,pieces/m2,1,1,100.0,100.0,100.0,,,-8.118208,-34.893335,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1007/s10661-025-13829-6,river water,pieces/m3,1,1,35.36,35.36,35.36,,,-22.828556,-48.100417,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1007/s10661-025-13829-6,,pieces/m3,3,3,72.288,220.0,695.328,,,-22.794917,-48.100417,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1007/s11270-014-2004-z,Ocean water,pieces/m3,3,3,0.024,0.04,0.808,,,-3.875968,-32.383291,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1007/s11270-014-2004-z,,pieces/m3,1,1,0.03,0.03,0.03,,,-20.492826,-29.298764,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1007/s11270-024-07541-3,Beach,pieces/kg,1,1,650.0,650.0,650.0,,,-29.3358,-49.7283,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1007/s11356-023-30241-0,lake water,pieces/m3,7,7,19.52,39.0,57.72,,,-30.09225,-51.2525,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1007/s11356-023-30241-0,river water,pieces/m3,8,8,4.94,7.65,9.48,,,-30.099165,-51.248055,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1007/s11356-023-30241-0,,pieces/m3,17,17,4.68,9.0,55.22,,,-30.09225,-51.24953,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1007/s11356-025-36491-4,Beach,pieces/m3,5,5,674.3,895.3,1505.8,,,-25.874722,-48.562778,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1007/s11356-025-36491-4,Beach,,1,1,1036.9,1036.9,1036.9,,,-25.588333,-48.364722,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.envpol.2016.07.006,Beach,pieces/m2,1,1,18.46,18.46,18.46,,,-23.33,-44.89,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.envres.2022.112952,soil,pieces/kg,6,6,4.009,8.944,16.248,,,-13.01,-38.8516,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.heliyon.2024.e36047,river water,pieces/m3,4,4,60.624,407.29,841.75,,,-23.267722,-47.312972,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.jenvman.2024.121827,Ocean sediment,pieces/kg,9,9,200.0,400.0,626.6,,,-0.890398,-46.6609,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marenvres.2020.105219,Beach,pieces/m2,8,7,2.4,16.8,54.88,,,-22.95,-43.058334,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2019.05.020,Beach,pieces/kg,6,6,135.0,180.0,300.0,,,-21.710174,-41.025211,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2019.110705,Ocean water,pieces/m3,18,18,0.057,0.095,0.337,,,-3.053515,-39.48485,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2019.110705,,pieces/m3,18,18,0.057,0.095,0.337,,,-3.053515,-39.48485,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2020.111537,Beach,pieces/kg,31,31,6.1,9.8,54.0,,,-22.93406,-43.096,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2020.111537,Ocean water,pieces/m3,8,8,1.0,2.6,10.26,,,-22.93204,-43.10125,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2020.111537,,pieces/m3,8,8,1.0,2.6,10.26,,,-22.93204,-43.10125,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2020.111538,Ocean sediment,pieces/kg,3,3,20.13,22.53,164.506,,,-22.964167,-43.051028,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2021.112212,Ocean sediment,pieces/m2,6,6,0.85,5.9,578.8,,,-3.853192,-32.428634,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2021.112213,Ocean sediment,pieces/kg,6,6,0.45,2.4,182.1,,,-3.853192,-32.428634,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2022.113531,Ocean sediment,pieces/kg,19,16,0.2,0.65,4.4,,,-25.48428,-48.4309,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2022.113531,Ocean sediment,pieces/m2,19,16,5.3,14.6,105.25,,,-25.48428,-48.42518,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2022.114262,Beach,pieces/m2,9,5,0.2,1.6,27.64,,,-12.70218,-38.117858,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2024.116799,Ocean sediment,pieces/kg,2,2,142.0,142.0,142.0,,,-7.685833,-34.855833,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2024.116944,Beach,pieces/m2,10,7,3.2,16.0,162.8,,,-2.751394,-48.519545,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2024.117026,Beach,pieces/kg,24,24,2.6,13.58,31.5,,,-23.969542,-46.211686,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2024.117286,Ocean sediment,pieces/kg,10,10,17.4,39.75,6205.0,,,-23.938714,-46.383878,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2024.117471,Ocean water,pieces/m3,1,1,40.0,40.0,40.0,,,-3.781556,-38.437194,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2026.119221,Ocean sediment,pieces/kg,1,1,1240.0,1240.0,1240.0,,,-12.730556,-38.503333,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.marpolbul.2026.119221,sediment,pieces/kg,2,2,2244.0,3380.0,4516.0,,,-12.730834,-38.502639,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.ocecoaman.2016.04.010,Beach,pieces/m2,5,5,41.2,128.0,921.2,,,-22.916921,-43.181449,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.ocecoaman.2018.12.031,Ocean sediment,pieces/kg,20,12,10.3,68.0,121.7,,,-20.320779,-40.334462,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.rsma.2019.100772,Beach,pieces/m2,5,4,0.262,0.39,6.461,,,-27.203728,-48.592228,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.rsma.2026.105065,Ocean sediment,pieces/kg,1,1,3096.97,3096.97,3096.97,,,-23.896944,-46.388889,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.scitotenv.2020.141604,sediment,pieces/kg,14,14,623.7,1738.0,7485.3,,,-3.147038,-60.024278,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.scitotenv.2020.144777,Beach,pieces/m2,6,6,4.8,14.0,23.9,,,-16.045,-38.919309,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.scitotenv.2020.144778,Beach,pieces/m2,6,6,4.8,14.0,23.9,,,-16.045,-38.919309,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.scitotenv.2022.15607,Beach,pieces/m2,1,1,386.0,386.0,386.0,,,-8.117252,-34.89377,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.scitotenv.2022.15607,sediment,pieces/kg,1,1,132.0,132.0,132.0,,,-32.152583,-52.100861,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.scitotenv.2022.159353,Beach,pieces/kg,12,12,77.2,136.0,197.2,,,-21.504522,-41.05886,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.scitotenv.2022.159353,Ocean sediment,pieces/kg,5,5,535.8,576.0,1405.2,,,-20.280736,-40.287714,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.scitotenv.2022.159633,Ocean sediment,pieces/kg,3,3,500.0,500.0,3300.0,,,-32.020305,-52.096041,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.scitotenv.2024.177666,Ocean sediment,pieces/m2,13,13,66.326,86.65,161.822,,,1.15375,-49.962806,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1016/j.watres.2023.119707,river water,pieces/m3,40,40,10.8,57.0,1601.9,,,-2.4334,-54.850076,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1021/acs.est.3c00657,Ocean water,pieces/m3,7,7,0.03872,0.09,17.36,,,-23.201833,-43.161667,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1021/acsomega.4c10678,soil,pieces/kg,95,95,1440.0,3100.0,5200.0,,,-21.200816,-44.983301,,
+geoplasticobr,geoplasticobr:https://doi.org/10.12957/ric.2017.29272,Beach,pieces/m2,5,5,15.6,23.8,84.48,,,-24.01496,-46.274236,,
+geoplasticobr,geoplasticobr:https://doi.org/10.13189/eer.2017.050407,Beach,pieces/m2,1,1,1.16,1.16,1.16,,,-27.661947,-48.473431,,
+geoplasticobr,geoplasticobr:https://doi.org/10.14808/sci.plena.2025.119917,Beach,pieces/m2,6,6,4.5,6.4,11.0,,,-11.013238,-37.06517,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1590/0001-3765202520250334,river water,pieces/m3,10,10,10.0,155.0,202.0,,,-1.62725,-48.7096,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1590/0001-3765202520250334,sediment,pieces/kg,20,16,1.0,1.0,3.0,,,-1.62725,-48.7096,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1590/0001-3765202520250334,,pieces/m3,10,10,10.0,155.0,202.0,,,-1.62725,-48.7096,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1590/2675-2824072.23181,Ocean sediment,pieces/kg,26,26,1.31,5.275,19.04,,,-22.759261,-43.108209,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1590/2675-2824072.23181,Ocean sediment,pieces/m2,13,13,27.336,72.22,140.0,,,-22.759261,-43.108209,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1590/s1413-415220220234,sediment,pieces/l,2,0,,,,,,-3.009814,-59.933575,,
+geoplasticobr,geoplasticobr:https://doi.org/10.1590/s2675-28242020068235,Ocean sediment,pieces/m2,29,29,100.0,344.5,711.2,,,-3.84776,-32.432,,
+geoplasticobr,geoplasticobr:https://doi.org/10.21168/rega.v22e17,river water,pieces/l,3,3,0.42,0.5,1.3,,,-16.63667,-49.265,,
+geoplasticobr,geoplasticobr:https://doi.org/10.21168/rega.v22e17,sediment,pieces/kg,6,4,45.0,65.93,86.86,,,-16.63667,-49.265,,
+geoplasticobr,geoplasticobr:https://doi.org/10.21168/rega.v22e17,,pieces/l,3,3,0.42,0.5,1.3,,,-16.63667,-49.265,,
+geoplasticobr,geoplasticobr:https://doi.org/10.21168/rega.v22e17,,pieces/ml,3,3,0.42,0.5,1.3,,,-16.63667,-49.265,,
+geoplasticobr,geoplasticobr:https://doi.org/10.21715/gb2358-2812.202337001,Ocean sediment,pieces/cm2,6,6,3.5,4.0,9.0,,,-22.79346,-43.188525,,
+geoplasticobr,geoplasticobr:https://doi.org/10.3389/fenvs.2016.00056,Ocean water,pieces/m3,1,1,22.3,22.3,22.3,,,0.91694,-29.34556,,
+geoplasticobr,geoplasticobr:https://doi.org/10.3390/micro3010015,river water,pieces/m3,15,15,3.9,32.5,1050.2,,,-22.5485,-42.978,,
+geoplasticobr,geoplasticobr:https://doi.org/10.5327/z2176-94781900,Ocean water,pieces/m3,6,6,0.13,0.13,0.13,,,-13.01,-38.8516,,
+geoplasticobr,geoplasticobr:https://doi.org/10.56238/arev7n3-077,river water,pieces/m3,1,1,1200.0,1200.0,1200.0,,,-3.0129,-47.3481,,
+geoplasticobr,geoplasticobr:https://doi.org/10.56238/arev7n3-077,sediment,pieces/kg,2,2,25.0,25.0,25.0,,,-3.01,-47.35,,
+geoplasticobr,geoplasticobr:https://doi.org/10.5772/intechopen.1005894,sediment,pieces/kg,7,6,70.0,155.0,220.0,,,-22.13,-47.8,,
+geoplasticobr,geoplasticobr:https://doi.org/10.5894/rgci566,Beach,pieces/m2,1,1,23.26,23.26,23.26,,,-13.014473,-38.477926,,
+geoplasticobr,geoplasticobr:https://geoplasticobr.com/contribuir,soil,,1,0,,,,,,22.248164,-97.379504,,
+kiessling2021,https://doi.org/10.1016/j.scitotenv.2021.147849,river water,pieces/m3,301,68,0.019385,0.087098,0.566152,,,51.160278,9.274444,2016.0,2017.0
 mpsed,https://doi.org/10.1007/s00128-019-02762-3,sediment,microplastic/kg sediment dry wt.,11,11,429.0,1313.0,3221.0,30.0,5000.0,,,,
 mpsed,https://doi.org/10.1007/s00128-020-02866-1,sediment,microplastic/kg sediment dry wt.,9,9,318.64,467.6,621.8,1.0,5000.0,,,2017.0,2017.0
 mpsed,https://doi.org/10.1007/s00244-017-0414-9,sediment,microplastic/kg sediment dry wt.,23,18,95.27,756.45,3926.14,315.0,5000.0,,,2001.0,2012.0
@@ -148,8 +225,10 @@ mpsed,https://doi.org/10.1016/j.jembe.2008.09.007,sediment,microplastic/kg sedim
 mpsed,https://doi.org/10.1016/j.jglr.2018.07.014,sediment,microplastic/kg sediment dry wt.,17,15,24.8,62.0,296.6,63.0,5000.0,,,2014.0,2015.0
 mpsed,https://doi.org/10.1016/j.jglr.2020.10.007,sediment,microplastic/kg sediment dry wt.,12,12,38.97,322.5,693.17,125.0,5000.0,,,2018.0,2019.0
 mpsed,https://doi.org/10.1016/j.jhazmat.2020.124132,sediment,microplastic/kg sediment dry wt.,4,4,10780.1,18015.5,27756.9,25.0,5000.0,,,2016.0,2017.0
+mpsed,https://doi.org/10.1016/j.jhazmat.2022.130067,sediment,microplastic/kg sediment dry wt.,3,3,259.48,303.8,397.88,40.0,5000.0,,,2020.0,2020.0
 mpsed,https://doi.org/10.1016/j.jwpe.2020.101640,sediment,microplastic/kg sediment dry wt.,14,14,5.5,36.0,176.2,100.0,5000.0,,,2018.0,2018.0
 mpsed,https://doi.org/10.1016/j.marenvres.2016.01.005,sediment,microplastic/kg sediment dry wt.,2,2,124.0,140.0,156.0,63.0,5000.0,,,2013.0,2013.0
+mpsed,https://doi.org/10.1016/j.marenvres.2022.105804,sediment,microplastic/kg sediment dry wt.,20,20,127.72,349.65,650.65,100.0,5000.0,,,2017.0,2017.0
 mpsed,https://doi.org/10.1016/j.marpolbul.2011.06.030,sediment,microplastic/kg sediment dry wt.,4,4,105.7,149.0,200.7,38.0,5000.0,,,,
 mpsed,https://doi.org/10.1016/j.marpolbul.2016.06.037,sediment,microplastic/kg sediment dry wt.,40,40,79.0,505.0,2832.0,63.0,5000.0,,,2012.0,2015.0
 mpsed,https://doi.org/10.1016/j.marpolbul.2016.09.004,sediment,microplastic/kg sediment dry wt.,4,4,195.8,276.5,561.6,1000.0,4000.0,,,2014.0,2014.0
@@ -165,6 +244,7 @@ mpsed,https://doi.org/10.1016/j.marpolbul.2020.111166,sediment,microplastic/kg s
 mpsed,https://doi.org/10.1016/j.marpolbul.2020.111948,sediment,microplastic/kg sediment dry wt.,22,22,3933.3,13316.5,40513.0,1.0,5000.0,,,2019.0,2019.0
 mpsed,https://doi.org/10.1016/j.marpolbul.2021.113254,sediment,microplastic/kg sediment dry wt.,7,7,344.0,1512.0,14735819.2,45.0,1000.0,,,2019.0,2019.0
 mpsed,https://doi.org/10.1016/j.marpolbul.2022.113709,sediment,microplastic/kg sediment dry wt.,76,76,211.5,2691.5,41098.5,53.0,5000.0,,,2015.0,2017.0
+mpsed,https://doi.org/10.1016/j.marpolbul.2022.114545,sediment,microplastic/kg sediment dry wt.,12,12,5405.73,9028.75,13876.71,1.0,5000.0,,,2018.0,2018.0
 mpsed,https://doi.org/10.1016/j.marpolbul.2023.115201,sediment,microplastic/kg sediment dry wt.,8,8,63.28,93.25,185.15,1.0,5000.0,,,2018.0,2018.0
 mpsed,https://doi.org/10.1016/j.scitotenv.2017.08.298,sediment,microplastic/kg sediment dry wt.,2,2,21.68,83.2,144.72,63.0,5000.0,,,2016.0,2016.0
 mpsed,https://doi.org/10.1016/j.scitotenv.2018.03.336,sediment,microplastic/kg sediment dry wt.,8,8,77.4,155.0,309.0,330.0,5000.0,,,2017.0,2017.0
@@ -172,6 +252,9 @@ mpsed,https://doi.org/10.1016/j.scitotenv.2019.02.028,sediment,microplastic/kg s
 mpsed,https://doi.org/10.1016/j.scitotenv.2020.139025,sediment,microplastic/kg sediment dry wt.,29,29,71.4,132.0,298.6,50.0,5000.0,,,,
 mpsed,https://doi.org/10.1016/j.scitotenv.2020.143111,sediment,microplastic/kg sediment dry wt.,3,3,244.0,460.0,556.0,30.0,5000.0,,,2018.0,2018.0
 mpsed,https://doi.org/10.1016/j.scitotenv.2021.147306,sediment,microplastic/kg sediment dry wt.,60,60,1215.88,3020.65,6517.57,90.0,5000.0,,,2019.0,2019.0
+mpsed,https://doi.org/10.1016/j.scitotenv.2022.159071,sediment,microplastic/kg sediment dry wt.,30,30,200.79,594.35,1927.56,50.0,5000.0,,,2021.0,2021.0
+mpsed,https://doi.org/10.1016/j.scitotenv.2022.159344,sediment,microplastic/kg sediment dry wt.,13,13,4166.0,7000.0,7800.0,10.0,5000.0,,,,
+mpsed,https://doi.org/10.1016/j.scitotenv.2022.160932,sediment,microplastic/kg sediment dry wt.,11,11,235.5,446.3,605.8,1.0,5000.0,,,2021.0,2021.0
 mpsed,https://doi.org/10.1016/j.watres.2018.07.050,sediment,microplastic/kg sediment dry wt.,12,12,20138.0,29985.0,44346.0,20.0,5000.0,,,2016.0,2016.0
 mpsed,https://doi.org/10.1016/j.watres.2019.115140,sediment,microplastic/kg sediment dry wt.,3,3,76.22,79.1,85.74,1.0,5000.0,,,,
 mpsed,https://doi.org/10.1016/j.watres.2020.116449,sediment,microplastic/kg sediment dry wt.,5,5,18.096,24.4,35.696,300.0,5000.0,,,2019.0,2019.0
@@ -186,15 +269,9 @@ mpsed,https://doi.org/10.1139/facets-2016-0070,sediment,microplastic/kg sediment
 mpsed,https://doi.org/10.1371/journal.pone.0228896,sediment,microplastic/kg sediment dry wt.,9,9,159.0,232.0,554.6,355.0,5000.0,,,2018.0,2018.0
 mpsed,https://doi.org/10.1371/journal.pone.0229777,sediment,microplastic/kg sediment dry wt.,1,1,148.0,148.0,148.0,500.0,5000.0,,,,
 mpsed,https://doi.org/10.3389/fenvs.2021.794895,sediment,microplastic/kg sediment dry wt.,2,2,85.43,162.35,239.27,20.0,5000.0,,,2020.0,2020.0
+mpsed,https://doi.org/10.3389/fmars.2022.1093815,sediment,microplastic/kg sediment dry wt.,36,35,467.82,2365.7,6238.0,10.0,5000.0,,,2013.0,2021.0
 mpsed,https://doi.org/10.3390/w10111597,sediment,microplastic/kg sediment dry wt.,6,6,50.0,175.0,275.0,63.0,4000.0,,,2017.0,2017.0
-mpsed,https://dx.doi.org/10.1016/j.jhazmat.2022.130067,sediment,microplastic/kg sediment dry wt.,3,3,259.48,303.8,397.88,40.0,5000.0,,,2020.0,2020.0
-mpsed,https://dx.doi.org/10.1016/j.marenvres.2022.105804,sediment,microplastic/kg sediment dry wt.,20,20,127.72,349.65,650.65,100.0,5000.0,,,2017.0,2017.0
-mpsed,https://dx.doi.org/10.1016/j.marpolbul.2022.114545,sediment,microplastic/kg sediment dry wt.,12,12,5405.73,9028.75,13876.71,1.0,5000.0,,,2018.0,2018.0
-mpsed,https://dx.doi.org/10.1016/j.scitotenv.2022.159071,sediment,microplastic/kg sediment dry wt.,30,30,200.79,594.35,1927.56,50.0,5000.0,,,2021.0,2021.0
-mpsed,https://dx.doi.org/10.1016/j.scitotenv.2022.159344,sediment,microplastic/kg sediment dry wt.,13,13,4166.0,7000.0,7800.0,10.0,5000.0,,,,
-mpsed,https://dx.doi.org/10.1016/j.scitotenv.2022.160932,sediment,microplastic/kg sediment dry wt.,11,11,235.5,446.3,605.8,1.0,5000.0,,,2021.0,2021.0
-mpsed,https://dx.doi.org/10.3389/fmars.2022.1093815,sediment,microplastic/kg sediment dry wt.,36,35,467.82,2365.7,6238.0,10.0,5000.0,,,2013.0,2021.0
-mpsed,https://dx.doi.org/10.7185/geochemlet.2012,sediment,microplastic/kg sediment dry wt.,16,16,117.35,198.3,498.9,,5000.0,,,2018.0,2018.0
+mpsed,https://doi.org/10.7185/geochemlet.2012,sediment,microplastic/kg sediment dry wt.,16,16,117.35,198.3,498.9,,5000.0,,,2018.0,2018.0
 ncei,https://doi.org/10.1007/s00128-022-03620-5,Ocean water,pieces/m3,8,8,0.1388,0.605,1.716,300.0,5000.0,-6.475,39.213334,2019.0,2019.0
 ncei,https://doi.org/10.1007/s10661-022-10468-z,Ocean sediment,pieces kg-1 d.w.,72,72,13.37,38.15,148.4,11.0,5000.0,8.780439,78.166878,2021.0,2021.0
 ncei,https://doi.org/10.1007/s10661-022-10468-z,Ocean water,pieces/m3,72,72,0.04397,0.1795,0.638,48.0,5000.0,8.780439,78.166878,2021.0,2021.0
@@ -292,21 +369,21 @@ ncei,https://doi.org/10.1371/journal.pone.0121762,Ocean water,pieces/m3,39,39,0.
 ncei,https://doi.org/10.1371/journal.pone.0161581,Ocean water,pieces/m3,33,33,0.39209,0.79316,2.835266,333.0,5000.0,43.5429,7.2421,2013.0,2013.0
 ncei,https://doi.org/10.1371/journal.pone.0243203,Ocean water,pieces/m3,90,84,9.0,31.5,91.1,100.0,5000.0,5.82145,-8.9705,2017.0,2018.0
 ncei,https://doi.org/10.25921/d1bs-3m40,Ocean water,pieces/m3,1107,1032,0.010622,0.128661,0.888985,330.0,5000.0,38.136665,-1.898667,2013.0,2024.0
-ncei,https://doi.org/10.2989/1814232X.2018.1492969,Ocean water,pieces/m3,11,11,33.333333,83.333333,183.333333,250.0,5000.0,-3.136517,42.0918,2017.0,2017.0
+ncei,https://doi.org/10.2989/1814232x.2018.1492969,Ocean water,pieces/m3,11,11,33.333333,83.333333,183.333333,250.0,5000.0,-3.136517,42.0918,2017.0,2017.0
 ncei,https://doi.org/10.3389/fenvs.2020.582217,Ocean water,pieces/m3,36,36,0.069879,0.2837,1.273892,335.0,5000.0,38.45388,-9.01787,2018.0,2019.0
 ncei,https://doi.org/10.3389/fenvs.2021.719274,Ocean water,pieces/m3,5,5,2310.0,5015.0,39189.0,75.0,5000.0,14.59371,120.94866,2018.0,2019.0
 ncei,https://doi.org/10.3389/fenvs.2022.998513,Ocean sediment,pieces kg-1 d.w.,36,36,38.333333,56.666667,533.333334,63.0,5000.0,38.45388,-9.01787,2018.0,2019.0
 ncei,https://doi.org/10.3389/fmars.2021.626026,Ocean water,pieces/m3,54,53,0.070264,3.692508,15.541621,333.0,5000.0,33.825085,-140.125242,2015.0,2019.0
 ncei,https://doi.org/10.3389/fmars.2021.699000,Ocean water,pieces/m3,76,76,0.1,0.473572,2.801666,333.0,5000.0,37.872,23.6315,2014.0,2020.0
 ncei,https://doi.org/10.3389/fmars.2022.784937,Ocean water,pieces/m3,71,71,0.031328,0.131303,0.724807,330.0,5000.0,43.2475,8.751844,2018.0,2019.0
-pangaea_941076,10.1594/pangaea.941076,Ocean water,pieces/m3,34,22,0.0053,0.014,0.025,300.0,5000.0,-68.483872,-11.141056,2018.0,2019.0
-pangaea_990052,10.1594/pangaea.990052,Ocean water,pieces/m3,20,20,80.3492,367.376,2321.2629,10.0,5000.0,1.5945,-87.5665,2022.0,2023.0
+pangaea_941076,https://doi.org/10.1594/pangaea.941076,Ocean water,pieces/m3,34,22,0.0053,0.014,0.025,300.0,5000.0,-68.483872,-11.141056,2018.0,2019.0
+pangaea_990052,https://doi.org/10.1594/pangaea.990052,Ocean water,pieces/m3,20,20,80.3492,367.376,2321.2629,10.0,5000.0,1.5945,-87.5665,2022.0,2023.0
 pangaea_weser,PANGAEA 937685/938143 (Weser estuary),river water,pieces/m3,46,45,0.054752,23.0,2069.0,255.5,2750.0,,,2018.0,2018.0
-rivm,10.1016/j.envint.2017.01.018,river water,pieces/m3,6,6,58000.0,91500.0,151500.0,10.0,5000.0,52.365018,4.9015,,
-rivm,10.1016/j.watres.2020.115723,river water,pieces/m3,36,36,37.5,597.0,2268.5,20.0,5000.0,51.564389,5.482864,2017.0,2018.0
-rivm,10.1016/j.watres.2021.116852,river water,pieces/m3,4,4,112486.5,225118.0,328746.8,10.0,500.0,51.92726,5.601431,2019.0,2020.0
-rivm,10.1016/j.watres.2022.118790,river water,pieces/m3,5,5,29363.2,77598.0,318754.6,10.0,500.0,51.718636,4.893752,,
-rivm,10.2166/wst.2022.419,river water,pieces/m3,28,28,15549.3,39020.5,74185.0,20.0,500.0,52.730804,5.132828,2019.0,2019.0
+rivm,https://doi.org/10.1016/j.envint.2017.01.018,river water,pieces/m3,6,6,58000.0,91500.0,151500.0,10.0,5000.0,52.365018,4.9015,,
+rivm,https://doi.org/10.1016/j.watres.2020.115723,river water,pieces/m3,36,36,37.5,597.0,2268.5,20.0,5000.0,51.564389,5.482864,2017.0,2018.0
+rivm,https://doi.org/10.1016/j.watres.2021.116852,river water,pieces/m3,4,4,112486.5,225118.0,328746.8,10.0,500.0,51.92726,5.601431,2019.0,2020.0
+rivm,https://doi.org/10.1016/j.watres.2022.118790,river water,pieces/m3,5,5,29363.2,77598.0,318754.6,10.0,500.0,51.718636,4.893752,,
+rivm,https://doi.org/10.2166/wst.2022.419,river water,pieces/m3,28,28,15549.3,39020.5,74185.0,20.0,500.0,52.730804,5.132828,2019.0,2019.0
 rivm,na,river water,pieces/m3,4,4,3910.5,10815.0,25275.3,20.0,5000.0,51.464428,5.495595,2024.0,2024.0
 soil,A Method for the Extraction and Analysis of Microplastics from Tropical Agricultural Soils in Southeastern Brazil,soil,items/kg,4,4,1881.0,2381.25,3462.5,50.0,2000.0,-21.2029,-44.98141,2022.0,2022.0
 soil,A Method to Replace NaCl as a Flotation Solution for Extracting MPs in Soil: A Case Study of the Jiaxing Agricultural Soil from China,soil,items/kg,1,1,6327.0,6327.0,6327.0,30.0,5000.0,30.702205,121.055894,2023.0,2023.0

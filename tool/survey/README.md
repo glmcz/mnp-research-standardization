@@ -1,6 +1,6 @@
 # Survey datasets, validated by code
 
-One table of concentration records from thirteen datasets (water, sediment, beach, soil), and the checks that decide whether two of
+One table of concentration records from the datasets below (water, sediment, beach, soil), and the checks that decide whether two of
 those numbers may be compared. Findings: `docs/2026-10-23-dataset-validation.md`; the
 pre-registered timeline test: `docs/PREREG_2026-10.md`, P7.
 
@@ -36,6 +36,21 @@ uv run --with openpyxl --with pyreadr python -m pytest -q -p no:cacheprovider to
     units.
 - EMODnet's pan-European aggregate (2021) is not read: it gives a filtered volume only for 121
   Baltic samples and a tow length for the rest, so a value per m³ would need an assumed net depth.
+- GeoPlasticoBR (fetched by Martin 2026-10-27): Brazilian studies on one map. Water, sediment and
+  soil rows only (692 of 1,183): a bivalve's count is a body burden. It gives no sampling date and no
+  size window, so it enters no 365-day comparison, only the any-year descriptive one. Its DOI
+  column was filled down: inside a study the DOI counts up row by row into other papers' (Water
+  Research 119707 is the Amazon study, 119708 is on steel corrosion; checked on PubMed), so a study
+  is the first DOI its title carries in entry order, and the rest are flagged `doi_filled_down`.
+  Rows entered twice are flagged `repeats_row`.
+- One paper is one study in every database: a DOI however written (bare, `dx.doi.org`, any case)
+  becomes one lower-case link. Before this, AOMI's `10.1088/…abbb4f` and
+  `https://doi.org/10.1088/…abbb4f` were two studies. Across databases a pair of records from one
+  paper is never a comparison (`report._independent`, `excluded_same_paper`): the duplicate check
+  finds shared samples by date and place only, and had missed 1,162 of AOMI's and NOAA's
+  same-window pairs, so the AOMI-against-NOAA fold moved from ×2.7 (1,948 pairs) to ×3.25 (786).
+- After any change to the table, rerun `report.py` and `p7.py`;
+  `test_the_committed_outputs_match_the_table_they_came_from` fails until both are.
 - A field a source lacks stays null.
 - One value is not as the database has it (`NET_DEPTH`, Martin, 2026-10-27). A surface tow's
   particles/m³ is the paper's particles/km² over a net depth; where the paper states that depth and

@@ -23,6 +23,7 @@ COPY = {
     "durum.xlsx": "02_freshwater/DURUM_Urban_Stormwater/data/"
     "Urban_Runoff_MP_Database (2018-2024).xlsx",
     "aomi.csv": "01_marine_ocean/AOMI_Atlas_Ocean_Microplastics/AOMI_Atlas_Ocean_Microplastics.csv",
+    "geoplasticobr.csv": "02_freshwater/GeoPlasticoBR_Brazil/GeoPlasticoBR_full_dataset.csv",
 }
 RIVM = "https://media.githubusercontent.com/media/rivm-syso/MicroplasticsERA_water/main/"
 RIVM_LFS = (

@@ -1,15 +1,6 @@
 setting,study_a,study_b,records_a,records_b,median_km,median_ratio_a_over_b
 Beach,https://doi.org/10.1016/j.resconrec.2019.104633,https://doi.org/10.1016/j.rsma.2022.102423,11,29,1.1047598732015227,0.9983429577130015
 Ocean water,EMODnet | Department of Marine Systems at Tallinn University of Technology (713),aomi:EMODEnet,171,171,0.92777861419119,2.2499999952125047
-Ocean water,aomi:10.1088/1748-9326/abbb4f,aomi:https://doi.org/10.1038/s41598-020-64465-8,40,16,0.0,
-Ocean water,aomi:10.1088/1748-9326/abbb4f,aomi:https://doi.org/10.1088/1748-9326/abbb4f,497,297,0.0035582425645665785,
-Ocean water,aomi:10.1088/1748-9326/abbb4f,aomi:https://doi.org/10.3389/fmars.2021.626026,105,47,0.0,
-Ocean water,aomi:10.1088/1748-9326/abbb4f,https://doi.org/10.1038/s41598-020-64465-8,40,16,6.133142516561626e-12,
-Ocean water,aomi:10.1088/1748-9326/abbb4f,https://doi.org/10.1088/1748-9326/abbb4f,600,340,0.0036694376565569622,
-Ocean water,aomi:10.1088/1748-9326/abbb4f,https://doi.org/10.3389/fmars.2021.626026,80,38,1.4131583390148599,
-Ocean water,aomi:http://dx.doi.org/10.1016/j.marpolbul.2013.11.023,https://doi.org/10.1016/j.marpolbul.2013.11.023,37,37,3.757282999525696e-12,1.0
-Ocean water,aomi:http://dx.doi.org/10.1016/j.scitotenv.2022.155958,https://doi.org/10.1016/j.scitotenv.2022.155958,124,124,7.276756070756893e-12,1.0
-Ocean water,aomi:http://dx.doi.org/10.12681/mms.24899,https://doi.org/10.12681/mms.24899,24,24,7.436266351370687e-12,1.0
 Ocean water,aomi:https://doi.org/10.1007/s11356-022-24998-z,https://doi.org/10.1007/s11356-022-24998-z,45,45,9.242402877742282e-12,1.0
 Ocean water,aomi:https://doi.org/10.1007/s43217-023-00131-z,https://doi.org/10.1007/s43217-023-00131-z,18,18,6.630667937456967e-12,1.0
 Ocean water,aomi:https://doi.org/10.1016/j.chemosphere.2019.03.076,aomi:https://doi.org/10.1016/j.scitotenv.2018.09.244,18,18,1.2574406269033531,
@@ -22,6 +13,7 @@ Ocean water,aomi:https://doi.org/10.1016/j.envpol.2017.09.058,https://doi.org/10
 Ocean water,aomi:https://doi.org/10.1016/j.envpol.2022.120702,https://doi.org/10.1016/j.envpol.2022.120702,18,18,8.225390666714387e-12,1.0
 Ocean water,aomi:https://doi.org/10.1016/j.gr.2021.10.024,https://doi.org/10.1016/j.gr.2021.10.024,15,15,1.133081436251282e-11,1.0
 Ocean water,aomi:https://doi.org/10.1016/j.marenvres.2014.03.017,https://doi.org/10.1016/j.marenvres.2014.03.017,10,10,1.256630623275389,1.0
+Ocean water,aomi:https://doi.org/10.1016/j.marpolbul.2013.11.023,https://doi.org/10.1016/j.marpolbul.2013.11.023,37,37,3.757282999525696e-12,1.0
 Ocean water,aomi:https://doi.org/10.1016/j.marpolbul.2014.08.023,https://doi.org/10.1016/j.marpolbul.2014.08.023,581,563,7.213844475336631e-12,1.0
 Ocean water,aomi:https://doi.org/10.1016/j.marpolbul.2016.10.031,https://doi.org/10.1016/j.marpolbul.2016.10.031,12,11,1.496785058108103,1.0
 Ocean water,aomi:https://doi.org/10.1016/j.marpolbul.2016.12.052,https://doi.org/10.1016/j.marpolbul.2016.12.052,108,108,8.899462357120467e-12,1.0
@@ -37,16 +29,22 @@ Ocean water,aomi:https://doi.org/10.1016/j.marpolbul.2023.115109,https://doi.org
 Ocean water,aomi:https://doi.org/10.1016/j.marpolbul.2024.116153,https://doi.org/10.1016/j.marpolbul.2024.116153,11,11,8.580276942240598e-12,1.0007357364408693
 Ocean water,aomi:https://doi.org/10.1016/j.scitotenv.2018.09.244,https://doi.org/10.1016/j.scitotenv.2018.09.244,18,18,0.004132166109443079,0.7498317529899776
 Ocean water,aomi:https://doi.org/10.1016/j.scitotenv.2019.01.319,https://doi.org/10.1016/j.scitotenv.2019.01.319,32,32,0.6548351755487691,1.0
+Ocean water,aomi:https://doi.org/10.1016/j.scitotenv.2022.155958,https://doi.org/10.1016/j.scitotenv.2022.155958,124,124,7.276756070756893e-12,1.0
 Ocean water,aomi:https://doi.org/10.1021/es4053076,https://doi.org/10.1021/es4053076,2527,2529,6.592244415851094e-12,1.0
+Ocean water,aomi:https://doi.org/10.1038/s41598-020-64465-8,aomi:https://doi.org/10.1088/1748-9326/abbb4f,16,40,0.0,
 Ocean water,aomi:https://doi.org/10.1038/s41598-020-64465-8,https://doi.org/10.1038/s41598-020-64465-8,16,16,6.345915679045231e-12,1.0
 Ocean water,aomi:https://doi.org/10.1038/s41598-022-17742-7,https://doi.org/10.1038/s41598-022-17742-7,36,36,0.6055037843322357,1.0
 Ocean water,aomi:https://doi.org/10.1038/s43247-021-00091-0,https://doi.org/10.1038/s43247-021-00091-0,48,48,0.0024730676517329907,1.000074079561449
 Ocean water,aomi:https://doi.org/10.1038/srep14947,https://doi.org/10.1038/srep14947,21,21,0.7223271127878236,1.0
 Ocean water,aomi:https://doi.org/10.1038/srep37551,https://doi.org/10.1038/srep37551,74,74,0.0027832635616618674,1.013931337233449
-Ocean water,aomi:https://doi.org/10.1088/1748-9326/abbb4f,https://doi.org/10.1088/1748-9326/abbb4f,620,620,7.549749857908911e-12,1.0
+Ocean water,aomi:https://doi.org/10.1088/1748-9326/abbb4f,aomi:https://doi.org/10.3389/fmars.2021.626026,107,47,0.0,10.906495997221212
+Ocean water,aomi:https://doi.org/10.1088/1748-9326/abbb4f,https://doi.org/10.1038/s41598-020-64465-8,40,16,6.133142516561626e-12,
+Ocean water,aomi:https://doi.org/10.1088/1748-9326/abbb4f,https://doi.org/10.1088/1748-9326/abbb4f,1220,663,1.0018514025877841e-11,1.0
+Ocean water,aomi:https://doi.org/10.1088/1748-9326/abbb4f,https://doi.org/10.3389/fmars.2021.626026,82,38,1.4131583390148599,1.0000348280365694
 Ocean water,aomi:https://doi.org/10.1088/1748-9326/ac5df1,https://doi.org/10.1088/1748-9326/ac5df1,124,124,6.929206230368821e-12,1.0
 Ocean water,aomi:https://doi.org/10.1126/sciadv.1600582,https://doi.org/10.1126/sciadv.1600582,42,42,6.1351586413554774e-12,1.0
 Ocean water,aomi:https://doi.org/10.1126/science.1192321,https://doi.org/10.1126/science.1192321,5808,6135,7.240918540779273e-12,1.0
+Ocean water,aomi:https://doi.org/10.12681/mms.24899,https://doi.org/10.12681/mms.24899,24,24,7.436266351370687e-12,1.0
 Ocean water,aomi:https://doi.org/10.1371/journal.pone.0080020,https://doi.org/10.1371/journal.pone.0080020,235,235,8.4995282914658e-12,1.0
 Ocean water,aomi:https://doi.org/10.1371/journal.pone.0080466,aomi:https://doi.org/10.1371/journal.pone.0111913,182,170,0.7900827885195422,3.03562601582927
 Ocean water,aomi:https://doi.org/10.1371/journal.pone.0080466,https://doi.org/10.1371/journal.pone.0080466,182,171,0.3402683993894493,1.0
@@ -56,7 +54,7 @@ Ocean water,aomi:https://doi.org/10.1371/journal.pone.0111913,https://doi.org/10
 Ocean water,aomi:https://doi.org/10.1371/journal.pone.0111913,https://doi.org/10.1371/journal.pone.0080466,170,171,0.7900827885265839,0.30132133477207484
 Ocean water,aomi:https://doi.org/10.1371/journal.pone.0111913,https://doi.org/10.1371/journal.pone.0111913,681,680,8.406788503025155e-12,0.16000540102619498
 Ocean water,aomi:https://doi.org/10.1371/journal.pone.0121762,https://doi.org/10.1371/journal.pone.0121762,39,39,8.090548445070414e-12,1.0
-Ocean water,aomi:https://doi.org/10.2989/1814232X.2018.1492969,https://doi.org/10.2989/1814232X.2018.1492969,11,11,0.004126421142819442,0.9981818199966942
+Ocean water,aomi:https://doi.org/10.2989/1814232x.2018.1492969,https://doi.org/10.2989/1814232x.2018.1492969,11,11,0.004126421142819442,0.9981818199966942
 Ocean water,aomi:https://doi.org/10.3389/fenvs.2020.582217,https://doi.org/10.3389/fenvs.2020.582217,36,36,7.142110568163915e-12,1.0
 Ocean water,aomi:https://doi.org/10.3389/fmars.2021.626026,https://doi.org/10.1088/1748-9326/abbb4f,47,45,0.004473949841767319,0.10969235740734701
 Ocean water,aomi:https://doi.org/10.3389/fmars.2021.626026,https://doi.org/10.3389/fmars.2021.626026,40,40,0.9214462699406356,0.08037025614086438

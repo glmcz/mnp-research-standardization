@@ -371,3 +371,73 @@ def test_every_dataset_shares_a_place_with_another_study(records) -> None:
     p = v.colocated(records, km=50, days=None, same_method=False)
     seen = set(records.loc[p.i, "dataset"]) | set(records.loc[p.j, "dataset"])
     assert set(records.dataset) - seen == {"mpsed", "pangaea_weser"}
+
+
+def test_a_doi_is_one_study_however_a_database_writes_it(records) -> None:
+    # AOMI writes one paper's DOI bare in some rows and as a link in others; split, the paper
+    # looked like two studies holding the same samples
+    with open(table.AOMI, newline="", encoding="utf-8-sig") as f:
+        ids = {r["D01_0001"]: r["D01_0016"].strip() for r in csv.DictReader(f)}
+    forms = [k for k, d in ids.items() if d.lower().endswith("10.1088/1748-9326/abbb4f")]
+    assert len({ids[k] for k in forms}) > 1
+    a = records[records.dataset == "aomi"].set_index("record_id")
+    assert set(a.loc[["aomi:" + k for k in forms], "study"]) == {
+        "aomi:https://doi.org/10.1088/1748-9326/abbb4f"
+    }
+    linked = records.study.dropna().str.extract(r"(https://doi\.org/.*)$", expand=False).dropna()
+    assert (linked == linked.str.lower()).all()
+
+
+def test_the_same_paper_in_two_databases_is_never_compared_with_itself() -> None:
+    import report
+
+    base = {"setting": "Ocean water", "date": "2020-01-01", "year": 2020.0, "method": "net",
+            "unit": "pieces/m3", "size_min_um": 300.0, "size_max_um": 5000.0,
+            "lat": 10.0}  # fmt: skip
+    t = pd.DataFrame(
+        [
+            dict(base, dataset="ncei", study="https://doi.org/10.1/x", lon=10.0, value=1.0),
+            dict(base, dataset="aomi", study="aomi:https://doi.org/10.1/x", lon=10.01, value=3.0),
+            dict(base, dataset="aomi", study="aomi:https://doi.org/10.1/y", lon=10.02, value=2.0),
+        ]
+    )
+    out = report.across_datasets(t, 50, 365, v.duplicates(t))
+    assert out["pairs"] == 1 and out["excluded_same_paper"] == 1
+
+
+def test_geoplasticobr_arrives_without_its_biota_and_with_one_doi_per_study(records) -> None:
+    with open(table.GEOPLASTICO, newline="", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    abiotic = [r for r in rows if r["category_type"] == "abiotico"]
+    g = records[records.dataset == "geoplasticobr"]
+    # a mussel's count is a body burden, not a concentration in the environment
+    assert len(g) == len(abiotic) < len(rows)
+    # no row gives a sampling date or a size window; its year column is the paper's
+    assert g.date.isna().all() and g.year.isna().all() and g.size_min_um.isna().all()
+    assert g["flags"].str.contains("sampling_date_unreported").all()
+    assert (g.unit == "pieces/m3").sum() == sum(r["unidade"] == "particles_m3" for r in abiotic)
+    # the DOI column was filled down: the Amazon study's rows count up from its own DOI into
+    # other papers' (...119708 is on steel corrosion), so the study keeps the first
+    amazon = [r["id"] for r in abiotic if r["title"].startswith("Large-scale monitoring and risk")]
+    a = g.set_index("record_id").loc[["geoplasticobr:" + i for i in amazon]]
+    assert set(a.study) == {"geoplasticobr:https://doi.org/10.1016/j.watres.2023.119707"}
+    assert a["flags"].str.contains("doi_filled_down").sum() == len(amazon) - 1
+
+
+def test_the_committed_outputs_match_the_table_they_came_from(records) -> None:
+    # 2026-10-28: survey_p7.json was left stale after NET_DEPTH changed Reisser's values, because
+    # report.py was rerun and p7.py was not. Any change to the table must rerun both.
+    import p7
+
+    import report
+
+    want = json.loads((ROOT / "out/tables/survey_p7.json").read_text())["P7c"]["periods"]
+    got = v.pooled_periods(p7.water(records)).round(6).to_dict(orient="records")
+    assert got == want
+    co = json.loads((ROOT / "out/tables/survey_colocated.json").read_text())
+    assert co["records"] == {k: int(n) for k, n in records.groupby("dataset").size().items()}
+    water = records[records.setting == "Ocean water"]
+    now = report.across_datasets(water, 50, 365, v.duplicates(records))
+    assert {k: now[k] for k in ("pairs", "compared", "median_fold")} == {
+        k: co["across_datasets"][k] for k in ("pairs", "compared", "median_fold")
+    }

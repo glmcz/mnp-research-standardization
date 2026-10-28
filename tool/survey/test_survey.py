@@ -116,7 +116,22 @@ def test_reissers_manta_tows_use_the_net_depth_reisser_states(records) -> None:
 
 def _toy(rows):
     cols = ["study", "setting", "date", "lat", "lon", "value", "method", "year"]
-    return pd.DataFrame(rows, columns=cols)
+    return pd.DataFrame(rows, columns=cols).assign(unit="pieces/m3")
+
+
+def test_records_in_different_units_never_pair() -> None:
+    # A pair at one place only compares if the two values count the same thing: plastic pieces
+    # per m3 and unconfirmed microparticles per m3 do not, however close they lie.
+    rows = [
+        ("A", "w", "2020-01-01", 10.0, 10.0, 1.0, "net", 2020),
+        ("B", "w", "2020-01-01", 10.0, 10.001, 2.0, "net", 2020),
+    ]
+    t = _toy(rows)
+    assert len(v.colocated(t, km=50, days=None, same_method=False)) == 1
+    t["unit"] = ["pieces/m3", "microparticles/m3"]
+    assert v.colocated(t, km=50, days=None, same_method=False).empty
+    t["unit"] = ["pieces/m3", None]
+    assert v.colocated(t, km=50, days=None, same_method=False).empty
 
 
 def test_duplicates_needs_the_same_day_and_another_study() -> None:
@@ -211,14 +226,10 @@ def test_the_found_pangaea_datasets_arrive_whole_with_their_own_window(records) 
     lower = w.groupby("dataset").size_min_um.first()
     # the windows the datasets' own methods state: 300 um meshes, a 10 um counting limit
     assert lower["pangaea_941076"] == 300 and lower["pangaea_990052"] == 10
-    beach = records[records.dataset == "pangaea_882220"]
-    assert beach["flags"].str.contains("window_unreported").all()
-    # the reviewer's convention (2026-10-10, [32:03]): a stated lower limit implies 5 mm above;
-    # with no lower limit stated there is no window to complete
+    # the reviewer's convention (2026-10-10, [32:03]): a stated lower limit implies 5 mm above
     found = records[records["flags"].str.contains("found_by_search_agent", na=False)]
     upper = found.groupby("dataset").size_max_um.agg(lambda s: set(s.dropna()))
     assert upper["pangaea_990052"] == {5000.0} and upper["pangaea_941076"] == {5000.0}
-    assert upper["pangaea_882220"] == set()
     conv = found[found.size_max_um.notna()]
     assert conv["flags"].str.contains("upper_by_convention").all()
 
@@ -355,24 +366,8 @@ def test_the_atlas_holds_noaas_own_tows_and_isobes_samples(records) -> None:
 def test_every_dataset_shares_a_place_with_another_study(records) -> None:
     # Martin, 2026-10-26: a dataset whose records share no place with any other study compares
     # nothing. MP-SED places a record by water body, not coordinates; the Weser fractions compare
-    # two size windows at the same stations within one study.
+    # two size windows at the same stations within one study. A shared place counts only in a
+    # shared unit (2026-10-28).
     p = v.colocated(records, km=50, days=None, same_method=False)
     seen = set(records.loc[p.i, "dataset"]) | set(records.loc[p.j, "dataset"])
     assert set(records.dataset) - seen == {"mpsed", "pangaea_weser"}
-
-
-def test_sf_bay_counts_are_microparticles_and_never_called_plastic(records) -> None:
-    sheets = pd.read_excel(table.SFBAY, sheet_name=["manta", "sed"])
-    s = records[records.dataset == "sfbay"]
-    # field and laboratory blanks are quality control, not samples of the bay
-    grabs = {k: d[d.filter(like="SampleType").iloc[:, 0] == "Grab"] for k, d in sheets.items()}
-    assert len(s) == len(grabs["manta"]) + len(grabs["sed"]) and s.record_id.is_unique
-    water = s[s.setting == "Ocean water"].reset_index(drop=True)
-    manta = grabs["manta"]
-    want = manta["Count"] / (manta["Volume.L"] / 1000)
-    assert np.allclose(water.value.to_numpy(), want.to_numpy(), equal_nan=True)
-    # most particles were never characterised, so the unit says microparticles, not plastic
-    assert (
-        water.unit.eq("microparticles/m3").all()
-        and s["flags"].str.contains("not_all_plastic").all()
-    )

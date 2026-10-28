@@ -7,9 +7,10 @@ found) are pinned here. Air is not a survey matrix: an atmospheric compilation o
 study was read on 2026-10-23 and removed on 2026-10-24. On 2026-10-26 the Japanese ministry's
 atlas (AOMI) replaced Isobe et al. 2021, 93 % of whose samples it holds, and two local datasets
 whose records share no place with any other study left (Oregon rivers, California drinking
-water). A field the source does not give stays null and is never filled. One value is not as the
-database has it: where a database divides a tow's count by a net depth the paper contradicts, the
-paper's depth is used (NET_DEPTH, flagged);
+water); on 2026-10-28 two more left whose shared places hold no shared unit. A field the source
+does not give stays null and is never filled. One value is not as the database has it: where a
+database divides a tow's count by a net depth the paper contradicts, the paper's depth is used
+(NET_DEPTH, flagged);
 `flags` says why a field is what it is (NCEI's 5 mm upper bound is the database's rule, MP-SED's
 lower limit 99999 means unreported).
 
@@ -53,12 +54,10 @@ KIESSLING = DISCOVERED / "10.5281_zenodo.4600790" / "scout_1.xlsx"
 USER = ROOT / "data/raw/datasets_user"
 DURUM = USER / "durum.xlsx"  # Database of Urban RUnoff Microplastics, 2018-2024
 RIVM_TOTAL = USER / "rivm/Output/Data/2026-07-07Particle_concentrations_total.rds"
-SFBAY = USER / "sfbay_microparticledata.xlsx"  # SFEI San Francisco Bay microparticle data
 AOMI = USER / "aomi.csv"  # Atlas of Ocean Microplastics, Japan MOE, open-data layer (2026-10-26)
 PINS |= {
     DURUM: "fb58bf5556284abd52dda126e5dd861e07b3c1ec47d9ffd10260ab48497aad72",
     RIVM_TOTAL: "c85e10a974515d797d1b91d7daead98217d3fe44ebe60d711b86db119c8a23bb",
-    SFBAY: "8fc7c636413e8030d9648d295c3263fe3dbf30a04c64c765e267cb71611d2684",
     AOMI: "7aac3317b484c7db8bf637154a720d1453492896e1b9a5414862ae9651969d0d",
 }
 PINS[KIESSLING] = "5dea40db7cd2f90bce7dff97cbf26c647893ba4a0f2eb0bccb22ee1e12c1450a"
@@ -79,16 +78,12 @@ PANGAEA_FOUND = {
         "unit": "pieces/m3",
         "sha": "05fa0268ca424653f6c918a12c2c84e199a3e422d6918046710255912a19bad6",
     },
-    882220: {
-        "setting": "Beach",
-        "method": "core",
-        "conc": "Microplastic [#/l]",
-        "unit": "pieces/l sediment",
-        "sha": "14a6e5c9d9d6cf9d67105eb6134320d7ea2e4949f8a697c0e5b75f2c8f15fa0f",
-    },
 }
 # Left out on 2026-10-26: PANGAEA 941107 (subsurface pump) and 928578 (sediment cores) are single
 # cruises whose records share no place with any other study, so they compare nothing.
+# Left out on 2026-10-28, once a place had to hold one unit too: PANGAEA 882220 (beach
+# sediment per litre) and SFEI's San Francisco Bay (microparticles, plastic or not) share a
+# place with other studies only in units no other study counts in.
 # Left out, though verified usable: PANGAEA 986752 (Eastern Tropical Pacific) holds one row per
 # particle, and its per-sample abundance differs within one site and month, so no single value per
 # sample can be read without guessing. A lead for its author.
@@ -427,45 +422,6 @@ def rivm() -> pd.DataFrame:
     )  # fmt: skip
 
 
-def sfbay() -> pd.DataFrame:
-    """San Francisco Bay: manta tows per m3 and sediment per gram, as microparticles.
-
-    Of the 44 226 particles in the file, most were never characterised, so a count here is of
-    microparticles, plastic or not; its unit says so, and the unit guard keeps it apart.
-    """
-    x = pd.read_excel(SFBAY, sheet_name=["manta", "sed"])
-    parts = []
-    for sheet, setting, unit, per in (
-        ("manta", "Ocean water", "microparticles/m3", "Volume.L"),
-        ("sed", "Ocean sediment", "microparticles/g", "Mass.g"),
-    ):
-        d = x[sheet]
-        d = d[d.filter(like="SampleType").iloc[:, 0] == "Grab"]  # blanks are quality control
-        twice = d["SampleID"].duplicated(keep=False)  # one manta ID is printed for two rows
-        date = pd.to_datetime(d["SampleDate"], errors="coerce")
-        amount = pd.to_numeric(d[per], errors="coerce") / (1000 if per == "Volume.L" else 1)
-        parts.append(pd.DataFrame({
-            "dataset": "sfbay",
-            "record_id": f"sfbay:{sheet}:" + d["SampleID"].astype(str) + ":" + d.index.astype(str),
-            "study": "sfei_sf_bay_microplastics",
-            "org": "SFEI",
-            "setting": setting,
-            "method": d.get("CollectionDeviceName"),
-            "region": "San Francisco Bay",
-            "lat": pd.to_numeric(d["ActualLatitude"], errors="coerce"),
-            "lon": pd.to_numeric(d["ActualLongitude"], errors="coerce"),
-            "date": date.dt.date.astype(str).where(date.notna()),
-            "year": date.dt.year.astype(float),
-            "size_min_um": np.nan,
-            "size_max_um": np.nan,
-            "unit": unit,
-            "value": pd.to_numeric(d["Count"], errors="coerce") / amount,
-            "flags": "provided_by_martin;not_all_plastic;window_unreported"
-            + np.where(twice, ";sample_id_printed_twice", ""),
-        }))  # fmt: skip
-    return pd.concat(parts, ignore_index=True)
-
-
 def aomi() -> pd.DataFrame:
     """AOMI, the Japanese environment ministry's atlas: surface tows from many contributors,
     NOAA's among them. Particles per m3 under 5 mm; the net's mesh is the lower limit.
@@ -518,7 +474,7 @@ def build() -> pd.DataFrame:
     ext.check_pins()
     check_pins()
     parts = [ncei(), mpsed(), soil(), weser(), emodnet(), pangaea_found(), aomi(),
-             kiessling2021(), durum(), rivm(), sfbay()]  # fmt: skip
+             kiessling2021(), durum(), rivm()]  # fmt: skip
     t = pd.concat(parts, ignore_index=True)
     return paper_depth(t).loc[:, list(COLUMNS)]
 

@@ -156,9 +156,9 @@ def colocated(
     same_study: bool = False,
 ) -> pd.DataFrame:
     """Record pairs from different studies (or one, with `same_study`) within `km` and `days`,
-    one setting, both positive."""
+    one setting, one unit, both positive. A record with no unit pairs with nothing."""
     out = []
-    for setting, g in t[t.lat.notna()].groupby("setting"):
+    for (setting, _unit), g in t[t.lat.notna()].groupby(["setting", "unit"]):
         p = _pairs_within(g, km, same_study)
         if p.empty:
             continue

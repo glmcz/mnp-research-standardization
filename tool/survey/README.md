@@ -19,8 +19,7 @@ uv run --with openpyxl --with pyreadr python -m pytest -q -p no:cacheprovider to
   - Five PANGAEA sets the search agent (`tool/discover/`) verified (`PANGAEA_FOUND`): each pinned
     by sha256 with its own setting, method, concentration column and lower size limit.
 - Martin's datasets, fetched on 2026-10-24 and 2026-10-26 (`docs/2026-10-24-dataset-reference-list.md`,
-  `fetch_user.py`): DURUM stormwater, RIVM's Dutch surface waters, SFEI's San Francisco Bay (counts
-  are microparticles; blanks left out), and AOMI, the Japanese environment ministry's atlas of
+  `fetch_user.py`): DURUM stormwater, RIVM's Dutch surface waters, and AOMI, the Japanese environment ministry's atlas of
   ocean-surface tows (particles/m³ under 5 mm, the mesh as the lower limit). AOMI holds 93 % of
   Isobe et al. 2021's samples, so it replaced that compilation, and about three in four of NOAA's
   ocean-water records, which the duplicate check finds before any comparison.
@@ -29,6 +28,12 @@ uv run --with openpyxl --with pyreadr python -m pytest -q -p no:cacheprovider to
   country, no place) and two single-cruise PANGAEA sets (941107, 928578) left the table. Two exceptions
   by design: MP-SED places by water body, and the Weser fractions compare two windows at the same
   stations. `test_every_dataset_shares_a_place_with_another_study` holds the rule.
+  - Since 2026-10-28 a shared place counts only in a shared unit: `colocated` pairs records of one
+    setting and one unit, and a record with no unit pairs with nothing. Two more sets left:
+    SFEI's San Francisco Bay (microparticles, plastic or not, per m³ and per g) and PANGAEA
+    882220 (beach sediment per litre) met other studies only in units no other study counts in.
+    No headline moved: NCEI's own comparisons and the 365-day cross-database ones never mixed
+    units.
 - EMODnet's pan-European aggregate (2021) is not read: it gives a filtered volume only for 121
   Baltic samples and a tow length for the rest, so a value per m³ would need an assumed net depth.
 - A field a source lacks stays null.

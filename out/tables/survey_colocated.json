@@ -6,12 +6,10 @@
   "kiessling2021": 301,
   "mpsed": 1064,
   "ncei": 18461,
-  "pangaea_882220": 343,
   "pangaea_941076": 34,
   "pangaea_990052": 20,
   "pangaea_weser": 46,
   "rivm": 83,
-  "sfbay": 87,
   "soil": 6197
  },
  "same_method_50km_365d": {
@@ -56,7 +54,7 @@
   "km": 50,
   "days": 365,
   "pairs": 3379,
-  "excluded_held_twice": 65253,
+  "excluded_held_twice": 63245,
   "compared": 3094,
   "refused": 285,
   "median_fold": 3.27,
@@ -129,15 +127,15 @@
  "across_datasets_100km_any_year": {
   "km": 100,
   "days": null,
-  "pairs": 64297,
-  "excluded_held_twice": 259676,
+  "pairs": 63644,
+  "excluded_held_twice": 256327,
   "compared": 49100,
-  "refused": 15197,
+  "refused": 14544,
   "median_fold": 5.62,
   "p90_fold": 100.1,
   "unguarded": {
-   "median_fold": 6.3,
-   "p90_fold": 139.2
+   "median_fold": 6.17,
+   "p90_fold": 127.2
   },
   "by_dataset_pair": [
    {
@@ -208,15 +206,6 @@
     "p90_fold": 363176.9
    },
    {
-    "datasets": "aomi vs sfbay",
-    "decision": "refuse",
-    "reason": "window_unreported",
-    "pairs": 36,
-    "median_years_apart": 8.5,
-    "median_fold": 100.67,
-    "p90_fold": 3362.8
-   },
-   {
     "datasets": "emodnet vs ncei",
     "decision": "caveat",
     "reason": "different_window",
@@ -244,15 +233,6 @@
     "median_years_apart": 8.0,
     "median_fold": 67895.45,
     "p90_fold": 404542.0
-   },
-   {
-    "datasets": "ncei vs sfbay",
-    "decision": "refuse",
-    "reason": "window_unreported",
-    "pairs": 617,
-    "median_years_apart": 2.0,
-    "median_fold": 187.48,
-    "p90_fold": 3065.3
    }
   ]
  },

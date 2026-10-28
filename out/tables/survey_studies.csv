@@ -299,7 +299,6 @@ ncei,https://doi.org/10.3389/fenvs.2022.998513,Ocean sediment,pieces kg-1 d.w.,3
 ncei,https://doi.org/10.3389/fmars.2021.626026,Ocean water,pieces/m3,54,53,0.070264,3.692508,15.541621,333.0,5000.0,33.825085,-140.125242,2015.0,2019.0
 ncei,https://doi.org/10.3389/fmars.2021.699000,Ocean water,pieces/m3,76,76,0.1,0.473572,2.801666,333.0,5000.0,37.872,23.6315,2014.0,2020.0
 ncei,https://doi.org/10.3389/fmars.2022.784937,Ocean water,pieces/m3,71,71,0.031328,0.131303,0.724807,330.0,5000.0,43.2475,8.751844,2018.0,2019.0
-pangaea_882220,10.1594/pangaea.882220,Beach,pieces/l sediment,343,338,16.0,52.0,150.9,,,-33.283,22.612,2016.0,2017.0
 pangaea_941076,10.1594/pangaea.941076,Ocean water,pieces/m3,34,22,0.0053,0.014,0.025,300.0,5000.0,-68.483872,-11.141056,2018.0,2019.0
 pangaea_990052,10.1594/pangaea.990052,Ocean water,pieces/m3,20,20,80.3492,367.376,2321.2629,10.0,5000.0,1.5945,-87.5665,2022.0,2023.0
 pangaea_weser,PANGAEA 937685/938143 (Weser estuary),river water,pieces/m3,46,45,0.054752,23.0,2069.0,255.5,2750.0,,,2018.0,2018.0
@@ -309,8 +308,6 @@ rivm,10.1016/j.watres.2021.116852,river water,pieces/m3,4,4,112486.5,225118.0,32
 rivm,10.1016/j.watres.2022.118790,river water,pieces/m3,5,5,29363.2,77598.0,318754.6,10.0,500.0,51.718636,4.893752,,
 rivm,10.2166/wst.2022.419,river water,pieces/m3,28,28,15549.3,39020.5,74185.0,20.0,500.0,52.730804,5.132828,2019.0,2019.0
 rivm,na,river water,pieces/m3,4,4,3910.5,10815.0,25275.3,20.0,5000.0,51.464428,5.495595,2024.0,2024.0
-sfbay,sfei_sf_bay_microplastics,Ocean sediment,microparticles/g,22,22,0.776464,3.452901,16.359783,,,37.699016,-122.2022,2014.0,2017.0
-sfbay,sfei_sf_bay_microplastics,Ocean water,microparticles/m3,65,65,0.100881,0.634157,4.650054,,,37.793545,-122.40658,2017.0,2018.0
 soil,A Method for the Extraction and Analysis of Microplastics from Tropical Agricultural Soils in Southeastern Brazil,soil,items/kg,4,4,1881.0,2381.25,3462.5,50.0,2000.0,-21.2029,-44.98141,2022.0,2022.0
 soil,A Method to Replace NaCl as a Flotation Solution for Extracting MPs in Soil: A Case Study of the Jiaxing Agricultural Soil from China,soil,items/kg,1,1,6327.0,6327.0,6327.0,30.0,5000.0,30.702205,121.055894,2023.0,2023.0
 soil,A Procedure for Measuring Microplastics using Pressurized Fluid Extraction,soil,items/kg,1,0,,,,30.0,1000.0,-33.84,151.21,,

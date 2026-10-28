@@ -24,8 +24,6 @@ COPY = {
     "Urban_Runoff_MP_Database (2018-2024).xlsx",
     "aomi.csv": "01_marine_ocean/AOMI_Atlas_Ocean_Microplastics/AOMI_Atlas_Ocean_Microplastics.csv",
 }
-# Python's client is refused by this host; a curl download (2026-10-24) is copied in by hand:
-# data.cnra.ca.gov/dataset/78ac95ac-9665-4e53-aea6-ad0762055cce -> sfbay_microparticledata.xlsx
 RIVM = "https://media.githubusercontent.com/media/rivm-syso/MicroplasticsERA_water/main/"
 RIVM_LFS = (
     "Output/Data/2026-07-07Particle_concentrations_total.rds",

@@ -93,6 +93,7 @@
     "studies": 1,
     "median_per_record": 0.003,
     "median_size_min_um": 333.0,
+    "smallest_size_min_um": 333.0,
     "median_per_study": 0.003
    },
    {
@@ -101,6 +102,7 @@
     "studies": 2,
     "median_per_record": 0.00432,
     "median_size_min_um": 335.0,
+    "smallest_size_min_um": 333.0,
     "median_per_study": 0.00216
    },
    {
@@ -109,6 +111,7 @@
     "studies": 1,
     "median_per_record": 0.0027,
     "median_size_min_um": 335.0,
+    "smallest_size_min_um": 335.0,
     "median_per_study": 0.0027
    },
    {
@@ -117,6 +120,7 @@
     "studies": 2,
     "median_per_record": 0.00432,
     "median_size_min_um": 335.0,
+    "smallest_size_min_um": 333.0,
     "median_per_study": 0.00866
    },
    {
@@ -125,6 +129,7 @@
     "studies": 3,
     "median_per_record": 0.00214,
     "median_size_min_um": 335.0,
+    "smallest_size_min_um": 333.0,
     "median_per_study": 0.0036
    },
    {
@@ -133,6 +138,7 @@
     "studies": 5,
     "median_per_record": 0.00216,
     "median_size_min_um": 335.0,
+    "smallest_size_min_um": 330.0,
     "median_per_study": 0.01195
    },
    {
@@ -141,6 +147,7 @@
     "studies": 24,
     "median_per_record": 0.043288,
     "median_size_min_um": 330.0,
+    "smallest_size_min_um": 0.45,
     "median_per_study": 0.215088
    },
    {
@@ -149,6 +156,7 @@
     "studies": 42,
     "median_per_record": 0.132975,
     "median_size_min_um": 330.0,
+    "smallest_size_min_um": 0.45,
     "median_per_study": 0.516194
    },
    {
@@ -157,6 +165,7 @@
     "studies": 17,
     "median_per_record": 0.200429,
     "median_size_min_um": 330.0,
+    "smallest_size_min_um": 8.0,
     "median_per_study": 0.400292
    }
   ],

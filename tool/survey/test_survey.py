@@ -210,7 +210,7 @@ def test_pooled_periods_say_how_small_a_particle_was_counted() -> None:
     rows = [("A", "w", None, 0, 0, 1.0, "net", 2001)] * 2
     rows += [("B", "w", None, 0, 0, 2.0, "pump", 2002)]
     p = v.pooled_periods(_toy(rows).assign(size_min_um=[333.0, 333.0, 0.45])).iloc[0]
-    assert p.median_size_min_um == 333.0
+    assert p.median_size_min_um == 333.0 and p.smallest_size_min_um == 0.45
 
 
 def test_completeness_reports_what_a_dataset_never_gives(records) -> None:

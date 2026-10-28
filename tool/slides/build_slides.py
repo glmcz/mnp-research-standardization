@@ -1027,7 +1027,7 @@ DS_SEARCH = "out/tables/dataset_search.json"
 #: the pangaea_<id> datasets, shown as one row.
 SV_NAMES = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser",
             "emodnet": "emodnet", "kiessling2021": "kiessling", "durum": "durum", "rivm": "rivm",
-            "sfbay": "sfbay", "aomi": "aomi"}  # fmt: skip
+            "aomi": "aomi", "geoplasticobr": "geoplastico"}  # fmt: skip
 #: The scout agent's finds still in the table; its Isobe compilation gave way to AOMI.
 SCOUT_JOINED = ("kiessling2021",)
 DS_SCOUT = "out/tables/dataset_scout_verified.csv"
@@ -1070,11 +1070,10 @@ def survey_values(V: Values, ref: str) -> None:
     V.int("sv.n.user", sum(k in recs for k in USER_SETS), SV_COLOC + ": the reference list's")
     V.pct("sv.miss.kiessling.window", miss.loc["kiessling2021", "size_min_um"], 0,
           SV_MISS + ": kiessling2021")  # fmt: skip
-    V.int(
-        "sv.found_nolower",
-        int((miss.loc[found, "size_min_um"] == 1).sum()),
-        SV_MISS + ": pangaea_<id> with no lower limit at all",
-    )
+    V.pct("sv.miss.geo.date", miss.loc["geoplasticobr", "date"], 0, SV_MISS + ": geoplasticobr")
+    geo = coloc["flag_counts"]["geoplasticobr"]
+    V.int("sv.geo.filled", geo["doi_filled_down"], SV_COLOC + ": flag_counts, doi_filled_down")
+    V.int("sv.geo.repeats", geo["repeats_row"], SV_COLOC + ": flag_counts, repeats_row")
     V.pct("sv.miss.mpsed.lat", miss.loc["mpsed", "lat"], 0, SV_MISS + ": mpsed, lat")
     V.pct("sv.miss.mpsed.year", miss.loc["mpsed", "year"], 0, SV_MISS + ": mpsed, year")
     V.pct("sv.miss.soil.method", miss.loc["soil", "method"], 0, SV_MISS + ": soil, method")
@@ -1134,7 +1133,11 @@ def survey_values(V: Values, ref: str) -> None:
     same, wider = groups[("aomi vs ncei", "allow")], groups[("aomi vs ncei", "caveat")]
     V.int("sv.x.km", x["km"], src)
     V.int("sv.x.days", x["days"], src)
-    V.int("sv.x.held", x["excluded_held_twice"], src + ": pairs of studies holding one sample")
+    V.int(
+        "sv.x.held",
+        x["excluded_held_twice"] + x["excluded_same_paper"],
+        src + ": pairs of one paper, or one sample, held by both databases",
+    )
     V.int("sv.x.compared", same["pairs"], src + ", AOMI and NCEI, same window")
     V.float("sv.x.median", same["median_fold"], 1, src + ", AOMI and NCEI, same window")
     V.float("sv.x.p90", same["p90_fold"], 0, src + ", AOMI and NCEI, same window")
@@ -1169,7 +1172,7 @@ EXTRACTIONS = "data/interim/extractions.jsonl"
 SV_STUDIES = "out/tables/survey_studies.csv"
 WIN_OCEAN = {"ncei": "ncei", "emodnet": "emodnet"}  # every other ocean-water dataset was found
 #: Datasets Martin fetched from his reference list (tool/survey/fetch_user.py).
-USER_SETS = ("durum", "rivm", "sfbay", "aomi")
+USER_SETS = ("durum", "rivm", "aomi", "geoplasticobr")
 #: The window plot's panels: name, title, the settings and unit it draws.
 WIN_PANELS = (
     ("win_ocean", "ocean water, pieces per m³", ("Ocean water",), "pieces/m3"),

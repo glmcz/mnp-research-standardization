@@ -702,12 +702,12 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
           <tr><td>Soil compilation, Wu et al.</td><td>{{sv.n.soil}}</td><td>a sampling method, for {{sv.miss.soil.method}}; a year for {{sv.miss.soil.year}}</td></tr>
           <tr><td>Weser estuary, PANGAEA</td><td>{{sv.n.weser}}</td><td>one size window: two fractions at the same stations</td></tr>
           <tr><td>EMODnet trawls, Baltic</td><td>{{sv.n.emodnet}}</td><td>a mesh size, for {{sv.miss.emodnet.mesh}}</td></tr>
-          <tr class="found"><td>PANGAEA sets the catalogue agent found</td><td>{{sv.n.found}}</td><td>an upper size limit: five millimetres by convention; a lower one in {{sv.found_nolower}} of {{ds.joined}} sets</td></tr>
+          <tr class="found"><td>PANGAEA sets the catalogue agent found</td><td>{{sv.n.found}}</td><td>an upper size limit: five millimetres by convention</td></tr>
           <tr><td>German rivers, Kiessling et al., the scout</td><td>{{sv.n.kiessling}}</td><td>a size window, for {{sv.miss.kiessling.window}}; mesoplastics counted with micro</td></tr>
           <tr class="found"><td>Stormwater, DURUM</td><td>{{sv.n.durum}}</td><td>a single sampling date, for {{sv.miss.durum.date}}</td></tr>
           <tr><td>Dutch rivers, RIVM</td><td>{{sv.n.rivm}}</td><td>a date, for {{sv.miss.rivm.date}}, some printed without their century</td></tr>
-          <tr><td>San Francisco Bay, SFEI</td><td>{{sv.n.sfbay}}</td><td>which particles are plastic: most were never characterised</td></tr>
           <tr><td>AOMI atlas, Japan’s environment ministry</td><td>{{sv.n.aomi}}</td><td>a mesh, for {{sv.miss.aomi.mesh}}; at least {{sv.dup.aomi_records}} samples held by another database too</td></tr>
+          <tr><td>Brazil, GeoPlasticoBR</td><td>{{sv.n.geoplastico}}</td><td>a sampling date, for {{sv.miss.geo.date}}; its own DOI: filled down into other papers’ for {{sv.geo.filled}} rows</td></tr>
         </tbody>
       </table>
     </div>
@@ -720,7 +720,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </div>
   <p class="src">out/tables/survey_colocated.json · out/tables/survey_completeness.csv · out/tables/dataset_search.json · out/tables/dataset_scout_verified.csv · .claude/agents/mnp-dataset-scout.md</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>NOAA’s database is one source, so two agents looked for more and a reference list added the Japanese ministry’s atlas; a dataset stays only if its records share a place with another study. Code opened every file the agents named and checked each claim against it; most failed claims were the agent reporting a web page, not the file. Another {{ds.partial}} catalogue finds hold a concentration without a place or a date, and {{ds.not_verifiable}} had no public file to open. On the joined table a model only picks an operation; code computes it, and a guard allows, caveats or refuses the comparison.</p>
+    <p>NOAA’s database is one source, so two agents looked for more and a reference list added the Japanese ministry’s atlas; a dataset stays only if its records share a place with another study. Code opened every file the agents named and checked each claim against it; most failed claims were the agent reporting a web page, not the file. Another {{ds.partial}} catalogue finds hold a concentration without a place or a date, and {{ds.not_verifiable}} had no public file to open. Brazil’s compilation shows how a database drifts from its papers: its DOI column was filled down, so {{sv.geo.filled}} rows name someone else’s paper, and {{sv.geo.repeats}} rows were entered twice.</p>
   </aside>
 </div>
 </section>
@@ -784,7 +784,7 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </div>
   <p class="src">out/tables/survey_colocated.json · tool/survey/validators.py</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. One study against itself sets the floor: the ocean is patchy, so even one cruise’s own tows differ by about ×{{sv.co.within}}; two studies add the rest, and with any method allowed it is ×{{sv.co.any_median}}, one pair in ten ×{{sv.co.any_p90}}. Across two databases, {{sv.x.held}} record pairs are dropped first because AOMI and NOAA hold the same samples, and the window guard refuses {{sv.x.refused}} more; AOMI against NOAA with one window is then ×{{sv.x.median}} apart, as far as two studies inside NOAA.</p>
+    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. One study against itself sets the floor: the ocean is patchy, so even one cruise’s own tows differ by about ×{{sv.co.within}}; two studies add the rest, and with any method allowed it is ×{{sv.co.any_median}}, one pair in ten ×{{sv.co.any_p90}}. Across two databases, {{sv.x.held}} record pairs are dropped first because AOMI and NOAA hold the same paper or the same samples, and the window guard refuses {{sv.x.refused}} more; AOMI against NOAA with one window is then ×{{sv.x.median}} apart, as far as two studies inside NOAA.</p>
   </aside>
 </div>
 </section>

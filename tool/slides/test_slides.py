@@ -688,8 +688,8 @@ def expected_findings(get=show) -> dict:
     co = json.loads(get("out/tables/survey_colocated.json"))
     names = {"ncei": "ncei", "mpsed": "mpsed", "soil": "soil", "pangaea_weser": "weser",
              "emodnet": "emodnet", "kiessling2021": "kiessling", "durum": "durum",
-             "rivm": "rivm", "sfbay": "sfbay", "aomi": "aomi"}  # fmt: skip
-    user = ("durum", "rivm", "sfbay", "aomi")
+             "rivm": "rivm", "aomi": "aomi", "geoplasticobr": "geoplastico"}  # fmt: skip
+    user = ("durum", "rivm", "aomi", "geoplasticobr")
     scout = ("kiessling2021",)
     found = [k for k in co["records"] if k not in names]
     assert all(k.startswith("pangaea_") and k[8:].isdigit() for k in found), found
@@ -725,8 +725,8 @@ def expected_findings(get=show) -> dict:
     E["sv.miss.durum.date"] = float(miss["durum"]["date"])
     E["sv.miss.rivm.date"] = float(miss["rivm"]["date"])
     E["sv.miss.aomi.mesh"] = float(miss["aomi"]["size_min_um"])
+    E["sv.miss.geo.date"] = float(miss["geoplasticobr"]["date"])
     E["sv.n.user"] = sum(k in co["records"] for k in user)
-    E["sv.found_nolower"] = sum(float(miss[k]["size_min_um"]) == 1.0 for k in found)
     E["sv.miss.mpsed.lat"] = float(miss["mpsed"]["lat"])
     E["sv.miss.mpsed.year"] = float(miss["mpsed"]["year"])
     E["sv.miss.soil.method"] = float(miss["soil"]["method"])
@@ -772,7 +772,10 @@ def expected_findings(get=show) -> dict:
     kept = sum(g["pairs"] for (_, dec), g in groups.items() if dec != "refuse")
     assert kept == x["compared"] and kept + x["refused"] == x["pairs"]
     same, wider = groups[("aomi vs ncei", "allow")], groups[("aomi vs ncei", "caveat")]
-    E["sv.x.km"], E["sv.x.days"], E["sv.x.held"] = x["km"], x["days"], x["excluded_held_twice"]
+    E["sv.x.km"], E["sv.x.days"] = x["km"], x["days"]
+    E["sv.x.held"] = x["excluded_held_twice"] + x["excluded_same_paper"]
+    geo = co["flag_counts"]["geoplasticobr"]
+    E["sv.geo.filled"], E["sv.geo.repeats"] = geo["doi_filled_down"], geo["repeats_row"]
     E["sv.x.compared"], E["sv.x.cav"] = same["pairs"], wider["pairs"]
     E["sv.x.refused"] = x["refused"]
     E["sv.x.median"], E["sv.x.p90"] = same["median_fold"], same["p90_fold"]

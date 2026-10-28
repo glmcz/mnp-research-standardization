@@ -2055,13 +2055,19 @@ def chart_arch(values: dict, charts: dict) -> str:
 
 
 def chart_pol(values: dict, charts: dict) -> str:
-    """Slide 17: each polymer's 10th to 90th percentile of zeta, and its median."""
+    """Slide 17: each polymer's 10th to 90th percentile of zeta, and its median; a band marks
+    where the negative medians overlap."""
     c = charts["pol"]
-    W, x0, x1, top, row = 900, 120, 800, 16, 34
+    W, x0, x1, top, row = 900, 120, 800, 34, 34
     H = top + row * len(c["rows"]) + 44
     sx = lambda v: x0 + (v - c["x"][0]) / (c["x"][1] - c["x"][0]) * (x1 - x0)  # noqa: E731
     y0 = top + row * len(c["rows"])
-    body = []
+    lo, hi = sx(values["p2.neg_lo"]["v"]), sx(values["p2.neg_hi"]["v"])
+    body = [
+        rect(lo, top, hi - lo, y0 - top, "halo"),
+        T((lo + hi) / 2, top - 10, "{{p2.neg_n}} of {{p2.named_n}} medians fall here",
+          values, "val-s", "middle"),
+    ]  # fmt: skip
     for key in _ticks(values, "pol", "x"):
         x = sx(values[key]["v"])
         cls = "ax" if values[key]["v"] == 0 else "grid"

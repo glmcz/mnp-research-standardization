@@ -724,15 +724,15 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">11</span><span>Act III · microplastics: what the datasets count</span></p>
-    <h2>Ocean microplastic seems to rise ×{{sv.pooled}}, but different studies are being compared.</h2>
+    <h2>Ocean microplastic looks {{sv.pooled}} times higher now, but different studies are being compared.</h2>
     <p class="msg">No study sampled in both {{sv.y_from}}–{{sv.y_from_end}} and {{sv.y_to}}–{{sv.y_to_end}}: {{sv.studies_from}} open-ocean surveys then, {{sv.studies_to}} others now, from the Mediterranean to India. All count microplastics, typically from {{sv.min_from}} µm then and {{sv.min_to}} µm now. No nanoplastics.</p>
   </header>
   <div class="body">
     <figure class="fig" style="margin:0">{{svg:rise}}</figure>
     <div class="tests">
       <div class="stat"><span class="label">Inside one series · pre-registered, {{sv.p7a}}</span><span class="big">ρ {{sv.law_rho}}</span><span class="small">Law et al., {{sv.law_tows}} tows from {{sv.law_y0}} to {{sv.law_y1}}: flat, as the paper itself found</span></div>
-      <div class="stat"><span class="label">Predicted: no series rises tenfold · {{sv.p7b}}</span><span class="big">×{{sv.goldstein}}</span><span class="small">the North Pacific gyre, where a rise is published; another Pacific series ×{{sv.law14}}</span></div>
-      <div class="stat"><span class="label">…partly by moving · chosen after the results</span><span class="big">×{{sv.law14_zone}}</span><span class="small">that series inside its own accumulation zone, where its share of tows grew from {{sv.zone_first}} to {{sv.zone_last}}</span></div>
+      <div class="stat"><span class="label">Predicted: no series rises tenfold · {{sv.p7b}}</span><span class="big">{{sv.goldstein}}×</span><span class="small">the rise in the North Pacific gyre, where one is published; another Pacific series rose {{sv.law14}}×</span></div>
+      <div class="stat"><span class="label">…partly by moving · chosen after the results</span><span class="big">{{sv.law14_zone}}×</span><span class="small">that series’ rise inside its own accumulation zone, where its share of tows grew from {{sv.zone_first}} to {{sv.zone_last}}</span></div>
     </div>
   </div>
   <p class="src">out/tables/survey_p7.json · docs/PREREG_2026-10.md, P7</p>
@@ -746,21 +746,21 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">12</span><span>Act III · microplastics: what the datasets count</span></p>
-    <h2>Two studies of the same sea differ ×{{sv.co.median}}. The sea itself varies only ×{{sv.co.within}}.</h2>
-    <p class="msg">Records within {{sv.co.km}} km and {{sv.co.days}} days, same sampling method. The sea itself is patchy; the study adds the rest. One pair of studies in ten differs by ×{{sv.co.p90}} or more.</p>
+    <h2>At the same place, one study typically reports {{sv.co.median}} times what another does.</h2>
+    <p class="msg">Records within {{sv.co.km}} km and {{sv.co.days}} days, same sampling method. Even one study’s own tows differ {{sv.co.within}} times, because the sea is patchy; a second study adds the rest. One pair of studies in ten differs {{sv.co.p90}} times or more.</p>
   </header>
   <div class="body">
     <div class="tests four">
-      <div class="stat"><span class="label">Same method</span><span class="big">×{{sv.co.median}}</span><span class="small">{{sv.co.pairs}} record pairs from {{sv.co.studypairs}} pairs of studies</span></div>
-      <div class="stat"><span class="label">One study against itself · the patchiness</span><span class="big">×{{sv.co.within}}</span><span class="small">{{sv.co.within_pairs}} record pairs inside {{sv.co.within_studies}} studies; one in ten ×{{sv.co.within_p90}}</span></div>
-      <div class="stat"><span class="label">Mediterranean, same method</span><span class="big">×{{sv.co.med_median}}</span><span class="small">{{sv.co.med_studypairs}} pairs of studies, the best-sampled sea</span></div>
-      <div class="stat"><span class="label">Two databases, same window · AOMI and NOAA</span><span class="big">×{{sv.x.median}}</span><span class="small">{{sv.x.compared}} record pairs from independent studies within {{sv.x.km}} km and {{sv.x.days}} days; one pair in ten ×{{sv.x.p90}}. {{sv.x.cav}} pairs with different windows: ×{{sv.x.residual}} left after converting</span></div>
+      <div class="stat"><span class="label">Two studies, same method · typical gap</span><span class="big">{{sv.co.median}}×</span><span class="small">{{sv.co.pairs}} record pairs from {{sv.co.studypairs}} pairs of studies</span></div>
+      <div class="stat"><span class="label">One study against itself · the sea’s patchiness</span><span class="big">{{sv.co.within}}×</span><span class="small">{{sv.co.within_pairs}} record pairs inside {{sv.co.within_studies}} studies; one in ten {{sv.co.within_p90}}× or more</span></div>
+      <div class="stat"><span class="label">Mediterranean, same method</span><span class="big">{{sv.co.med_median}}×</span><span class="small">{{sv.co.med_studypairs}} pairs of studies, the best-sampled sea</span></div>
+      <div class="stat"><span class="label">Two databases, same window · AOMI and NOAA</span><span class="big">{{sv.x.median}}×</span><span class="small">{{sv.x.compared}} record pairs from independent studies within {{sv.x.km}} km and {{sv.x.days}} days; one pair in ten {{sv.x.p90}}× or more. {{sv.x.cav}} pairs with different windows: {{sv.x.residual}}× left after converting</span></div>
     </div>
     <p class="lead-in">Before agreement is measured, {{sv.co.excluded}} record pairs are taken out: they are the same samples held under two studies. Left in, they would make the studies look like they agree.</p>
   </div>
   <p class="src">out/tables/survey_colocated.json · tool/survey/validators.py</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>
-    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. One study against itself sets the floor: the ocean is patchy, so even one cruise’s own tows differ by about ×{{sv.co.within}}; two studies add the rest, and with any method allowed it is ×{{sv.co.any_median}}, one pair in ten ×{{sv.co.any_p90}}. Across two databases, {{sv.x.held}} record pairs are dropped first because AOMI and NOAA hold the same paper or the same samples, and the window guard refuses {{sv.x.refused}} more; AOMI against NOAA with one window is then ×{{sv.x.median}} apart, as far as two studies inside NOAA.</p>
+    <p>This is the cross-validation the reviewer asked for: the same place, close in time, the same kind of net. One study against itself sets the floor: the ocean is patchy, so even one cruise’s own tows differ about {{sv.co.within}} times; two studies add the rest, and with any method allowed it is {{sv.co.any_median}} times, one pair in ten {{sv.co.any_p90}} times. Across two databases, {{sv.x.held}} record pairs are dropped first because AOMI and NOAA hold the same paper or the same samples, and the window guard refuses {{sv.x.refused}} more; AOMI against NOAA with one window is then {{sv.x.median}} times apart, as far as two studies inside NOAA.</p>
   </aside>
 </div>
 </section>
@@ -769,8 +769,8 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
 <div class="frame">
   <header>
     <p class="eyebrow"><span class="idx">13</span><span>Act III · microplastics: what the datasets count</span></p>
-    <h2>A finer filter finds ×{{w.ratio}} more particles. The usual conversion expects ×{{w.pred}}.</h2>
-    <p class="msg">Roscher et al. sampled {{w.stations}} stations of the Weser estuary and Jade Bay twice: a pump for {{w.small.lo}}–{{w.small.hi}} µm, a net for {{w.large.lo}}–{{w.large.hi}} µm. The median station holds ×{{w.ratio}} more small particles than large. Converting between windows assumes one slope, α {{w.alpha0}}; this estuary needs α {{w.alpha}}.</p>
+    <h2>Small particles outnumber large ones {{w.ratio}} to one. The usual conversion predicts {{w.pred}} to one.</h2>
+    <p class="msg">Roscher et al. sampled {{w.stations}} stations of the Weser estuary and Jade Bay twice: a pump for {{w.small.lo}}–{{w.small.hi}} µm, a net for {{w.large.lo}}–{{w.large.hi}} µm; the ratio is the median station’s. Converting between size windows assumes one slope, α {{w.alpha0}}; this estuary needs α {{w.alpha}}.</p>
   </header>
   <div class="body">
     <div class="tests">
@@ -879,8 +879,8 @@ h2 { font-size: 2.45em; line-height: 1.04; margin-top: 0.22em; max-width: 27em; 
   </header>
   <div class="body fill">
     <figure class="fig" style="margin:0">{{svg:aging}}</figure>
-    <p class="lead-in">Inside one paper the lab, the instrument and the liquid cancel, even where they are unreported. Between papers, virgin polystyrene alone spreads {{ag.iqr.PS}} mV, ×{{ag.scale}} the aging effect, and the unpaired comparison runs from {{ag.b.lo}} to {{ag.b.hi}} mV.</p>
-    <p class="small">{{ag.pairs}} pairs in {{ag.paired_papers}} papers, {{ag.a.papers}} of them with light or an oxidant: interval {{ag.a.lo}} to {{ag.a.hi}} mV, sign test p {{ag.a.p}}, so no effect is shown. Unpaired: {{ag.b.median}} mV, an interval ×{{ag.b.ratio}} as wide.</p>
+    <p class="lead-in">Inside one paper the lab, the instrument and the liquid cancel, even where they are unreported. Between papers, virgin polystyrene alone spreads {{ag.iqr.PS}} mV, {{ag.scale}} times the aging effect, and the unpaired comparison runs from {{ag.b.lo}} to {{ag.b.hi}} mV.</p>
+    <p class="small">{{ag.pairs}} pairs in {{ag.paired_papers}} papers, {{ag.a.papers}} of them with light or an oxidant: interval {{ag.a.lo}} to {{ag.a.hi}} mV, sign test p {{ag.a.p}}, so no effect is shown. Unpaired: {{ag.b.median}} mV, an interval {{ag.b.ratio}} times as wide.</p>
   </div>
   <p class="src">out/tables/p2_aging_pairs.csv · out/tables/p2_aging.json · docs/PREREG_2026-10.md, P11</p>
   <aside class="notes" aria-label="Speaker notes"><span class="label">Speaker notes</span>

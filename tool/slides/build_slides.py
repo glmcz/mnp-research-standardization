@@ -2433,7 +2433,10 @@ def chart_gaps(values: dict, charts: dict) -> str:
     """Slide 22: how far apart two numbers land, by what differs; charge in mV, counts in folds."""
     W, x0, x1, row = 960, 430, 790, 25
     body, y = [], 22
-    panels = (("gaps_c", "charge, mV apart", False), ("gaps_n", "counts, fold apart", True))
+    panels = (
+        ("gaps_c", "charge, mV apart", False),
+        ("gaps_n", "counts, how many times apart", True),
+    )
     for name, title, log in panels:
         c = charts[name]
         lo, hi = c["x"]
@@ -2454,11 +2457,10 @@ def chart_gaps(values: dict, charts: dict) -> str:
             ]
             if high:
                 body.append(line(sx(v), yy, sx(high), yy, "gap-hi"))
-            unit = " mV" if not log else ""
-            sign = "×" if log else ""
-            text = sign + "{{gap." + key + "}}" + unit + " · {{gap." + key + ".tag}}"
+            unit = "×" if log else " mV"
+            text = "{{gap." + key + "}}" + unit + " · {{gap." + key + ".tag}}"
             if high:
-                text += ", up to " + sign + "{{gap." + key + ".high}}"
+                text += ", up to {{gap." + key + ".high}}" + unit
             body.append(T(x1 + 12, yy + 5, text, values, "val-s"))
         bottom = top + row * len(c["rows"])
         for key in _ticks(values, name, "x"):

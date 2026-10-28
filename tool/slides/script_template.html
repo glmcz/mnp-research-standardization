@@ -444,7 +444,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">11</span><h3>{{title:s11}}</h3><p class="time"><b>{{t.s11}}</b> · ends at {{at.s11}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s11}}</p>
       <div class="say">
-        <p>Pool NOAA’s ocean samples by period, and the median rises <strong>×{{sv.pooled}}</strong> from {{sv.y_from}} to {{sv.y_to}}. <span class="pause">pause</span> It is like asking whether a town grew taller by measuring different people each year.</p>
+        <p>Pool NOAA’s ocean samples by period, and the median rises <strong>{{sv.pooled}} times</strong> from {{sv.y_from}} to {{sv.y_to}}. <span class="pause">pause</span> It is like asking whether a town grew taller by measuring different people each year.</p>
         <p>Look at the bars: {{sv.studies_from}} studies sampled then, {{sv.studies_to}} now, in other seas, with other nets. Not one study is on both sides. All of it is microplastic, from a third of a millimetre up; no nanoplastics.</p>
         <p>So I predicted, before computing it, that inside one long series it is flat. Law and colleagues, {{sv.law_tows}} tows: <strong>flat</strong>, as they published. Two series do rise, one in the North Pacific gyre; part of the other’s rise is where the ship sailed.</p>
       </div>
@@ -466,9 +466,9 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <header><span class="idx">12</span><h3>{{title:s12}}</h3><p class="time"><b>{{t.s12}}</b> · ends at {{at.s12}}</p></header>
       <p class="screen"><span class="k">On screen</span>{{msg:s12}}</p>
       <div class="say">
-        <p>The cross-check a reviewer asked for: two independent studies, the same sea, within a year, the same kind of net. Their values differ by a median <strong>×{{sv.co.median}}</strong>.</p>
-        <p>Is that just the sea? Compare one study with itself: two of its own tows, the same distance apart, differ by <strong>×{{sv.co.within}}</strong>. The sea is patchy; the study adds the rest.</p>
-        <p>Two databases, Japan’s atlas and NOAA, the same window: ×{{sv.x.median}}. But only after code drops {{sv.x.held}} pairs where both databases hold <strong>the same paper</strong>.</p>
+        <p>The cross-check a reviewer asked for: two independent studies, the same sea, within a year, the same kind of net. Typically one reports <strong>{{sv.co.median}} times</strong> what the other does.</p>
+        <p>Is that just the sea? Compare one study with itself: two of its own tows, the same distance apart, differ <strong>{{sv.co.within}} times</strong>. The sea is patchy; the study adds the rest.</p>
+        <p>Two databases, Japan’s atlas and NOAA, the same window: {{sv.x.median}} times. But only after code drops {{sv.x.held}} pairs where both databases hold <strong>the same paper</strong>.</p>
       </div>
       <div class="cue">
         <p><span class="k">Point at</span>the first two numbers, side by side.</p>
@@ -675,7 +675,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <div class="say">
         <p>Each bar is two measurements that differ in one thing, written first.</p>
         <p>The blue bars are laboratories measuring the very same material. A certified reference: plus or minus {{gap.srm}} millivolts. Eight labs, one batch of silica: {{gap.nanovalid}}. Their own report says zeta is <strong>not recommended as a reference</strong>.</p>
-        <p>The grey bars are what we found, in the papers and the datasets. Another batch of the same label: {{gap.case14}}. Another liquid: {{gap.liquid}}. Another size window: <strong>×{{gap.window}}</strong>.</p>
+        <p>The grey bars are what we found, in the papers and the datasets. Another batch of the same label: {{gap.case14}}. Another liquid: {{gap.liquid}}. Another size window: <strong>{{gap.window}} times</strong>.</p>
         <p>The biggest gaps are the things nobody wrote down, so testing laboratories is not enough: the conditions have to be fixed too.</p>
       </div>
       <div class="cue">
@@ -1208,7 +1208,7 @@ footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--ru
       <details><summary>Chemist: Henry’s formula ignores relaxation at high zeta.</summary><p>It does, and a value near the best pair’s size and charge sits in that range. One more reason to report the mobility itself, not only the zeta computed from it.</p></details>
       <details><summary>Chemist: maybe one of the two best-case papers aggregated.</summary><p>Possibly: the measured sizes are {{c14.a.size}} and {{c14.b.size}} nanometres against a nominal {{c14.size_nominal}}. The papers do not give enough to tell, which is the point: the particle has to be identified, not only the liquid.</p></details>
       <details><summary>Chemist: zeta not following the polymer is textbook.</summary><p>Agreed, and that is why it matters for agents: a database cannot use zeta to tell plastics apart, and pooled values mix the plastic with its liquid.</p></details>
-      <details><summary>Monitoring: is ×{{sv.co.median}} between studies more than patchiness?</summary><p>Partly patchiness: one study against itself, the same distance apart, already differs by ×{{sv.co.within}}. The study adds the rest, about ×{{sv.co.median}} against ×{{sv.co.within}}.</p></details>
+      <details><summary>Monitoring: is a {{sv.co.median}}-times gap between studies more than patchiness?</summary><p>Partly patchiness: one study against itself, the same distance apart, already differs {{sv.co.within}} times. The study adds the rest, about {{sv.co.median}} times against {{sv.co.within}}.</p></details>
       <details><summary>Monitoring: did you use compartment-specific size slopes?</summary><p>No. The pre-registered test used the single slope the rescaling literature defaults to. Kooi and colleagues give compartment-specific slopes, steeper in surface water than the default; the river on slide fifteen needs a steeper one too. Not tested.</p></details>
       <details><summary>Monitoring: what does any of this say about nanoplastics?</summary><p>Directly, nothing: every dataset here counts microplastics. The window logic extends downward, and nanoplastics are its extreme case.</p></details>
       <details><summary>Monitoring: have you told NOAA about the shared tows?</summary><p>Not yet. The check shows shared samples; whether each is one survey published twice is for the maintainers. Two questions go first: which field, if any, holds the {{re.d.ncei}} metres behind Reisser’s Manta values, and what it means; and why the same tows under Eriksen are all labelled Neuston nets. Until a record answers, the paper’s {{re.d.paper}} metres stands.</p></details>

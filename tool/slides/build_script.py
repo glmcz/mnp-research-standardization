@@ -27,22 +27,22 @@ _spec.loader.exec_module(bs)
 
 # Seconds on each timed slide, at about a hundred spoken words a minute.
 PLAN = {
-    "s1": 30, "s2": 45, "s3": 55, "s4": 30,
-    "s5": 40, "s6": 55, "s7": 45, "s8": 55, "s9": 40,
-    "s10": 45, "s11": 45, "s12": 65, "s13": 65, "s14": 70,
-    "s15": 40, "s16": 60, "s17": 45, "s18": 50, "s19": 45, "s20": 40, "s21": 40,
-    "s22": 65, "s23": 60, "s24": 70,
+    "s1": 30, "s2": 55, "s3": 55, "s4": 30,
+    "s5": 75, "s6": 45, "s7": 55, "s8": 40,
+    "s9": 45, "s10": 55, "s11": 65, "s12": 65, "s13": 70,
+    "s14": 40, "s15": 60, "s16": 45, "s17": 50, "s18": 45, "s19": 40, "s20": 40,
+    "s21": 65, "s22": 60, "s23": 70,
 }  # fmt: skip
 ACTS = (
     ("I", "why standardise", ("s1", "s2", "s3", "s4")),
-    ("II", "the engineering", ("s5", "s6", "s7", "s8", "s9")),
-    ("III", "microplastics: what the datasets count", ("s10", "s11", "s12", "s13", "s14")),
+    ("II", "the engineering", ("s5", "s6", "s7", "s8")),
+    ("III", "microplastics: what the datasets count", ("s9", "s10", "s11", "s12", "s13")),
     ("IV", "nanoplastics: what the papers measure",
-     ("s15", "s16", "s17", "s18", "s19", "s20", "s21")),
-    ("V", "the way forward", ("s22", "s23", "s24")),
+     ("s14", "s15", "s16", "s17", "s18", "s19", "s20")),
+    ("V", "the way forward", ("s21", "s22", "s23")),
 )  # fmt: skip
 #: Slides kept for questions: a card each, no time.
-BACKUP = tuple(f"s{i}" for i in range(25, 45))
+BACKUP = tuple(f"s{i}" for i in range(24, 45))
 TOTAL = sum(PLAN.values())
 SRC = "tool/slides/build_script.py PLAN"
 

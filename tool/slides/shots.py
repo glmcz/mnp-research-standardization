@@ -50,12 +50,17 @@ def main() -> None:
                 pg.screenshot(path=str(a.out / f"desk-{sid}.png"))
                 box = pg.evaluate(
                     f"""() => {{ const s = document.getElementById('{sid}');
-                    const src = s.querySelector('.src'), body = s.querySelector('.body');
-                    if (!src || !body) return null;
-                    const a = body.getBoundingClientRect(), b = src.getBoundingClientRect();
-                    return [Math.round(a.bottom), Math.round(b.top)]; }}"""
+                    const frame = s.querySelector('.frame');
+                    let low = 0;
+                    for (const e of s.querySelectorAll('.body *')) {{
+                        const r = e.getBoundingClientRect();
+                        if (r.height > 0) low = Math.max(low, r.bottom);
+                    }}
+                    const end = frame.getBoundingClientRect().bottom;
+                    return [Math.round(low), Math.round(end)]; }}"""
                 )
-                print(sid, "body bottom / source top", box)
+                flag = "  OVERFLOW" if box[0] > box[1] else ""
+                print(sid, "content bottom / frame bottom", box, flag)
         b.close()
 
 

@@ -1185,11 +1185,11 @@ WIN_OCEAN = {"ncei": "ncei", "emodnet": "emodnet"}  # every other ocean-water da
 USER_SETS = ("durum", "rivm", "aomi", "geoplasticobr")
 #: The window plot's panels: name, title, the settings and unit it draws.
 WIN_PANELS = (
-    ("win_ocean", "ocean water, pieces per m³", ("Ocean water",), "pieces/m3"),
-    ("win_river", "rivers, pieces per m³", ("river water",), "pieces/m3"),
-    ("win_storm", "stormwater, particles per L", ("stormwater runoff",), "particles/L"),
-    ("win_sed", "sediment, items per kg dry", ("sediment",), "microplastic/kg sediment dry wt."),
-    ("win_soil", "soil, items per kg", ("soil",), "items/kg"),
+    ("win_ocean", "ocean water", ("Ocean water",), "pieces/m3", "pieces per m³"),
+    ("win_river", "rivers", ("river water",), "pieces/m3", "pieces per m³"),
+    ("win_storm", "stormwater", ("stormwater runoff",), "particles/L", "particles per litre"),
+    ("win_sed", "sediment", ("sediment",), "microplastic/kg sediment dry wt.", "items per kg dry"),
+    ("win_soil", "soil", ("soil",), "items/kg", "items per kg"),
 )  # fmt: skip
 
 
@@ -1245,18 +1245,19 @@ def windows_values(V: Values, charts: dict, ref: str) -> None:
     for g in ("ncei", "emodnet", "found"):
         V.int(f"win.{g}.n", int(ocean.g.eq(g).sum()), SV_STUDIES + f": ocean water, {g}")
     panels = {name: s[s.setting.isin(settings) & s.unit.eq(unit)]
-              for name, _, settings, unit in WIN_PANELS}  # fmt: skip
+              for name, _, settings, unit, _ in WIN_PANELS}  # fmt: skip
     for name, d in panels.items():
         V.int(f"win.{name[4:]}.n", len(d), SV_STUDIES + f": {name}")
     both = pd.concat(panels.values())
     xs = _decades(both.size_min_um.min(), both.size_max_um.max())
-    for name, title, _, _ in WIN_PANELS:
+    for name, title, _, _, unit_words in WIN_PANELS:
         d = panels[name]
         ys = _decades(d.p10.min(), d.p90.max())
         _log_ticks(V, name, "x", xs[::2])  # every other decade is labelled
         _log_ticks(V, name, "y", ys[::2])
         charts[name] = {
             "title": title,
+            "unit": unit_words,
             "x": [xs[0], xs[-1]],
             "y": [ys[0], ys[-1]],
             "rects": [(r.size_min_um, r.size_max_um, r.p10, r.p90, r.g) for r in d.itertuples()],
@@ -2480,15 +2481,16 @@ def chart_gaps(values: dict, charts: dict) -> str:
 
 
 def chart_windows(values: dict, charts: dict) -> str:
-    """Slide 12: each study a rectangle, its size window by the span of its concentrations."""
-    W, H, pw, ph, gx, gy = 960, 560, 252, 170, 68, 78
+    """Slide 10: each study a rectangle, its size window by the span of its concentrations; each
+    panel names both axes, and the legend fills the sixth slot."""
+    W, H, L, pw, ph, gx, gy, top0 = 1000, 560, 112, 214, 176, 118, 104, 34
     cls = {"ncei": "win-n", "emodnet": "win-e", "found": "win-p", "user": "win-u", "other": "win-s"}
     order = {"other": 0, "ncei": 0, "emodnet": 1, "user": 2, "found": 3}
     body = []
     for k, (name, *_rest) in enumerate(WIN_PANELS):
         c = charts[name]
-        x0 = 64 + (k % 3) * (pw + gx)
-        top = 30 + (k // 3) * (ph + gy)
+        x0 = L + (k % 3) * (pw + gx)
+        top = top0 + (k // 3) * (ph + gy)
         x1, bottom = x0 + pw, top + ph
         lx = [math.log10(v) for v in c["x"]]
         ly = [math.log10(v) for v in c["y"]]
@@ -2497,23 +2499,30 @@ def chart_windows(values: dict, charts: dict) -> str:
         for key in _ticks(values, name, "x"):
             x = sx(values[key]["v"])
             body += [line(x, top, x, bottom, "grid"),
-                     T(x, bottom + 18, "{{" + key + "}}", values, "tick", "middle")]  # fmt: skip
+                     T(x, bottom + 22, "{{" + key + "}}", values, "tick", "middle")]  # fmt: skip
         for key in _ticks(values, name, "y"):
             y = sy(values[key]["v"])
             body += [line(x0, y, x1, y, "grid"),
-                     T(x0 - 6, y + 5, "{{" + key + "}}", values, "tick", "end")]  # fmt: skip
+                     T(x0 - 8, y + 6, "{{" + key + "}}", values, "tick", "end")]  # fmt: skip
         for a, b, lo, hi, g in sorted(c["rects"], key=lambda r: order[r[4]]):
             y0, y1 = sy(hi), sy(lo)
             body.append(rect(sx(a), y0, sx(b) - sx(a), max(2.0, y1 - y0), cls[g]))
-        body.append(T(x0, top - 10, c["title"], values, "ax-t"))
-    body.append(T(W - 10, H - 30, "x: size window counted, µm · y: concentration", values,
-                  "ax-t", "end"))  # fmt: skip
+        body += [
+            T(x0, top - 12, c["title"], values, "win-t"),
+            T((x0 + x1) / 2, bottom + 48, "particle size counted, µm", values, "ax-t", "middle"),
+            f'<text transform="translate({x0 - 100},{(top + bottom) / 2:.1f}) rotate(-90)" '
+            f'class="ax-t" text-anchor="middle">{html.escape(c["unit"])}</text>',
+        ]
     lg = [("win-n", "NOAA, {{win.ncei.n}} studies"), ("win-e", "EMODnet, {{win.emodnet.n}}"),
-          ("win-p", "found by the agents, {{win.found.n}} in ocean water"),
+          ("win-p", "found by the agents, {{win.found.n}}"),
           ("win-u", "from the reference list"), ("win-s", "other datasets")]  # fmt: skip
-    for x, (k, label) in zip((64, 236, 360, 668, 850), lg, strict=True):
-        body += [rect(x, H - 16, 14, 12, k), T(x + 20, H - 5, label, values, "val-s")]
-    return svg(W, H, body, "Each study as its size window against its concentration span")
+    lx0, ly0 = L + 2 * (pw + gx) - 40, top0 + ph + gy + 8
+    body.append(T(lx0, ly0, "each rectangle is one study", values, "win-t"))
+    for i, (k, label) in enumerate(lg):
+        y = ly0 + 34 + i * 30
+        body += [rect(lx0, y - 14, 18, 16, k), T(lx0 + 28, y, label, values, "val-s")]
+    label = "Each study as its size window against its concentration span"
+    return svg(W, H, body, label, "chart win")
 
 
 def chart_map(values: dict, charts: dict) -> str:

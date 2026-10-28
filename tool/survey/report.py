@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import sys
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -190,6 +191,11 @@ def main() -> None:
         "across_datasets": across_datasets(water, 50, 365, dup),
         # the same area in another dataset, in any year: descriptive, place held, time not
         "across_datasets_100km_any_year": across_datasets(water, 100, None, dup),
+        # how many records of each dataset carry each flag: what the table had to say about them
+        "flag_counts": {
+            ds: dict(sorted(Counter(f for s in g["flags"].dropna() for f in s.split(";")).items()))
+            for ds, g in t.groupby("dataset")
+        },
         "net_depth_from_paper": [
             {
                 "study": doi,

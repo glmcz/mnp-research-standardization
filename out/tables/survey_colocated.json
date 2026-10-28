@@ -260,6 +260,63 @@
    }
   ]
  },
+ "flag_counts": {
+  "aomi": {
+   "depth_from_paper_0.17m_not_0.085m": 140,
+   "provided_by_martin": 18860,
+   "upper_by_layer": 18860,
+   "window_unreported": 1621
+  },
+  "durum": {
+   "one_row_per_sampling_effort": 180,
+   "provided_by_martin": 180
+  },
+  "emodnet": {
+   "upper_by_protocol": 217
+  },
+  "geoplasticobr": {
+   "doi_filled_down": 385,
+   "mass_basis_unstated": 332,
+   "provided_by_martin": 692,
+   "repeats_row": 26,
+   "sampling_date_unreported": 692,
+   "setting_unreported": 63,
+   "window_unreported": 692
+  },
+  "kiessling2021": {
+   "coordinates_approximate": 301,
+   "found_by_scout": 301,
+   "includes_mesoplastics": 301,
+   "window_unreported": 301
+  },
+  "mpsed": {
+   "lower_unreported_codesumm:Single": 16,
+   "summ:Composite": 9,
+   "summ:Mean": 227,
+   "summ:Single": 812
+  },
+  "ncei": {
+   "depth_from_paper_0.17m_not_0.085m": 129,
+   "upper_by_database_rule": 18461
+  },
+  "pangaea_941076": {
+   "found_by_search_agent": 34,
+   "upper_by_convention": 34
+  },
+  "pangaea_990052": {
+   "found_by_search_agent": 20,
+   "upper_by_convention": 20
+  },
+  "pangaea_weser": {
+   "fraction:large": 23,
+   "fraction:small": 23
+  },
+  "rivm": {
+   "date_without_century": 5,
+   "provided_by_martin": 83
+  },
+  "soil": {}
+ },
  "net_depth_from_paper": [
   {
    "study": "https://doi.org/10.1371/journal.pone.0080466",
